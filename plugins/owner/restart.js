@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'restart',
     alias: ['reset', 'reboot', 'restartbot'],
     category: 'owner',
-    description: 'Restart bot process (real restart)',
+    description: 'Reinicia el proceso del bot',
     usage: '.restart',
     example: '.restart',
     isOwner: true,

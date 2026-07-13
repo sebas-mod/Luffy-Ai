@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-ourin3.jpg',
     alias: ['gantiourin3', 'setourin3'],
     category: 'owner',
-    description: 'Ganti gambar ourin3.jpg',
+    description: 'Cambia la imagen ourin3.jpg',
     usage: '.ganti-ourin3.jpg (reply/kirim gambar)',
     example: '.ganti-ourin3.jpg',
     isOwner: true,

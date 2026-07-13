@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'onlyadmin',
     alias: ['selfadmin', 'publicadmin', 'adminonly'],
     category: 'owner',
-    description: 'Hanya admin grup yang bisa akses command bot',
+    description: 'Solo los administradores del grupo pueden usar comandos',
     usage: '.onlyadmin on/off',
     example: '.onlyadmin on',
     isOwner: true,

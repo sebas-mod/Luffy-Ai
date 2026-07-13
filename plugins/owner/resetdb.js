@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'resetdb',
     alias: ['cleardb', 'wipedb'],
     category: 'owner',
-    description: 'Reset semua data database',
+    description: 'Restablece todos los datos de la base de datos',
     usage: '.resetdb [confirm]',
     example: '.resetdb confirm',
     isOwner: true,

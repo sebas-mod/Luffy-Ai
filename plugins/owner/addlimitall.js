@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'addenergiall',
     alias: ['addenergianall', 'bonusenergiall'],
     category: 'owner',
-    description: 'Menambahkan limit/energi ke semua member grup',
+    description: 'Añade límite/energía a todos los miembros del grupo',
     usage: '.addenergiall <jumlah>',
     example: '.addenergiall 50',
     isOwner: true,

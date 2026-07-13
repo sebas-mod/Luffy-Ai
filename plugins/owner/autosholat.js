@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "autosholat",
   alias: ["sholat", "autoadzan"],
   category: "owner",
-  description: "Toggle pengingat waktu sholat otomatis dengan audio adzan dan tutup grup",
+  description: "Activa recordatorios automáticos de oración con audio y cierre del grupo",
   usage: ".autosholat on/off/status/kota <nama>",
   example: ".autosholat on",
   isOwner: true,

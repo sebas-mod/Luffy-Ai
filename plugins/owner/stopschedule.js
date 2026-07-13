@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'stopschedule',
     alias: ['stopscheduler', 'schedstop', 'pauseschedule'],
     category: 'owner',
-    description: 'Menghentikan scheduler tertentu atau semua',
+    description: 'Detiene uno o todos los planificadores',
     usage: '.stopschedule <nama|all>',
     example: '.stopschedule sholat',
     isOwner: true,

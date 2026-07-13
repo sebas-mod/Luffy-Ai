@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-ourin-rules.jpg',
     alias: ['gantirules', 'setourinrules'],
     category: 'owner',
-    description: 'Ganti gambar ourin-rules.jpg (thumbnail rules)',
+    description: 'Cambia la imagen ourin-rules.jpg (miniatura de reglas)',
     usage: '.ganti-ourin-rules.jpg (reply/kirim gambar)',
     example: '.ganti-ourin-rules.jpg',
     isOwner: true,

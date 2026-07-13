@@ -4,7 +4,7 @@ const pluginConfig = {
     name: ['unblock', 'unblocknomor'],
     alias: [],
     category: 'owner',
-    description: 'Buka blokir nomor WhatsApp',
+    description: 'Desbloquea un número de WhatsApp',
     usage: '.unblock <nomor/reply/mention>',
     example: '.unblock 628xxx',
     isOwner: true,

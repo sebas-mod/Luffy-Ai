@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'delenergi',
     alias: ['kurangenergi', 'removeenergi', 'hapusenergi', 'delenergy'],
     category: 'owner',
-    description: 'Kurangi energi user',
+    description: 'Quita energía a un usuario',
     usage: '.delenergi <jumlah> @user',
     example: '.delenergi 50 @user',
     isOwner: true,

@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'stopalljadibot',
     alias: ['stopsemuajadibot', 'killalljadibots'],
     category: 'owner',
-    description: 'Hentikan semua jadibot yang aktif',
+    description: 'Detiene todos los jadibots activos',
     usage: '.stopalljadibot',
     example: '.stopalljadibot',
     isOwner: true,

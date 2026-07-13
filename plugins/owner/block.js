@@ -4,7 +4,7 @@ const pluginConfig = {
     name: ['block', 'blokir'],
     alias: [],
     category: 'owner',
-    description: 'Blokir nomor WhatsApp',
+    description: 'Bloquea un número de WhatsApp',
     usage: '.block <nomor/reply/mention>',
     example: '.block 628xxx',
     isOwner: true,

@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'ganti-namabot',
     alias: ['setnamabot', 'setnamebot', 'gantibot'],
     category: 'owner',
-    description: 'Ganti nama bot di config.js',
+    description: 'Cambia el nombre del bot en config.js',
     usage: '.ganti-namabot <nama baru>',
     example: '.ganti-namabot Ourin MD',
     isOwner: true,

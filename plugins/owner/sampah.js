@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'sampah',
     alias: ['clearsampah', 'cleartemp', 'deltemp'],
     category: 'owner',
-    description: 'Menghapus semua sampah di temp',
+    description: 'Elimina todos los archivos temporales',
     usage: '.sampah',
     example: '.sampah',
     isOwner: true,

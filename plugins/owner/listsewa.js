@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'listsewa',
     alias: ['sewalist', 'daftarsewa'],
     category: 'owner',
-    description: 'Lihat daftar grup yang terdaftar sewa',
+    description: 'Muestra los grupos registrados en alquiler',
     usage: '.listsewa',
     example: '.listsewa',
     isOwner: true,

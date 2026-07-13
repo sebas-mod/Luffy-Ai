@@ -13,7 +13,7 @@ const pluginConfig = {
     name: "upch",
     alias: ["uploadch", "uploadsaluran", "uch"],
     category: "owner",
-    description: "Upload gambar, audio, video, atau teks ke saluran",
+  description: "Sube una imagen, audio, video o texto a un canal",
     usage: ".upch <id saluran> <teks opsional>",
     example: ".upch 12xxx@newsletter Halo!",
     cooldown: 10,

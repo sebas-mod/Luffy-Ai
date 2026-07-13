@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'startschedule',
     alias: ['startscheduler', 'schedstart', 'resumeschedule'],
     category: 'owner',
-    description: 'Memulai ulang scheduler tertentu atau semua',
+    description: 'Reinicia uno o todos los planificadores',
     usage: '.startschedule <nama|all>',
     example: '.startschedule sholat',
     isOwner: true,

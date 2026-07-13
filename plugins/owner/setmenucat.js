@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "setmenucat",
   alias: ["menucatvariant", "menucatstyle"],
   category: "owner",
-  description: "Mengatur variant tampilan menucat",
+  description: "Configura la variante visual de menucat",
   usage: ".setmenucat <v1-v2, v5>",
   example: ".setmenucat v2",
   isOwner: true,

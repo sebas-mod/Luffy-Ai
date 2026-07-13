@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "backupsc",
   alias: ["backup", "backupscript", "backupsource"],
   category: "owner",
-  description: "Backup script bot dalam bentuk zip",
+  description: "Crea una copia del script del bot en formato ZIP",
   usage: ".backupsc",
   example: ".backupsc",
   isOwner: true,

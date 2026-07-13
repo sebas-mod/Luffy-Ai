@@ -5,7 +5,7 @@ const config = {
   name: "capfree",
   alias: ["capgratis", "setfree"],
   category: "owner",
-  description: "Mengecap banyak fitur sekaligus menjadi gratis",
+  description: "Marca varias funciones como gratuitas de una vez",
   usage: ".capfree <nama_fitur1> <nama_fitur2> ...",
   example: ".capfree hd jpm warn",
   isOwner: true,

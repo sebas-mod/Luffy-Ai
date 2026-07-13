@@ -5,7 +5,7 @@ const config = {
   name: "capprem",
   alias: ["cappremium", "setprem"],
   category: "owner",
-  description: "Mengecap banyak fitur sekaligus menjadi premium",
+  description: "Marca varias funciones como premium de una vez",
   usage: ".capprem <nama_fitur1> <nama_fitur2> ...",
   example: ".capprem hd jpm warn",
   isOwner: true,

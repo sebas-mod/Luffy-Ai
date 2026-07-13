@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'onlythisgrup',
     alias: ['onlythisgroup', 'lockgrup', 'lockgroup'],
     category: 'owner',
-    description: 'Bot hanya aktif di grup ini saja',
+    description: 'El bot solo está activo en este grupo',
     usage: '.onlythisgrup',
     example: '.onlythisgrup',
     isOwner: true,

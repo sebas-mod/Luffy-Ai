@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'stop',
     alias: ['shutdown', 'kill'],
     category: 'owner',
-    description: 'Stop bot process',
+    description: 'Detiene el proceso del bot',
     usage: '.stop',
     example: '.stop',
     isOwner: true,

@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'addlevel',
     alias: ['tambahlevel', 'givelevel', 'addlvl'],
     category: 'owner',
-    description: 'Tambah level user (via exp)',
+    description: 'Añade nivel a un usuario (mediante experiencia)',
     usage: '.addlevel <jumlah> @user',
     example: '.addlevel 5 @user',
     isOwner: true,

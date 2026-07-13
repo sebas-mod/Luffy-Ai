@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "searchplugin",
   alias: ["splugin", "findplugin", "infoplugin"],
   category: "owner",
-  description: "Cari dan tampilkan info plugin",
+  description: "Busca y muestra información de plugins",
   usage: ".splugin <nama>",
   example: ".splugin sticker",
   isOwner: true,

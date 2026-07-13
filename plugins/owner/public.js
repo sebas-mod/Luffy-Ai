@@ -9,7 +9,7 @@ const pluginConfig = {
     name: 'public',
     alias: ['publicmode', 'open'],
     category: 'owner',
-    description: 'Mengaktifkan mode public (semua user bisa akses)',
+    description: 'Activa el modo público (todos pueden acceder)',
     usage: '.public',
     example: '.public',
     isOwner: true,

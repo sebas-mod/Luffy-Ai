@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "renewsewa",
   alias: ["perpanjangsewa", "extendsewa"],
   category: "owner",
-  description: "Perpanjang durasi sewa grup",
+  description: "Extiende la duración del alquiler del grupo",
   usage: ".renewsewa <link/id grup> <durasi>",
   example: ".renewsewa https://chat.whatsapp.com/xxx 30d",
   isOwner: true,

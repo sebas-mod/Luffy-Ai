@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'hapusdata',
     alias: ['resetdata', 'cleardata', 'wipedata'],
     category: 'owner',
-    description: 'Reset semua data database ke default',
+    description: 'Restablece todos los datos de la base de datos',
     usage: '.hapusdata',
     example: '.hapusdata',
     isOwner: true,

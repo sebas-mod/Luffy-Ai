@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'addkoin',
     alias: ['tambahkoin', 'givekoin', 'addcoin', 'adddcoin'],
     category: 'owner',
-    description: 'Tambah koin user (max 9 Triliun)',
+    description: 'Añade monedas a un usuario (máx. 9 billones)',
     usage: '.addkoin <jumlah> @user',
     example: '.addkoin 100000 @user',
     isOwner: true,

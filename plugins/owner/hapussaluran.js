@@ -2,7 +2,7 @@ const pluginConfig = {
     name: ['hapussaluran', 'deletesaluran', 'deletenewsletter'],
     alias: [],
     category: 'owner',
-    description: 'Hapus saluran/newsletter',
+    description: 'Elimina un canal o boletín',
     usage: '.hapussaluran <id_saluran>',
     example: '.hapussaluran 120363xxx@newsletter',
     isOwner: true,

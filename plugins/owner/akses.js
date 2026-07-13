@@ -11,7 +11,7 @@ const pluginConfig = {
     "listaccess",
   ],
   category: "owner",
-  description: "Grant temporary/permanent command access to users",
+  description: "Otorga acceso temporal o permanente a comandos",
   usage: ".addakses <cmd> <duration> <user>",
   example: ".addakses addowner 30d @user",
   isOwner: true,
@@ -180,7 +180,7 @@ async function handler(m, { sock, plugins }) {
       const exp = acc.expired ? ms(acc.expired - now) : "Permanent";
       return {
         title: `Hapus: ${acc.cmd}`,
-        description: `Sisa durasi: ${exp}`,
+        description: `Tiempo restante: ${exp}`,
         id: `${m.prefix}delakses ${acc.cmd} ${target}`,
       };
     });

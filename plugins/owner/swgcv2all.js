@@ -29,7 +29,7 @@ const pluginConfig = {
   name: "swgcv2all",
   alias: ["statusgrupv2all"],
   category: "owner",
-  description: "Post Group Status V2 ke SEMUA grup",
+  description: "Publica un estado de grupo V2 en TODOS los grupos",
   usage: ".swgcv2all <teks> atau reply media",
   example: ".swgcv2all Halo semua grup!",
   isOwner: true,

@@ -47,7 +47,7 @@ const pluginConfig = {
   name: "sistemdaftar",
   alias: ["regmode", "wajibdaftar", "togglereg"],
   category: "owner",
-  description: "Kelola sistem wajib daftar dan statistik pendaftaran",
+  description: "Gestiona el registro obligatorio y sus estadísticas",
   usage: ".sistemdaftar <on/off/stats>",
   example: ".sistemdaftar stats",
   isOwner: true,

@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "setmenu",
   alias: ["menuvariant", "menustyle"],
   category: "owner",
-  description: "Mengatur variant tampilan menu",
+  description: "Configura la variante visual del menú",
   usage: ".setmenu <v1-v16>",
   example: ".setmenu v8",
   isOwner: true,

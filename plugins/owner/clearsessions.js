@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'clearsessions',
     alias: ['clearsession', 'delsession', 'delsessions'],
     category: 'owner',
-    description: 'Menghapus semua session di storage/sessions/',
+    description: 'Elimina todas las sesiones guardadas',
     usage: '.clearsessions',
     example: '.clearsessions',
     isOwner: true,

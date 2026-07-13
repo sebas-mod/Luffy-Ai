@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "autoread",
   alias: ["readchat", "autobaca"],
   category: "owner",
-  description: "Auto read pesan masuk",
+  description: "Marca automáticamente los mensajes entrantes como leídos",
   usage: ".autoread on/off",
   example: ".autoread on",
   isOwner: true,

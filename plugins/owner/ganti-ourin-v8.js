@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-ourin-v8.jpg',
     alias: ['gantiourinv8', 'setourinv8'],
     category: 'owner',
-    description: 'Ganti gambar ourin-v8.jpg (thumbnail welcome)',
+    description: 'Cambia la imagen ourin-v8.jpg (miniatura de bienvenida)',
     usage: '.ganti-ourin-v8.jpg (reply/kirim gambar)',
     example: '.ganti-ourin-welcome.jpg',
     isOwner: true,

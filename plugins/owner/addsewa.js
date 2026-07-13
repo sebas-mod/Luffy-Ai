@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "addsewa",
   alias: ["sewaadd", "tambahsewa"],
   category: "owner",
-  description: "Tambah grup ke whitelist sewa + auto join",
+  description: "Añade un grupo a la lista de alquiler y se une automáticamente",
   usage: ".addsewa <link/id grup> <durasi>",
   example: ".addsewa https://chat.whatsapp.com/xxx 30d",
   isOwner: true,

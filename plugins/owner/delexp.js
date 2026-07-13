@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'delexp',
     alias: ['kurangexp', 'removeexp', 'delxp'],
     category: 'owner',
-    description: 'Kurangi exp user',
+    description: 'Quita experiencia a un usuario',
     usage: '.delexp <jumlah> @user',
     example: '.delexp 5000 @user',
     isOwner: true,

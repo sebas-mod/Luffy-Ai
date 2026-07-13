@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'stopdandeletejadibot',
     alias: ['deletejadibot', 'removejadibot', 'hapusjadibot'],
     category: 'owner',
-    description: 'Stop dan hapus session jadibot user secara permanen',
+    description: 'Detiene y elimina permanentemente la sesión jadibot de un usuario',
     usage: '.stopdandeletejadibot @user',
     example: '.stopdandeletejadibot @628xxx',
     isOwner: true,

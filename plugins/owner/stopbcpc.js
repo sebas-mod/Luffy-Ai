@@ -2,7 +2,7 @@ const pluginConfig = {
   name: 'stopbcpc',
   alias: ['stopbroadcastpc'],
   category: 'owner',
-  description: 'Hentikan broadcast private yang sedang berjalan',
+  description: 'Detiene el envío masivo privado en curso',
   usage: '.stopbcpc',
   isOwner: true,
   isPremium: false,

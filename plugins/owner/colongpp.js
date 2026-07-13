@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "colongpp",
   alias: ["stealpp", "malingpp", "ambilpp"],
   category: "owner",
-  description: "Ambil & pakai foto profil target sebagai PP bot",
+  description: "Obtiene y usa la foto de perfil objetivo como foto del bot",
   usage: ".colongpp (reply pesan target)",
   example: ".colongpp",
   isOwner: true,

@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-ourin.mp4',
     alias: ['gantiourinvideo', 'setourinvideo'],
     category: 'owner',
-    description: 'Ganti video ourin.mp4',
+    description: 'Cambia el video ourin.mp4',
     usage: '.ganti-ourin.mp4 (reply/kirim video)',
     example: '.ganti-ourin.mp4',
     isOwner: true,

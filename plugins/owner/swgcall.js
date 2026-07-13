@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "swgcall",
   alias: ["swgcsemua", "swgcbroadcast", "swgcbc", "groupstoryall"],
   category: "owner",
-  description: "Post Group Status/Story ke SEMUA grup sekaligus (border hijau)",
+  description: "Publica un estado de grupo en TODOS los grupos a la vez (borde verde)",
   usage: ".swgcall <teks> atau reply media",
   example: ".swgcall Pengumuman penting!",
   isOwner: true,

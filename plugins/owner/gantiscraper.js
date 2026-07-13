@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "gantiscraper",
   alias: ["replacescraper", "updatescraper", "gantiscrape"],
   category: "owner",
-  description: "Ganti code scraper yang sudah ada di src/scraper",
+  description: "Cambia el código de un scraper existente",
   usage: ".gantiscraper [namafile]",
   example: ".gantiscraper ig",
   isOwner: true,

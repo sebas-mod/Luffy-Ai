@@ -2,7 +2,7 @@ const pluginConfig = {
     name: ['star', 'bintang'],
     alias: [],
     category: 'owner',
-    description: 'Beri/hapus bintang pada pesan',
+    description: 'Añade o elimina una estrella de un mensaje',
     usage: '.star (reply pesan) atau .star hapus (reply pesan)',
     example: '.star',
     isOwner: true,

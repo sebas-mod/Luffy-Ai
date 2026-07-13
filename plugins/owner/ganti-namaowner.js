@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "ganti-namaowner",
   alias: ["setnamaowner", "setnameowner", "setownername"],
   category: "owner",
-  description: "Ganti nama owner (utama atau tambahan)",
+  description: "Cambia el nombre del dueño (principal o adicional)",
   usage: ".ganti-namaowner <nomor> <nama baru>",
   example: ".ganti-namaowner 628xxx Fauzan",
   isOwner: true,

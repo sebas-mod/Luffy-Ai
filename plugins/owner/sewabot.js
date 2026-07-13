@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "sewabot",
   alias: ["sewa"],
   category: "owner",
-  description: "Toggle dan kelola sistem sewa bot",
+  description: "Activa y gestiona el sistema de alquiler del bot",
   usage: ".sewabot <on/off/leave/status>",
   example: ".sewabot on",
   isOwner: true,

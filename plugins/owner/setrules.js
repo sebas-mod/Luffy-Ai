@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'setrules',
     alias: ['setbotrules', 'setaturanbot'],
     category: 'owner',
-    description: 'Set rules/aturan bot custom',
+    description: 'Configura reglas personalizadas para el bot',
     usage: '.setrules <text>',
     example: '.setrules 1. Jangan spam\n2. Hormati sesama',
     isOwner: true,

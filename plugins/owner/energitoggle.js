@@ -4,7 +4,7 @@ const pluginConfig = {
     name: ['disableenergi', 'enableenergi'],
     alias: ['offenergi', 'onenergi'],
     category: 'owner',
-    description: 'Enable/disable sistem energi',
+    description: 'Activa o desactiva el sistema de energía',
     usage: '.disableenergi atau .enableenergi',
     example: '.disableenergi',
     isOwner: true,

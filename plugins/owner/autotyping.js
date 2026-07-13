@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "autotyping",
   alias: ["typing", "autoketik"],
   category: "owner",
-  description: "Auto typing indicator saat menerima pesan",
+  description: "Muestra automáticamente que el bot está escribiendo al recibir mensajes",
   usage: ".autotyping on/off",
   example: ".autotyping on",
   isOwner: true,

@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'addexp',
     alias: ['tambahexp', 'giveexp', 'addxp'],
     category: 'owner',
-    description: 'Tambah exp user (max 9 Miliar)',
+    description: 'Añade experiencia a un usuario (máx. 9 mil millones)',
     usage: '.addexp <jumlah> @user',
     example: '.addexp 10000 @user',
     isOwner: true,

@@ -5,7 +5,7 @@ const config = {
   name: "capenergi",
   alias: ["setenergi"],
   category: "owner",
-  description: "Mengubah potongan energi banyak fitur sekaligus",
+  description: "Cambia de una vez el consumo de energía de varias funciones",
   usage: ".capenergi <nama_fitur1> <nama_fitur2> ... <jumlah>",
   example: ".capenergi hd fakedev 5",
   isOwner: true,

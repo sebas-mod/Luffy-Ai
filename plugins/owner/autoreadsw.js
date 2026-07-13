@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'autoreadsw',
     alias: ['autoreadstory', 'readstory', 'bacasw'],
     category: 'owner',
-    description: 'Auto read semua status/story WA',
+    description: 'Marca automáticamente todos los estados de WhatsApp como leídos',
     usage: '.autoreadsw on/off',
     example: '.autoreadsw on',
     isOwner: true,

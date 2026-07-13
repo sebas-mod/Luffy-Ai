@@ -5,7 +5,7 @@ const pluginConfig = {
   name: 'payment',
   alias: ['pay', 'qris'],
   category: 'owner',
-  description: 'Menampilkan info payment',
+  description: 'Muestra la información de pago',
   usage: '.payment',
   isOwner: false,
   isPremium: false,

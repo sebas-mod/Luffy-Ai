@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-asset',
     alias: ['gantiasset', 'setasset'],
     category: 'owner',
-    description: 'All-in-one tools untuk ganti asset secara interaktif',
+    description: 'Herramienta interactiva todo en uno para cambiar recursos',
     usage: '.ganti-asset (reply media)',
     example: '.ganti-asset',
     isOwner: true,

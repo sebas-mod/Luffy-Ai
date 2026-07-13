@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "enableplugin",
   alias: ["eplugin", "pluginenable", "onplugin"],
   category: "owner",
-  description: "Mengaktifkan kembali plugin yang dinonaktifkan",
+  description: "Vuelve a activar un plugin desactivado",
   usage: ".enableplugin <nama_plugin>",
   example: ".enableplugin sticker",
   isOwner: true,

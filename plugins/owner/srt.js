@@ -10,7 +10,7 @@ const pluginConfig = {
     name: 'srt',
     alias: ['shufflereplythumb', 'shufflereply'],
     category: 'owner',
-    description: 'Sistem Shuffle Reply Thumb (SRT) untuk reply random image interaktif',
+    description: 'Sistema SRT para respuestas interactivas con imágenes aleatorias',
     usage: '.srt on',
     example: '.srt on',
     isOwner: true,

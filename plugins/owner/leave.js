@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "leave",
   alias: ["leavegrup", "leavegroup", "keluar", "bye"],
   category: "owner",
-  description: "Bot keluar dari grup",
+  description: "El bot sale del grupo",
   usage: ".leave [link]",
   example: ".leave",
   isOwner: true,

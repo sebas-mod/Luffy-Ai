@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "join",
   alias: ["joingrup", "joingroup", "gabung"],
   category: "owner",
-  description: "Bot join ke grup via link invite, support reply pesan yang mengandung link",
+  description: "El bot se une a un grupo mediante enlace; admite responder al mensaje con enlace",
   usage: ".join <link> / .join (reply pesan berisi link)",
   example: ".join https://chat.whatsapp.com/xxx",
   isOwner: true,

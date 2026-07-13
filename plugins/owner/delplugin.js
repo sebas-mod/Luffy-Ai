@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "delplugin",
   alias: ["delpl", "hapusplugin", "removeplugin"],
   category: "owner",
-  description: "Hapus plugin berdasarkan nama",
+  description: "Elimina un plugin por nombre",
   usage: ".delplugin <nama>",
   example: ".delplugin bliblidl",
   isOwner: true,

@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'templateplugin',
     alias: ['tplplugin', 'plugin-template'],
     category: 'owner',
-    description: 'Generate plugin template (Owner Only)',
+    description: 'Genera una plantilla de plugin (solo dueño)',
     usage: '.templateplugin',
     example: '.templateplugin',
     isOwner: true,
@@ -16,14 +16,14 @@ const pluginConfig = {
 }
 function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *¡Solo para el dueño!*')
     }
     const template = `
 const pluginConfig = {
     name: 'example',
     alias: ['ex'],
     category: 'general',
-    description: 'Example plugin',
+    description: 'Plugin de ejemplo',
     usage: '.example',
     example: '.example',
     isOwner: false,
@@ -36,10 +36,10 @@ const pluginConfig = {
 }
 async function handler(m, { sock }) {
     try {
-        await m.reply('This is an example plugin!')
+        await m.reply('¡Este es un plugin de ejemplo, nakama!')
     } catch (error) {
-        console.error('Example Plugin Error:', error)
-        await m.reply('❌ *GAGAL*\\n\\n> ' + error.message)
+        console.error('Error del plugin de ejemplo:', error)
+        await m.reply('❌ *FALLÓ*\\n\\n> ' + error.message)
     }
 }
 export { pluginConfig as config, handler }

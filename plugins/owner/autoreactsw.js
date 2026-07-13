@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'autoreactsw',
     alias: ['autoreaksi', 'reactsw', 'autoreactstory'],
     category: 'owner',
-    description: 'Auto react semua status/story WA',
+    description: 'Reacciona automáticamente a todos los estados de WhatsApp',
     usage: '.autoreactsw on/off [emoji]',
     example: '.autoreactsw on 🔥',
     isOwner: true,

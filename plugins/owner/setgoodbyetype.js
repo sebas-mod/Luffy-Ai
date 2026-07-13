@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "setgoodbyetype",
   alias: ["goodbyetype", "goodbyevariant", "goodbyestyle"],
   category: "owner",
-  description: "Mengatur variant tampilan goodbye message",
+  description: "Configura la variante visual del mensaje de despedida",
   usage: ".setgoodbyetype",
   example: ".setgoodbyetype",
   isOwner: true,

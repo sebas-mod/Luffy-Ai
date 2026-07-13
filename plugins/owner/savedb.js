@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'savedb',
     alias: ['backupdb', 'downloaddb', 'getdb'],
     category: 'owner',
-    description: 'Download file database',
+    description: 'Descarga el archivo de la base de datos',
     usage: '.savedb',
     example: '.savedb',
     isOwner: true,

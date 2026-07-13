@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "setallmenu",
   alias: ["allmenuvariant", "allmenustyle"],
   category: "owner",
-  description: "Mengatur variant tampilan allmenu",
+  description: "Configura la variante visual de allmenu",
   usage: ".setallmenu <v1-v5>",
   example: ".setallmenu v2",
   isOwner: true,

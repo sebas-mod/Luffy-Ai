@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ganti-ourin-store.jpg',
     alias: ['gantistore', 'setourinstore'],
     category: 'owner',
-    description: 'Ganti gambar ourin-store.jpg (thumbnail store)',
+    description: 'Cambia la imagen ourin-store.jpg (miniatura de tienda)',
     usage: '.ganti-ourin-store.jpg (reply/kirim gambar)',
     example: '.ganti-ourin-store.jpg',
     isOwner: true,

@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'similarity',
     alias: ['setsimilarity', 'sim'],
     category: 'owner',
-    description: 'Mengaktifkan/menonaktifkan fitur similarity (saran typo)',
+    description: 'Activa o desactiva las sugerencias por errores tipográficos',
     usage: '.similarity <on/off>',
     example: '.similarity on',
     isOwner: true,

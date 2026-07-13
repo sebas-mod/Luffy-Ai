@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'delkoin',
     alias: ['kurangkoin', 'removekoin', 'delcoin', 'delmoney'],
     category: 'owner',
-    description: 'Kurangi koin user',
+    description: 'Quita monedas a un usuario',
     usage: '.delkoin <jumlah> @user',
     example: '.delkoin 50000 @user',
     isOwner: true,

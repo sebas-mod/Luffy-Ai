@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'listjadibot',
     alias: ['jadibotlist', 'alljadibot'],
     category: 'owner',
-    description: 'Lihat semua session jadibot yang tersimpan',
+    description: 'Muestra todas las sesiones de jadibot guardadas',
     usage: '.listjadibot',
     example: '.listjadibot',
     isOwner: true,

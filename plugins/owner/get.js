@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "get",
   alias: ["fetch", "http", "request", "curl"],
   category: "owner",
-  description: "Advanced HTTP request tool (Owner Only)",
+  description: "Herramienta avanzada de solicitudes HTTP (solo dueño)",
   usage: ".get <url> [options]",
   example:
     '.get https://api.example.com --method POST --json {"key":"value"} --header "Authorization: Bearer token"',

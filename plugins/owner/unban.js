@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'unban',
     alias: ['delban', 'unblock'],
     category: 'owner',
-    description: 'Menghapus user dari daftar banned',
+    description: 'Elimina a un usuario de la lista de expulsados',
     usage: '.unban <nomor/@tag>',
     example: '.unban 6281234567890',
     isOwner: true,

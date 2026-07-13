@@ -4,7 +4,7 @@ const pluginConfig = {
   name: 'custompayment',
   alias: ['setpayment', 'setpaytext'],
   category: 'owner',
-  description: 'Atur teks custom untuk .payment dengan placeholder',
+  description: 'Configura el texto personalizado de .payment con variables',
   usage: '.custompayment <teks> / .custompayment reset',
   isOwner: true,
   isPremium: false,

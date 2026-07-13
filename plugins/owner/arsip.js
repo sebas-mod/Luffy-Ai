@@ -2,7 +2,7 @@ const pluginConfig = {
   name: ["arsip", "archive"],
   alias: [],
   category: "owner",
-  description: "Arsipkan/buka arsip chat",
+  description: "Archiva o desarchiva un chat",
   usage: ".arsip <nomor/reply> atau .arsip buka <nomor>",
   example: ".arsip 628xxx",
   isOwner: true,

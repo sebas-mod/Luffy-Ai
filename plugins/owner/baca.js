@@ -2,7 +2,7 @@ const pluginConfig = {
   name: ["baca", "read", "markread"],
   alias: [],
   category: "owner",
-  description: "Tandai pesan sebagai sudah dibaca",
+  description: "Marca un mensaje como leído",
   usage: ".baca",
   example: ".baca",
   isOwner: true,

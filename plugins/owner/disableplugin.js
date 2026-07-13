@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "disableplugin",
   alias: ["dplugin", "plugindisable", "offplugin"],
   category: "owner",
-  description: "Menonaktifkan plugin tertentu",
+  description: "Desactiva un plugin específico",
   usage: ".disableplugin <nama_plugin>",
   example: ".disableplugin sticker",
   isOwner: true,

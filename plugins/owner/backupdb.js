@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'backupdb',
     alias: ['dbbackup', 'backupstore', 'storebackup'],
     category: 'owner',
-    description: 'Backup database/store dan kirim ke owner',
+    description: 'Crea una copia de la base de datos y la envía al dueño',
     usage: '.backupdb',
     isOwner: true,
     isGroup: false,

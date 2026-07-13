@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "delsewa",
   alias: ["sewadel", "hapussewa", "removesewa"],
   category: "owner",
-  description: "Hapus grup dari whitelist sewa",
+  description: "Elimina un grupo de la lista de alquiler",
   usage: ".delsewa <link/id grup>",
   example: ".delsewa https://chat.whatsapp.com/xxx",
   isOwner: true,

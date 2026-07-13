@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "autobackup",
   alias: ["backup", "ab"],
   category: "owner",
-  description: "Kelola sistem auto backup",
+  description: "Gestiona el sistema de copias de seguridad automáticas",
   usage: ".autobackup <on/off/status/now> [interval]",
   example: ".autobackup on 5h",
   isOwner: true,

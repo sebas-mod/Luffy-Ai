@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "setwelcometype",
   alias: ["welcometype", "welcomevariant", "welcomestyle"],
   category: "owner",
-  description: "Mengatur variant tampilan welcome message",
+  description: "Configura la variante visual del mensaje de bienvenida",
   usage: ".setwelcometype",
   example: ".setwelcometype",
   isOwner: true,

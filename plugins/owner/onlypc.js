@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "onlypc",
   alias: ["onlyprivate", "privateonly"],
   category: "owner",
-  description: "Toggle mode bot hanya di private chat",
+  description: "Activa o desactiva el modo del bot solo en chats privados",
   usage: ".onlypc on/off",
   example: ".onlypc on",
   isOwner: true,

@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'ourin-large',
     alias: ['setourinlarge', 'gantiourinlarge'],
     category: 'owner',
-    description: 'Preset: Ganti gambar ourin.jpg, serta ourin-v7 hingga ourin-v11.jpg sekaligus',
+    description: 'Preajuste: cambia ourin.jpg y ourin-v7 hasta ourin-v11.jpg a la vez',
     usage: '.ourin-large (reply/kirim gambar)',
     example: '.ourin-large',
     isOwner: true,

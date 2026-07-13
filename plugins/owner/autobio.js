@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "autobio",
   alias: ["autostatus"],
   category: "owner",
-  description: "Mengatur pembaruan bio WhatsApp bot secara otomatis",
+  description: "Configura la actualización automática de la bio de WhatsApp del bot",
   usage: ".autobio on/off\n.autobio <teks>",
   example: ".autobio on\n.autobio Bot by Owner | 🕒 {clock} | ⏳ {runtime}",
   isOwner: true,

@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ban',
     alias: ['addban', 'block'],
     category: 'owner',
-    description: 'Memblokir user dari menggunakan bot',
+    description: 'Impide que un usuario use el bot',
     usage: '.ban <nomor/@tag>',
     example: '.ban 6281234567890',
     isOwner: true,

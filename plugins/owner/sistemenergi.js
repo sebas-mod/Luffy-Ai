@@ -4,7 +4,7 @@ const config = {
   name: "sistemenergi",
   alias: ["sistemlimit", "energimode", "limitmode"],
   category: "owner",
-  description: "Mengecek, menghidupkan, atau mematikan sistem energi secara global",
+  description: "Consulta, activa o desactiva globalmente el sistema de energía",
   usage: ".sistemenergi [on / off]",
   example: ".sistemenergi on",
   isOwner: true,

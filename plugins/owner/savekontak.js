@@ -2,7 +2,7 @@ const pluginConfig = {
     name: "savekontak",
     alias: ["sv", "svkontak"],
     category: "owner",
-    description: "Menyimpan kontak dari grup menjadi file VCF",
+    description: "Guarda los contactos del grupo en un archivo VCF",
     usage: ".savekontak <nama>",
     example: ".savekontak Fulan",
     isOwner: true,
@@ -93,7 +93,7 @@ async function handler(m, { sock, args }) {
             rows: groupList.map(g => ({
                 header: "",
                 title: g.subject,
-                description: `Anggota: ${g.participants?.length || 0}`,
+                description: `Miembros: ${g.participants?.length || 0}`,
                 id: `${m.prefix}savekontak get ${g.id} ${baseName}`
             }))
         }

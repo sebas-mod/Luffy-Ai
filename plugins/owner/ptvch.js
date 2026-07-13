@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'ptvch',
     alias: ['ptvchanel', 'ptvstory'],
     category: 'owner',
-    description: 'Kirim video sebagai PTV ke channel',
+    description: 'Envía un video como PTV al canal',
     usage: '.ptvch (reply video)',
     example: '.ptvch',
     isOwner: true,

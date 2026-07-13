@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'addpremall',
     alias: ['addpremiumall', 'setpremall'],
     category: 'owner',
-    description: 'Menambahkan semua member grup ke premium',
+    description: 'Añade a todos los miembros del grupo a premium',
     usage: '.addprem all',
     example: '.addprem all',
     isOwner: true,

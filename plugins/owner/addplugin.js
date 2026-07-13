@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "addplugin",
   alias: ["addpl", "tambahplugin"],
   category: "owner",
-  description: "Tambah plugin baru dari code yang di-reply",
+  description: "Añade un plugin nuevo desde código respondido",
   usage: ".addplugin [namafile] [folder]",
   example: ".addplugin bliblidl downloader",
   isOwner: true,
