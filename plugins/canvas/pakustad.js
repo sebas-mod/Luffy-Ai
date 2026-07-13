@@ -4,9 +4,9 @@ const pluginConfig = {
     name: ['pakustad', 'pak-ustad', 'tanyaustad'],
     alias: [],
     category: 'fun',
-    description: 'Tanya pak ustad (gambar)',
-    usage: '.pakustad <pertanyaan>',
-    example: '.pakustad kenapa aku ganteng',
+    description: 'Crea una imagen de preguntas para el ustad.',
+    usage: '.pakustad <pregunta>',
+    example: '.pakustad ¿cómo encuentro el One Piece?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -21,9 +21,9 @@ async function handler(m, { sock }) {
     
     if (!text) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}pakustad <pertanyaan>\`\n\n` +
-            `> Contoh: \`${m.prefix}pakustad kenapa aku ganteng\``
+            `⚠️ *ᴄóᴍᴏ ᴜsᴀʀʟᴏ*\n\n` +
+            `> \`${m.prefix}pakustad <pregunta>\`\n\n` +
+            `> Ejemplo: \`${m.prefix}pakustad ¿cómo encuentro el One Piece?\``
         )
     }
     

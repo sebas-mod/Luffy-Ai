@@ -5,9 +5,9 @@ const pluginConfig = {
     name: 'balogo',
     alias: ['bluearchivelogo', 'ba'],
     category: 'canvas',
-    description: 'Membuat logo Blue Archive style',
-    usage: '.balogo <textL> & <textR>',
-    example: '.balogo Blue & Archive',
+    description: 'Crea un logo al estilo Blue Archive.',
+    usage: '.balogo <textoIzq> & <textoDer>',
+    example: '.balogo Luffy & Sombrero de Paja',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
     
     if (parts.length < 2) {
-        return m.reply(`🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ʟᴏɢᴏ*\n\n> Masukkan 2 teks untuk logo\n\n> Contoh: ${m.prefix}balogo Blue & Archive`)
+        return m.reply(`🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ʟᴏɢᴏ*\n\n> Ingresa 2 textos para el logo\n\n> Ejemplo: ${m.prefix}balogo Luffy & Sombrero de Paja`)
     }
     
     const textL = parts[0]

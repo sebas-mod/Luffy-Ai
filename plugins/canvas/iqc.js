@@ -13,8 +13,8 @@ const pluginConfig = {
     name: "iqc",
     alias: ["qc2"],
     category: "canvas",
-    description: "Membuat Fake Quote iOS style.",
-    usage: ".iqc [text/reply]",
+    description: "Crea una cita ficticia con estilo iOS.",
+    usage: ".iqc [texto/responder mensaje]",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -157,12 +157,12 @@ async function handler(m, { sock, text }) {
         
         if (!targetText && !targetImgBuffer) {
             return m.reply(
-                `💬 *FITUR FAKE QUOTE iOS*\n\n` +
-                `Sistem ini akan mengubah teks yang kamu berikan menjadi gambar *quote* bergaya iOS yang sangat elegan dan modern.\n\n` +
-                `*CARA PENGGUNAAN:*\n` +
-                `- Ketik \`${m.prefix}iqc <teks kamu>\`\n` +
-                `- Atau balas (*reply*) pesan orang lain dengan perintah \`${m.prefix}iqc\`\n\n` +
-                `_Pesan yang dibalas akan otomatis diubah menjadi quote menggunakan nama dan foto profil pembuat pesan tersebut!_`
+                `💬 *CITA FICTICIA iOS*\n\n` +
+                `Convierte el texto que envíes en una imagen de cita con elegante estilo iOS.\n\n` +
+                `*CÓMO USARLO:*\n` +
+                `- Escribe \`${m.prefix}iqc <tu_texto>\`\n` +
+                `- O responde a un mensaje de otra persona con \`${m.prefix}iqc\`\n\n` +
+                `_¡El mensaje respondido se convertirá automáticamente en una cita usando el nombre y la foto de perfil de quien lo envió!_`
             );
         }
 
@@ -435,7 +435,7 @@ async function handler(m, { sock, text }) {
         appleEmojiMap = null;
         console.error(error)
         await m.react('❌')
-        m.reply(`❌ *GAGAL MEMPROSES QUOTE*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar quote. Silakan coba lagi beberapa saat.`)
+        m.reply(`❌ *NO SE PUDO PROCESAR LA CITA*\n\nOcurrió un error al crear la imagen. ¡Inténtalo de nuevo en un momento, nakama!`)
     }
 }
 

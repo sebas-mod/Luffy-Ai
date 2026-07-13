@@ -11,9 +11,9 @@ const pluginConfig = {
   name: "fakeml",
   alias: ["mlbbfake", "mlcard", "mlfake"],
   category: "canvas",
-  description: "Membuat fake ML profile card",
-  usage: ".fakeml <nama> (reply/kirim foto)",
-  example: ".fakeml Misaki",
+  description: "Crea una tarjeta de perfil ficticia de ML.",
+  usage: ".fakeml <nombre> (responde/envía una foto)",
+  example: ".fakeml Luffy",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -28,10 +28,10 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🎮 *ꜰᴀᴋᴇ ᴍʟ ᴘʀᴏꜰɪʟᴇ*\n\n` +
-        `> Masukkan nama untuk profile\n\n` +
-        `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-        `> 1. Kirim foto + caption \`${m.prefix}fakeml <nama>\`\n` +
-        `> 2. Reply foto dengan \`${m.prefix}fakeml <nama>\``,
+        `> Ingresa un nombre para el perfil\n\n` +
+        `*ᴄóᴍᴏ ᴜsᴀʀʟᴏ:*\n` +
+        `> 1. Envía una foto con el texto \`${m.prefix}fakeml <nombre>\`\n` +
+        `> 2. Responde a una foto con \`${m.prefix}fakeml <nombre>\``,
     );
   }
   let buffer = null;
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     }
   }
   if (!buffer) {
-    return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+    return m.reply(`❌ ¡Envía o responde a una imagen para usarla como avatar!`);
   }
   m.react("🕕");
   try {
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`Coba lagi`);
+    m.reply(`¡Inténtalo otra vez, nakama!`);
   }
 }
 export { pluginConfig as config, handler };

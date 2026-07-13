@@ -7,9 +7,9 @@ const pluginConfig = {
     name: 'kalender',
     alias: ['calendar', 'tanggalan'],
     category: 'canvas',
-    description: 'Melihat kalender lengkap tahun 2026 atau per bulan.',
-    usage: '.kalender [bulan/tahun]',
-    example: '.kalender januari',
+    description: 'Muestra el calendario completo de 2026 o de un mes.',
+    usage: '.kalender [mes/año]',
+    example: '.kalender enero',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -21,35 +21,35 @@ const pluginConfig = {
 
 const TAHUN = 2026;
 
-const NAMA_BULAN = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
-const NAMA_HARI = ["SEN","SEL","RAB","KAM","JUM","SAB","MIN"];
+const NAMA_BULAN = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+const NAMA_HARI = ["LUN","MAR","MIÉ","JUE","VIE","SÁB","DOM"];
 
 const LIBUR = {
-  "1-1":  { nama: "Tahun Baru Masehi", tipe: "nasional" },
-  "1-16": { nama: "Isra Mi'raj Nabi Muhammad SAW", tipe: "keagamaan" },
-  "2-16": { nama: "Cuti Bersama Imlek", tipe: "cuti" },
-  "2-17": { nama: "Tahun Baru Imlek 2577 Kongzili", tipe: "budaya" },
-  "3-18": { nama: "Cuti Bersama Nyepi", tipe: "cuti" },
-  "3-19": { nama: "Hari Raya Nyepi (Tahun Baru Saka 1948)", tipe: "keagamaan" },
-  "3-20": { nama: "Cuti Bersama Idul Fitri", tipe: "cuti" },
-  "3-21": { nama: "Hari Raya Idul Fitri 1447 H", tipe: "keagamaan" },
-  "3-22": { nama: "Hari Raya Idul Fitri 1447 H", tipe: "keagamaan" },
-  "3-23": { nama: "Cuti Bersama Idul Fitri", tipe: "cuti" },
-  "3-24": { nama: "Cuti Bersama Idul Fitri", tipe: "cuti" },
-  "4-3":  { nama: "Wafat Yesus Kristus (Jumat Agung)", tipe: "keagamaan" },
-  "4-5":  { nama: "Kebangkitan Yesus Kristus (Paskah)", tipe: "keagamaan" },
-  "5-1":  { nama: "Hari Buruh Internasional", tipe: "nasional" },
-  "5-14": { nama: "Kenaikan Yesus Kristus", tipe: "keagamaan" },
-  "5-15": { nama: "Cuti Bersama Kenaikan Yesus Kristus", tipe: "cuti" },
-  "5-27": { nama: "Hari Raya Idul Adha 1447 H", tipe: "keagamaan" },
-  "5-28": { nama: "Cuti Bersama Idul Adha", tipe: "cuti" },
-  "5-31": { nama: "Hari Raya Waisak 2570 BE", tipe: "keagamaan" },
-  "6-1":  { nama: "Hari Lahir Pancasila", tipe: "nasional" },
-  "6-16": { nama: "Tahun Baru Islam 1448 H", tipe: "keagamaan" },
-  "8-17": { nama: "Hari Kemerdekaan Republik Indonesia", tipe: "nasional" },
-  "8-25": { nama: "Maulid Nabi Muhammad SAW", tipe: "keagamaan" },
-  "12-24": { nama: "Cuti Bersama Natal", tipe: "cuti" },
-  "12-25": { nama: "Hari Raya Natal", tipe: "keagamaan" },
+  "1-1":  { nama: "Año Nuevo", tipe: "nasional" },
+  "1-16": { nama: "Isra y Mi'raj del profeta Mahoma", tipe: "keagamaan" },
+  "2-16": { nama: "Día puente por el Año Nuevo chino", tipe: "cuti" },
+  "2-17": { nama: "Año Nuevo chino 2577 Kongzili", tipe: "budaya" },
+  "3-18": { nama: "Día puente por Nyepi", tipe: "cuti" },
+  "3-19": { nama: "Nyepi (Año Nuevo saka 1948)", tipe: "keagamaan" },
+  "3-20": { nama: "Día puente por Eid al-Fitr", tipe: "cuti" },
+  "3-21": { nama: "Eid al-Fitr 1447 H", tipe: "keagamaan" },
+  "3-22": { nama: "Eid al-Fitr 1447 H", tipe: "keagamaan" },
+  "3-23": { nama: "Día puente por Eid al-Fitr", tipe: "cuti" },
+  "3-24": { nama: "Día puente por Eid al-Fitr", tipe: "cuti" },
+  "4-3":  { nama: "Muerte de Jesucristo (Viernes Santo)", tipe: "keagamaan" },
+  "4-5":  { nama: "Resurrección de Jesucristo (Pascua)", tipe: "keagamaan" },
+  "5-1":  { nama: "Día Internacional de los Trabajadores", tipe: "nasional" },
+  "5-14": { nama: "Ascensión de Jesucristo", tipe: "keagamaan" },
+  "5-15": { nama: "Día puente por la Ascensión", tipe: "cuti" },
+  "5-27": { nama: "Eid al-Adha 1447 H", tipe: "keagamaan" },
+  "5-28": { nama: "Día puente por Eid al-Adha", tipe: "cuti" },
+  "5-31": { nama: "Vesak 2570 BE", tipe: "keagamaan" },
+  "6-1":  { nama: "Día del nacimiento de Pancasila", tipe: "nasional" },
+  "6-16": { nama: "Año Nuevo islámico 1448 H", tipe: "keagamaan" },
+  "8-17": { nama: "Día de la Independencia de Indonesia", tipe: "nasional" },
+  "8-25": { nama: "Nacimiento del profeta Mahoma", tipe: "keagamaan" },
+  "12-24": { nama: "Día puente por Navidad", tipe: "cuti" },
+  "12-25": { nama: "Navidad", tipe: "keagamaan" },
 };
 
 const WARNA = {
@@ -266,10 +266,10 @@ function gambarLegenda(ctx, x, y, w, h) {
   ctx.stroke();
 
   const item = [
-    { label: "Hari Nasional", warna: WARNA.tipe.nasional },
-    { label: "Hari Besar Keagamaan", warna: WARNA.tipe.keagamaan },
-    { label: "Hari Budaya", warna: WARNA.tipe.budaya },
-    { label: "Cuti Bersama", warna: WARNA.tipe.cuti },
+    { label: "Festivo nacional", warna: WARNA.tipe.nasional },
+    { label: "Festividad religiosa", warna: WARNA.tipe.keagamaan },
+    { label: "Festividad cultural", warna: WARNA.tipe.budaya },
+    { label: "Día puente", warna: WARNA.tipe.cuti },
   ];
 
   ctx.font = "15px 'Inter SemiBold', sans-serif";
@@ -341,7 +341,7 @@ function gambarKartuBulan(ctx, x, y, w, tinggiKartu, bulanNum, namaBulan, skala)
   ctx.font = `${22 * s}px 'Manrope Bold', sans-serif`;
   ctx.fillText(namaBulan, x + 18 * s, y + 36 * s);
 
-  const labelJumlah = `${libur.length} libur`;
+  const labelJumlah = `${libur.length} festivos`;
   ctx.font = `${11 * s}px 'Inter Bold', sans-serif`;
   const lebarLabel = ctx.measureText(labelJumlah).width;
   const padPill = 10 * s;
@@ -417,7 +417,7 @@ function gambarKartuBulan(ctx, x, y, w, tinggiKartu, bulanNum, namaBulan, skala)
   if (libur.length === 0) {
     ctx.fillStyle = WARNA.abu;
     ctx.font = `italic ${12 * s}px 'Inter', sans-serif`;
-    ctx.fillText("Tidak ada tanggal merah bulan ini.", x + 18 * s, yDaftar);
+    ctx.fillText("No hay festivos este mes.", x + 18 * s, yDaftar);
   } else {
     libur.forEach((l) => {
       ctx.fillStyle = WARNA.merahTua;
@@ -465,15 +465,15 @@ async function renderTahun(outputPath) {
 
   gambarHeader(ctx, 0, 0, lebarKanvas, {
     tinggi: tinggiHeader,
-    judul: "Kalender Indonesia 2026",
+    judul: "Calendario de Indonesia 2026",
     subjudulBaris: [
-      "Dua belas bulan lengkap dengan hari libur nasional, hari besar",
-      "keagamaan, perayaan budaya, dan cuti bersama.",
+      "Doce meses con festivos nacionales, celebraciones",
+      "religiosas, culturales y días puente.",
     ],
     statistik: [
-      { angka: "17", label: "Libur Nasional" },
-      { angka: "8", label: "Cuti Bersama" },
-      { angka: "25", label: "Total Tanggal Merah" },
+      { angka: "17", label: "Festivos nacionales" },
+      { angka: "8", label: "Días puente" },
+      { angka: "25", label: "Total de festivos" },
     ],
   });
 
@@ -522,10 +522,10 @@ async function renderBulan(bulanNum, outputPath) {
     tinggi: tinggiHeader,
     judul: `${namaBulan} 2026`,
     subjudulBaris: [
-      "Kalender Indonesia dengan hari libur nasional, hari besar",
-      "keagamaan, perayaan budaya, dan cuti bersama.",
+      "Calendario de Indonesia con festivos nacionales, celebraciones",
+      "religiosas, culturales y días puente.",
     ],
-    statistik: [{ angka: String(libur.length), label: "Tanggal Merah Bulan Ini" }],
+    statistik: [{ angka: String(libur.length), label: "Festivos de este mes" }],
   });
 
   const legendaY = tinggiHeader - 26;
@@ -540,8 +540,8 @@ async function renderBulan(bulanNum, outputPath) {
 }
 
 const NAMA_KE_NOMOR = {
-  januari: 1, februari: 2, maret: 3, april: 4, mei: 5, juni: 6,
-  juli: 7, agustus: 8, september: 9, oktober: 10, november: 11, desember: 12,
+  enero: 1, febrero: 2, marzo: 3, abril: 4, mayo: 5, junio: 6,
+  julio: 7, agosto: 8, septiembre: 9, octubre: 10, noviembre: 11, diciembre: 12,
 };
 
 async function handler(m, { sock, text }) {
@@ -556,12 +556,12 @@ async function handler(m, { sock, text }) {
                 mode = "bulan";
                 nomorBulan = NAMA_KE_NOMOR[input];
                 namaBulanStr = input;
-            } else if (input === "tahun" || input === "2026") {
+            } else if (input === "año" || input === "2026") {
                 mode = "tahun";
             } else {
                 return m.reply(
-                    `❌ *FORMAT BULAN TIDAK VALID*\n\n` +
-                    `Silakan masukkan nama bulan yang benar (contoh: *januari*, *februari*, dll) atau biarkan kosong untuk melihat kalender penuh selama setahun.`
+                    `❌ *FORMATO DE MES NO VÁLIDO*\n\n` +
+                    `Ingresa un mes válido (por ejemplo: *enero*, *febrero*, etc.) o déjalo vacío para ver el calendario anual completo.`
                 );
             }
         }
@@ -580,14 +580,14 @@ async function handler(m, { sock, text }) {
             await renderTahun(outputPath);
             await sock.sendMessage(m.chat, { 
                 image: { url: outputPath }, 
-                caption: `📅 *KALENDER INDONESIA 2026*\n\nBerikut adalah kalender lengkap tahun 2026 yang dilengkapi dengan seluruh hari libur nasional dan cuti bersama.`
+                caption: `📅 *CALENDARIO DE INDONESIA 2026*\n\nAquí tienes el calendario completo de 2026, con todos los festivos nacionales y días puente.`
             }, { quoted: m });
         } else {
             await renderBulan(nomorBulan, outputPath);
             const namaBulanProper = namaBulanStr.charAt(0).toUpperCase() + namaBulanStr.slice(1);
             await sock.sendMessage(m.chat, { 
                 image: { url: outputPath }, 
-                caption: `📅 *KALENDER ${namaBulanProper.toUpperCase()} 2026*\n\nBerikut adalah kalender untuk bulan ${namaBulanProper} tahun 2026 yang dilengkapi dengan daftar hari libur.`
+                caption: `📅 *CALENDARIO DE ${namaBulanProper.toUpperCase()} DE 2026*\n\nAquí tienes el calendario de ${namaBulanProper} de 2026 con su lista de festivos.`
             }, { quoted: m });
         }
 
@@ -597,7 +597,7 @@ async function handler(m, { sock, text }) {
     } catch (error) {
         console.error(error);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMBUAT KALENDER*\n\nMaaf, sistem mengalami gangguan saat mencoba membuat gambar kalender. Silakan coba lagi nanti.`);
+        m.reply(`❌ *NO SE PUDO CREAR EL CALENDARIO*\n\nEl sistema tuvo un problema al crear la imagen. ¡Inténtalo de nuevo más tarde, nakama!`);
     }
 }
 

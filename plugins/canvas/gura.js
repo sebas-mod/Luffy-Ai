@@ -8,8 +8,8 @@ const pluginConfig = {
   name: "gura",
   alias: ["guracanvas"],
   category: "canvas",
-  description: "Bikin efek canvas gura dari fotomu",
-  usage: ".gura (reply/kirim foto)",
+  description: "Aplica el efecto Gura a tu foto.",
+  usage: ".gura (responde/envía una foto)",
   example: ".gura",
   isOwner: false,
   isPremium: false,
@@ -35,7 +35,7 @@ async function uploadToCatbox(buffer, filename = "file.jpg") {
     timeout: 30000,
   });
 
-  if (!res.ok) throw new Error("Catbox gagal");
+  if (!res.ok) throw new Error("Error de Catbox");
   const url = await res.text();
   if (!url.startsWith("http")) throw new Error("Invalid response");
   return url;
@@ -47,18 +47,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+      return m.reply("⚠️ ¡Responde a un mensaje con imagen, nakama!");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`🦈 *GURA CANVAS*\n\nKirim atau reply foto dengan perintah \`${m.prefix}gura\` untuk memberikan efek Gura!`);
+      return m.reply(`🦈 *GURA CANVAS*\n\nEnvía o responde a una foto con \`${m.prefix}gura\` para aplicarle el efecto Gura.`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("❌ Gagal membaca media, coba lagi!");
+  if (!media) return m.reply("❌ No pude leer la imagen. ¡Inténtalo otra vez!");
 
   await m.react("🕕");
 
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     
     const buffer = Buffer.from(await res.arrayBuffer());
 
-    await sock.sendMessage(m.chat, { image: buffer, caption: "🦈 *RAWWRR! Gura is here!*" }, { quoted: m });
+    await sock.sendMessage(m.chat, { image: buffer, caption: "🦈 *¡RAWWRR! Gura ya está aquí!*" }, { quoted: m });
     await m.react("✅");
 
   } catch (err) {

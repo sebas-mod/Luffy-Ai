@@ -7,9 +7,9 @@ const pluginConfig = {
     name: 'buatquotes',
     alias: ['bq', 'quoteanime', 'animequote'],
     category: 'canvas',
-    description: 'Membuat gambar quote bertema anime secara custom.',
-    usage: '.buatquotes [id background] | <teks> | [nama pembuat]',
-    example: '.buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman',
+    description: 'Crea imágenes personalizadas de citas con temática anime.',
+    usage: '.buatquotes [id fondo] | <texto> | [autor]',
+    example: '.buatquotes 2 | ¡Seré el Rey de los Piratas! | Luffy',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -118,7 +118,7 @@ async function download(url) {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
     }
   });
-  if (!res.ok) throw new Error(`Gagal download ${url}: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw new Error(`No se pudo descargar ${url}: ${res.status} ${res.statusText}`);
   return Buffer.from(await res.arrayBuffer());
 }
 
@@ -233,7 +233,7 @@ function drawUsernameText(ctx, text, x, y, opts, fontSize, maxWidth) {
 
 async function drawScene(bgId, quoteText, usernameStr, outFile) {
   const bg = BACKGROUNDS[bgId];
-  if (!bg) throw new Error(`Background nomor ${bgId} tidak ditemukan`);
+  if (!bg) throw new Error(`No se encontró el fondo número ${bgId}`);
 
   const bgBuffer = await setupEnv(bg);
 
@@ -265,13 +265,13 @@ async function drawScene(bgId, quoteText, usernameStr, outFile) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `🎨 *FITUR BUAT QUOTES ANIME*\n\n` +
-            `Fitur ini akan membantumu merangkai kata-kata mutiara dengan latar belakang karakter anime favorit yang sangat keren!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- \`${m.prefix}buatquotes <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks> | <namamu>\`\n\n` +
-            `*DAFTAR BACKGROUND PENDUKUNG (ID 1-8):*\n` +
+            `🎨 *CREADOR DE CITAS ANIME*\n\n` +
+            `¡Crea frases memorables, dignas de zarpar con los Sombrero de Paja, sobre fondos de tus personajes de anime favoritos!\n\n` +
+            `*CÓMO USARLO:*\n` +
+            `- \`${m.prefix}buatquotes <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_fondo> | <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_fondo> | <texto> | <tu_nombre>\`\n\n` +
+            `*FONDOS DISPONIBLES (ID 1-8):*\n` +
             `- 1: L (Death Note)\n` +
             `- 2: Gojo Satoru\n` +
             `- 3: Yuji Itadori\n` +
@@ -280,7 +280,7 @@ async function handler(m, { sock, text }) {
             `- 6: Naruto\n` +
             `- 7: Light Yagami\n` +
             `- 8: Higuruma\n\n` +
-            `_Contoh: ${m.prefix}buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman_`
+            `_Ejemplo: ${m.prefix}buatquotes 2 | ¡Seré el Rey de los Piratas! | Luffy_`
         );
     }
 
@@ -312,7 +312,7 @@ async function handler(m, { sock, text }) {
             bgId = Math.floor(Math.random() * 8) + 1;
         }
         
-        let finalName = qName || m.pushName || 'Someone';
+        let finalName = qName || m.pushName || 'Alguien';
         if (!finalName.startsWith('-')) {
             finalName = '- ' + finalName;
         }
@@ -334,7 +334,7 @@ async function handler(m, { sock, text }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\nMaaf, sistem mengalami gangguan saat mencoba membuat gambar quote. Silakan coba lagi nanti.`);
+        m.reply(`❌ *NO SE PUDO CREAR LA CITA*\n\nEl sistema tuvo un problema al crear la imagen. ¡Inténtalo de nuevo más tarde, nakama!`);
     }
 }
 

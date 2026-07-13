@@ -11,8 +11,8 @@ const pluginConfig = {
     name: "iqcpink",
     alias: [],
     category: "canvas",
-    description: "Membuat Fake Quote iOS style versi pink.",
-    usage: ".iqcpink [text/reply]",
+    description: "Crea una cita ficticia con estilo iOS en versión rosa.",
+    usage: ".iqcpink [texto/responder mensaje]",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -40,7 +40,7 @@ const SX = BG_W / 1080;
 const SY = BG_H / 2280;
 
 const state = {
-    text: "Kesendirian adalah teman terbaik ku😂😂",
+    text: "¡Seré el Rey de los Piratas! 😂😂",
     time: "22.54",
     bubbleColor:  "#ffc5d5", 
     textColor:    "#111111",
@@ -446,12 +446,12 @@ async function handler(m, { sock, text }) {
         
         if (!targetText && !targetImgBuffer) {
             return m.reply(
-                `🩷 *FITUR FAKE QUOTE iOS PINK*\n\n` +
-                `Sistem ini akan mengubah teks yang kamu berikan menjadi gambar *quote* bergaya iOS dengan tema Pink yang cantik dan elegan.\n\n` +
-                `*CARA PENGGUNAAN:*\n` +
-                `- Ketik \`${m.prefix}iqcpink <teks kamu>\`\n` +
-                `- Atau balas (*reply*) pesan orang lain dengan perintah \`${m.prefix}iqcpink\`\n\n` +
-                `_Pesan yang dibalas akan otomatis diubah menjadi quote menggunakan nama dan foto profil pembuat pesan tersebut!_`
+                `🩷 *CITA FICTICIA iOS ROSA*\n\n` +
+                `Convierte tu texto en una imagen de cita con estilo iOS y un elegante tema rosa.\n\n` +
+                `*CÓMO USARLO:*\n` +
+                `- Escribe \`${m.prefix}iqcpink <tu_texto>\`\n` +
+                `- O responde a un mensaje de otra persona con \`${m.prefix}iqcpink\`\n\n` +
+                `_¡El mensaje respondido se convertirá automáticamente en una cita usando el nombre y la foto de perfil de quien lo envió!_`
             );
         }
 
@@ -491,7 +491,7 @@ async function handler(m, { sock, text }) {
         appleEmojiMap = null;
         console.error("[iqcpink error]:", error);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES QUOTE*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar quote pink. Silakan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA CITA*\n\nOcurrió un error al crear la cita rosa. ¡Inténtalo de nuevo en un momento, nakama!`);
     }
 }
 

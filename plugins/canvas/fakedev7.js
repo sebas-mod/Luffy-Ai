@@ -9,9 +9,9 @@ const pluginConfig = {
   name: "fakedev7",
   alias: [],
   category: "canvas",
-  description: "Membuat fake developer (Python Theme)",
-  usage: ".fakedev7 <nama> (reply/kirim foto)",
-  example: ".fakedev7 Misaki",
+  description: "Crea un perfil ficticio de desarrollador (tema Python).",
+  usage: ".fakedev7 <nombre> (responde/envía una foto)",
+  example: ".fakedev7 Luffy",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -24,7 +24,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const name = m.text?.trim();
   if (!name) {
-    return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 7*\n\n> Masukkan nama untuk profile\n\n*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n> 1. Kirim foto + caption \`${m.prefix}fakedev7 <nama>\`\n> 2. Reply foto dengan \`${m.prefix}fakedev7 <nama>\``);
+    return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 7*\n\n> Ingresa un nombre para el perfil\n\n*ᴄóᴍᴏ ᴜsᴀʀʟᴏ:*\n> 1. Envía una foto con el texto \`${m.prefix}fakedev7 <nombre>\`\n> 2. Responde a una foto con \`${m.prefix}fakedev7 <nombre>\``);
   }
   let buffer = null;
   if (m.quoted && (m.quoted.type === "imageMessage" || m.quoted.mtype === "imageMessage")) {
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
       buffer = getAssetBuffer("pp-kosong");
     }
   }
-  if (!buffer) return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+  if (!buffer) return m.reply(`❌ ¡Envía o responde a una imagen para usarla como avatar!`);
   
   m.react("🕕");
 
@@ -171,7 +171,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`❌ Terjadi kesalahan saat memproses gambar.`);
+    m.reply(`❌ Ocurrió un error al procesar la imagen.`);
   }
 }
 export { pluginConfig as config, handler };

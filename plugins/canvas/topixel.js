@@ -6,8 +6,8 @@ const pluginConfig = {
   name: "topixel",
   alias: ["pixelate", "pixelart"],
   category: "canvas",
-  description: "Ubah foto kamu jadi gambar pixel art yang keren",
-  usage: ".topixel [level] (reply/kirim foto)",
+  description: "Convierte tu foto en un genial pixel art.",
+  usage: ".topixel [nivel] (responde/envía una foto)",
   example: ".topixel 30",
   isOwner: false,
   isPremium: false,
@@ -87,18 +87,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+      return m.reply("⚠️ ¡Responde a un mensaje con imagen, nakama!");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`👾 *PIXEL ART MAKER*\n\nKirim atau reply foto dengan perintah \`${m.prefix}topixel [level]\` untuk mengubah fotomu menjadi gaya retro pixel art!\n\n_Catatan: Level opsional antara 1-40 (semakin besar semakin kotak-kotak)._`);
+      return m.reply(`👾 *CREADOR DE PIXEL ART*\n\nEnvía o responde a una foto con \`${m.prefix}topixel [nivel]\` para convertirla en pixel art retro.\n\n_Nota: el nivel es opcional, de 1 a 40; cuanto mayor sea, más pixelada quedará._`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("❌ Gagal membaca media gambar, coba lagi!");
+  if (!media) return m.reply("❌ No pude leer la imagen. ¡Inténtalo otra vez!");
 
   await m.react("🕕");
 
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
       m.chat, 
       { 
         image: pixelatedBuffer, 
-        caption: `👾 *PIXEL ART BERHASIL!*\n\nIni dia fotomu dalam gaya pixel art retro 8-bit. Keren kan? ✨` 
+        caption: `👾 *¡PIXEL ART LISTO!*\n\nAquí tienes tu foto con estilo retro de 8 bits. ¡Está genial, nakama! ✨` 
       }, 
       { quoted: m }
     );

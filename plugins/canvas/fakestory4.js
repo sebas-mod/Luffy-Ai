@@ -10,9 +10,9 @@ const pluginConfig = {
   name: "fakestory4",
   alias: ["fstory4", "igstory4", "albumstory"],
   category: "canvas",
-  description: "Fake Instagram story dengan 2 gambar berbeda",
-  usage: ".fakestory4 <nama>",
-  example: ".fakestory4 Misaki (reply album/2 gambar)",
+  description: "Crea una historia ficticia de Instagram con 2 imágenes distintas.",
+  usage: ".fakestory4 <nombre>",
+  example: ".fakestory4 Luffy (responde a un álbum/2 imágenes)",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -193,7 +193,7 @@ async function getAvatarBuffer(sock, jid) {
   if (fs.existsSync(DEFAULT_PP_PATH)) {
     return fs.readFileSync(DEFAULT_PP_PATH);
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No se pudo obtener la foto de perfil");
 }
 async function handler(m, { sock }) {
   const username = m.args.join(" ").trim() || m.pushName || "User";
@@ -217,10 +217,10 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 4*\n\n` +
-          `> Kirim/reply 1-2 gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory4 <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory4 Misaki\`\n\n` +
-          `> Tips: Kirim gambar + reply gambar lain untuk 2 gambar berbeda`,
+          `> ¡Envía o responde a 1-2 imágenes!\n\n` +
+          `> Formato: \`${m.prefix}fakestory4 <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory4 Luffy\`\n\n` +
+          `> Consejo: envía una imagen y responde a otra para usar 2 imágenes distintas`,
       );
     }
     const resultBuffer = await createFakeStory(
@@ -233,7 +233,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: resultBuffer,
-        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+        caption: `📷 *ʜɪsᴛᴏʀɪᴀ ꜰɪᴄᴛɪᴄɪᴀ*\n\n> ᴜsᴜᴀʀɪᴏ: \`${username}\``,
       },
       { quoted: m },
     );
