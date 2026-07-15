@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { theme, chalk, logger } from "./ourin-logger.js";
+import { theme, chalk, logger, c } from "./ourin-logger.js";
 /**
  * @typedef {Object} PluginConfig
  * @property {string} name - Nama command (tanpa prefix)
@@ -240,38 +240,20 @@ function printPluginTable(plugins) {
 
   const sorted = Object.entries(grouped).sort((a, b) => b[1] - a[1]);
   const catCount = sorted.length;
-  const TOP = 8;
-  const top = sorted.slice(0, TOP);
-  const rest = sorted.slice(TOP);
-  const restTotal = rest.reduce((s, [, c]) => s + c, 0);
-
-  const COL_W = 25;
-  const pad = (cat, count, index) => {
-    const label = String(cat).padEnd(12);
-    return `${theme.colorizeCategory(label, index)} ${theme.pill(String(count), "accent")}`.padEnd(
-      COL_W + 12,
-    );
-  };
 
   console.log("");
-  console.log(
-    `  ${theme.pill("plugins", "primary")} ${theme.rainbow(String(plugins.length))} ${theme.dim("total")} ${theme.border("│")} ${chalk.whiteBright(`${catCount} kategori`)}`,
-  );
-  console.log(`  ${theme.borderFx("─".repeat(58))}`);
+  console.log(`  ${c.gray("───")} ${c.white("Plugins")} ${c.gray("─".repeat(40))}`);
 
-  for (let i = 0; i < top.length; i += 2) {
-    const left = pad(top[i][0], top[i][1], i);
-    const right =
-      i + 1 < top.length ? pad(top[i + 1][0], top[i + 1][1], i + 1) : "";
-    console.log(`  ${left}  ${theme.border("│")}  ${right}`);
+  for (let i = 0; i < sorted.length; i++) {
+    const [cat, count] = sorted[i];
+    const isLast = i === sorted.length - 1;
+    const connector = isLast ? "└──" : "├──";
+
+    console.log(`  ${c.gray(connector)} 📁 ${c.green(cat)} ${c.gray(`(${count})`)}`);
   }
 
-  if (rest.length > 0) {
-    console.log(
-      `  ${theme.dim(`+${rest.length} lainnya`.padEnd(14))}${theme.pill(String(restTotal), "system")}`,
-    );
-  }
-
+  console.log(`  ${c.gray("")}`);
+  console.log(`  ${c.gray("───")} ${c.white(String(plugins.length))} ${c.gray("plugins")} ${c.gray("│")} ${c.white(String(catCount))} ${c.gray("categories")}`);
   console.log("");
 }
 

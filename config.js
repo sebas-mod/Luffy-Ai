@@ -19,7 +19,7 @@ const config = {
   },
 
   bot: {
-    name: "LUFFY-MD", // Nama bot
+    name: "Luffy-AI", // Nama bot
     version: "3.2", // Versi bot
     developer: "Sebas-MD", // Nama developer
   },
@@ -100,7 +100,7 @@ const config = {
   },
 
   sticker: {
-    packname: "LUFFY-MD", // Nama pack sticker
+    packname: "Luffy-AI", // Nama pack sticker
     author: "Sebas-MD", // Author sticker
   },
 

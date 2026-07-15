@@ -104,11 +104,23 @@ async function runLoader(text = "memuat", options = {}) {
 }
 
 async function playBootSequence(info = {}) {
-  const { name = "OURIN AI", version = "1.0.0", mode = "public" } = info;
-  console.log("");
-  console.log(`${cGray("---")}`);
-  console.log(`${makeTag("BOOT", true)} ${cWhite(`Starting ${name} v${version}`)}`);
-  console.log(`${makeTag("INFO")} ${cGray(`Mode: ${mode}`)}`);
+  const { name = "Luffy-Ai", version = "1.0.0", developer = "Sebas-MD", mode = "public" } = info;
+  const banner = [
+    "",
+    `  ${cGreen("██╗     ██╗   ██╗██╗  ██╗ ██████╗")}`,
+    `  ${cGreen("██║     ██║   ██║██║ ██╔╝██╔═══██╗")}`,
+    `  ${cGreen("██║     ██║   ██║█████╔╝ ██║   ██║")}`,
+    `  ${cGreen("██║     ██║   ██║██╔═██╗ ██║   ██║")}`,
+    `  ${cGreen("███████╗╚██████╔╝██║  ██╗╚██████╔╝")}`,
+    `  ${cGreen("╚══════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝")}`,
+    `                ${cGreen("AI")}`,
+    "",
+    `  ${cGray("Developer:")} ${cGreen(developer)}`,
+    `  ${cGray("Version:")}   ${cWhite("v" + version)}`,
+    `  ${cGray("Mode:")}      ${cWhite(mode)}`,
+    "",
+  ];
+  for (const line of banner) console.log(line);
 }
 
 function getTypeTag(msgType, isNewsletter) {
