@@ -8,12 +8,7 @@ import {
   getPluginCount,
   getAllPlugins,
   pluginStore,
-  getAllCommandNames,
 } from "./lib/ourin-plugins.js";
-import {
-  findSimilarCommands,
-  formatSuggestionMessage,
-} from "./lib/ourin-similarity.js";
 import { getDatabase } from "./lib/ourin-database.js";
 import {
   formatUptime,
@@ -1442,96 +1437,6 @@ async function messageHandler(msg, sock, options = {}) {
 
         await m.reply(caption);
         return;
-      }
-
-      const storeCommands = Object.keys(storeData);
-      const allCommands = [...getAllCommandNames(), ...storeCommands];
-
-      const similarityEnabled = db.setting("similarity") !== false;
-
-      if (similarityEnabled) {
-        const suggestions = findSimilarCommands(m.command, allCommands, {
-          maxResults: 1,
-          minSimilarity: 0.6,
-          maxDistance: 3,
-        });
-
-        if (suggestions.length > 0) {
-          const message = formatSuggestionMessage(
-            m.command,
-            suggestions,
-            m.prefix,
-            m,
-          );
-          try {
-            const { prepareWAMessageMedia } = await import("ourin");
-            const media = await prepareWAMessageMedia(
-              { image: fs.readFileSync(config.assets["ourin"]) },
-              { upload: sock.waUploadToServer }
-            );
-
-            await sock.relayMessage(
-              m.chat,
-              {
-                viewOnceMessage: {
-                  message: {
-                    messageContextInfo: {},
-                    interactiveMessage: {
-                      header: {
-                        title: "",
-                        subtitle: "",
-                        hasMediaAttachment: true,
-                        imageMessage: media.imageMessage
-                      },
-                      body: {
-                        text: message.message
-                      },
-                      footer: {
-                        text: "Tal vez quisiste decir este comando"
-                      },
-                      contextInfo: {
-                        isForwarded: true,
-                        forwardingScore: 9,
-                        participant: "0@s.whatsapp.net",
-                        quotedMessage: {
-                          conversation: `🔍 Comando No Encontrado`
-                        },
-                        mentionedJid: [m.sender]
-                      },
-                      nativeFlowMessage: {
-                        messageParamsJson: JSON.stringify({
-                          limited_time_offer: {
-                            text: `Sugerencia de Comando`,
-                            url: "",
-                            copy_code: config.bot.name,
-                            expiration_time: Date.now() + 1000000,
-                          },
-                          bottom_sheet: {
-                            in_thread_buttons_limit: 2,
-                            divider_indices: [1, 2, 3],
-                            list_title: "Sugerencia de Comando",
-                            button_title: "🎯 Seleccionar Comando",
-                          },
-                          tap_target_configuration: {
-                            title: " X ",
-                            description: "Close",
-                            canonical_url: "https://ourin.site",
-                            domain: "ourin.example",
-                            button_index: 0,
-                          },
-                        }),
-                        buttons: message.interactiveButtons
-                      }
-                    }
-                  }
-                }
-              },
-              {}
-            );
-          } catch (err) {
-            console.error("[Similarity] Error al enviar mensaje de sugerencia:", err.message);
-          }
-        }
       }
 
       return;
