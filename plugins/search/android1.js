@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
     db.save();
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
     let caption = `📱 Hasil dari pencarian apk mod *${text}*\n`;
     caption += `*${apps.length}* aplikasi ditemukan\n\n`;

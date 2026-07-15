@@ -172,7 +172,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       config.command?.prefix || ".",
     );
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
     if (welcomeType === 2) {
       const cardBody = groupData?.welcomeMsg
         ? resolvePlaceholders(
@@ -190,7 +190,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           body: {
             text: `👋 Welcome *@${userName}*`,
           },
-          footer: { text: config.bot?.name || "Ourin-AI" },
+          footer: { text: config.bot?.name || "Luffy-AI" },
           header: { title: "Welcome", hasMediaAttachment: false },
           carouselMessage: {
             cards: [
@@ -201,7 +201,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                 body: {
                   text: cardBody,
                 },
-                footer: { text: config.bot?.name || "Ourin-AI" },
+                footer: { text: config.bot?.name || "Luffy-AI" },
                 nativeFlowMessage: {
                   buttons: [
                     {
@@ -312,7 +312,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                 text: text
               },
               footer: {
-                text: config.bot?.name || "Ourin-AI"
+                text: config.bot?.name || "Luffy-AI"
               },
               contextInfo: {
                 mentionedJid: [realParticipant],

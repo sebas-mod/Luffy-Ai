@@ -271,7 +271,7 @@ async function buildMenuText(
   txt += `╰➤------------------------------\n`;
 
   txt += `    ᯓ INFO BOT\n`;
-  txt += `╭  • Name : ${botConfig.bot?.name || "Ourin-AI"}\n`;
+  txt += `╭  • Name : ${botConfig.bot?.name || "Luffy-AI"}\n`;
   txt += `┆  • Author : ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Versi : ${botConfig.bot?.version || "1.2.0"}\n`;
   txt += `┆  • Type script : OURIN x ${botConfig.bot?.developer || "Owner"}\n`;
@@ -380,14 +380,14 @@ function getContextInfo(
 ) {
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-AI";
   const saluranLink = botConfig.saluran?.link || "";
   const ctx = {
     mentionedJid: [m.sender],
     forwardingScore: 9,
     isForwarded: true,
     externalAdReply: {
-      title: botConfig.bot?.name || "Ourin-AI",
+      title: botConfig.bot?.name || "Luffy-AI",
       body: `BOT WHATSAPP MULTI DEVICE`,
       sourceUrl: saluranLink,
       previewType: "VIDEO",
@@ -456,7 +456,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const prefix = botConfig.command?.prefix || ".";
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-AI";
   const saluranLink =
     botConfig.saluran?.link ||
     "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t";
@@ -1094,7 +1094,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-AI",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }

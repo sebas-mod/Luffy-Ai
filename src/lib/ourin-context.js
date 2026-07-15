@@ -22,16 +22,16 @@ for (const [key, setter] of keys) {
 }
 
 const FAST_ANSWER_PRAISES = [
-  "⚡ Kilat banget! Kamu jenius!",
-  "🚀 Super cepat! Otak encer!",
-  "🔥 Wuih monster! Jawab secepat kilat!",
-  "💫 Luar biasa! Kamu the flash!",
-  "🎯 Precision tinggi! Langsung tepat!",
-  "⭐ Bintang! Refleks dewa!",
-  "🏆 Legend! Kecepatan maximal!",
-  "💎 Premium player! Gak ada lawan!",
-  "🦅 Tajam seperti elang!",
-  "🧠 Big brain! IQ tinggi detected!",
+  "⚡ ¡Relámpago! ¡Eres un genio!",
+  "🚀 ¡Súper rápido! ¡Mente brillante!",
+  "🔥 ¡Wuih monstruo! ¡Respuesta veloz!",
+  "💫 ¡Extraordinario! ¡Eres The Flash!",
+  "🎯 ¡Precisión alta! ¡Directo al blanco!",
+  "⭐ ¡Estrella! ¡Reflejos de dios!",
+  "🏆 ¡Leyenda! ¡Velocidad máxima!",
+  "💎 ¡Jugador premium! ¡Sin rival!",
+  "🦅 ¡afil como un águila!",
+  "🧠 ¡Cerebrote! ¡IQ alto detectado!",
 ];
 
 const FAST_ANSWER_THRESHOLD = 4000;
@@ -49,7 +49,7 @@ function getRandomPraise() {
 
 function _saluranCtx() {
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+  const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
   return {
     forwardingScore: 9,
     isForwarded: true,
@@ -169,7 +169,7 @@ function checkFastAnswer(session) {
   return { isFast: false, elapsed: elapsed };
 }
 
-function createFakeQuoted(botName = "Ourin-AI", verified = true) {
+function createFakeQuoted(botName = "Luffy-AI", verified = true) {
   return {
     key: {
       fromMe: false,

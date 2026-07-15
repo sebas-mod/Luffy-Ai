@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Ourin-AI";
+        config.saluran?.name || config.bot?.name || "Luffy-AI";
 
       for (const content of mediaList) {
         await sock.sendMessage(

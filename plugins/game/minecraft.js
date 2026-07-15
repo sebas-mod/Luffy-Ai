@@ -57,7 +57,7 @@ try {
 
 function ctx() {
   const sId = config.saluran?.id || "120363400911374213@newsletter";
-  const sName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+  const sName = config.saluran?.name || config.bot?.name || "Luffy-AI";
   return {
     forwardingScore: 9999,
     isForwarded: true,

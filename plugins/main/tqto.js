@@ -19,7 +19,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    const botName = config.bot?.name || 'Ourin-AI'
+    const botName = config.bot?.name || 'Luffy-AI'
     const version = config.bot?.version || '1.0.0'
     const developer = config.bot?.developer || 'Lucky Archz'
 

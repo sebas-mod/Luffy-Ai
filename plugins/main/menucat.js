@@ -339,7 +339,7 @@ async function handler(m, { sock, db }) {
                     forwardingScore: 9,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                      newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                      newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                       serverMessageId: 127,
                     },
                   },
@@ -536,7 +536,7 @@ async function handler(m, { sock, db }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                     serverMessageId: 127,
                   },
                 },
@@ -597,7 +597,7 @@ async function handler(m, { sock, db }) {
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-AI",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
@@ -611,7 +611,7 @@ async function handler(m, { sock, db }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                     serverMessageId: 127,
                   },
                 },

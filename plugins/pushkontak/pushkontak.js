@@ -126,7 +126,7 @@ function nativeFlowMsg(m, title, buttons) {
   return {
     interactiveMessage: {
       title,
-      footer: config.bot?.name || "Ourin-AI",
+      footer: config.bot?.name || "Luffy-AI",
       image: cachedThumb,
       contextInfo: {
         mentionedJid: [m.sender],
@@ -136,7 +136,7 @@ function nativeFlowMsg(m, title, buttons) {
       nativeFlowMessage: {
         messageParamsJson: JSON.stringify({
           limited_time_offer: {
-            text: config.bot?.name || "Ourin-AI",
+            text: config.bot?.name || "Luffy-AI",
             url: "",
             copy_code: "Push Kontak",
             expiration_time: Date.now() * 7,

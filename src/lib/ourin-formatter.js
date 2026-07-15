@@ -221,7 +221,7 @@ function createBodyLine(text, prefix = CHARS.vertical, bullet = CHARS.bullet) {
  * @param {string} value - Nilai
  * @returns {string} Formatted line dengan arrow
  * @example
- * createArrowLine('Nama', 'Ourin-AI'); // "│ ➣ Nama: Ourin-AI"
+ * createArrowLine('Nama', 'Luffy-AI'); // "│ ➣ Nama: Luffy-AI"
  */
 function createArrowLine(label, value) {
   return `${CHARS.vertical} ${CHARS.arrow} ${label}: ${value}`;
@@ -263,8 +263,8 @@ function createDashboard(data) {
  */
 function createBotInfo(data) {
   const {
-    botName = config.bot?.name || "Ourin-AI",
-    developer = config.owner?.name || "Owner",
+    botName = config.bot?.name || "Luffy-AI",
+    developer = config.owner?.name || "Sebas-MD",
     version = config.bot?.version || "1.0.0",
     uptime = "0s",
     totalFeatures = 0,
@@ -332,7 +332,7 @@ function createUserProfile(data) {
  */
 function createBotStatus(data) {
   const {
-    botName = config.bot?.name || "Ourin-AI",
+    botName = config.bot?.name || "Luffy-AI",
     uptime = "0s",
     mode = "Public",
     totalCommands = 0,
@@ -508,10 +508,10 @@ function createWarningMessage(message) {
 function getTimeGreeting() {
   const hour = timeHelper.getHour();
 
-  if (hour >= 4 && hour < 10) return "Selamat Pagi 🌅";
-  if (hour >= 10 && hour < 15) return "Selamat Siang ☀️";
-  if (hour >= 15 && hour < 18) return "Selamat Sore 🌇";
-  return "Selamat Malam 🌙";
+  if (hour >= 4 && hour < 10) return "Buenos Días 🌅";
+  if (hour >= 10 && hour < 15) return "Buenos Días ☀️";
+  if (hour >= 15 && hour < 18) return "Buenas Tardes 🌇";
+  return "Buenas Noches 🌙";
 }
 
 /**

@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
         await sock.sendButton(m.chat, chPicUrl, infoText, m, {
             buttons: buttons,
-            footer: `© ${config.bot?.name || 'Ourin-AI'}`,
+            footer: `© ${config.bot?.name || 'Luffy-AI'}`,
         })
 
         m.react('✅')

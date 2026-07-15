@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import archiver from 'archiver'
 import * as timeHelper from './ourin-time.js'
+import config from '../../config.js'
 const DATABASE_DIR = path.join(process.cwd(), 'database')
 const TEMP_DIR = path.join(process.cwd(), 'temp')
 
@@ -133,7 +134,7 @@ async function sendStoreBackup(sock) {
             `┃ 🔖 Schema: v${SCHEMA_VERSION}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
             `> Type-safe backup. Kompatibel dengan versi mendatang.\n` +
-            `> ${config.bot?.name || 'Ourin-AI'} Store Backup System`
+            `> ${config.bot?.name || 'Luffy-AI'} Store Backup System`
         
         await sock.sendMessage(ownerJid, {
             document: { url: backupInfo.path },

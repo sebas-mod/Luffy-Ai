@@ -52,7 +52,7 @@ const pluginConfig = {
     category: 'ephoto',
     description: 'Buat efek text keren dengan berbagai style',
     usage: '.<effect> <text>',
-    example: '.glitchtext Ourin-AI',
+    example: '.glitchtext Luffy-AI',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -120,12 +120,12 @@ async function handler(m, { sock }) {
             `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
             `> Buat efek text keren!\n\n` +
             `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴇꜰᴇᴋ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> *Contoh:* ${m.prefix}glitchtext Ourin-AI`
+            `> *Contoh:* ${m.prefix}glitchtext Luffy-AI`
         )
     }
     
     if (!text) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text!\n> *Contoh:* ${m.prefix}${command} Ourin-AI`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text!\n> *Contoh:* ${m.prefix}${command} Luffy-AI`)
     }
     
     const effectUrl = EFFECT_URLS[command]

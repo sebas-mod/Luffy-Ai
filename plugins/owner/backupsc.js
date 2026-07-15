@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
     const stats = fs.statSync(zipFilePath);
     const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2);
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
     await sock.sendMessage(
       m.chat,

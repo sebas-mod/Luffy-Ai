@@ -373,8 +373,8 @@ async function handleSmartTriggers(m, sock, db) {
 
   try {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
-    const botName = config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
+    const botName = config.bot?.name || "Luffy-AI";
 
     let isAutoreplyEnabled = globalSmartTriggers;
 
@@ -457,9 +457,9 @@ async function handleSmartTriggers(m, sock, db) {
 
     if (isMentioned) {
       await m.reply(
-        `Ada yang manggil ${botName}?
+        `¿Alguien llamó a ${botName}?
         
-Ada apa manggil aku @${m.sender.split("@")[0]}?`,
+¿Qué pasa, por qué me llamas @${m.sender.split("@")[0]}?`,
         { mentions: [m.sender] },
       );
       return true;
@@ -467,28 +467,28 @@ Ada apa manggil aku @${m.sender.split("@")[0]}?`,
 
     if (text?.toLowerCase() === "p") {
       await m.reply(
-        `Hai @${m.sender.split("@")[0]}, utamakan salam dulu yahh`,
+        `Hola @${m.sender.split("@")[0]}, di un saludo primero por favor`,
         { mentions: [m.sender] },
       );
       return true;
     }
 
     if (text?.toLowerCase() === "bot") {
-      await m.reply(`Hai @${m.sender.split("@")[0]}, ${botName} Aktif ✅`, {
+      await m.reply(`Hola @${m.sender.split("@")[0]}, ${botName} Activo ✅`, {
         mentions: [m.sender],
       });
       return true;
     }
 
     if (text?.toLowerCase()?.includes("assalamualaikum")) {
-      await m.reply(`Waaalaikumssalam @${m.sender.split("@")[0]}`, {
+      await m.reply(`Waalaikumssalam @${m.sender.split("@")[0]}`, {
         mentions: [m.sender],
       });
       return true;
     }
 
     if (text?.toLowerCase()?.includes("hallo")) {
-      await m.reply(`Halo juga kak @${m.sender.split("@")[0]}`, {
+      await m.reply(`Hola también @${m.sender.split("@")[0]}`, {
         mentions: [m.sender],
       });
       return true;
@@ -807,7 +807,7 @@ async function messageHandler(msg, sock, options = {}) {
         await m
           .reply(
             config.messages?.banned ||
-            "🚫 *Kamu dibanned dari menggunakan bot ini.*",
+            "🚫 *Estás baneado de usar este bot.*",
           )
           .catch(() => { });
       }
@@ -1365,7 +1365,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1382,7 +1382,7 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar imagen store:", e.message);
           }
         }
 
@@ -1419,7 +1419,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1436,7 +1436,7 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar imagen store:", e.message);
           }
         }
 
@@ -1487,21 +1487,21 @@ async function messageHandler(msg, sock, options = {}) {
                         text: message.message
                       },
                       footer: {
-                        text: "Mungkin maksud kamu adalah command ini"
+                        text: "Tal vez quisiste decir este comando"
                       },
                       contextInfo: {
                         isForwarded: true,
                         forwardingScore: 9,
                         participant: "0@s.whatsapp.net",
                         quotedMessage: {
-                          conversation: `🔍 Command Tidak Ditemukan`
+                          conversation: `🔍 Comando No Encontrado`
                         },
                         mentionedJid: [m.sender]
                       },
                       nativeFlowMessage: {
                         messageParamsJson: JSON.stringify({
                           limited_time_offer: {
-                            text: `Saran Command`,
+                            text: `Sugerencia de Comando`,
                             url: "",
                             copy_code: config.bot.name,
                             expiration_time: Date.now() + 1000000,
@@ -1509,8 +1509,8 @@ async function messageHandler(msg, sock, options = {}) {
                           bottom_sheet: {
                             in_thread_buttons_limit: 2,
                             divider_indices: [1, 2, 3],
-                            list_title: "Saran Command",
-                            button_title: "🎯 Pilih Command",
+                            list_title: "Sugerencia de Comando",
+                            button_title: "🎯 Seleccionar Comando",
                           },
                           tap_target_configuration: {
                             title: " X ",
@@ -1529,7 +1529,7 @@ async function messageHandler(msg, sock, options = {}) {
               {}
             );
           } catch (err) {
-            console.error("[Similarity] Gagal mengirim pesan similarity relay:", err.message);
+            console.error("[Similarity] Error al enviar mensaje de sugerencia:", err.message);
           }
         }
       }
@@ -1587,10 +1587,10 @@ async function messageHandler(msg, sock, options = {}) {
           jadibotBlockedCommands.includes(m.command.toLowerCase())
         ) {
           return m.reply(
-            `⚠️ *ᴀᴋsᴇs ᴛᴇʀʙᴀᴛᴀs*\n\n` +
-            `Fitur ini hanya tersedia di bot utama.\n` +
-            `Jadibot tidak dapat mengakses fitur ini.\n\n` +
-            `> Hubungi owner bot utama untuk informasi lebih lanjut.`,
+            `⚠️ *ᴀᴄᴇsᴏ ʀᴇsᴛʀɪᴄᴛᴏ*\n\n` +
+            `Esta función solo está disponible en el bot principal.\n` +
+            `Los bots secundarios no pueden acceder a esta función.\n\n` +
+            `> Contacta al owner del bot principal para más información.`,
           );
         }
       }
@@ -1658,10 +1658,10 @@ async function messageHandler(msg, sock, options = {}) {
             modeConfig[suggestedMode]?.name || "Multi Device";
 
           await m.reply(
-            `🔒 *ᴄᴏᴍᴍᴀɴᴅ ᴛɪᴅᴀᴋ ᴛᴇʀsᴇᴅɪᴀ*\n\n` +
-            `> Bot sedang dalam mode *${currentConfig.name}*\n` +
-            `> Command \`${m.prefix}${m.command}\` tersedia di mode *${suggestedModeName}*\n\n` +
-            `💡 Hubungi admin grup untuk mengganti mode:\n` +
+            `🔒 *ᴄᴏᴍᴀɴᴅᴏ ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇ*\n\n` +
+            `> Bot está en modo *${currentConfig.name}*\n` +
+            `> El comando \`${m.prefix}${m.command}\` está disponible en modo *${suggestedModeName}*\n\n` +
+            `💡 Contacta al admin del grupo para cambiar el modo:\n` +
             `\`${m.prefix}botmode ${suggestedMode}\``,
           );
           return;
@@ -1674,14 +1674,14 @@ async function messageHandler(msg, sock, options = {}) {
 
         if (pluginCat === "game" && grpData.game === false) {
           await m.reply(
-            `🎮 *FITUR GAME NONAKTIF*\n\nFitur game sedang dinonaktifkan di grup ini oleh admin.\nMinta admin untuk mengaktifkannya kembali dengan perintah *${m.prefix}game on*`
+            `🎮 *FUNCIONES DE JUEGO DESACTIVADAS*\n\nLas funciones de juego están desactivadas en este grupo por el admin.\nPide al admin que las active de nuevo con el comando *${m.prefix}game on*`
           );
           return;
         }
 
         if (pluginCat === "rpg" && grpData.rpg === false) {
           await m.reply(
-            `⚔️ *FITUR RPG NONAKTIF*\n\nFitur RPG sedang dinonaktifkan di grup ini oleh admin.\nMinta admin untuk mengaktifkannya kembali dengan perintah *${m.prefix}rpg on*`
+            `⚔️ *FUNCIONES RPG DESACTIVADAS*\n\nLas funciones RPG están desactivadas en este grupo por el admin.\nPide al admin que las active de nuevo con el comando *${m.prefix}rpg on*`
           );
           return;
         }
@@ -1702,10 +1702,10 @@ async function messageHandler(msg, sock, options = {}) {
       const user = db.getUser(m.sender);
       if (!m.isOwner && !m.isPartner && !m.isPremium && !user?.isRegistered) {
         await m.reply(
-          `📝 *ᴡᴀᴊɪʙ ᴅᴀꜰᴛᴀʀ*\n\n` +
-          `Kamu harus daftar terlebih dahulu!\n\n` +
-          `> Ketik: \`${m.prefix}daftar\`\n\n` +
-          `*Lalu reply pertanyaan bot sampai selesai*`,
+          `📝 *ʀᴇɢɪsᴛʀᴏ ᴏʙʟɪɢᴀᴛᴏʀɪᴏ*\n\n` +
+          `¡Debes registrarte primero!\n\n` +
+          `> Escribe: \`${m.prefix}daftar\`\n\n` +
+          `*Luego responde las preguntas del bot hasta completar*`,
         );
         return;
       }
@@ -1821,7 +1821,7 @@ async function messageHandler(msg, sock, options = {}) {
     try {
       const m = await serialize(sock, msg);
       if (m) {
-        await m.reply(`Sepertinya ada kendala, coba hubungi owner`);
+        await m.reply(`Parece que hay un problema, contacta al owner`);
       }
     } catch {
       logger.error("Failed to send error message");
@@ -1942,7 +1942,7 @@ async function groupHandler(update, sock) {
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Ourin-AI";
+        config.saluran?.name || config.bot?.name || "Luffy-AI";
 
       let groupPpUrl = null;
       try {
@@ -1957,7 +1957,7 @@ async function groupHandler(update, sock) {
           emoji: "🎉",
           label: "PROMOTE",
           text: (p, a) =>
-            `🌿 @${p} sekarang menjadi admin baru 💕\nPromoted by: @${a}`,
+            `🌿 @${p} ahora es nuevo admin 💕\nPromovido por: @${a}`,
         },
         demote: {
           notifKey: "notifDemote",
@@ -1966,7 +1966,7 @@ async function groupHandler(update, sock) {
           emoji: "📉",
           label: "DEMOTE",
           text: (p, a) =>
-            `🌿 @${p} sudah tidak menjadi admin lagi.\nDemoted by: @${a}`,
+            `🌿 @${p} ya no es admin.\nDegradado por: @${a}`,
         },
       };
 
@@ -1993,8 +1993,8 @@ async function groupHandler(update, sock) {
             },
             message: {
               conversation: action === "promote"
-                ? `Halo semua, aku sekarang admin disini`
-                : `Yahhh, aku udah bukan admin lagi 😔`
+                ? `Hola a todos, ahora soy admin aquí`
+                : `Nooo, ya no soy admin 😔`
             }
           };
 
@@ -2004,7 +2004,7 @@ async function groupHandler(update, sock) {
             {
               name: "cta_url",
               buttonParamsJson: JSON.stringify({
-                display_text: "🍙 Cara menjadi admin",
+                display_text: "🍙 Cómo ser admin",
                 url: "https://www.whatsapp.com/communities/learning/beingagoodadmin?lang=id",
                 merchant_url: "https://www.whatsapp.com/communities/learning/beingagoodadmin?lang=id"
               })
@@ -2012,7 +2012,7 @@ async function groupHandler(update, sock) {
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                display_text: "🖐 Halo admin baru",
+                display_text: "🖐 Hola nuevo admin",
                 id: ""
               })
             }
@@ -2022,7 +2022,7 @@ async function groupHandler(update, sock) {
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                display_text: "Tetap semangat ya! 💪",
+                display_text: "¡Sigue adelante! 💪",
                 id: ""
               })
             }
@@ -2034,7 +2034,7 @@ async function groupHandler(update, sock) {
                 messageContextInfo: {},
                 interactiveMessage: {
                   header: { title: "", subtitle: "", hasMediaAttachment: true, imageMessage: media4.imageMessage },
-                  footer: { text: config.bot?.name || "Ourin-AI" },
+                  footer: { text: config.bot?.name || "Luffy-AI" },
                   body: { text: rankCfg.text(pNum, aNum) },
                   contextInfo: {
                     mentionedJid: mentions,
@@ -2042,14 +2042,14 @@ async function groupHandler(update, sock) {
                     forwardingScore: 9999,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                      newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                      newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                       serverMessageId: 127,
                     },
                   },
                   nativeFlowMessage: {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
-                        text: action === "promote" ? `Selamat yahh 🎉` : `Tetap Semangat 📉`,
+                        text: action === "promote" ? `¡Felicitaciones! 🎉` : `Ánimo 📉`,
                         url: "Hai",
                         expiration_time: Date.now() + 1000000
                       },
@@ -2168,7 +2168,7 @@ async function groupSettingsHandler(update, sock) {
         if (update.announce === true && groupData.notifCloseGroup === true) {
           await sock.sendText(
             groupId,
-            `🥗 Grup *${groupName}* di tutup oleh admin`,
+            `🥗 El grupo *${groupName}* fue cerrado por el admin`,
             null,
             zannContext,
           );
@@ -2177,7 +2177,7 @@ async function groupSettingsHandler(update, sock) {
         if (update.announce === false && groupData.notifOpenGroup === true) {
           await sock.sendText(
             groupId,
-            `🎃 Grup *${groupName}* telah di buka kembali oleh admin`,
+            `🎃 El grupo *${groupName}* ha sido reabierto por el admin`,
             null,
             zannContext,
           );
@@ -2196,14 +2196,14 @@ async function groupSettingsHandler(update, sock) {
         if (update.restrict === true) {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbatas !\nHanya admin yang dapat mengedit grup`,
+            `🥗 Info del grupo *${groupName}* restringida!\nSolo los admins pueden editar el grupo`,
             null,
             zannContext,
           );
         } else {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbuka !\nSemua member dapat mengedit grup`,
+            `🥗 Info del grupo *${groupName}* abierta!\nTodos los miembros pueden editar el grupo`,
             null,
             zannContext,
           );

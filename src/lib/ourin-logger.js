@@ -168,11 +168,11 @@ function logMessage(info) {
   const senderName = pushName || num;
 
   console.log("");
-  console.log(`  ${cGray("╭─〔")} ${cWhite("Ini pesan dari")} ${chatType === "private" ? cWhite("Private Chat") : cWhite("grup")} ${cWhite(location)} ${cGray("〕───⬣")}`);
-  console.log(`  ${cGray("│")} ${cWhite("👤 Nama:")} ${cWhite(senderName)}`);
-  console.log(`  ${cGray("│")} ${cWhite("📞 Nomor:")} ${cWhite("+" + num)}`);
-  console.log(`  ${cGray("│")} ${cWhite("📅 Waktu:")} ${cGray(date)} ${cWhite(time)}`);
-  console.log(`  ${cGray("│")} ${cWhite("💬 Tipe:")} ${cGray(`[${typeTag}]`)}`);
+  console.log(`  ${cGray("╭─〔")} ${cWhite("Mensaje de")} ${chatType === "private" ? cWhite("Chat Privado") : cWhite("grupo")} ${cWhite(location)} ${cGray("〕───⬣")}`);
+  console.log(`  ${cGray("│")} ${cWhite("👤 Nombre:")} ${cWhite(senderName)}`);
+  console.log(`  ${cGray("│")} ${cWhite("📞 Número:")} ${cWhite("+" + num)}`);
+  console.log(`  ${cGray("│")} ${cWhite("📅 Hora:")} ${cGray(date)} ${cWhite(time)}`);
+  console.log(`  ${cGray("│")} ${cWhite("💬 Tipo:")} ${cGray(`[${typeTag}]`)}`);
   console.log(`  ${cGray("│")} ${cWhite("💬 " + msg)}`);
   console.log(`  ${cGray("╰───────⬣")}`);
 }

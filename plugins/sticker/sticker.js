@@ -177,7 +177,7 @@ async function handler(m, { sock, config: botConfig }) {
             if (fs.existsSync(tempVideo)) fs.unlinkSync(tempVideo)
         }
         
-        const packname = options.packname || botConfig.sticker?.packname || botConfig.bot?.name || 'Ourin-AI'
+        const packname = options.packname || botConfig.sticker?.packname || botConfig.bot?.name || 'Luffy-AI'
         const author = options.author || botConfig.sticker?.author || botConfig.owner?.name || 'Bot'
         
         const hasProcessing = options.crop || options.resize || options.circle || options.rounded

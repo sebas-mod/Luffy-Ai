@@ -84,7 +84,7 @@ function getCommandSymbols(cmdName) {
 function getContextInfo(botConfig, m, thumbBuffer) {
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-AI";
   const saluranLink = botConfig.saluran?.link || "";
   return {
     mentionedJid: [m.sender],
@@ -350,7 +350,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                     serverMessageId: 127,
                   },
                 },
@@ -411,7 +411,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-AI",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
@@ -425,7 +425,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-AI",
                     serverMessageId: 127,
                   },
                 },

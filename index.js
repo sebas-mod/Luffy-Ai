@@ -241,9 +241,9 @@ function setupAntiCrash() {
 
 async function main() {
   await playBootSequence({
-    name: config.bot?.name || "Ourin-AI",
+    name: config.bot?.name || "Luffy-AI",
     version: config.bot?.version || "1.0.0",
-    developer: config.bot?.developer || "Developer",
+    developer: config.bot?.developer || "Sebas-MD",
     mode: config.mode || "public",
   });
   setupAntiCrash();
@@ -395,7 +395,7 @@ async function main() {
             }
           }
         } catch (e) {
-          logger.error("JADIBOT", `Gagal memulihkan: ${e.message}`);
+          logger.error("JADIBOT", `Error al restaurar: ${e.message}`);
         }
 
         const devLabel = config.dev?.enabled ? ` ${c.yellow("• dev")}` : "";

@@ -283,7 +283,7 @@ async function extendSocket(sock) {
     if (!stickers || !stickers.length) throw new Error("No stickers provided");
 
     const packname = options.name ?? options.packname ?? "Sticker Pack";
-    const publisher = options.publisher ?? options.author ?? "Ourin-AI";
+    const publisher = options.publisher ?? options.author ?? "Luffy-AI";
     const packDescription = options.description || "";
     const stickerPackId = options.id || crypto.randomUUID();
     const emojis = options.emojis || ["\uD83C\uDFA8"];
@@ -522,7 +522,7 @@ async function extendSocket(sock) {
     if (text !== null) msg.caption = text;
     if (options.footer) msg.footer = options.footer;
     if (options.buttons) msg.interactiveButtons = options.buttons;
-    if (!options.footer) msg.footer = config.bot?.name || "Ourin-AI";
+    if (!options.footer) msg.footer = config.bot?.name || "Luffy-AI";
     if (source) {
       let data = source;
       const mediaType = options.type || options.mediaType || "image";
