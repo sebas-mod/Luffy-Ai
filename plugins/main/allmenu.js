@@ -267,7 +267,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   },
                   contextInfo: {
                     isForwarded: true,
-                    fprwardingScore: 9,
+                    forwardingScore: 9,
                     participant: "0@s.whatsapp.net",
                     quotedMessage: {
                       conversation: `${config.bot?.name}`
@@ -567,7 +567,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     (thumbBuffer || imageBuffer ? await (await getSharp())(thumbBuffer || imageBuffer)
                       .resize({ width: 300, height: 300 })
                       .toBuffer() : null),
-                  itemCount: totalCmds,
+                  itemCount: totalFeatures,
                   status: "INQUIRY",
                   surface: "CATALOG",
                   message: `★ ${config.bot.name}`,
@@ -618,16 +618,6 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     }
   } catch (error) {
     console.error("[AllMenu] Error:", error.message);
-    if (imageBuffer) {
-      await sock.sendMessage(
-        m.chat,
-        {
-          image: imageBuffer,
-          caption: txt,
-          contextInfo: getContextInfo(botConfig, m),
-        },
-        { quoted: m },
-      );
     } else {
       await m.reply(txt);
     }

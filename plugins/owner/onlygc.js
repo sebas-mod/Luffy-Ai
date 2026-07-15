@@ -35,6 +35,7 @@ async function handler(m, { sock }) {
   if (option === "on") {
     db.setting("onlyGc", true);
     db.setting("onlyPc", false);
+    db.save();
     await m.react("✅");
     return m.reply(
       `🏘️ *Only Group Aktif*\n\n` +
@@ -45,6 +46,7 @@ async function handler(m, { sock }) {
 
   if (option === "off") {
     db.setting("onlyGc", false);
+    db.save();
     await m.react("❌");
     return m.reply(
       `🏘️ *Only Group Nonaktif*\n\n` +

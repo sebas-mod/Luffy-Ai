@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
         );
     }
     m.react('🎤');
-    const tmpDir = path.join(process.cwd(), 'tmp');
+    const tmpDir = path.join(process.cwd(), 'temp');
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
     const inputFile = path.join(tmpDir, `stt_${Date.now()}.ogg`);
     const wavFile = path.join(tmpDir, `stt_${Date.now()}.wav`);

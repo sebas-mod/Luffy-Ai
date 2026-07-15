@@ -174,6 +174,23 @@ async function handler(m, { sock, text }) {
         const minutes = date.getMinutes().toString().padStart(2, '0');
         const timeStr = `${hours}.${minutes}`;
 
+        const RIN_TMP = join(process.cwd(), 'temp')
+        await mkdir(RIN_TMP, { recursive: true })
+
+        const txt = targetText || "";
+        let emojis = ["👍", "❤️", "😂", "😮", "😢", "🙏"];
+
+        await m.react('🕕');
+
+        const RIN_BG_URL = 'https://cdn.jsdelivr.net/gh/ryyntwx/allimagerin@main/iqc-hytam.png'
+
+        const RIN_FONTS = [
+            { url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', file: 'Inter-Regular.ttf' }
+        ]
+
+        const BG_W = 941
+        const BG_H = 1671
+
         let imgUrl = "";
         let caption = "";
         const tmpImgPath = join(process.cwd(), 'temp', `iqc_${Date.now()}.png`);
@@ -183,24 +200,6 @@ async function handler(m, { sock, text }) {
             imgUrl = tmpImgPath;
             caption = targetText || "";
         }
-        
-        const txt = targetText || "";
-        let emojis = ["👍", "❤️", "😂", "😮", "😢", "🙏"];
-
-        await m.react('🕕');
-
-        const RIN_BG_URL = 'https://cdn.jsdelivr.net/gh/ryyntwx/allimagerin@main/iqc-hytam.png'
-        const RIN_TMP = join(process.cwd(), 'temp')
-
-        const RIN_FONTS = [
-            { url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', file: 'Inter-Regular.ttf' }
-        ]
-
-        const BG_W = 941
-        const BG_H = 1671
-
-
-        await mkdir(RIN_TMP, { recursive: true })
 
         async function rinDownload(url, isJson = false) {
             const res = await axios.get(url, { responseType: isJson ? 'json' : 'arraybuffer', headers: { 'User-Agent': 'Mozilla/5.0' }, maxRedirects: 5 })

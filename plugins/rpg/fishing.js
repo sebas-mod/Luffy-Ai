@@ -46,11 +46,13 @@ async function handler(m, { sock }) {
     { item: "whale", chance: 1, name: "🐳 Paus", exp: 2000 },
   ];
 
-  const rand = Math.random() * 100;
+  const rand = Math.random() * drops.reduce((sum, d) => sum + d.chance, 0);
   let caught = drops[0];
 
-  for (const drop of drops.sort((a, b) => a.chance - b.chance)) {
-    if (rand <= drop.chance) {
+  let cumulative = 0;
+  for (const drop of drops) {
+    cumulative += drop.chance;
+    if (rand <= cumulative) {
       caught = drop;
       break;
     }

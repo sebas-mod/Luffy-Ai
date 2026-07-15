@@ -158,7 +158,7 @@ function handler(m, { sock }) {
       return m.reply(`Woy ketua! Masa mau ninggalin anggota gitu aja? Transfer kepemimpinan dulu ke member lain atau kick semua anggotanya! 😡`);
     }
 
-    myGuild.members = (myGuild.members || []).filter((m) => m !== m.sender);
+    myGuild.members = (myGuild.members || []).filter((member) => member !== m.sender);
 
     if (myGuild.members.length === 0) {
       delete guilds[user.rpg.guildId];
@@ -202,9 +202,9 @@ function handler(m, { sock }) {
     }
 
     const memberList = (myGuild.members || [])
-      .map((m, i) => {
-        const isLeader = m === myGuild.leader ? " 👑" : " 🗡️";
-        return `${i + 1}. @${m.split("@")[0]}${isLeader}`;
+      .map((member, i) => {
+        const isLeader = member === myGuild.leader ? " 👑" : " 🗡️";
+        return `${i + 1}. @${member.split("@")[0]}${isLeader}`;
       })
       .join("\n");
 

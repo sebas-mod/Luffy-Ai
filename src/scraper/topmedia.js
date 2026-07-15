@@ -1,5 +1,5 @@
 import https from 'https'
-const API_KEY = "dac23a9006fc4039ae6aac98ae7c7b46"
+import config from '../../config.js'
 
 function generateCustomTTS(speakerId, text) {
   return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ function generateCustomTTS(speakerId, text) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": API_KEY,
+        "x-api-key": config.APIkey.topmedia,
         "Content-Length": Buffer.byteLength(postData)
       }
     }
@@ -36,6 +36,9 @@ function generateCustomTTS(speakerId, text) {
     })
 
     req.on("error", reject)
+    req.setTimeout(30000, () => {
+      req.destroy(new Error("Request timeout"))
+    })
     req.write(postData)
     req.end()
   })

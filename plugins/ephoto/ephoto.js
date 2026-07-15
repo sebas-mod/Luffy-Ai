@@ -90,7 +90,7 @@ async function ephoto(url, textInput) {
             'Accept': '*/*',
             'Accept-Language': 'en-US,en;q=0.9',
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
-            'cookie': initialResponse.headers['set-cookie']?.join('; '),
+            'cookie': initialResponse.headers['set-cookie']?.join('; ') || '',
             ...formData.getHeaders()
         }
     })
@@ -103,7 +103,7 @@ async function ephoto(url, textInput) {
     const { data: finalResponseData } = await axios.post('https://en.ephoto360.com/effect/create-image', new URLSearchParams(formValueInput), {
         headers: {
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36',
-            'cookie': initialResponse.headers['set-cookie'].join('; ')
+            'cookie': initialResponse.headers['set-cookie']?.join('; ') || ''
         }
     })
     

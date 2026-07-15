@@ -37,6 +37,7 @@ async function handler(m, { sock }) {
         config.mode = 'self';
         const db = getDatabase();
         db.setting('botMode', 'self');
+        db.save();
         
         const responseText = `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
             `> Bot sekarang hanya merespon:\n` +

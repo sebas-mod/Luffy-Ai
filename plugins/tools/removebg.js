@@ -39,17 +39,20 @@ async function handler(m, { sock }) {
         if (!mediaBuffer || !Buffer.isBuffer(mediaBuffer)) {
             return await m.reply('❌ Buffer gambar tidak valid');
         }
-        const pathnya = path.join(process.cwd(), 'temp', `rmbg_${Date.now()}.jpg`);
+        const tempDir = path.join(process.cwd(), 'temp');
+        if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
+        const pathnya = path.join(tempDir, `rmbg_${Date.now()}.jpg`);
         fs.writeFileSync(pathnya, mediaBuffer);
-        const result = await pixa(pathnya);
-        
-        await sock.sendMessage(m.chat, {
-            image: result,
-            caption: `✅ *ʙᴀᴄᴋɢʀᴏᴜɴᴅ ᴅɪʜᴀᴘᴜs*\n\n> Background gambar berhasil dihapus`
-        }, { quoted: m });
         try {
-            fs.unlinkSync(pathnya);
-        } catch (e) {}
+            const result = await pixa(pathnya);
+            
+            await sock.sendMessage(m.chat, {
+                image: result,
+                caption: `✅ *ʙᴀᴄᴋɢʀᴏᴜɴᴅ ᴅɪʜᴀᴘᴜs*\n\n> Background gambar berhasil dihapus`
+            }, { quoted: m });
+        } finally {
+            try { fs.unlinkSync(pathnya); } catch (e) {}
+        }
     } catch (error) {
         console.error('[RemoveBG Error]', error);
         m.reply(te(m.prefix, m.command, m.pushName));

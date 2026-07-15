@@ -144,7 +144,7 @@ async function createFakeStory(username, avatarBuffer, imageBuffer) {
   ctx.restore();
   return await canvas.encode("png");
 }
-const DEFAULT_PP_PATH = getAssetBuffer("pp-kosong");
+const DEFAULT_PP_ASSET = "pp-kosong";
 async function getProfilePicture(sock, jid) {
   try {
     const pp = await sock.profilePictureUrl(jid, "image");
@@ -167,9 +167,9 @@ async function getAvatarBuffer(sock, jid) {
       return await downloadImage(ppUrl);
     }
   } catch {}
-  if (fs.existsSync(DEFAULT_PP_PATH)) {
-    return fs.readFileSync(DEFAULT_PP_PATH);
-  }
+  try {
+    return getAssetBuffer(DEFAULT_PP_ASSET);
+  } catch {}
   throw new Error("No se pudo obtener la foto de perfil");
 }
 async function handler(m, { sock }) {

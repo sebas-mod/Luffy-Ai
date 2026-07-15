@@ -43,6 +43,7 @@ async function handler(m, { sock }) {
 
     await m.react("🕕");
     db.setting("allmenuAudioStyle", newStyle);
+    db.save();
     await m.reply(`✅ *BERHASIL*\n\nGaya audio All Menu telah sukses diubah menjadi *Varian ${newStyle}*. Silakan tes dengan mengetik *${m.prefix}allmenu*.`);
     await m.react("✅");
 }

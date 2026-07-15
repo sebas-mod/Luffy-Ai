@@ -465,6 +465,9 @@ async function handler(m, { sock, text }) {
 
         await m.react('🕕');
 
+        const outPath = join(process.cwd(), 'temp', `iqcpink_out_${Date.now()}.png`);
+        await mkdir(join(process.cwd(), 'temp'), { recursive: true });
+
         let imgUrl = "";
         let caption = targetText || "";
         const tmpImgPath = join(process.cwd(), 'temp', `iqcpink_${Date.now()}.png`);
@@ -473,9 +476,6 @@ async function handler(m, { sock, text }) {
             await writeFile(tmpImgPath, targetImgBuffer);
             imgUrl = tmpImgPath;
         }
-
-        const outPath = join(process.cwd(), 'temp', `iqcpink_out_${Date.now()}.png`);
-        await mkdir(join(process.cwd(), 'temp'), { recursive: true });
 
         const resultPath = await render(caption, timeStr, imgUrl, outPath);
 

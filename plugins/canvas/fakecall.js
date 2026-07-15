@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
                 const buffer = await m.download()
                 const uploadedUrl = await uploadTo0x0(buffer)
                 if (uploadedUrl) {
-                    avatar = uploadedUrl
+                    avatar = uploadedUrl.files[0].url
                 }
             } catch {}
         } else if (m.quoted?.isImage) {
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
                 const buffer = await m.quoted.download()
                 const uploadedUrl = await uploadTo0x0(buffer)
                 if (uploadedUrl) {
-                    avatar = uploadedUrl
+                    avatar = uploadedUrl.files[0].url
                 }
             } catch {}
         } else {

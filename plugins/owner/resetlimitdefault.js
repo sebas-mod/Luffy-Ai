@@ -21,6 +21,7 @@ async function handler(m, { sock }) {
     const configDefault = config.limits?.default || 25
     
     db.setting('defaultLimit', null)
+    db.save()
     
     await m.reply(
         `✅ *ʙᴇʀʜᴀsɪʟ*\n\n` +

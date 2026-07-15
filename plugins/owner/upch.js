@@ -28,12 +28,14 @@ async function toOggOpus(inputBuf) {
     const id = crypto.randomBytes(6).toString("hex")
     const inp = path.join(tmp, `upch_in_${id}`)
     const out = path.join(tmp, `upch_out_${id}.ogg`)
-    fs.writeFileSync(inp, inputBuf)
-    await run(`ffmpeg -y -i "${inp}" -vn -map_metadata -1 -ac 1 -ar 48000 -c:a libopus -b:a 96k -vbr on -application audio -f ogg "${out}"`)
-    const buf = fs.readFileSync(out)
-    try { fs.unlinkSync(inp) } catch {}
-    try { fs.unlinkSync(out) } catch {}
-    return buf
+    try {
+        fs.writeFileSync(inp, inputBuf)
+        await run(`ffmpeg -y -i "${inp}" -vn -map_metadata -1 -ac 1 -ar 48000 -c:a libopus -b:a 96k -vbr on -application audio -f ogg "${out}"`)
+        return fs.readFileSync(out)
+    } finally {
+        try { fs.unlinkSync(inp) } catch {}
+        try { fs.unlinkSync(out) } catch {}
+    }
 }
 
 function generateWaveform(audioBuf, samples = 64) {

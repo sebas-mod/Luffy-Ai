@@ -22,12 +22,8 @@ async function handler(m, { sock }) {
   m.react("🎤");
 
   async function textToSpeech2(text) {
-    try {
-      const response = await ourinApi.nexray.geminiTts(text);
-      return response;
-    } catch (error) {
-      return error;
-    }
+    const response = await ourinApi.nexray.geminiTts(text);
+    return response;
   }
 
   try {

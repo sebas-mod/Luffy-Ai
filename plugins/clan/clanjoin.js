@@ -45,7 +45,7 @@ async function handler(m) {
     if (clan.members.length >= MAX_MEMBERS) return m.reply(`❌ *${clan.name}* sudah penuh (${MAX_MEMBERS}/${MAX_MEMBERS})`)
 
     clan.members.push(m.sender)
-    db.setUser(m.sender, { clanId })
+    db.setUser(m.sender, { clanId: clan.id })
     db.save()
 
     const emblem = clan.emblem || '🏰'

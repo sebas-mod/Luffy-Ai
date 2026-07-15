@@ -135,15 +135,13 @@ async function handler(m, { sock }) {
 
         m.react('✅')
 
-        try {
-            fs.unlinkSync(inputVideo)
-            fs.unlinkSync(outputVideo)
-            fs.unlinkSync(overlayImage)
-        } catch (e) {}
-
     } catch (error) {
         m.react('☢')
         m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Terjadi kesalahan saat memproses video`)
+    } finally {
+        try { fs.unlinkSync(inputVideo); } catch {}
+        try { fs.unlinkSync(outputVideo); } catch {}
+        try { fs.unlinkSync(overlayImage); } catch {}
     }
 }
 

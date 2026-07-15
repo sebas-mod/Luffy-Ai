@@ -64,6 +64,8 @@ async function handler(m, { sock }) {
   m.react("🕕");
   await m.reply(`🕕 *ᴍᴇɴɢᴜɴᴅᴜʜ ғɪʟᴇ...*`);
 
+  let tempFile = null;
+
   try {
     const stream = await downloadContentFromMessage(
       mediaMessage.message[mediaMessage.type],
@@ -82,16 +84,12 @@ async function handler(m, { sock }) {
     }
 
     const ext = filename.split(".").pop() || "bin";
-    const tempFile = path.join(tempDir, `convert_${Date.now()}.${ext}`);
+    tempFile = path.join(tempDir, `convert_${Date.now()}.${ext}`);
     fs.writeFileSync(tempFile, buffer);
 
     await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪɴɢ...*\n\n> ${ext} → ${targetFormat}`);
 
     const result = await mconverter.convert(tempFile, targetFormat);
-
-    if (fs.existsSync(tempFile)) {
-      fs.unlinkSync(tempFile);
-    }
 
     if (result.error) {
       m.react("❌");
@@ -125,6 +123,8 @@ async function handler(m, { sock }) {
     console.error("[Converter] Error:", err.message);
     m.react("☢");
     return m.reply(te(m.prefix, m.command, m.pushName));
+  } finally {
+    if (tempFile) try { fs.unlinkSync(tempFile); } catch {}
   }
 }
 

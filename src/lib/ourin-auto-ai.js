@@ -1041,6 +1041,8 @@ async function handleAutoAI(m, sock) {
     await new Promise((r) => setTimeout(r, typingDelay));
 
     if (autoai.responseType === "voice") {
+      const mp3Path = path.join(process.cwd(), "temp", `autoai_${Date.now()}.mp3`);
+      let oggPath = null;
       try {
         await sock.sendPresenceUpdate("recording", m.chat);
         const execAsync = promisify(exec);
@@ -1060,31 +1062,26 @@ async function handleAutoAI(m, sock) {
           timeout: 30000
         });
 
-        const mp3Path = path.join(tempDir, `autoai_${Date.now()}.mp3`);
         fs.writeFileSync(mp3Path, Buffer.from(audioRes.data));
 
-        const oggPath = mp3Path.replace(".mp3", ".ogg");
+        oggPath = mp3Path.replace(".mp3", ".ogg");
         try {
           await execAsync(
             `ffmpeg -y -i "${mp3Path}" -c:a libopus -b:a 64k -ac 1 -ar 48000 "${oggPath}"`,
             { timeout: 30000 },
           );
-        } catch {}
+        } catch (e) {
+          console.log("[AutoAI Voice] FFmpeg error:", e.message);
+        }
 
         let audioBuffer;
         let mime = "audio/mpeg";
         if (fs.existsSync(oggPath)) {
           audioBuffer = fs.readFileSync(oggPath);
           mime = "audio/ogg; codecs=opus";
-          try {
-            fs.unlinkSync(oggPath);
-          } catch {}
         } else {
           audioBuffer = fs.readFileSync(mp3Path);
         }
-        try {
-          fs.unlinkSync(mp3Path);
-        } catch {}
 
         await sock.sendMessage(
           m.chat,
@@ -1097,8 +1094,12 @@ async function handleAutoAI(m, sock) {
         );
 
         await sock.sendPresenceUpdate("paused", m.chat);
-      } catch {
+      } catch (e) {
+        console.log("[AutoAI Voice] Error:", e.message);
         await m.reply(cleanResponse);
+      } finally {
+        try { fs.unlinkSync(mp3Path); } catch {}
+        if (oggPath) try { fs.unlinkSync(oggPath); } catch {}
       }
     } else {
       let richSent = false;

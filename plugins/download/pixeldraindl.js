@@ -59,8 +59,11 @@ async function handler(m, { sock }) {
       else if (unit === "KB") sizeInMB = value / 1024;
     }
 
-    if (sizeInMB > 0 && sizeInMB <= 100) {
-
+    if (sizeInMB > 100) {
+      await m.reply(
+        `⚠️ *ꜰɪʟᴇ ᴛᴇʀʟᴀʟᴜ ʙᴇsᴀʀ*\n\n> File ${file.size} terlalu besar untuk dikirim\n> Gunakan link download di atas`,
+      );
+    } else {
       await sock.sendMedia(m.chat, file.url, null, m, {
         type: 'document',
         fileName: file.filename,
@@ -70,10 +73,6 @@ async function handler(m, { sock }) {
           isForwarded: true
         }
       })
-    } else if (sizeInMB > 100) {
-      await m.reply(
-        `⚠️ *ꜰɪʟᴇ ᴛᴇʀʟᴀʟᴜ ʙᴇsᴀʀ*\n\n> File ${file.size} terlalu besar untuk dikirim\n> Gunakan link download di atas`,
-      );
     }
 
     m.react("✅");

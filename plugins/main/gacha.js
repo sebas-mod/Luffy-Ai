@@ -160,6 +160,11 @@ async function handler(m, { sock }) {
       typeEmoji = "⚡";
       rewardText = `+${reward.amount} Energi`;
       break;
+    case "limit":
+      user.limit = (user.limit || 0) + reward.amount;
+      typeEmoji = "📋";
+      rewardText = `+${reward.amount} Limit`;
+      break;
     case "jackpot":
       db.updateKoin(m.sender, reward.amount);
       typeEmoji = "💎";

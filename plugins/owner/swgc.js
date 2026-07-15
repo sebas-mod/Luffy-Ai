@@ -183,6 +183,10 @@ async function handler(m, { sock, db }) {
       await m.reply(
         `❌ *ᴇʀʀᴏʀ*\n\n` + `> Gagal posting story.\n` + `> _${error.message}_`,
       );
+      pendingSwgc.delete(m.sender);
+      if (pendingData?.tempFile && fs.existsSync(pendingData.tempFile)) {
+        try { fs.unlinkSync(pendingData.tempFile); } catch {}
+      }
     }
     return;
   }

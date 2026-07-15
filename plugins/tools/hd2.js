@@ -47,7 +47,9 @@ async function handler(m, { sock }) {
     await m.reply(
       `🕕 *ᴍᴇᴍᴘʀᴏsᴇs ɢᴀᴍʙᴀʀ...*\n\n> Estimasi waktu: ±1 menit\n> Mohon tunggu...`,
     );
-    const temp = path.join(process.cwd(), "temp", "hd.jpg");
+    const tempDir = path.join(process.cwd(), "temp");
+    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
+    const temp = path.join(tempDir, `hd_${Date.now()}.jpg`);
     fs.writeFileSync(temp, buffer);
     const codes = await upload(temp);
     fs.unlinkSync(temp);

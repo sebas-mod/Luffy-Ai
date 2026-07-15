@@ -888,7 +888,7 @@ async function messageHandler(msg, sock, options = {}) {
         ) {
           const buffer = await m.download();
           if (buffer && buffer.length > 1000) {
-            const tmpDir = path.join(process.cwd(), "tmp");
+            const tmpDir = path.join(process.cwd(), "temp");
             if (!fs.existsSync(tmpDir))
               fs.mkdirSync(tmpDir, { recursive: true });
 

@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     
     try {
         for(let i = 0; i < jumlah; i++) {
-            axios.get(`https://api.cuki.biz.id/api/tools/sendngl?apikey=cuki-x&link=${encodeURIComponent(link)}&text=${encodeURIComponent(kata)}`, {
+            await axios.get(`https://api.cuki.biz.id/api/tools/sendngl?apikey=cuki-x&link=${encodeURIComponent(link)}&text=${encodeURIComponent(kata)}`, {
                 timeout: 30000
             })
             await new Promise(resolve => setTimeout(resolve, 4000))

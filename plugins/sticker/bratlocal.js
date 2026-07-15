@@ -417,12 +417,14 @@ async function handler(m, { sock }) {
       const tempPath = path.join(os.tmpdir(), `bratvid-${Date.now()}.mp4`);
       fs.writeFileSync(tempPath, videoBuffer);
 
-      await sock.sendVideoAsSticker(m.chat, tempPath, m, {
-        packname: config.sticker.packname,
-        author: config.sticker.author
-      });
-
-      try { fs.unlinkSync(tempPath); } catch (e) { }
+      try {
+        await sock.sendVideoAsSticker(m.chat, tempPath, m, {
+          packname: config.sticker.packname,
+          author: config.sticker.author
+        });
+      } finally {
+        try { fs.unlinkSync(tempPath); } catch {}
+      }
     } else {
       const imageBuffer = await createBratImage(inputText, template);
       await sock.sendImageAsSticker(m.chat, imageBuffer, m, {

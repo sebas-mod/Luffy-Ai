@@ -69,7 +69,7 @@ function getRandomKhodam() {
     const idx = Math.floor(Math.random() * KHODAMS.length)
     return KHODAMS[idx]
 }
-function handler(m, { sock }) {
+async function handler(m, { sock }) {
     let targetJid = m.sender
     let targetName = m.pushName || m.sender.split('@')[0]
     if (m.quoted) {
@@ -83,16 +83,23 @@ function handler(m, { sock }) {
     }
     const khodam = getRandomKhodam()
     let txt = `Halo kak ${targetName || ""}, Khodam kamu adalah ${khodam.name}, Khodam ini memiliki arti: ${khodam.meaning}`
+    const tempDir = path.join(process.cwd(), 'temp')
+    if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true })
     const tts = new gtts(txt, 'id')
     const id = Date.now()
-    const tempPath = path.join(process.cwd(), 'temp', `khodam-${id}.mp3`)
-    tts.save(tempPath, async function (err) {
-        if (err) return console.log(err)
+    const tempPath = path.join(tempDir, `khodam-${id}.mp3`)
+    try {
+        await new Promise((resolve, reject) => {
+            tts.save(tempPath, function (err) {
+                if (err) reject(err)
+                else resolve()
+            })
+        })
         await sock.sendMedia(m.chat, fs.readFileSync(tempPath), null, m, { type: 'audio' })
-        try {
-            fs.unlinkSync(tempPath)
-        } catch (error) {
-        }
-    })
+    } catch (error) {
+        console.log('[cekkhodam] Error:', error.message)
+    } finally {
+        try { fs.unlinkSync(tempPath) } catch {}
+    }
 }
 export { pluginConfig as config, handler }

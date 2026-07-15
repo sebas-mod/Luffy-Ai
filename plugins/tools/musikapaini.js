@@ -34,8 +34,8 @@ async function uploadTo0x0(buffer, filename) {
     },
   );
 
-  if (!res.data?.status ? res.data.path : "") throw new Error("Upload gagal");
-  return res.data;
+  if (!res.data?.status) throw new Error("Upload gagal");
+  return res.data?.path || "";
 }
 
 async function handler(m, { sock }) {

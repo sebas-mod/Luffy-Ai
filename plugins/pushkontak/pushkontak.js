@@ -162,7 +162,7 @@ function nativeFlowMsg(m, title, buttons) {
 }
 
 async function sendVcf(sock, ownerJid, contacts, groupName) {
-  const tmpDir = path.join(process.cwd(), "tmp");
+  const tmpDir = path.join(process.cwd(), "temp");
   if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
   const vcfPath = path.join(tmpDir, `pushkontak_${Date.now()}.vcf`);
   fs.writeFileSync(vcfPath, buildVcf(contacts), "utf8");

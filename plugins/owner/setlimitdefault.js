@@ -40,6 +40,7 @@ async function handler(m, { sock }) {
     
     const db = getDatabase()
     db.setting('defaultLimit', newLimit)
+    db.save()
     
     await m.reply(
         `✅ *ʙᴇʀʜᴀsɪʟ*\n\n` +

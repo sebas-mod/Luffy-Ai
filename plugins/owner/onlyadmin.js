@@ -21,12 +21,14 @@ async function handler(m) {
     if (cmd === 'selfadmin') {
         if (current) {
             db.setting('onlyAdmin', false)
+            db.save()
             await m.react('❌')
             return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
         }
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
         db.setting('publicAdmin', false)
+        db.save()
         await m.react('✅')
         return m.reply(
             '✅ *ᴏɴʟʏᴀᴅᴍɪɴ ᴀᴋᴛɪꜰ*\n\n' +
@@ -42,12 +44,14 @@ async function handler(m) {
     if (cmd === 'publicadmin') {
         if (current) {
             db.setting('onlyAdmin', false)
+            db.save()
             await m.react('❌')
             return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
         }
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
         db.setting('publicAdmin', false)
+        db.save()
         await m.react('✅')
         return m.reply(
             '✅ *ᴏɴʟʏᴀᴅᴍɪɴ ᴀᴋᴛɪꜰ*\n\n' +
@@ -77,6 +81,7 @@ async function handler(m) {
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
         db.setting('publicAdmin', false)
+        db.save()
         await m.react('✅')
         return m.reply(
             '✅ *ᴏɴʟʏᴀᴅᴍɪɴ ᴀᴋᴛɪꜰ*\n\n' +
@@ -92,6 +97,7 @@ async function handler(m) {
     if (args === 'off') {
         if (!current) return m.reply('⚠️ OnlyAdmin sudah nonaktif.')
         db.setting('onlyAdmin', false)
+        db.save()
         await m.react('❌')
         return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
     }

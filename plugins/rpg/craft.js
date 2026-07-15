@@ -112,6 +112,8 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
+  db.save();
+
   let txt = `YEAYY! BARANGNYA UDAH JADI! 🎉🛠️\n\n`;
   txt += `Kamu berhasil merakit:\n`;
   txt += `📦 Item: *${recipe.name} x${resultQty}*\n`;

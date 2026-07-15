@@ -155,7 +155,7 @@ async function handler(m, { sock }) {
     top10.forEach((u, i) => {
         const medal = MEDALS[i] || `${i + 1}.`
         const pct = totalField > 0 ? ((u[field] / totalField) * 100).toFixed(1) : 0
-        const isMe = u.jid === senderJid ? " *(You)*" : ""
+        const isMe = u.jid === m.sender ? " *(You)*" : ""
         
         text += `┃ ${medal} @${u.jid.split('@')[0]}${isMe}\n`
         text += `┃    └ ${formatValue(u)} (${pct}%)\n`
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
     
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     
-    const myRankIndex = users.findIndex(u => u.jid === senderJid)
+    const myRankIndex = users.findIndex(u => u.jid === m.sender)
     if (myRankIndex !== -1) {
         text += `> Posisi kamu: *#${myRankIndex + 1}* dari *${formatNumber(users.length)}* user.`
     } else {

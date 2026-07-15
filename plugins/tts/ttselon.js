@@ -52,6 +52,7 @@ async function handler(m, { sock }) {
 
   m.react("🚀");
 
+  let wavPath, opusPath;
   try {
     const res = await axios.get(
       `https://api.emiliabot.my.id/tools/text-to-speech?text=${encodeURIComponent(text)}`,
@@ -66,8 +67,9 @@ async function handler(m, { sock }) {
     const tempDir = path.join(process.cwd(), "temp");
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
 
-    const wavPath = path.join(tempDir, `tts_${Date.now()}.wav`);
-    const opusPath = path.join(tempDir, `tts_${Date.now()}.ogg`);
+    const ts = Date.now();
+    wavPath = path.join(tempDir, `tts_${ts}.wav`);
+    opusPath = path.join(tempDir, `tts_${ts}.ogg`);
 
     const audioRes = await axios.get(voice.elon_musk, {
       responseType: "arraybuffer",
@@ -86,12 +88,13 @@ async function handler(m, { sock }) {
       { quoted: m },
     );
 
-    fs.unlinkSync(wavPath);
-    fs.unlinkSync(opusPath);
     m.react("✅");
   } catch (err) {
     m.react("☢");
     m.reply(te(m.prefix, m.command, m.pushName));
+  } finally {
+    try { fs.unlinkSync(wavPath); } catch {}
+    try { fs.unlinkSync(opusPath); } catch {}
   }
 }
 

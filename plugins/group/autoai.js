@@ -469,9 +469,10 @@ async function generateVoiceResponse(text, sock, chatId, quotedMsg) {
     fs.mkdirSync(tempDir, { recursive: true });
   }
 
+  const mp3Path = path.join(tempDir, `tts_${Date.now()}.mp3`);
+  let oggPath = null;
+
   try {
-    const mp3Path = path.join(tempDir, `tts_${Date.now()}.mp3`);
-    
     const apiUrl = `https://firefly.maiku.my.id/api/crikk?apikey=${config.APIkey.firefly}&text=${encodeURIComponent(text)}&voice=id-ID-ArdiNeural`;
     const response = await axios.get(apiUrl);
     
@@ -486,7 +487,7 @@ async function generateVoiceResponse(text, sock, chatId, quotedMsg) {
     
     fs.writeFileSync(mp3Path, Buffer.from(audioRes.data));
 
-    const oggPath = await convertToOggOpus(mp3Path);
+    oggPath = await convertToOggOpus(mp3Path);
 
     if (oggPath && fs.existsSync(oggPath)) {
       const audioBuffer = fs.readFileSync(oggPath);
@@ -500,11 +501,6 @@ async function generateVoiceResponse(text, sock, chatId, quotedMsg) {
         },
         { quoted: quotedMsg },
       );
-
-      fs.unlinkSync(mp3Path);
-      fs.unlinkSync(oggPath);
-
-      return true;
     } else {
       const audioBuffer = fs.readFileSync(mp3Path);
 
@@ -517,14 +513,15 @@ async function generateVoiceResponse(text, sock, chatId, quotedMsg) {
         },
         { quoted: quotedMsg },
       );
-
-      fs.unlinkSync(mp3Path);
-
-      return true;
     }
+
+    return true;
   } catch (e) {
     console.log("[AutoAI Voice] Error:", e.message);
     return false;
+  } finally {
+    try { fs.unlinkSync(mp3Path); } catch {}
+    if (oggPath) try { fs.unlinkSync(oggPath); } catch {}
   }
 }
 

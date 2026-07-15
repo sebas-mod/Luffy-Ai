@@ -28,7 +28,7 @@ function isAnimatedWebp(buffer) {
 }
 
 function getTempDir() {
-    const tmpDir = path.join(process.cwd(), 'tmp')
+    const tmpDir = path.join(process.cwd(), 'temp')
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true })
     return tmpDir
 }

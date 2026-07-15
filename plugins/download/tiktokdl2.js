@@ -14,9 +14,10 @@ const headers = {
 
 async function getToken() {
     const res = await axios.get('https://savett.cc/en1/download')
+    const setCookie = res.headers['set-cookie'];
     return {
         csrf: res.data.match(/name="csrf_token" value="([^"]+)"/)?.[1],
-        cookie: res.headers['set-cookie'].map(v => v.split(';')[0]).join('; ')
+        cookie: setCookie ? setCookie.map(v => v.split(';')[0]).join('; ') : ''
     }
 }
 

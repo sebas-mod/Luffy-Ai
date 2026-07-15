@@ -2,6 +2,8 @@ import ttdown from "../../src/scraper/tiktok.js";
 import axios from "axios";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
+import fs from "fs";
+import path from "path";
 import { saluranCtx } from "../../src/lib/ourin-context.js";
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 

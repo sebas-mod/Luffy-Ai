@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
     
     m.react('🕕')
     
+    const tempFile = path.join(os.tmpdir(), `brat-${Date.now()}.webp`)
     try {
-        const tempFile = path.join(os.tmpdir(), `brat-${Date.now()}.webp`)
         const url = await bratVid(text, {
             outputFormat: 'mp4',
         })
@@ -40,11 +40,12 @@ async function handler(m, { sock }) {
             packname: config.sticker.packname,
             author: config.sticker.author
         })
-        await fs.promises.unlink(tempFile)
         m.react('✅')
     } catch (error) {
         m.react('☢')
         m.reply(te(m.prefix, m.command, m.pushName))
+    } finally {
+        try { await fs.promises.unlink(tempFile); } catch {}
     }
 }
 

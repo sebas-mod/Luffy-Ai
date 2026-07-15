@@ -132,13 +132,14 @@ async function handler(m, { sock }) {
   m.react("🕕");
   try {
     const result = await tiktokDl(text);
-    const builder = new AIRich(sock);
 
     if (result.durations > 0 && result.duration !== "0 Seconds") {
       const builder = new AIRich(sock);
-      let zann = await result.data.find(
+      let zann = result.data.find(
         (e) => e.type == "nowatermark_hd" || e.type == "nowatermark",
       );
+      if (!zann) zann = result.data.find((e) => e.type == "watermark") || result.data[0];
+      if (!zann) throw new Error("No video data found");
       builder.addVideo(zann.url);
 
       const authorText = `> 👤 *Author:* ${result.author.nickname} (@${result.author.fullname})\n`;

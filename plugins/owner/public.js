@@ -37,6 +37,7 @@ async function handler(m, { sock }) {
         config.mode = 'public';
         const db = getDatabase();
         db.setting('botMode', 'public');
+        db.save();
         
         const responseText = `🌐 *ᴍᴏᴅᴇ ᴘᴜʙʟɪᴄ ᴀᴋᴛɪꜰ*\n\n` +
             `> Bot sekarang merespon semua user!\n\n` +

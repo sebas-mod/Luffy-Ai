@@ -54,6 +54,7 @@ async function handler(m, { sock }) {
     db.updateKoin(m.sender, -totalPrice)
     
     if (user.energi === -1) {
+        db.updateKoin(m.sender, totalPrice)
         m.react('✅')
         return m.reply(
             `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +

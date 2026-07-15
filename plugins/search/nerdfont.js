@@ -16,17 +16,16 @@ async function nerdfonts() {
     $("div.item").each((_, rynn) => {
       const name = $(rynn).find("span.nerd-font-invisible-text").text().trim();
       const textContent = $(rynn).find("div").first().text();
-      const version =
-        textContent.match(/Version:\s*([^\n\r]+)/)[1].trim() || null;
-      const info = textContent.match(/Info:\s*([^\n\r]+)/)[1].trim() || null;
+      const versionMatch = textContent.match(/Version:\s*([^\n\r]+)/);
+      const version = versionMatch ? versionMatch[1].trim() : null;
+      const infoMatch = textContent.match(/Info:\s*([^\n\r]+)/);
+      const info = infoMatch ? infoMatch[1].trim() : null;
+      const styleAttr = $(rynn).find("a.font-preview").attr("style") || "";
+      const styleMatch = styleAttr.match(
+        /background-image\s*:\s*url\s*\(\s*['"]?([^'"]+)['"]?\s*\)/i,
+      );
       const preview_image =
-        "https://www.nerdfonts.com" +
-          $(rynn)
-            .find("a.font-preview")
-            .attr("style")
-            .match(
-              /background-image\s*:\s*url\s*\(\s*['"]?([^'"]+)['"]?\s*\)/i,
-            )[1] || null;
+        styleMatch ? "https://www.nerdfonts.com" + styleMatch[1] : null;
       const preview_url =
         $(rynn).find("a.nf-oct-link_external").attr("href") || null;
       const download_url = $(rynn).find("a.nf-fa-download").attr("href");
