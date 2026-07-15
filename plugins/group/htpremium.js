@@ -1,7 +1,7 @@
 import { getParticipantJids } from '../../src/lib/ourin-lid.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
-    name: ['htpremium', 'hidetagpremium', 'htprem'],
+    name: ['htpremium', 'hidetagpremium', 'n2'],
     category: 'group',
     description: 'Hidetag dengan support reply pesan (teks/media)',
     usage: '.htprem [pesan] atau reply pesan',
