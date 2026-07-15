@@ -7,7 +7,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Hidetag dengan fakeQuoted styling',
     usage: '.h2 <text> atau reply pesan',
-    example: '.h2 Pengumuman penting!',
+    example: '.n Pengumuman penting!',
     isOwner: false,
     isPremium: false,
     isGroup: true,
