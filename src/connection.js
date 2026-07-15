@@ -306,7 +306,7 @@ async function startConnection(options = {}) {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const code = await sock.requestPairingCode(phoneNumber, "OURINNAI");
+      const code = await sock.requestPairingCode(phoneNumber, "LUFFYMDD");
       console.log("");
       console.log(
         colors.createBanner(
