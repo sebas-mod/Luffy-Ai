@@ -3,7 +3,7 @@ import { getParticipantJids } from '../../src/lib/ourin-lid.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'hidetag2',
-    alias: ['h2', 'ht2'],
+    alias: ['n', 'ht2'],
     category: 'group',
     description: 'Hidetag dengan fakeQuoted styling',
     usage: '.h2 <text> atau reply pesan',
