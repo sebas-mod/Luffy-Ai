@@ -610,11 +610,21 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         console.error("[AllMenu] Error sending dynamic audio:", e.message);
       }
     }
+  } catch (error) {
+    console.error("[AllMenu] Error:", error.message);
+    if (imageBuffer) {
+      await sock.sendMessage(
+        m.chat,
+        {
+          image: imageBuffer,
+          caption: txt,
+          contextInfo: getContextInfo(botConfig, m),
+        },
+        { quoted: m },
+      );
     } else {
       await m.reply(txt);
     }
-  } catch (error) {
-    console.error("[AllMenu] Error:", error.message);
   }
 }
 export { pluginConfig as config, handler };
