@@ -45,8 +45,7 @@ const config = {
     "ourin-mp4": "./assets/video/ourin-mp4.mp4",
     "ourin-mp3": "./assets/audio/ourin-mp3.mp3",
     "ourin-font": "./assets/ourin-font.ttf",
-    "ourin-kertas": "./assets/image/ourin-kertas.jpg",
-    "test": "./assets/image/test.webp"
+    "ourin-kertas": "./assets/image/ourin-kertas.jpg"
   },
 
   mode: "public",
