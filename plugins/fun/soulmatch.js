@@ -5,7 +5,7 @@
 
 const pluginConfig = {
     name: 'soulmatch',
-    alias: [],
+    alias: ['alma', 'soulmate'],
     category: 'fun',
     description: 'Verificar compatibilidad de alma con alguien',
     usage: '.soulmatch nombre1|nombre2',

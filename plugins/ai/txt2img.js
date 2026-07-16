@@ -3,7 +3,7 @@ import { f } from './../../src/lib/ourin-http.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'text2img3',
-    alias: [],
+    alias: ['textoaimagen2', 'txtaimagen'],
     category: 'ai',
     description: 'Generar imagen desde texto con IA',
     usage: '.txt2img <prompt> | <style>',

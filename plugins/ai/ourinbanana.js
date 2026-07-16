@@ -1,7 +1,7 @@
 import { live3d } from "../../src/scraper/seaart.js";
 const pluginConfig = {
   name: "ourinbanana",
-  alias: [],
+  alias: ['banana', 'luffyai'],
   category: "ai",
   description: "Editar imágenes con IA usando una descripción",
   usage: ".ourinbanana <descripción>",

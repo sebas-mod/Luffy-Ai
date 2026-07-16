@@ -1,7 +1,7 @@
 import { downloadContentFromMessage } from 'ourin'
 const pluginConfig = {
     name: 'rvo',
-    alias: [],
+    alias: ['ocultarvo', 'voicesilencioso'],
     category: 'group',
     description: 'Abrir mensaje de vista única al responder',
     usage: '.rvo (responder a un mensaje de vista única)',

@@ -2,7 +2,7 @@ import { fluxImage } from "../../src/scraper/seaart.js";
 
 const pluginConfig = {
   name: "ourinbanana2",
-  alias: [],
+  alias: ['banana2', 'luffyai2'],
   category: "ai",
   description: "Crear imágenes con IA usando una descripción",
   usage: ".ourinbanana2 <descripción>",

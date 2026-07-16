@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: ['star', 'bintang'],
-    alias: [],
+    alias: ['favorito', 'marcar'],
     category: 'owner',
     description: 'Añade o elimina una estrella de un mensaje',
     usage: '.star (reply mensaje) o .star hapus (reply mensaje)',

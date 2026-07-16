@@ -3,7 +3,7 @@ import { getDatabase } from "../../src/lib/ourin-database.js";
 
 const pluginConfig = {
   name: "checkban",
-  alias: [],
+  alias: ['verificarban', 'chequeoban'],
   category: "owner",
   description: "Comprueba el estado real de expulsión",
   usage: ".checkban",

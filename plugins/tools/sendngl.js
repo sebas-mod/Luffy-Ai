@@ -2,7 +2,7 @@ import te from "../../src/lib/ourin-error.js";
 import ourinApi from "../../src/lib/ourin-apimanager.js";
 const pluginConfig = {
   name: "sendngl",
-  alias: [],
+  alias: ['enviarnl', 'sendmsg'],
   category: "tools",
   description: "Send NGL",
   usage: ".sendngl <url> | <text>",

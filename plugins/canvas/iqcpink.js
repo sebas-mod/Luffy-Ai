@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const pluginConfig = {
     name: "iqcpink",
-    alias: [],
+    alias: ['citarosa', 'qcrosa'],
     category: "canvas",
     description: "Crea una cita ficticia con estilo iOS en versión rosa.",
     usage: ".iqcpink [texto/responder mensaje]",

@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: ["arsip", "archive"],
-  alias: [],
+  alias: ['archivar', 'archive'],
   category: "owner",
   description: "Archiva o desarchiva un chat",
   usage: ".arsip <número/reply> o .arsip buka <número>",

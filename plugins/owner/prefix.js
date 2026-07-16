@@ -34,7 +34,7 @@ function isNoPrefix() {
 
 const pluginConfig = {
     name: ['addprefix', 'gantiprefix', 'setprefix', 'delprefix', 'listprefix', 'resetprefix'],
-    alias: [],
+    alias: ['prefijo', 'setprefix'],
     category: 'owner',
     description: 'Gestiona el prefijo del bot',
     usage: '.addprefix <prefix1> <prefix2>...',

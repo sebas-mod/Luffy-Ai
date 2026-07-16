@@ -2,7 +2,7 @@ import axios from 'axios'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'spamngl',
-    alias: [],
+    alias: ['spamingl', 'nglspam'],
     category: 'tools',
     description: 'Send NGL Spam',
     usage: '.spamngl <url> | <text> | <jumlah>',

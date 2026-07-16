@@ -7,7 +7,7 @@ import te from "../../src/lib/ourin-error.js";
 
 const pluginConfig = {
   name: "fakedev7",
-  alias: [],
+  alias: ['fakedev', 'codedev'],
   category: "canvas",
   description: "Crea un perfil ficticio de desarrollador (tema Python).",
   usage: ".fakedev7 <nombre> (responde/envía una foto)",

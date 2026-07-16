@@ -4,7 +4,7 @@ import te from "../../src/lib/ourin-error.js";
 import config from "../../config.js";
 const pluginConfig = {
   name: "text2img",
-  alias: [],
+  alias: ['textoaimagen', 'imagen texto'],
   category: "ai",
   description: "Crear imagen desde texto",
   usage: ".text2img <texto>",
