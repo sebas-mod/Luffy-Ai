@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "mulaiabsen",
   alias: ["startabsen", "bukaabsen", "openabsen"],
   category: "group",
-  description: "Mulai sesi absen di grup (admin only)",
+  description: "Iniciar sesión de asistencia en el grupo (solo admin)",
   usage: ".mulaiabsen [keterangan]",
   example: ".mulaiabsen Rapat Mingguan",
   isOwner: false,
@@ -23,14 +23,15 @@ async function handler(m, { sock }) {
 
   if (global.absensi[chatId]) {
     return m.reply(
-      `❌ *ᴍᴀsɪʜ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-        `> Masih ada sesi absen di grup ini!\n\n` +
-        `> Ketik *.hapusabsen* untuk menghapus\n` +
-        `> atau *.cekabsen* untuk melihat daftar`,
+      `❌ *ᴀᴜɴ ʜᴀʏ ᴀsɪsᴛᴇɴᴄɪᴀ*\n\n` +
+        `> ¡Aún hay una sesión de asistencia activa en este grupo!\n\n` +
+        `> Escribe *.hapusabsen* para eliminar\n` +
+        `> o *.cekabsen* para ver la lista\n\n` +
+        `_¡Shishishi! ¡No se puede tener dos asistencias a la vez!_`,
     );
   }
 
-  const keterangan = m.text?.trim() || "Absen Harian";
+  const keterangan = m.text?.trim() || "Asistencia Diaria";
 
   global.absensi[chatId] = {
     keterangan: keterangan,
@@ -43,14 +44,15 @@ async function handler(m, { sock }) {
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
   await m.reply(
-    `📋 *ABSEN UDAH JALAN NIHH*\n\n` +
-      `「 📋 *ɪɴғᴏ* 」\n` +
+    `📋 *¡ASISTENCIA EN MARCHA!*\n\n` +
+      `「 📋 *ɪɴꜰᴏ* 」\n` +
       `📝 ${keterangan}\n` +
-      `👑 Dibuat oleh: @${m.sender.split("@")[0]}\n` +
-      `👥 Peserta: 0\n\n` +
-      `Untuk kamu yang mau ikutan absen, silahkan ketik *${m.prefix}absen*` +
-      `Untuk admin yang mau cek absen, silahkan ketik *${m.prefix}cekabsen*` +
-      `Untuk admin yang mau hapus absen, silahkan ketik *${m.prefix}hapusabsen*`,
+      `👑 Creado por: @${m.sender.split("@")[0]}\n` +
+      `👥 Participantes: 0\n\n` +
+      `Si quieres unirte a la asistencia, escribe *${m.prefix}absen*\n` +
+      `Si el admin quiere ver la asistencia, escribe *${m.prefix}cekabsen*\n` +
+      `Si el admin quiere eliminar la asistencia, escribe *${m.prefix}hapusabsen*\n\n` +
+      `_¡Vamos a ser los Reyes de los Piratas! ¡Shishishi!_`,
     { mentions: [m.sender] },
   );
 }

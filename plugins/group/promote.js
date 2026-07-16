@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'promote',
     alias: ['jadiadmin', 'admin'],
     category: 'group',
-    description: 'Jadikan member sebagai admin',
+    description: 'Hacer a un miembro admin',
     usage: '.promote @user',
     example: '.promote @user',
     isOwner: false,
@@ -29,9 +29,9 @@ async function handler(m, { sock }) {
 
     if (!target) {
         await m.reply(
-            `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Reply pesan user atau mention!\n` +
-            `> Contoh: \`${m.prefix}promote @user\``
+            `❌ *ᴏʙᴊᴇᴛɪᴠᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n` +
+            `> ¡Responde al mensaje o menciona al usuario!\n` +
+            `> Ejemplo: \`${m.prefix}promote @user\``
         )
         return
     }
@@ -41,19 +41,19 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di grup!`)
+            await m.reply(`❌ *ғᴀᴄᴇʟ*\n\n> ¡Usuario no encontrado en el grupo!`)
             return
         }
 
         if (participant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User sudah menjadi admin!`)
+            await m.reply(`❌ *ғᴀᴄᴇʟ*\n\n> ¡El usuario ya es admin!`)
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'promote')
 
         await m.reply(
-            `✅ @${target.split('@')[0]} sekarang menjadi admin!`,
+            `✅ @${target.split('@')[0]} ¡ahora es admin!`,
             { mentions: [target] }
         )
 

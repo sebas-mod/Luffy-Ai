@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'hapusabsen',
     alias: ['deleteabsen', 'tutupabsen', 'closeabsen', 'resetabsen'],
     category: 'group',
-    description: 'Hapus/tutup sesi absen (admin only)',
+    description: 'Eliminar/cerrar sesión de asistencia (solo admin)',
     usage: '.hapusabsen',
     example: '.hapusabsen',
     isOwner: false,
@@ -22,8 +22,8 @@ async function handler(m) {
     
     if (!global.absensi[chatId]) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-            `> Tidak ada sesi absen di grup ini!`
+            `❌ *ɴᴏ ʜᴀʏ sᴇsɪ ᴅᴇ ᴀsɪsᴛᴇɴᴄɪᴀ*\n\n` +
+            `> ¡No hay sesión de asistencia en este grupo!`
         )
     }
     
@@ -33,11 +33,11 @@ async function handler(m) {
     delete global.absensi[chatId]
     
     await m.reply(
-        `✅ *ABSEN DITUTUP!*\n\n` +
-        `Penyebab?\n` +
+        `✅ *¡ASISTENCIA CERRADA!*\n\n` +
+        `¿Motivo?\n` +
         `📝 ${absen.keterangan}\n` +
-        `👥 Total hadir: ${totalPeserta}\n\n` +
-        `Sesi absen telah dihapus.`
+        `👥 Total presentes: ${totalPeserta}\n\n` +
+        `La sesión de asistencia fue eliminada. ¡Shishishi!`
     )
 }
 

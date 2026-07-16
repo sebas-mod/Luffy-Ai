@@ -3,8 +3,8 @@ import { games } from '../../src/lib/ourin-games.js'
 games.register('tebaklagu', {
     alias: ['tl', 'guesssong'],
     emoji: '🎵',
-    title: 'TEBAK LAGU',
-    description: 'Tebak judul lagu'
+    title: 'ADIVINA CANCION',
+    description: 'Adivina titulos de canciones'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebaklagu')

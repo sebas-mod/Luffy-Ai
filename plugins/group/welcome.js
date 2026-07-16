@@ -21,26 +21,26 @@ function resolvePlaceholders(
 ) {
   const now = moment().tz("Asia/Jakarta");
   const dayNames = {
-    Sunday: "Minggu",
-    Monday: "Senin",
-    Tuesday: "Selasa",
-    Wednesday: "Rabu",
-    Thursday: "Kamis",
-    Friday: "Jumat",
-    Saturday: "Sabtu",
+    Sunday: "Domingo",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
   };
   const dayId = dayNames[now.format("dddd")] || now.format("dddd");
   return template
     .replace(/{user}/gi, `@${username}`)
     .replace(/{number}/gi, username)
-    .replace(/{group}/gi, groupName || "Grup")
+    .replace(/{group}/gi, groupName || "Grupo")
     .replace(/{desc}/gi, groupDesc || "")
     .replace(/{count}/gi, memberCount?.toString() || "0")
     .replace(/{owner}/gi, groupOwner || "Admin")
     .replace(/{date}/gi, now.format("DD/MM/YYYY"))
     .replace(/{time}/gi, now.format("HH:mm"))
     .replace(/{day}/gi, dayId)
-    .replace(/{bot}/gi, config.bot?.name || "Ourin")
+    .replace(/{bot}/gi, config.bot?.name || "Luffy-AI")
     .replace(/{prefix}/gi, prefix);
 }
 const pluginConfig = {
@@ -70,36 +70,36 @@ async function buildWelcomeMessage(
   prefix = ".",
 ) {
   const greetings = [
-    `Akhirnya datang juga`,
-    `Selamat datang`,
-    `Welcome`,
-    `Halo`,
-    `Hai`,
+    `¡Por fin llegaste!`,
+    `¡Bienvenido!`,
+    `¡Bienvenido!`,
+    `¡Hola!`,
+    `¡Hey!`,
     `Yokoso~`,
-    `Ohayou~`,
+    `¡Buenos días!`,
   ];
   const quotes = [
-    `Jangan jadi silent reader ya!`,
-    `Santai aja, anggap rumah sendiri!`,
-    `Yuk langsung gas ngobrol!`,
-    `Siap-siap rame bareng!`,
-    `Jangan malu-malu, kita semua temen!`,
-    `Kalau bingung mulai, nyapa aja dulu 😄`,
+    `¡No seas lector fantasma!`,
+    `Relájate, ¡siéntete como en casa!`,
+    `¡Vamos a charlar!`,
+    `¡Prepárate para la diversión!`,
+    `¡No seas tímido, somos todos amigos!`,
+    `Si no sabes por dónde empezar, saluda primero 😄`,
   ];
   const emojis = ["🎐", "🌸", "✨", "💫", "🪸", "🔥", "💖"];
   const headers = [
-    `🎐 Ohayou~ minna-san!
-Hari ini kita kedatangan tomodachi baru 🌱
-Yuk sambut bareng-bareng~`,
-    `🌸 Ohayou minna-san!
-Satu teman baru akhirnya join ✨
-Semoga betah dan langsung nimbrung ya~`,
-    `✨ Ohayou~!
-Tomodachi baru datang bawa vibes baru 💫
-Yoroshiku ne~ mari seru-seruan bareng!`,
-    `🪸 Ohayou minna-san!
-Grup ini nambah satu keluarga lagi 🤍
-Tanoshii jikan o issho ni sugoso ne~`,
+    `🌸 ¡Buenos días a todos!
+Hoy nos visita un nuevo nakama 🌱
+¡Damos la bienvenida juntos!`,
+    `✨ ¡Buenos días!
+Un nuevo amigo se ha unido ✨
+¡Esperamos que se sienta en casa y participe!`,
+    `🪸 ¡Hola!
+Un nuevo tomado ha traído nuevas vibras 💫
+¡Vamos a pasarlo genial juntos!`,
+    `🔥 ¡Buenos días a todos!
+¡Este grupo tiene un nuevo miembro de la familia 🤍
+Que comience la aventura~`,
   ];
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -108,13 +108,13 @@ Tanoshii jikan o issho ni sugoso ne~`,
   const username = participant?.split("@")[0] || "User";
   const now = moment().tz("Asia/Jakarta");
   const dayNames = {
-    Sunday: "Minggu",
-    Monday: "Senin",
-    Tuesday: "Selasa",
-    Wednesday: "Rabu",
-    Thursday: "Kamis",
-    Friday: "Jumat",
-    Saturday: "Sabtu",
+    Sunday: "Domingo",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
   };
   const dayId = dayNames[now.format("dddd")] || now.format("dddd");
   if (customMsg) {
@@ -128,19 +128,19 @@ Tanoshii jikan o issho ni sugoso ne~`,
       prefix,
     );
   }
-  let msg = `👋🏻 *WELCOME MEMBER BARU* 👋🏻\n\n`;
+  let msg = `👋🏻 *¡NUEVO MIEMBRO! BIENVENIDO!* 👋🏻\n\n`;
   msg += `${header}\n`;
   msg += `${emoji} ${greeting}, *@${username}* 💫\n\n`;
-  msg += `📌 *INFO GROUP*\n`;
-  msg += `> 🏠 *Nama* : ${groupName}\n`;
-  msg += `> 👥 *Member* : ${memberCount}\n`;
-  msg += `> 📅 *Tanggal* : ${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\n`;
+  msg += `📌 *INFO DEL GRUPO*\n`;
+  msg += `> 🏠 *Nombre* : ${groupName}\n`;
+  msg += `> 👥 *Miembros* : ${memberCount}\n`;
+  msg += `> 📅 *Fecha* : ${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\n`;
 
   if (groupDesc) {
-    msg += `\n📝 *Deskripsi*\n> ❝ ${groupDesc.slice(0, 120)}${groupDesc.length > 120 ? "..." : ""} ❞\n`;
+    msg += `\n📝 *Descripción*\n> ❝ ${groupDesc.slice(0, 120)}${groupDesc.length > 120 ? "..." : ""} ❞\n`;
   }
 
-  msg += `\n✨ *Tips Hari Ini*\n> 「 ${quote} 」\n\n🌸 _Yoroshiku ne~ semoga betah ya!_ 🤍`;
+  msg += `\n✨ *Consejo del Día*\n> 「 ${quote} 」\n\n🌸 _¡Que comience la aventura, que te sientas cómodo!_ 🤍`;
 
   return msg;
 }
@@ -155,7 +155,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       groupMeta?.participants || [],
     );
     const memberCount = groupMeta?.participants?.length || 0;
-    const groupName = groupMeta?.subject || "Grup";
+    const groupName = groupMeta?.subject || "Grupo";
     let userName = realParticipant?.split("@")[0] || "User";
     let ppUrl =
       "https://cdn.gimita.id/download/pp%20kosong%20wa%20default%20(1)_1769506608569_52b57f5b.jpg";
@@ -184,11 +184,11 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           groupMeta?.owner?.split("@")[0] || "",
           config.command?.prefix || ".",
         )
-        : `Selamat datang di grup *${groupName}* 🎉\nMember ke-${memberCount}`;
+        : `¡Bienvenido al grupo *${groupName}* 🎉\nMiembro n.º ${memberCount}`;
       await sock.sendMessage(groupJid, {
         interactiveMessage: {
           body: {
-            text: `👋 Welcome *@${userName}*`,
+            text: `👋 ¡Bienvenido *@${userName}*!`,
           },
           footer: { text: config.bot?.name || "Luffy-AI" },
           header: { title: "Welcome", hasMediaAttachment: false },
@@ -207,7 +207,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "👋 Halo @" + userName,
+                        display_text: "👋 ¡Hola @" + userName,
                         id: "hi",
                       }),
                     },
@@ -235,7 +235,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           groupMeta?.owner?.split("@")[0] || "",
           config.command?.prefix || ".",
         )
-        : `*Halo* @${userName} 👋\nSelamat datang di grup *${groupName}* 🌸`;
+        : `*¡Hola!* @${userName} 👋\n¡Bienvenido al grupo *${groupName}* 🌸`;
       await sock.sendMessage(groupJid, {
         text: textOnly,
         contextInfo: {
@@ -261,8 +261,8 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
         {
           caption: "https://welcome.guys " + text,
           url: "https://welcome.guys",
-          title: `Welcome to ${groupName}`,
-          description: `👋 Halo ${userName}!`,
+          title: `Bienvenido a ${groupName}`,
+          description: `👋 ¡Hola ${userName}!`,
           image: ppUrl,
           previewType: 0,
         },
@@ -289,7 +289,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
           remoteJid: realParticipant
         },
         message: {
-          conversation: `Halo semuanya! 👋`
+          conversation: `¡Hola a todos! 👋`
         }
       };
 
@@ -329,7 +329,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
                   {
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
-                      display_text: "👋 Halo",
+                      display_text: "👋 ¡Hola!",
                       id: "hi"
                     })
                   }
@@ -378,7 +378,7 @@ async function handler(m, { sock }) {
       m.react("✅");
       return m.reply(
         `✅ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
-        `> Welcome diaktifkan di *${count}* grup!`,
+        `> ¡Welcome activado en *${count}* grupos! 🏴‍☠️`,
       );
     } catch (err) {
       m.react("☢");
@@ -401,7 +401,7 @@ async function handler(m, { sock }) {
       m.react("✅");
       return m.reply(
         `❌ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
-        `> Welcome dinonaktifkan di *${count}* grup!`,
+        `> ¡Welcome desactivado en *${count}* grupos!`,
       );
     } catch (err) {
       m.react("☢");
@@ -411,46 +411,46 @@ async function handler(m, { sock }) {
   if (sub === "on") {
     if (currentStatus) {
       return m.reply(
-        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ᴀʟʀᴇᴀᴅʏ ᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *✅ ON*\n` +
-        `> Welcome sudah aktif di grup ini.\n\n` +
-        `_Gunakan \`${m.prefix}welcome off\` untuk menonaktifkan._`,
+        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ʏᴀ ᴇꜱᴛᴀ ᴀᴄᴛɪᴠᴏ*\n\n` +
+        `> Estado: *✅ ON*\n` +
+        `> Welcome ya está activo en este grupo.\n\n` +
+        `_Usa \`${m.prefix}welcome off\` para desactivarlo._`,
       );
     }
     db.setGroup(m.chat, { welcome: true });
     return m.reply(
-      `✅ *ᴡᴇʟᴄᴏᴍᴇ ᴀᴋᴛɪꜰ*\n\n` +
-      `> Welcome message berhasil diaktifkan!\n` +
-      `> Member baru akan disambut otomatis.\n\n` +
-      `_Gunakan \`${m.prefix}setwelcome\` untuk custom pesan._`,
+      `✅ *ᴡᴇʟᴄᴏᴍᴇ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+      `> ¡El mensaje de welcome fue activado!\n` +
+      `> Los nuevos miembros serán recibidos automáticamente. 🏴‍☠️\n\n` +
+      `_Usa \`${m.prefix}setwelcome\` para un mensaje personalizado._`,
     );
   }
   if (sub === "off") {
     if (!currentStatus) {
       return m.reply(
-        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ᴀʟʀᴇᴀᴅʏ ɪɴᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *❌ OFF*\n` +
-        `> Welcome sudah nonaktif di grup ini.\n\n` +
-        `_Gunakan \`${m.prefix}welcome on\` untuk mengaktifkan._`,
+        `⚠️ *ᴡᴇʟᴄᴏᴍᴇ ʏᴀ ᴇꜱᴛᴀ ɪɴᴀᴄᴛɪᴠᴏ*\n\n` +
+        `> Estado: *❌ OFF*\n` +
+        `> Welcome ya está desactivado en este grupo.\n\n` +
+        `_Usa \`${m.prefix}welcome on\` para activarlo._`,
       );
     }
     db.setGroup(m.chat, { welcome: false });
     return m.reply(
-      `❌ *ᴡᴇʟᴄᴏᴍᴇ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
-      `> Welcome message berhasil dinonaktifkan.\n` +
-      `> Member baru tidak akan disambut.`,
+      `❌ *ᴡᴇʟᴄᴏᴍᴇ ᴅᴇꜱᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+      `> Mensaje de welcome desactivado.\n` +
+      `> Los nuevos miembros no serán recibidos.`,
     );
   }
   m.reply(
-    `👋 *ᴡᴇʟᴄᴏᴍᴇ sᴇᴛᴛɪɴɢs*\n\n` +
-    `> Status: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
-    `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-    `> \`${m.prefix}welcome on\` → Aktifkan\n` +
-    `> \`${m.prefix}welcome off\` → Nonaktifkan\n` +
+    `👋 *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ ᴅᴇ ᴡᴇʟᴄᴏᴍᴇ*\n\n` +
+    `> Estado: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
+    `\`\`\`━━━ ᴏᴘᴄɪᴏɴᴇs ━━━\`\`\`\n` +
+    `> \`${m.prefix}welcome on\` → Activar\n` +
+    `> \`${m.prefix}welcome off\` → Desactivar\n` +
     `> \`${m.prefix}welcome on all\` → Global ON (owner)\n` +
     `> \`${m.prefix}welcome off all\` → Global OFF (owner)\n` +
-    `> \`${m.prefix}setwelcome\` → Custom pesan\n` +
-    `> \`${m.prefix}resetwelcome\` → Reset default`,
+    `> \`${m.prefix}setwelcome\` → Mensaje personalizado\n` +
+    `> \`${m.prefix}resetwelcome\` → Restablecer predeterminado`,
   );
 }
 export { pluginConfig as config, handler, sendWelcomeMessage };

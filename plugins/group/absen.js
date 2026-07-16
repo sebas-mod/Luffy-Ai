@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'absen',
     alias: ['hadir', 'present'],
     category: 'group',
-    description: 'Tandai kehadiran di sesi absen',
+    description: 'Marca tu presencia en la sesión de asistencia',
     usage: '.absen',
     example: '.absen',
     isOwner: false,
@@ -20,15 +20,15 @@ async function handler(m, { sock }) {
     const chatId = m.chat
     if (!global.absensi[chatId]) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-            `> Belum ada sesi absen di grup ini!\n\n` +
-            `> Admin dapat memulai dengan\n` +
-            `> *.mulaiabsen [keterangan]*`
+            `❌ *ɴᴏ ʜᴀʏ sᴇsɪᴏ ᴅᴇ ᴀsɪsᴛᴇɴᴄɪᴀ*\n\n` +
+            `> ¡Todavía no hay sesión de asistencia en este grupo!\n\n` +
+            `> Un admin puede iniciarla con\n` +
+            `> *.mulaiabsen [descripción]*`
         )
     }
     const absen = global.absensi[chatId]
     if (absen.peserta.includes(m.sender)) {
-        return m.reply(`❌ Kamu sudah absen!`)
+        return m.reply(`❌ ¡Ya marcaste tu presencia! ¡Shishishi!`)
     }
     absen.peserta.push(m.sender)
     const now = moment().tz('Asia/Jakarta')
@@ -36,16 +36,16 @@ async function handler(m, { sock }) {
     const list = absen.peserta
         .map((jid, i) => `┃ ${i + 1}. @${jid.split('@')[0]}`)
         .join('\n')
-    await m.reply(`✅ *MANTAP, @${m.sender.split('@')[0]} HADIRR*\n` +
-            `TUJUAN ABSEN: ${absen.keterangan}\n` +
-            `╭┈┈⬡「 📋 INFO LAIN 」\n` +
+    await m.reply(`✅ *PERFECTO, @${m.sender.split('@')[0]} PRESENTE*\n` +
+            `OBJETIVO DE ASISTENCIA: ${absen.keterangan}\n` +
+            `╭┈┈⬡「 📋 OTRA INFO 」\n` +
             `┃ 📅 ${dateStr}\n` +
             `┃ 👥 Total: ${absen.peserta.length}\n` +
-            `├┈┈⬡「 📝 *ᴅᴀғᴛᴀʀ ʜᴀᴅɪʀ* 」\n` +
+            `├┈┈⬡「 📝 *ʟɪsᴛᴀ ᴅᴇ ᴘʀᴇsᴇɴᴄɪᴀs* 」\n` +
             `${list}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> _Ketik *${m.prefix}absen* untuk hadir_\n` +
-            `> _Ketik *${m.prefix}cekabsen* untuk melihat daftar_`,
+            `> _Escribe *${m.prefix}absen* para marcar presencia_\n` +
+            `> _Escribe *${m.prefix}cekabsen* para ver la lista_`,
             { mentions: absen.peserta })
 }
 export { pluginConfig as config, handler }

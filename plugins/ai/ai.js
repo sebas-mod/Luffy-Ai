@@ -20,12 +20,12 @@ const pluginConfig = {
 
 const sessions = {};
 
-const systemPrompt = `Kamu adalah asisten AI yang cerdas dan canggih (Ourin AI).
-Gunakan format markdown secara ketat:
-1. Jika membuat daftar perbandingan atau sekumpulan data, SELALU gunakan format tabel markdown (diawali dan diakhiri dengan '|').
-2. Jika memberikan kode pemrograman, SELALU bungkus dengan markdown code block (\`\`\`bahasa ... \`\`\`).
-3. Gunakan formatting teks tebal (*teks*) untuk menekankan sesuatu, atau hashtag (#) untuk judul / penjelas besar.
-Pastikan semua respon terstruktur dengan baik agar sistem AIRich dapat merendernya dengan cantik.`;
+const systemPrompt = `Eres un asistente AI inteligente y avanzado (Ourin AI).
+Usa formato markdown estrictamente:
+1. Si creas una lista de comparación o un conjunto de datos, SIEMPRE usa formato de tabla markdown (comenzando y terminando con '|').
+2. Si proporcionas código de programación, SIEMPRE envuélvelo en un bloque de código markdown (\`\`\`lenguaje ... \`\`\`).
+3. Usa formato de texto en negrita (*texto*) para enfatizar algo, o hashtag (#) para títulos / explicaciones grandes.
+Asegúrate de que todas las respuestas estén bien estructuradas para que el sistema AIRich pueda renderizarlas correctamente.`;
 
 async function handler(m, { sock }) {
     const text = m.text?.trim();

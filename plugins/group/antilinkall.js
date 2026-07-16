@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "antilinkall",
   alias: ["alall", "antialllink"],
   category: "group",
-  description: "Anti semua jenis link (deteksi domain extension)",
+  description: "Anti todo tipo de enlaces (detecta extensiones de dominio)",
   usage: ".antilinkall <on/off/metode> [kick/remove]",
   example: ".antilinkall on",
   isOwner: false,
@@ -29,32 +29,32 @@ function handler(m, { sock }) {
 
     return m.reply(
       `🔗 *Antilink All*\n\n` +
-        `> Status: *${status === "on" ? "Aktif ✅" : "Nonaktif ❌"}*\n` +
-        `> Mode: *${mode.toUpperCase()}*\n\n` +
-        `*DETEKSI:*\n` +
-        `> • https:// / http:// (dengan protokol)\n` +
-        `> • www. (subdomain)\n` +
-        `> • Domain extension (.com, .id, .io, .net, dll)\n` +
-        `> • Shortlink (bit.ly, t.me, tinyurl, dll)\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}antilinkall on* — Aktifkan\n` +
-        `> *${m.prefix}antilinkall off* — Nonaktifkan\n` +
-        `> *${m.prefix}antilinkall metode kick* — Mode kick user\n` +
-        `> *${m.prefix}antilinkall metode remove* — Mode hapus pesan`
+        `> Estado: *${status === "on" ? "Activo ✅" : "Inactivo ❌"}*\n` +
+        `> Modo: *${mode.toUpperCase()}*\n\n` +
+        `*DETECCIÓN:*\n` +
+        `> • https:// / http:// (con protocolo)\n` +
+        `> • www. (subdominio)\n` +
+        `> • Extensiones de dominio (.com, .id, .io, .net, etc)\n` +
+        `> • Shortlinks (bit.ly, t.me, tinyurl, etc)\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}antilinkall on* — Activar\n` +
+        `> *${m.prefix}antilinkall off* — Desactivar\n` +
+        `> *${m.prefix}antilinkall metode kick* — Modo expulsar usuario\n` +
+        `> *${m.prefix}antilinkall metode remove* — Modo borrar mensaje`
     );
   }
 
   if (option === "on") {
     db.setGroup(m.chat, { antilinkall: "on" });
     return m.reply(
-      `✅ *Antilink All Aktif*\n\n` +
-        `> Semua link akan dideteksi otomatis\n> Mendeteksi domain extension, bukan hanya http/https`
+      `✅ *Antilink All Activo*\n\n` +
+        `> Todos los enlaces serán detectados automáticamente\n> Detecta extensiones de dominio, no solo http/https`
     );
   }
 
   if (option === "off") {
     db.setGroup(m.chat, { antilinkall: "off" });
-    return m.reply(`❌ *Antilink All Nonaktif*\n\n> Link tidak akan difilter lagi`);
+    return m.reply(`❌ *Antilink All Inactivo*\n\n> Los enlaces no serán filtrados más`);
   }
 
   if (option.startsWith("metode")) {
@@ -62,16 +62,16 @@ function handler(m, { sock }) {
     if (method === "kick") {
       db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "kick" });
       return m.reply(
-        `✅ *Antilink All — Mode Kick*\n\n> User yang kirim link akan di-kick`
+        `✅ *Antilink All — Modo Kick*\n\n> El usuario que envíe enlaces será expulsado`
       );
     } else if (method === "remove" || method === "delete") {
       db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "remove" });
       return m.reply(
-        `✅ *Antilink All — Mode Delete*\n\n> Pesan dengan link akan dihapus`
+        `✅ *Antilink All — Modo Delete*\n\n> Los mensajes con enlaces serán eliminados`
       );
     } else {
       return m.reply(
-        `❌ *Metode Tidak Valid*\n\n> Gunakan *kick* atau *remove*\n> Contoh: *${m.prefix}antilinkall metode kick*`
+        `❌ *Método No Válido*\n\n> Usa *kick* o *remove*\n> Ejemplo: *${m.prefix}antilinkall metode kick*`
       );
     }
   }
@@ -79,19 +79,19 @@ function handler(m, { sock }) {
   if (option === "kick") {
     db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "kick" });
     return m.reply(
-      `✅ *Antilink All — Mode Kick*\n\n> User yang kirim link akan di-kick`
+      `✅ *Antilink All — Modo Kick*\n\n> El usuario que envíe enlaces será expulsado`
     );
   }
 
   if (option === "remove" || option === "delete") {
     db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "remove" });
     return m.reply(
-      `✅ *Antilink All — Mode Delete*\n\n> Pesan dengan link akan dihapus`
+      `✅ *Antilink All — Modo Delete*\n\n> Los mensajes con enlaces serán eliminados`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *on*, *off*, *metode kick*, atau *metode remove*`
+    `❌ *Opción No Válida*\n\n> Usa *on*, *off*, *metode kick*, o *metode remove*`
   );
 }
 

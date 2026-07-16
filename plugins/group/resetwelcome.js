@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'resetwelcome',
     alias: ['delwelcome', 'clearwelcome'],
     category: 'group',
-    description: 'Reset welcome message ke default',
+    description: 'Restablecer mensaje de bienvenida al predeterminado',
     usage: '.resetwelcome',
     example: '.resetwelcome',
     isOwner: false,
@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
     const groupData = db.getGroup(m.chat)
     
     if (!groupData?.welcomeMsg) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Welcome message sudah default`)
+        return m.reply(`❌ *ғᴀᴄᴇʟ*\n\n> El mensaje de bienvenida ya está en el predeterminado`)
     }
     
     db.setGroup(m.chat, { welcomeMsg: null })
     
     m.react('✅')
     
-    await m.reply(`✅ *ᴡᴇʟᴄᴏᴍᴇ ᴅɪʀᴇsᴇᴛ*\n\n> Kembali ke pesan default`)
+    await m.reply(`✅ *ʙɪᴇɴᴠᴇɴɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\n\n> Volvieron al mensaje predeterminado\n\n_¡Shishishi! ¡Siempre es genial recibir bienvenidas!_`)
 }
 
 export { pluginConfig as config, handler }

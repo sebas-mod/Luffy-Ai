@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'antitagsw',
     alias: ['antitag', 'antistatustag'],
     category: 'group',
-    description: 'Mengaktifkan/menonaktifkan anti tag status di grup',
+    description: 'Activa/desactiva anti etiquetas de estado en el grupo',
     usage: '.antitagsw <on/off>',
     example: '.antitagsw on',
     isOwner: false,
@@ -26,13 +26,13 @@ async function handler(m, { sock, db }) {
         const status = group.antitagsw || 'off'
 
         await m.reply(
-            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ sᴇᴛᴛɪɴɢs*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `> Fitur ini menghapus pesan tag status\n` +
+            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ ᴄᴏɴꜰɪɢ*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Esta función elimina mensajes de etiquetas de estado\n` +
             `> (groupStatusMentionMessage)\n\n` +
-            `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-            `> \`${m.prefix}antitagsw on\` → Aktifkan\n` +
-            `> \`${m.prefix}antitagsw off\` → Nonaktifkan`
+            `\`\`\`━━━ ᴏᴘᴄɪᴏɴᴇs ━━━\`\`\`\n` +
+            `> \`${m.prefix}antitagsw on\` → Activar\n` +
+            `> \`${m.prefix}antitagsw off\` → Desactivar`
         )
         return
     }
@@ -40,9 +40,9 @@ async function handler(m, { sock, db }) {
     if (action === 'on') {
         db.setGroup(groupId, { ...group, antitagsw: 'on' })
         await m.reply(
-            `✅ *ᴀɴᴛɪᴛᴀɢsᴡ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil diaktifkan!\n` +
-            `> Pesan tag status akan dihapus otomatis.`
+            `✅ *ᴀɴᴛɪᴛᴀɢsᴡ ᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> ¡Anti etiquetas de estado activado exitosamente!\n` +
+            `> Los mensajes de etiquetas de estado serán eliminados automáticamente. 😊`
         )
         return
     }
@@ -50,15 +50,15 @@ async function handler(m, { sock, db }) {
     if (action === 'off') {
         db.setGroup(groupId, { ...group, antitagsw: 'off' })
         await m.reply(
-            `❌ *ᴀɴᴛɪᴛᴀɢsᴡ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil dinonaktifkan.`
+            `❌ *ᴀɴᴛɪᴛᴀɢsᴡ ɪɴᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> Anti etiquetas de estado desactivado exitosamente.`
         )
         return
     }
 
     await m.reply(
-        `❌ *ᴘɪʟɪʜᴀɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-        `> Gunakan: on atau off`
+        `❌ *ᴏᴘᴄɪóɴ ɴᴏ ᴠáʟɪᴅᴀ*\n\n` +
+        `> Usa: on o off`
     )
 }
 

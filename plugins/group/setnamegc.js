@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     if (!newName) {
         await m.reply(
             `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setnamegc Nama Grup Baru\``
+            `> \`${m.prefix}setnamegc Nuevo Nombre del Grupo\``
         )
         return
     }
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
     if (newName.length < 1 || newName.length > 100) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Nama grup harus 1-100 karakter.`
+            `> El nombre del grupo debe tener 1-100 caracteres.`
         )
         return
     }
@@ -39,12 +39,12 @@ async function handler(m, { sock }) {
         await sock.groupUpdateSubject(m.chat, newName)
         
         await m.reply(
-            `✅ Berhasil mengubah nama grup menjadi *${newName}*`
+            `✅ ¡Nombre del grupo cambiado a *${newName}*! 🏴‍☠️`
         )
     } catch (error) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah nama grup.\n` +
+            `> No se pudo cambiar el nombre del grupo.\n` +
             `> _${error.message}_`
         )
     }

@@ -41,7 +41,7 @@ async function dolphinAI(question, template = 'logical') {
         .map(line => line.choices[0].delta.content)
         .join('')
     
-    if (!result) throw new Error('Tidak ada respon dari AI')
+    if (!result) throw new Error('Sin respuesta de la IA')
     
     return result
 }

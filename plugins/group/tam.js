@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
 
   if (!sorted.length) {
     return m.reply(
-      `📊 *ᴛᴏᴘ ᴀᴄᴛɪᴠᴇ ᴍᴇᴍʙᴇʀ*\n\n` + `- Belum ada data aktivitas di grup ini`,
+      `📊 *ᴛᴏᴘ ᴀᴄᴛɪᴠᴇ ᴍᴇᴍʙᴇʀ*\n\n` + `- Aún no hay datos de actividad en este grupo`,
     );
   }
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
   const content = {
     pollResultSnapshotMessage: {
-      name: `top ${limit} member active all time!\nat ${chatName}`,
+      name: `top ${limit} miembros activos de todos los tiempos!\nen ${chatName}`,
       pollVotes,
       pollType: 0,
       contextInfo: {

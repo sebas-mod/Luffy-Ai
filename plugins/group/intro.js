@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'intro',
     alias: ['perkenalan', 'selamatdatang'],
     category: 'group',
-    description: 'Tampilkan pesan intro grup',
+    description: 'Mostrar mensaje de presentación del grupo',
     usage: '.intro',
     example: '.intro',
     isOwner: false,
@@ -17,31 +17,32 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const DEFAULT_INTRO = `halo kak @user 🖐
+const DEFAULT_INTRO = `Hola kak @user 🖐
 
-Kenalan dulu yukk
-- Nama : 
-- Umur : 
-- Asal : 
-- Hobi : 
-- Status : 
+¡Hagamos una presentación!
+- Nombre : 
+- Edad : 
+- Origen : 
+- Hobbies : 
+- Estado : 
 
-Semoga betah yahh, di grup @group
+¡Esperamos que te sientas cómodo, en el grupo @group
 
-> Untuk Owner:
-ganti intro bawaan dengan .setintro <text>`
- function parsePlaceholders(text, m, groupMeta) {
+> Para el Propietario:
+cambia la intro predeterminada con .setintro <texto>`
+
+function parsePlaceholders(text, m, groupMeta) {
     const now = moment().tz('Asia/Jakarta')
     const dateStr = now.format('D MMMM YYYY')
     const timeStr = now.format('HH:mm')
     
     return text
         .replace(/@user/gi, `@${m.sender.split('@')[0]}`)
-        .replace(/@group/gi, groupMeta?.subject || 'Grup')
+        .replace(/@group/gi, groupMeta?.subject || 'Grupo')
         .replace(/@count/gi, groupMeta?.participants?.length || '0')
         .replace(/@date/gi, dateStr)
         .replace(/@time/gi, timeStr)
-        .replace(/@desc/gi, groupMeta?.desc || 'Tidak ada deskripsi')
+        .replace(/@desc/gi, groupMeta?.desc || 'Sin descripción')
         .replace(/@botname/gi, config.bot?.name || 'Luffy-AI')
 }
 

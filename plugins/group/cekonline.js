@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'cekonline',
     alias: ['checkonline', 'online', 'siapayangonline', 'whosonline'],
     category: 'group',
-    description: 'Cek member yang online di grup',
+    description: 'Verificar miembros que están online en el grupo',
     usage: '.cekonline',
     example: '.cekonline',
     isOwner: false,
@@ -24,10 +24,10 @@ async function handler(m, { sock }) {
         
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa mendapatkan data member grup`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
         }
         
-        await m.reply(`🔍 *ᴍᴇɴᴄᴀʀɪ ᴍᴇᴍʙᴇʀ ᴏɴʟɪɴᴇ...*\n\n> Menunggu response dari ${participants.length} member\n> Estimasi: 5-10 detik`)
+        await m.reply(`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴏɴʟɪɴᴇ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)
         
         const presences = {}
         
@@ -64,22 +64,22 @@ async function handler(m, { sock }) {
         const mentions = onlineMembers
         
         let text = `📊 *ᴄᴇᴋ ᴏɴʟɪɴᴇ*\n\n`
-        text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ ɢʀᴜᴘ* 」\n`
+        text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ ᴅᴇʟ ɢʀᴜᴘ* 」\n`
         text += `┃ 👥 ɴᴀᴍᴀ: *${groupMetadata.subject}*\n`
-        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` member\n`
-        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` member\n`
+        text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` miembros\n`
+        text += `┃ 🟢 ᴏɴʟɪɴᴇ: \`${onlineMembers.length}\` miembros\n`
         text += `╰┈┈⬡\n\n`
         
         if (onlineMembers.length === 0) {
-            text += `> _Tidak ada member yang terdeteksi online_\n`
-            text += `> _Pastikan member telah membuka WA_`
+            text += `> _No se detectó ningún miembro online_\n`
+            text += `> _Asegúrate de que los miembros hayan abierto WA_`
         } else {
             text += `╭┈┈⬡「 🟢 *ᴍᴇᴍʙᴇʀ ᴏɴʟɪɴᴇ* 」\n`
             
             let count = 0
             for (const jid of onlineMembers) {
                 if (count >= 50) {
-                    text += `┃ ... dan ${onlineMembers.length - 50} member lainnya\n`
+                    text += `┃ ... y ${onlineMembers.length - 50} miembros más\n`
                     break
                 }
                 const number = jid.split('@')[0]
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
             }
             
             text += `╰┈┈⬡\n\n`
-            text += `> 🟢 Online | ⌨️ Mengetik | 🎤 Rekam Audio`
+            text += `> 🟢 Online | ⌨️ Escribiendo | 🎤 Grabando Audio`
         }
         
         m.react('✅')

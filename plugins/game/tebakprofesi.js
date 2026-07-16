@@ -3,8 +3,8 @@ import { games } from '../../src/lib/ourin-games.js'
 games.register('tebakprofesi', {
     alias: ['tp', 'guessjob'],
     emoji: '👨‍💼',
-    title: 'TEBAK PROFESI',
-    description: 'Tebak nama profesi'
+    title: 'ADIVINA PROFESION',
+    description: 'Adivina nombres de profesiones'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakprofesi')

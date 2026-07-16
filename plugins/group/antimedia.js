@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "antimedia",
   alias: ["am", "nomedia"],
   category: "group",
-  description: "Mengatur antimedia di grup (blokir gambar/video/audio/dokumen)",
+  description: "Gestiona antimedia en el grupo (bloquea imágenes/videos/audio/documentos)",
   usage: ".antimedia <on/off>",
   example: ".antimedia on",
   isOwner: false,
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
   if (!action) {
     const status = groupData.antimedia ? "✅ ON" : "❌ OFF";
     await m.reply(
-      `🖼️ *AntiMedia*\n\n> Status: *${status}*\n\n> \`.antimedia on/off\``,
+      `🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``,
     );
     return;
   }
@@ -68,18 +68,18 @@ async function handler(m, { sock }) {
   if (action === "on") {
     db.setGroup(m.chat, { antimedia: true });
     m.react("✅");
-    await m.reply(`✅ *AntiMedia diaktifkan*`);
+    await m.reply(`✅ *AntiMedia activado*`);
     return;
   }
 
   if (action === "off") {
     db.setGroup(m.chat, { antimedia: false });
     m.react("❌");
-    await m.reply(`❌ *AntiMedia dinonaktifkan*`);
+    await m.reply(`❌ *AntiMedia desactivado*`);
     return;
   }
 
-  await m.reply(`❌ Gunakan \`.antimedia on\` atau \`.antimedia off\``);
+  await m.reply(`❌ Usa \`.antimedia on\` o \`.antimedia off\``);
 }
 
 export { pluginConfig as config, handler, checkAntimedia };

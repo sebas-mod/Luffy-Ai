@@ -3,7 +3,7 @@ import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['ht', 'hidetag'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
+    description: 'Hidetag con soporte para responder mensajes (texto/multimedia)',
     usage: '.ht [pesan] atau reply pesan',
     example: '.ht atau reply pesan lalu .ht',
     isOwner: false,
@@ -125,7 +125,7 @@ async function handler(m, { sock }) {
             const finalText = text || quotedText
 
             if (!finalText) {
-                return m.reply('❌ *Pesan kosong*')
+                return m.reply('❌ *Mensaje vacío*')
             }
 
             return sock.sendMessage(m.chat, {
@@ -135,10 +135,10 @@ async function handler(m, { sock }) {
         }
         if (!text) {
             return m.reply(
-                `📢 *HIDETAG*\n\n` +
-                `• Reply pesan lalu ketik \`${m.prefix}ht\`\n` +
-                `• Atau ketik \`${m.prefix}ht <pesan>\`\n\n` +
-                `Support: teks, gambar, video, sticker, audio, dokumen`
+            `📢 *HIDETAG*\n\n` +
+            `• Responde a un mensaje y escribe \`${m.prefix}ht\`\n` +
+            `• O escribe \`${m.prefix}ht <mensaje>\`\n\n` +
+            `Soporte: texto, imagen, video, sticker, audio, documento`
             )
         }
 

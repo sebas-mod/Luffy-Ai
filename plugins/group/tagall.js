@@ -9,7 +9,7 @@ const pluginConfig = {
   category: "group",
   description: "Tag semua member grup",
   usage: ".tagall <pesan>",
-  example: ".tagall Halo semua!",
+  example: ".tagall ¡Hola a todos!",
   isOwner: false,
   isPremium: false,
   isGroup: true,
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     const participants = groupMeta.participants || [];
 
     if (participants.length === 0) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini.`);
+      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No hay miembros en este grupo.`);
       return;
     }
 
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     });
 
     if (targetParticipants.length === 0) {
-      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member lain yang bisa di-tag.`);
+      await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No hay otros miembros que pueda etiquetar.`);
       return;
     }
 
@@ -49,8 +49,8 @@ async function handler(m, { sock }) {
       .trim();
 
     await m.reply(
-      `*Pesan:* ${text}\n\n` +
-        `\`\`\`━━━ ${targetParticipants.length} MEMBER TOTAL ━━━\`\`\`\n` +
+      `*Mensaje:* ${text}\n\n` +
+        `\`\`\`━━━ ${targetParticipants.length} MIEMBROS TOTALES ━━━\`\`\`\n` +
         memberList,
       { mentions: mentions },
     );

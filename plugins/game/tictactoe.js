@@ -4,8 +4,8 @@ const pluginConfig = {
   name: "tictactoe",
   alias: ["ttt", "xo"],
   category: "game",
-  description: "Main TicTacToe dengan player lain",
-  usage: ".tictactoe [room name] atau .ttt",
+  description: "Juega TicTacToe con otros jugadores",
+  usage: ".tictactoe [nombre de sala] o .ttt",
   example: ".tictactoe",
   isOwner: false,
   isPremium: false,
@@ -165,8 +165,8 @@ async function handler(m, { sock }) {
   if (existingRoom) {
     return safeReply(
       m,
-      `❌ Kamu masih dalam game!\n\n` +
-        `> Selesaikan game kamu atau ketik *nyerah* untuk menyerah.`,
+      `❌ ¡Todavia estas en un juego!\n\n` +
+        `> Termina tu juego o escribe *rendirse* para abandonar.`,
     );
   }
 
@@ -187,13 +187,13 @@ async function handler(m, { sock }) {
 
     const txt =
       `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
-      `Partner ditemukan!\n\n` +
+      `¡Socio encontrado!\n\n` +
       `❌ @${room.game.playerX.split("@")[0]}\n` +
       `⭕ @${room.game.playerO.split("@")[0]}\n\n` +
       `${board}\n\n` +
-      `> Giliran: @${room.game.currentTurn.split("@")[0]}\n` +
-      `> Reply pesan ini dengan angka 1-9\n` +
-      `> Ketik *nyerah* untuk menyerah`;
+      `> Turno: @${room.game.currentTurn.split("@")[0]}\n` +
+      `> Responde a este mensaje con un numero del 1-9\n` +
+      `> Escribe *rendirse* para abandonar`;
 
     await safeReact(m, "🎮");
     await safeReply(m, txt, {
@@ -216,9 +216,9 @@ async function handler(m, { sock }) {
     await safeReply(
       m,
       `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
-        `Room dibuat! Menunggu partner...\n\n` +
-        `> Ketik \`.tictactoe${roomName ? " " + roomName : ""}\` untuk join\n` +
-        `> Room akan expired dalam 5 menit`,
+        `¡Sala creada! Esperando socio...\n\n` +
+        `> Escribe \`.tictactoe${roomName ? " " + roomName : ""}\` para unirte\n` +
+        `> La sala expira en 5 minutos`,
     );
 
     // Auto delete after 5 min
@@ -262,9 +262,9 @@ async function answerHandler(m, sock) {
     await safeReact(m, "🏳️");
     await safeReply(
       m,
-      `🏳️ *MENYERAH!*\n\n` +
-        `@${loser.split("@")[0]} menyerah!\n` +
-        `@${winner.split("@")[0]} menang! +Rp 500`,
+      `🏳️ *¡RENDICION!*\n\n` +
+        `@${loser.split("@")[0]} se rindio!\n` +
+        `@${winner.split("@")[0]} ¡gano! +Rp 500`,
       { mentions: [winner, loser] },
     );
 
@@ -278,7 +278,7 @@ async function answerHandler(m, sock) {
 
   // Check if it's player's turn
   if (room.game.currentTurn !== m.sender) {
-    await safeReply(m, "❌ Bukan giliranmu!");
+    await safeReply(m, "❌ ¡No es tu turno!");
     return true;
   }
 
@@ -287,12 +287,12 @@ async function answerHandler(m, sock) {
   const result = room.game.turn(player, move - 1);
 
   if (result === 0) {
-    await safeReply(m, "❌ Posisi sudah terisi!");
+    await safeReply(m, "❌ ¡Posicion ya ocupada!");
     return true;
   }
 
   if (result === -1) {
-    await safeReply(m, "❌ Posisi tidak valid!");
+    await safeReply(m, "❌ ¡Posicion no valida!");
     return true;
   }
 
@@ -314,7 +314,7 @@ async function answerHandler(m, sock) {
       m,
       `🎉 *GAME OVER!*\n\n` +
         `${board}\n\n` +
-        `🏆 @${winner.split("@")[0]} menang! +Rp 1.000`,
+        `🏆 @${winner.split("@")[0]} ¡gano! +Rp 1.000`,
       { mentions: [winner, loser] },
     );
 
@@ -326,7 +326,7 @@ async function answerHandler(m, sock) {
     await safeReact(m, "🤝");
     await safeReply(
       m,
-      `🤝 *SERI!*\n\n` + `${board}\n\n` + `> Tidak ada pemenang!`,
+      `🤝 *¡EMPATE!*\n\n` + `${board}\n\n` + `> ¡No hay ganador!`,
       { mentions: [room.game.playerX, room.game.playerO] },
     );
 
@@ -339,7 +339,7 @@ async function answerHandler(m, sock) {
     m,
     `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
       `${board}\n\n` +
-      `> Giliran: @${room.game.currentTurn.split("@")[0]}`,
+      `> Turno: @${room.game.currentTurn.split("@")[0]}`,
     { mentions: [room.game.currentTurn] },
   );
 

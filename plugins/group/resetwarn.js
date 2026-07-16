@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'resetwarn',
     alias: ['clearwarn', 'hapuswarn', 'delwarn'],
     category: 'group',
-    description: 'Reset warning member',
+    description: 'Restablecer advertencias de un miembro',
     usage: '.resetwarn @user',
     example: '.resetwarn @user',
     isOwner: false,
@@ -28,9 +28,10 @@ async function handler(m, { sock }) {
     
     if (!targetUser) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Reply pesan user + \`${m.prefix}resetwarn\`\n` +
-            `> Atau: \`${m.prefix}resetwarn @user\``
+            `⚠️ *ᴄÓᴍᴏ ᴜsᴀʀ*\n\n` +
+            `> Responde al mensaje del usuario + \`${m.prefix}resetwarn\`\n` +
+            `> O: \`${m.prefix}resetwarn @user\`\n\n` +
+            `_¡No tenemos miedo! Pero las segundas oportunidades son importantes._`
         )
         return
     }
@@ -42,7 +43,7 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split('@')[0]
     
     if (!warnings[targetUser] || warnings[targetUser].length === 0) {
-        await m.reply(`✅ @${targetName} tidak memiliki warning.`, { mentions: [targetUser] })
+        await m.reply(`✅ @${targetName} no tiene advertencias.`, { mentions: [targetUser] })
         return
     }
     
@@ -51,10 +52,11 @@ async function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, warnings: warnings })
     
     await m.reply(
-        `✅ *ᴡᴀʀɴɪɴɢ ᴅɪʀᴇsᴇᴛ*\n` +
-        `Warning @${targetName} berhasil direset!\n` +
-        `Sebelumnya: *${prevCount}/${maxWarns}*\n` +
-        `Sekarang: *0/${maxWarns}*`,
+        `✅ *ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀs*\n` +
+        `¡Las advertencias de @${targetName} se restablecieron!\n` +
+        `Antes: *${prevCount}/${maxWarns}*\n` +
+        `Ahora: *0/${maxWarns}*\n\n` +
+        `_¡Shishishi! ¡Todos merecen una segunda oportunidad!_`,
         { mentions: [targetUser] }
     )
 }

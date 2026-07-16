@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'addantilink',
     alias: ['addalink', 'addblocklink'],
     category: 'group',
-    description: 'Menambah link ke daftar antilink',
+    description: 'Agrega enlaces a la lista de antilinks',
     usage: '.addantilink <domain/pattern>',
     example: '.addantilink tiktok.com',
     isOwner: false,
@@ -22,9 +22,9 @@ function handler(m) {
     
     if (!link) {
         return m.reply(
-            `🔗 *ᴀᴅᴅ ᴀɴᴛɪʟɪɴᴋ*\n\n` +
-            `> Masukkan domain/pattern link yang ingin diblokir\n\n` +
-            `\`Contoh:\`\n` +
+            `🔗 *ᴀɢʀᴇɢᴀʀ ᴀɴᴛɪʟɪɴᴋ*\n\n` +
+            `> Ingresa el dominio/patrón del enlace que quieres bloquear\n\n` +
+            `\`Ejemplo:\`\n` +
             `\`${m.prefix}addantilink tiktok.com\`\n` +
             `\`${m.prefix}addantilink chat.whatsapp.com\`\n` +
             `\`${m.prefix}addantilink instagram.com\``
@@ -35,17 +35,17 @@ function handler(m) {
     const antilinkList = groupData.antilinkList || []
     
     if (antilinkList.includes(link)) {
-        return m.reply(`⚠️ Link \`${link}\` sudah ada di daftar antilink!`)
+        return m.reply(`⚠️ ¡El enlace \`${link}\` ya está en la lista de antilinks! ¡Shishishi!`)
     }
     
     antilinkList.push(link)
     db.setGroup(m.chat, { antilinkList })
     
     m.reply(
-        `✅ *ᴀɴᴛɪʟɪɴᴋ ᴅɪᴛᴀᴍʙᴀʜ*\n\n` +
-        `> Link: \`${link}\`\n` +
-        `> Total: *${antilinkList.length}* link\n\n` +
-        `> Gunakan \`${m.prefix}listantilink\` untuk melihat daftar`
+        `✅ *ᴀɴᴛɪʟɪɴᴋ ᴀɢʀᴇɢᴀᴅᴏ*\n\n` +
+        `> Enlace: \`${link}\`\n` +
+        `> Total: *${antilinkList.length}* enlaces\n\n` +
+        `> Usa \`${m.prefix}listantilink\` para ver la lista`
     )
 }
 

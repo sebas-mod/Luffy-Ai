@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'notifpromote',
     alias: [],
     category: 'group',
-    description: 'Toggle notifikasi saat ada yang dijadikan admin',
+    description: 'Alternar notificación cuando alguien es ascendido a admin',
     usage: '.notifpromote on/off',
     example: '.notifpromote on',
     isOwner: false,
@@ -16,27 +16,27 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ Hanya admin grup yang bisa menggunakan fitur ini`)
+        return m.reply(`❌ Solo los admins del grupo pueden usar esta función`)
     }
     
     const args = m.args[0]?.toLowerCase()
     const group = db.getGroup(m.chat) || {}
     
     if (!['on', 'off'].includes(args)) {
-        const status = group.notifPromote === true ? '✅ Aktif' : '❌ Nonaktif'
-        return m.reply(`👑 *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ*\n\n> Status: ${status}\n\n*Penggunaan:*\n\`${m.prefix}notifpromote on\` - Aktifkan\n\`${m.prefix}notifpromote off\` - Nonaktifkan`)
+        const status = group.notifPromote === true ? '✅ Activo' : '❌ Inactivo'
+        return m.reply(`👑 *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notifpromote on\` - Activar\n\`${m.prefix}notifpromote off\` - Desactivar`)
     }
     
     if (args === 'on') {
         group.notifPromote = true
         db.setGroup(m.chat, group)
-        return m.reply(`✅ *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`✅ *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ ᴀᴄᴛɪᴠᴀᴅᴏ*`)
     }
     
     if (args === 'off') {
         group.notifPromote = false
         db.setGroup(m.chat, group)
-        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*`)
+        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴘʀᴏᴍᴏᴛᴇ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*`)
     }
 }
 

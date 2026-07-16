@@ -3,7 +3,7 @@ import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['htpremium', 'hidetagpremium', 'n2'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
+    description: 'Hidetag premium con soporte para responder mensajes (texto/multimedia)',
     usage: '.htprem [pesan] atau reply pesan',
     example: '.htprem atau reply pesan lalu .htprem',
     isOwner: false,
@@ -106,7 +106,7 @@ async function handler(m, { sock }) {
             const finalText = text || quotedText
 
             if (!finalText) {
-                return m.reply('❌ *Pesan kosong*')
+                return m.reply('❌ *Mensaje vacío*')
             }
 
             return sock.sendMessage(m.chat, {
@@ -117,10 +117,10 @@ async function handler(m, { sock }) {
         if (!text) {
             return m.reply(
                 `📢 *HIDETAG PREMIUM*\n\n` +
-                `• Reply pesan lalu ketik \`${m.prefix}ht\`\n` +
-                `• Atau ketik \`${m.prefix}ht <custom tag> | <pesan>\`\n\n` +
-                `• Contoh: \`${m.prefix}ht everyone | hai semua\`\n\n` +
-                `Support: teks, gambar, video, sticker, audio, dokumen`
+                `• Responde a un mensaje y escribe \`${m.prefix}ht\`\n` +
+                `• O escribe \`${m.prefix}ht <tag personalizado> | <mensaje>\`\n\n` +
+                `• Ejemplo: \`${m.prefix}ht todos | hola a todos\`\n\n` +
+                `Soporte: texto, imagen, video, sticker, audio, documento`
             )
         }
 

@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "rpg",
   alias: ["togglerpg"],
   category: "group",
-  description: "Mengaktifkan atau menonaktifkan fitur RPG di grup",
+  description: "Activar o desactivar la función RPG en el grupo",
   usage: ".rpg <on/off>",
   example: ".rpg on",
   isOwner: false,
@@ -22,11 +22,12 @@ async function handler(m, { sock }) {
 
   if (args !== "on" && args !== "off") {
     return m.reply(
-      `⚔️ *FITUR RPG GRUP*\n\n` +
-        `Gunakan perintah ini untuk mengatur akses member ke fitur RPG.\n\n` +
-        `• *${m.prefix}rpg on* - Member bisa main RPG\n` +
-        `• *${m.prefix}rpg off* - Member tidak bisa main RPG\n\n` +
-        `*Catatan:* Admin tetap bisa mengakses RPG meskipun dimatikan.`,
+      `⚔️ *FUNCIONALIDAD RPG DEL GRUPO*\n\n` +
+        `Usa este comando para configurar el acceso de los miembros a la función RPG.\n\n` +
+        `• *${m.prefix}rpg on* - Los miembros pueden jugar RPG\n` +
+        `• *${m.prefix}rpg off* - Los miembros no pueden jugar RPG\n\n` +
+        `*Nota:* Los admins siguen teniendo acceso al RPG aunque esté desactivado.\n\n` +
+        `_¡Shishishi! ¡Los miembros de la tripulación siempre están listos para la aventura!_`,
     );
   }
 
@@ -36,7 +37,7 @@ async function handler(m, { sock }) {
   const isEnable = args === "on";
 
   if (group.rpg === isEnable) {
-    return m.reply(`⚔️ Fitur RPG sudah *${isEnable ? "AKTIF" : "NONAKTIF"}* di grup ini.`);
+    return m.reply(`⚔️ La función RPG ya está *${isEnable ? "ACTIVA" : "INACTIVA"}* en este grupo.`);
   }
 
   group.rpg = isEnable;
@@ -44,10 +45,10 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ Berhasil *${isEnable ? "MENGAKTIFKAN" : "MENONAKTIFKAN"}* fitur RPG di grup ini!\n\n` +
+    `✅ ¡Se ha *${isEnable ? "ACTIVADO" : "DESACTIVADO"}* la función RPG en este grupo!\n\n` +
     (isEnable
-      ? `Member sekarang bisa menggunakan semua perintah di menu RPG.`
-      : `Member tidak akan bisa menggunakan perintah RPG lagi.`),
+      ? `Los miembros ahora pueden usar todos los comandos del menú RPG.`
+      : `Los miembros ya no podrán usar los comandos de RPG.`),
   );
 }
 

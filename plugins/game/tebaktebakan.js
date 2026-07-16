@@ -3,8 +3,8 @@ import { games } from '../../src/lib/ourin-games.js'
 games.register('tebaktebakan', {
     alias: ['tbt', 'tebak2an', 'receh'],
     emoji: '😄',
-    title: 'TEBAK-TEBAKAN',
-    description: 'Tebak-tebakan receh'
+    title: 'ACERTIJOS',
+    description: 'Acertijos graciosos'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebaktebakan')

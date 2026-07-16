@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "selfthisgc",
   alias: ["selfgc", "selfgroup", "selfthisgroup"],
   category: "group",
-  description: "Aktifkan mode self hanya di grup ini",
+  description: "Activar modo self solo en este grupo",
   usage: ".selfthisgc",
   example: ".selfthisgc",
   isOwner: true,
@@ -27,9 +27,9 @@ async function handler(m, { sock }) {
 
   if (isSelfGroup) {
     return m.reply(
-      `ℹ️ *ɢʀᴜᴘ ɪɴɪ sᴜᴅᴀʜ ᴍᴏᴅᴇ sᴇʟꜰ*\n\n` +
-        `> Bot hanya merespon owner & bot sendiri\n\n` +
-        `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+      `ℹ️ *ᴇsᴛᴇ ɢʀᴜᴘᴏ ʏᴀ ᴇsᴛᴀ ᴇɴ ᴍᴏᴅᴏ sᴇʟꜰ*\n\n` +
+        `> El bot solo responde al owner y al bot mismo\n\n` +
+        `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
     );
   }
 
@@ -42,12 +42,13 @@ async function handler(m, { sock }) {
 
   m.react("🔒");
   return m.reply(
-    `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
-      `> Bot di grup ini sekarang hanya merespon:\n` +
-      `> • Owner bot\n` +
-      `> • Bot sendiri (fromMe)\n\n` +
-      `📋 *Grup lain tidak terpengaruh*\n\n` +
-      `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+    `🔒 *ᴍᴏᴅᴏ sᴇʟꜰ ᴀᴄᴛɪᴠᴏ*\n\n` +
+      `> El bot en este grupo ahora solo responde a:\n` +
+      `> • Owner del bot\n` +
+      `> • El bot mismo (fromMe)\n\n` +
+      `📋 *Los demás grupos no son afectados*\n\n` +
+      `_Usa ${m.prefix}publicthisgc para abrir el acceso_\n\n` +
+      `_¡Shishishi! ¡Un capitán tiene su privacidad!_`,
   );
 }
 

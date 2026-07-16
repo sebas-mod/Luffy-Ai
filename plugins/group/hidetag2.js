@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'hidetag2',
     alias: ['n', 'ht2'],
     category: 'group',
-    description: 'Hidetag dengan fakeQuoted styling',
+    description: 'Hidetag con estilo fakeQuoted',
     usage: '.h2 <text> atau reply pesan',
     example: '.n Pengumuman penting!',
     isOwner: false,
@@ -25,8 +25,8 @@ async function handler(m, { sock }) {
     if (!text && !m.quoted) {
         return m.reply(
             `📢 *HIDETAG 2*\n\n` +
-            `• \`${m.prefix}h2 <text>\`\n` +
-            `• Reply pesan + \`${m.prefix}h2\``
+            `• \`${m.prefix}h2 <texto>\`\n` +
+            `• Responde a un mensaje + \`${m.prefix}h2\``
         )
     }
     try {
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
                 remoteJid: 'status@broadcast'
             },
             message: {
-                conversation: config.bot?.name || 'Ourin MD'
+                conversation: config.bot?.name || 'Luffy MD'
             }
         }
         if (m.quoted) {

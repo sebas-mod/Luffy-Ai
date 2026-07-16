@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'delete',
     alias: ['del', 'hapus', 'd'],
     category: 'group',
-    description: 'Hapus pesan dengan reply',
+    description: 'Eliminar mensaje con reply',
     usage: '.delete (reply pesan)',
     example: '.delete',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (!m.quoted) {
-        return m.reply('⚠️ *Reply pesan yang ingin dihapus!*')
+        return m.reply('⚠️ *¡Responde al mensaje que quieres eliminar!*')
     }
 
     const quotedSender = m.quoted.sender || m.quoted.key?.participant
@@ -28,10 +28,10 @@ async function handler(m, { sock }) {
 
     if (!isOwnMessage && !isBotMessage) {
         if (!m.isBotAdmin) {
-            return m.reply('⚠️ *Bot harus jadi admin untuk hapus pesan orang lain!*')
+            return m.reply('⚠️ *¡El bot debe ser admin para eliminar mensajes de otros!*')
         }
         if (!m.isAdmin && !m.isOwner) {
-            return m.reply('⚠️ *Hanya admin yang bisa hapus pesan orang lain!*')
+            return m.reply('⚠️ *¡Solo los admin pueden eliminar mensajes de otros!*')
         }
     }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
 
     } catch (err) {
         if (err.message?.includes('not found') || err.message?.includes('forbidden')) {
-            await m.reply('❌ *Gagal menghapus!*\n> Pesan mungkin sudah dihapus atau terlalu lama.')
+            await m.reply('❌ *¡Error al eliminar!*\n> El mensaje puede haber sido eliminado o es muy antiguo.')
         } else {
             await m.react('❌')
         }

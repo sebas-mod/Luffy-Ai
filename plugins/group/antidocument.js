@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'antidocument',
     alias: ['antidoc', 'nodocument', 'nodoc'],
     category: 'group',
-    description: 'Mengatur antidocument di grup',
+    description: 'Gestiona antidocument en el grupo',
     usage: '.antidocument <on/off>',
     example: '.antidocument on',
     isOwner: false,
@@ -58,25 +58,25 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antidocument ? '✅ ON' : '❌ OFF'
-        await m.reply(`📄 *AntiDocument*\n\n> Status: *${status}*\n\n> \`.antidocument on/off\``)
+        await m.reply(`📄 *AntiDocument*\n\n> Estado: *${status}*\n\n> \`.antidocument on/off\``)
         return
     }
 
     if (action === 'on') {
         db.setGroup(m.chat, { antidocument: true })
         m.react('✅')
-        await m.reply(`✅ *AntiDocument diaktifkan*`)
+        await m.reply(`✅ *AntiDocument activado*`)
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { antidocument: false })
         m.react('❌')
-        await m.reply(`❌ *AntiDocument dinonaktifkan*`)
+        await m.reply(`❌ *AntiDocument desactivado*`)
         return
     }
 
-    await m.reply(`❌ Gunakan \`.antidocument on\` atau \`.antidocument off\``)
+    await m.reply(`❌ Usa \`.antidocument on\` o \`.antidocument off\``)
 }
 
 export { pluginConfig as config, handler, checkAntidocument }

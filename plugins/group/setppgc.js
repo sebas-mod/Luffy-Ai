@@ -22,33 +22,33 @@ async function handler(m, { sock }) {
         try {
             buffer = await m.quoted.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ Error al obtener la imagen.`)
             return
         }
     } else if (m.isImage) {
         try {
             buffer = await m.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ Error al obtener la imagen.`)
             return
         }
     }
     if (!buffer) {
         await m.reply(
             `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Reply gambar + \`${m.prefix}setppgc\`\n` +
-            `> Kirim gambar + caption \`${m.prefix}setppgc\``
+            `> Responde a una imagen + \`${m.prefix}setppgc\`\n` +
+            `> O envía una imagen + caption \`${m.prefix}setppgc\``
         )
         return
     }
     try {
         await sock.updateProfilePicture(m.chat, buffer)
         await m.reply(
-            `✅ Foto profil grup berhasil diperbarui!`
+            `✅ ¡Foto de perfil del grupo actualizada! 🏴‍☠️`
         )
     } catch (error) {
         await m.reply(
-            `❌ Gagal mengubah foto grup.\n` +
+            `❌ Error al cambiar la foto del grupo.\n` +
             `> _${error.message}_`
         )
     }

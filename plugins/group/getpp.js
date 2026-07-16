@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'getpp',
     alias: ['pp', 'profilepic', 'avatar'],
     category: 'group',
-    description: 'Ambil foto profil target (mention/reply)',
+    description: 'Obtener foto de perfil del objetivo (mención/responder)',
     usage: '.getpp @user',
     example: '.getpp @628xxx',
     isOwner: false,
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
         ppUrl = 'https://files.catbox.moe/ejy4ky.jpg'
     }
 
-    await sock.sendMedia(m.chat, ppUrl, `Foto profil milik @${targetNum}`, m, {
+    await sock.sendMedia(m.chat, ppUrl, `Foto de perfil de @${targetNum}`, m, {
         type: 'image',
         mentions: [target]
     })

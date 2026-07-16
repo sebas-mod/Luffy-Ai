@@ -3,8 +3,8 @@ import { games } from '../../src/lib/ourin-games.js'
 games.register('tebakkata', {
     alias: ['tk', 'guessword'],
     emoji: '📝',
-    title: 'TEBAK KATA',
-    description: 'Tebak kata dari petunjuk'
+    title: 'ADIVINA PALABRA',
+    description: 'Adivina palabras por pistas'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakkata')

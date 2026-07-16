@@ -45,15 +45,15 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply(`🔇 *LIST MUTED MEMBERS*\n\n> Tidak ada member yang dimute di grup ini`)
+            return m.reply(`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`)
         }
 
-        let txt = `🔇 *LIST MUTED MEMBERS*\n\n╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
+        let txt = `🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
         mutedMembers.forEach((jid, i) => {
             const num = jid.replace(/@.+/g, '')
             txt += `┃ ${i + 1}. @${num}\n`
         })
-        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` member dimute`
+        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` miembros silenciados`
 
         return m.reply(txt, { mentions: mutedMembers })
     }
@@ -62,12 +62,12 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            `🔊 *UNMUTE MEMBER*\n\n` +
-            `> Membuka mute member tertentu\n\n` +
-            `\`Contoh:\`\n` +
+            `🔊 *DESILENCIAR MIEMBRO*\n\n` +
+            `> Desilenciar a un miembro específico\n\n` +
+            `\`Ejemplo:\`\n` +
             `> ${m.prefix}unmutemember @user\n` +
             `> ${m.prefix}unmutemember 6281234567890\n` +
-            `> Reply pesan member + ${m.prefix}unmutemember`
+            `> Responde a un mensaje del miembro + ${m.prefix}unmutemember`
         )
     }
 
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Member @${targetNumber} tidak sedang dimute`, { mentions: [targetJid] })
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
@@ -87,10 +87,10 @@ async function handler(m, { sock }) {
 
     m.react('🔊')
     await m.reply(
-        `🔊 *MEMBER DIUNMUTE*\n\n` +
+        `🔊 *MIEMBRO DESILENCIADO*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
         `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
-        `┃ 🔊 sᴛᴀᴛᴜs: \`Unmuted\`\n` +
+        `┃ 🔊 sᴛᴀᴛᴜs: \`Desilenciado\`\n` +
         `┃ 📊 sɪsᴀ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }

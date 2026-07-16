@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'mywaifu',
     alias: ['waifuim', 'waifu', 'waifus'],
     category: 'anime',
-    description: 'Mencari sekumpulan gambar waifu (SFW / NSFW) menggunakan API Waifu.im.',
-    usage: '.mywaifu sfw\nAtau\n.mywaifu nsfw',
+    description: 'Busca un conjunto de imágenes de waifu (SFW / NSFW) usando la API de Waifu.im.',
+    usage: '.mywaifu sfw\nO\n.mywaifu nsfw',
     example: '.mywaifu sfw',
     isOwner: false,
     isPremium: false,
@@ -23,12 +23,12 @@ async function handler(m, { sock, args }) {
 
     if (mode !== 'sfw' && mode !== 'nsfw') {
         return m.reply(
-            `🌸 *PENCARI WAIFU* 🌸\n\n` +
-            `Fitur ini akan mencarikan 10 gambar waifu spesial untukmu langsung dari Waifu.im dan menyatukannya dalam satu album rapi!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}mywaifu sfw\` untuk gambar waifu yang aman.\n` +
-            `- Ketik \`${m.prefix}mywaifu nsfw\` untuk gambar waifu versi dewasa (NSFW).\n\n` +
-            `_Pastikan kamu memilih mode yang sesuai dengan seleramu ya!_`
+            `🌸 *BUSCADOR DE WAIFU* 🌸\n\n` +
+            `Esta función buscará 10 imágenes de waifu especiales para ti directamente de Waifu.im y las reunirá en un álbum ordenado.\n\n` +
+            `*MODO DE USO:*\n` +
+            `- Escribe \`${m.prefix}mywaifu sfw\` para imágenes de waifu seguras.\n` +
+            `- Escribe \`${m.prefix}mywaifu nsfw\` para imágenes de waifu versión adulta (NSFW).\n\n` +
+            `_¡Asegúrate de elegir el modo que se adapte a tus gustos!_`
         );
     }
 
@@ -47,19 +47,19 @@ async function handler(m, { sock, args }) {
 
         const res = await fetch(`https://api.waifu.im/images?${params}`);
         if (!res.ok) {
-            throw new Error(`Gagal mengambil data dari API (Status: ${res.status})`);
+            throw new Error(`Error al obtener datos de la API (Estado: ${res.status})`);
         }
 
         const data = await res.json();
         
         if (!data.items || data.items.length === 0) {
             await m.react('❌');
-            return m.reply(`❌ *GAMBAR TIDAK DITEMUKAN*\n\nMaaf, sistem tidak dapat menemukan gambar untuk kategori *${mode.toUpperCase()}* saat ini.`);
+            return m.reply(`❌ *IMÁGENES NO ENCONTRADAS*\n\nLo siento, el sistema no pudo encontrar imágenes para la categoría *${mode.toUpperCase()}* en este momento.`);
         }
 
         const imageUrls = data.items.map(item => item.url);
 
-        const captionText = `🌸 *KOLEKSI WAIFU (${mode.toUpperCase()})* 🌸\n\nSistem berhasil mendapatkan *${imageUrls.length}* gambar waifu spesial untukmu! Cek album di bawah ini untuk melihat koleksi lengkapnya! ✨`;
+        const captionText = `🌸 *COLECCIÓN DE WAIFU (${mode.toUpperCase()})* 🌸\n\n¡El sistema obtuvo exitosamente *${imageUrls.length}* imágenes de waifu especiales para ti! ¡Revisa el álbum a continuación para ver la colección completa! ✨`;
         await m.reply(captionText);
 
         const opener = generateWAMessageFromContent(
@@ -105,7 +105,7 @@ async function handler(m, { sock, args }) {
     } catch (error) {
         console.error("MyWaifu Error:", error);
         await m.react('❌');
-        m.reply(`❌ *TERJADI KESALAHAN*\n\nMaaf, terjadi gangguan saat sistem mencoba memanggil API. Pesan error: _${error.message}_`);
+        m.reply(`❌ *OCURRIÓ UN ERROR*\n\nLo siento, hubo un problema al intentar llamar a la API. Mensaje de error: _${error.message}_`);
     }
 }
 

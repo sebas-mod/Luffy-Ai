@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'autoforward',
     alias: ['autofw', 'autofwd'],
     category: 'group',
-    description: 'Auto forward pesan yang masuk ke grup ke grup ini',
+    description: 'Reenvía automáticamente los mensajes que llegan a este grupo',
     usage: '.autoforward <on/off>',
     example: '.autoforward on',
     isOwner: false,
@@ -27,10 +27,10 @@ function handler(m, { sock }) {
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-            `┃ ◦ Status: *${status}*\n` +
+            `┃ ◦ Estado: *${status}*\n` +
             `╰┈┈⬡\n\n` +
-            `> Gunakan: \`${m.prefix}autoforward on/off\`\n\n` +
-            `_Fitur ini akan meneruskan semua pesan ke grup ini_`
+            `> Usa: \`${m.prefix}autoforward on/off\`\n\n` +
+            `_Esta función reenviará todos los mensajes a este grupo_`
         )
     }
     
@@ -39,10 +39,10 @@ function handler(m, { sock }) {
         m.react('✅')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ✅ *ᴀᴋᴛɪꜰ* 」\n` +
-            `┃ ◦ Status: *ON*\n` +
+            `╭┈┈⬡「 ✅ *ᴀᴄᴛɪᴠᴏ* 」\n` +
+            `┃ ◦ Estado: *ON*\n` +
             `╰┈┈⬡\n\n` +
-            `> _Semua pesan akan di-forward_`
+            `> _Todos los mensajes serán reenviados_`
         )
     }
     
@@ -51,13 +51,13 @@ function handler(m, { sock }) {
         m.react('❌')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ❌ *ɴᴏɴᴀᴋᴛɪꜰ* 」\n` +
-            `┃ ◦ Status: *OFF*\n` +
+            `╭┈┈⬡「 ❌ *ɪɴᴀᴄᴛɪᴠᴏ* 」\n` +
+            `┃ ◦ Estado: *OFF*\n` +
             `╰┈┈⬡`
         )
     }
     
-    return m.reply(`❌ Gunakan: on atau off`)
+    return m.reply(`❌ Usa: on o off`)
 }
 
 export { pluginConfig as config, handler }

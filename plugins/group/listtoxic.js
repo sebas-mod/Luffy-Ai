@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'listtoxic',
     alias: ['toxiclist', 'katatoxic', 'lihatkata'],
     category: 'group',
-    description: 'Lihat daftar kata toxic',
+    description: 'Ver lista de palabras tóxicas',
     usage: '.listtoxic',
     example: '.listtoxic',
     isOwner: false,
@@ -41,9 +41,9 @@ async function handler(m, { sock }) {
     }
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     
-    text += `Total: *${customWords.length + defaultWords.length}* kata\n`
-    text += `\`.addtoxic <kata>\` untuk tambah\n`
-    text += `\`.deltoxic <kata>\` untuk hapus`
+    text += `Total: *${customWords.length + defaultWords.length}* palabras\n`
+    text += `\`.addtoxic <palabra>\` para agregar\n`
+    text += `\`.deltoxic <palabra>\` para eliminar`
     
     await m.reply(text)
 }

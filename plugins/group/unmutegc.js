@@ -25,20 +25,20 @@ async function handler(m, { sock }) {
 
   if (!groupData.mutegc) {
     return m.reply(
-      `🔊 *Mute GC Tidak Aktif*\n\n` +
-        `> Member sudah bisa menggunakan command bot di grup ini`
+      `🔊 *Mute GC No Activo*\n\n` +
+        `> Los miembros ya pueden usar los comandos del bot en este grupo`
     );
   }
 
   db.setGroup(m.chat, { mutegc: false });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔊 *Mute GC Nonaktif*\n\n` +
-      `> Grup: *${groupName}*\n` +
-      `> Member sekarang bisa menggunakan command bot lagi\n\n` +
-      `_Ketik *${m.prefix}mutegc* untuk memblokir kembali_`,
+    `🔊 *Mute GC Desactivado*\n\n` +
+      `> Grupo: *${groupName}*\n` +
+      `> Los miembros ahora pueden usar los comandos del bot otra vez 🏴‍☠️\n\n` +
+      `_Escribe *${m.prefix}mutegc* para volver a bloquear_`,
     { contextInfo: ctx }
   );
 }

@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'automedia',
     alias: ['automedi', 'am'],
     category: 'group',
-    description: 'Toggle auto media - otomatis jadikan sticker jadi gambar/video',
+    description: 'Alternar auto media - convertir stickers en imagenes/videos automáticamente',
     usage: '.automedia on/off',
     example: '.automedia on',
     isOwner: false,
@@ -25,37 +25,37 @@ async function handler(m, { sock }) {
     const arg = args[0]?.toLowerCase()
     
     if (!arg) {
-        const status = current ? '✅ Aktif' : '❌ Nonaktif'
+        const status = current ? '✅ Activo' : '❌ Inactivo'
         return m.reply(
             `🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n` +
-            `> Status: ${status}\n\n` +
-            `> Gunakan:\n` +
-            `> \`${m.prefix}automedia on\` - aktifkan\n` +
-            `> \`${m.prefix}automedia off\` - nonaktifkan\n\n` +
-            `> _Otomatis jadikan sticker jadi gambar_\n` +
-            `> Video gak jadi bang`
+            `> Estado: ${status}\n\n` +
+            `> Usa:\n` +
+            `> \`${m.prefix}automedia on\` - activar\n` +
+            `> \`${m.prefix}automedia off\` - desactivar\n\n` +
+            `> _Convierte stickers en imágenes automáticamente_\n` +
+            `> ¡No convierte videos, shishishi!`
         )
     }
     
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> Sudah aktif!`)
+            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está activo!`)
         }
         db.setGroup(m.chat, { automedia: true })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ Berhasil diaktifkan!\n> Sticker akan otomatis jadi gambar/video`)
+        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ ¡Activado con éxito!\n> Los stickers se convertirán automáticamente en imágenes/videos ¡Shishishi!`)
     }
     
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> Sudah nonaktif!`)
+            return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está desactivado!`)
         }
         db.setGroup(m.chat, { automedia: false })
         await db.save()
-        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ Berhasil dinonaktifkan!`)
+        return m.reply(`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ ¡Desactivado con éxito!`)
     }
     
-    return m.reply(`❌ Gunakan: \`${m.prefix}automedia on/off\``)
+    return m.reply(`❌ Usa: \`${m.prefix}automedia on/off\``)
 }
 
 async function autoMediaHandler(m, sock) {

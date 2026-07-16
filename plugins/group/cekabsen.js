@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "cekabsen",
   alias: ["listabsen", "daftarabsen", "lihathadir"],
   category: "group",
-  description: "Lihat daftar peserta yang sudah absen",
+  description: "Ver lista de participantes que ya registraron asistencia",
   usage: ".cekabsen",
   example: ".cekabsen",
   isOwner: false,
@@ -20,10 +20,10 @@ async function handler(m, { sock }) {
   const chatId = m.chat;
   if (!global.absensi[chatId]) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴀʙsᴇɴ*\n\n` +
-        `> Belum ada sesi absen di grup ini!\n\n` +
-        `> Admin dapat memulai dengan\n` +
-        `> *.mulaiabsen [keterangan]*`,
+      `❌ *ɴᴏ ʜᴀʏ sᴇsɪ ᴅᴇ ᴀsɪsᴛᴇɴᴄɪᴀ*\n\n` +
+        `> ¡Aún no hay sesión de asistencia en este grupo!\n\n` +
+        `> Los admin pueden iniciar con\n` +
+        `> *.mulaiabsen [descripción]*`,
     );
   }
   const absen = global.absensi[chatId];
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
   const dateStr = now.format("D MMMM YYYY");
   const createdDate = moment(absen.createdAt).tz("Asia/Jakarta");
   const timeStr = createdDate.format("HH:mm");
-  let list = "┃ _Belum ada yang absen_";
+  let list = "┃ _Aún no hay asistencia_";
   if (absen.peserta.length > 0) {
     list = absen.peserta
       .map((jid, i) => `┃ ${i + 1}. @${jid.split("@")[0]}`)
@@ -40,16 +40,16 @@ async function handler(m, { sock }) {
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
   await m.reply(
-    `📋 *DAFTAR YANG UDAH ABSEN*\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+    `📋 *LISTA DE ASISTENCIA*\n\n` +
+      `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
       `┃ 📝 ${absen.keterangan}\n` +
       `┃ 📅 ${dateStr}\n` +
-      `┃ ⏰ Dimulai: ${timeStr}\n` +
-      `┃ 👑 Dibuat: @${absen.createdBy.split("@")[0]}\n` +
-      `├┈┈⬡「 👥 *PESERTA (${absen.peserta.length})* 」\n` +
+      `┃ ⏰ Iniciado: ${timeStr}\n` +
+      `┃ 👑 Creado por: @${absen.createdBy.split("@")[0]}\n` +
+      `├┈┈⬡「 👥 *ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs (${absen.peserta.length})* 」\n` +
       `${list}\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `Ketik *${m.prefix}absen* untuk hadir`,
+      `Escribe *${m.prefix}absen* para confirmar asistencia`,
     { mentions: [...absen.peserta, absen.createdBy] },
   );
 }

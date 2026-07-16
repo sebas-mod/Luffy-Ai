@@ -50,7 +50,7 @@ const pluginConfig = {
     ],
     alias: ['ephoto'],
     category: 'ephoto',
-    description: 'Buat efek text keren dengan berbagai style',
+    description: 'Crea efectos de texto geniales con varios estilos',
     usage: '.<effect> <text>',
     example: '.glitchtext Luffy-AI',
     isOwner: false,
@@ -118,19 +118,19 @@ async function handler(m, { sock }) {
         const effectList = Object.keys(EFFECT_URLS).map(e => `• \`${m.prefix}${e}\``).join('\n')
         return m.reply(
             `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
-            `> Buat efek text keren!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴇꜰᴇᴋ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> *Contoh:* ${m.prefix}glitchtext Luffy-AI`
+            `> ¡Crea efectos de texto geniales!\n\n` +
+            `╭┈┈⬡「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴇꜰᴇᴄᴛᴏꜱ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `> *Ejemplo:* ${m.prefix}glitchtext Luffy-AI`
         )
     }
     
     if (!text) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text!\n> *Contoh:* ${m.prefix}${command} Luffy-AI`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n> *Ejemplo:* ${m.prefix}${command} Luffy-AI`)
     }
     
     const effectUrl = EFFECT_URLS[command]
     if (!effectUrl) {
-        return m.reply(`❌ Efek tidak ditemukan`)
+        return m.reply(`❌ Efecto no encontrado`)
     }
     
     await m.react('🕕')

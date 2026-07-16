@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'resetrulesgrup',
     alias: ['resetgrouprules'],
     category: 'group',
-    description: 'Reset rules grup ke default (admin only)',
+    description: 'Restablecer reglas del grupo al predeterminado (solo admin)',
     usage: '.resetrulesgrup',
     example: '.resetrulesgrup',
     isOwner: false,
@@ -22,9 +22,10 @@ function handler(m) {
     db.setGroup(m.chat, { groupRules: null })
     
     m.reply(
-        `✅ *ɢʀᴜᴘ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n` +
-        `Rules grup berhasil direset ke default!\n` +
-        `Ketik \`${m.prefix}rulesgrup\` untuk melihat.`
+        `✅ *ʀᴇɢʟᴀs ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀs*\n` +
+        `¡Las reglas del grupo se restablecieron al predeterminado!\n` +
+        `Escribe \`${m.prefix}rulesgrup\` para verlas.\n\n` +
+        `_¡Shishishi! ¡El orden es importante para una gran tripulación!_`
     )
 }
 

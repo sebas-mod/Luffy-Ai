@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
         return m.reply(
             `🎨 *ᴀɴɪᴍᴇ ᴀʀᴛ ɢᴇɴᴇʀᴀᴛᴏʀ*\n\n` +
             `> ¡Genera imágenes de anime AI desde un prompt!\n\n` +
-            `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
+            `*ᴄᴏᴍᴏ ᴜsᴀʀ:*\n` +
             `> \`${m.prefix}anime-gen <descripción>\`\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> \`${m.prefix}anime-gen girl, vibrant color, smilling, yellow pink gradient hair\`\n` +
             `> \`${m.prefix}anime-gen boy, dark aesthetic, silver hair, red eyes\`\n\n` +
             `*ᴛɪᴘs:*\n` +

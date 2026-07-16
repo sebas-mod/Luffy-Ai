@@ -12,7 +12,7 @@ const pluginConfig = {
   alias: ["aai"],
   category: "group",
   description:
-    "Toggle auto AI response untuk grup dengan pilihan text atau voice",
+    "Activa/desactiva respuesta automática de IA para grupos con opciones de texto o voz",
   usage:
     ".autoai on/off --ourinmode=<character|custom> --logic=<custom instruction> --type=<text|voice> --mode=<onlychat|assistant>",
   example: ".autoai on --ourinmode=furina --type=voice --mode=onlychat",
@@ -77,11 +77,11 @@ async function handler(m) {
   const fullArgs = m.fullArgs || "";
 
   if (!m.isGroup) {
-    return m.reply(`❌ Fitur ini hanya untuk grup!`);
+    return m.reply(`❌ ¡Esta función solo está disponible para grupos!`);
   }
 
   if (!m.isAdmin && !m.isOwner) {
-    return m.reply(`❌ Hanya admin yang bisa menggunakan fitur ini!`);
+    return m.reply(`❌ ¡Solo los admins pueden usar esta función!`);
   }
 
   if (!db.db.data.autoai) db.db.data.autoai = {};
@@ -92,20 +92,20 @@ async function handler(m) {
 
   if (subcmd === "tambahpersona") {
     if (!m.isOwner)
-      return m.reply(`❌ Hanya owner yang bisa menambah persona!`);
+      return m.reply(`❌ ¡Solo el owner puede agregar personas!`);
     const personaArgs = fullArgs
       .replace(/^tambahpersona\s*/i, "")
       .split("|")
       .map((s) => s.trim());
     if (personaArgs.length < 2 || !personaArgs[0] || !personaArgs[1])
       return m.reply(
-        `❌ Format salah!\n\n> .autoai tambahpersona nama | instruction\n\n> Contoh: .autoai tambahpersona nexa | kamu adalah nexa ai, ...`,
+        `❌ ¡Formato incorrecto!\n\n> .autoai tambahpersona nombre | instrucción\n\n> Ejemplo: .autoai tambahpersona nexa | eres nexa ai, ...`,
       );
     const pName = personaArgs[0].toLowerCase().replace(/\s+/g, "_");
     const pInstruction = personaArgs.slice(1).join("|").trim();
     if (characters[pName])
       return m.reply(
-        `❌ Nama "${pName}" sudah dipakai persona bawaan!\n\n> Pilih nama lain`,
+        `❌ ¡El nombre "${pName}" ya está en uso por una persona predeterminada!\n\n> Elige otro nombre`,
       );
     db.db.data.autoai_personas[pName] = {
       name: personaArgs[0],
@@ -115,72 +115,72 @@ async function handler(m) {
     };
     db.save();
     return m.reply(
-      `✅ *Persona ditambahkan*\n\n> Nama: ${personaArgs[0]}\n> Key: ${pName}\n> Logic: ${pInstruction.substring(0, 80)}${pInstruction.length > 80 ? "..." : ""}\n\n> Gunakan: .autoai on --ourinmode=${pName}`,
+      `✅ *Persona agregada*\n\n> Nombre: ${personaArgs[0]}\n> Key: ${pName}\n> Lógica: ${pInstruction.substring(0, 80)}${pInstruction.length > 80 ? "..." : ""}\n\n> Usa: .autoai on --ourinmode=${pName}`,
     );
   }
 
   if (subcmd === "hapuspersona") {
     if (!m.isOwner)
-      return m.reply(`❌ Hanya owner yang bisa menghapus persona!`);
+      return m.reply(`❌ ¡Solo el owner puede eliminar personas!`);
     const pKey = (args[1] || "").toLowerCase().trim();
     if (!pKey)
       return m.reply(
-        `❌ Format salah!\n\n> .autoai hapuspersona <nama>\n\n> Contoh: .autoai hapuspersona nexa`,
+        `❌ ¡Formato incorrecto!\n\n> .autoai hapuspersona <nombre>\n\n> Ejemplo: .autoai hapuspersona nexa`,
       );
     if (!db.db.data.autoai_personas[pKey])
       return m.reply(
-        `❌ Persona "${pKey}" tidak ditemukan!\n\n> Ketik .autoai listpersona untuk melihat daftar`,
+        `❌ ¡La persona "${pKey}" no fue encontrada!\n\n> Escribe .autoai listpersona para ver la lista`,
       );
     delete db.db.data.autoai_personas[pKey];
     db.save();
-    return m.reply(`✅ Persona "${pKey}" berhasil dihapus`);
+    return m.reply(`✅ Persona "${pKey}" eliminada exitosamente`);
   }
 
   if (subcmd === "enablecommand" || subcmd === "enablecmd") {
     if (!m.isAdmin && !m.isOwner)
-      return m.reply(`❌ Hanya admin yang bisa mengatur ini!`);
+      return m.reply(`❌ ¡Solo los admins pueden configurar esto!`);
     const cfg = db.db.data.autoai[m.chat];
-    if (!cfg?.enabled) return m.reply(`❌ AutoAI belum aktif di grup ini!`);
+    if (!cfg?.enabled) return m.reply(`❌ ¡AutoAI no está activo en este grupo!`);
     if (cfg.enableCommands)
-      return m.reply(`ℹ️ *Command sudah di-enable*
+      return m.reply(`ℹ️ *Comando ya habilitado*
 
-> User tetap bisa pakai command walau AutoAI aktif`);
+> Los usuarios pueden usar comandos incluso con AutoAI activo`);
     cfg.enableCommands = true;
     db.save();
     return m.reply(
-      `✅ *ᴇɴᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅ*
+      `✅ *ᴄᴏᴍᴀɴᴅᴏs ʜᴀʙɪʟɪᴛᴀᴅᴏs*
 
 ` +
-        `> User sekarang bisa menggunakan command walau AutoAI aktif
+        `> Los usuarios ahora pueden usar comandos con AutoAI activo
 ` +
-        `> Bot tetap merespon saat di-tag/reply
+        `> El bot sigue respondiendo cuando lo mencionan o responden
 
 ` +
-        `_Gunakan ${m.prefix}autoai disablecommand untuk menonaktifkan_`,
+        `_Usa ${m.prefix}autoai disablecommand para deshabilitar_`,
     );
   }
 
   if (subcmd === "disablecommand" || subcmd === "disablecmd") {
     if (!m.isAdmin && !m.isOwner)
-      return m.reply(`❌ Hanya admin yang bisa mengatur ini!`);
+      return m.reply(`❌ ¡Solo los admins pueden configurar esto!`);
     const cfg = db.db.data.autoai[m.chat];
-    if (!cfg?.enabled) return m.reply(`❌ AutoAI belum aktif di grup ini!`);
+    if (!cfg?.enabled) return m.reply(`❌ ¡AutoAI no está activo en este grupo!`);
     if (!cfg.enableCommands)
-      return m.reply(`ℹ️ *Command sudah di-disable*
+      return m.reply(`ℹ️ *Comando ya deshabilitado*
 
-> Semua command (kecuali owner) diblokir saat AutoAI aktif`);
+> Todos los comandos (excepto owner) están bloqueados con AutoAI activo`);
     cfg.enableCommands = false;
     db.save();
     return m.reply(
-      `🔒 *ᴅɪsᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅ*
+      `🔒 *ᴄᴏᴍᴀɴᴅᴏs ᴅᴇsʜᴀʙɪʟɪᴛᴀᴅᴏs*
 
 ` +
-        `> Semua command (kecuali owner) diblokir saat AutoAI aktif
+        `> Todos los comandos (excepto owner) bloqueados con AutoAI activo
 ` +
-        `> Bot hanya merespon saat di-tag atau di-reply
+        `> El bot solo responde cuando lo mencionan o responden
 
 ` +
-        `_Gunakan ${m.prefix}autoai enablecommand untuk mengaktifkan kembali_`,
+        `_Usa ${m.prefix}autoai enablecommand para reactivar_`,
     );
   }
 

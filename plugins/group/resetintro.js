@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'resetintro',
     alias: ['introdel', 'delintro', 'deleteintro'],
     category: 'group',
-    description: 'Reset intro grup ke default (admin only)',
+    description: 'Restablecer intro del grupo al predeterminado (solo admin)',
     usage: '.resetintro',
     example: '.resetintro',
     isOwner: false,
@@ -22,7 +22,7 @@ async function handler(m) {
     const groupData = db.getGroup(m.chat) || db.setGroup(m.chat)
     
     if (!groupData.intro) {
-        return m.reply(`❌ Grup ini sudah menggunakan intro default!`)
+        return m.reply(`❌ ¡Este grupo ya usa el intro predeterminado!`)
     }
     
     delete groupData.intro
@@ -30,9 +30,9 @@ async function handler(m) {
     db.save()
     
     await m.reply(
-        `✅ *ɪɴᴛʀᴏ ᴅɪʀᴇsᴇᴛ!*\n` +
-        `Intro grup dikembalikan ke default.\n\n` +
-        `Ketik *${m.prefix}intro* untuk melihat hasilnya.`
+        `✅ *ɪɴᴛʀᴏ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴏ!*\n` +
+        `El intro del grupo volvió al predeterminado.\n\n` +
+        `Escribe *${m.prefix}intro* para ver el resultado.`
     )
 }
 

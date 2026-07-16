@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'notifsholat',
     alias: ['notifsolat'],
     category: 'group',
-    description: 'Toggle notifikasi sholat untuk grup ini',
+    description: 'Alternar notificación de horario de oración para este grupo',
     usage: '.notifsholat on/off',
     example: '.notifsholat on',
     isOwner: false,
@@ -17,7 +17,7 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ Hanya admin grup yang bisa menggunakan fitur ini`);
+        return m.reply(`❌ Solo los admins del grupo pueden usar esta función`);
     }
 
     const args = m.args[0]?.toLowerCase();
@@ -27,35 +27,35 @@ function handler(m, { sock, db }) {
 
     if (!['on', 'off'].includes(args)) {
         const isGlobalActive = globalDb.setting('autoSholat') || false;
-        const statusGlobal = isGlobalActive ? '✅ AKTIF' : '❌ NONAKTIF';
-        const statusGrup = group.notifSholat !== false ? '✅ AKTIF' : '❌ NONAKTIF';
+        const statusGlobal = isGlobalActive ? '✅ ACTIVO' : '❌ INACTIVO';
+        const statusGrup = group.notifSholat !== false ? '✅ ACTIVO' : '❌ INACTIVO';
         
         return m.reply(
-            `🕌 *PENGINGAT WAKTU SHOLAT*\n\n` +
-            `Status Global: *${statusGlobal}* (Dari Owner)\n` +
-            `Status Grup: *${statusGrup}*\n` +
-            `Lokasi: *${kotaSetting.nama}*\n\n` +
-            `*PENGATURAN GRUP:*\n` +
-            `• *${m.prefix}notifsholat on* — Aktifkan notif di grup ini\n` +
-            `• *${m.prefix}notifsholat off* — Nonaktifkan notif di grup ini\n\n` +
-            `*CARA KERJA:*\n` +
-            `1. Mengirimkan mp3 adzan & gambar jadwal saat masuk waktu sholat\n` +
-            `2. Mengikuti jadwal real-time dari myquran.com\n` +
-            `3. Jika Status Global NONAKTIF, grup tidak akan dikirim adzan meskipun Status Grup AKTIF.\n` +
-            `4. Jika grup merasa terganggu, admin dapat mematikan khusus untuk grup ini.`
+            `🕌 *RECORDATORIO DE HORARIO DE ORACIÓN*\n\n` +
+            `Estado Global: *${statusGlobal}* (Del Owner)\n` +
+            `Estado del Grupo: *${statusGrup}*\n` +
+            `Ubicación: *${kotaSetting.nama}*\n\n` +
+            `*CONFIGURACIÓN DEL GRUPO:*\n` +
+            `• *${m.prefix}notifsholat on* — Activar notif en este grupo\n` +
+            `• *${m.prefix}notifsholat off* — Desactivar notif en este grupo\n\n` +
+            `*CÓMO FUNCIONA:*\n` +
+            `1. Envía mp3 de adzan e imagen del horario al momento de la oración\n` +
+            `2. Sigue el horario en tiempo real de myquran.com\n` +
+            `3. Si el Estado Global está INACTIVO, el grupo no recibirá adzan aunque el Estado del Grupo esté ACTIVO.\n` +
+            `4. Si el grupo se siente molesto, el admin puede desactivarlo específicamente para este grupo.`
         );
     }
 
     if (args === 'on') {
         group.notifSholat = true;
         db.setGroup(m.chat, group);
-        return m.reply(`✅ *ɴᴏᴛɪꜰ sʜᴏʟᴀᴛ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*\n\n> Grup ini akan menerima pengingat waktu sholat\n> Lokasi: ${kotaSetting.nama}`);
+        return m.reply(`✅ *ɴᴏᴛɪꜰ ᴅᴇ ᴏʀᴀᴄɪóɴ ᴀᴄᴛɪᴠᴀᴅᴀ*\n\n> Este grupo recibirá recordatorios de horario de oración\n> Ubicación: ${kotaSetting.nama}`);
     }
 
     if (args === 'off') {
         group.notifSholat = false;
         db.setGroup(m.chat, group);
-        return m.reply(`❌ *ɴᴏᴛɪꜰ sʜᴏʟᴀᴛ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*`);
+        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴅᴇ ᴏʀᴀᴄɪóɴ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴀ*`);
     }
 }
 

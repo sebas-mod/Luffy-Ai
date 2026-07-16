@@ -4,7 +4,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Mengubah deskripsi grup',
     usage: '.setdeskgc <deskripsi baru>',
-    example: '.setdeskgc Grup untuk diskusi',
+    example: '.setdeskgc Grup para diskusi',
     isOwner: false,
     isPremium: false,
     isGroup: true,
@@ -21,8 +21,8 @@ async function handler(m, { sock }) {
     if (!m.text && m.args?.length === 0) {
         await m.reply(
             `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setdeskgc Deskripsi baru\`\n` +
-            `> \`${m.prefix}setdeskgc clear\` - Hapus deskripsi`
+            `> \`${m.prefix}setdeskgc Descripción nueva\`\n` +
+            `> \`${m.prefix}setdeskgc clear\` - Eliminar descripción`
         )
         return
     }
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     if (descToSet.length > 2048) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Deskripsi maksimal 2048 karakter.`
+            `> La descripción es de máximo 2048 caracteres.`
         )
         return
     }
@@ -41,17 +41,17 @@ async function handler(m, { sock }) {
         
         if (descToSet) {
             await m.reply(
-                `✅ Deskripsi grup berhasil diperbarui!`
+                `✅ ¡Descripción del grupo actualizada! 🏴‍☠️`
             )
         } else {
             await m.reply(
-                `✅ Deskripsi grup berhasil dihapus!`
+                `✅ ¡Descripción del grupo eliminada!`
             )
         }
     } catch (error) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah deskripsi grup.\n` +
+            `> No se pudo cambiar la descripción del grupo.\n` +
             `> _${error.message}_`
         )
     }

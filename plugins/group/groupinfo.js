@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'groupinfo',
     alias: ['infogroup', 'gcinfo', 'infogc', 'gc'],
     category: 'group',
-    description: 'Menampilkan informasi lengkap grup',
+    description: 'Mostrar información completa del grupo',
     usage: '.groupinfo',
     example: '.groupinfo',
     isOwner: false,
@@ -46,12 +46,12 @@ async function handler(m, { sock, db }) {
 
         const createdDate = groupMeta.creation
             ? timeHelper.fromTimestamp(groupMeta.creation * 1000, 'D MMMM YYYY')
-            : 'Tidak diketahui'
+            : 'Desconocido'
 
         const ownerNumber = ownerJid ? ownerJid.split('@')[0] : null
         const ownerDisplay = ownerNumber && !ownerNumber.includes(':')
             ? `@${ownerNumber}`
-            : 'Tidak diketahui'
+            : 'Desconocido'
 
         let ppUrl = null
         try {
@@ -60,17 +60,17 @@ async function handler(m, { sock, db }) {
 
         const isOpen = groupMeta.announce === false || !groupMeta.announce
 
-        let text = `👥 *INFO GRUP*\n\n`
-        text += `Nama: *${groupMeta.subject}*\n`
+        let text = `👥 *INFO DEL GRUPO*\n\n`
+        text += `Nombre: *${groupMeta.subject}*\n`
         text += `ID: ${m.chat}\n`
-        text += `Owner: ${ownerDisplay}\n`
-        text += `Dibuat: ${createdDate}\n`
-        text += `Status: ${isOpen ? '🔓 Terbuka' : '🔒 Tertutup'}\n\n`
+        text += `Propietario: ${ownerDisplay}\n`
+        text += `Creado: ${createdDate}\n`
+        text += `Estado: ${isOpen ? '🔓 Abierto' : '🔒 Cerrado'}\n\n`
 
-        text += `📊 *MEMBER*\n`
+        text += `📊 *MIEMBROS*\n`
         text += `Total: ${participants.length}\n`
         text += `Admin: ${admins.length}\n`
-        text += `Member: ${participants.length - admins.length}\n\n`
+        text += `Miembros: ${participants.length - admins.length}\n\n`
 
         text += `🔧 *FITUR AKTIF*\n`
         text += `Welcome: ${featureStatus(group.welcome)}\n`
@@ -81,7 +81,7 @@ async function handler(m, { sock, db }) {
         text += `AutoSticker: ${featureStatus(group.autosticker)}\n`
         text += `AutoMedia: ${featureStatus(group.automedia)}\n\n`
 
-        text += `🛡️ *PROTEKSI*\n`
+        text += `🛡️ *PROTECCIÓN*\n`
         text += `AntiLink: ${featureStatus(group.antilink)}\n`
         text += `AntiBot: ${featureStatus(group.antibot)}\n`
         text += `AntiToxic: ${featureStatus(group.antitoxic)}\n`
@@ -92,7 +92,7 @@ async function handler(m, { sock, db }) {
         text += `AntiDocument: ${featureStatus(group.antidocument)}`
 
         if (groupMeta.desc) {
-            text += `\n\n📝 *DESKRIPSI*\n${groupMeta.desc}`
+            text += `\n\n📝 *DESCRIPCIÓN*\n${groupMeta.desc}`
         }
 
         const mentions = ownerJid && !ownerJid.includes(':') ? [ownerJid] : []

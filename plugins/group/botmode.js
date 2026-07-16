@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'botmode',
     alias: ['setmode', 'mode'],
     category: 'group',
-    description: 'Atur mode bot untuk grup ini',
+    description: 'Configurar modo del bot para este grupo',
     usage: '.botmode <md/cpanel/pushkontak/store/otp/all>',
     example: '.botmode store',
     isOwner: false,
@@ -19,37 +19,37 @@ const pluginConfig = {
 const MODES = {
     md: {
         name: 'Multi-Device',
-        desc: 'Mode default dengan semua fitur standar',
+        desc: 'Modo predeterminado con todas las funciones estándar',
         allowedCategories: null,
         excludeCategories: ['cpanel', 'pushkontak', 'store']
     },
     all: {
-        name: 'All Features',
-        desc: 'Semua fitur dari semua mode bisa diakses',
+        name: 'Todas las Funciones',
+        desc: 'Todas las funciones de todos los modos disponibles',
         allowedCategories: null,
         excludeCategories: null
     },
     cpanel: {
         name: 'CPanel Pterodactyl',
-        desc: 'Mode khusus untuk panel server',
+        desc: 'Modo especial para panel del servidor',
         allowedCategories: ['main', 'group', 'sticker', 'owner', 'tools', 'panel'],
         excludeCategories: null
     },
     pushkontak: {
-        name: 'Push Kontak',
-        desc: 'Mode khusus untuk push kontak ke member',
+        name: 'Push Contactos',
+        desc: 'Modo especial para enviar contactos a los miembros',
         allowedCategories: ['owner', 'main', 'group', 'sticker', 'pushkontak'],
         excludeCategories: null
     },
     store: {
-        name: 'Store/Toko',
-        desc: 'Mode khusus untuk toko manual',
+        name: 'Tienda',
+        desc: 'Modo especial para tienda manual',
         allowedCategories: ['main', 'group', 'sticker', 'owner', 'store'],
         excludeCategories: null
     },
     otp: {
-        name: 'OTP Service',
-        desc: 'Mode layanan OTP otomatis',
+        name: 'Servicio OTP',
+        desc: 'Modo de servicio OTP automático',
         allowedCategories: ['main', 'group', 'sticker', 'owner', 'otp'],
         excludeCategories: null
     }
@@ -74,18 +74,18 @@ function handler(m, { sock }) {
 
         return m.reply(
             `🔧 *ʙᴏᴛ ᴍᴏᴅᴇ*\n\n` +
-            `> Mode saat ini: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Unknown'})\n` +
-            `\n╭─「 📋 *ᴘɪʟɪʜᴀɴ* 」\n` +
+            `> Modo actual: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Desconocido'})\n` +
+            `\n╭─「 📋 *ᴏᴘᴄɪᴏɴᴇs* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
-            `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n` +
-            `> \`${m.prefix}botmode store\` - Manual order\n\n` +
-            `> _Pengaturan per-grup_`
+            `*ꜰʟᴀɢ ᴛɪᴇɴᴅᴀ:*\n` +
+            `> \`${m.prefix}botmode store\` - Pedido manual\n\n` +
+            `> _Configuración por grupo_`
         )
     }
 
     if (!Object.keys(MODES).includes(mode)) {
-        return m.reply(`❌ Mode tidak valid. Pilihan: \`${Object.keys(MODES).join(', ')}\``)
+        return m.reply(`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``)
     }
 
 
@@ -110,20 +110,20 @@ function handler(m, { sock }) {
     let extraInfo = ''
     if (mode === 'store') {
         const products = newGroupData.storeConfig?.products || []
-        extraInfo = `\n\n📋 *Manual mode*\n` +
-            `> Admin perlu confirm order manual\n` +
-            `> Product: \`${products.length}\` item\n\n` +
-            `*ᴘᴀɴᴅᴜᴀɴ:*\n` +
-            `> \`${m.prefix}addprod <kode> <harga> <nama>\`\n` +
-            `> \`${m.prefix}listprod\` - Lihat produk`
+        extraInfo = `\n\n📋 *Modo manual*\n` +
+            `> Admin necesita confirmar el pedido manual\n` +
+            `> Producto: \`${products.length}\` ítems\n\n` +
+            `*ɢᴜɪᴀ:*\n` +
+            `> \`${m.prefix}addprod <código> <precio> <nombre>\`\n` +
+            `> \`${m.prefix}listprod\` - Ver productos`
     }
 
     return m.reply(
-        `✅ *ᴍᴏᴅᴇ ᴅɪᴜʙᴀʜ*\n\n` +
-        `> Mode: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
-        `> Grup: *${m.chat.split('@')[0]}*\n` +
+        `✅ *ᴍᴏᴅᴇ ᴄᴀᴍʙɪᴀᴅᴏ*\n\n` +
+        `> Modo: *${mode.toUpperCase()}* (${MODES[mode].name})\n` +
+        `> Grupo: *${m.chat.split('@')[0]}*\n` +
         extraInfo +
-        `\n\n> Ketik \`${m.prefix}menu\` untuk melihat menu.`
+        `\n\n> Escribe \`${m.prefix}menu\` para ver el menú.`
     )
 }
 
