@@ -17,7 +17,7 @@ import {
 import { getCasesByCategory, getCaseCount } from "../../case/ourin.js";
 const pluginConfig = {
   name: "allmenu",
-  alias: ["fullmenu", "am", "allcommand", "semua"],
+  alias: ["allmenu", "am", "allcommand", "semua"],
   category: "main",
   description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",
@@ -42,15 +42,11 @@ const CATEGORY_EMOJIS = {
   sticker: "🖼️",
   ai: "🤖",
   game: "🎯",
-  media: "🎬",
   info: "ℹ️",
-  religi: "☪️",
-  panel: "🖥️",
   user: "📊",
   linode: "☁️",
   random: "🎲",
   canvas: "🎨",
-  vps: "🌊",
   store: "🏪",
   premium: "💎",
   convert: "🔄",
@@ -127,7 +123,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
   };
 
-  let weatherText = "Merangin Despejado con nubes 22°C ☀️";
+  let weatherText = "Buenos aires Despejado con nubes 22°C ☀️";
   try {
     const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=Merangin&count=1`);
     const loc = geo.data.results?.[0];
@@ -140,7 +136,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   } catch (e) { }
 
   const userLimit = (m.isPremium || m.isOwner) ? "∞ Unlimited" : (user?.limit || 0);
-  const botName = botConfig.bot?.name || "Remi AI";
+  const botName = botConfig.bot?.name || "Luffy AI";
   const devName = botConfig.bot?.developer || "Ell";
   const botVersion = botConfig.bot?.version || "11.0.0";
   const pushName = m.pushName || "User";
@@ -172,10 +168,8 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     "download",
     "search",
     "sticker",
-    "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",
@@ -191,7 +185,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   });
   let modeAllowedMap = {
     md: null,
-    cpanel: ["main", "group", "sticker", "owner", "tools", "panel"],
+    cpanel: ["main", "group", "sticker", "owner", "tools"],
     store: ["main", "group", "sticker", "owner", "store"],
     pushkontak: ["main", "group", "sticker", "owner", "pushkontak"],
   };
