@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
         `\`${m.prefix}ganticode\` - Auto detect\n` +
         `\`${m.prefix}ganticode nombrefile\` - Custom nombre\n` +
         `\`${m.prefix}ganticode nombrefile folder\` - Custom nombre + folder\n\n` +
-        `⚠️ *PERINGATAN:*\nEl código antiguo se respaldará antes de ser reemplazado`,
+        `⚠️ *ADVERTENCIA:*\nEl código antiguo se respaldará antes de ser reemplazado`,
     );
   }
 
@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
     }
 
     replyText +=
-      ` │ 🔄 Hot Reload: ${reloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+     ` │ 🔄 Hot Reload: ${reloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
       `╰───────⬣\n\n`;
 
     if (backupPath) {

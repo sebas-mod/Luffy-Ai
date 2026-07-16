@@ -1,7 +1,7 @@
 import { getPlugin } from "../../src/lib/ourin-plugins.js";
 import { getDatabase } from "../../src/lib/ourin-database.js";
 
-const config = {
+const pluginConfig = {
   name: "howmuchenergy",
   alias: ["cekenergi"],
   category: "info",
@@ -58,4 +58,4 @@ async function handler(m, { sock }) {
   return m.reply(responseText.trim());
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

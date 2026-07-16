@@ -39,7 +39,7 @@ async function handler(m, { sock, store }) {
     if (!code) {
         return m.reply(
             `⚙️ *ᴇxᴇᴄ*\n\n` +
-            `> Reply mensaje bercontenido kode JavaScript!\n\n` +
+            `> Responde con un mensaje que contenga código JavaScript!\n\n` +
             `*O:*\n` +
             `> .> <code>\n\n` +
             `*Ejemplo:*\n` +

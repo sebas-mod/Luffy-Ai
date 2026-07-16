@@ -26,8 +26,8 @@ async function handler(m) {
             `👁️ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ*\n\n` +
             `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n\n` +
             `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-            `> \`${m.prefix}autoreadsw on\` — Activokan\n` +
-            `> \`${m.prefix}autoreadsw off\` — Matikan`
+            `> \`${m.prefix}autoreadsw on\` — Activar\n` +
+            `> \`${m.prefix}autoreadsw off\` — Desactivar`
         )
     }
 

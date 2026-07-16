@@ -52,7 +52,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1*, *v2*, *v5*, o *v6*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5*, o *v6*`);
       return;
     }
 

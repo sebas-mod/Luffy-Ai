@@ -13,6 +13,7 @@ const pluginConfig = {
     category: "canvas",
     description: "Crea una cita ficticia con estilo iOS en versión rosa.",
     usage: ".iqcpink [texto/responder mensaje]",
+    example: '.iqcpink hola mundo',
     isOwner: false,
     isPremium: false,
     isGroup: false,

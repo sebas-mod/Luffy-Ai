@@ -26,8 +26,8 @@ async function handler(m, { sock, db }) {
             `🔊 *ᴀᴜᴅɪᴏ ᴍᴇɴᴜ sᴇᴛᴛɪɴɢ*\n\n` +
             `> Status: *${current ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
             `*Forma de uso:*\n` +
-            `> \`${m.prefix}activoaudiomenu ya\` - Activokan audio\n` +
-            `> \`${m.prefix}activoaudiomenu gak\` - Nonactivokan audio`
+            `> \`${m.prefix}activoaudiomenu ya\` - Activar audio\n` +
+            `> \`${m.prefix}activoaudiomenu gak\` - Desactivar audio`
         )
     }
 
@@ -38,7 +38,7 @@ async function handler(m, { sock, db }) {
         db.setting('audioMenu', true)
         await db.save()
         await m.react('✅')
-        return m.reply(`✅ Audio menu *diactivokan*!\n\n> Ahora cuando alguien escriba \`.menu\`, el audio aparecerá.`)
+        return m.reply(`✅ Audio menu *activado*!\n\n> Ahora cuando alguien escriba \`.menu\`, el audio aparecerá.`)
     }
 
     if (option === 'gak' || option === 'off' || option === '0' || option === 'nonactivo') {
@@ -48,7 +48,7 @@ async function handler(m, { sock, db }) {
         db.setting('audioMenu', false)
         await db.save()
         await m.react('✅')
-        return m.reply(`❌ Audio menu *dinonactivokan*!\n\n> Ahora \`.menu\` no tendrá audio.`)
+        return m.reply(`❌ Audio menu *desactivado*!\n\n> Ahora \`.menu\` no tendrá audio.`)
     }
 
     return m.reply(`❌ ¡Opción no válida!\n\nUsa: \`ya\` o \`gak\``)

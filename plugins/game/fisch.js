@@ -83,7 +83,7 @@ const pluginConfig = {
   name: "fisht",
   alias: ["fishit"],
   category: "game",
-  description: "Fishit - Fishing Rod Game",
+  description: "Juego de pesca con cañas",
   usage: ".fisht <command>",
   example: ".fisht help",
   isOwner: false,

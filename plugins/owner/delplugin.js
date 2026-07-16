@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🗑️ *DEL PLUGIN*\n\n` +
-        `Hapus plugin berdasarkan nombre\n\n` +
+        `Eliminar plugin por nombre\n\n` +
         `*Ejemplo:*\n` +
         `\`${m.prefix}delplugin bliblidl\``,
     );
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
         `╭─〔 *DETAIL* 〕───⬣\n` +
         `│ File: \`${found.file}\`\n` +
         `│ Folder: \`${found.folder}\`\n` +
-        `│ Unload: ${unloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+        `│ Unload: ${unloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
         `Plugin ya eliminado y no activo!`,
     );

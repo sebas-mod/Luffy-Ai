@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
     return m.reply(
       `💎 *SISTEM CAP PREMIUM*\n\n` +
       `Sistema exclusivo para cambiar el estado de acceso de muchas funciones a la vez a Premium.\n\n` +
-      `*PENGGUNAAN:*\n` +
+      `*USO:*\n` +
       `- *${m.prefix}capprem <nombre_fesor1> <nombre_fesor2> ...* — Puedes varios a la vez\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capprem hd jpm warn*\n\n` +
-      `*PENJELASAN:*\n` +
+      `*EXPLICACIÓN:*\n` +
       `Ingresa uno o más nombres de funciones que quieres convertir en Premium. Sepáralos con espacios.`
     );
   }

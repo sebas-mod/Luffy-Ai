@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` ya dibanned`)
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` ya baneado`)
     }
 
     bannedList.push(targetNumber)

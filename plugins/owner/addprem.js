@@ -155,26 +155,26 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     );
 
     let durationMs = 30 * 24 * 60 * 60 * 1000;
-    let durationLabel = "30 hari";
+    let durationLabel = "30 días";
     
-    const timeArg = m.args?.find((a) => /^\d+(h|hari|j|jam|m|menit|d|detik)?$/i.test(a));
+    const timeArg = m.args?.find((a) => /^\d+(h|días|j|horas|m|minutos|d|segundos)?$/i.test(a));
     if (timeArg) {
-      const match = timeArg.toLowerCase().match(/^(\d+)(h|hari|j|jam|m|menit|d|detik)?$/);
+      const match = timeArg.toLowerCase().match(/^(\d+)(h|días|j|horas|m|minutos|d|segundos)?$/);
       if (match) {
         const val = parseInt(match[1]);
         const unit = match[2] || "h";
         if (unit === "d" || unit === "segundo") {
           durationMs = val * 1000;
-          durationLabel = `${val} segundo`;
+          durationLabel = `${val} segundos`;
         } else if (unit === "m" || unit === "minuto") {
           durationMs = val * 60 * 1000;
-          durationLabel = `${val} minuto`;
+          durationLabel = `${val} minutos`;
         } else if (unit === "j" || unit === "jam") {
           durationMs = val * 60 * 60 * 1000;
-          durationLabel = `${val} jam`;
+          durationLabel = `${val} horas`;
         } else {
           durationMs = val * 24 * 60 * 60 * 1000;
-          durationLabel = `${val} hari`;
+          durationLabel = `${val} días`;
         }
       }
     }

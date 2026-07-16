@@ -3,9 +3,10 @@ import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['pakustad', 'pak-ustad', 'tanyaustad'],
     alias: [],
-    category: 'fun',
+    category: 'canvas',
     description: 'Crea una imagen de preguntas para el ustad.',
     usage: '.pakustad <pregunta>',
+    example: '.pakustad ¿Cuál es el significado de la oración?',
     example: '.pakustad ¿cómo encuentro el One Piece?',
     isOwner: false,
     isPremium: false,

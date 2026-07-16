@@ -4,7 +4,7 @@ import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['antara', 'cnn', 'cnbc', 'sindonews', 'berita'],
     alias: [],
-    category: 'berita',
+    category: 'info',
     description: 'Obtener noticias actualizadas de diversas fuentes',
     usage: '.berita <sumber>',
     example: '.kompas atau .berita cnn',

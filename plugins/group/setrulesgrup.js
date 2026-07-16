@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'setrulesgrup',
     alias: ['setgrouprules', 'setaturangrup'],
     category: 'group',
-    description: 'Set rules/aturan grup custom (admin only)',
+    description: 'Establecer reglas personalizadas del grupo (solo admin)',
     usage: '.setrulesgrup <text>',
     example: '.setrulesgrup 1. No hagas spam\n2. Respeta a los demás',
     isOwner: false,

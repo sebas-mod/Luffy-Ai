@@ -18,11 +18,11 @@ const pluginConfig = {
 };
 
 const EXPEDITIONS = {
-  forest: { name: "🌲 Hutan Laba-laba", duration: 1800000, rewards: ["wood", "herb", "mushroom"], exp: 100, minLevel: 1 },
-  cave: { name: "🏔️ Gua Kelelawar", duration: 3600000, rewards: ["iron", "gold", "gem"], exp: 200, minLevel: 5 },
-  volcano: { name: "🌋 Gunung Naga", duration: 7200000, rewards: ["lava", "dragonscale", "titancore"], exp: 400, minLevel: 15 },
-  ocean: { name: "🌊 Samudra Kraken", duration: 5400000, rewards: ["fish", "pearl", "seagem"], exp: 300, minLevel: 10 },
-  ruins: { name: "🏛️ Reruntuhan Kuno", duration: 10800000, rewards: ["ancientcoin", "relic", "mysterybox"], exp: 600, minLevel: 20 },
+  forest: { name: "🌲 Bosque de Arañas", duration: 1800000, rewards: ["wood", "herb", "mushroom"], exp: 100, minLevel: 1 },
+  cave: { name: "🏔️ Cueva de Murciélagos", duration: 3600000, rewards: ["iron", "gold", "gem"], exp: 200, minLevel: 5 },
+  volcano: { name: "🌋 Montaña del Dragón", duration: 7200000, rewards: ["lava", "dragonscale", "titancore"], exp: 400, minLevel: 15 },
+  ocean: { name: "🌊 Océano Kraken", duration: 5400000, rewards: ["fish", "pearl", "seagem"], exp: 300, minLevel: 10 },
+  ruins: { name: "🏛️ Ruinas Antiguas", duration: 10800000, rewards: ["ancientcoin", "relic", "mysterybox"], exp: 600, minLevel: 20 },
 };
 
 function formatTime(ms) {

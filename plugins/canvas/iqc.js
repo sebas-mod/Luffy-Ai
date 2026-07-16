@@ -15,6 +15,7 @@ const pluginConfig = {
     category: "canvas",
     description: "Crea una cita ficticia con estilo iOS.",
     usage: ".iqc [texto/responder mensaje]",
+    example: '.iqc hola',
     isOwner: false,
     isPremium: false,
     isGroup: false,

@@ -6,7 +6,11 @@ const pluginConfig = {
     description: 'Crea una copia de la base de datos y la envía al dueño',
     usage: '.backupdb',
     isOwner: true,
+    isPremium: false,
     isGroup: false,
+    isPrivate: false,
+    cooldown: 5,
+    energi: 1,
     isEnabled: true
 }
 

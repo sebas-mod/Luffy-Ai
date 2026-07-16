@@ -7,7 +7,9 @@ const pluginConfig = {
     description: 'Ver explicación y lista de funciones especiales Premium',
     usage: '.benefitpremium',
     isOwner: false,
+    isPremium: false,
     isGroup: false,
+    isPrivate: false,
     isEnabled: true
 }
 

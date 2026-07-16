@@ -1,7 +1,7 @@
 import { games } from '../../src/lib/ourin-games.js'
 
 games.register('tebaklirik', {
-    alias: [],
+    alias: ['letra'],
     emoji: '🎤',
     title: 'ADIVINA LETRA',
     description: 'Adivina la letra de canciones'

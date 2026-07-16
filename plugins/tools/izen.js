@@ -3,7 +3,7 @@ import te from "../../src/lib/ourin-error.js";
 
 const pluginConfig = {
   name: "izen",
-  alias: ["skiplink", "izen"],
+  alias: ["skiplink"],
   category: "tools",
   description: "Bypass de shortlink / skiplink usando izen",
   usage: ".izen enlace",
@@ -38,12 +38,12 @@ async function handler(m, { args, sock }) {
        return m.reply("❌ ¡Vaya, no se pudo pasar el enlace! Prueba con otro.");
     }
     
-    let txt = `✅ *BERHASIL BYPASS LINK!* ✅\n\n`;
-    txt += `*Link Asli:* \n`;
+    let txt = `✅ *¡ENLACE BYPASSEADO CON ÉXITO!* ✅\n\n`;
+    txt += `*Enlace Original:* \n`;
     txt += `🔗 ${args[0]}\n\n`;
-    txt += `*Hasil Bypass:* \n`;
+    txt += `*Resultado del Bypass:* \n`;
     txt += `🚀 ${json.data.result.result}\n\n`;
-    txt += `Semoga ngebantu ya kak! ✨`;
+    txt += `¡Espero que te sirva! ✨`;
     
     await m.reply(txt);
     await m.react("✅");

@@ -1,7 +1,7 @@
 import { getPlugin } from "../../src/lib/ourin-plugins.js";
 import { getDatabase } from "../../src/lib/ourin-database.js";
 
-const config = {
+const pluginConfig = {
   name: "capfree",
   alias: ["capgratis", "setfree"],
   category: "owner",
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
     return m.reply(
       `🆓 *SISTEM CAP FREE*\n\n` +
       `Sistema para devolver el estado de acceso de muchas funciones a la vez a gratuito de forma pública.\n\n` +
-      `*PENGGUNAAN:*\n` +
+      `*USO:*\n` +
       `- *${m.prefix}capfree <nombre_fesor1> <nombre_fesor2> ...* — Puedes varios a la vez\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capfree hd jpm warn*\n\n` +
-      `*PENJELASAN:*\n` +
+      `*EXPLICACIÓN:*\n` +
       `Ingresa uno o más nombres de funciones que quieres hacer gratuitas. Sepáralos con espacios.`
     );
   }
@@ -68,4 +68,4 @@ async function handler(m, { sock }) {
   return m.reply(msg.trim());
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

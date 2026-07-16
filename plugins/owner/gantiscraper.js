@@ -134,7 +134,7 @@ async function handler(m, { sock }) {
         `\`${m.prefix}gantiscraper nombrefile\` - Custom nombre file\n\n` +
         `📋 *Lihat lista scraper:*\n` +
         `\`${m.prefix}gantiscraper list\`\n\n` +
-        `⚠️ *PERINGATAN:*\nEl código antiguo se hará backup antes de ser reemplazado`,
+        `⚠️ *ADVERTENCIA:*\nEl código antiguo se hará backup antes de ser reemplazado`,
     );
   }
 

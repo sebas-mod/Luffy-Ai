@@ -10,6 +10,7 @@ const pluginConfig = {
     category: 'canvas',
     description: 'Crea una simulación de Instagram Story con tu foto de perfil e imagen.',
     usage: '.igstory [envía/responde una imagen]',
+    example: '.igstory',
     isOwner: false,
     isPremium: false,
     isGroup: false,

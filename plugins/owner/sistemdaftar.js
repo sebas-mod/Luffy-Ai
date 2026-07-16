@@ -72,11 +72,11 @@ async function handler(m, { sock }) {
   if (!normalizedArgs) {
     return m.reply(
       `⚙️ *sɪsᴛᴇᴍ ᴅᴀꜰᴛᴀʀ*\n\n` +
-        `Status: ${currentStatus ? "✅ ON (Wajib Daftar)" : "❌ OFF"}\n\n` +
+        `Status: ${currentStatus ? "✅ ON (Registro Obligatorio)" : "❌ OFF"}\n\n` +
         `*Statistik:*\n` +
         `> Total registered: *${stats.totalRegistered}*\n` +
-        `> Register hari esto: *${stats.registeredToday}*\n` +
-        `> Unreg hari esto: *${stats.unregisteredToday}*\n` +
+        `> Register hoy: *${stats.registeredToday}*\n` +
+        `> Unreg hoy: *${stats.unregisteredToday}*\n` +
         `> Sesi activo: *${stats.activeSessions}*\n\n` +
         `*Usage:*\n` +
         `> \`${m.prefix}sistemlista on\` - Wajibkan lista\n` +
@@ -92,11 +92,11 @@ async function handler(m, { sock }) {
       {
         text:
           `📊 *sᴛᴀᴛɪsᴛɪᴋ ᴅᴀꜰᴛᴀʀ*\n\n` +
-          `Status sistem: ${currentStatus ? "✅ ON (Wajib Daftar)" : "❌ OFF"}\n\n` +
+          `Status sistem: ${currentStatus ? "✅ ON (Registro Obligatorio)" : "❌ OFF"}\n\n` +
           `╭┈┈⬡「 📈 *sᴛᴀᴛs* 」\n` +
           `┃ Total registered: *${stats.totalRegistered}*\n` +
-          `┃ Register hari esto: *${stats.registeredToday}*\n` +
-          `┃ Unreg hari esto: *${stats.unregisteredToday}*\n` +
+          `┃ Register hoy: *${stats.registeredToday}*\n` +
+          `┃ Unreg hoy: *${stats.unregisteredToday}*\n` +
           `┃ Sesi activo: *${stats.activeSessions}*\n` +
           `╰┈┈┈┈┈┈┈┈⬡`,
         contextInfo: getRegistrationContextInfo(),

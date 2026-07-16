@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     return m.reply(`¡Estás jadeando solo de intentar robar! 🤒\nMínimo *40 HP*, jefe. Tu salud actual: *${user.rpg.health} HP*. ¡Duérmete primero!`);
   }
 
-  await sendRpgPreview(sock, m.chat, "Nyempil di keramaian pasar... Mengincar tas emak-emak... 🦹‍♂️🤏", "🦹 COPET", "Beraksi!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, "Metiéndote en la multitud del mercado... Apuntando al bolso de las señoras... 🦹‍♂️🤏", "🦹 CARTERO", "¡A actuar!", { quoted: m });
   await new Promise((r) => setTimeout(r, 2500));
 
   const outcomes = [

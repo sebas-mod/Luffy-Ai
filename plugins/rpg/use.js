@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
   switch (itemKey) {
     case "potion":
       if (user.rpg.health >= user.rpg.maxHealth) {
-        return m.reply(`❤️ *ʜᴇᴀʟᴛʜ ᴘᴇɴᴜʜ*\n\n> Nyawa kamu sudah penuh!`);
+        return m.reply(`❤️ *ʜᴇᴀʟᴛʜ ᴘᴇɴᴜʜ*\n\n> ¡Tu vida está llena!`);
       }
       user.rpg.health = Math.min(user.rpg.health + 50, user.rpg.maxHealth);
       user.inventory[itemKey]--;

@@ -28,6 +28,7 @@ const pluginConfig = {
     category: 'canvas',
     description: 'Crea una imagen con diseño de Instagram Story a partir de tu foto.',
     usage: '.igstoryimg [envía/responde una imagen]',
+    example: '.igstoryimg',
     isOwner: false,
     isPremium: false,
     isGroup: false,

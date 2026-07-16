@@ -93,7 +93,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1* s/d *v11*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* s/d *v11*`);
       return;
     }
 
@@ -128,15 +128,15 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "💬 Pilih Variant Reply",
-        sections: [{ title: "Lista Variant Reply", rows }],
+        title: "💬 Seleccionar variante de respuesta",
+        sections: [{ title: "Lista Variantes de Respuesta", rows }],
       }),
     },
   ];
 
   const bodys =
     `💬📨 *REPLY VARIANT*\n\n` +
-    `Atur tampilan respondean bot escribea memresponde mensaje user 💬✨\n` +
+    `Configura la apariencia de respuestas del bot al responder mensaje del usuario 💬✨\n` +
     `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
     `⚠ *PERINGATAN:*\n_Khusus uso v11 (Animasi) bercontenidoko menyebabkan número bot ter-banned, panel melambat, & spam di console._\n\n`
 

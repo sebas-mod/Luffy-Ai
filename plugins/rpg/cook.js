@@ -18,8 +18,8 @@ const pluginConfig = {
 
 const RECIPES = {
   fish_soup: { name: "🍲 Sopa de Pescado", materials: { fish: 2 }, heal: 30 },
-  grilled_meat: { name: "🍖 Daging Panggang", materials: { rabbit: 1, wood: 1 }, heal: 40 },
-  apple_pie: { name: "🥧 Pie Apel", materials: { apple: 3 }, heal: 25 },
+  grilled_meat: { name: "🍖 Carne Asada", materials: { rabbit: 1, wood: 1 }, heal: 40 },
+  apple_pie: { name: "🥧 Tarta de Manzana", materials: { apple: 3 }, heal: 25 },
   steak: { name: "🥩 Steak", materials: { boar: 1, coal: 1 }, heal: 60 },
 };
 

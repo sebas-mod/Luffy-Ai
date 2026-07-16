@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `📱 *BROADCAST PRIVATE CHAT*\n\n` +
         `Jeda: ${jeda}ms (${(jeda / 1000).toFixed(1)}s)\n\n` +
-        `*PENGGUNAAN:*\n` +
+        `*USO:*\n` +
         `• \`${m.prefix}bcpc <mensaje>\` — Envía a todos contacto\n` +
         `• \`${m.prefix}bcpc (reply media)\` — Envía con media\n\n` +
         `⚠️ *Advertencia:* ¡El bot va a enviar el mensaje a todos los contactos guardados!\n\n` +
@@ -130,11 +130,11 @@ async function handler(m, { sock }) {
         text:
           `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ*\n\n` +
           `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-          `┃ 📝 ᴘᴇsᴀɴ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
+          `┃ 📝 Mensaje: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
           `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "No"}\`\n` +
-          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` contacto\n` +
+          `┃ 👥 Destino: \`${filtered.length}\` contacto\n` +
           `┃ ⏱️ ᴊᴇᴅᴀ: \`${jeda}ms\`\n` +
-          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} minuto\`\n` +
+          `┃ 📊 Estimación: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
           `╰┈┈⬡\n\n` +
           `> Ejecutando broadcast...`,
         contextInfo: ctx,
@@ -174,11 +174,11 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ sᴇʟᴇsᴀɪ*\n\n` +
+          `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ ᴛᴇʀᴍɪɴᴀᴅᴏ*\n\n` +
           `╭┈┈⬡「 📊 *ʜᴀsɪʟ* 」\n` +
-          `┃ ✅ ʙᴇʀʜᴀsɪʟ: \`${success}\`\n` +
-          `┃ ❌ ɢᴀɢᴀʟ: \`${failed}\`\n` +
-          `┃ 📊 ᴛᴏᴛᴀʟ: \`${filtered.length}\`\n` +
+          `┃ ✅ Éxito: \`${success}\`\n` +
+          `┃ ❌ Error: \`${failed}\`\n` +
+          `┃ 📊 Total: \`${filtered.length}\`\n` +
           `╰┈┈⬡`,
         contextInfo: ctx,
       },

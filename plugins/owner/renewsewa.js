@@ -49,7 +49,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "minuto", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minutos", h: "horas", d: "días", m: "meses", y: "años" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -82,13 +82,13 @@ async function handler(m, { sock }) {
       `📝 *PERPANJANG SEWA*\n\n` +
         `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
         `*FORMAT DURASI:*\n` +
-        `• 30i = 30 minuto\n` +
-        `• 12h = 12 jam\n` +
-        `• 7d = 7 hari\n` +
+        `• 30i = 30 minutos\n` +
+        `• 12h = 12 horas\n` +
+        `• 7d = 7 días\n` +
         `• 1m = 1 bulan\n` +
         `• 1y = 1 tahun\n` +
         `• lifetime = Permanent\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `• ${m.prefix}renewsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}renewsewa 120363xxx 1m\n\n` +
         `💡 La duración se añade al tiempo restante, no se reinicia`,
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `❌ Grup no terlista\nUsa *${m.prefix}addsewa* para agregando`,
+        `❌ Grup no terlista\nUsa *${m.prefix}addsewa* para agregar`,
       );
     }
 

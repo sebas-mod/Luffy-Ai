@@ -25,7 +25,7 @@ const RECIPES = {
 
   pickaxe: { materials: { iron: 3, wood: 2 }, result: "pickaxe", name: "⛏️ Pico", exp: 180, price: 450 },
   bow: { materials: { wood: 4, string: 2 }, result: "bow", name: "🏹 Arco", exp: 200, price: 500 },
-  arrow: { materials: { wood: 1, iron: 1 }, result: "arrow", name: "🏹 Anak Panah x10", exp: 50, price: 100, qty: 10 },
+  arrow: { materials: { wood: 1, iron: 1 }, result: "arrow", name: "🏹 Flechas x10", exp: 50, price: 100, qty: 10 },
   goldsword: { materials: { gold: 5, diamond: 2, iron: 3 }, result: "goldsword", name: "🗡️ Espada de Oro", exp: 500, price: 2000 },
   diamondarmor: { materials: { diamond: 8, iron: 5, leather: 3 }, result: "diamondarmor", name: "💎 Armadura de Diamante", exp: 800, price: 5000 },
 };
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
   if (!itemName) {
     let txt = `¡Hola aventurero! Bienvenido a la Herrería! 🔨⚒️\n¿Hay algo que pueda forjar hoy?\n\n`;
-    txt += `*Daftar Senjata & Armor:*\n`;
+    txt += `*Lista de Armas y Armadura:*\n`;
 
     for (const [key, recipe] of Object.entries(RECIPES)) {
       const mats = Object.entries(recipe.materials)

@@ -50,7 +50,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1*, *v2*, *v5*, o *v6*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5*, o *v6*`);
       return;
     }
 
@@ -91,7 +91,7 @@ async function handler(m, { sock, db }) {
     `📋📑 *ALLMENU VARIANT*\n\n` +
     `Configura el aspecto del allmenu que muestra toda la lista de comandos del bot en una sola página 📖✨\n` +
     `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `*PENJELASAN VARIANT:*\n\n` +
+    `*EXPLICACIÓN VARIANT:*\n\n` +
     `- *V1 Simple Text* 📝 — Lista comando mostrado como texto simple sin imagen o contextInfo, más ligero y rápido de cargar\n\n` +
     `- *V2 Image + Context* 🖼️ — Imagen header allmenu + full contextInfo con label forwarded newsletter, tampilan standar yang informatif\n\n` +
     `- *V3 Document* 📄 — Allmenu se envía como archivo documento con miniatura personal y respuesta verificada, se ve como un archivo oficial\n\n` +

@@ -1,6 +1,6 @@
 import { getDatabase } from "../../src/lib/ourin-database.js";
 
-const config = {
+const pluginConfig = {
   name: "sistemenergi",
   alias: ["sistemlimit", "energimode", "limitmode"],
   category: "owner",
@@ -24,14 +24,14 @@ async function handler(m, { sock }) {
   
   if (!mode || (mode !== "on" && mode !== "off")) {
     return m.reply(
-      `🎛️ *KONTROL SISTEM ENERGI*\n\n` +
+      `🎛️ *CONTROL DEL SISTEMA DE ENERGÍA*\n\n` +
       `La función principal para activar o desactivar todo el sistema de descuento de energía del bot de forma global.\n\n` +
-      `*STATUS SAAT INI:*\n` +
-      `- Mode: *${currentStatus ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
-      `*PENGGUNAAN:*\n` +
+      `*ESTADO ACTUAL:*\n` +
+      `- Mode: *${currentStatus ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +
+      `*USO:*\n` +
       `- *${m.prefix}sistemenergi on* — Activar el descuento de energía\n` +
       `- *${m.prefix}sistemenergi off* — Desactivar el descuento de energía (Modo ilimitado)\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}sistemenergi on*`
     );
   }
@@ -46,11 +46,11 @@ async function handler(m, { sock }) {
   await m.react("✅");
   return m.reply(
     `✅ *STATUS SISTEM ENERGI BERHASIL DIUBAH*\n\n` +
-    `Sistem Energi asto ha éxito di-*${isEnabled ? "HIDUPKAN" : "MATIKAN"}*.\n\n` +
+    `Sistem Energi asto ha éxito di-*${isEnabled ? "ACTIVAR" : "DESACTIVAR"}*.\n\n` +
     `*Status Terasto:*\n` +
-    `- Mode: *${isEnabled ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
+    `- Mode: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +
     `_Todos perubahan ya tersimpan y va a segera diterapkan en sistem bot._`
   );
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

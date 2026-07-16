@@ -1,7 +1,7 @@
 import { getAllPlugins } from "../../src/lib/ourin-plugins.js";
 import { getDatabase } from "../../src/lib/ourin-database.js";
 
-const config = {
+const pluginConfig = {
   name: "fiturpremium",
   alias: ["listprem", "listpremium", "fiturprem"],
   category: "info",
@@ -59,4 +59,4 @@ async function handler(m, { sock }) {
   );
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

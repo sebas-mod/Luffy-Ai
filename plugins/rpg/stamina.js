@@ -5,7 +5,7 @@ const pluginConfig = {
   alias: ["energy", "cekstamina"],
   category: "rpg",
   description: "Verificar y recuperar stamina",
-  usage: ".stamina / .stamina isi",
+  usage: ".stamina / .stamina llenar",
   example: ".stamina",
   isOwner: false,
   isPremium: false,

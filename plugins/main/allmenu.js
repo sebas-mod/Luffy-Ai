@@ -17,7 +17,7 @@ import {
 import { getCasesByCategory, getCaseCount } from "../../case/ourin.js";
 const pluginConfig = {
   name: "allmenu",
-  alias: ["allmenu", "am", "allcommand", "semua"],
+  alias: ["am", "allcommand", "semua"],
   category: "main",
   description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",
@@ -610,11 +610,11 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         console.error("[AllMenu] Error sending dynamic audio:", e.message);
       }
     }
-  } catch (error) {
-    console.error("[AllMenu] Error:", error.message);
     } else {
       await m.reply(txt);
     }
+  } catch (error) {
+    console.error("[AllMenu] Error:", error.message);
   }
 }
 export { pluginConfig as config, handler };

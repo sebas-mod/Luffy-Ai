@@ -27,10 +27,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `📖 *Auto Read*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}autoread on* — Activokan\n` +
-        `> *${m.prefix}autoread off* — Nonactivokan\n\n` +
-        `_Bot va a automáticamente leyendo mensaje masuk_`
+        `*USO:*\n` +
+        `> *${m.prefix}autoread on* — Activar\n` +
+        `> *${m.prefix}autoread off* — Desactivar\n\n` +
+        `_Bot va a automáticamente leyendo mensaje entrante_`
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
     return m.reply(
       `📖 *Auto Read Activo*\n\n` +
-        `> Bot va a automáticamente leyendo mensaje masuk`,
+        `> Bot va a automáticamente leyendo mensaje entrante`,
       { contextInfo: ctx }
     );
   }

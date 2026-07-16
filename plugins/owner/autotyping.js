@@ -27,10 +27,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `⌨️ *Auto Typing*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}autotyping on* — Activokan\n` +
-        `> *${m.prefix}autotyping off* — Nonactivokan\n\n` +
-        `_Bot va a mostrando indikator typing cuando menerima mensaje_`
+        `*USO:*\n` +
+        `> *${m.prefix}autotyping on* — Activar\n` +
+        `> *${m.prefix}autotyping off* — Desactivar\n\n` +
+        `_Bot va a mostrando indicador de escritura cuando recibe mensaje_`
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
     return m.reply(
       `⌨️ *Auto Typing Activo*\n\n` +
-        `> Bot va a mostrando indikator typing`,
+        `> Bot va a mostrando indicador de escritura`,
       { contextInfo: ctx }
     );
   }
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     db.setting("autoTyping", false);
     return m.reply(
       `⌨️ *Auto Typing Nonactivo*\n\n` +
-        `> Bot no va a mostrando indikator typing`
+        `> Bot no va a mostrando indicador de escritura`
     );
   }
 

@@ -24,13 +24,13 @@ async function handler(m) {
     return m.reply(
       `📝 *CUSTOM PAYMENT TEXT*\n\n` +
       `Texto actualmente:\n${current || '_(no configurado, usando predeterminado)_'}\n\n` +
-      `*PLACEHOLDER YANG TERSEDIA:*\n` +
+      `*PLACEHOLDERS DISPONIBLES:*\n` +
       `• \`{botname}\` — Nombre bot\n` +
       `• \`{owner}\` — Nombre owner\n` +
       `• \`{methods}\` — Lista e-wallet\n` +
       `• \`{banks}\` — Lista bank\n` +
       `• \`{qris}\` — Status QRIS\n\n` +
-      `*CONTOH:*\n` +
+      `*EJEMPLO:*\n` +
       `> \`${m.prefix}custompayment Halo! Bayar a {methods}\`\n\n` +
       `> \`${m.prefix}custompayment reset\` — Ambalikan a default`
     )

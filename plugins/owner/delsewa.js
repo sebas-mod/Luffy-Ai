@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   const sewaData = db.db.data.sewa.groups[groupId];
   if (!sewaData)
     return m.reply(
-      `❌ El grupo no está en la lista del sistema de alquiler\n\nLihat lista: *${m.prefix}listsewa*`,
+      `❌ El grupo no está en la lista del sistema de alquiler\n\nVer lista: *${m.prefix}listsewa*`,
     );
 
   groupName = groupName || sewaData.name || groupId.split("@")[0];

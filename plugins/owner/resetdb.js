@@ -33,23 +33,23 @@ async function handler(m, { sock }) {
         
         return m.reply(
             `⚠️ *ᴘᴇʀɪɴɢᴀᴛᴀɴ!*\n\n` +
-            `> Esto va a eliminando SEMUA data:\n` +
+            `> Esto va a eliminando TODOS los datos:\n` +
             `> • Data user\n` +
             `> • Data group\n` +
             `> • Data clan\n` +
             `> • Todos statistik\n\n` +
             `╭┈┈⬡「 ⚠️ *ᴋᴏɴғɪʀᴍᴀsɪ* 」\n` +
             `┃ Escribe: *.resetdb confirm*\n` +
-            `┃ en 60 segundo\n` +
+            `┃ en 60 segundos\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> ❌ Aksi esto TIDAK BISA dibatalkan!`
+            `> ❌ Acción esto NO SE PUEDE deshacer!`
         )
     }
     
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`❌ Timeout! Escribe *.resetdb* ulang para estociando.`)
+        return m.reply(`❌ Timeout! Escribe *.resetdb* de nuevo para cargando.`)
     }
     
     delete global.resetDbPending[m.sender]

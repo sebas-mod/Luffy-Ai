@@ -3,7 +3,7 @@ import te from "../../src/lib/ourin-error.js";
 import cfg from "../../config.js";
 import { ImageUploadService } from "node-upload-images";
 
-const config = {
+const pluginConfig = {
   name: "remini",
   alias: ["hd", "enhance", "upscale"],
   category: "tools",
@@ -63,4 +63,4 @@ async function handler(m, { sock }) {
   }
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

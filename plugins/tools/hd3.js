@@ -5,7 +5,7 @@ import axios from "axios";
 import FormData from "form-data";
 import te from "../../src/lib/ourin-error.js";
 
-const config = {
+const pluginConfig = {
   name: "hd3",
   alias: ["enhance3", "upscale3"],
   category: "tools",
@@ -295,4 +295,4 @@ async function handler(m, { sock }) {
   }
 }
 
-export { config, handler };
+export { pluginConfig as config, handler };

@@ -5,7 +5,7 @@ import axios from "axios";
 const pluginConfig = {
   name: "musiccard",
   alias: ["mcard", "spotifycard"],
-  category: "maker",
+  category: "canvas",
   description: "Crea una genial tarjeta musical a partir de una imagen.",
   usage: ".musiccard <título>|<artista>",
   example: ".musiccard Binks no Sake|Luffy",

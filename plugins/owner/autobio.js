@@ -28,11 +28,11 @@ async function handler(m, { sock, db }) {
     return m.reply(
       `📝 *AUTO BIO SETTINGS*\n\n` +
       `> Status: *${status ? "Aktif ✅" : "Nonaktif ❌"}*\n` +
-      `> Interval: *${intervalMs / 1000} segundo*\n` +
+      `> Interval: *${intervalMs / 1000} segundos*\n` +
       `> Texto Bio: ${text}\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}autobio on/off* — Menyalva a/mematikan fesor\n` +
-      `- *${m.prefix}autobio cambiar_cada <tiempo>* — Configurar el intervalo. Ejemplo: \`.autobio cambiar_cada 30 segundo\` o \`1 jam\`\n` +
+      `*USO:*\n` +
+      `- *${m.prefix}autobio on/off* — Activar/Desactivar función\n` +
+      `- *${m.prefix}autobio cambiar_cada <tiempo>* — Configurar el intervalo. Ejemplo: \`.autobio cambiar_cada 30 segundos\` o \`1 hora\`\n` +
       `- *${m.prefix}autobio <texto>* — Configurar el texto de la bio\n\n` +
       `*PLACEHOLDER TERSEDIA:*\n` +
       `- \`{clock}\` — Mostrando la hora actual\n` +
@@ -51,25 +51,25 @@ async function handler(m, { sock, db }) {
       const { startAutoBioChecker } = await import("../../src/lib/ourin-scheduler.js");
       startAutoBioChecker(sock);
     } catch (e) {}
-    return m.reply(`✅ *AUTO BIO DIAKTIFKAN*\n\nLa bio de WhatsApp del bot ahora se actualizará automáticamente cada minuto.`);
+    return m.reply(`✅ *BIO AUTOMÁTICO ACTIVADO*\n\nLa bio de WhatsApp del bot ahora se actualizará automáticamente cada minuto.`);
   }
   
   if (option === "off") {
     db.setting("autobio_status", false);
     await m.react("❌");
-    return m.reply(`❌ *AUTO BIO DINONAKTIFKAN*\n\nLa bio de WhatsApp del bot no se actualizará de nuevo.`);
+    return m.reply(`❌ *BIO AUTOMÁTICO DESACTIVADO*\n\nLa bio de WhatsApp del bot no se actualizará de nuevo.`);
   }
 
   if (option.startsWith("cambiar_cada")) {
     const timeStr = arg.replace(/cambiar_cada/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("❌ *Formato Incorrecto*\n\nEjemplo: `.autobio cambiar_cada 30 segundo` o `1 jam`");
+      return m.reply("❌ *Formato Incorrecto*\n\nEjemplo: `.autobio cambiar_cada 30 segundos` o `1 hora`");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("❌ *Formato Incorrecto*\n\nIngresa un número válido. Ejemplo: `.autobio cambiar_cada 30 segundo`");
+      return m.reply("❌ *Formato Incorrecto*\n\nIngresa un número válido. Ejemplo: `.autobio cambiar_cada 30 segundos`");
     }
 
     if (timeStr.includes("d") || timeStr.includes("segundo")) ms = value * 1000;
@@ -90,7 +90,7 @@ async function handler(m, { sock, db }) {
       startAutoBioChecker(sock);
     } catch (e) {}
 
-    return m.reply(`✅ *Interval Diubah*\n\nBio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundo).`);
+    return m.reply(`✅ *Intervalo Modificado*\n\nBio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).`);
   }
 
   db.setting("autobio_text", arg);

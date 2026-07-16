@@ -66,12 +66,11 @@ async function handler(m) {
     }
 
     if (!args || args === 'status') {
-        return m.reply(
-            `🔒 *ᴏɴʟʏᴀᴅᴍɪɴ*\n\n` +
-            `> Status: ${current ? '✅ Aktif' : '❌ Nonaktif'}\n\n` +
+        return m.reply(`🔒 *ᴏɴʟʏᴀᴅᴍɪɴ*\n\n` +
+            `> Status: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
             `*Uso:*\n` +
-            `> \`.onlyadmin on\` — Activokan\n` +
-            `> \`.onlyadmin off\` — Nonactivokan\n\n` +
+            `> \`.onlyadmin on\` — Activar\n` +
+            `> \`.onlyadmin off\` — Desactivar\n\n` +
             `_Solo admin grup, owner, y private chat que puede acceder al bot_`
         )
     }
@@ -89,7 +88,7 @@ async function handler(m) {
             '┃ ✅ Admin grup\n' +
             '┃ ✅ Owner bot\n' +
             '┃ ✅ Private chat (todos)\n' +
-            '┃ ❌ Member biasa en el grupo\n' +
+            '┃ ❌ Miembro normal en el grupo\n' +
             '╰┈┈⬡'
         )
     }

@@ -52,7 +52,7 @@ function handler(m) {
         return m.reply(
             `📋 *DAFTAR SEWA*\n\n` +
             `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
-            `Aún no hay grup terlista\n\n` +
+            `Aún no hay grup en lista\n\n` +
             `Tambah con: *${m.prefix}addsewa <link> <durasi>*`
         )
     }
@@ -82,7 +82,7 @@ function handler(m) {
         text += `${status} *${i + 1}. ${data.name || 'Unknown'}*\n`
         text += `   ID: ${gid.split('@')[0]}\n`
         text += `   Sisa: ${countdown}\n`
-        text += `   Ditambah: ${addedDate}\n\n`
+        text += `   Agregado: ${addedDate}\n\n`
     }
 
     text += `*AKSI:*\n`

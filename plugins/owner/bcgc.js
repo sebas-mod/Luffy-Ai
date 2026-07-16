@@ -51,8 +51,8 @@ function parseDelay(input) {
 function formatDelay(ms) {
   if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} día(s)`;
   if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} hora(s)`;
-  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} minuto`;
-  return `${(ms / 1000).toFixed(0)} segundo`;
+  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} minutos`;
+  return `${(ms / 1000).toFixed(0)} segundos`;
 }
 
 async function handler(m, { sock }) {
@@ -82,14 +82,14 @@ async function handler(m, { sock }) {
   if (input.toLowerCase() === "on") {
     db.setting("bcgcEnabled", true);
     return m.reply(
-      `✅ *Broadcast Grup Diactivokan*\n\n> Ahora puedes enviar broadcast a todos los grupos.`,
+      `✅ *Broadcast Grup Activado*\n\n> Ahora puedes enviar broadcast a todos los grupos.`,
     );
   }
 
   if (input.toLowerCase() === "off") {
     db.setting("bcgcEnabled", false);
     return m.reply(
-      `✅ *Broadcast Grup Dinonactivokan*\n\n> El broadcast de grupos ha sido desactivado.`,
+      `✅ *Broadcast Grup Desactivado*\n\n> El broadcast de grupos ha sido desactivado.`,
     );
   }
 
@@ -100,17 +100,17 @@ async function handler(m, { sock }) {
       `📢 *Broadcast Grup*\n\n` +
         `Envía un mensaje a todos los grupos a la vez en un solo comando.\n\n` +
         `*Status actualmente:*\n` +
-        `> Broadcast: *${enabled ? "✅ Aktif" : "❌ Nonaktif"}*\n` +
+        `> Broadcast: *${enabled ? "✅ Activo" : "❌ Inactivo"}*\n` +
         `> Jeda: *${formatDelay(jeda)}* (*${jeda}ms*)\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}bcgc on* — Activokan broadcast\n` +
-        `> *${m.prefix}bcgc off* — Nonactivokan broadcast\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}bcgc on* — Activar broadcast\n` +
+        `> *${m.prefix}bcgc off* — Desactivar broadcast\n` +
         `> *${m.prefix}bcgc <mensaje>* — Envía broadcast texto\n` +
         `> *${m.prefix}bcgc* (reply foto/video/audio/documento) — Envía con media\n` +
         `> *${m.prefix}bcgc* (reply mensaje texto) — Envía el contenido del mensaje que fue respondido\n\n` +
         `*JEDA:*\n` +
-        `> *${m.prefix}jedabcgc 5s* — Set jeda 5 segundo\n` +
-        `> *${m.prefix}jedabcgc 2m* — Set jeda 2 minuto\n\n` +
+        `> *${m.prefix}jedabcgc 5s* — Set jeda 5 segundos\n` +
+        `> *${m.prefix}jedabcgc 2m* — Set jeda 2 minutos\n\n` +
         `*STOP:*\n` +
         `> *${m.prefix}stopbcgc* — Detener el broadcast en ejecución`,
     );
@@ -206,7 +206,7 @@ async function handler(m, { sock }) {
         `> 📷 Media: *${mediaBuffer ? mediaType : "No hay"}*\n` +
         `> 👥 Target: *${groupIds.length}* grup\n` +
         `> ⏱️ Jeda: *${formatDelay(jeda)}*\n` +
-        `> 📊 Estimasi: *${Math.ceil((groupIds.length * jeda) / 60000)} minuto*\n\n` +
+        `> 📊 Estimación: *${Math.ceil((groupIds.length * jeda) / 60000)} minutos*\n\n` +
         `_Está enviando a todos los grupos..._`,
     );
 
@@ -285,7 +285,7 @@ async function handler(m, { sock }) {
     delete global.statusBcgc;
     m.react("✅");
     await m.reply(
-      `✅ *Broadcast Grup Selesai!*\n\n` +
+      `✅ *Broadcast Grup Terminado!*\n\n` +
         `> ✅ Éxito: *${success}*\n` +
         `> ❌ Fallo: *${failed}*\n` +
         `> 📊 Total: *${groupIds.length}*`,
@@ -309,8 +309,8 @@ async function handleSetDelay(m, db, input) {
         `*CARA PAKAI:*\n` +
         `> *${m.prefix}jedabcgc <angka><satuan>*\n\n` +
         `*SATUAN:*\n` +
-        `> *s* — segundo • *m* — minuto • *h* — hora • *d* — día\n\n` +
-        `*CONTOH:*\n` +
+        `> *s* — segundos • *m* — minutos • *h* — hora • *d* — día\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}jedabcgc 5s* → 5 segundos\n` +
         `> *${m.prefix}jedabcgc 2m* → 2 minutos\n` +
         `> *${m.prefix}jedabcgc 1h* → 1 hora`,
@@ -327,7 +327,7 @@ async function handleSetDelay(m, db, input) {
     `✅ *Jeda Broadcast Grup Diubah*\n\n` +
       `> Antes denya: *${formatDelay(current)}* (*${current}ms*)\n` +
       `> Ahora: *${formatDelay(ms)}* (*${ms}ms*)\n\n` +
-      `> Estimasi 100 grup: *${Math.ceil((100 * ms) / 60000)} minuto*`,
+      `> Estimación 100 grup: *${Math.ceil((100 * ms) / 60000)} minutos*`,
   );
 }
 

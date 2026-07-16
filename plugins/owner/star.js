@@ -15,8 +15,8 @@ async function handler(m, { sock }) {
     if (!m.quoted) {
         return m.reply(
             '⭐ *sᴛᴀʀ ᴍᴇssᴀɢᴇ*\n\n' +
-            '> `.star` (reply mensaje) — Beri bintang\n' +
-            '> `.star hapus` (reply mensaje) — Hapus bintang'
+            '> `.star` (reply mensaje) — Dar estrella\n' +
+            '> `.star hapus` (reply mensaje) — Quitar estrella'
         )
     }
 
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
         return m.reply(
             unstar
                 ? '❌ *Estrella eliminada del mensaje*'
-                : '⭐ *Mensaje ditandai bintang*'
+                : '⭐ *Mensaje marcado con estrella*'
         )
     } catch (err) {
         return m.reply(`❌ Fallo: ${err.message}`)

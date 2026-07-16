@@ -8,6 +8,9 @@ const pluginConfig = {
   description: "Comprueba el estado real de expulsión",
   usage: ".checkban",
   isOwner: true,
+  isPremium: false,
+  isGroup: false,
+  isPrivate: false,
 };
 
 async function handler(m, { sock }) {

@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'notifpromote',
-    alias: [],
+    alias: ['notifasc'],
     category: 'group',
     description: 'Alternar notificación cuando alguien es ascendido a admin',
     usage: '.notifpromote on/off',

@@ -45,11 +45,11 @@ async function handler(m, { sock, args }) {
 
         if (action === 'on') {
             db.setting('srtEnabled', true);
-            await m.reply('✅ *FITUR SRT BERHASIL DIAKTIFKAN*\n\nEl modo esto se ha activado de forma global. Cada respuesta del bot que soporte *thumbnail* ahora mostrará imágenes aleatorias de la carpeta shuffle que has recopilado.');
+            await m.reply('✅ *FUNCIONALIDAD SRT ACTIVADA*\n\nEl modo esto se ha activado de forma global. Cada respuesta del bot que soporte *thumbnail* ahora mostrará imágenes aleatorias de la carpeta shuffle que has recopilado.');
         } 
         else if (action === 'off') {
             db.setting('srtEnabled', false);
-            await m.reply('❌ *FITUR SRT BERHASIL DINONAKTIFKAN*\n\nEl uso de *thumbnail* aleatorio ha sido desactivado. Todas las respuestas del bot volverán a usar la imagen *predeterminada* del sistema.');
+            await m.reply('❌ *FUNCIONALIDAD SRT DESACTIVADA*\n\nEl uso de *thumbnail* aleatorio ha sido desactivado. Todas las respuestas del bot volverán a usar la imagen *predeterminada* del sistema.');
         } 
         else if (action === 'c' || action === 'capture') {
             global.srtSession[m.chat] = { sender: m.sender, count: 0 };

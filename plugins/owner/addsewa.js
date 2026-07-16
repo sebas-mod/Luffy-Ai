@@ -50,7 +50,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "minuto", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minutos", h: "horas", d: "días", m: "meses", y: "años" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -117,19 +117,19 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *TAMBAH SEWA*\n\n` +
+      `📝 *AGREGAR ALQUILER*\n\n` +
         `Format: *${m.prefix}addsewa <link/id> <durasi>*\n\n` +
-        `*FORMAT DURASI:*\n` +
-        `• 30i = 30 minuto\n` +
-        `• 12h = 12 jam\n` +
-        `• 7d = 7 hari\n` +
-        `• 1m = 1 bulan (30 hari)\n` +
+        `*FORMATO DE DURACIÓN:*\n` +
+        `• 30i = 30 minutos\n` +
+        `• 12h = 12 horas\n` +
+        `• 7d = 7 días\n` +
+        `• 1m = 1 mes (30 días)\n` +
         `• 1y = 1 tahun\n` +
         `• lifetime = Permanent\n\n` +
-        `*INPUT GRUP:*\n` +
+        `*INGRESAR GRUPO:*\n` +
         `• Link: https://chat.whatsapp.com/xxx\n` +
         `• ID: 120363xxx@g.us\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `• ${m.prefix}addsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}addsewa 120363xxx 1m\n\n` +
         `💡 Si usas un link, ¡el bot se unirá automáticamente al grupo mencionado!`,

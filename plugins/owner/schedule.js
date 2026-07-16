@@ -37,7 +37,7 @@ const pluginConfig = {
 const repeatKeywords = new Set(["repeat", "daily", "harian", "ulang"]);
 const repeatOffKeywords = new Set([
   "once",
-  "sekali",
+  "una vez",
   "off",
   "false",
   "no",
@@ -141,7 +141,7 @@ function parseRepeatValue(value = "") {
   if (isRepeatToken(value)) return true;
   if (isRepeatOffToken(value)) return false;
   throw new Error(
-    "❌ El valor de repetición debe ser uno de: repeat, daily, harian, once, sekali, off",
+    "❌ El valor de repetición debe ser uno de: repeat, daily, diario, ulang, una vez, off",
   );
 }
 
@@ -313,7 +313,7 @@ El mensaje enviado seguirá el *texto personalizado* creado por el dueño.
 *Mode repeat opsional:*
 • \`repeat\`
 • \`daily\`
-• \`harian\`
+• \`diario\`
 
 *Ejemplo:*
 \`.schedule add 06:30 | sekolah | salir a la escuela | mandi, sarapan, cek buku | me | repeat\`

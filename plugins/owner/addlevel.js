@@ -40,10 +40,10 @@ async function handler(m, { sock }) {
         return m.reply(
             `📊 *ADD LEVEL*\n\n` +
             `Sistema para agregar nivel a un miembro de forma instantánea.\n\n` +
-            `*PENGGUNAAN:*\n` +
+            `*USO:*\n` +
             `- *${m.prefix}addlevel <cantidad>* — (a uno mismo)\n` +
-            `- *${m.prefix}addlevel <cantidad> @user* — (a orang otro)\n\n` +
-            `*CONTOH PENGGUNAAN:*\n` +
+            `- *${m.prefix}addlevel <cantidad> @user* — (a persona más)\n\n` +
+            `*EJEMPLO DE USO:*\n` +
             `- *${m.prefix}addlevel 5*\n` +
             `- *${m.prefix}addlevel 10 @user*`
         )

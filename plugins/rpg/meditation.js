@@ -31,7 +31,7 @@ async function handler(m) {
 
   if (currentStamina >= maxStamina && currentHealth >= maxHealth && currentMana >= maxMana) {
     return m.reply(
-      `💤 *sᴜᴅᴀʜ ꜰᴜʟʟ*\n\n` +
+        `💤 *ʏᴀ ᴇsᴛᴀ ꜰᴜʟʟ*\n\n` +
         `> ⚡ Stamina: ${currentStamina}/${maxStamina}\n` +
         `> ❤️ Health: ${currentHealth}/${maxHealth}\n` +
         `> 💙 Mana: ${currentMana}/${maxMana}\n\n` +
@@ -40,7 +40,7 @@ async function handler(m) {
   }
 
   await m.react("💤");
-  await m.reply(`💤 *ʙᴇʀɪsᴛɪʀᴀʜᴀᴛ...*\n\n> Memulihkan energi...`);
+  await m.reply(`💤 *ᴅᴇᴄᴇɴsᴀɴᴅᴏ...*\n\n> Recuperando energía...`);
   await new Promise((r) => setTimeout(r, 3000));
 
   const staminaRecovered = Math.min(maxStamina - currentStamina, 40 + Math.floor(Math.random() * 20));

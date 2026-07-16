@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
 
   db.setGroup(m.chat, { mutegc: true });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
     `🔇 *Mute GC Aktif*\n\n` +

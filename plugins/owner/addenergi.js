@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `⚡ *INFORMASI*\n` +
             `@${targetJid.split('@')[0]} ya memiliki energi *∞ Unlimited*\n` +
-            `No es necesario agregando energi de nuevo`,
+            `No es necesario agregando energía de nuevo`,
             { mentions: [targetJid] }
         )
     }

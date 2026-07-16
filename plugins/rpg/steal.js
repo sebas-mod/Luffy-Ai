@@ -18,12 +18,12 @@ const pluginConfig = {
 };
 
 const TARGETS = [
-  { name: "👨‍🌾 Petani Lengah", difficulty: 1, minGold: 50, maxGold: 150, catchChance: 10 },
-  { name: "👨‍💼 Pedagang Keliling", difficulty: 2, minGold: 100, maxGold: 300, catchChance: 20 },
-  { name: "🧙‍♂️ Penyihir Tua", difficulty: 3, minGold: 200, maxGold: 500, catchChance: 30 },
-  { name: "⚔️ Ksatria Kerajaan", difficulty: 4, minGold: 300, maxGold: 800, catchChance: 40 },
-  { name: "👑 Bangsawan Sombong", difficulty: 5, minGold: 500, maxGold: 1500, catchChance: 50 },
-  { name: "🏰 Raja Tiran", difficulty: 6, minGold: 1000, maxGold: 3000, catchChance: 60 },
+  { name: "👨‍🌾 Campesino Descuidado", difficulty: 1, minGold: 50, maxGold: 150, catchChance: 10 },
+  { name: "👨‍💼 Vendedor Ambulante", difficulty: 2, minGold: 100, maxGold: 300, catchChance: 20 },
+  { name: "🧙‍♂️ Viejo Hechicero", difficulty: 3, minGold: 200, maxGold: 500, catchChance: 30 },
+  { name: "⚔️ Caballero Real", difficulty: 4, minGold: 300, maxGold: 800, catchChance: 40 },
+  { name: "👑 Noble Soberbio", difficulty: 5, minGold: 500, maxGold: 1500, catchChance: 50 },
+  { name: "🏰 Rey Tirano", difficulty: 6, minGold: 1000, maxGold: 3000, catchChance: 60 },
 ];
 
 async function handler(m, { sock }) {

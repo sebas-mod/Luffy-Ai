@@ -68,10 +68,10 @@ function formatDuration(ms) {
     const hours = Math.floor(minutes / 60)
     const days = Math.floor(hours / 24)
     
-    if (days > 0) return `${days} hari ${hours % 24} jam`
-    if (hours > 0) return `${hours} jam ${minutes % 60} minuto`
-    if (minutes > 0) return `${minutes} minuto ${seconds % 60} segundo`
-    return `${seconds} segundo`
+    if (days > 0) return `${days} días ${hours % 24} horas`
+    if (hours > 0) return `${hours} horas ${minutes % 60} minutos`
+    if (minutes > 0) return `${minutes} minutos ${seconds % 60} segundos`
+    return `${seconds} segundos`
 }
 
 export { pluginConfig as config, handler }

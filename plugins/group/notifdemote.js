@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'notifdemote',
-    alias: [],
+    alias: ['notifdesc'],
     category: 'group',
     description: 'Alternar notificación cuando alguien es removido del admin',
     usage: '.notifdemote on/off',

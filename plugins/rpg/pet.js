@@ -18,15 +18,15 @@ const pluginConfig = {
 };
 
 const PET_TYPES = {
-  cat: { name: "🐱 Kucing", baseStats: { attack: 5, defense: 3, luck: 5 }, evolve: "lion" },
-  dog: { name: "🐕 Anjing", baseStats: { attack: 8, defense: 5, luck: 2 }, evolve: "wolf" },
-  bird: { name: "🐦 Burung", baseStats: { attack: 4, defense: 2, luck: 8 }, evolve: "phoenix" },
-  fish: { name: "🐟 Ikan", baseStats: { attack: 2, defense: 2, luck: 10 }, evolve: "dragon" },
-  rabbit: { name: "🐰 Kelinci", baseStats: { attack: 3, defense: 4, luck: 6 }, evolve: "thunderbunny" },
-  lion: { name: "🦁 Singa", baseStats: { attack: 15, defense: 10, luck: 8 }, evolve: null },
-  wolf: { name: "🐺 Serigala", baseStats: { attack: 18, defense: 12, luck: 5 }, evolve: null },
+  cat: { name: "🐱 Gato", baseStats: { attack: 5, defense: 3, luck: 5 }, evolve: "lion" },
+  dog: { name: "🐕 Perro", baseStats: { attack: 8, defense: 5, luck: 2 }, evolve: "wolf" },
+  bird: { name: "🐦 Pájaro", baseStats: { attack: 4, defense: 2, luck: 8 }, evolve: "phoenix" },
+  fish: { name: "🐟 Pez", baseStats: { attack: 2, defense: 2, luck: 10 }, evolve: "dragon" },
+  rabbit: { name: "🐰 Conejo", baseStats: { attack: 3, defense: 4, luck: 6 }, evolve: "thunderbunny" },
+  lion: { name: "🦁 León", baseStats: { attack: 15, defense: 10, luck: 8 }, evolve: null },
+  wolf: { name: "🐺 Lobo", baseStats: { attack: 18, defense: 12, luck: 5 }, evolve: null },
   phoenix: { name: "🔥 Phoenix", baseStats: { attack: 12, defense: 8, luck: 15 }, evolve: null },
-  dragon: { name: "🐉 Naga", baseStats: { attack: 20, defense: 15, luck: 12 }, evolve: null },
+  dragon: { name: "🐉 Dragón", baseStats: { attack: 20, defense: 15, luck: 12 }, evolve: null },
   thunderbunny: { name: "⚡ Thunder Bunny", baseStats: { attack: 10, defense: 12, luck: 18 }, evolve: null },
 };
 
@@ -34,7 +34,7 @@ const FOOD_ITEMS = {
   bread: { name: "🍞 Pan", hunger: 10, exp: 5 },
   fish: { name: "🐟 Pez", hunger: 20, exp: 10 },
   meat: { name: "🍖 Carne", hunger: 30, exp: 15 },
-  fruit: { name: "🍎 Buah", hunger: 15, exp: 8 },
+  fruit: { name: "🍎 Fruta", hunger: 15, exp: 8 },
   premium_food: { name: "⭐ Premium Food", hunger: 50, exp: 30 },
 };
 

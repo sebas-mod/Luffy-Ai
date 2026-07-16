@@ -61,7 +61,7 @@ async function generateImage(saldo, greet) {
 }
 const pluginConfig = {
     name: 'fakebankjago',
-    alias: ['fakebankjago'],
+    alias: [],
     category: 'canvas',
     description: 'Crea una imagen ficticia de saldo bancario.',
     usage: '.fakebankjago <nombre>,<monto>',

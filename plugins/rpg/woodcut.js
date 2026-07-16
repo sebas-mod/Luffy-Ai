@@ -39,9 +39,9 @@ async function handler(m, { sock }) {
 
   const drops = [
     { item: "wood", chance: 70, name: "🪵 Madera", min: 2, max: 5 },
-    { item: "stick", chance: 50, name: "🥢 Ranting", min: 1, max: 3 },
-    { item: "apple", chance: 20, name: "🍎 Apel", min: 1, max: 2 },
-    { item: "rubber", chance: 10, name: "⚫ Karet", min: 1, max: 1 },
+    { item: "stick", chance: 50, name: "🥢 Rama", min: 1, max: 3 },
+    { item: "apple", chance: 20, name: "🍎 Manzana", min: 1, max: 2 },
+    { item: "rubber", chance: 10, name: "⚫ Caucho", min: 1, max: 1 },
   ];
 
   let results = [];

@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `💰 *ᴀᴅᴅ ᴋᴏɪɴ*\n\n` +
             `> \`.addkoin <cantidad>\` - a uno mismo\n` +
-            `> \`.addkoin <cantidad> @user\` - a orang otro\n` +
+            `> \`.addkoin <cantidad> @user\` - a persona más\n` +
             `> Max: 9.000.000.000.000 (9T)\n\n` +
             `\`Ejemplo: ${m.prefix}addkoin 100000\``
         )

@@ -100,14 +100,14 @@ async function handler(m, { sock, args }) {
     ];
 
     await sock.sendMessage(m.chat, {
-        text: `📇 *SISTEM SAVE KONTAK (VCF)*\n\n` +
+        text: `📇 *SISTEMA GUARDAR CONTACTOS (VCF)*\n\n` +
             `Sistema de extracción de contactoss automáticamente de los grupos que sigue el bot.\n` +
             `Nombre Base: *${baseName}*\n\n` +
-            `*PENGGUNAAN:*\n` +
+            `*USO:*\n` +
             `• *${m.prefix || "."}savecontacto <nombre>* — Guarydo con nombre kustom\n` +
             `• *${m.prefix || "."}savecontacto* — Guarydo con nombre default "User"\n\n` +
-            `*PENJELASAN ALUR PENGGUNAAN:*\n` +
-            `1. Pilih grup spesifik de tombol *Pilih Grup* di bawah, o klik *Todos Grup* para mengekstrak contacto de forma global.\n` +
+            `*EXPLICACIÓN DEL FLUJO DE USO:*\n` +
+            `1. Seleccionar grupo específico de tombol *Seleccionar Grupo* di bawah, o klik *Todos Grup* para mengekstrak contacto de forma global.\n` +
             `2. El bot recopilará los números de participantes e ignorará su propio número.\n` +
             `3. El resultado se enviará como un archivo de documento (*.vcf*) junto con la lista de contactos de WhatsApp para que puedas guardarlos directamente.`,
         footer: "Powered by ReviewBot",
@@ -115,7 +115,7 @@ async function handler(m, { sock, args }) {
             {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                    title: "Pilih Grup",
+                    title: "Seleccionar Grupo",
                     sections
                 })
             },
