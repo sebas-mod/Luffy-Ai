@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ Mau ngobrol apa sama Simi?\n\nContoh: `.simi Halo Simi!`");
+    return m.reply("❌ ¿Qué quieres charlar con Simi?\n\nEjemplo: `.simi ¡Hola Simi!`");
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Simi lagi ngambek, nggak mau balas.");
+      return m.reply("⚠️ Simi está de mal humor, no quiere responder.");
     }
 
     await m.reply(data.result);
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SimiSimi]", error.message);
     await m.react("☢");
-    m.reply("😔 Simi gagal membalas pesanmu.");
+    m.reply("😔 Simi falló al responder a tu mensaje.");
   }
 }
 

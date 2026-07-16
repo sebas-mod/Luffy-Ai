@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🤖 *GPT-4.1 Nano*\n\n` +
-        `Tanya apa aja ke AI, nanti dijawab pakai model GPT-4.1 Nano.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}gpt5 <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}gpt5 Apa itu quantum computing?*\n` +
-        `> *${m.prefix}gpt5 Buat puisi tentang Indonesia*\n\n` +
-        `_Jawaban bisa agak lama, sabar ya_`,
+        `Pregúntale lo que quieras a la IA, responderá usando el modelo GPT-4.1 Nano.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}gpt5 <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}gpt5 Qué es la computación cuántica?*\n` +
+        `> *${m.prefix}gpt5 Crea un poema sobre Indonesia*\n\n` +
+        `_Las respuestas pueden tardar un poco, ten paciencia_`,
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *GPT-5 Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`,
+        `❌ *GPT-5 Falló*\n\n> ${result.error || "Error al obtener respuesta"}`,
       );
     }
 

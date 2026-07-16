@@ -6,9 +6,9 @@ const pluginConfig = {
     name: 'ai',
     alias: ['ai4chat', 'gemini'],
     category: 'ai',
-    description: 'Chat cerdas dengan AI (mendukung tabel, kode, dll via AIRich)',
-    usage: '.ai <pertanyaan>',
-    example: '.ai buatkan tabel perbandingan vue dan react',
+    description: 'Chat inteligente con AI (soporta tablas, código, etc vía AIRich)',
+    usage: '.ai <pregunta>',
+    example: '.ai crea una tabla comparativa de vue y react',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -33,11 +33,11 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🤖 *AI*\n\n` +
-            `> Halo! Aku asisten cerdas\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> \`${m.prefix}ai <pertanyaan>\`\n\n` +
-            `*Contoh:*\n` +
-            `> \`${m.prefix}ai buatkan tabel jadwal piket\``
+            `> ¡Hola! Soy un asistente inteligente\n\n` +
+            `*Forma de uso:*\n` +
+            `> \`${m.prefix}ai <pregunta>\`\n\n` +
+            `*Ejemplo:*\n` +
+            `> \`${m.prefix}ai crea una tabla de turnos\``
         );
     }
 

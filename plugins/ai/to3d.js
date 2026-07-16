@@ -5,8 +5,8 @@ const pluginConfig = {
     name: 'to3d',
     alias: ['3d', '3dfy', 'to3dmodel'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya 3D render',
-    usage: '.to3d (reply/kirim gambar)',
+    description: 'Convertir foto a estilo 3D renderizado',
+    usage: '.to3d (responder/enviar imagen)',
     example: '.to3d',
     isOwner: false,
     isPremium: true,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🎮 *ᴛᴏ 3ᴅ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya 3D\n\n` +
+            `> Envía/responde con una imagen para convertirla al estilo 3D\n\n` +
             `\`${m.prefix}to3d\``
         )
     }
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         await m.react('🕕')

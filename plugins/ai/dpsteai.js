@@ -82,7 +82,7 @@ async function saveSessions(data) {
         await fs.mkdir(path.dirname(SESSION_FILE), { recursive: true });
         await fs.writeFile(SESSION_FILE, JSON.stringify(data, null, 2), 'utf8');
     } catch (e) {
-        console.error('[DPSTE AI] Gagal menyimpan sesi:', e);
+        console.error('[DPSTE AI] Error al guardar sesión:', e);
     }
 }
 
@@ -122,10 +122,10 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🤖 *DPSTE AI*\n\n` +
-            `> Halo! Aku asisten cerdas dari dipastebin.\n\n` +
-            `*Cara pakai:*\n` +
-            `> \`${m.prefix}dpsteai halo\`\n` +
-            `> \`${m.prefix}dpsteai reset\` (hapus memori chat)`
+            `> ¡Hola! Soy un asistente inteligente de dipastebin.\n\n` +
+            `*Cómo usar:*\n` +
+            `> \`${m.prefix}dpsteai hola\`\n` +
+            `> \`${m.prefix}dpsteai reset\` (borrar memoria de chat)`
         );
     }
 
@@ -142,10 +142,10 @@ async function handler(m, { sock }) {
             delete sessions[userJid];
             await saveSessions(sessions);
             await m.react('✅');
-            return m.reply('✅ *Sesi chat berhasil direset!* Ingatan AI tentang obrolan kita sudah dihapus sepenuhnya.');
+            return m.reply('✅ *Sesión de chat restablecida con éxito!* El recuerdo de la IA sobre nuestra conversación se ha eliminado por completo.');
         } else {
             await m.react('❌');
-            return m.reply('❌ Kamu belum memiliki sesi chat dengan AI ini. Mulailah ngobrol terlebih dahulu!');
+            return m.reply('❌ Aún no tienes una sesión de chat con esta IA. ¡Empieza a hablar primero!');
         }
     }
 
@@ -160,7 +160,7 @@ async function handler(m, { sock }) {
 
         if (!result.success && !result.reply) {
             await m.react('❌');
-            return m.reply(`❌ Error dari server AI: ${result.error || result.raw || 'Tidak ada balasan'}`);
+            return m.reply(`❌ Error del servidor AI: ${result.error || result.raw || 'Sin respuesta'}`);
         }
 
         const activeSessionId = result.sessionId || sessionId;

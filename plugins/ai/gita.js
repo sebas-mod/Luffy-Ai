@@ -21,7 +21,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const text = m.args.join(' ')
     if (!text) {
-        return m.reply(`📿 *ɢɪᴛᴀ ɢᴘᴛ*\n\n> Masukkan pertanyaan\n\n\`Contoh: ${m.prefix}gita What is dharma?\``)
+        return m.reply(`📿 *ɢɪᴛᴀ ɢᴘᴛ*\n\n> Ingresa una pregunta\n\n\`Ejemplo: ${m.prefix}gita What is dharma?\``)
     }
 
     m.react('🕕')

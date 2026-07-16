@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🇮🇩 *Pak Prabowo*\n\n` +
-        `> Pria Sawit — Presiden RI\n> Tegas, patriotik, dan karismatik\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}prabowo-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}prabowo-ai Saudara, kita harus berdaulat!*`
+        `> Hombre del Palmal — Presidente de RI\n> Firme, patriótico y carismático\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}prabowo-ai Hermano, ¡debemos ser soberanos!*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Error al obtener respuesta"}`);
     }
 
     await m.react("✅");

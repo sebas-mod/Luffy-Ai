@@ -22,13 +22,13 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎨 *Text to Image (Flux)*\n\n` +
-      `Buat gambar dari deskripsi teks pakai AI Flux Klein 4B.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `> *${m.prefix}txt2img2 <deskripsi>*\n\n` +
-      `*CONTOH:*\n` +
-      `> *${m.prefix}txt2img2 Mobil Lamborghini revuelto*\n` +
-      `> *${m.prefix}txt2img2 Kucing lucu pakai topi*\n\n` +
-      `_Proses generate agak lama, sekitar 30-60 detik_`
+      `Genera imágenes a partir de descripciones de texto con IA Flux Klein 4B.\n\n` +
+      `*USO:*\n` +
+      `> *${m.prefix}txt2img2 <descripción>*\n\n` +
+      `*EJEMPLO:*\n` +
+      `> *${m.prefix}txt2img2 Auto Lamborghini revuelto*\n` +
+      `> *${m.prefix}txt2img2 Gatito lindo con sombrero*\n\n` +
+      `_El proceso de generación tarda aproximadamente 30-60 segundos_`
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Generate Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Error al generar*\n\n> ${result.error}`);
     }
 
     await sock.sendMedia(m.chat, result.url, `🎨 *Flux Klein 4B*\n\n> Prompt: *${result.prompt}*`, m, {
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal generate gambar, coba lagi nanti");
+    m.reply("❌ Error al generar la imagen, intenta de nuevo más tarde");
   }
 }
 

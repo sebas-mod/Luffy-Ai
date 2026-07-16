@@ -6,9 +6,9 @@ const pluginConfig = {
   name: "deepseek",
   alias: ["ds", "dsv4", "deepthink"],
   category: "ai",
-  description: "Chat dengan DeepSeek V4 (thinking/reasoning)",
-  usage: ".deepseek <pertanyaan>",
-  example: ".deepseek Jelaskan black hole",
+  description: "Chatea con DeepSeek V4 (pensamiento/razonamiento)",
+  usage: ".deepseek <pregunta>",
+  example: ".deepseek Explica qué es un agujero negro",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🧠 *DeepSeek V4*\n\n` +
-        `AI yang bisa mikir dulu sebelum jawab — cocok buat pertanyaan yang butuh penalaran.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}deepseek <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}deepseek Jelaskan black hole*\n` +
-        `> *${m.prefix}deepseek Buat kode sorting algorithm*\n\n` +
-        `_Bot akan mikir dulu, baru jawab — jadi agak lama sedikit_`,
+        `AI que piensa antes de responder — ideal para preguntas que requieren razonamiento.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}deepseek <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}deepseek Explica qué es un agujero negro*\n` +
+        `> *${m.prefix}deepseek Crea un código de algoritmo de ordenamiento*\n\n` +
+        `_El bot pensará primero, luego responderá — así que tarda un poco más_`,
     );
   }
 
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     if (!result.success) {
       await m.react("☢");
-      return m.reply(`❌ *DeepSeek Gagal*\n\n> Gagal mendapatkan respons`);
+      return m.reply(`❌ *DeepSeek Falló*\n\n> Error al obtener la respuesta`);
     }
 
     await m.react("✅");
@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
         result.reasoning.length > 800
           ? result.reasoning.slice(0, 800) + "..."
           : result.reasoning;
-      reply += `💭 *Proses Berpikir:*\n${reasoningPreview.replace(/\n/g, "\n> ")}\n\n`;
+      reply += `💭 *Proceso de razonamiento:*\n${reasoningPreview.replace(/\n/g, "\n> ")}\n\n`;
     }
 
     if (result.answer) {
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     }
 
     if (reply.length > 4096) {
-      reply = reply.slice(0, 4096) + "\n\n... (dipotong)";
+      reply = reply.slice(0, 4096) + "\n\n... (cortado)";
     }
 
     await m.reply(reply);

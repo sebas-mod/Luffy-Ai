@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `👓 *Waguri-san*\n\n` +
-        `> Gadis pemalu dari "The Girl I Like Forgot Her Glasses"\n> Manis, perhatian, dan sering salah tingkah~\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}waguri-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}waguri-ai Waguri-san, halo!*`
+        `> Chica tímida de "The Girl I Like Forgot Her Glasses"\n> Dulce, cariñosa y torpe a veces~\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}waguri-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}waguri-ai Waguri-san, hola!*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Waguri AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Error de Waguri AI*\n\n> ${result.error || "Error al obtener respuesta"}`);
     }
 
     await m.react("✅");

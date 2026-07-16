@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🔵 *Qwen3 80B*\n\n` +
-        `Tanya apa aja ke AI Qwen3 — model besar dari Alibaba yang jago bahasa apa aja.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}qwen3 <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}qwen3 Apa itu machine learning?*\n` +
-        `> *${m.prefix}qwen3 Buat resep masakan Indonesia*\n\n` +
-        `_Model 80B, jadi agak lama tapi jawabannya mantap_`
+        `Pregúntale lo que quieras a la IA Qwen3 — modelo grande de Alibaba que domina todos los idiomas.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}qwen3 <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}qwen3 ¿Qué es el machine learning?*\n` +
+        `> *${m.prefix}qwen3 Haz una receta de cocina indonesia*\n\n` +
+        `_Modelo 80B, así que tarda un poco pero las respuestas son excelentes_`
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *Qwen3 Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`
+        `❌ *Qwen3 Falló*\n\n> ${result.error || "Error al obtener respuesta"}`
       );
     }
 

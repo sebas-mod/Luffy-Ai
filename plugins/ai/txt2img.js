@@ -24,8 +24,8 @@ async function handler(m, { sock }) {
     if (!input) {
         return m.reply(
             `🎨 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
-            `> Generate gambar dari teks dengan AI\n\n` +
-            `\`Contoh: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
+            `> Genera imágenes a partir de texto con IA\n\n` +
+            `\`Ejemplo: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
             `🎭 *sᴛʏʟᴇs*\n` +
             `> \`${STYLES.join(', ')}\``
         )

@@ -5,8 +5,8 @@ const pluginConfig = {
     name: 'toisland',
     alias: ['island', 'tropical'],
     category: 'ai',
-    description: 'Ubah foto menjadi suasana pulau tropis',
-    usage: '.toisland (reply/kirim gambar)',
+    description: 'Convertir foto en ambiente de isla tropical',
+    usage: '.toisland (responder/enviar imagen)',
     example: '.toisland',
     isOwner: false,
     isPremium: true,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🏝️ *ᴛᴏ ɪsʟᴀɴᴅ*\n\n` +
-            `> Kirim/reply gambar untuk suasana pulau\n\n` +
+            `> Envía/responde a una imagen para ambiente de isla\n\n` +
             `\`${m.prefix}toisland\``
         )
     }
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

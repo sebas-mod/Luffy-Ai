@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `💚 *FeelBetterBot*\n\n` +
-        `AI yang siap mendengarkan curhatan kamu — tanpa menghakimi, dengan hangat dan empatik.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}feelbetter <curhatan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}feelbetter lagi sedih nih*\n` +
-        `> *${m.prefix}feelbetter aku capek banget belakangan*\n\n` +
-        `_Bot ini bukan pengganti profesional, tapi bisa jadi tempat curhat yang aman_`
+        `IA que está lista para escuchar tus desahogos — sin juzgar, con calidez y empatía.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}feelbetter <desahogo>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}feelbetter estoy triste*\n` +
+        `> *${m.prefix}feelbetter estoy muy cansado últimamente*\n\n` +
+        `_Este bot no reemplaza a un profesional, pero puede ser un lugar seguro para desahogarse_`
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *FeelBetter Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`
+        `❌ *FeelBetter Falló*\n\n> ${result.error || "Error al obtener respuesta"}`
       );
     }
 
