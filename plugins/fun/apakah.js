@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'apakah',
     alias: ['apa'],
     category: 'fun',
-    description: 'Tanya bot apakah sesuatu',
-    usage: '.apakah <pertanyaan>',
-    example: '.apakah aku bisa kaya?',
+    description: 'Pregunta al bot si algo es así',
+    usage: '.apakah <pregunta>',
+    example: '.apakah puedo ser rico?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, tentu saja!',
-    'Tidak, sepertinya tidak.',
-    'Mungkin saja, coba lagi nanti.',
-    'Hmm... aku rasa iya.',
-    'Aku ragu, tapi bisa jadi.',
-    'Pasti! 100%!',
-    'Tidak mungkin.',
-    'Bisa jadi, siapa yang tau?',
-    'Menurutku sih iya.',
-    'Wah, kayaknya nggak deh.',
-    'Tentu, kenapa tidak?',
-    'Aku nggak tau, coba tanya yang lain.',
-    'Ya ampun, pasti lah!',
-    'Hmm... sepertinya tidak.',
-    'Aku yakin iya!',
-    'Nggak mungkin banget.',
-    'Mungkin, tapi jangan berharap terlalu tinggi.',
-    'Iya dong!',
-    'Nggak, maaf ya.',
-    'Bisa! Semangat!'
+    '¡Sí, por supuesto!',
+    'No, parece que no.',
+    'Puede ser, intenta de nuevo después.',
+    'Hmm... creo que sí.',
+    'Dudo, pero puede ser.',
+    '¡Por supuesto! ¡100%!',
+    'Imposible.',
+    'Puede ser, ¿quién sabe?',
+    'Yo creo que sí.',
+    'Uy, parece que no.',
+    '¡Claro, por qué no!',
+    'No sé, pregunta a alguien más.',
+    '¡Oh Dios, por supuesto!',
+    'Hmm... parece que no.',
+    '¡Estoy seguro de que sí!',
+    'Nada probable.',
+    'Tal vez, pero no te hagas muchas ilusiones.',
+    '¡Claro que sí!',
+    'No, lo siento.',
+    '¡Sí se puede! ¡Ánimo!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .apakah aku bisa jadi kaya?`);
+        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .apakah puedo ser rico?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

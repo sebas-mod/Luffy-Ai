@@ -7,8 +7,8 @@ const pluginConfig = {
     name: 'soulmatch',
     alias: [],
     category: 'fun',
-    description: 'Cek kecocokan jiwa dengan seseorang',
-    usage: '.soulmatch nama1|nama2',
+    description: 'Verificar compatibilidad de alma con alguien',
+    usage: '.soulmatch nombre1|nombre2',
     example: '.soulmatch Raiden|Mei',
     isOwner: false,
     isPremium: false,
@@ -19,12 +19,12 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const ELEMENTS = ['Api 🔥', 'Air 💧', 'Tanah 🌍', 'Angin 🌪️', 'Petir ⚡', 'Es ❄️', 'Cahaya ✨', 'Bayangan 🌑']
-const ZODIAC = ['♈ Aries', '♉ Taurus', '♊ Gemini', '♋ Cancer', '♌ Leo', '♍ Virgo', 
-               '♎ Libra', '♏ Scorpio', '♐ Sagittarius', '♑ Capricorn', '♒ Aquarius', '♓ Pisces']
+const ELEMENTS = ['Fuego 🔥', 'Agua 💧', 'Tierra 🌍', 'Viento 🌪️', 'Rayo ⚡', 'Hielo ❄️', 'Luz ✨', 'Sombra 🌑']
+const ZODIAC = ['♈ Aries', '♉ Tauro', '♊ Géminis', '♋ Cáncer', '♌ Leo', '♍ Virgo', 
+               '♎ Libra', '♏ Escorpio', '♐ Sagitario', '♑ Capricornio', '♒ Acuario', '♓ Piscis']
 const SOUL_TYPES = [
-    "Pemimpin Yang Berani", "Penyeimbang Bijaksana", "Kreator Ekspresif", "Pembangun Solid", 
-    "Petualang Bebas", "Pelindung Setia", "Pemikir Mistis", "Penakluk Kuat", "Humanitarian Murni"
+    "Líder Valiente", "Equilibrador Sabio", "Creador Expresivo", "Constructor Sólido", 
+    "Aventurero Libre", "Protector Leal", "Pensador Místico", "Conquistador Fuerte", "Humanitario Puro"
 ]
 
 function generateSoulData(name, seed) {
@@ -37,23 +37,23 @@ function generateSoulData(name, seed) {
 }
 
 function getMatchDescription(score) {
-    if (score >= 90) return "💫 Takdir Sejati"
-    if (score >= 80) return "✨ Harmoni Sempurna"
-    if (score >= 70) return "🌟 Koneksi Kuat"
-    if (score >= 60) return "⭐ Potensi Bagus"
-    if (score >= 50) return "🌙 Perlu Perjuangan"
-    return "🌑 Tantangan Berat"
+    if (score >= 90) return "💫 Destino Verdadero"
+    if (score >= 80) return "✨ Armonía Perfecta"
+    if (score >= 70) return "🌟 Conexión Fuerte"
+    if (score >= 60) return "⭐ Buen Potencial"
+    if (score >= 50) return "🌙 Necesita Esfuerzo"
+    return "🌑 Gran Desafío"
 }
 
 function getReading(score) {
     if (score >= 80) {
-        return "Jiwa kalian memiliki koneksi yang sangat istimewa dan langka. Takdir telah merencanakan pertemuan ini."
+        return "Vuestros almas tienen una conexión muy especial y rara. El destino ha planeado este encuentro."
     } else if (score >= 60) {
-        return "Ada chemistry yang kuat di antara kalian. Perbedaan kalian justru menciptakan harmoni."
+        return "Hay una química fuerte entre ustedes. Vuestras diferencias crean armonía."
     } else if (score >= 40) {
-        return "Butuh waktu untuk saling memahami. Setiap tantangan akan memperkuat ikatan kalian."
+        return "Necesitan tiempo para entenderse. Cada desafío fortalecerá vuestro vínculo."
     }
-    return "Perbedaan signifikan dalam energi jiwa. Butuh banyak adaptasi dan pengertian."
+    return "Diferencias significativas en la energía del alma. Necesitan mucha adaptación y comprensión."
 }
 
 async function handler(m, { sock }) {
@@ -63,10 +63,10 @@ async function handler(m, { sock }) {
     if (!text || !text.includes('|')) {
         return m.reply(
             `💫 *sᴏᴜʟ ᴍᴀᴛᴄʜ*\n\n` +
-            `> Cek kecocokan jiwa 2 orang!\n\n` +
-            `*Format:*\n` +
-            `> \`.soulmatch nama1|nama2\`\n\n` +
-            `*Contoh:*\n` +
+            `> ¡Verifica la compatibilidad de alma de 2 personas!\n\n` +
+            `*Formato:*\n` +
+            `> \`.soulmatch nombre1|nombre2\`\n\n` +
+            `*Ejemplo:*\n` +
             `> \`.soulmatch Raiden|Mei\``
         )
     }
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
     const [nama1, nama2] = text.split('|').map(n => n.trim())
     
     if (!nama1 || !nama2) {
-        return m.reply(`❌ Masukkan 2 nama dengan format: \`${m.prefix}soulmatch nama1|nama2\``)
+        return m.reply(`❌ Ingresa 2 nombres con el formato: \`${m.prefix}soulmatch nombre1|nombre2\``)
     }
     
     await m.react('🕕')
@@ -89,20 +89,20 @@ async function handler(m, { sock }) {
     let txt = `╭═══❯ *💫 SOUL MATCH* ❮═══\n`
     txt += `│\n`
     txt += `│ 👤 *${nama1}*\n`
-    txt += `│ ├ 🔮 Soul: ${soul1.soulType}\n`
-    txt += `│ ├ 🌟 Element: ${soul1.element}\n`
-    txt += `│ └ 🎯 Zodiac: ${soul1.zodiac}\n`
+    txt += `│ ├ 🔮 Alma: ${soul1.soulType}\n`
+    txt += `│ ├ 🌟 Elemento: ${soul1.element}\n`
+    txt += `│ └ 🎯 Zodiaco: ${soul1.zodiac}\n`
     txt += `│\n`
     txt += `│ 👤 *${nama2}*\n`
-    txt += `│ ├ 🔮 Soul: ${soul2.soulType}\n`
-    txt += `│ ├ 🌟 Element: ${soul2.element}\n`
-    txt += `│ └ 🎯 Zodiac: ${soul2.zodiac}\n`
+    txt += `│ ├ 🔮 Alma: ${soul2.soulType}\n`
+    txt += `│ ├ 🌟 Elemento: ${soul2.element}\n`
+    txt += `│ └ 🎯 Zodiaco: ${soul2.zodiac}\n`
     txt += `│\n`
-    txt += `│ 💕 *COMPATIBILITY*\n`
-    txt += `│ ├ 📊 Score: *${compatibility}%*\n`
-    txt += `│ └ 🎭 Status: ${getMatchDescription(compatibility)}\n`
+    txt += `│ 💕 *COMPATIBILIDAD*\n`
+    txt += `│ ├ 📊 Puntuación: *${compatibility}%*\n`
+    txt += `│ └ 🎭 Estado: ${getMatchDescription(compatibility)}\n`
     txt += `│\n`
-    txt += `│ 🔮 *Reading:*\n`
+    txt += `│ 🔮 *Lectura:*\n`
     txt += `│ ${getReading(compatibility)}\n`
     txt += `│\n`
     txt += `╰════════════════════`

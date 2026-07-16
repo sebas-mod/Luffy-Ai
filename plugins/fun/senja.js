@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'senja',
     alias: ['katacinta', 'romanticquotes'],
     category: 'fun',
-    description: 'Random kata-kata senja/romantis',
+    description: 'Frases aleatorias románticas/de atardecer',
     usage: '.senja',
     example: '.senja',
     isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
         
         if (!res.status || !res.data?.text) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil kata senja`)
+            return m.reply(`❌ Error al obtener la frase`)
         }
         await m.reply(res.data.text)
         m.react('✅')

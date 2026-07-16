@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "instagramdl",
   alias: ["igdl", "ig", "instagram"],
   category: "download",
-  description: "Download video/foto Instagram",
+  description: "Descargar video/foto de Instagram",
   usage: ".instagramdl <url>",
   example: ".instagramdl https://www.instagram.com/reel/xxx",
   isOwner: false,
@@ -22,9 +22,9 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
+      `📸 *INSTAGRAM DESCARGADOR*\n\n` +
         `> \`${m.prefix}igdl <url>\`\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+        `*EJEMPLO:*\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/reel/xxx\`\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/p/xxx\``,
     );
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
 
   if (!IG_REGEX.test(url)) {
     return m.reply(
-      `❌ URL tidak valid. Gunakan link Instagram (reel/post/story).`,
+      `❌ URL no válido. Usa un enlace de Instagram (reel/publicación/story).`,
     );
   }
 
@@ -43,11 +43,11 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Coba link lain.`);
+      return m.reply(`❌ Error al obtener el medio. Prueba con otro enlace.`);
     }
 
     const isStory = url.includes("/stories/");
-    let caption = `📸 *Instagram ${isStory ? "Story" : "Downloader"}*\n`;
+    let caption = `📸 *Instagram ${isStory ? "Story" : "Descargador"}*\n`;
     if (result.username && result.username !== "-")
       caption += `👤 @${result.username}\n`;
     if (result.likes && result.likes !== "-") caption += `❤️ ${result.likes}\n`;
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    return m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+    return m.reply(`❌ *ERROR AL DESCARGAR*\n\n> ${err.message}`);
   }
 }
 

@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'dimana',
     alias: ['where', 'mana'],
     category: 'fun',
-    description: 'Tanya bot dimana sesuatu',
-    usage: '.dimana <pertanyaan>',
-    example: '.dimana jodohku berada?',
+    description: 'Pregunta al bot dónde está algo',
+    usage: '.dimana <pregunta>',
+    example: '.dimana está mi pareja?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Di dekatmu!',
-    'Jauh di sana.',
-    'Di tempat yang tidak kamu duga.',
-    'Di hatimu.',
-    'Di sekitar sini.',
-    'Hmm, coba cari di kamar.',
-    'Di luar sana, menunggumu.',
-    'Di tempat yang sama denganmu.',
-    'Di suatu tempat yang indah.',
-    'Di balik pintu.',
-    'Di sebelah kirimu.',
-    'Di depan matamu!',
-    'Jauh banget, di luar negeri mungkin?',
-    'Di tempat yang penuh kenangan.',
-    'Di mana-mana!',
-    'Di dunia maya.',
-    'Di alam mimpi.',
-    'Di tempat rahasia.',
-    'Hmm, susah dijelaskan lokasinya.',
-    'Di tempat yang akan membuatmu bahagia.'
+    '¡Cerca de ti!',
+    'Lejos, allá.',
+    'En un lugar que no esperas.',
+    'En tu corazón.',
+    'Por aquí cerca.',
+    'Hmm, intenta buscar en tu cuarto.',
+    'Afuera, esperándote.',
+    'En el mismo lugar que tú.',
+    'En un lugar hermoso.',
+    'Detrás de la puerta.',
+    'A tu lado.',
+    '¡Justo frente a ti!',
+    'Muy lejos, ¿en el extranjero quizás?',
+    'En un lugar lleno de recuerdos.',
+    '¡En todas partes!',
+    'En el mundo virtual.',
+    'En el mundo de los sueños.',
+    'En un lugar secreto.',
+    'Hmm, es difícil de explicar dónde.',
+    'En un lugar que te hará feliz.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`📍 *ᴅɪᴍᴀɴᴀ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .dimana jodohku berada?`);
+        return m.reply(`📍 *ᴅɪᴍᴀɴᴀ*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .dimana está mi pareja?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

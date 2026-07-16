@@ -3,9 +3,9 @@ const pluginConfig = {
     name: 'top',
     alias: ['top5', 'toplist'],
     category: 'fun',
-    description: 'Random top 5 member untuk kategori tertentu',
-    usage: '.top <kategori>',
-    example: '.top orang pintar',
+    description: 'Top 5 aleatorio de miembros para una categoría',
+    usage: '.top <categoría>',
+    example: '.top personas inteligentes',
     isOwner: false,
     isPremium: false,
     isGroup: true,
@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     
     if (!kategori) {
         return m.reply(
-            `\`Contoh: ${m.prefix}top orang pintar\``
+            `\`Ejemplo: ${m.prefix}top personas inteligentes\``
         )
     }
     
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
             .filter(id => id && id !== sock.user?.id?.split(':')[0] + '@s.whatsapp.net')
         
         if (members.length < 2) {
-            return m.reply(`❌ Member grup kurang dari 5 orang!`)
+            return m.reply(`❌ ¡Menos de 5 miembros en el grupo!`)
         }
         
         const shuffled = members.sort(() => Math.random() - 0.5)

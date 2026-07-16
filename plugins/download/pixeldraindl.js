@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "pixeldraindl",
   alias: ["pddl", "pixeldrain", "pddownload"],
   category: "download",
-  description: "Download file dari Pixeldrain",
+  description: "Descargar archivo de Pixeldrain",
   usage: ".pixeldraindl <url>",
   example: ".pixeldraindl https://pixeldrain.com/u/xxxxx",
   cooldown: 15,
@@ -25,11 +25,11 @@ async function handler(m, { sock }) {
 
   if (!url || !url.includes("pixeldrain.com")) {
     return m.reply(
-      `📥 *ᴘɪxᴇʟᴅʀᴀɪɴ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-        `> Download file dari Pixeldrain\n\n` +
-        `*Format:*\n` +
+      `📥 *PIXELDRAIN DESCARGADOR*\n\n` +
+        `> Descarga archivo de Pixeldrain\n\n` +
+        `*Formato:*\n` +
         `> \`${m.prefix}pixeldraindl <url>\`\n\n` +
-        `*Contoh:*\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}pixeldraindl https://pixeldrain.com/u/xxxxx\``,
     );
   }
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     if (!data?.status || !data?.data) {
       m.react("❌");
       return m.reply(
-        "❌ *ɢᴀɢᴀʟ*\n\n> File tidak ditemukan atau link tidak valid",
+        "❌ *FALLÓ*\n\n> Archivo no encontrado o enlace no válido",
       );
     }
 
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
     if (sizeInMB > 100) {
       await m.reply(
-        `⚠️ *ꜰɪʟᴇ ᴛᴇʀʟᴀʟᴜ ʙᴇsᴀʀ*\n\n> File ${file.size} terlalu besar untuk dikirim\n> Gunakan link download di atas`,
+        `⚠️ *ARCHIVO DEMASIADO GRANDE*\n\n> El archivo ${file.size} es demasiado grande para enviar\n> Usa el enlace de descarga de arriba`,
       );
     } else {
       await sock.sendMedia(m.chat, file.url, null, m, {

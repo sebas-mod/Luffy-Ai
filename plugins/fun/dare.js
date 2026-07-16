@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'dare',
     alias: ['dareq', 'tantang'],
     category: 'fun',
-    description: 'Random tantangan dare',
+    description: 'Reto dare aleatorio',
     usage: '.dare',
     example: '.dare',
     isOwner: false,
@@ -19,7 +19,7 @@ async function handler(m) {
     const challenge = getRandomItem('dare.json');
     
     if (!challenge) {
-        await m.reply('❌ Data tidak tersedia!');
+        await m.reply('❌ ¡Datos no disponibles!');
         return;
     }
     

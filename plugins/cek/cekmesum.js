@@ -2,8 +2,8 @@ const pluginConfig = {
   name: "cekmesum",
   alias: ["mesum"],
   category: "cek",
-  description: "Cek seberapa mesum kamu",
-  usage: ".cekmesum <nama>",
+  description: "Mide qué tan cachondo/a eres",
+  usage: ".cekmesum <nombre>",
   example: ".cekmesum Budi",
   isOwner: false,
   isPremium: false,
@@ -20,26 +20,26 @@ async function handler(m) {
 
   let desc = "";
   if (percent >= 90) {
-    desc = "MESUM AKUT! Tobat mas! 😳🔞";
+    desc = "¡CACHONDO/A TERMINAL! ¡Arrepiéntate! 😳🔞";
   } else if (percent >= 70) {
-    desc = "Mesum banget! 👀";
+    desc = "¡Muy cachondo/a! 👀";
   } else if (percent >= 50) {
-    desc = "Lumayan mesum 😏";
+    desc = "Bastante cachondo/a 😏";
   } else if (percent >= 30) {
-    desc = "Sedikit mesum 🙈";
+    desc = "Un poco cachondo/a 🙈";
   } else {
-    desc = "Polos dan suci! 😇";
+    desc = "¡Puro/a y inocente! 😇";
   }
 
   let txt =
     mentioned === m.sender
-      ? `Hai @${mentioned.split("@")[0]}
+      ? `Hola @${mentioned.split("@")[0]}
     
-Tingkat kemesuman kamu *${percent}%*
+Tu nivel de cachondez es *${percent}%*
 \`\`\`${desc}\`\`\``
-      : `Kamu ingin ngecek tingkat kemesuman @${mentioned.split("@")[0]} yak? 
+      : `¿Quieres medir el nivel de cachondez de @${mentioned.split("@")[0]}?
     
-Tingkat kemesuman dia sebesar *${percent}%*
+Su nivel de cachondez es *${percent}%*
 \`\`\`${desc}\`\`\``;
 
   await m.reply(txt, { mentions: [mentioned] });

@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekwibu',
     alias: ['wibu', 'weeb'],
     category: 'cek',
-    description: 'Cek seberapa wibu kamu',
-    usage: '.cekwibu <nama>',
+    description: 'Mide qué tan wibu eres',
+    usage: '.cekwibu <nombre>',
     example: '.cekwibu Budi',
     isOwner: false,
     isPremium: false,
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'WIBU SEJATI! Ara ara~ 🎌'
+        desc = '¡WIBU DE VERDAD! ¡Ara ara~ 🎌'
     } else if (percent >= 70) {
-        desc = 'Wibu parah! Kimochi~ 😍'
+        desc = '¡Muy wibu! ¡Kimochi~ 😍'
     } else if (percent >= 50) {
-        desc = 'Lumayan wibu 🌸'
+        desc = 'Bastante wibu 🌸'
     } else if (percent >= 30) {
-        desc = 'Sedikit wibu 😊'
+        desc = 'Un poco wibu 😊'
     } else {
-        desc = 'Bukan wibu, normal! 😎'
+        desc = 'No eres wibu, normal 😎'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat kewibuan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kewibuan @${mentioned.split('@')[0]} yak? 
-    
-Tingkat kewibuan dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu nivel wibu es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel wibu de @${mentioned.split('@')[0]}?
+
+Su nivel wibu es de *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

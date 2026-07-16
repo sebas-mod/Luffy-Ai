@@ -202,7 +202,7 @@ const pluginConfig = {
   name: "spotifydl",
   alias: ["spdl", "spotify-dl", "spotdl"],
   category: "download",
-  description: "Unduh lagu favoritmu langsung dari Spotify tanpa ribet!",
+  description: "¡Descarga tu canción favorita directamente de Spotify sin complicaciones!",
   usage: ".spdl <link>",
   example: ".spdl https://open.spotify.com/track/...",
   cooldown: 15,
@@ -214,7 +214,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text || !/open\.spotify\.com\/track/i.test(text)) {
-    return m.reply("❌ *Waduh, link Spotify-nya mana nih atau kurang tepat!*\n\nKamu harus memasukkan tautan (link) lagu dari Spotify yang valid. Pastikan itu adalah link ke track/lagu ya! \n\nContoh: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
+    return m.reply("❌ *¡Vaya, el enlace de Spotify no está o no es correcto!*\n\nDebes ingresar un enlace (link) de una canción de Spotify que sea válido. Asegúrate de que sea un enlace a una canción/track. \n\nEjemplo: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
   }
 
   await m.react("🕕");
@@ -235,7 +235,7 @@ async function handler(m, { sock }) {
 
     if (!playlistSig.ok || !playlistSig.data?.success || !playlistSig.data?.token || !playlistSig.data?.exp) {
       await m.react("❌");
-      return m.reply("⚠️ *Gagal memverifikasi sesi Spotify!* \n\nMohon pastikan tautan yang kamu berikan valid atau coba beberapa saat lagi ya.");
+      return m.reply("⚠️ *¡Error al verificar la sesión de Spotify!* \n\nPor favor asegúrate de que el enlace que proporcionaste sea válido o intenta de nuevo en unos momentos.");
     }
 
     const playlistUrl = `${BASE_URL}/api/get_playlist.php?id=${encodeURIComponent(parsed.id)}&type=${encodeURIComponent(parsed.type)}&lang=${encodeURIComponent(LANG)}`;
@@ -243,7 +243,7 @@ async function handler(m, { sock }) {
 
     if (!playlist.ok || !playlist.data?.tracks?.length) {
       await m.react("❌");
-      return m.reply("⚠️ *Waduh, lagu tidak ditemukan!* \n\nSepertinya lagu tersebut tidak tersedia atau tautan salah.");
+      return m.reply("⚠️ *¡Vaya, la canción no fue encontrada!* \n\nParece que la canción no está disponible o el enlace es incorrecto.");
     }
 
     const info = playlist.data.playlist_info || {};
@@ -256,7 +256,7 @@ async function handler(m, { sock }) {
 
     if (!downloadSig.ok || !downloadSig.data?.success || !downloadSig.data?.token || !downloadSig.data?.exp) {
       await m.react("❌");
-      return m.reply("⚠️ *Gagal meminta kunci unduhan!* \n\nServer kami sedang sibuk, mohon coba lagi ya.");
+      return m.reply("⚠️ *¡Error al solicitar la clave de descarga!* \n\nNuestro servidor está ocupado, por favor intenta de nuevo.");
     }
 
     const sigPayload = jsonBase64({ token: String(downloadSig.data.token), exp: String(downloadSig.data.exp) });
@@ -267,7 +267,7 @@ async function handler(m, { sock }) {
 
     if (!dl.ok || !dl.contentType.includes("audio")) {
       await m.react("❌");
-      return m.reply("😔 *Gagal mengunduh audio.* \n\nMungkin ada batasan dari server atau lagu tidak tersedia untuk diunduh.");
+      return m.reply("😔 *Error al descargar el audio.* \n\nPuede que haya restricciones del servidor o la canción no está disponible para descargar.");
     }
 
     const headerName = getFilenameFromDisposition(dl.disposition);
@@ -285,7 +285,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error(error);
     await m.react("❌");
-    m.reply("😔 *Terjadi kesalahan sistem saat memproses tautan Spotify tersebut.* Mohon coba lagi nanti ya!");
+    m.reply("😔 *Ocurrió un error del sistema al procesar el enlace de Spotify.* ¡Por favor intenta de nuevo más tarde!");
   }
 }
 

@@ -7,7 +7,7 @@ const pluginConfig = {
   alias: ["allinone", "download", "dl"],
   category: "downloader",
   description:
-    "All in one downloader (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, dll)",
+    "Descargador todo en uno (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, etc)",
   usage: ".aio <url>",
   example: ".aio https://instagram.com/p/xxx",
   isOwner: false,
@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-        `> Download dari berbagai platform!\n\n` +
-        `╭┈┈⬡「 🌐 *ᴘʟᴀᴛꜰᴏʀᴍ* 」\n` +
+      `📥 *DESCARGADOR TODO EN UNO*\n\n` +
+        `> ¡Descarga de diversas plataformas!\n\n` +
+        `╭┈┈⬡「 🌐 *PLATAFORMA* 」\n` +
         `┃ • Instagram\n` +
         `┃ • TikTok\n` +
         `┃ • Facebook\n` +
@@ -36,12 +36,12 @@ async function handler(m, { sock }) {
         `┃ • CapCut\n` +
         `┃ • Threads / Reddit\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> *Contoh:* ${m.prefix}aio https://instagram.com/p/xxx`,
+        `> *Ejemplo:* ${m.prefix}aio https://instagram.com/p/xxx`,
     );
   }
 
   if (!url.startsWith("http")) {
-    return m.reply(`❌ URL tidak valid! Harus dimulai dengan http/https`);
+    return m.reply(`❌ ¡URL no válido! Debe empezar con http/https`);
   }
 
   await m.react("🕕");
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Pastikan URL valid.`);
+      return m.reply(`❌ Error al obtener el medio. Asegúrate de que la URL sea válida.`);
     }
 
     const ctxInfo = saluranCtx();

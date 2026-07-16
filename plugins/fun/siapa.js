@@ -11,8 +11,8 @@ const pluginConfig = {
     ],
     alias: [],
     category: 'fun',
-    description: 'Random pilih member untuk kategori tertentu',
-    usage: '.<kategori>',
+    description: 'Elegir miembro aleatorio para una categoría',
+    usage: '.<categoría>',
     example: '.ganteng',
     isOwner: false,
     isPremium: false,
@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
             .map(p => p.jid)
             .filter(id => id && id !== sock.user?.id?.split(':')[0] + '@s.whatsapp.net')
         if (members.length === 0) {
-            return m.reply(`❌ Tidak ada member di grup!`)
+            return m.reply(`❌ ¡No hay miembros en el grupo!`)
         }
         const randomMember = members[Math.floor(Math.random() * members.length)]
         const positiveWords = ['ganteng', 'cantik', 'keren', 'pro', 'sultan', 'kaya', 'pinter', 'pintar', 'mastah']
         const isPositive = positiveWords.includes(command)
         const emoji = isPositive ? '✨' : '😏'
-        const label = isPositive ? 'Yang paling' : 'Anak'
-        await m.reply(`*${label} ${command} di sini adalah* @${randomMember.split('@')[0]}`, { mentions: [randomMember] })
+        const label = isPositive ? 'El más' : 'El niño'
+        await m.reply(`*${label} ${command} aquí es* @${randomMember.split('@')[0]}`, { mentions: [randomMember] })
         m.react('✅')
     } catch (error) {
         m.react('☢')

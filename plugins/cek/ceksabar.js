@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'ceksabar',
     alias: ['sabar', 'patience'],
     category: 'cek',
-    description: 'Cek tingkat kesabaran kamu',
-    usage: '.ceksabar <nama>',
+    description: 'Mide tu nivel de paciencia',
+    usage: '.ceksabar <nombre>',
     example: '.ceksabar Budi',
     isOwner: false,
     isPremium: false,
@@ -19,18 +19,18 @@ async function handler(m) {
     const mentioned = m.mentionedJid[0] || m.sender
                     
     let desc = ''
-    if (percent >= 90) desc = 'Sabar level dewa! Zen master~ 🧘'
-    else if (percent >= 70) desc = 'Sangat sabar! Terpuji 👏'
-    else if (percent >= 50) desc = 'Cukup sabar 😊'
-    else if (percent >= 30) desc = 'Kadang emosian dikit 😅'
-    else desc = 'Gampang marah nih... 😤'
+    if (percent >= 90) desc = '¡Paciencia de dios! ¡Maestro Zen~ 🧘'
+    else if (percent >= 70) desc = '¡Muy paciente! ¡Digno de elogio 👏'
+    else if (percent >= 50) desc = 'Bastante paciente 😊'
+    else if (percent >= 30) desc = 'A veces te enojas un poco 😅'
+    else desc = 'Te enojas fácil... 😤'
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat kesabaran kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kesabaran @${mentioned.split('@')[0]} yak? 
-    
-Tingkat kesabaran dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu nivel de paciencia es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel de paciencia de @${mentioned.split('@')[0]}?
+
+Su nivel de paciencia es de *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

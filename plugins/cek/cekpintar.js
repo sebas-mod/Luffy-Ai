@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekpintar',
     alias: ['pintar', 'iq', 'smart'],
     category: 'cek',
-    description: 'Cek seberapa pintar kamu',
-    usage: '.cekpintar <nama>',
+    description: 'Mide qué tan inteligente eres',
+    usage: '.cekpintar <nombre>',
     example: '.cekpintar Budi',
     isOwner: false,
     isPremium: false,
@@ -21,23 +21,23 @@ async function handler(m) {
     
     let desc = ''
     if (iq >= 150) {
-        desc = 'JENIUS! Einstein level! 🧠✨'
+        desc = '¡GENIO! ¡Nivel Einstein! 🧠✨'
     } else if (iq >= 130) {
-        desc = 'Sangat cerdas! 🎓'
+        desc = '¡Muy inteligente! 🎓'
     } else if (iq >= 110) {
-        desc = 'Di atas rata-rata! 👍'
+        desc = '¡Por encima del promedio! 👍'
     } else if (iq >= 90) {
-        desc = 'Normal, rata-rata 😊'
+        desc = 'Normal, promedio 😊'
     } else {
-        desc = 'Tetap semangat belajar! 📚'
+        desc = '¡Sigue estudiando! 📚'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Kepintaran (IQ) kamu *${iq}*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek kepintaran @${mentioned.split('@')[0]} yak? 
-    
-Kepintaran (IQ) dia sebesar *${iq}*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu inteligencia (CI) es *${iq}*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir la inteligencia de @${mentioned.split('@')[0]}?
+
+Su inteligencia (CI) es de *${iq}*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

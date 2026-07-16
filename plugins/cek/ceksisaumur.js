@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'ceksisaumur',
     alias: ['sisaumur', 'umur'],
     category: 'cek',
-    description: 'Cek sisa umur kamu',
-    usage: '.ceksisaumur <nama>',
+    description: 'Mide tu tiempo de vida restante',
+    usage: '.ceksisaumur <nombre>',
     example: '.ceksisaumur Budi',
     isOwner: false,
     isPremium: false,
@@ -25,21 +25,21 @@ async function handler(m) {
     
     let desc = ''
     if (tahun > 80) {
-        desc = 'Panjang umur banget! 🎉'
+        desc = '¡Vida muy larga! 🎉'
     } else if (tahun > 60) {
-        desc = 'Lumayan panjang~ ✨'
+        desc = '¡Bastante larga~ ✨'
     } else if (tahun > 40) {
-        desc = 'Cukup lah ya 😊'
+        desc = 'Suficiente 😊'
     } else {
-        desc = 'Jaga kesehatan ya! 🙏'
+        desc = '¡Cuida tu salud! 🙏'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Sisa umur kamu *${tahun} Tahun ${bulan} Bulan ${hari} Hari*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kesisaumuran @${mentioned.split('@')[0]} yak? 
-    
-Sisa umur dia sebesar *${tahun} Tahun ${bulan} Bulan ${hari} Hari*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu tiempo restante es *${tahun} Años ${bulan} Meses ${hari} Días*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el tiempo restante de @${mentioned.split('@')[0]}?
+
+Su tiempo restante es de *${tahun} Años ${bulan} Meses ${hari} Días*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

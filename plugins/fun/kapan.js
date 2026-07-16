@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'kapan',
     alias: ['when'],
     category: 'fun',
-    description: 'Tanya bot kapan sesuatu',
-    usage: '.kapan <pertanyaan>',
-    example: '.kapan aku nikah?',
+    description: 'Pregunta al bot cuándo algo pasará',
+    usage: '.kapan <pregunta>',
+    example: '.kapan me caso?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,38 +15,39 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Besok mungkin?',
-    'Tahun depan kayaknya.',
-    '3 hari lagi!',
-    'Hmm, masih lama sih.',
-    'Sebentar lagi kok!',
-    'Kalau sudah waktunya, pasti terjadi.',
-    'Bulan depan!',
-    'Entah kapan, yang penting sabar.',
-    'Dalam waktu dekat!',
-    '10 tahun lagi mungkin?',
-    'Nggak lama lagi!',
-    'Kalau jodoh, pasti ketemu.',
-    'Hmm, susah diprediksi.',
-    'Minggu depan!',
-    'Kalau usahanya lebih keras, lebih cepat!',
-    'Pas waktunya tepat.',
-    'Secepatnya, tenang aja.',
-    'Ntar kalo udah siap.',
-    'Dalam hitungan hari!',
-    'Saat kamu sudah siap menerimanya.'
+    '¿Mañana quizás?',
+    'El próximo año creo.',
+    '¡En 3 días!',
+    'Hmm, todavía falta.',
+    '¡Ya casi!',
+    'Cuando sea el momento, seguro pasará.',
+    '¡El mes que viene!',
+    'No sé cuándo, pero ten paciencia.',
+    '¡Pronto!',
+    '¿En 10 años tal vez?',
+    '¡Ya no falta mucho!',
+    'Si es el destino, se encontrarán.',
+    'Hmm, es difícil de predecir.',
+    '¡La semana que viene!',
+    'Si te esfuerzas más, ¡será más rápido!',
+    'En el momento justo.',
+    'Lo antes posible, tranquilo.',
+    'Cuando estés listo.',
+    '¡En cuestión de días!',
+    'Cuando estés listo para aceptarlo.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`⏰ *ᴋᴀᴘᴀɴ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .kapan aku nikah?`);
+        return m.reply(`⏰ *ᴋᴀᴘᴀɴ*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .kapan me caso?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];
     
-    await m.reply(`${m.body.slice(1)}?\n*${answer}*`);
+    await m.reply(`${m.body.slice(1)}?
+*${answer}*`);
 }
 
 export { pluginConfig as config, handler }

@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "jodoh",
   alias: ["match", "shipcouple", "ship"],
   category: "fun",
-  description: "Jodohkan 2 member random dengan kecocokan",
+  description: "Empareja 2 miembros al azar con compatibilidad",
   usage: ".jodoh",
   example: ".jodoh",
   isOwner: false,
@@ -30,14 +30,14 @@ try {
 } catch (e) {}
 
 const loveQuotes = [
-  "Cinta sejati tidak pernah mengenal jarak 💕",
-  "Dua hati yang bersatu takkan terpisahkan 💗",
-  "Kalian seperti puzzle yang sempurna 🧩",
-  "Match made in heaven! ✨",
-  "Chemistry-nya kuat banget! 🔥",
-  "Couple goals banget sih kalian 💑",
-  "Destiny brought you together 🌟",
-  "Perfect match detected! 💘",
+  "El amor verdadero nunca conoce la distancia 💕",
+  "Dos corazones unidos no se separarán 💗",
+  "Son como un rompecabezas perfecto 🧩",
+  "¡Match hecho en el cielo! ✨",
+  "¡La química es increíble! 🔥",
+  "¡Son la pareja perfecta! 💑",
+  "El destino los unió 🌟",
+  "¡Pareja perfecta detectada! 💘",
 ];
 
 const compatibilityEmoji = (percent) => {
@@ -49,11 +49,11 @@ const compatibilityEmoji = (percent) => {
 };
 
 const compatibilityText = (percent) => {
-  if (percent >= 90) return "JODOH SEJATI! 💍";
-  if (percent >= 70) return "Sangat Cocok! 💖";
-  if (percent >= 50) return "Lumayan Cocok 💗";
-  if (percent >= 30) return "Bisa Dicoba 💓";
-  return "Butuh Usaha Lebih 💔";
+  if (percent >= 90) return "¡AMANES VERDADERO! 💍";
+  if (percent >= 70) return "¡Muy compatibles! 💖";
+  if (percent >= 50) return "Bastante compatibles 💗";
+  if (percent >= 30) return "Se puede intentar 💓";
+  return "Necesitan esforzarse más 💔";
 };
 
 const isRegistrationRequired = (db) => {
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
   try {
     groupMeta = m.groupMetadata;
   } catch (e) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa mengambil data grup!");
+    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> ¡No se pudieron obtener los datos del grupo!");
   }
 
   const participants = groupMeta.participants || [];
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     .filter((jid) => jid && jid !== botNumber);
 
   if (memberJids.length < 2) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Minimal ada 2 member untuk dijodohkan!");
+    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> ¡Se necesitan al menos 2 miembros para emparejar!");
   }
 
   const allUsers = db.getAllUsers();
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
   if (registrationRequired && registeredMembers.length < 2) {
     return m.reply(
-      "❌ *ɢᴀɢᴀʟ*\n\n> Mode wajib daftar aktif. Minimal harus ada 2 member yang sudah terdaftar di grup ini!",
+      "❌ *ɢᴀɢᴀʟ*\n\n> ¡Modo de registro obligatorio activo. Se necesitan al menos 2 miembros registrados en este grupo!",
     );
   }
 
@@ -165,22 +165,22 @@ async function handler(m, { sock }) {
     return "█".repeat(filled) + "░".repeat(empty);
   })();
 
-  let text = `💘 *ᴊᴏᴅᴏʜ ʀᴀɴᴅᴏᴍ*\n\n`;
-  text += `╭┈┈⬡「 💑 *ᴘᴀsᴀɴɢᴀɴ* 」\n`;
+  let text = `💘 *ᴇᴍᴘᴀʀᴇᴊᴀᴍɪᴇɴᴛᴏ ᴀʟ ᴀᴢᴀʀ*\n\n`;
+  text += `╭┈┈⬡「 💑 *ᴘᴀʀᴇᴊᴀ* 」\n`;
   text += `┃ ${label1} ${name1}\n`;
   text += `┃ ❤️\n`;
   text += `┃ ${label2} ${name2}\n`;
   text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  text += `╭┈┈⬡「 📊 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ* 」\n`;
+  text += `╭┈┈⬡「 📊 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ* 」\n`;
   text += `┃ ${progressBar} *${compatibility}%*\n`;
   text += `┃ ${compatibilityEmoji(compatibility)}\n`;
-  text += `┃ Status: *${compatibilityText(compatibility)}*\n`;
+  text += `┃ Estado: *${compatibilityText(compatibility)}*\n`;
   text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   if (usedRegistration) {
-    text += `> ✨ _Dijodohkan berdasarkan data registrasi_\n`;
+    text += `> ✨ _Emparejado según datos de registro_\n`;
   }
   if (registrationRequired) {
-    text += `> 🔒 _Mode wajib daftar aktif, hanya member terdaftar yang dipilih_\n`;
+    text += `> 🔒 _Modo de registro activo, solo se eligen miembros registrados_\n`;
   }
   text += `> _"${quote}"_`;
 

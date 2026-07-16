@@ -107,7 +107,7 @@ const pluginConfig = {
   name: ["tiktok", "tt", "ttmp4"],
   alias: ["tiktokdl", "ttdown"],
   category: "download",
-  description: "Download video/slide TikTok tanpa watermark",
+  description: "Descargar video/slide TikTok sin marca de agua",
   usage: ".tiktok <url>",
   example: ".tiktok https://vt.tiktok.com/xxx",
   isOwner: false,
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `📌 Contoh: *${prefix + command} https://vt.tiktok.com/...*`,
+      `📌 Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
     );
   }
   m.react("🕕");
@@ -142,15 +142,15 @@ async function handler(m, { sock }) {
       if (!zann) throw new Error("No video data found");
       builder.addVideo(zann.url);
 
-      const authorText = `> 👤 *Author:* ${result.author.nickname} (@${result.author.fullname})\n`;
-      const descText = `> 📝 *Caption:* ${result.title || "-"}\n`;
-      const musicText = `> 🎵 *Music:* ${result.music_info.title} - ${result.music_info.author}\n`;
-      const durationText = result.durations > 0 ? `> ⏱️ *Duration:* ${result.duration}\n` : "";
-      const infoText = `> 📅 *Uploaded:* ${result.taken_at}\n${durationText}> 🌎 *Region:* ${result.region}`;
-      builder.addText("# TIKTOK DOWNLOADER\n\n" + authorText + descText + musicText + infoText);
+      const authorText = `> 👤 *Autor:* ${result.author.nickname} (@${result.author.fullname})\n`;
+      const descText = `> 📝 *Pie de foto:* ${result.title || "-"}\n`;
+      const musicText = `> 🎵 *Música:* ${result.music_info.title} - ${result.music_info.author}\n`;
+      const durationText = result.durations > 0 ? `> ⏱️ *Duración:* ${result.duration}\n` : "";
+      const infoText = `> 📅 *Subido:* ${result.taken_at}\n${durationText}> 🌎 *Región:* ${result.region}`;
+      builder.addText("# DESCARGADOR DE TIKTOK\n\n" + authorText + descText + musicText + infoText);
 
       builder.addTable([
-        ["👀 Views", "❤️ Likes", "💬 Comments", "🔁 Shares", "📥 Downloads"],
+        ["👀 Vistas", "❤️ Me gusta", "💬 Comentarios", "🔁 Compartidos", "📥 Descargas"],
         [result.stats.views, result.stats.likes, result.stats.comment, result.stats.share, result.stats.download]
       ]);
 
@@ -159,13 +159,13 @@ async function handler(m, { sock }) {
       await sock.sendMessage(
         m.chat,
         {
-          footer: "> 🌿 Mau dapetin audio nya juga? kalau mau bisa tekan tombol dibawah",
+          footer: "> 🌿 ¿Quieres obtener el audio también? Si quieres presiona el botón de abajo",
           text: "",
           interactiveButtons: [
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                title: "📩 Unduh Audionya",
+                title: "📩 Descargar audio",
                 id: `${m.prefix}ttmp3 ${text}`,
               }),
             },
@@ -189,7 +189,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("❌");
-    m.reply("Coba lagi nanti, atau bisa coba " + m.prefix + "tt2");
+    m.reply("Intenta de nuevo más tarde, o puedes probar " + m.prefix + "tt2");
   }
 }
 

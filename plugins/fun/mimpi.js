@@ -7,8 +7,8 @@ const pluginConfig = {
     name: 'mimpi',
     alias: ['dream', 'dreamworld'],
     category: 'fun',
-    description: 'Jelajahi dunia mimpimu berdasarkan nama',
-    usage: '.mimpi <nama>',
+    description: 'Explora el mundo de tus sueños según tu nombre',
+    usage: '.mimpi <nombre>',
     example: '.mimpi Keisya',
     isOwner: false,
     isPremium: false,
@@ -19,63 +19,63 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const DREAM_LEVELS = ['Lucid ✨', 'Mystic 🌟', 'Ethereal 💫', 'Divine 🌙', 'Legendary 🎇']
-const DREAM_QUALITIES = ['Peaceful 😌', 'Adventure 🚀', 'Mystical 🔮', 'Prophecy 📖', 'Epic 🗺️']
+const DREAM_LEVELS = ['Lúcida ✨', 'Mística 🌟', 'Etérea 💫', 'Divina 🌙', 'Legendaria 🎇']
+const DREAM_QUALITIES = ['Tranquila 😌', 'Aventurera 🚀', 'Mística 🔮', 'Profética 📖', 'Épica 🗺️']
 
 const ELEMENTS = [
-    '🌊 Lautan Kristal Bercahaya',
-    '🌈 Pelangi Mengambang',
-    '🌺 Taman Melayang',
-    '⭐ Konstelasi Hidup',
-    '🌙 Bulan Kembar',
-    '🏰 Kastil Awan',
-    '🌋 Gunung Prisma',
-    '🎭 Theater Bayangan'
+    '🌊 Océano Cristalino Brillante',
+    '🌈 Arcoíris Flotante',
+    '🌺 Jardín Suspended',
+    '⭐ Constelación Viva',
+    '🌙 Luna Gemela',
+    '🏰 Castillo de Nubes',
+    '🌋 Montaña Prisma',
+    '🎭 Teatro de Sombras'
 ]
 
 const EVENTS = [
-    '🦋 Kupu-kupu membawa pesan rahasia',
-    '🎭 Topeng menari sendiri',
-    '🌊 Hujan bintang jatuh ke laut',
-    '🎪 Parade makhluk ajaib',
-    '🌺 Bunga bernyanyi lagu kuno',
-    '🎨 Lukisan menjadi hidup',
-    '🎵 Musik terlihat sebagai warna',
-    '⚡ Petir membentuk tangga ke langit'
+    '🦋 Mariposas portando mensajes secretos',
+    '🎭 Máscaras bailando solas',
+    '🌊 Lluvia de estrellas cayendo al mar',
+    '🎪 Desfile de criaturas mágicas',
+    '🌺 Flores cantando canciones antiguas',
+    '🎨 Pinturas cobrando vida',
+    '🎵 Música visible como colores',
+    '⚡ Rayos formando escaleras al cielo'
 ]
 
 const ENCOUNTERS = [
-    '🐉 Naga Pelangi Bijaksana',
-    '🧙‍♂️ Penyihir Bintang',
-    '🦊 Rubah Spirit Sembilan Ekor',
-    '🧝‍♀️ Peri Pembawa Mimpi',
-    '🦁 Singa Kristal',
-    '🐋 Paus Terbang Mistis',
-    '🦅 Burung Phoenix Waktu',
-    '🐢 Kura-kura Pembawa Dunia',
-    '🦄 Unicorn Dimensi'
+    '🐉 Dragón Arcoíris Sabio',
+    '🧙‍♂️ Mago de las Estrellas',
+    '🦊 Zorro Espíritu de Nueve Colas',
+    '🧝‍♀️ Hada Portadora de Sueños',
+    '🦁 León de Cristal',
+    '🐋 Ballena Voladora Mística',
+    '🦅 Pájaro Fénix del Tiempo',
+    '🐢 Tortuga Portadora del Mundo',
+    '🦄 Unicornio Dimensional'
 ]
 
 const POWERS = [
-    '✨ Mengendalikan Waktu',
-    '🌊 Berbicara dengan Elemen',
-    '🎭 Shapeshifting',
-    '🌈 Manipulasi Realitas',
-    '👁️ Penglihatan Masa Depan',
-    '🎪 Teleportasi Dimensi',
-    '🌙 Penyembuhan Spiritual',
-    '⚡ Energi Kosmik'
+    '✨ Controlar el Tiempo',
+    '🌊 Hablar con los Elementos',
+    '🎭 Transformación',
+    '🌈 Manipulación de la Realidad',
+    '👁️ Visión del Futuro',
+    '🎪 Teletransportación Dimensional',
+    '🌙 Curación Espiritual',
+    '⚡ Energía Cósmica'
 ]
 
 const MESSAGES = [
-    'Perjalananmu akan membawa perubahan besar',
-    'Rahasia kuno akan terungkap dalam waktu dekat',
-    'Kekuatan tersembunyi akan segera bangkit',
-    'Takdir baru menanti di horizon',
-    'Koneksi spiritual akan menguat',
-    'Transformasi besar akan terjadi',
-    'Pencerahan akan datang dari arah tak terduga',
-    'Misi penting akan segera dimulai'
+    'Tu viaje traerá grandes cambios',
+    'Secretos antiguos se revelarán pronto',
+    'Un poder oculto despertará pronto',
+    'Un nuevo destino espera en el horizonte',
+    'Una conexión espiritual se fortalecerá',
+    'Una gran transformación ocurrirá',
+    'La iluminación vendrá de una dirección inesperada',
+    'Una misión importante comenzará pronto'
 ]
 
 function generateDream(seed) {
@@ -103,32 +103,32 @@ async function handler(m, { sock }) {
     let name = args.join(' ') || m.pushName || m.sender.split('@')[0]
     
     await m.react('🌙')
-    await m.reply('🌙 *Memasuki alam mimpi...*')
+    await m.reply('🌙 *Entrando al mundo de los sueños...*')
     await new Promise(r => setTimeout(r, 1500))
     
     const dream = generateDream(name)
     
-    let txt = `╭═══❯ *🌙 DREAM WORLD* ❮═══\n`
-    txt += `│ 👤 *Explorer:* ${name}\n`
-    txt += `│ ⭐ *Level:* ${dream.level}\n`
-    txt += `│ 💫 *Quality:* ${dream.quality}\n`
-    txt += `│ 🌈 *Elements:*\n`
+    let txt = `╭═══❯ *🌙 MUNDO DE LOS SUEÑOS* ❮═══\n`
+    txt += `│ 👤 *Explorador:* ${name}\n`
+    txt += `│ ⭐ *Nivel:* ${dream.level}\n`
+    txt += `│ 💫 *Calidad:* ${dream.quality}\n`
+    txt += `│ 🌈 *Elementos:*\n`
     for (const el of dream.elements) {
         txt += `│ ├ ${el}\n`
     }
-    txt += `│ 🎪 *Events:*\n`
+    txt += `│ 🎪 *Eventos:*\n`
     for (const ev of dream.events) {
         txt += `│ ├ ${ev}\n`
     }
-    txt += `│ 🌟 *Encounters:*\n`
+    txt += `│ 🌟 *Encuentros:*\n`
     for (const enc of dream.encounters) {
         txt += `│ ├ ${enc}\n`
     }
-    txt += `│ 💫 *Powers:*\n`
+    txt += `│ 💫 *Poderes:*\n`
     for (const pow of dream.powers) {
         txt += `│ ├ ${pow}\n`
     }
-    txt += `│ 🔮 *Message:*\n`
+    txt += `│ 🔮 *Mensaje:*\n`
     txt += `│ ${dream.message}\n`
     txt += `╰════════════════════`
     

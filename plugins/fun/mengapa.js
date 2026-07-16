@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'mengapa',
     alias: ['kenapa', 'why'],
     category: 'fun',
-    description: 'Tanya bot mengapa sesuatu',
-    usage: '.mengapa <pertanyaan>',
-    example: '.mengapa langit biru?',
+    description: 'Pregunta al bot por qué pasa algo',
+    usage: '.mengapa <pregunta>',
+    example: '.mengapa ¿por qué el cielo es azul?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Karena memang sudah takdirnya begitu.',
-    'Hmm, pertanyaan bagus! Aku juga bingung.',
-    'Karena itulah cara kerjanya.',
-    'Karena Tuhan berkehendak demikian.',
-    'Aku nggak tau, cari di Google aja.',
-    'Karena ya gitu aja.',
-    'Mungkin karena kebetulan?',
-    'Karena dunia memang penuh misteri.',
-    'Hmm, sulit dijelaskan sih.',
-    'Karena alam semesta bekerja dengan cara yang misterius.',
-    'Aku juga penasaran, kenapa ya?',
-    'Karena hal tersebut memang seharusnya terjadi.',
-    'Pertanyaan yang bagus! Sayangnya aku nggak punya jawabannya.',
-    'Karena itulah keunikan hidup.',
-    'Karena setiap hal punya alasannya masing-masing.',
-    'Hmm... aku butuh waktu untuk memikirkannya.',
-    'Karena begitulah logikanya.',
-    'Aku rasa karena memang harus begitu.',
-    'Karena segala sesuatu saling berhubungan.',
-    'Nah itu aku juga mikir!'
+    'Porque así estaba escrito.',
+    'Hmm, buena pregunta. Yo también me lo pregunto.',
+    'Porque así funciona.',
+    'Porque Dios quiso que fuera así.',
+    'No lo sé, búscala en Google.',
+    'Porque así es nomás.',
+    'Tal vez por coincidencia.',
+    'Porque el mundo está lleno de misterios.',
+    'Hmm, difícil de explicar.',
+    'Porque el universo funciona de formas misteriosas.',
+    'Yo también me pregunto, ¿por qué será?',
+    'Porque así tenía que pasar.',
+    '¡Buena pregunta! Lástima que no tenga la respuesta.',
+    'Porque eso es lo que hace la vida única.',
+    'Porque cada cosa tiene su razón.',
+    'Hmm... necesito tiempo para pensarlo.',
+    'Porque así es la lógica.',
+    'Creo que es porque tenía que ser así.',
+    'Porque todo está conectado.',
+    '¡Eso también me lo pregunto!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`🤔 *ᴍᴇɴɢᴀᴘᴀ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .mengapa langit biru?`);
+        return m.reply(`🤔 *ᴍᴇɴɢᴀᴘᴀ*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .mengapa ¿por qué el cielo es azul?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

@@ -11,7 +11,7 @@ const pluginConfig = {
   name: ["ttmp3"],
   alias: ["ttmusic", "tiktokmusic"],
   category: "download",
-  description: "Download audio TikTok",
+  description: "Descargar audio de TikTok",
   usage: ".ttmp3 <url>",
   example: ".ttmp3 https://vt.tiktok.com/xxx",
   isOwner: false,
@@ -58,7 +58,7 @@ async function extractAudioFromVideo(videoUrl) {
   });
 
   if (!fs.existsSync(outputFile) || fs.statSync(outputFile).size <= 0) {
-    throw new Error("Gagal mengekstrak audio TikTok");
+    throw new Error("Error al extraer audio de TikTok");
   }
 
   return {
@@ -87,12 +87,12 @@ async function handler(m, { sock }) {
 ┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}ttmp3 <url>\`
 ╰┈┈⬡
 
-> Contoh: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
+> Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
     );
   }
 
   if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-    return m.reply("❌ URL tidak valid. Gunakan link TikTok.");
+    return m.reply("❌ URL no válido. Usa un enlace de TikTok.");
   }
 
   m.react("🕕");
@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
         result.downloads.find((d) => d.type === "nowatermark");
 
       if (!videoDownload?.url) {
-        throw new Error("Audio TikTok tidak ditemukan.");
+        throw new Error("Audio de TikTok no encontrado.");
       }
 
       const extractedAudio = await extractAudioFromVideo(videoDownload.url);
@@ -130,7 +130,7 @@ async function handler(m, { sock }) {
     cleanupTempFiles();
     console.error("[TikTokDL] Error:", err);
     m.react("❌");
-    m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+    m.reply(`❌ *ERROR AL DESCARGAR*\n\n> ${err.message}`);
   }
 }
 

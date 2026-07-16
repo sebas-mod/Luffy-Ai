@@ -105,7 +105,7 @@ const pluginConfig = {
     name: ['tiktok2', 'tt2', 'ttmp4'],
     alias: ['tiktokdl2', 'ttdown2'],
     category: 'download',
-    description: 'Download video/slide TikTok tanpa watermark',
+    description: 'Descargar video/slide TikTok sin marca de agua',
     usage: '.tiktok2 <url>',
     example: '.tiktok2 https://vt.tiktok.com/xxx',
     isOwner: false,
@@ -125,12 +125,12 @@ async function handler(m, { sock }) {
             `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」\n` +
             `┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}tiktok2 <url>\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Contoh: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
+            `> Ejemplo: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
         )
     }
 
     if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-        return m.reply('❌ URL tidak valid. Gunakan link TikTok.')
+        return m.reply('❌ URL no válido. Usa un enlace de TikTok.')
     }
 
     m.react('⏱️')
@@ -139,11 +139,11 @@ async function handler(m, { sock }) {
         const result = await savett(url)
 
         const caption =
-            `✅ *Done kak*\n\n` +
+            `✅ *Listo*\n\n` +
             `👤 *${result.username || '-'}*\n` +
-            `👁️ Views: ${result.views || '-'} | ❤️ Likes: ${result.likes || '-'}\n` +
-            `� Comments: ${result.comments || '-'} | 🔗 Shares: ${result.shares || '-'}\n` +
-            `⏱️ Duration: ${result.duration || '-'}`
+            `👁️ Vistas: ${result.views || '-'} | ❤️ Me gusta: ${result.likes || '-'}\n` +
+            `💬 Comentarios: ${result.comments || '-'} | 🔗 Compartidos: ${result.shares || '-'}\n` +
+            `⏱️ Duración: ${result.duration || '-'}`
 
         if (result.type === 'video' && result.downloads.nowm.length > 0) {
             const videoRes = await axios.get(result.downloads.nowm[0], {
@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
         }
 
         if (result.type === 'photo' && result.slides.length > 0) {
-            await m.reply(`📸 *Mengirim ${result.slides.length} slide...*`)
+            await m.reply(`📸 *Enviando ${result.slides.length} slides...*`)
 
             const mediaList = []
             for (let i = 0; i < result.slides.length; i++) {
@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
             }
 
             if (mediaList.length === 0) {
-                throw new Error('Gagal mengunduh gambar slide')
+                throw new Error('Error al descargar imágenes de las slides')
             }
 
             const opener = generateWAMessageFromContent(
@@ -251,7 +251,7 @@ async function handler(m, { sock }) {
         }
 
         if (result.mp3.length > 0) {
-            m.reply(`🍀 *NOTE*\n> Konten ini tidak memiliki video/slide, mengirim audio saja...`)
+            m.reply(`🍀 *NOTA*\n> Este contenido no tiene video/slides, enviando solo el audio...`)
             await sock.sendMessage(
                 m.chat,
                 {
@@ -264,7 +264,7 @@ async function handler(m, { sock }) {
             return
         }
 
-        throw new Error('Tidak ada media yang dapat diunduh')
+        throw new Error('No hay medios disponibles para descargar')
 
     } catch (err) {
         console.error('[TikTokDL2] Error:', err)

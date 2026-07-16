@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'putus',
     alias: ['breakup', 'cerai'],
     category: 'fun',
-    description: 'Memutuskan hubungan dengan pasangan',
+    description: 'Terminar la relación con tu pareja',
     usage: '.putus',
     example: '.putus',
     isOwner: false,
@@ -26,8 +26,8 @@ async function handler(m, { sock }) {
     if (!senderData.fun.pasangan) {
         await m.react('❌')
         return m.reply(
-            `❌ *Kamu gak ada pacar wehh*\n\n` +
-            `Cari dulu dengan \`${m.prefix}tembak @tag\``
+            `❌ *¡No tienes pareja!*\n\n` +
+            `Busca una primero con \`${m.prefix}tembak @tag\``
         )
     }
     const exPartner = senderData.fun.pasangan
@@ -40,9 +40,9 @@ async function handler(m, { sock }) {
     db.setUser(m.sender, senderData)
     await m.react('💔')
     await m.reply(
-        `💔 *PUTUS!*\n\n` +
-        `@${m.sender.split('@')[0]} dan @${exPartner.split('@')[0]} resmi putus !!\n\n` +
-        `Semoga mendapat yang lebih baik! 🙏`,
+        `💔 *¡SE TERMINÓ!*\n\n` +
+        `@${m.sender.split('@')[0]} y @${exPartner.split('@')[0]} oficialmente terminaron !!\n\n` +
+        `¡Espero que encuentren algo mejor! 🙏`,
         { mentions: [m.sender, exPartner] }
     )
 }

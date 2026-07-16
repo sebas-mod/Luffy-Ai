@@ -5,9 +5,9 @@ const pluginConfig = {
   name: "confess",
   alias: ["confession", "menfess", "anonim"],
   category: "fun",
-  description: "Kirim pesan anonim ke seseorang",
-  usage: ".confess nomor|pesan",
-  example: ".confess 6281234567890|Hai, aku suka kamu!",
+  description: "Enviar mensaje anónimo a alguien",
+  usage: ".confess número|mensaje",
+  example: ".confess 6281234567890|¡Hola, me gustas!",
   isOwner: false,
   isPremium: true,
   isGroup: false,
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   const input = m.fullArgs?.trim() || m.text?.trim();
 
   if (!input || !input.includes("|")) {
-    let txt = `💌 *LAYANAN MENFESS ANONIM* 💌\n\n`;
-    txt += `Mau ngirim pesan rahasia ke gebetan atau teman tanpa ketahuan? Bisa banget kak!\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}confess nomor|pesan\`\n\n`;
-    txt += `*Contoh:*\n`;
-    txt += `> \`${m.prefix}confess 6281234567890|Hai kak, aku suka deh liat senyum kamu!\`\n\n`;
-    txt += `> 🤫 _Tenang aja, identitas kamu 100% aman dan dirahasiakan!_`;
+    let txt = `💌 *SERVICIO MENFESS ANÓNIMO* 💌\n\n`;
+    txt += `¿Quieres enviar un mensaje secreto a tu crush o amigo sin que se entere? ¡Por supuesto!\n\n`;
+    txt += `*Cómo usar:*\n`;
+    txt += `👉 \`${m.prefix}confess número|mensaje\`\n\n`;
+    txt += `*Ejemplo:*\n`;
+    txt += `> \`${m.prefix}confess 6281234567890|¡Hola, me encanta tu sonrisa!\`\n\n`;
+    txt += `> 🤫 _Tranquilo, tu identidad está 100% segura y confidencial!_`;
     return m.reply(txt);
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   const message = messageParts.join("|").trim();
 
   if (!rawNumber || !message) {
-    return m.reply(`Aduh kak formatnya salah! 😅\n\nCoba ketik gini: \`${m.prefix}confess nomor|pesan\``);
+    return m.reply(`¡Ay, el formato es incorrecto! 😅\n\nIntenta escribir así: \`${m.prefix}confess número|mensaje\``);
   }
 
   let targetNumber = rawNumber.trim().replace(/[^0-9]/g, "");
@@ -47,37 +47,37 @@ async function handler(m, { sock }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`Hmm, nomor tujuan yang kamu masukin kayaknya nggak valid deh kak! 🤔`);
+    return m.reply(`Hmm, el número de destino que ingresaste parece no ser válido 🤔`);
   }
 
   const targetJid = targetNumber + "@s.whatsapp.net";
   const senderNumber = m.sender.split("@")[0];
 
   if (targetNumber === senderNumber) {
-    return m.reply(`Ih masa ngirim menfess buat diri sendiri sih kak? Kasih buat orang lain dong! 😂`);
+    return m.reply(`¿En serio vas a enviar menfess para ti mismo? ¡Dáselo a otra persona! 😂`);
   }
 
   try {
     const [onWa] = await sock.onWhatsApp(targetNumber);
     if (!onWa?.exists) {
-      return m.reply(`Yah kak, nomor \`${targetNumber}\` ternyata nggak terdaftar di WhatsApp! 😔`);
+      return m.reply(`Ay, el número \`${targetNumber}\` no está registrado en WhatsApp 😔`);
     }
   } catch (e) {}
 
   if (message.length < 5) {
-    return m.reply(`Pesannya kependekan kak! Minimal 5 karakter ya biar lebih bermakna. 📝`);
+    return m.reply(`¡El mensaje es muy corto! Mínimo 5 caracteres para que tenga más significado. 📝`);
   }
 
   if (message.length > 1000) {
-    return m.reply(`Wah pesannya kepanjangan kak! Maksimal 1000 karakter ya biar bacanya nggak pusing. 📜`);
+    return m.reply(`¡El mensaje es demasiado largo! Máximo 1000 caracteres para que no te duela la cabeza al leerlo. 📜`);
   }
 
-  const confessText = `💌 *ADA PESAN RAHASIA BUAT KAMU KAK!* 💌\n\n` +
-    `Sstt.. Ada seseorang yang diam-diam ngirim pesan buat kamu nih:\n\n` +
-    `💬 *Isi Pesan:*\n` +
+  const confessText = `💌 *¡HAY UN MENSAJE SECRETO PARA TI!* 💌\n\n` +
+    `Shh.. Alguien te envió un mensaje en secreto:\n\n` +
+    `💬 *Contenido del mensaje:*\n` +
     `\`\`\`${message}\`\`\`\n\n` +
-    `> 🔒 _Pesan ini dikirim secara anonim (identitas pengirim dirahasiakan)._\n` +
-    `> ✉️ _Kamu bisa balas pesan ini kok! Tinggal *REPLY* aja pesannya ya!_`;
+    `> 🔒 _Este mensaje fue enviado de forma anónima (la identidad del remitente es confidencial)._\n` +
+    `> ✉️ _¡Puedes responder a este mensaje! Solo *RESPONDE* al mensaje_`;
 
   try {
     const sentMsg = await sock.sendMessage(targetJid, {
@@ -99,10 +99,10 @@ async function handler(m, { sock }) {
       global.confessData.delete(sentMsg.key.id);
     }, 24 * 60 * 60 * 1000);
 
-    let successTxt = `✅ *MENFESS BERHASIL TERKIRIM!* ✅\n\n`;
-    successTxt += `> 📱 Terkirim ke: \`${targetNumber}\`\n`;
-    successTxt += `> 🔒 Identitas kamu aman sentosa!\n\n`;
-    successTxt += `> _Nanti kalau dia balas pesannya, aku bakal langsung terusin ke sini kak! Santai aja_ 😉`;
+    let successTxt = `✅ *¡MENFESS ENVIADO CON ÉXITO!* ✅\n\n`;
+    successTxt += `> 📱 Enviado a: \`${targetNumber}\`\n`;
+    successTxt += `> 🔒 ¡Tu identidad está segura!\n\n`;
+    successTxt += `> _Si te responde, ¡te aviso al instante! No te preocupes_ 😉`;
     await m.reply(successTxt);
   } catch (error) {
     m.reply(te(m.prefix, m.command, m.pushName));
@@ -126,11 +126,11 @@ async function replyHandler(m, { sock }) {
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
-  const replyText = `💌 *ADA BALASAN MENFESS NIH KAK!* 💌\n\n` +
-    `Orang yang kamu kirimin menfess tadi barusan balas pesanmu:\n\n` +
-    `💬 *Isi Balasan:*\n` +
+  const replyText = `💌 *¡HAY UNA RESPUESTA AL MENFESS!* 💌\n\n` +
+    `La persona a la que le enviaste el menfess acaba de responder:\n\n` +
+    `💬 *Contenido de la respuesta:*\n` +
     `\`\`\`${replyMessage}\`\`\`\n\n` +
-    `> 🔒 _Tenang, identitas kamu masih aman!_`;
+    `> 🔒 _Tranquilo, ¡tu identidad sigue segura!_`;
 
   try {
     await sock.sendMessage(confessInfo.senderChat, {
@@ -147,7 +147,7 @@ async function replyHandler(m, { sock }) {
     });
 
     await sock.sendMessage(m.chat, {
-      text: `✅ Sip kak! Balasan kamu udah aku sampaikan ke pengirim rahasianya.`,
+      text: `✅ ¡Listo! Tu respuesta fue entregada al remitente secreto.`,
     });
 
     global.confessData.delete(quotedId);

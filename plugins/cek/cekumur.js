@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekumur',
     alias: ['umur', 'age'],
     category: 'cek',
-    description: 'Cek umur mental kamu',
-    usage: '.cekumur <nama>',
+    description: 'Mide tu edad mental',
+    usage: '.cekumur <nombre>',
     example: '.cekumur Budi',
     isOwner: false,
     isPremium: false,
@@ -19,17 +19,17 @@ async function handler(m) {
     const mentioned = m.mentionedJid[0] || m.sender
                     
     let desc = ''
-    if (percent >= 60) desc = 'Bijaksana seperti orang tua! 🧓'
-    else if (percent >= 40) desc = 'Dewasa dan matang~ 🧑'
-    else if (percent >= 20) desc = 'Jiwa muda! 🧒'
-    else desc = 'Masih seperti anak kecil~ 👶'
+    if (percent >= 60) desc = '¡Sabio/a como un anciano! 🧓'
+    else if (percent >= 40) desc = 'Maduro/a y adulto/a~ 🧑'
+    else if (percent >= 20) desc = '¡Espíritu joven! 🧒'
+    else desc = '¡Todavía como un niño/a~ 👶'
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat keumuran kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat keumuran @${mentioned.split('@')[0]} yak? 
-    
-Tingkat keumuran dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu edad es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir la edad de @${mentioned.split('@')[0]}?
+
+Su edad es de *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

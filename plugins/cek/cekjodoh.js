@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekjodoh',
     alias: ['jodoh', 'match'],
     category: 'cek',
-    description: 'Cek kecocokan jodoh',
-    usage: '.cekjodoh <nama1> & <nama2>',
+    description: 'Mide la compatibilidad de pareja',
+    usage: '.cekjodoh <nombre1> & <nombre2>',
     example: '.cekjodoh Budi & Ani',
     isOwner: false,
     isPremium: false,
@@ -19,7 +19,7 @@ async function handler(m) {
     const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
     
     if (parts.length < 2) {
-        return m.reply(`💕 *ᴄᴇᴋ ᴊᴏᴅᴏʜ*\n\n> Masukkan 2 nama!\n\n> Contoh: ${m.prefix}cekjodoh Budi & Ani`)
+        return m.reply(`💕 *ᴄᴇᴋ ᴊᴏᴅᴏʜ*\n\n> ¡Ingresa 2 nombres!\n\n> Ejemplo: ${m.prefix}cekjodoh Budi & Ani`)
     }
     
     const percent = Math.floor(Math.random() * 101)
@@ -27,23 +27,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'Jodoh banget! Langsung nikah aja! 💍'
+        desc = '¡Pareja perfecta! ¡Casense ya! 💍'
     } else if (percent >= 70) {
-        desc = 'Cocok banget! 💕'
+        desc = '¡Muy compatibles! 💕'
     } else if (percent >= 50) {
-        desc = 'Lumayan cocok~ 😊'
+        desc = 'Bastante compatibles~ 😊'
     } else if (percent >= 30) {
-        desc = 'Hmm, perlu usaha lebih 🤔'
+        desc = 'Hmm, necesitan esfuerzo 🤔'
     } else {
-        desc = 'Mungkin cari yang lain? 😅'
+        desc = '¿Mejor buscan a otro? 😅'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kejodohan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kejodohan @${mentioned.split('@')[0]} yak? 
+Tu compatibilidad de pareja es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir la compatibilidad de pareja de @${mentioned.split('@')[0]}?
     
-Tingkat kejodohan dia sebesar *${percent}%*
+La compatibilidad de pareja es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

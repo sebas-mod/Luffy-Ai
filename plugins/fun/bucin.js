@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'bucin',
     alias: ['gombal', 'love', 'romantis'],
     category: 'fun',
-    description: 'Random kata-kata bucin/romantis',
+    description: 'Frase romántica/encantadora aleatoria',
     usage: '.bucin',
     example: '.bucin',
     isOwner: false,
@@ -19,7 +19,7 @@ async function handler(m) {
     const quote = getRandomItem('bucin.json');
     
     if (!quote) {
-        await m.reply('❌ Data tidak tersedia!');
+        await m.reply('❌ ¡Datos no disponibles!');
         return;
     }
     

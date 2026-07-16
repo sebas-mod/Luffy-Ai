@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'fuckmylife',
     alias: ['fml'],
     category: 'fun',
-    description: 'Random FML story',
+    description: 'Historia FML aleatoria',
     usage: '.fuckmylife',
     example: '.fuckmylife',
     isOwner: false,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.text) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil FML story`)
+            return m.reply(`❌ Error al obtener la historia FML`)
         }    
         await m.reply(data.data.text)
         m.react('✅')

@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'haruskah',
     alias: ['harus', 'should'],
     category: 'fun',
-    description: 'Tanya bot haruskah sesuatu',
-    usage: '.haruskah <pertanyaan>',
-    example: '.haruskah aku menyatakan cinta?',
+    description: 'Pregunta al bot si se debe hacer algo',
+    usage: '.haruskah <pregunta>',
+    example: '.haruskah debo confesar mi amor?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -15,33 +15,33 @@ const pluginConfig = {
 };
 
 const answers = [
-    'Ya, harus!',
-    'Tidak usah.',
-    'Hmm, terserah kamu sih.',
-    'Harus banget! Jangan ragu!',
-    'Nggak harus juga.',
-    'Kalau menurutmu perlu, lakukan!',
-    'Pikir dulu baik-baik.',
-    'Harus! Sekarang!',
-    'Jangan, mending tunggu dulu.',
-    'Harus, tapi hati-hati.',
-    'Nggak harus, tapi boleh.',
-    'Wajib!',
-    'Hmm, skip aja deh.',
-    'Lakukan kalau sudah yakin.',
-    'Harus, demi masa depanmu!',
-    'Nggak harus, santai aja.',
-    'Go for it!',
-    'Jangan buru-buru, pikir lagi.',
-    'Tentu harus!',
-    'Lihat situasinya dulu.'
+    '¡Sí, debes!',
+    'No hace falta.',
+    'Hmm, es tu decisión.',
+    '¡Debes! ¡No dudes!',
+    'Tampoco es obligatorio.',
+    'Si crees que es necesario, ¡hazlo!',
+    'Piénsalo bien primero.',
+    '¡Debes! ¡Ahora!',
+    'No, mejor espera.',
+    'Debes, pero con cuidado.',
+    'No es obligatorio, pero está bien.',
+    '¡Obligatorio!',
+    'Hmm, mejor déjalo.',
+    'Hazlo cuando estés seguro.',
+    '¡Debes, por tu futuro!',
+    'No es obligatorio, tranquilo.',
+    '¡Adelante!',
+    'No te apures, piensa otra vez.',
+    '¡Claro que debes!',
+    'Mira la situación primero.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`⚖️ *ʜᴀʀᴜsᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .haruskah aku menyatakan cinta?`);
+        return m.reply(`⚖️ *ʜᴀʀᴜsᴋᴀʜ*\n\n> ¡Escribe una pregunta!\n\n*Ejemplo:*\n> .haruskah debo confesar mi amor?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

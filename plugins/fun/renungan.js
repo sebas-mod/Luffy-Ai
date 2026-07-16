@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'renungan',
     alias: ['motivasi', 'mutiara'],
     category: 'fun',
-    description: 'Random gambar renungan/motivasi',
+    description: 'Imagen aleatoria de reflexión/motivación',
     usage: '.renungan',
     example: '.renungan',
     isOwner: false,
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
         m.react('✅')
     } catch (error) {
         m.react('❌')
-        await m.reply('❌ Gagal mengambil gambar. Coba lagi!');
+        await m.reply('❌ Error al obtener la imagen. ¡Intenta de nuevo!');
     }
 }
 

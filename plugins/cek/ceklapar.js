@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'ceklapar',
     alias: ['lapar', 'hungry'],
     category: 'cek',
-    description: 'Cek tingkat kelaparan kamu',
-    usage: '.ceklapar <nama>',
+    description: 'Mide tu nivel de hambre',
+    usage: '.ceklapar <nombre>',
     example: '.ceklapar Budi',
     isOwner: false,
     isPremium: false,
@@ -19,18 +19,18 @@ async function handler(m) {
     const mentioned = m.mentionedJid[0] || m.sender
                     
     let desc = ''
-    if (percent >= 90) desc = 'LAPARRR! Makan sekarang! 🍔🍕🍜'
-    else if (percent >= 70) desc = 'Perut keroncongan~ 😋'
-    else if (percent >= 50) desc = 'Bisa lah ngemil 🍿'
-    else if (percent >= 30) desc = 'Masih kenyang 😊'
-    else desc = 'Kekenyangan! 🤰'
+    if (percent >= 90) desc = '¡MUY HAMBRIENTO/A! ¡Come ahora! 🍔🍕🍜'
+    else if (percent >= 70) desc = '¡El estómago ruge~ 😋'
+    else if (percent >= 50) desc = 'Se puede picar algo 🍿'
+    else if (percent >= 30) desc = 'Todavía lleno/a 😊'
+    else desc = '¡Demasiado lleno/a! 🤰'
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kelaparan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kelaparan @${mentioned.split('@')[0]} yak? 
+Tu nivel de hambre es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel de hambre de @${mentioned.split('@')[0]}?
     
-Tingkat kelaparan dia sebesar *${percent}%*
+Su nivel de hambre es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

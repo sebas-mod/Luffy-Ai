@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'truth',
     alias: ['truthq'],
     category: 'fun',
-    description: 'Random pertanyaan truth',
+    description: 'Pregunta aleatoria de verdad',
     usage: '.truth',
     example: '.truth',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 async function handler(m) {
     const question = getRandomItem('truth.json');
     if (!question) {
-        await m.reply('❌ Data tidak tersedia!');
+        await m.reply('❌ ¡Datos no disponibles!');
         return;
     }
     await m.reply(`\`\`\`${question}\`\`\``);

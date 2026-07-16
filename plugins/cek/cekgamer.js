@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekgamer',
     alias: ['gamer', 'pro'],
     category: 'cek',
-    description: 'Cek seberapa pro gamer kamu',
-    usage: '.cekgamer <nama>',
+    description: 'Mide qué tan pro gamer eres',
+    usage: '.cekgamer <nombre>',
     example: '.cekgamer Budi',
     isOwner: false,
     isPremium: false,
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'PRO PLAYER! Esports level! 🏆'
+        desc = '¡PRO PLAYER! ¡Nivel esports! 🏆'
     } else if (percent >= 70) {
-        desc = 'Jago banget! 🎮'
+        desc = '¡Muy bueno/a! 🎮'
     } else if (percent >= 50) {
-        desc = 'Lumayan pro 👍'
+        desc = 'Bastante pro 👍'
     } else if (percent >= 30) {
-        desc = 'Masih noob nih 😅'
+        desc = 'Todavía novato/a 😅'
     } else {
-        desc = 'Mending main masak-masakan 🍳'
+        desc = 'Mejor juega a cocinar 🍳'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat kegameran kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kegameran @${mentioned.split('@')[0]} yak? 
-    
-Tingkat kegameran dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu nivel de gamer es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel de gamer de @${mentioned.split('@')[0]}?
+
+Su nivel de gamer es del *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

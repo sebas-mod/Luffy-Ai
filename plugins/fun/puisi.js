@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'puisi',
     alias: ['puisiku', 'sajak'],
     category: 'fun',
-    description: 'Random puisi Indonesia',
+    description: 'Poema indonesio aleatorio',
     usage: '.puisi',
     example: '.puisi',
     isOwner: false,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
         
         if (!res.status || !res.data?.text) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil puisi`)
+            return m.reply(`❌ Error al obtener el poema`)
         }
         
         const text = res.data.text

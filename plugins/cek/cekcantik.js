@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'cekcantik',
     alias: ['cantik', 'beautiful'],
     category: 'cek',
-    description: 'Cek seberapa cantik kamu',
-    usage: '.cekcantik <nama>',
+    description: 'Mide qué tan hermosa eres',
+    usage: '.cekcantik <nombre>',
     example: '.cekcantik Ani',
     isOwner: false,
     isPremium: false,
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'Cantik banget kayak bidadari! 👸✨'
+        desc = '¡Hermosa como un ángel! 👸✨'
     } else if (percent >= 70) {
-        desc = 'Cantik banget! 💕'
+        desc = '¡Muy hermosa! 💕'
     } else if (percent >= 50) {
-        desc = 'Manis dan cantik~ 🌸'
+        desc = 'Dulce y hermosa~ 🌸'
     } else if (percent >= 30) {
-        desc = 'Lumayan cantik 😊'
+        desc = 'Bastante hermosa 😊'
     } else {
-        desc = 'Tetep cantik kok! 💖'
+        desc = '¡Sigues siendo hermosa! 💖'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat kecantikan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kecantikan @${mentioned.split('@')[0]} yak? 
-    
-Tingkat kecantikan dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu nivel de belleza es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel de belleza de @${mentioned.split('@')[0]}?
+
+Su nivel de belleza es del *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

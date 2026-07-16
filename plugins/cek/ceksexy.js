@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'ceksexy',
     alias: ['sexy', 'hot'],
     category: 'cek',
-    description: 'Cek seberapa sexy kamu',
-    usage: '.ceksexy <nama>',
+    description: 'Mide qué tan sexi eres',
+    usage: '.ceksexy <nombre>',
     example: '.ceksexy Budi',
     isOwner: false,
     isPremium: false,
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'SEXY ABIS! 🔥🔥🔥'
+        desc = '¡SEXY TOTAL! 🔥🔥🔥'
     } else if (percent >= 70) {
-        desc = 'Hot banget! 😏'
+        desc = '¡Muy hot! 😏'
     } else if (percent >= 50) {
-        desc = 'Lumayan menggoda~ 😊'
+        desc = 'Bastante seductor/a~ 😊'
     } else if (percent >= 30) {
-        desc = 'Biasa aja sih 🙂'
+        desc = 'Normal 🙂'
     } else {
-        desc = 'Mungkin cute bukan sexy 😅'
+        desc = '¿Quizás lindo/a no sexi? 😅'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
-    
-Tingkat kesexyan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kesexyan @${mentioned.split('@')[0]} yak? 
-    
-Tingkat kesexyan dia sebesar *${percent}%*
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
+
+Tu nivel de sex appeal es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres medir el nivel de sex appeal de @${mentioned.split('@')[0]}?
+
+Su nivel de sex appeal es de *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })
