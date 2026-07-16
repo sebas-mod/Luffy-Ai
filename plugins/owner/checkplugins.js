@@ -12,7 +12,7 @@ const pluginConfig = {
     isOwner: true,
     isPremium: false,
     isGroup: false,
-    isPrivate: true,
+    isPrivate: false,
     cooldown: 60,
     energi: 0,
     isEnabled: true
@@ -77,21 +77,19 @@ async function handler(m) {
         }
     }
 
-    let txt = `🔍 *REVISIÓN DE PLUGINS*\n\n`
-    txt += `📁 Total: *${allFiles.length}* archivos\n`
-    txt += `✅ OK: *${results.ok.length}*\n`
-    txt += `❌ Errores: *${results.fail.length}*\n`
+    let txt = `🔍 REVISIÓN DE PLUGINS\n`
+    txt += `Total: ${allFiles.length} | OK: ${results.ok.length} | Errores: ${results.fail.length}\n`
 
     if (results.fail.length > 0) {
-        txt += `\n❌ *ERROS ENCONTRADOS:*\n`
+        txt += `\n❌ ERRORES:\n`
         for (const f of results.fail) {
-            txt += `\n• \`${f.file}\`\n`
+            txt += `\n${f.file}\n`
             for (const issue of f.issues) {
-                txt += `  ↳ ${issue}\n`
+                txt += `  → ${issue}\n`
             }
         }
     } else {
-        txt += `\n✅ ¡Todos los plugins cargan correctamente!`
+        txt += `\n✅ Todos los plugins OK`
     }
 
     if (txt.length > 4000) {
