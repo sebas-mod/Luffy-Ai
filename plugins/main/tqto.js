@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
         { name: 'Udun', role: 'Partner', icon: '🛒' },
         { name: 'Zanspiw', role: 'Youtuber', icon: '🌐' },
         { name: 'Danzz Nano', role: 'Youtuber', icon: '🌐' },
-        { name: 'Youtuber Lain yang udah review', role: 'Youtuber', icon: '🌐' },
+        { name: 'Otros que ya revisaron', role: 'Youtuber', icon: '🌐' },
         { name: 'Kalian Semua', role: 'Best', icon: '🌐' },
         { name: 'Open Source Community', role: 'Libraries & Tools', icon: '🌐' },
 

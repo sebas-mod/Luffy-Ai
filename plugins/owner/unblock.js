@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
             '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
             '> `.unblock 628xxx` — Unblock via número\n' +
             '> `.unblock` (reply mensaje) — Unblock pengirim\n' +
-            '> `.unblock @mention` — Unblock yang di-mention\n' +
+            '> `.unblock @mention` — Desbloquear al mencionado\n' +
             '> `.unblock` (di private chat) — Unblock user esto'
         )
     }

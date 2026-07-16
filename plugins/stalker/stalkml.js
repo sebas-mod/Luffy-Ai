@@ -96,7 +96,7 @@ async function handler(m, { text }) {
             const region = getRegion(serverId);
             
             let caption = `🎮 *MOBILE LEGENDS STALKER* 🎮\n\n`;
-            caption += `Pencarian berhasil! Berikut adalah detail akun yang kamu lacak:\n\n`;
+            caption += `¡Búsqueda exitosa! Aquí están los detalles de la cuenta que rastreaste:\n\n`;
             caption += `👤 *Nickname:* ${json.name}\n`;
             caption += `🆔 *User ID:* ${userId}\n`;
             caption += `🌐 *Server ID:* ${serverId}\n`;

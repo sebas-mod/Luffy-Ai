@@ -327,7 +327,7 @@ async function handler(m, { sock }) {
               mimetype: "application/json",
               caption:
                 header +
-                `\n\n📄 Pretty JSON dienvía sebagai file (${formatSize(pretty.length)})`,
+                `\n\n📄 Pretty JSON enviado como archivo (${formatSize(pretty.length)})`,
             },
             { quoted: m },
           );
@@ -339,7 +339,7 @@ async function handler(m, { sock }) {
               document: buffer,
               fileName,
               mimetype: mimeType || "application/octet-stream",
-              caption: header + "\n\n📎 Full response dienvía sebagai file",
+              caption: header + "\n\n📎 Full response enviado como archivo",
             },
             { quoted: m },
           );
@@ -352,7 +352,7 @@ async function handler(m, { sock }) {
             document: buffer,
             fileName,
             mimetype: mimeType || "application/octet-stream",
-            caption: header + "\n\n📎 Full response dienvía sebagai file",
+            caption: header + "\n\n📎 Full response enviado como archivo",
           },
           { quoted: m },
         );
@@ -365,7 +365,7 @@ async function handler(m, { sock }) {
           document: buffer,
           fileName,
           mimetype: mimeType || "application/octet-stream",
-          caption: header + "\n\n📎 Full response dienvía sebagai file",
+          caption: header + "\n\n📎 Full response enviado como archivo",
         },
         { quoted: m },
       );

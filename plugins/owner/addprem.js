@@ -18,7 +18,7 @@ const pluginConfig = {
   category: "owner",
   description: "Gestiona usuarios premium",
   usage:
-    ".addprem <número/@tag> [hari]\n.delprem <número/@tag>\n.listprem\n.cekprem <número/@tag>",
+    ".addprem <número/@tag> [días]\n.delprem <número/@tag>\n.listprem\n.cekprem <número/@tag>",
   example: ".addprem 6281234567890 30",
   isOwner: true,
   isPremium: false,

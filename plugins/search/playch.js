@@ -108,32 +108,32 @@ async function handler(m, { sock }) {
     );
   if (!chId)
     return m.reply(
-      `❌ Saluran belum diatur. Gunakan \`--idch <id>\` atau atur di config.js`,
+      `❌ Saluran no configurado. Gunakan \`--idch <id>\` atau atur di config.js`,
     );
 
   m.react("🔎");
   try {
     const { videos } = await yts(q);
     const video = pickVideo({ videos });
-    if (!video) return m.reply(`❌ Video tidak ditemukan`);
+    if (!video) return m.reply(`❌ Video no encontrado`);
 
     const ytChannel = video.author?.name || video.author?.username || "Unknown";
 
     let info = `🎵 *NOW PLAYING (SALURAN)*\n\n`;
-    info += `📌 *Judul:* ${video.title}\n\n`;
+    info += `📌 *Título:* ${video.title}\n\n`;
     info += `*DETAIL*\n`;
     info += `👤 Channel: *${ytChannel}*\n`;
-    info += `⏱️ Durasi: *${video.duration.timestamp}*\n`;
+    info += `⏱️ Duración: *${video.duration.timestamp}*\n`;
     info += `👀 Views: *${formatViews(video.views)}*\n`;
     info += `📅 Upload: *${video.ago}*\n`;
     info += `🆔 ID: \`${video.videoId}\`\n\n`;
     if (video.description) {
       const desc = video.description.substring(0, 150).replace(/\n/g, " ");
-      info += `*Deskripsi:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
+      info += `*Descripción:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
     }
-    info += `📡 Saluran: \`${chId}\`\n`;
+    info += `📡 Canal: \`${chId}\`\n`;
     info += `🔗 ${video.url}\n\n`;
-    info += `_⏳ mengirim audio ke saluran, harap tunggu..._`;
+    info += `_⏳ enviando audio al canal, por favor espera..._`;
 
     await sock.sendMedia(m.chat, video.thumbnail, info, m, { type: "image" });
 

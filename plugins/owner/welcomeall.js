@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     if (!action || !['on', 'off'].includes(action)) {
         return m.reply(
             `👋 *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ*\n\n` +
-            `> Activokan/nonactivokan welcome di SEMUA grup sekaligus\n\n` +
+            `> Activokan/nonactivokan welcome en TODOS los grupos sekaligus\n\n` +
             `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
             `┃ ${m.prefix}welcomeall on\n` +
             `┃ ${m.prefix}welcomeall off\n` +

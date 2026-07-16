@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     }
 
     if (existing.length === 0) {
-        return m.reply(`❌ No hay data database yang ditemukan`)
+        return m.reply(`❌ No hay data database encontrado`)
     }
 
     pendingReset.set(m.sender, Date.now())

@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
             '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
             '> `.block 628xxx` — Blokir via número\n' +
             '> `.block` (reply mensaje) — Blokir pengirim\n' +
-            '> `.block @mention` — Blokir yang di-mention\n' +
+            '> `.block @mention` — Bloquear al mencionado\n' +
             '> `.block` (en chat privado) — Bloquear este usuario'
         )
     }

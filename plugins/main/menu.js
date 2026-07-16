@@ -1163,13 +1163,13 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
         function runtimeStr(seconds) {
           seconds = Number(seconds);
           const d = Math.floor(seconds / (3600 * 24));
-          if (d > 0) return `${d} hari`;
+          if (d > 0) return `${d} días`;
           const h = Math.floor((seconds % (3600 * 24)) / 3600);
-          if (h > 0) return `${h} jam`;
+          if (h > 0) return `${h} horas`;
           const m = Math.floor((seconds % 3600) / 60);
-          if (m > 0) return `${m} menit`;
+          if (m > 0) return `${m} minutos`;
           const s = Math.floor(seconds % 60);
-          return `${s} detik`;
+          return `${s} segundos`;
         }
 
         const toMathSansBold = (text) => {

@@ -7,7 +7,7 @@ const pluginConfig = {
     category: 'info',
     description: 'Obtener noticias actualizadas de diversas fuentes',
     usage: '.berita <sumber>',
-    example: '.kompas atau .berita cnn',
+    example: '.kompas o .berita cnn',
     isOwner: false,
     isPremium: false,
     isGroup: false,

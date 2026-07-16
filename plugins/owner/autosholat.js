@@ -144,7 +144,7 @@ async function handler(m, { sock, db }) {
     }
   }
 
-  return m.reply(`Comando yang kamu ingresa kurang tepat. Kamu puede mengusa parameter seperti \`on\`, \`off\`, \`status\`, \`close\`, \`duration\`, o \`kota\`.`);
+  return m.reply(`El comando que ingresaste no es correcto. Puedes usar el parámetro seperti \`on\`, \`off\`, \`status\`, \`close\`, \`duration\`, o \`kota\`.`);
 }
 
 async function runAutoSholat(sock) {

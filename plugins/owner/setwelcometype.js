@@ -83,7 +83,7 @@ async function handler(m, { sock, db }) {
     `- *V5 Simple* ✨ — Mensaje de texto sencillo acompañado de la foto de perfil del miembro que se une, no muy llamativo pero informativo\n\n` +
     `- *V6 Video* 🎥 — Envía un video de bienvenida atractivo con pie de foto de bienvenida para el miembro\n\n` +
     `- *V7 Interactive Quoted* 💬 — Envía un mensaje interactivo y faa quoted de la persona que se une\n\n` +
-    `> Pilih tipe welcome de tombol di bawah 👇`;
+    `> Pilih tipe welcome del botón de abajo 👇`;
   await sock.sendButton(
     m.chat,
     getAssetBuffer("ourin"),

@@ -85,8 +85,8 @@ async function handler(m, { sock }) {
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +
         `• 7d = 7 días\n` +
-        `• 1m = 1 bulan\n` +
-        `• 1y = 1 tahun\n` +
+        `• 1m = 1 mes\n` +
+        `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
         `*EJEMPLO:*\n` +
         `• ${m.prefix}renewsewa https://chat.whatsapp.com/xxx 30d\n` +

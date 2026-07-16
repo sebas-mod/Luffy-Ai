@@ -107,7 +107,7 @@ async function handler(m, { sock, args }) {
             `• *${m.prefix || "."}savecontacto <nombre>* — Guarydo con nombre kustom\n` +
             `• *${m.prefix || "."}savecontacto* — Guarydo con nombre default "User"\n\n` +
             `*EXPLICACIÓN DEL FLUJO DE USO:*\n` +
-            `1. Seleccionar grupo específico de tombol *Seleccionar Grupo* di bawah, o klik *Todos Grup* para mengekstrak contacto de forma global.\n` +
+            `1. Seleccionar grupo específico de tombol *Seleccionar Grupo* abajo, o klik *Todos Grup* para mengekstrak contacto de forma global.\n` +
             `2. El bot recopilará los números de participantes e ignorará su propio número.\n` +
             `3. El resultado se enviará como un archivo de documento (*.vcf*) junto con la lista de contactos de WhatsApp para que puedas guardarlos directamente.`,
         footer: "Powered by ReviewBot",

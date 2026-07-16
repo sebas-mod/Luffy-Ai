@@ -124,7 +124,7 @@ async function handler(m, { sock }) {
         `• 12h = 12 horas\n` +
         `• 7d = 7 días\n` +
         `• 1m = 1 mes (30 días)\n` +
-        `• 1y = 1 tahun\n` +
+        `• 1y = 1 año\n` +
         `• lifetime = Permanent\n\n` +
         `*INGRESAR GRUPO:*\n` +
         `• Link: https://chat.whatsapp.com/xxx\n` +

@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `📁 *${count} grup diarsipkan*\n\n> Private chat no se puede diarsipkan sekaligus (no hay lista chat)`,
+        `📁 *${count} grupos archivados*\n\n> Private chat no se puede archivados a la vez (no hay lista chat)`,
       );
     } catch (err) {
       global.isFetchingGroups = false;

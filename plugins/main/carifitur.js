@@ -111,9 +111,9 @@ async function loadAllPlugins() {
       listallplugin: ["lplugin", "pluginlist", "allplugin"],
     };
     const caseDescriptions = {
-      cping: "Cek ping case system",
-      listallcase: "Lihat daftar semua case commands",
-      listallplugin: "Lihat daftar semua plugin commands",
+      cping: "Verificar ping del sistema",
+      listallcase: "Ver lista de todos los comandos case",
+      listallplugin: "Ver lista de todos los plugins",
     };
     for (const [category, commands] of Object.entries(caseCommands)) {
       for (const cmd of commands) {

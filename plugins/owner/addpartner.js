@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['delpartner', 'listpartner'],
     category: 'owner',
     description: 'Gestiona la lista de socios del bot',
-    usage: '.addpartner <número/@tag> [hari]\n.delpartner <número/@tag>\n.listpartner\n.cekpartner <número/@tag>',
+    usage: '.addpartner <número/@tag> [días]\n.delpartner <número/@tag>\n.listpartner\n.cekpartner <número/@tag>',
     example: '.addpartner 6281234567890 30',
     isOwner: true,
     isPremium: false,
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
             return m.reply(
                 `🤝 *ᴀᴅᴅ ᴘᴀʀᴛɴᴇʀ*\n\n` +
                 `> Cómo usar:\n` +
-                `> \`${m.prefix}addpartner @tag [hari]\`\n` +
+                `> \`${m.prefix}addpartner @tag [días]\`\n` +
                 `> \`${m.prefix}addpartner 6281xxx 30\`\n\n` +
                 `> Predeterminado: 30 días`
             )

@@ -77,7 +77,7 @@ async function handler(m, { sock, db }) {
       `Cantidad Mensaje Acak: *${totalPesan} Sapaan*\n\n` +
       `*PENGGUNAAN UTAMA:*\n` +
       `• *${m.prefix}autosambut on/off* — Activar/desactivar este en el grupo esto\n` +
-      `• *${m.prefix}autosambut delay <tiempo>* — Cambiando batas tiempo idle\n\n` +
+      `• *${m.prefix}autosambut delay <tiempo>* — Cambiando tiempo límite de inactividad\n\n` +
       `*PENGATURAN PESAN ACAK (LIST):*\n` +
       `• *${m.prefix}autosambut list* — Viendo todos los saludos que están listados\n` +
       `• *${m.prefix}autosambut add <texto>* — Agregar nuevo texto de saludo a la lista\n` +
@@ -185,7 +185,7 @@ async function handler(m, { sock, db }) {
   if (action === "del") {
     const indexInput = parseInt(args[1]);
     if (isNaN(indexInput) || indexInput < 1 || indexInput > groupData.autoSambut.pesanList.length) {
-      return m.reply(`Tolong ingresa número urutan mensaje yang valid.\nLihat lista número con \`${m.prefix}autosambut list\`.`);
+      return m.reply(`Por favor ingresa número urutan mensaje válido.\nLihat lista número con \`${m.prefix}autosambut list\`.`);
     }
     if (groupData.autoSambut.pesanList.length <= 1) {
       return m.reply(`Fallo al eliminar! Debe hay mestomal 1 mensaje dentro de lista sapaan grup esto.`);

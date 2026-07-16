@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
   if (!targetJid) {
     return m.reply(
       `🕵️ *ᴄᴏʟᴏɴɢ ᴘᴘ*\n\n` +
-        `> Reply mensaje seseorang para mencuri PP-nya\n\n` +
+        `> Responde al mensaje de alguien para robar su foto de perfil\n\n` +
         `*ᴄᴀʀᴀ:*\n` +
         `> Reply mensaje target → \`${m.prefix}colongpp\``,
     );

@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Film "${query}" tidak ditemukan`,
+        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Film "${query}" no encontrado`,
       );
     }
 

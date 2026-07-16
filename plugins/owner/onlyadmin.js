@@ -98,7 +98,7 @@ async function handler(m) {
         db.setting('onlyAdmin', false)
         db.save()
         await m.react('❌')
-        return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot puede diakses todos orang')
+        return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot puede ser accedido por todas las personas')
     }
 
     return m.reply('❌ Argumen no válido. Usa: `on` o `off`')

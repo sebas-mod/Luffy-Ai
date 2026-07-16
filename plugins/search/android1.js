@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
-    let caption = `📱 Hasil dari pencarian apk mod *${text}*\n`;
+    let caption = `📱 Resultado de la búsqueda apk mod *${text}*\n`;
     caption += `*${apps.length}* aplicaciones encontradas\n\n`;
 
     apps.forEach((app, i) => {

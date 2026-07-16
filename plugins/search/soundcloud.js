@@ -58,10 +58,10 @@ async function scSearch(q) {
 async function handler(m, { args, sock }) {
   if (!args[0]) {
     let txt = `🎵 *SOUNDCLOUD SEARCH* 🎵\n\n`;
-    txt += `Halo kak! Mau cari lagu apa hari ini?\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}soundcloud <judul lagu>\`\n\n`;
-    txt += `*Contoh:*\n`;
+    txt += `¡Hola! ¿Qué canción quieres buscar hoy?\n\n`;
+    txt += `*Cómo Usar:*\n`;
+    txt += `👉 \`${m.prefix}soundcloud <nombre de la canción>\`\n\n`;
+    txt += `*Ejemplo:*\n`;
     txt += `\`${m.prefix}soundcloud Only We Know\``;
     return m.reply(txt);
   }

@@ -149,7 +149,7 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     if (num < 1 || num > session.keys.length) {
         if (m.quoted && m.quoted.fromMe) {
-            await m.reply(`❌ Número no válido. Pilih antara 1-${session.keys.length}.`);
+            await m.reply(`❌ Número no válido. Selecciona entre 1-${session.keys.length}.`);
         }
         return false;
     }

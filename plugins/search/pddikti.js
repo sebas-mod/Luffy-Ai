@@ -41,7 +41,7 @@ async function pddikti(input) {
       const mhsId = typeof input?.mahasiswaId === "string" ? input.mahasiswaId.trim() : "";
       if (!mhsId) {
         return { Status: false, Code: 400, Input: input, Result: null,
-          Error: "Field 'mahasiswaId' wajib untuk mode 'detail'. Ambil dari hasil search mhs (field 'id')." };
+          Error: "Field 'mahasiswaId' obligatorio para mode 'detail'. Obtén del resultado de búsqueda mhs (field 'id')." };
       }
       const data = await pddiktiGet(`/detail/mhs/${encodeURIComponent(mhsId)}`);
       const message = data?.nama
@@ -71,11 +71,11 @@ async function pddikti(input) {
 
     if (!query) {
       return { Status: false, Code: 400, Input: input, Result: null,
-        Error: "Kata kunci pencarian wajib (nama, NIM, NIDN, dll)." };
+        Error: "Palabra clave de búsqueda obligatoria (nama, NIM, NIDN, etc)." };
     }
     if (query.length < 3) {
       return { Status: false, Code: 400, Input: input, Result: null,
-        Error: "Query terlalu pendek (min 3 karakter)." };
+        Error: "Consulta demasiado corta (min 3 caracteres)." };
     }
 
     let path;
@@ -103,7 +103,7 @@ async function pddikti(input) {
       return {
         Status: true, Code: 200, Input: input,
         Result: {
-          message: `🔍 ${total} hasil untuk "${query}" (${mhs.length} mhs, ${dosen.length} dosen, ${pt.length} pt, ${prodi.length} prodi)`,
+          message: `🔍 ${total} resultados para "${query}" (${mhs.length} mhs, ${dosen.length} dosen, ${pt.length} pt, ${prodi.length} prodi)`,
           query,
           totalCount: total,
           mahasiswa: mhs,
@@ -119,8 +119,8 @@ async function pddikti(input) {
       Status: true, Code: 200, Input: input,
       Result: {
         message: items.length > 0
-          ? `🔍 ${items.length} hasil ${mode} untuk "${query}"`
-          : `🔍 Gak ada hasil ${mode} untuk "${query}"`,
+          ? `🔍 ${items.length} resultados ${mode} para "${query}"`
+          : `🔍 No hay resultados ${mode} untuk "${query}"`,
         query,
         mode,
         count: items.length,
@@ -241,7 +241,7 @@ async function handler(m, { args }) {
           txt += `- @ ${item.nama_pt ?? "-"}\n\n`;
         }
       }
-      if (r.count > 10) txt += `> ... +${r.count - 10} hasil lainnya.\n`;
+      if (r.count > 10) txt += `> ... +${r.count - 10} resultados más.\n`;
     }
     
     m.react("✅");

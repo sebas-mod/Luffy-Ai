@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
   } else {
     return m.reply(
       `👋 *sᴡɢᴄᴠ2 ᴀʟʟ ɢʟᴏʙᴀʟ*\n\n` +
-      `> Envía mensaje *Status Grup V2* a SEMUA grup sekaligus.\n\n` +
+      `> Envía mensaje *Status Grup V2* a TODOS los grupos sekaligus.\n\n` +
       `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
       `┃ ${m.prefix}swgcv2all Halo todos!\n` +
       `┃ o reply imagen/video con caption ${m.prefix}swgcv2all\n` +

@@ -224,7 +224,7 @@ async function handleKelola(m, sock) {
             highlight_label: s.autoVcf ? "ON" : "OFF",
             rows: [
               {
-                title: `${s.autoVcf ? "🔴" : "🟢"} Auto VCF: ${s.autoVcf ? "Matikan" : "Nyalakan"}`,
+                title: `${s.autoVcf ? "🔴" : "🟢"} Auto VCF: ${s.autoVcf ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.autoVcf ? "autovcf_off" : "autovcf_on"}`,
                 description: "Simpan contacto a VCF automáticamente después de push",
               },
@@ -235,7 +235,7 @@ async function handleKelola(m, sock) {
             highlight_label: s.kodeUnik ? "ON" : "OFF",
             rows: [
               {
-                title: `${s.kodeUnik ? "🔴" : "🟢"} Kode Unik: ${s.kodeUnik ? "Matikan" : "Nyalakan"}`,
+                title: `${s.kodeUnik ? "🔴" : "🟢"} Kode Unik: ${s.kodeUnik ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.kodeUnik ? "kodeunik_off" : "kodeunik_on"}`,
                 description: "Tambah kode random di akhir mensaje",
               },
@@ -262,7 +262,7 @@ async function handleKelola(m, sock) {
             highlight_label: s.skipAdmin ? "ON" : "OFF",
             rows: [
               {
-                title: `${s.skipAdmin ? "🔴" : "🟢"} Skip Admin: ${s.skipAdmin ? "Matikan" : "Nyalakan"}`,
+                title: `${s.skipAdmin ? "🔴" : "🟢"} Skip Admin: ${s.skipAdmin ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.skipAdmin ? "skipadmin_off" : "skipadmin_on"}`,
                 description: "Lewati admin grup cuando push",
               },
@@ -320,7 +320,7 @@ async function handleKelola(m, sock) {
       `📱 VCF Target: *${s.vcfTarget === "private" ? "Private" : "Group"}*\n` +
       `👑 Skip Admin: *${s.skipAdmin ? "✅ ON" : "❌ OFF"}*\n` +
       `⏱️ Jeda: *${s.jeda}ms (${(s.jeda / 1000).toFixed(1)}s)*\n\n` +
-      `📌 *Pilih de tombol di bawah para cambiando setting*`,
+      `📌 *Selecciona del botón de abajo para cambiar la configuración*`,
       buttons,
     ),
     { quoted: m },
@@ -363,7 +363,7 @@ async function handleSetJeda(m, sock) {
                 {
                   title: "⚡ 3 Segundo (Cepat)",
                   id: `${m.prefix}setjedapush 3000`,
-                  description: "Rcontenidoko ban lebih tinggi",
+                  description: "Rcontenidoko ban más alto",
                 },
                 {
                   title: "🔄 5 Segundo (Normal)",
@@ -383,7 +383,7 @@ async function handleSetJeda(m, sock) {
                 {
                   title: "🏔️ 30 Segundo (Maksimal)",
                   id: `${m.prefix}setjedapush 30000`,
-                  description: "Jeda paling lama",
+                  description: "Pausa más larga",
                 },
               ],
             },
@@ -406,7 +406,7 @@ async function handleSetJeda(m, sock) {
         `2. Cuanto menor sea la pausa, más rápido termina el push, pero el riesgo de ser bloqueado es mayor\n` +
         `3. Rekomendasi mestomal *3000ms* (3 segundo) agar aman\n` +
         `4. Nilai maksimal *30000ms* (30 segundo)\n\n` +
-        `📌 *Pilih jeda de tombol di bawah o escribe manual*`,
+        `📌 *Selecciona la pausa del botón de abajo o escribe manual*`,
         buttons,
       ),
       { quoted: m },
@@ -446,7 +446,7 @@ async function handlePush(m, sock) {
         `❌ *MODE TIDAK SESUAI*\n\n` +
         `🔒 *Grup esto aún no en mode pushcontacto*\n\n` +
         `*CARA AKTIVASI:*\n` +
-        `1. Tekan tombol di bawah para activando mode pushcontacto\n` +
+        `1. Presiona el botón de abajo para activar el modo pushcontacto\n` +
         `2. Después de mode berubah, ulangi comando push contacto`,
         buttons,
       ),
@@ -742,7 +742,7 @@ async function pushkontakAnswerHandler(m, sock) {
   if (session.step === "message") {
     if (text.length < 1) {
       await m.reply(
-        `❌ *Mensaje no boleh kosong*\n\n📩 *Reply de nuevo con mensaje yang valid*`,
+        `❌ *El mensaje no puede estar vacío*\n\n📩 *Responde de nuevo con un mensaje válido*`,
       );
       return true;
     }
@@ -771,7 +771,7 @@ async function pushkontakAnswerHandler(m, sock) {
       `📊 *Estimasi:* ${estimasi} minuto\n\n` +
       `*Reply mensaje esto con:*\n` +
       `✅ *ya* — Mulai push ahora\n` +
-      `📝 *ubah* — Ubah mensaje yang ingin dienvía\n` +
+      `📝 *ubah* — cambia el mensaje que quieres enviar\n` +
       `❌ *batal* — Batalkan sesi`,
     );
 

@@ -43,9 +43,9 @@ async function handler(m, { sock }) {
 
     txt += `*ꜰᴏʀᴍᴀᴛ ɪɴᴛᴇʀᴠᴀʟ:*\n`;
     txt += `> • \`5m\` = 5 minuto\n`;
-    txt += `> • \`1h\` = 1 jam\n`;
-    txt += `> • \`6h\` = 6 jam\n`;
-    txt += `> • \`1d\` = 1 hari\n\n`;
+    txt += `> • \`1h\` = 1 hora\n`;
+    txt += `> • \`6h\` = 6 horas\n`;
+    txt += `> • \`1d\` = 1 día\n\n`;
 
     txt += `*ᴄᴏɴᴛᴏʜ:*\n`;
     txt += `> \`${m.prefix}autobackup on 6h\` - backup cada 6 horas`;

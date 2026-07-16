@@ -302,20 +302,20 @@ async function handler(m, { sock, db }) {
           }
 
           const weatherCode = {
-            0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+            0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia leve", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia fuerte", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
           }
 
           async function weatherMenu(city = "Jakarta") {
             try {
               const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
               const loc = geo.data.results?.[0]
-              if (!loc) return "Cuaca tidak tersedia"
+              if (!loc) return "Clima no disponible"
               const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
               const current = res.data.current
-              const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+              const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
               return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
             } catch {
-              return "Cuaca tidak tersedia"
+              return "Clima no disponible"
             }
           }
 
@@ -443,7 +443,7 @@ async function handler(m, { sock, db }) {
                     text: txt,
                   },
                   footer: {
-                    text: "Pilih tombol dibawah untuk kembali ke menu utama",
+                    text: "Selecciona el botón de abajo para volver al menú principal",
                   },
                   contextInfo: {
                     isForwarded: true,

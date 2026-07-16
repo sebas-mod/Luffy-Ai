@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
 
       m.react("✅");
     } else {
-      let caption = `> ⚠️ Download URL tidak tersedia`;
+      let caption = `> ⚠️ URL de descarga no disponible`;
       await sock.sendMessage(
         m.chat,
         {

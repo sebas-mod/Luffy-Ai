@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
-    let caption = `📱 *Hasil pencarian dari ${text}*\n\n`;
+    let caption = `📱 *Resultado de la búsqueda de ${text}*\n\n`;
 
     apps.forEach((app, i) => {
       caption += `*${i + 1}.* ${app.name}\n`;
@@ -86,10 +86,10 @@ async function handler(m, { sock }) {
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: "📱 Pilih APK MOD",
+              title: "📱 Seleccionar APK MOD",
               sections: [
                 {
-                  title: `Hasil untuk "${text}"`,
+                  title: `Resultado para "${text}"`,
                   rows: buttons,
                 },
               ],

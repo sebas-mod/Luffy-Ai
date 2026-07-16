@@ -33,7 +33,7 @@ function handler(m) {
         info += `📌 *Estado:* ${status}\n`
 
         if (existing) {
-            info += `⏰ *Jadwal:* ${existing.jadwal.map(j => `*${j}* WIB`).join(', ')}\n`
+            info += `⏰ *Horario:* ${existing.jadwal.map(j => `*${j}* WIB`).join(', ')}\n`
             if (existing.menu) info += `🍴 *Menu:* _${existing.menu}_\n`
         }
 

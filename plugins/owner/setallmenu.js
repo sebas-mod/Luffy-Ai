@@ -93,11 +93,11 @@ async function handler(m, { sock, db }) {
     `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
     `*EXPLICACIÓN VARIANT:*\n\n` +
     `- *V1 Simple Text* 📝 — Lista comando mostrado como texto simple sin imagen o contextInfo, más ligero y rápido de cargar\n\n` +
-    `- *V2 Image + Context* 🖼️ — Imagen header allmenu + full contextInfo con label forwarded newsletter, tampilan standar yang informatif\n\n` +
+    `- *V2 Image + Context* 🖼️ — Imagen header allmenu + full contextInfo con label forwarded newsletter, apariencia estándar e informativa\n\n` +
     `- *V3 Document* 📄 — Allmenu se envía como archivo documento con miniatura personal y respuesta verificada, se ve como un archivo oficial\n\n` +
     `- *V4 Interactive Button* 🔘 — Mensaje interactivo con botón single_select para elegir categoría y quick_reply para navegación, diseño moderno\n\n` +
     `- *V5 NativeFlow* ✨ — Mensaje NativeFlow con insignia de oferta limitada y botones interactivos, el diseño más premium y llamativo\n\n` +
-    `> Pilih variant allmenu de tombol di bawah 👇`;
+    `> Selecciona la variante del menú del botón de abajo 👇`;
 
   await sock.sendButton(
     m.chat,

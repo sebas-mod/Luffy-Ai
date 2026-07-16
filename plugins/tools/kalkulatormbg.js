@@ -82,7 +82,7 @@ function hitungMBG(uang) {
 
 function formatRupiah(angka) {
   const formatted = angka.toLocaleString('id-ID');
-  return angka < 1000 ? `${formatted} Perak` : `Rp ${formatted}`;
+  return angka < 1000 ? `${formatted} centavos` : `Rp ${formatted}`;
 }
 
 async function handler(m, { args }) {
@@ -106,24 +106,24 @@ async function handler(m, { args }) {
 
     const data = hitungMBG(uang);
 
-    let contentTxt = `💰 *Dana :* ${formatRupiah(uang)}\n\n`;
+    let contentTxt = `💰 *Fondos :* ${formatRupiah(uang)}\n\n`;
     contentTxt += `⏳ *Durasi MBG:*\n`;
     contentTxt += `${data.durasi.tahun} AÑOS, ${data.durasi.bulan} MESES, ${data.durasi.hari} DÍAS\n`;
     contentTxt += `${data.durasi.jam} HORAS, ${data.durasi.menit} MINUTOS, ${data.durasi.detik} SEGUNDOS\n`;
     contentTxt += `_(Basado en gasto ~Rp ${(data.pengeluaran / 1000000000).toFixed(1)} Mil millones/día)_\n\n`;
     
     contentTxt += `🍱 *Porciones Equivalentes:*\n`;
-    contentTxt += `${data.porsi.toLocaleString('id-ID')} porsi (@ Rp 15.000/porsi)\n\n`;
+    contentTxt += `${data.porsi.toLocaleString('id-ID')} porciones (@ Rp 15.000/porción)\n\n`;
 
     contentTxt += `📊 *Comparación de Salario Indonesia:*\n`;
-    contentTxt += `🏢 UMR DKI Jakarta (Rp 5,4 Jt/bulan): ${data.gajiIndonesia.dki}\n`;
-    contentTxt += `🏭 UMR Jawa Tengah (Rp 2,04 Jt/bulan): ${data.gajiIndonesia.jateng}\n`;
-    contentTxt += `👨‍🏫 Gaji Guru Honorer (Rp 300rb/bulan): ${data.gajiIndonesia.guru}\n\n`;
+    contentTxt += `🏢 UMR DKI Jakarta (Rp 5,4 Jt/mes): ${data.gajiIndonesia.dki}\n`;
+    contentTxt += `🏭 UMR Jawa Tengah (Rp 2,04 Jt/mes): ${data.gajiIndonesia.jateng}\n`;
+    contentTxt += `👨‍🏫 Salario Profesor Honorario (Rp 300rb/mes): ${data.gajiIndonesia.guru}\n\n`;
 
     contentTxt += `⚽ *Comparación de Salario de Futbolistas:*\n`;
     for (let p of data.pemain) {
       contentTxt += `🏆 ${p.nama}\n`;
-      contentTxt += `💵 ${formatRupiah(p.gaji)}/tahun\n`;
+      contentTxt += `💵 ${formatRupiah(p.gaji)}/año\n`;
       contentTxt += `📈 Porcentaje: ${p.persen}\n\n`;
     }
 
