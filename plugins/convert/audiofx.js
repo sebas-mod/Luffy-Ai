@@ -39,7 +39,7 @@ for (const name of EFFECT_NAMES) {
 
 const pluginConfig = {
     name: [...EFFECT_NAMES],
-    alias: [],
+    alias: ['efecto', 'efectos', 'voicefx'],
     category: 'convert',
     description: 'Audio effects & voice changer',
     usage: '.<effect>',
