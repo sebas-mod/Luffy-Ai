@@ -80,23 +80,18 @@ async function handler(m) {
     let txt = `🔍 *REVISIÓN DE PLUGINS*\n\n`
     txt += `📁 Total: *${allFiles.length}* archivos\n`
     txt += `✅ OK: *${results.ok.length}*\n`
-    txt += `❌ Errores: *${results.fail.length}*\n\n`
+    txt += `❌ Errores: *${results.fail.length}*\n`
 
     if (results.fail.length > 0) {
-        txt += `❌ *ERROS ENCONTRADOS:*\n`
+        txt += `\n❌ *ERROS ENCONTRADOS:*\n`
         for (const f of results.fail) {
             txt += `\n• \`${f.file}\`\n`
             for (const issue of f.issues) {
                 txt += `  ↳ ${issue}\n`
             }
         }
-    }
-
-    if (results.ok.length > 0) {
-        txt += `\n✅ *TODOS LOS DEMÁS OK (${results.ok.length}):*\n`
-        for (const f of results.ok) {
-            txt += `• \`${f}\`\n`
-        }
+    } else {
+        txt += `\n✅ ¡Todos los plugins cargan correctamente!`
     }
 
     if (txt.length > 4000) {
