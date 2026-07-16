@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: ['hapusgrup', 'deletegrup', 'delgrup'],
-    alias: [],
+    alias: ['eliminargrupo', 'delgrup'],
     category: 'owner',
     description: 'Sale de un grupo o lo elimina',
     usage: '.hapusgrup (dentro de grup) o .hapusgrup <jid>',

@@ -2,7 +2,7 @@ import config from '../../config.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['unblock', 'unblocknúmero'],
-    alias: [],
+    alias: ['desbloquear', 'unblokir'],
     category: 'owner',
     description: 'Desbloquea un número de WhatsApp',
     usage: '.unblock <número/reply/mention>',

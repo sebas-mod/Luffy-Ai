@@ -2,6 +2,7 @@ import { getParticipantJids } from '../../src/lib/ourin-lid.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['ht', 'hidetag'],
+    alias: ['hidetag', 'htall'],
     category: 'group',
     description: 'Hidetag con soporte para responder mensajes (texto/multimedia)',
     usage: '.ht [mensaje] o responder a un mensaje',

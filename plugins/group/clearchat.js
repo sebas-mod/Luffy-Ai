@@ -1,7 +1,7 @@
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['clearchat', 'cc', 'cleangc', 'deletechat', 'delchat'],
-    alias: [],
+    alias: ['limpiarchat', 'deletechat'],
     category: 'group',
     description: 'Limpiar chat del grupo',
     usage: '.clearchat',

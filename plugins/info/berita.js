@@ -3,7 +3,7 @@ import * as cheerio from 'cheerio'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['antara', 'cnn', 'cnbc', 'sindonews', 'berita'],
-    alias: [],
+    alias: ['noticias', 'noticia', 'news'],
     category: 'info',
     description: 'Obtener noticias actualizadas de diversas fuentes',
     usage: '.berita <sumber>',

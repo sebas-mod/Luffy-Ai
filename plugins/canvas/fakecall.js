@@ -3,7 +3,7 @@ import FormData from 'form-data'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['fakecall', 'fakecallwa'],
-    alias: [],
+    alias: ['llamadafalsa', 'fakecallwa'],
     category: 'canvas',
     description: 'Crea una imagen de llamada ficticia de WhatsApp.',
     usage: '.fakecall <nombre> | <duración>',

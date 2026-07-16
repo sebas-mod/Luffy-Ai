@@ -2,7 +2,7 @@ import config from '../../config.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['block', 'blokir'],
-    alias: [],
+    alias: ['bloquear', 'blokir'],
     category: 'owner',
     description: 'Bloquea un número de WhatsApp',
     usage: '.block <número/reply/mention>',

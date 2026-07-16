@@ -9,7 +9,7 @@ const pluginConfig = {
         'setan', 'iblis', 'cacat', 'yatim', 'piatu', 'ganteng', 'cantik',
         'jelek', 'keren', 'cupu', 'noob', 'pro', 'sultan', 'miskin', 'kaya', 'siapa'
     ],
-    alias: [],
+    alias: ['quien', 'aleatorio'],
     category: 'fun',
     description: 'Elegir miembro aleatorio para una categoría',
     usage: '.<categoría>',

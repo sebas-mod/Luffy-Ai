@@ -12,7 +12,7 @@ const nexrayTypes = [
 
 const pluginConfig = {
   name: ["loli", ...nexrayTypes],
-  alias: [],
+  alias: ['animepic', 'animeimg'],
   category: "random",
   description: "Imagen aleatoria de anime/reacción (Fuente Nexray)",
   usage: ".<nombre> (ver lista abajo)",

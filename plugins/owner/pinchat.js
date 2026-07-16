@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: ['pinchat', 'pin'],
-    alias: [],
+    alias: ['fijar', 'fijarchat'],
     category: 'owner',
     description: 'Fija o desfija un chat',
     usage: '.pinchat <número/reply> o .pinchat buka <número>',

@@ -2,7 +2,7 @@ import { generateWAMessageFromContent, proto } from "ourin";
 
 const pluginConfig = {
   name: ["sprem", "sticarpremium", "premiumsticar"],
-  alias: [],
+  alias: ['stickermium', 'premiumsticker'],
   category: "owner",
   description: "Reenvía un sticar como premium (Lottie/IA)",
   usage: ".sprem (reply sticar)",

@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: ["baca", "read", "markread"],
-  alias: [],
+  alias: ['leer', 'marcarleido'],
   category: "owner",
   description: "Marca un mensaje como leído",
   usage: ".baca",

@@ -3,7 +3,7 @@ import FormData from 'form-data'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['qrcustom', 'qrcode', 'qr'],
-    alias: [],
+    alias: ['codigqr', 'generarqr'],
     category: 'tools',
     description: 'Generar QR code personalizado con logo',
     usage: '.qrcustom <url>',

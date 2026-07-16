@@ -2,7 +2,7 @@ import { f } from '../../src/lib/ourin-http.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: ['pakustad', 'pak-ustad', 'tanyaustad'],
-    alias: [],
+    alias: ['preguntaustad', 'tanyaustad'],
     category: 'canvas',
     description: 'Crea una imagen de preguntas para el ustad.',
     usage: '.pakustad <pregunta>',

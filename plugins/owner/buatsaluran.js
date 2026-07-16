@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: ["buatsaluran", "createsaluran", "createnewsletter"],
-  alias: [],
+  alias: ['crearsaluran', 'createnewsletter'],
   category: "owner",
   description: "Crea un canal o boletín nuevo",
   usage: ".buatsaluran <nombre>|<deskripsi>",

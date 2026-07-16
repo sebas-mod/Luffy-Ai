@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: ['hapussaluran', 'deletesaluran', 'deletenewsletter'],
-    alias: [],
+    alias: ['eliminarsaluran', 'deletenewsletter'],
     category: 'owner',
     description: 'Elimina un canal o boletín',
     usage: '.hapussaluran <id_saluran>',

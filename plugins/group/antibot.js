@@ -6,7 +6,7 @@ import {
 import config from "../../config.js";
 const pluginConfig = {
   name: ["antibot", "botdetect"],
-  alias: [],
+  alias: ['detectarbot', 'botdetector'],
   category: "group",
   description: "Detecta y expulsa bots de WhatsApp (baileys) del grupo",
   usage: ".antibot <on/off>",

@@ -1,7 +1,7 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
 const pluginConfig = {
     name: ['autodl', 'autodownload'],
-    alias: [],
+    alias: ['descargaautomatica', 'autodescargar'],
     category: 'group',
     description: 'Activa/desactiva descarga automática de enlaces de redes sociales',
     usage: '.autodl on/off',
