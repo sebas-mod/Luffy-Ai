@@ -49,7 +49,7 @@ const pluginConfig = {
   name: "nerdfont-ambil",
   alias: ["dafont-ambil", "fontambil"],
   category: "search",
-  description: "Cari font di DaFont",
+  description: "Buscar fuente en DaFont",
   usage: ".nerdfont-ambil <query>",
   example: ".nerdfont-ambil Coolvetica",
   isOwner: false,
@@ -71,13 +71,13 @@ function formatNumber(num) {
 async function handler(m, { sock }) {
   const query = m.text?.trim()?.toLowerCase();
   if (!query)
-    return m.reply(`*NERD FONT*\n\n> Masukan nama font yang ingin didownload`);
+    return m.reply(`*NERD FONT*\n\n> Ingresa el nombre de la fuente que quieres descargar`);
   try {
     const res = await nerdfonts();
     const data = res.find(
       (d, i) => d?.name.toLowerCase() === query.toLowerCase(),
     );
-    if (!data) return m.reply(`❌ Font "${query}" tidak ditemukan`);
+    if (!data) return m.reply(`❌ Fuente "${query}" no encontrada`);
     sock.sendMessage(m.chat, {
       document: { url: data.download_url },
       fileName: data.name,
@@ -91,8 +91,7 @@ async function handler(m, { sock }) {
       )
         .resize(50, 50)
         .toBuffer(),
-      caption: `*Done*
-Jika kamu ingin mendownload lagi, ketik ${m.prefix}nerdfont lagi`,
+      caption: `*¡Listo!*\nSi quieres descargar otra fuente, escribe ${m.prefix}nerdfont de nuevo`,
     });
   } catch (err) {
     return m.reply(te(m.prefix, m.command, m.pushName));

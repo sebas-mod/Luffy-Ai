@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "coinflip",
   alias: ["cf", "flip", "toss"],
   category: "rpg",
-  description: "Gambling coin flip",
+  description: "Lanzar una moneda para apostar",
   usage: ".coinflip <heads/tails> <bet>",
   example: ".coinflip heads 5000",
   isOwner: false,
@@ -27,20 +27,20 @@ async function handler(m, { sock }) {
 
   if (!choice || (choice !== "heads" && choice !== "tails" && choice !== "h" && choice !== "t")) {
     return m.reply(
-      `🪙 *Tebak Koin Bandar* 🪙\n\n` +
-        `Pilih gambar Garuda (Heads) atau Angka (Tails)!\n\n` +
-        `*Cara Main:*\n` +
-        `👉 \`.coinflip heads <taruhan>\`\n` +
-        `👉 \`.coinflip tails <taruhan>\``
+      `🪙 *Adivina la Moneda* 🪙\n\n` +
+        `¡Elige Garuda (Cara) o Cruz! 🦅\n\n` +
+        `*Cómo Jugar:*\n` +
+        `👉 \`.coinflip heads <apuesta>\`\n` +
+        `👉 \`.coinflip tails <apuesta>\``
     );
   }
 
   if (!bet || bet < 1000) {
-    return m.reply(`Taruhan receh ditolak! Minimal *Rp 1.000* ya bos! 🪙`);
+    return m.reply(`¡Apuestas de mentira no cuentan! Mínimo *Rp 1.000*, jefe! 🪙`);
   }
 
   if ((user.koin || 0) < bet) {
-    return m.reply(`Mana koin lu? Di kantong sisa *Rp ${(user.koin || 0).toLocaleString("id-ID")}* doang, sok mau taruhan *Rp ${bet.toLocaleString("id-ID")}*! 😜`);
+    return m.reply(`¿Dónde están tus monedas? Solo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}* en el bolsillo, ¡y quieres apostar *Rp ${bet.toLocaleString("id-ID")}*! 😜`);
   }
 
   user.koin -= bet;
@@ -49,23 +49,23 @@ async function handler(m, { sock }) {
   const result = Math.random() < 0.5 ? "heads" : "tails";
   const emoji = result === "heads" ? "🦅" : "🪙";
 
-  await sendRpgPreview(sock, m.chat, `*CLING!* Koin emas dilempar tinggi ke udara... berputar-putar... 🪙✨`, "🪙 COINFLIP", "Flipping!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, `*¡CLING!* La moneda de oro se lanza alto al aire... girando... 🪙✨`, "🪙 COINFLIP", "¡Lanzando!", { quoted: m });
   await new Promise((r) => setTimeout(r, 2500));
 
   const isWin = userChoice === result;
 
-  let txt = `*PLAK!* Bandar menutup koin di tangannya! 👋\n\n`;
-  txt += `Tebakan Lu: *${userChoice.toUpperCase()}*\n`;
-  txt += `Koin Menunjukkan: *${result.toUpperCase()}* ${emoji}\n\n`;
+  let txt = `*¡CLAC!* ¡El dealer cubre la moneda con su mano! 👋\n\n`;
+  txt += `Tu apuesta: *${userChoice.toUpperCase()}*\n`;
+  txt += `La moneda muestra: *${result.toUpperCase()}* ${emoji}\n\n`;
 
   if (isWin) {
     const winnings = bet * 2;
     user.koin = (user.koin || 0) + winnings;
-    txt += `🎉 *MANTAP! TEBAKAN LU BENER!*\n`;
-    txt += `💰 Cuan: *+Rp ${winnings.toLocaleString("id-ID")}*`;
+    txt += `🎉 ¡¡GENIAL! ¡¡ACERTASTE!!\n`;
+    txt += `💰 Ganancia: *+Rp ${winnings.toLocaleString("id-ID")}*`;
   } else {
-    txt += `🤣 *HAHAHA! LU SALAH TEBAK!*\n`;
-    txt += `💸 Koin ditarik bandar: *-Rp ${bet.toLocaleString("id-ID")}*`;
+    txt += `🤣 ¡¡JA JA JA! ¡¡TE EQUIVOCASTE!!\n`;
+    txt += `💸 El dealer se lleva tus monedas: *-Rp ${bet.toLocaleString("id-ID")}*`;
   }
 
   db.save();

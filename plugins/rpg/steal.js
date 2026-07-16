@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "steal",
   alias: ["mencuri", "curi", "pickpocket"],
   category: "rpg",
-  description: "Mencuri dari NPC untuk gold",
+  description: "Robar a NPCs para obtener oro",
   usage: ".steal",
   example: ".steal",
   isOwner: false,
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Hadeh... mau jadi pencuri kok loyo? 😴\nButuh *${staminaCost} Stamina* buat nyusup, lu cuma punya *${user.rpg.stamina}*. Istirahat gih!`);
+    return m.reply(`Vaya... ¿ser ladrón y estar débil? 😴\nNecesitas *${staminaCost} Stamina* para infiltrarte, solo tienes *${user.rpg.stamina}*. ¡Descansa!`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
 
   if (availableTargets.length === 0) {
     db.save();
-    return m.reply(`Level lu masih bocil (Level ${userLevel}). Target paling rendahan aja minimal butuh *Level 3* biar lu nggak mati konyol! 😂`);
+    return m.reply(`Tu nivel es muy bajo (Nivel ${userLevel}). ¡Al objetivo más fácil le necesitas *Nivel 3* para que no te maten! 😂`);
   }
 
   const target = availableTargets[Math.floor(Math.random() * availableTargets.length)];
 
   await m.react("🥷");
-  await m.reply(`*Ngendap-ngendap...* Memanjat tembok rumah *${target.name}*... 🥷⚔️`);
+  await m.reply(`*Avanzando sigilosamente...* Escalando la pared de la casa de *${target.name}*... 🥷⚔️`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const luckBonus = (user.rpg.luck || 5) * 2;
@@ -71,13 +71,13 @@ async function handler(m, { sock }) {
 
     await m.react("💀");
     return m.reply(
-      `SIAAALLLL!! KESANDUNG POT BUNGA!! 💥🚨\n\n` +
-        `Si *${target.name}* langsung kebangun dan mukulin lu abis-abisan!\n\n` +
-        `*Kerugian:* \n` +
-        `💸 Duit berceceran: *-Rp ${goldLoss.toLocaleString()}*\n` +
-        `❤️ Kena Pukul: *-${healthLoss} HP*\n` +
-        `⚡ Stamina Buat Kabur: *-${staminaCost}*\n\n` +
-        `*Tips:* Banyakin stat *Luck* biar langkah kaki lu nggak bersuara bro!`
+      `¡¡FALLASTE!! ¡TE ESTRELLASTE CON UNA MACETA!! 💥🚨\n\n` +
+        `¡El *${target.name}* despierta y te golpea sin piedad!\n\n` +
+        `*Pérdidas:* \n` +
+        `💸 Dinero dispersado: *-Rp ${goldLoss.toLocaleString()}*\n` +
+        `❤️ Golpeado: *-${healthLoss} HP*\n` +
+        `⚡ Stamina para huir: *-${staminaCost}*\n\n` +
+        `*Consejo:* ¡Aumenta tu estadística *Suerte* para que tus pasos no hagan ruido!`
     );
   }
 
@@ -100,11 +100,11 @@ async function handler(m, { sock }) {
 
   await m.react("💰");
   return m.reply(
-    `NINJA STRIKE BERHASIL! 🥷✨\n\n` +
-      `Lu berhasil ngejarah rumah *${target.name}* tanpa ketahuan sama sekali!\n\n` +
-      `*Hasil Jarahan:* \n` +
-      `💵 Emas Batangan: *+Rp ${goldStolen.toLocaleString()}*\n` +
-      `✨ EXP Menyusup: *+${expReward}*` +
+    `¡GOLPE NINJA EXITOSO! 🥷✨\n\n` +
+      `¡Lograste saquear la casa de *${target.name}* sin ser descubierto!\n\n` +
+      `*Botín Obtenido:* \n` +
+      `💵 Barras de Oro: *+Rp ${goldStolen.toLocaleString()}*\n` +
+      `✨ EXP Infiltración: *+${expReward}*` +
       `${bonusText}\n` +
       `⚡ Stamina: *-${staminaCost}*`
   );

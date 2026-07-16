@@ -9,7 +9,7 @@ const pluginConfig = {
     name: 'transkrip',
     alias: ['stt', 'speechtotext', 'transcribe'],
     category: 'tools',
-    description: 'Konversi voice note / audio ke teks (Speech-to-Text)',
+    description: 'Convertir nota de voz / audio a texto (Speech-to-Text)',
     usage: '.transkrip (reply voice note)',
     example: '.transkrip',
     isOwner: false,
@@ -51,16 +51,16 @@ async function handler(m, { sock }) {
     if (!isAudio) {
         return m.reply(
             `🎤 *ᴛʀᴀɴsᴋʀɪᴘ*\n\n` +
-            `> Reply voice note atau audio untuk mengonversi ke teks\n` +
-            `> Contoh: reply VN → ketik \`${m.prefix}transkrip\``
+            `> Responde a una nota de voz o audio para convertirlo a texto\n` +
+            `> Ejemplo: responde a VN → escribe \`${m.prefix}transkrip\``
         );
     }
     const groqKey = config.APIkey?.groq;
     if (!groqKey) {
         return m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> API Key Groq belum diatur\n` +
-            `> Set di config.js → APIkey.groq\n` +
+            `> La API Key de Groq no está configurada\n` +
+            `> Configura en config.js → APIkey.groq\n` +
             `> Gratis di https://console.groq.com`
         );
     }
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
         const buffer = await quoted.download();
         if (!buffer || buffer.length < 1000) {
             m.react('❌');
-            return m.reply('❌ Audio terlalu kecil atau gagal diunduh');
+            return m.reply('❌ El audio es demasiado pequeño o falló la descarga');
         }
         fs.writeFileSync(inputFile, buffer);
         await convertToWav(inputFile, wavFile);
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
         const text = await transcribeWithGroq(wavBuffer, groqKey);
         if (!text || text.trim() === '') {
             m.react('❌');
-            return m.reply('❌ Tidak dapat mendeteksi suara. Pastikan audio jelas dan tidak terlalu pendek.');
+            return m.reply('❌ No se pudo detectar el sonido. Asegúrate de que el audio sea claro y no muy corto.');
         }
         const duration = Math.ceil(buffer.length / 4000);
         await m.reply(
@@ -92,17 +92,17 @@ async function handler(m, { sock }) {
             `┃\n` +
             `╰┈┈⬡\n\n` +
             `> 🤖 Model: Whisper Large V3\n` +
-            `> 🌐 Bahasa: Indonesia\n` +
-            `> 📊 Ukuran: ~${(buffer.length / 1024).toFixed(1)} KB`
+            `> 🌐 Idioma: Español\n` +
+            `> 📊 Tamaño: ~${(buffer.length / 1024).toFixed(1)} KB`
         );
         m.react('✅');
     } catch (error) {
         m.react('❌');
         if (error.response?.status === 401) {
-            return m.reply('❌ API Key Groq invalid. Cek config.js → APIkey.groq');
+            return m.reply('❌ API Key Groq inválida. Verifica config.js → APIkey.groq');
         }
         if (error.response?.status === 429) {
-            return m.reply('❌ Rate limit Groq tercapai. Coba lagi nanti.');
+            return m.reply('❌ Límite de tasa Groq alcanzado. Inténtalo de nuevo más tarde.');
         }
         m.reply(te(m.prefix, m.command, m.pushName));
     } finally {

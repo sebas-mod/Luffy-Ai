@@ -20,23 +20,23 @@ const pluginConfig = {
 const VARIANTS = {
   1: {
     name: "Canvas Image",
-    desc: "Gambar canvas dengan foto profil",
+    desc: "Imagen canvas con foto profil",
     emoji: "🎨",
   },
   2: {
     name: "Carousel Cards",
-    desc: "Kartu carousel interaktif dengan tombol",
+    desc: "Tarjetas de carrusel interactivo con botones",
     emoji: "🃏",
   },
   3: {
     name: "Text Only",
-    desc: "Pesan teks minimalis tanpa gambar",
+    desc: "Mensaje de texto minimalista sin imagen",
     emoji: "📝",
   },
   4: { name: "Group", desc: "ContextInfo group style", emoji: "👥" },
-  5: { name: "Simple", desc: "Pesan teks simple + foto profile", emoji: "✨" },
-  6: { name: "Video", desc: "Kirim video perkenalan", emoji: "🎥" },
-  7: { name: "Interactive Quoted", desc: "Interactive message dengan fake quoted", emoji: "💬" },
+  5: { name: "Simple", desc: "Mensaje texto simple + foto profile", emoji: "✨" },
+  6: { name: "Video", desc: "Envía video peranalan", emoji: "🎥" },
+  7: { name: "Interactive Quoted", desc: "Mensaje interactivo con faa quoted", emoji: "💬" },
 };
 async function handler(m, { sock, db }) {
   const args = m.args || [];
@@ -67,23 +67,23 @@ async function handler(m, { sock, db }) {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
         title: "👋 Pilih Tipe Welcome",
-        sections: [{ title: "Daftar Tipe Welcome", rows }],
+        sections: [{ title: "Lista Tipe Welcome", rows }],
       }),
     },
   ];
   const bodyText =
     `👋🎨 *WELCOME TYPE*\n\n` +
-    `Atur tampilan pesan welcome saat member baru masuk grup 🚪✨\n` +
-    `Tipe aktif saat ini: *V${current} — ${VARIANTS[current].name}* 🎯\n\n` +
+    `Configura el aspecto del mensaje de bienvenida cuando un miembro nuevo entra al grupo 🚪✨\n` +
+    `Tipe activo actualmente: *V${current} — ${VARIANTS[current].name}* 🎯\n\n` +
     `*PENJELASAN TIPE:*\n\n` +
-    `- *V1 Canvas Image* 🎨 — Bot membuat gambar canvas otomatis berisi foto profil dan nama member yang baru join, lalu dikirim sebagai gambar\n\n` +
-    `- *V2 Carousel Cards* 🃏 — Menampilkan kartu carousel interaktif yang bisa di-swipe lengkap dengan tombol action, cocok untuk grup yang ingin tampilan modern\n\n` +
-    `- *V3 Text Only* 📝 — Pesan teks biasa tanpa gambar sama sekali, ringan dan minimalis\n\n` +
-    `- *V4 Group* 👥 — Menggunakan contextInfo bergaya group forward, tampilan rapi dengan label newsletter\n\n` +
-    `- *V5 Simple* ✨ — Pesan teks sederhana disertai foto profile member yang join, tidak terlalu mencolok namun informatif\n\n` +
-    `- *V6 Video* 🎥 — Mengirimkan video sambutan menarik dilengkapi caption selamat datang untuk member\n\n` +
-    `- *V7 Interactive Quoted* 💬 — Mengirimkan pesan interaktif dan fake quoted dari orang yang join\n\n` +
-    `> Pilih tipe welcome dari tombol di bawah 👇`;
+    `- *V1 Canvas Image* 🎨 — El bot crea automáticamente una imagen de canvas con la foto de perfil y el nombre del miembro que se une, y luego la envía como imagen\n\n` +
+    `- *V2 Carousel Cards* 🃏 — Muestra tarjetas de carrusel interactivo que se pueden deslizar con botones de acción, ideal para grupos que quieran un aspecto moderno\n\n` +
+    `- *V3 Text Only* 📝 — Mensaje de texto normal sin imagen alguna, ligero y minimalista\n\n` +
+    `- *V4 Group* 👥 — Usa contextInfo con estilo de reenvío de grupo, aspecto limpio con etiqueta de newsletter\n\n` +
+    `- *V5 Simple* ✨ — Mensaje de texto sencillo acompañado de la foto de perfil del miembro que se une, no muy llamativo pero informativo\n\n` +
+    `- *V6 Video* 🎥 — Envía un video de bienvenida atractivo con pie de foto de bienvenida para el miembro\n\n` +
+    `- *V7 Interactive Quoted* 💬 — Envía un mensaje interactivo y faa quoted de la persona que se une\n\n` +
+    `> Pilih tipe welcome de tombol di bawah 👇`;
   await sock.sendButton(
     m.chat,
     getAssetBuffer("ourin"),

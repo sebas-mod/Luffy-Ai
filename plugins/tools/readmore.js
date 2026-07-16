@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'readmore',
     alias: ['selengkapnya', 'spoiler'],
     category: 'tools',
-    description: 'Membuat teks baca selengkapnya (spoiler)',
+    description: 'Crear texto de leer más (spoiler)',
     usage: '.readmore <text_awal>|<text_akhir>',
-    example: '.readmore Hai|Ini adalah pesan rahasia',
+    example: '.readmore Hola|Este es un mensaje secreto',
     isGroup: false,
     isBotAdmin: false,
     isAdmin: false,
@@ -17,7 +17,7 @@ function handler(m, { sock }) {
     const text = m.text;
     
     if (!text) {
-        return m.reply(`⚠️ Masukan text!\nContoh: \`${m.prefix}${m.command} Halo|Ini teks tersembunyi\``);
+        return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola|Este es un texto oculto\``);
     }
     
     let [l, r] = text.split('|');

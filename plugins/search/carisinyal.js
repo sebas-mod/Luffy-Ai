@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'spekhp',
     alias: ['spek', 'spesifikasi'],
     category: 'search',
-    description: 'Mencari spesifikasi lengkap smartphone dari Carisinyal.',
+    description: 'Buscar especificaciones completas de smartphone desde Carisinyal.',
     usage: '.spekhp <nama hp>',
     example: '.spekhp oppo a3s',
     isOwner: false,
@@ -131,12 +131,12 @@ async function detail(url) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `📱 *FITUR PENCARIAN SPESIFIKASI HP*\n\n` +
-            `Fitur ini membantumu mencari spesifikasi lengkap dari sebuah *smartphone* menggunakan *database* terpercaya dari Carisinyal.\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}spekhp <nama hp>\`\n` +
-            `- Contoh: \`${m.prefix}spekhp oppo a3s\`\n\n` +
-            `_Sistem akan secara otomatis mencari ponsel yang paling sesuai dengan kata kuncimu dan menampilkan rincian spesifikasinya lengkap dengan gambarnya!_`
+            `📱 *FUNCIONALIDAD DE BÚSQUEDA DE ESPECIFICACIONES*\n\n` +
+            `Esta función te ayuda a buscar las especificaciones completas de un *smartphone* usando la *base de datos* confiable de Carisinyal.\n\n` +
+            `*CÓMO USAR:*\n` +
+            `- Escribe \`${m.prefix}spekhp <nombre del celular>\`\n` +
+            `- Ejemplo: \`${m.prefix}spekhp oppo a3s\`\n\n` +
+            `_El sistema buscará automáticamente el teléfono que más se ajuste a tu palabra clave y mostrará los detalles de sus especificaciones con su imagen!_`
         );
     }
 
@@ -146,7 +146,7 @@ async function handler(m, { sock, text }) {
 
         if (!results || results.length === 0) {
             await m.react('❌');
-            return m.reply(`❌ *TIDAK DITEMUKAN*\n\nMaaf, sistem tidak dapat menemukan ponsel dengan kata kunci *${text}*. Cobalah menggunakan nama merk atau seri yang lebih spesifik.`);
+            return m.reply(`❌ *NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar un teléfono con la palabra clave *${text}*. Intenta con una marca o serie más específica.`);
         }
 
         const phone = results.find(r => (r.type || "").toLowerCase().includes("ponsel")) || results[0];
@@ -202,7 +202,7 @@ async function handler(m, { sock, text }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MENGAMBIL DATA*\n\nMaaf, sistem mengalami gangguan saat mencoba mengambil data dari *Carisinyal*. Silakan coba lagi nanti.`);
+        m.reply(`❌ *ERROR AL OBTENER DATOS*\n\nLo siento, el sistema tuvo problemas al obtener datos de *Carisinyal*. Por favor, intenta de nuevo más tarde.`);
     }
 }
 

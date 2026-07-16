@@ -3,8 +3,8 @@ const pluginConfig = {
     name: 'inspect',
     alias: ['cekgrup', 'ceksaluran', 'groupinfo', 'channelinfo'],
     category: 'utility',
-    description: 'Inspect info grup atau saluran WhatsApp via link',
-    usage: '.inspect <link grup/saluran>',
+    description: 'Inspeccionar info de grupo o canal de WhatsApp via enlace',
+    usage: '.inspect <enlace grupo/canal>',
     example: '.inspect https://chat.whatsapp.com/xxx',
     isOwner: false,
     isPremium: false,
@@ -21,8 +21,8 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🔍 *ɪɴsᴘᴇᴄᴛ*\n\n` +
-            `> Cek info grup atau saluran via link\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
+            `> Verifica info de grupo o canal via enlace\n\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> \`${m.prefix}inspect https://chat.whatsapp.com/xxx\`\n` +
             `> \`${m.prefix}inspect https://whatsapp.com/channel/xxx\``
         )
@@ -106,7 +106,7 @@ async function handler(m, { sock }) {
             return m.reply(teks)
 
         } else {
-            return m.reply('❌ Hanya support URL Grup atau Saluran WhatsApp!')
+            return m.reply('❌ ¡Solo acepta URLs de Grupos o Canales de WhatsApp!')
         }
 
     } catch (error) {
@@ -114,13 +114,13 @@ async function handler(m, { sock }) {
         
         if (error.data) {
             if ([400, 406].includes(error.data)) {
-                return m.reply('❌ Grup/Saluran tidak ditemukan!')
+                return m.reply('❌ ¡Grupo/Canal no encontrado!')
             }
             if (error.data === 401) {
-                return m.reply('❌ Bot di-kick dari grup tersebut!')
+                return m.reply('❌ ¡El Bot fue expulsado de ese grupo!')
             }
             if (error.data === 410) {
-                return m.reply('❌ URL grup telah di-reset!')
+                return m.reply('❌ ¡La URL del grupo ha sido restablecida!')
             }
         }
         

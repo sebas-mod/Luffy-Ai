@@ -7,7 +7,7 @@ const pluginConfig = {
     alias: ['delban', 'unblock'],
     category: 'owner',
     description: 'Elimina a un usuario de la lista de expulsados',
-    usage: '.unban <nomor/@tag>',
+    usage: '.unban <número/@tag>',
     example: '.unban 6281234567890',
     isOwner: true,
     isPremium: false,
@@ -45,8 +45,8 @@ async function handler(m, { sock }) {
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
             `✅ *ᴜɴʙᴀɴ ᴜsᴇʀ*\n\n` +
-            `> Masukkan nomor atau tag user\n\n` +
-            `\`Contoh: ${m.prefix}unban 6281234567890\``
+            `> Ingresa número o tag user\n\n` +
+            `\`Ejemplo: ${m.prefix}unban 6281234567890\``
         )
     }
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Nomor \`${targetNumber}\` tidak dalam daftar banned`)
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` no en lista banned`)
     }
 
     bannedList.splice(index, 1)

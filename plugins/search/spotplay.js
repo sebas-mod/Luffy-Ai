@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "spotplay",
   alias: ["splay", "sp"],
   category: "search",
-  description: "Putar musik dari Spotify",
+  description: "Reproducir música de Spotify",
   usage: ".spotplay <query>",
   example: ".spotplay neffex grateful",
   cooldown: 20,
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     });
 
     if (!data?.status || !data?.result?.downloadLink) {
-      throw new Error(data?.message || "Lagu Spotify tidak ditemukan");
+      throw new Error(data?.message || "Canción de Spotify no encontrada");
     }
 
     const result = data.result;

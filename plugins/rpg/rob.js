@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "rob",
   alias: ["rampok", "mug"],
   category: "rpg",
-  description: "Rampok uang player lain (berisiko)",
+  description: "Robar dinero a otros jugadores (riesgoso)",
   usage: ".rob @user",
   example: ".rob @user",
   isOwner: false,
@@ -24,29 +24,29 @@ async function handler(m, { sock }) {
   const target = m.mentionedJid?.[0] || m.quoted?.sender;
 
   if (!target) {
-    return m.reply(`Hayo, mau malak siapa nih? 🦹‍♂️🔪\nTag target yang mau dirampok hartanya!\nContoh: \`.rob @user\``);
+    return m.reply(`Oye, ¿a quién vas a asaltar? 🦹‍♂️🔪\n¡Etiqueta al objetivo que quieres robar!\nEjemplo: \`.rob @user\``);
   }
 
   if (target === m.sender) {
-    return m.reply(`Sakit jiwa lu? Masa ngerampok dompet sendiri! 😂❌`);
+    return m.reply(`¿Estás loco? ¿Robarle a tu propia cartera? 😂❌`);
   }
 
   const robber = db.getUser(m.sender);
   const victim = db.getUser(target);
 
   if (!victim) {
-    return m.reply(`Target buronanmu nggak ketemu di database! Kayaknya dia udah kabur duluan. 🏃💨`);
+    return m.reply(`¡No se encontró al objetivo en la base de datos! Parece que ya huyó. 🏃💨`);
   }
 
   if ((victim.koin || 0) < 1000) {
-    return m.reply(`Yaelah, target lu miskin parah! Duitnya di bawah Rp 1.000, masa tega dirampok? Cari mangsa yang tajir dong! 😤`);
+    return m.reply(`Vaya, ¡tu objetivo está en la pobreza total! Tiene menos de Rp 1.000, ¿cómo vas a robarle? ¡Busca a alguien con más dinero! 😤`);
   }
 
   if (!robber.rpg) robber.rpg = {};
   robber.rpg.health = robber.rpg.health || 100;
 
   if (robber.rpg.health < 30) {
-    return m.reply(`Woy bos, badan lu tinggal tulang gitu masih nekat ngerampok?! 🤒\nMinimal *30 HP*, darah lu cuma *${robber.rpg.health} HP*. Berobat sana!`);
+    return m.reply(`Oye jefe, ¡estás hecho polvo y aun así quieres asaltar?! 🤒\nNecesitas mínimo *30 HP*, tu vida es solo *${robber.rpg.health} HP*. ¡Ve a curarte!`);
   }
 
   await sendRpgPreview(sock, m.chat, `*Sssstttt...* Bersembunyi di gang gelap nunggu target lewat... 🦹‍♂️🔪`, "🦹 BEGAL", "Beraksi!", { quoted: m });
@@ -67,11 +67,11 @@ async function handler(m, { sock }) {
 
     db.save();
 
-    let txt = `MANTAP! TARGET BERHASIL DIPALAK! 🦹‍♂️💰\n\n`;
-    txt += `Lu berhasil nakutin si @${target.split("@")[0]} sampai ngencing di celana!\n`;
-    txt += `Uang hasil palakan: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
-    txt += `Bonus EXP Begal: *+${expGain}*\n\n`;
-    txt += `*Buru kabur sebelum polis dateng!!!* 🚓💨`;
+    let txt = `¡GENIAL! ¡OBJETIVO ASALTADO CON ÉXITO! 🦹‍♂️💰\n\n`;
+    txt += `¡Asustaste a @${target.split("@")[0]} hasta que se hizo pipí encima!\n`;
+    txt += `Dinero robado: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
+    txt += `Bonus EXP del asalto: *+${expGain}*\n\n`;
+    txt += `*¡¡¡Corre antes de que llegue la policía!!!* 🚓💨`;
 
     await m.reply(txt, { mentions: [target] });
   } else {
@@ -84,11 +84,11 @@ async function handler(m, { sock }) {
 
     db.save();
 
-    let txt = `GOBLOK! KETAHUAN WARGA!! 🚨🤬\n\n`;
-    txt += `Bukannya dapet duit, lu malah ketangkep basah terus *digebukin warga 1 RT*!\n`;
-    txt += `💸 Duit lu disita RT: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
-    txt += `🤕 Badan Babak Belur: *-${healthLoss} HP*\n\n`;
-    txt += `*MAMPUS LU, makanya jangan main-main di mari!* 🤣`;
+    let txt = `¡¡IDIOTA! ¡¡TE PILLARON LOS VECINOS!! 🚨🤬\n\n`;
+    txt += `En vez de ganar dinero, ¡te atraparon y te *montonaron a palazos todo el barrio*!\n`;
+    txt += `💸 Tu dinero confiscado: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
+    txt += `🤕 Cuerpo apaleado: *-${healthLoss} HP*\n\n`;
+    txt += `*¡¡TE LO MERECES, para que no juegues aquí!!* 🤣`;
 
     await m.reply(txt);
   }

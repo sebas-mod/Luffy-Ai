@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "owner",
   alias: ["creator", "dev", "developer"],
   category: "main",
-  description: "Menampilkan kontak owner bot",
+  description: "Mostrar contacto del owner del bot",
   usage: ".owner",
   example: ".owner",
   isOwner: false,
@@ -47,7 +47,7 @@ async function handler(m, { sock, config: botConfig }) {
       m.chat,
       {
         contacts: {
-          displayName: `Ini adalah owner kami`,
+          displayName: `Este es nuestro owner`,
           contacts,
         },
       },
@@ -55,10 +55,10 @@ async function handler(m, { sock, config: botConfig }) {
 
     );
     await sock.sendMessage(m.chat, {
-      text: "💬 Jika kamu memiliki pertanyaan, jangan ragu untuk bertanya, owner ramah kok"
+      text: "💬 Si tienes alguna pregunta, no dudes en preguntar, el owner es amable"
     }, { quoted: zanne })
   } else {
-    const ownerText = `👑 *ᴏᴡɴᴇʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ*\n\n╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n┃ ㊗ ɴᴀᴍᴀ: *${ownerNumbers.map((n) => getOwnerName(n)).join(", ")}*\n┃ ㊗ ʙᴏᴛ: *${botName}*\n┃ ㊗ sᴛᴀᴛᴜs: *🟢 Online*\n╰┈┈⬡\n\n> _Jika ada pertanyaan atau kendala,_\n> _silakan hubungi owner di atas!_\n> _📞 Contact card di bawah._`;
+    const ownerText = `👑 *ᴏᴡɴᴇʀ ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ*\n\n╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇs* 」\n┃ ㊗ ɴᴀᴍᴀ: *${ownerNumbers.map((n) => getOwnerName(n)).join(", ")}*\n┃ ㊗ ʙᴏᴛ: *${botName}*\n┃ ㊗ sᴛᴀᴛᴜs: *🟢 En línea*\n╰┈┈⬡\n\n> _Si tienes alguna pregunta o problema,_\n> _por favor contacta al owner arriba!_\n> _📞 Tarjeta de contacto abajo._`;
 
     await m.reply(ownerText);
 

@@ -21,7 +21,7 @@ async function handler(m) {
     const tempPath = path.join(process.cwd(), 'temp')
 
     if (!fs.existsSync(tempPath)) {
-        return m.reply('❌ Folder temp tidak ditemukan!')
+        return m.reply('❌ Folder temp no encontrado!')
     }
 
     await m.react('🗑️')
@@ -30,7 +30,7 @@ async function handler(m) {
         const files = fs.readdirSync(tempPath)
 
         if (!files.length) {
-            return m.reply('📁 Folder temp sudah kosong!')
+            return m.reply('📁 Folder temp ya kosong!')
         }
 
         let deleted = 0
@@ -45,7 +45,7 @@ async function handler(m) {
         await m.react('✅')
         await m.reply(
             `🗑️ *TEMP CLEANED!*\n\n` +
-            `> Total file/folder dihapus: *${deleted}*`
+            `> Total archivos/carpeta eliminados: *${deleted}*`
         )
 
     } catch (error) {

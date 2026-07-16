@@ -9,7 +9,7 @@ const pluginConfig = {
   name: "film",
   alias: ["movie", "nonton", "lk21"],
   category: "search",
-  description: "Cari film dan nonton online",
+  description: "Buscar película y ver online",
   usage: ".film <judul>",
   example: ".film civil war",
   cooldown: 10,
@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
   if (!query) {
     return m.reply(
       `🎬 *ꜰɪʟᴍ sᴇᴀʀᴄʜ*\n\n` +
-        `> Cari dan nonton film online\n\n` +
+        `> Buscar y ver películas online\n\n` +
         `*Format:*\n` +
         `> \`${m.prefix}film <judul>\`\n\n` +
         `*Contoh:*\n` +
@@ -59,14 +59,14 @@ async function handler(m, { sock }) {
     }, 300000);
 
     let text = `🎬 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ*\n\n`;
-    text += `> Ditemukan *${films.length}* film untuk "${query}"\n\n`;
+    text += `> Encontradas *${films.length}* películas para "${query}"\n\n`;
 
     films.forEach((f, i) => {
       text += `*${i + 1}. ${f.title}*\n`;
       text += `> ⭐ ${f.rating} | 📺 ${f.quality} | 📅 ${f.release}\n\n`;
     });
 
-    text += `> _Pilih film dari list di bawah_`;
+    text += `> _Elige una película de la lista de abajo_`;
 
     const listItems = films.map((f, i) => ({
       header: "",

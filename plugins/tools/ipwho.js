@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ipwho",
   alias: ["ip", "iplookup", "ipinfo"],
   category: "tools",
-  description: "Lookup informasi IP address",
+  description: "Buscar información de dirección IP",
   usage: ".ipwho <ip>",
   example: ".ipwho 8.8.8.8",
   isOwner: false,
@@ -24,18 +24,18 @@ async function handler(m, { sock }) {
     return m.reply(
       `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
         `> \`${m.prefix}ipwho <ip>\`\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}ipwho 8.8.8.8\``,
     );
   }
 
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) {
-    return m.reply(`❌ *ғᴏʀᴍᴀᴛ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n> Contoh: \`8.8.8.8\``);
+    return m.reply(`❌ *ꜰᴏʀᴍᴀᴛᴏ ɴᴏ ᴠᴀʟɪᴅ*\n\n> Ejemplo: \`8.8.8.8\``);
   }
 
   await m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇɴᴄᴀʀɪ ɪɴꜰᴏ ɪᴘ...*`);
+  await m.reply(`🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴꜰᴏʀᴍᴀᴄɪóɴ ᴅᴇ ɪᴘ...*`);
 
   try {
     const res = await fetch(`https://ipwho.is/${ip}`);
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (!data.success) {
       await m.react("❌");
-      return m.reply(`❌ *ɪᴘ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> IP ${ip} tidak valid`);
+      return m.reply(`❌ *ɪᴘ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> La IP ${ip} no es válida`);
     }
 
     if (data.latitude && data.longitude) {

@@ -20,7 +20,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
+    antimedia: "⚠ *AntiMedia* — Media de @%user% eliminada.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {

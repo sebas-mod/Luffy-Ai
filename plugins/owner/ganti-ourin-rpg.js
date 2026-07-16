@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'ganti-ourin-rpg.jpg',
     alias: ['gantirpg', 'setourinrpg'],
     category: 'owner',
-    description: 'Cambia la imagen ourin-rpg.jpg (miniatura RPG)',
-    usage: '.ganti-ourin-rpg.jpg (reply/kirim gambar)',
+    description: 'Cambia la imagen ourin-rpg.jpg (mestoatura RPG)',
+    usage: '.ganti-ourin-rpg.jpg (reply/envía imagen)',
     example: '.ganti-ourin-rpg.jpg',
     isOwner: true,
     isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🖼️ *ɢᴀɴᴛɪ ᴏᴜʀɪɴ-ʀᴘɢ.ᴊᴘɢ*\n\n> Kirim/reply gambar untuk mengganti\n> File: assets/images/ourin-rpg.jpg`)
+        return m.reply(`🖼️ *ɢᴀɴᴛɪ ᴏᴜʀɪɴ-ʀᴘɢ.ᴊᴘɢ*\n\n> Envía/reply imagen para mengganti\n> File: assets/images/ourin-rpg.jpg`)
     }
     
     try {
@@ -34,15 +34,15 @@ async function handler(m, { sock }) {
         }
         
         if (!buffer) {
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ Error al descargar imagen`)
         }
         
-        await m.reply(`⏳ Sedang mengupload gambar...`)
+        await m.reply(`⏳ Está subiendo imagen...`)
         try {
             const newUrl = await updateAssetUrl('ourin-rpg', buffer, 'ourin-rpg.jpg')
-            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Gambar ourin-rpg.jpg telah diganti ke URL baru:\n> ${newUrl}\n> Config telah diupdate secara realtime!`)
+            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Imagen ourin-rpg.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
         } catch (e) {
-            m.reply(`❌ Gagal mengupload gambar: ${e.message}`)
+            m.reply(`❌ Error al subir imagen: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

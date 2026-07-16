@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'chords',
     alias: ['chord', 'kunci', 'kuncigitar'],
     category: 'search',
-    description: 'Cari chord/kunci gitar lagu',
+    description: 'Buscar chord/acorde de guitarra de canción',
     usage: '.chords <judul lagu>',
     example: '.chords komang',
     isOwner: false,
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🎸 *ᴄʜᴏʀᴅs sᴇᴀʀᴄʜ*\n\n` +
-            `> Cari chord/kunci gitar lagu\n\n` +
+            `> Buscar chord/acorde de guitarra de canción\n\n` +
             `> Contoh:\n` +
             `\`${m.prefix}chords komang\`\n` +
             `\`${m.prefix}chord perjalanan terindah\``
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.chord) {
             m.react('❌')
-            return m.reply(`❌ Chord tidak ditemukan untuk: \`${text}\``)
+            return m.reply(`❌ Chord no encontrado para: \`${text}\``)
         }
         
         const chord = data.data.chord

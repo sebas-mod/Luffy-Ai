@@ -9,7 +9,7 @@ const pluginConfig = {
   name: "pin2",
   alias: ["pinterest2"],
   category: "search",
-  description: "Cari satu gambar acak di Pinterest dengan tombol next",
+  description: "Buscar una imagen aleatoria de Pinterest con botón next",
   usage: ".pin2 <query>",
   example: ".pin2 anime",
   isOwner: false,
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   const query = m.text?.trim();
 
   if (!query) {
-    return m.reply(`❌ Masukkan kata kunci pencarian.\n\nContoh: \`${m.prefix}pin2 kucing\``);
+    return m.reply(`❌ Ingresa la palabra clave de búsqueda.\n\nEjemplo: \`${m.prefix}pin2 gato\``);
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ Waduh, pencarian untuk *${query}* tidak ditemukan. Coba kata kunci lain.`);
+      return m.reply(`❌ Vaya, la búsqueda para *${query}* no encontró resultados. Prueba con otra palabra clave.`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("⚠️ Gambar tidak tersedia.");
+      return m.reply("⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
               imageMessage: mediaMessage.imageMessage
             },
             footer: {
-              text: "Klik tombol di bawah untuk gambar lain 👇"
+              text: "Haz clic en el botón de abajo para otra imagen 👇"
             },
             body: {
               text: `📸 *PINTEREST SEARCH*\n\n> Pencarian: *${query}*`
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PIN2 Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Gagal memuat pencarian Pinterest. Server mungkin sedang bermasalah.");
+    m.reply("😔 Error al cargar la búsqueda de Pinterest. El servidor podría estar fallando.");
   }
 }
 

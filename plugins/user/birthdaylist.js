@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'birthdaylist',
     alias: ['bdaylist', 'listultah', 'ultahlist'],
     category: 'user',
-    description: 'Lihat daftar ulang tahun member',
+    description: 'Ver lista de cumpleaños de miembros',
     usage: '.birthdaylist',
     example: '.birthdaylist',
     isOwner: false,
@@ -42,8 +42,8 @@ async function handler(m, { sock }) {
     if (birthdays.length === 0) {
         return m.reply(
             `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴅᴀᴛᴀ*\n\n` +
-            `> Belum ada member yang set birthday\n\n` +
-            `> Gunakan: .setbirthday DD-MM`
+            `> Aún ningún miembro ha configurado su cumpleaños\n\n` +
+            `> Usa: .setbirthday DD-MM`
         )
     }
     
@@ -75,11 +75,11 @@ async function handler(m, { sock }) {
     }
     
     if (birthdays.length > 15) {
-        text += `┃ ... dan ${birthdays.length - 15} lainnya\n`
+        text += `┃ ... y ${birthdays.length - 15} más\n`
     }
     
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-    text += `> Set birthday: .setbirthday DD-MM`
+    text += `> Configurar birthday: .setbirthday DD-MM`
     
     await m.reply(text, { mentions })
 }

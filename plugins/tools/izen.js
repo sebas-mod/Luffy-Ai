@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "izen",
   alias: ["skiplink", "izen"],
   category: "tools",
-  description: "Bypass shortlink / skiplink menggunakan izen",
-  usage: ".izen link",
+  description: "Bypass de shortlink / skiplink usando izen",
+  usage: ".izen enlace",
   example: ".izen https://sfl.gl/xxxxx",
   isOwner: false,
   isPremium: false,
@@ -20,10 +20,10 @@ const pluginConfig = {
 async function handler(m, { args, sock }) {
   if (!args[0]) {
     let txt = `🔗 *SKIPLINK BYPASS* 🔗\n\n`;
-    txt += `Halo kak! Punya link yang ribet ngelewatin iklan? Sini aku bantu lewatin biar langsung ke tujuan akhir!\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}izen <link>\`\n\n`;
-    txt += `*Contoh:*\n`;
+    txt += `¡Hola! ¿Tienes un enlace con publicidad que no puedes pasar? ¡Aquí te ayudo a saltártelo para llegar directo al destino final!\n\n`;
+    txt += `*Cómo Usar:*\n`;
+    txt += `👉 \`${m.prefix}izen <enlace>\`\n\n`;
+    txt += `*Ejemplo:*\n`;
     txt += `👉 \`${m.prefix}izen https://sfl.gl/xxxxx\``;
     return m.reply(txt);
   }
@@ -35,7 +35,7 @@ async function handler(m, { args, sock }) {
     const json = await res.json();
     
     if (!json.data?.result?.result) {
-       return m.reply("❌ Waduh kak, gagal ngelewatin link-nya nih! Coba link lain ya.");
+       return m.reply("❌ ¡Vaya, no se pudo pasar el enlace! Prueba con otro.");
     }
     
     let txt = `✅ *BERHASIL BYPASS LINK!* ✅\n\n`;
@@ -48,7 +48,7 @@ async function handler(m, { args, sock }) {
     await m.reply(txt);
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Maaf kak, terjadi kesalahan sistem! 😭\nError: ${e.message}`);
+    m.reply(`❌ Lo siento, ¡ocurrió un error del sistema! 😭\nError: ${e.message}`);
   }
 }
 

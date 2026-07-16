@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "ssweb",
   alias: ["screenshot", "ss", "webss"],
   category: "tools",
-  description: "Screenshot website",
+  description: "Captura de pantalla de sitio web",
   usage: ".ssweb <url>",
   example: ".ssweb https://google.com",
   isOwner: false,
@@ -33,9 +33,9 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📸 *sᴄʀᴇᴇɴsʜᴏᴛ ᴡᴇʙ*\n\n` +
-        `> Screenshot halaman website\n\n` +
-        `> *Contoh:*\n` +
+      `📸 *ᴄᴀᴘᴛᴜʀᴀ ᴅᴇ ᴘᴀɴᴛᴀʟʟᴀ ᴡᴇʙ*\n\n` +
+        `> Captura de pantalla de página web\n\n` +
+        `> *Ejemplo:*\n` +
         `> ${m.prefix}ssweb https://google.com\n` +
         `> ${m.prefix}ss https://github.com --mobile`,
     );

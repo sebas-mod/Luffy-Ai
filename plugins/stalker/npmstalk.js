@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'npmstalk',
     alias: ['stalknpm', 'npms'],
     category: 'stalker',
-    description: 'Stalk akun NPM (Node Package Manager)',
+    description: 'Rastrear cuenta de NPM (Node Package Manager)',
     usage: '.npmstalk <username>',
     example: '.npmstalk hanya_zann',
     isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`📦 *ɴᴘᴍ sᴛᴀʟᴋ*\n\n> Masukkan username NPM\n\n\`Contoh: ${m.prefix}npmstalk hanya_zann\``)
+        return m.reply(`📦 *ɴᴘᴍ sᴛᴀʟᴋ*\n\n> Ingresa el username de NPM\n\n\`Ejemplo: ${m.prefix}npmstalk hanya_zann\``)
     }
     
     m.react('🔍')
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Username *${username}* tidak ditemukan`)
+            return m.reply(`❌ Username *${username}* no encontrado`)
         }
         
         const d = res.data.data
@@ -51,14 +51,14 @@ async function handler(m, { sock }) {
         
         let caption = `📦 *ɴᴘᴍ sᴛᴀʟᴋ*\n\n` +
             `👤 *Username:* ${d.username}\n` +
-            `📛 *Nama:* ${d.name || '-'}\n` +
+            `📛 *Nombre:* ${d.name || '-'}\n` +
             `📧 *Email:* ${d.email || '-'}\n\n` +
             `📦 *Total Packages:* ${s.total_packages || 0}\n` +
             `📉 *Monthly Downloads:* ${shortNum(s.total_monthly_downloads)}\n\n` +
             `🔗 ${d.profile}\n\n`
             
         if (d.packages && d.packages.length > 0) {
-            caption += `*Daftar Package:*\n`
+            caption += `*Lista de Paquetes:*\n`
             d.packages.slice(0, 5).forEach((pkg, i) => {
                 caption += `> 📦 *${pkg.name}* (v${pkg.version})\n`
                 caption += `> 📉 ${shortNum(pkg.downloads_monthly)} dl/month\n`

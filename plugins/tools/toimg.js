@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'toimg',
     alias: ['toimage', 'stickertoimage', 'stimg'],
     category: 'tools',
-    description: 'Mengubah sticker menjadi gambar',
+    description: 'Convertir sticker en imagen',
     usage: '.toimg (reply/caption sticker)',
     example: '.toimg',
     isOwner: false,
@@ -38,10 +38,10 @@ async function handler(m, { sock }) {
     if (!mediaSource) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak ada sticker yang terdeteksi!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> 1. Kirim sticker + caption \`${m.prefix}toimg\`\n` +
-            `> 2. Reply sticker dengan \`${m.prefix}toimg\``
+            `> ¡No se detectó ningún sticker!\n\n` +
+            `*Forma de uso:*\n` +
+            `> 1. Envía sticker + caption \`${m.prefix}toimg\`\n` +
+            `> 2. Responde a sticker con \`${m.prefix}toimg\``
         )
         return
     }
@@ -54,8 +54,8 @@ async function handler(m, { sock }) {
     if (isAnimated) {
         await m.reply(
             `⚠️ *sᴛɪᴄᴋᴇʀ ᴀɴɪᴍᴀsɪ*\n\n` +
-            `> Sticker ini adalah sticker animasi (GIF).\n` +
-            `> Gunakan \`${m.prefix}tovideo\` untuk mengubahnya.`
+            `> Este sticker es un sticker animado (GIF).\n` +
+            `> Usa \`${m.prefix}tovideo\` para convertirlo.`
         )
         return
     }
@@ -68,8 +68,8 @@ async function handler(m, { sock }) {
         if (!buffer || buffer.length === 0) {
             await m.reply(
                 `❌ *ɢᴀɢᴀʟ*\n\n` +
-                `> Tidak dapat mengunduh sticker.\n` +
-                `> Sticker mungkin sudah tidak tersedia.`
+                `> No se pudo descargar el sticker.\n` +
+                `> Es posible que el sticker ya no esté disponible.`
             )
             return
         }
@@ -77,8 +77,8 @@ async function handler(m, { sock }) {
         if (buffer.length < 100) {
             await m.reply(
                 `❌ *ꜰɪʟᴇ ᴋᴏʀᴜᴘ*\n\n` +
-                `> File sticker tidak valid atau rusak.\n` +
-                `> Coba kirim ulang stickernya.`
+                `> El archivo del sticker no es válido o está dañado.\n` +
+                `> Intenta enviar el sticker de nuevo.`
             )
             return
         }
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Terjadi kesalahan saat memproses.\n` +
+            `> Ocurrió un error al procesar.\n` +
             `> _${error.message}_`
         )
     }

@@ -20,7 +20,7 @@ const VARIANTS = {
   v1: {
     id: 1,
     name: "ALLMENU BASIC",
-    desc: "ini mengikuti dari setreply",
+    desc: "esto mengikuti de setreply",
     emoji: "📝",
   },
   v2: {
@@ -32,13 +32,13 @@ const VARIANTS = {
   v5: {
     id: 5,
     name: "ALLMENU NATIVEFLOW",
-    desc: "Tampilan native flow premium dengan video & cuaca",
+    desc: "Aspecto de flujo nativo premium con video y clima",
     emoji: "✨",
   },
   v6: {
     id: 6,
     name: "ALLMENU LOCATION",
-    desc: "Tampilan location message tanpa tombol interaktif",
+    desc: "Aspecto de mensaje de ubicación sin botones interactivos",
     emoji: "📍",
   },
 };
@@ -50,7 +50,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1*, *v2*, *v5*, atau *v6*`);
+      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1*, *v2*, *v5*, o *v6*`);
       return;
     }
 
@@ -82,22 +82,22 @@ async function handler(m, { sock, db }) {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
         title: "📋 Pilih Variant Allmenu",
-        sections: [{ title: "Daftar Variant Allmenu", rows }],
+        sections: [{ title: "Lista Variant Allmenu", rows }],
       }),
     },
   ];
 
   const bodyText =
     `📋📑 *ALLMENU VARIANT*\n\n` +
-    `Atur tampilan allmenu yang menampilkan seluruh daftar perintah bot dalam satu halaman 📖✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
+    `Configura el aspecto del allmenu que muestra toda la lista de comandos del bot en una sola página 📖✨\n` +
+    `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
     `*PENJELASAN VARIANT:*\n\n` +
-    `- *V1 Simple Text* 📝 — Daftar perintah ditampilkan sebagai text biasa tanpa gambar atau contextInfo, paling ringan dan cepat dimuat\n\n` +
-    `- *V2 Image + Context* 🖼️ — Gambar header allmenu + full contextInfo dengan label forwarded newsletter, tampilan standar yang informatif\n\n` +
-    `- *V3 Document* 📄 — Allmenu dikirim sebagai file document dengan thumbnail kecil dan verified quoted reply, terlihat seperti file resmi\n\n` +
-    `- *V4 Interactive Button* 🔘 — Pesan interaktif dengan tombol single_select untuk memilih kategori dan quick_reply untuk navigasi, tampilan modern\n\n` +
-    `- *V5 NativeFlow* ✨ — NativeFlow message dengan limited_time_offer badge dan interactive buttons, tampilan paling premium dan eye-catching\n\n` +
-    `> Pilih variant allmenu dari tombol di bawah 👇`;
+    `- *V1 Simple Text* 📝 — Lista comando mostrado como texto simple sin imagen o contextInfo, más ligero y rápido de cargar\n\n` +
+    `- *V2 Image + Context* 🖼️ — Imagen header allmenu + full contextInfo con label forwarded newsletter, tampilan standar yang informatif\n\n` +
+    `- *V3 Document* 📄 — Allmenu se envía como archivo documento con miniatura personal y respuesta verificada, se ve como un archivo oficial\n\n` +
+    `- *V4 Interactive Button* 🔘 — Mensaje interactivo con botón single_select para elegir categoría y quick_reply para navegación, diseño moderno\n\n` +
+    `- *V5 NativeFlow* ✨ — Mensaje NativeFlow con insignia de oferta limitada y botones interactivos, el diseño más premium y llamativo\n\n` +
+    `> Pilih variant allmenu de tombol di bawah 👇`;
 
   await sock.sendButton(
     m.chat,

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "woodcut",
   alias: ["chop", "nebang", "kayu"],
   category: "rpg",
-  description: "Menebang pohon untuk mendapatkan kayu",
+  description: "Talar árboles para obtener madera",
   usage: ".woodcut",
   example: ".woodcut",
   isOwner: false,
@@ -28,17 +28,17 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Tangan kamu udah lecet kak megang kapak terus! 🥵🪓\n\nNebang butuh *${staminaCost} Stamina*, kamu cuma punya *${user.rpg.stamina}*. Istirahat kek! 🛌💤`);
+    return m.reply(`¡Tus manos están agrietadas de agarrar el hacha! 🥵🪓\n\nTalar requiere *${staminaCost} Stamina*, solo tienes *${user.rpg.stamina}*. ¡Descansa! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("🪓");
-  await m.reply("Ctak! Ctak! Tumbangg! 🪓🌳\nMenebang pohon besar dengan sekuat tenaga...");
+  await m.reply("¡Crack! ¡Crack! ¡Se cae el árbol! 🪓🌳\nTalando un árbol grande con todas tus fuerzas...");
   await new Promise((r) => setTimeout(r, 3000));
 
   const drops = [
-    { item: "wood", chance: 70, name: "🪵 Kayu", min: 2, max: 5 },
+    { item: "wood", chance: 70, name: "🪵 Madera", min: 2, max: 5 },
     { item: "stick", chance: 50, name: "🥢 Ranting", min: 1, max: 3 },
     { item: "apple", chance: 20, name: "🍎 Apel", min: 1, max: 2 },
     { item: "rubber", chance: 10, name: "⚫ Karet", min: 1, max: 1 },
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
   if (results.length === 0) {
     user.inventory["wood"] = (user.inventory["wood"] || 0) + 1;
-    results.push({ name: "🪵 Kayu", qty: 1 });
+    results.push({ name: "🪵 Madera", qty: 1 });
   }
 
   const expGain = Math.floor(Math.random() * 200) + 50;
@@ -65,14 +65,14 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `POHONNYA TUMBANG! 🪓✨\n\n`;
-  txt += `Kamu mungutin barang-barang ini:\n`;
+  let txt = `¡EL ÁRBOL CAYÓ! 🪓✨\n\n`;
+  txt += `Recogiste estos materiales:\n`;
   for (const r of results) {
     txt += `• ${r.name}: *+${r.qty}*\n`;
   }
   txt += `\n📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Awas encok kak, kalau capek istirahat (\`.heal\`) ya! 🥵🍃`;
+  txt += `¡Cuidado con el reumatismo, si estás cansado descansa (\`.heal\`)! 🥵🍃`;
 
   await m.reply(txt);
 }

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "playtiktok",
   alias: ["ttplay", "tiktokplay"],
   category: "search",
-  description: "Cari dan kirim satu video TikTok terbaik",
+  description: "Buscar y enviar un video de TikTok destacado",
   usage: ".playtiktok <query>",
   example: ".playtiktok cewe tiktok",
   isOwner: false,
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `🎵 *PLAY TIKTOK*\n\n> Contoh:\n\`${m.prefix}playtiktok cewe tiktok\``,
+      `🎵 *PLAY TIKTOK*\n\n> Ejemplo:\n\`${m.prefix}playtiktok chica tiktok\``,
     );
   }
 
@@ -39,17 +39,17 @@ async function handler(m, { sock }) {
     const videos = await tiktokSearchVideo(query);
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const video = videos[0];
     let caption = "🎵 *PLAY TIKTOK*\n\n";
-    caption += `📌 *Judul:* ${video.title || "-"}\n`;
-    caption += `👤 *Author:* ${video.author?.nickname || "-"}\n`;
-    caption += `👀 *Views:* ${formatNumber(video.stats?.plays)}\n`;
+    caption += `📌 *Título:* ${video.title || "-"}\n`;
+    caption += `👤 *Autor:* ${video.author?.nickname || "-"}\n`;
+    caption += `👀 *Vistas:* ${formatNumber(video.stats?.plays)}\n`;
     caption += `❤️ *Likes:* ${formatNumber(video.stats?.likes)}\n`;
-    caption += `💬 *Comments:* ${formatNumber(video.stats?.comments)}\n`;
-    caption += `🔁 *Shares:* ${formatNumber(video.stats?.shares)}\n`;
+    caption += `💬 *Comentarios:* ${formatNumber(video.stats?.comments)}\n`;
+    caption += `🔁 *Compartidos:* ${formatNumber(video.stats?.shares)}\n`;
     caption += `🎧 *Music:* ${video.music || "-"}\n`;
     caption += `🔗 *Link:* ${video.link}`;
 

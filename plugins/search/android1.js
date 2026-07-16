@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "android1",
   alias: ["an1"],
   category: "search",
-  description: "Cari dan download APK MOD dari Android1",
+  description: "Buscar y descargar APK MOD desde Android1",
   usage: ".android1 <query>",
   example: ".android1 Subway Surfer",
   isOwner: false,
@@ -31,9 +31,9 @@ async function handler(m, { sock }) {
     return m.reply(
       `📱 *ᴀɴᴅʀᴏɪᴅ1 sᴇᴀʀᴄʜ*\n\n` +
         `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-        `┃ 🔍 \`${m.prefix}android1 <query>\` - Cari APK\n` +
+        `┃ 🔍 \`${m.prefix}android1 <query>\` - Buscar APK\n` +
         `╰┈┈⬡\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `\`${m.prefix}android1 Subway Surfer\``,
     );
   }
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: \`${text}\``);
+      return m.reply(`❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 10);
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
     let caption = `📱 Hasil dari pencarian apk mod *${text}*\n`;
-    caption += `*${apps.length}* aplikasi ditemukan\n\n`;
+    caption += `*${apps.length}* aplicaciones encontradas\n\n`;
 
     apps.forEach((app, i) => {
       caption += `*${i + 1}.* ${app.name}\n`;
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
       caption += `   └ ⭐ ${app.rating}/5\n\n`;
     });
 
-    caption += `> Pilih angka untuk download langsung`;
+    caption += `> Elige un número para descargar directamente`;
 
     const buttons = apps.slice(0, 10).map((app, i) => ({
       title: `${i + 1}. ${app.name.substring(0, 20)}`,

@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
   const currentStatus = groupData.notifLabelChange === true;
   if (sub === "on" && sub2 === "all") {
     if (!m.isOwner) {
-      return m.reply(`❌ Hanya owner yang bisa menggunakan fitur ini!`);
+      return m.reply(`❌ ¡Solo el owner puede usar esta función!`);
     }
     m.react("🕕");
     try {

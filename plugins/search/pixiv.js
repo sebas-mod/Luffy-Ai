@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "pixiv",
   alias: ["pixivsearch", "caripixiv"],
   category: "search",
-  description: "Cari artwork di Pixiv",
+  description: "Buscar artwork en Pixiv",
   usage: ".pixiv <query>",
   example: ".pixiv rem",
   isOwner: false,
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `❌ *Masukkan kata kunci pencarian!*\n\n> Contoh: .pixiv rem`,
+        `❌ *¡Ingresa la palabra clave de búsqueda!*\n\n> Ejemplo: .pixiv rem`,
       );
     }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.data || data.data.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *Tidak ditemukan hasil untuk:* ${query}`);
+      return m.reply(`❌ *No se encontraron resultados para:* ${query}`);
     }
 
     const results = data.data.slice(0, 10);
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     await m.react("☢");
     if (error.response?.status === 403) {
-      return m.reply(`❌ *API Key tidak valid atau limit tercapai*`);
+      return m.reply(`❌ *API Key no válida o límite alcanzado*`);
     }
     m.reply(te(m.prefix, m.command, m.pushName));
   }

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "pet",
   alias: ["mypet", "hewanku", "peliharaan"],
   category: "rpg",
-  description: "Kelola pet/hewan peliharaan",
+  description: "Administrar mascota/animal de compañía",
   usage: ".pet <feed/train/status>",
   example: ".pet status",
   isOwner: false,
@@ -31,9 +31,9 @@ const PET_TYPES = {
 };
 
 const FOOD_ITEMS = {
-  bread: { name: "🍞 Roti", hunger: 10, exp: 5 },
-  fish: { name: "🐟 Ikan", hunger: 20, exp: 10 },
-  meat: { name: "🍖 Daging", hunger: 30, exp: 15 },
+  bread: { name: "🍞 Pan", hunger: 10, exp: 5 },
+  fish: { name: "🐟 Pez", hunger: 20, exp: 10 },
+  meat: { name: "🍖 Carne", hunger: 30, exp: 15 },
   fruit: { name: "🍎 Buah", hunger: 15, exp: 8 },
   premium_food: { name: "⭐ Premium Food", hunger: 50, exp: 30 },
 };
@@ -50,11 +50,11 @@ function handler(m, { sock }) {
 
   if (!user.rpg.pet) {
     return m.reply(
-      `Kamu belum punya hewan peliharaan kak! 😭\nSedih banget bertualang sendirian...\n\n` +
-        `*Cara dapetin teman:* \n` +
-        `🛒 Beli di \`${m.prefix}petshop\`\n` +
-        `💕 Dapat dari \`${m.prefix}breeding\`\n` +
-        `🗡️ Drop rare dari boss!`
+      `¡No tienes mascota todavía! 😭\nQué triste aventurarse solo...\n\n` +
+        `*Cómo conseguir un compañero:* \n` +
+        `🛒 Compra en \`${m.prefix}petshop\`\n` +
+        `💕 Consigue de \`${m.prefix}breeding\`\n` +
+        `🗡️ ¡Botín raro de jefes!`
     );
   }
 
@@ -63,7 +63,7 @@ function handler(m, { sock }) {
 
   if (!action || !["feed", "train", "status", "rename", "evolve"].includes(action)) {
     const maxHunger = 100;
-    const hungerStatus = pet.hunger >= 70 ? "😊 Senang & Kenyang" : pet.hunger >= 40 ? "😐 Biasa Aja" : "😰 Keroncongan Parah!";
+    const hungerStatus = pet.hunger >= 70 ? "😊 Feliz & Lleno" : pet.hunger >= 40 ? "😐 Normal" : "😰 ¡Muy Hambriento!";
 
     let txt = `🐾 *Buku Identitas Peliharaan* 🐾\n\n`;
     txt += `*Profil Si ${pet.name}:*\n`;
@@ -78,11 +78,11 @@ function handler(m, { sock }) {
     txt += `🍀 Luck: *${pet.stats?.luck || petInfo.baseStats.luck}*\n\n`;
 
     txt += `*Interaksi:*\n`;
-    txt += `👉 \`${m.prefix}pet feed <makanan>\` - Kasih makan\n`;
-    txt += `👉 \`${m.prefix}pet train\` - Latih biar kuat\n`;
-    txt += `👉 \`${m.prefix}pet rename <nama_baru>\` - Ganti nama\n`;
+    txt += `👉 \`${m.prefix}pet feed <comida>\` - Alimentar\n`;
+    txt += `👉 \`${m.prefix}pet train\` - Entrenar para que sea fuerte\n`;
+    txt += `👉 \`${m.prefix}pet rename <nuevo_nombre>\` - Cambiar nombre\n`;
     if (petInfo.evolve) {
-      txt += `👉 \`${m.prefix}pet evolve\` - Berevolusi (Bila cukup syarat)\n`;
+      txt += `👉 \`${m.prefix}pet evolve\` - Evolucionar (Si cumple los requisitos)\n`;
     }
 
     return m.reply(txt);
@@ -92,28 +92,28 @@ function handler(m, { sock }) {
     const foodKey = args[1]?.toLowerCase();
 
     if (!foodKey) {
-      let txt = `Si ${pet.name} lagi ngeliatin kamu sambil jilat bibir... 🤤\nMau dikasih makan apa nih?\n\n`;
-      txt += `*Daftar Makanan di Tasmu:*\n`;
+      let txt = `¡El ${pet.name} te está mirando y se lame los labios... 🤤\n¿Qué le vas a dar de comer?\n\n`;
+      txt += `*Lista de Comida en tu Mochila:*\n`;
       for (const [key, food] of Object.entries(FOOD_ITEMS)) {
         const have = user.inventory[key] || 0;
         txt += `\n*${food.name}* (Punya: ${have}x)\n`;
-        txt += `🍖 Kenyang: +${food.hunger} | ✨ EXP: +${food.exp}\n`;
-        txt += `👉 Kasih makan: \`.pet feed ${key}\`\n`;
+        txt += `🍖 Saciado: +${food.hunger} | ✨ EXP: +${food.exp}\n`;
+        txt += `👉 Alimentar: \`.pet feed ${key}\`\n`;
       }
       return m.reply(txt);
     }
 
     const food = FOOD_ITEMS[foodKey];
     if (!food) {
-      return m.reply(`Waduh, jangan kasih makanan aneh-aneh kak! Kasihan nanti sakit perut 😂❌`);
+      return m.reply(`¡No le des comida rara! ¡Se va a enfermar el estómago! 😂❌`);
     }
 
     if ((user.inventory[foodKey] || 0) < 1) {
-      return m.reply(`Kamu nggak punya *${food.name}* di tasmu! Belanja dulu sana! 🛒🏃`);
+      return m.reply(`¡No tienes *${food.name}* en tu mochila! ¡Ve a comprar! 🛒🏃`);
     }
 
     if (pet.hunger >= 100) {
-      return m.reply(`Perut si ${pet.name} udah kepenuhan kak! Jangan disiksa disuruh makan terus! 🤢`);
+      return m.reply(`¡El estómago de ${pet.name} está lleno! ¡No lo obligues a seguir comiendo! 🤢`);
     }
 
     user.inventory[foodKey]--;
@@ -138,16 +138,16 @@ function handler(m, { sock }) {
 
     return m.reply(
       `Nyam... nyam... nyam! 🤤🍖\n\n` +
-        `Si *${pet.name}* lahap banget makan *${food.name}* yang kamu kasih!\n` +
-        `🍖 Perutnya keisi *+${food.hunger}* (${pet.hunger}/100)\n` +
-        `✨ Dapet EXP *+${food.exp}*` +
+        `¡El *${pet.name}* devoró *${food.name}* con avidez!\n` +
+        `🍖 Se llenó el estómago *+${food.hunger}* (${pet.hunger}/100)\n` +
+        `✨ Obtuvo EXP *+${food.exp}*` +
         levelUpMsg
     );
   }
 
   if (action === "train") {
     if (pet.hunger < 20) {
-      return m.reply(`Tega bener nyuruh latihan pas lagi kelaparan! 😭\nSi ${pet.name} perutnya keroncongan tuh, kasih makan dulu!`);
+      return m.reply(`¡Qué crueldad, ¡hacerlo entrenar con hambre! 😭\n¡El estómago de ${pet.name} está rugiendo, dale de comer primero!`);
     }
 
     pet.hunger = Math.max(0, pet.hunger - 15);
@@ -169,9 +169,9 @@ function handler(m, { sock }) {
     db.save();
 
     let txt = `Hup! Hup! Hiyah!! 🏃‍♂️💨\n\n`;
-    txt += `Si *${pet.name}* latihan fisik keras hari ini!\n`;
-    txt += `✨ EXP Bertambah: *+${expGain}*\n`;
-    txt += `😰 Rasa Lapar: *-15*\n`;
+    txt += `Si *${pet.name}* hizo entrenamiento físico duro hoy!\n`;
+    txt += `✨ EXP Aumentado: *+${expGain}*\n`;
+    txt += `😰 Sensación de Hambre: *-15*\n`;
     txt += levelUpMsg;
 
     return m.reply(txt);
@@ -180,23 +180,23 @@ function handler(m, { sock }) {
   if (action === "rename") {
     const newName = args.slice(1).join(" ");
     if (!newName || newName.length < 2 || newName.length > 15) {
-      return m.reply(`Nama apaan tuh kak? Jangan aneh-aneh ah, kasih yang bener (2-15 karakter)! 😂`);
+      return m.reply(`¿Qué nombre tan raro? ¡Nada de rarezas, pon algo decente (2-15 caracteres)! 😂`);
     }
 
     const oldName = pet.name;
     pet.name = newName;
     db.save();
 
-    return m.reply(`Sipp! Akte kelahirannya udah diubah.\nSekarang panggil dia *${newName}*! (Sebelumnya: ${oldName}) ✨`);
+    return m.reply(`¡Listo! Se actualizó su acta de nacimiento.\nAhora llámalo *${newName}*! (Antes: ${oldName}) ✨`);
   }
 
   if (action === "evolve") {
     if (!petInfo.evolve) {
-      return m.reply(`Batas keturunan si ${pet.name} cuma sampai sini kak, dia udah di bentuk sempurnanya! 🌟`);
+      return m.reply(`La línea evolutiva de ${pet.name} termina aquí, ¡ya alcanzó su forma perfecta! 🌟`);
     }
 
     if ((pet.level || 1) < 10) {
-      return m.reply(`Sabar kak, si ${pet.name} masih ciut! Minimal *Level 10* baru bisa berevolusi (Sekarang baru level ${pet.level || 1}). 🐣`);
+      return m.reply(`Ten paciencia, ¡${pet.name} es muy joven! Necesita mínimo *Nivel 10* para evolucionar (Ahora es Nivel ${pet.level || 1}). 🐣`);
     }
 
     const evolvedPet = PET_TYPES[petInfo.evolve];
@@ -209,9 +209,9 @@ function handler(m, { sock }) {
 
     return m.reply(
       `CLLINGGG!! ✨🌟\n\n` +
-        `Si *${pet.name}* tiba-tiba bercahaya terang banget!\n` +
-        `Wah, dia udah *berevolusi* jadi *${evolvedPet.name}* yang gagah!\n\n` +
-        `Status barunya nge-reset ke awal tapi jadi jauh lebih kuat lho! Cek pake \`.pet status\` ya! 😎🔥`
+        `¡El *${pet.name}* de repente brilla con luz intensa!\n` +
+        `¡Se ha *evolucionado* en *${evolvedPet.name}* el majestuoso!\n\n` +
+        `Su estado se reinició pero ¡es mucho más fuerte! Revisa con \`.pet status\` 😎🔥`
     );
   }
 }

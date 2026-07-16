@@ -3,8 +3,8 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Crea un grupo nuevo',
-    usage: '.buatgrup <nama>|<nomor1,nomor2,...>|<durasi_menit>',
-    example: '.buatgrup Grup Baru|628xxx,628yyy|60',
+    usage: '.buatgrup <nombre>|<número1,número2,...>|<durasi_minuto>',
+    example: '.buatgrup Grup Nuevo|628xxx,628yyy|60',
     isOwner: true,
     cooldown: 5,
     energi: 0,
@@ -17,17 +17,17 @@ async function handler(m, { sock }) {
 
     if (args.length < 2) {
         let txt = `👥 *BUAT GRUP BARU* 👥\n\n`
-        txt += `Halo kak Owner! Mau bikin grup baru secara instan?\n\n`
+        txt += `¡Hola Owner! ¿Quieres crear un grupo nuevo de forma instantánea?\n\n`
         txt += `*Cara Pakai:*\n`
-        txt += `👉 \`${m.prefix}buatgrup Nama Grup | 628xxx,628yyy | Durasi(menit)\`\n\n`
+        txt += `👉 \`${m.prefix}buatgrup Nombre Grup | 628xxx,628yyy | Durasi(minuto)\`\n\n`
         txt += `*Detail:*\n`
-        txt += `• Gunakan \`|\` untuk memisahkan nama, peserta, dan durasi\n`
-        txt += `• Pisahkan nomor peserta dengan koma\n`
-        txt += `• Jika durasi diisi, bot akan menendang semua member dan menghapus grup saat waktu habis!\n`
-        txt += `• Bot otomatis menjadi admin\n\n`
-        txt += `*Contoh Tanpa Durasi:*\n`
+        txt += `• Usa \`|\` para separar nombre, participantes y duración\n`
+        txt += `• Separa los números de participantes con coma\n`
+        txt += `• Si se indica duración, el bot expulsará a todos los miembros y eliminará el grupo cuando el tiempo termine!\n`
+        txt += `• El bot será automáticamente admin\n\n`
+        txt += `*Ejemplo Tanpa Durasi:*\n`
         txt += `\`${m.prefix}buatgrup Tim Alpha | 628123,628456\`\n\n`
-        txt += `*Contoh Dengan Durasi (Masa Aktif 60 Menit):*\n`
+        txt += `*Ejemplo Con Durasi (Masa Activo 60 Minuto):*\n`
         txt += `\`${m.prefix}buatgrup Tim Beta | 628123,628456 | 60\``
         return m.reply(txt)
     }
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
     const durationStr = args[2] ? args[2].trim() : ''
 
     if (!name || name.length < 2) {
-        return m.reply('❌ Waduh kak, nama grupnya kependekan! Minimal 2 karakter ya.')
+        return m.reply('❌ ¡Vaya, el nombre del grupo es muy corto! Debe tener al menos 2 caracteres.')
     }
 
     const participants = participantsStr
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
         .map(n => n + '@s.whatsapp.net')
 
     if (participants.length === 0) {
-        return m.reply('❌ Lho kak, nomor pesertanya mana? Masukkan minimal 1 nomor ya.')
+        return m.reply('❌ ¡Oye, ¿dónde están los números de participantes? Ingresa al menos 1 número.')
     }
 
     let durationMs = 0
@@ -64,16 +64,16 @@ async function handler(m, { sock }) {
         const group = await sock.groupCreate(name, participants)
         
         let successTxt = `👥 *GRUP BERHASIL DIBUAT* 👥\n\n`
-        successTxt += `✨ *Nama:* ${name}\n`
+        successTxt += `✨ *Nombre:* ${name}\n`
         successTxt += `🆔 *ID:* ${group.id}\n`
-        successTxt += `👤 *Peserta:* ${participants.length} orang\n`
+        successTxt += `👤 *Peserta:* ${participants.length} persona(s)\n`
         
         if (durationMs > 0) {
-            successTxt += `⏳ *Masa Aktif:* ${durationMins} Menit\n`
-            successTxt += `\n⚠️ _Grup ini akan otomatis dihapus dan semua member akan dikeluarkan saat masa aktif habis!_\n`
+            successTxt += `⏳ *Masa Activo:* ${durationMins} Minuto\n`
+            successTxt += `\n⚠️ _¡Este grupo será automáticamente eliminado y todos los miembros serán expulsados cuando el tiempo activo termine!_\n`
         }
 
-        successTxt += `\n_Bot otomatis menjadi admin grup ini ya kak!_`
+        successTxt += `\n_¡El bot será automáticamente admin de este grupo!_`
         await m.reply(successTxt)
 
         if (durationMs > 0) {
@@ -87,13 +87,13 @@ async function handler(m, { sock }) {
                         .filter(id => id !== botJid)
 
                     if (membersToKick.length > 0) {
-                        await sock.sendMessage(group.id, { text: `⏳ *MASA AKTIF GRUP HABIS* ⏳\n\nSesuai perintah Owner, waktu grup ini telah habis. Sayonara semuanya! 👋` })
+                        await sock.sendMessage(group.id, { text: `⏳ *MASA AKTIF GRUP HABIS* ⏳\n\nSegún el comando del Owner, el tiempo de este grupo ha terminado. ¡Adiós a todos! 👋` })
                         await sock.groupParticipantsUpdate(group.id, membersToKick, 'remove')
                     }
                     
                     await sock.groupLeave(group.id)
                 } catch (e) {
-                    console.log(`Gagal menghapus grup otomatis (${group.id}):`, e)
+                    console.log(`Error al eliminar grup automáticamente (${group.id}):`, e)
                 }
             }, durationMs)
         }
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
     } catch (err) {
         await m.react('❌')
-        return m.reply(`❌ Maaf kak, gagal membuat grup! 😭\nError: ${err.message}`)
+        return m.reply(`❌ Lo siento kak, error al crear grup! 😭\nError: ${err.message}`)
     }
 }
 

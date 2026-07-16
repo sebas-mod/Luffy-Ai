@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "rvo",
   alias: ["readvo", "readviewonce", "readview"],
   category: "tools",
-  description: "Baca pesan sekali lihat (view once)",
-  usage: ".rvo (reply pesan view once)",
+  description: "Leer mensaje de vista única (view once)",
+  usage: ".rvo (responder a mensaje view once)",
   example: ".rvo",
   isOwner: false,
   isPremium: false,
@@ -21,12 +21,12 @@ async function handler(m, { sock }) {
   const quoted = m.quoted;
   if (!quoted) {
     return m.reply(
-      `Reply pesan sekali lihat (view once) untuk membukanya.\n\n\`Contoh: ${m.prefix}rvo\` (reply pesan view once)`,
+      `Responde a un mensaje de vista única (view once) para abrirlo.\n\n\`Ejemplo: ${m.prefix}rvo\` (responder a mensaje view once)`,
     );
   }
 
   if (!quoted.isViewOnce && !quoted.isMedia) {
-    return m.reply("❌ Reply pesan view once (sekali lihat) untuk membukanya.");
+    return m.reply("❌ Responde a un mensaje view once (vista única) para abrirlo.");
   }
 
   m.react("⏱️");
@@ -40,9 +40,9 @@ async function handler(m, { sock }) {
     }
 
     const buffer = await quoted.download();
-    if (!buffer) throw new Error("Gagal download media");
+    if (!buffer) throw new Error("Error al descargar el medio");
 
-    const caption = originalCaption ? `\`Pesan :\`\n> ${originalCaption}` : "";
+    const caption = originalCaption ? `\`Mensaje :\`\n> ${originalCaption}` : "";
 
     if (quoted.isImage) {
       await sock.sendMessage(
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
           mimetype:
             quoted.message?.[quoted.type]?.mimetype ||
             "application/octet-stream",
-          caption: caption || "📎 View once media",
+          caption: caption || "📎 Medio de vista única",
         },
         { quoted: m },
       );
@@ -100,9 +100,9 @@ async function handler(m, { sock }) {
       msg.includes("Gone")
     ) {
       msg =
-        "Media sudah kadaluarsa atau sudah dihapus dari server WhatsApp.\n\n_Pesan View Once yang terlalu lama atau sering dibuka biasanya akan otomatis hangus dari sistem WhatsApp dan tidak bisa diunduh lagi._";
+        "El medio ya expiró o fue eliminado del servidor de WhatsApp.\n\n_Los mensajes View Once que llevan mucho tiempo o se abren frecuentemente suelen eliminarse automáticamente del sistema de WhatsApp y no se pueden descargar de nuevo._";
     }
-    m.reply(`❌ *Gagal Membuka View Once*\n\n> ${msg}`);
+    m.reply(`❌ *Error al Abrir Vista Única*\n\n> ${msg}`);
   }
 }
 

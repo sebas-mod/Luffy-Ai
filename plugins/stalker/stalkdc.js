@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'stalkdc',
     alias: ['discordstalk', 'cekkdc', 'stalkdiscord'],
     category: 'stalker',
-    description: 'Mengetahui info profil akun Discord berdasarkan ID',
+    description: 'Conocer información del perfil de Discord por ID',
     usage: '.stalkdc <id_discord>',
     example: '.stalkdc 1280009524941426700',
     isOwner: false,
@@ -161,18 +161,18 @@ async function handler(m, { text, sock }) {
     if (!text) {
         return m.reply(
             `👾 *DISCORD STALKER* 👾\n\n` +
-            `Fitur ini membantumu untuk melacak profil pengguna Discord hanya dari ID-nya saja!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}stalkdc <ID Discord>\`\n` +
-            `- Contoh: \`${m.prefix}stalkdc 1280009524941426700\`\n\n` +
-            `_Pastikan kamu memasukkan ID berbentuk angka (bukan username ya!)._`
+            `Esta función te ayuda a rastrear el perfil de un usuario de Discord solo con su ID.\n\n` +
+            `*CÓMO USAR:*\n` +
+            `- Escribe \`${m.prefix}stalkdc <ID de Discord>\`\n` +
+            `- Ejemplo: \`${m.prefix}stalkdc 1280009524941426700\`\n\n` +
+            `_Asegúrate de ingresar un ID numérico (¡no un username!)._`
         );
     }
 
     const discordId = text.replace(/[^0-9]/g, '');
     
     if (!discordId) {
-        return m.reply(`❌ *ID TIDAK VALID*\n\nPastikan ID Discord yang kamu masukkan hanya berupa angka.`);
+        return m.reply(`❌ *ID NO VÁLIDO*\n\nAsegúrate de que el ID de Discord que ingresaste solo contenga números.`);
     }
 
     try {
@@ -183,7 +183,7 @@ async function handler(m, { text, sock }) {
 
         if (!resp.success) {
             await m.react('❌');
-            return m.reply(`❌ *AKUN TIDAK DITEMUKAN*\n\nSistem gagal menemukan akun dengan ID *${discordId}*. Mungkin ID tersebut salah atau akun telah dihapus.\n\n_Pesan error: ${resp.message || '-'}_`);
+            return m.reply(`❌ *CUENTA NO ENCONTRADA*\n\nEl sistema no pudo encontrar la cuenta con ID *${discordId}*. Puede que el ID sea incorrecto o la cuenta haya sido eliminada.\n\n_Mensaje de error: ${resp.message || '-'}_`);
         }
 
         const d = resp.data || {};
@@ -191,12 +191,12 @@ async function handler(m, { text, sock }) {
         const badges = (d.badges || []).map((b) => b.name).join(', ') || '-';
         
         let caption = `👾 *DISCORD STALKER* 👾\n\n`;
-        caption += `Pencarian berhasil! Berikut adalah informasi profil dari Discord tersebut:\n\n`;
+        caption += `¡Búsqueda exitosa! Aquí está la información del perfil de Discord:\n\n`;
         caption += `👤 *Username:* ${d.username}\n`;
         caption += `🏷️ *Global Name:* ${d.global_name || '-'}\n`;
         caption += `🆔 *User ID:* ${d.id}\n`;
-        caption += `🤖 *Apakah Bot?:* ${isBot}\n`;
-        caption += `🗓️ *Dibuat Sejak:* ${d.creation_date || '-'}\n`;
+        caption += `🤖 *¿Es Bot?:* ${isBot}\n`;
+        caption += `🗓️ *Creado Desde:* ${d.creation_date || '-'}\n`;
         caption += `🏅 *Badges:* ${badges}\n`;
         
         if (d.clan) {
@@ -216,7 +216,7 @@ async function handler(m, { text, sock }) {
     } catch (e) {
         console.error("DC Lookup Error:", e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MELACAK AKUN*\n\nMaaf, sistem sedang mengalami gangguan saat melakukan *bypass reCAPTCHA* atau memanggil API. Silakan coba beberapa saat lagi.\n\n_Error: ${e.message}_`);
+        m.reply(`❌ *FALLÓ EL RASTREO DE LA CUENTA*\n\nLo siento, el sistema tuvo problemas al realizar el *bypass de reCAPTCHA* o al llamar a la API. Por favor, inténtalo de nuevo en unos momentos.\n\n_Error: ${e.message}_`);
     }
 }
 

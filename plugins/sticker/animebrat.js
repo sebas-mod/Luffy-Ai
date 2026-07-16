@@ -6,9 +6,9 @@ const pluginConfig = {
     name: 'bratanime',
     alias: ['animebrat'],
     category: 'sticker',
-    description: 'Membuat sticker brat',
-    usage: '.animebrat <text>',
-    example: '.animebrat Hai semua',
+    description: 'Crear sticker brat anime',
+    usage: '.animebrat <texto>',
+    example: '.animebrat Hola a todos',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const text = m.args.join(' ')
     if (!text) {
-        return m.reply(`🖼️ *ʙʀᴀᴛ ᴀɴɪᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}animebrat Hai semua\``)
+        return m.reply(`🖼️ *ʙʀᴀᴛ ᴀɴɪᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}animebrat Hola a todos\``) // ¡Shishishi, esto va a quedar genial!
     }
     
     m.react('🕕')

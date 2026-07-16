@@ -30,8 +30,8 @@ const pluginConfig = {
   alias: ["statusgrupv2all"],
   category: "owner",
   description: "Publica un estado de grupo V2 en TODOS los grupos",
-  usage: ".swgcv2all <teks> atau reply media",
-  example: ".swgcv2all Halo semua grup!",
+  usage: ".swgcv2all <texto> o reply media",
+  example: ".swgcv2all Halo todos los grupos!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
 
     if (!buffer) {
-      return m.reply("❌ Gagal mengunduh media. Silakan coba lagi.");
+      return m.reply("❌ Error al descargar media. Por favor coba de nuevo.");
     }
 
     const fileType = await fileTypeFromBuffer(buffer);
@@ -72,17 +72,17 @@ async function handler(m, { sock }) {
         ptt: m.quoted?.ptt || m.ptt || false,
       };
     } else {
-      return m.reply("❌ Format media tidak didukung untuk SW GC.");
+      return m.reply("❌ Format media no didukung para SW GC.");
     }
   } else if (text) {
     rawContent = { text: text };
   } else {
     return m.reply(
       `👋 *sᴡɢᴄᴠ2 ᴀʟʟ ɢʟᴏʙᴀʟ*\n\n` +
-      `> Kirim pesan *Status Grup V2* ke SEMUA grup sekaligus.\n\n` +
+      `> Envía mensaje *Status Grup V2* a SEMUA grup sekaligus.\n\n` +
       `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-      `┃ ${m.prefix}swgcv2all Halo semua!\n` +
-      `┃ atau reply gambar/video dengan caption ${m.prefix}swgcv2all\n` +
+      `┃ ${m.prefix}swgcv2all Halo todos!\n` +
+      `┃ o reply imagen/video con caption ${m.prefix}swgcv2all\n` +
       `╰┈┈┈┈┈┈┈┈⬡`
     );
   }
@@ -95,10 +95,10 @@ async function handler(m, { sock }) {
 
     if (groupIds.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Bot tidak berada di grup manapun.");
+      return m.reply("❌ Bot no berhay en el grupo manapun.");
     }
 
-    await m.reply(`⏳ *Memulai Broadcast Status Grup V2 ke ${groupIds.length} Grup...*\n\n> Proses ini mungkin memakan waktu beberapa saat.`);
+    await m.reply(`⏳ *Estociando Broadcast Status Grup V2 a ${groupIds.length} Grup...*\n\n> Proses esto puede tomar algo de tiempo.`);
 
     let successCount = 0;
     let failCount = 0;
@@ -121,7 +121,7 @@ async function handler(m, { sock }) {
           upload: sock.waUploadToServer
         });
 
-        const msgType = Object.keys(genMsg.message).find(k => k.endsWith('Message') && k !== 'senderKeyDistributionMessage');
+        const msgType = Object.keys(genMsg.message).find(k => k.endsWith('Message') && k !== 'senderAyDistributionMessage');
 
         let mediaMessage = {};
         if (msgType) {
@@ -174,9 +174,9 @@ async function handler(m, { sock }) {
       `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
       `┃ 🌐 Total Grup: *${groupIds.length}*\n` +
       `┃ ✅ Sukses: *${successCount}*\n` +
-      `┃ ❌ Gagal: *${failCount}*\n` +
+      `┃ ❌ Fallo: *${failCount}*\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Broadcast Status Grup V2 (Ring Pink) berhasil dikirim ke semua grup!`
+      `> Broadcast Status Grup V2 (Ring Pink) enviado con éxito a todos los grupos!`
     );
 
   } catch (error) {

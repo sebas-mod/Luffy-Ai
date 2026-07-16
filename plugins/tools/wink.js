@@ -5,8 +5,8 @@ const pluginConfig = {
   name: "wink",
   alias: ["winkenhance", "winkhd", "wenhance"],
   category: "tools",
-  description: "Meningkatkan kualitas video menjadi Ultra HD dengan Wink AI",
-  usage: ".wink (reply video)",
+  description: "Mejorar calidad de video a Ultra HD con Wink AI",
+  usage: ".wink (responder con video)",
   example: ".wink",
   isOwner: false,
   isPremium: true,
@@ -23,11 +23,11 @@ async function handler(m, { sock }) {
 
   if (!isVideoMessage && !isDocumentMessage) {
     return m.reply(
-      `✨ *ᴡɪɴᴋ ᴠɪᴅᴇᴏ ᴇɴʜᴀɴᴄᴇʀ*\n\n` +
-        `> Bikin video buram jadi *Ultra HD* pakai AI Wink!\n\n` +
-        `*Cara pakai:*\n` +
-        `> Kirim/reply video lalu caption \`${m.prefix}wink\`\n\n` +
-        `⚠️ _Fitur Premium, proses estimasi 1-5 menit tergantung durasi video_`,
+        `✨ *ᴡɪɴᴋ ᴠɪᴅᴇᴏ ᴇɴʜᴀɴᴄᴇʀ*\n\n` +
+        `> ¡Convierte video borroso en *Ultra HD* con AI Wink!\n\n` +
+        `*Cómo usar:*\n` +
+        `> Envía/responde con video y escribe \`${m.prefix}wink\`\n\n` +
+        `⚠️ _Función Premium, proceso estimado 1-5 minutos según duración del video_`,
     );
   }
 
@@ -38,25 +38,25 @@ async function handler(m, { sock }) {
 
     if (!videoBuffer || videoBuffer.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *GAGAL*\n\nVideonya gagal diunduh, coba kirim ulang ya!`);
+      return m.reply(`❌ *FALLÓ*\n\n¡El video no se pudo descargar, intenta enviarlo de nuevo!`);
     }
 
     if (videoBuffer.length > 50 * 1024 * 1024) {
       await m.react("❌");
-      return m.reply(`❌ *FILE TERLALU BESAR*\n\nMaksimal ukuran video cuma *50MB* ya!`);
+      return m.reply(`❌ *ARCHIVO DEMASIADO GRANDE*\n\n¡El tamaño máximo del video es *50MB*!`);
     }
 
     await m.reply(
-      `🎬 *ᴘʀᴏsᴇs ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ ᴅɪᴍᴜʟᴀɪ*\n\n` +
-        `> Video lagi diproses AI Wink biar jadi *Ultra HD* ✨\n` +
-        `> Estimasi *1-5 menit*, mohon sabar ya!`,
+      `🎬 *ᴘʀᴏᴄᴇsᴏ ᴅᴇ ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ ᴇɴᴄᴇᴢᴀᴅᴏ*\n\n` +
+        `> El video está siendo procesado por AI Wink para convertirlo en *Ultra HD* ✨\n` +
+        `> Tiempo estimado *1-5 minutos*, ¡por favor ten paciencia!`,
     );
 
     const result = await winkEnhance(videoBuffer, {
       filename: `wink-${Date.now()}.mp4`,
     });
 
-    await sock.sendMedia(m.chat, result.resultUrl, `✨ *ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ sᴇʟᴇsᴀɪ!*\n\n> Ini dia hasilnya, udah jadi *Ultra HD* kan? 😍`, m, {
+    await sock.sendMedia(m.chat, result.resultUrl, `✨ *ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ!*\n\n> Aquí está el resultado, ¡ya es *Ultra HD*! 😍`, m, {
       type: "video",
       mimetype: "video/mp4",
       fileName: `WINK-HD-${Date.now()}.mp4`,
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.log(err);
     await m.react("❌");
-    await m.reply(`❌ Proses Wink enhance gagal! Coba lagi nanti ya 😭`);
+    await m.reply(`❌ ¡El proceso de Wink enhance falló! Intenta de nuevo más tarde 😭`);
   }
 }
 

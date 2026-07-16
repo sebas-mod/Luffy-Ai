@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
   if (!action) {
     const status = getBackupStatus();
-    const ownerNum = config.owner?.number?.[0] || "Tidak diset";
+    const ownerNum = config.owner?.number?.[0] || "No diset";
 
     let txt = `🗂️ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ sʏsᴛᴇᴍ*\n\n`;
     txt += `╭┈┈⬡「 📊 *sᴛᴀᴛᴜs* 」\n`;
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     txt += `┃ ⏱️ Interval: ${status.interval}\n`;
     txt += `┃ 📅 Last Backup: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
     txt += `┃ #️⃣ Total: ${status.backupCount} backup\n`;
-    txt += `┃ 📤 Dikirim ke: ${ownerNum}\n`;
+    txt += `┃ 📤 Dienvía a: ${ownerNum}\n`;
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
     txt += `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n`;
@@ -42,13 +42,13 @@ async function handler(m, { sock }) {
     txt += `> \`${m.prefix}autobackup now\`\n\n`;
 
     txt += `*ꜰᴏʀᴍᴀᴛ ɪɴᴛᴇʀᴠᴀʟ:*\n`;
-    txt += `> • \`5m\` = 5 menit\n`;
+    txt += `> • \`5m\` = 5 minuto\n`;
     txt += `> • \`1h\` = 1 jam\n`;
     txt += `> • \`6h\` = 6 jam\n`;
     txt += `> • \`1d\` = 1 hari\n\n`;
 
     txt += `*ᴄᴏɴᴛᴏʜ:*\n`;
-    txt += `> \`${m.prefix}autobackup on 6h\` - backup setiap 6 jam`;
+    txt += `> \`${m.prefix}autobackup on 6h\` - backup cada 6 horas`;
 
     return m.reply(txt);
   }
@@ -64,9 +64,9 @@ async function handler(m, { sock }) {
           `⚠️ *ɪɴᴛᴇʀᴠᴀʟ ᴅɪʙᴜᴛᴜʜᴋᴀɴ*\n\n` +
             `> \`${m.prefix}autobackup on <interval>\`\n\n` +
             `*ᴄᴏɴᴛᴏʜ:*\n` +
-            `> \`${m.prefix}autobackup on 30m\` - tiap 30 menit\n` +
-            `> \`${m.prefix}autobackup on 6h\` - tiap 6 jam\n` +
-            `> \`${m.prefix}autobackup on 1d\` - tiap 1 hari`,
+            `> \`${m.prefix}autobackup on 30m\` - cada 30 minutos\n` +
+            `> \`${m.prefix}autobackup on 6h\` - cada 6 horas\n` +
+            `> \`${m.prefix}autobackup on 1d\` - cada 1 día`,
         );
       }
 
@@ -83,10 +83,10 @@ async function handler(m, { sock }) {
         `✅ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ*\n\n` +
           `╭┈┈⬡「 ⚙️ *sᴇᴛᴛɪɴɢs* 」\n` +
           `┃ ⏱️ Interval: ${result.interval}\n` +
-          `┃ 📤 Dikirim ke: ${ownerNum}\n` +
+          `┃ 📤 Dienvía a: ${ownerNum}\n` +
           `┃ 📦 Exclude: node_modules, .git, storages, dll\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> Backup pertama akan dikirim dalam ${result.interval}`,
+          `> El primer backup se enviará en ${result.interval}`,
       );
     }
 
@@ -98,15 +98,15 @@ async function handler(m, { sock }) {
       await m.react("✅");
       return m.reply(
         `❌ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ*\n\n` +
-          `> Backup otomatis sudah dihentikan.\n` +
-          `> Gunakan \`${m.prefix}autobackup on <interval>\` untuk mengaktifkan kembali.`,
+          `> El backup automático ha sido detenido.\n` +
+          `> Usa \`${m.prefix}autobackup on <interval>\` para activarlo de nuevo.`,
       );
     }
 
     case "status":
     case "info": {
       const status = getBackupStatus();
-      const ownerNum = config.owner?.number?.[0] || "Tidak diset";
+      const ownerNum = config.owner?.number?.[0] || "No diset";
 
       let txt = `🗂️ *sᴛᴀᴛᴜs ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ*\n\n`;
       txt += `╭┈┈⬡「 📊 *ɪɴꜰᴏ* 」\n`;
@@ -126,14 +126,14 @@ async function handler(m, { sock }) {
     case "trigger": {
       await m.react("🕕");
       await m.reply(
-        `🕕 *ᴍᴇᴍʙᴜᴀᴛ ʙᴀᴄᴋᴜᴘ...*\n\n> Mohon tunggu, sedang membuat backup...`,
+        `🕕 *ᴍᴇᴍʙᴜᴀᴛ ʙᴀᴄᴋᴜᴘ...*\n\n> Por favor espera, está creando la copia de seguridad...`,
       );
 
       try {
         await triggerManualBackup(sock);
         await m.react("✅");
         return m.reply(
-          `✅ *ʙᴀᴄᴋᴜᴘ sᴇʟᴇsᴀɪ*\n\n> Backup telah dikirim ke owner!`,
+          `✅ *ʙᴀᴄᴋᴜᴘ sᴇʟᴇsᴀɪ*\n\n> ¡La copia de seguridad ha sido enviada al dueño!`,
         );
       } catch (error) {
         await m.react('☢');
@@ -144,8 +144,8 @@ async function handler(m, { sock }) {
     default:
       return m.reply(
         `⚠️ *ᴀᴄᴛɪᴏɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-          `> Pilih: \`on\`, \`off\`, \`status\`, atau \`now\`\n` +
-          `> Contoh: \`${m.prefix}autobackup on 6h\``,
+          `> Selecciona: \`on\`, \`off\`, \`status\`, o \`now\`\n` +
+          `> Ejemplo: \`${m.prefix}autobackup on 6h\``,
       );
   }
 }

@@ -6,7 +6,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Establece estado AFK con razón',
     usage: '.afk <alasan>',
-    example: '.afk lagi makan',
+    example: '.afk estoy comiendo',
     isOwner: false,
     isPremium: false,
     isGroup: false,

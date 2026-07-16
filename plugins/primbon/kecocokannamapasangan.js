@@ -1,12 +1,12 @@
 import axios from 'axios'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
-    name: 'kecocokannamapasangan',
-    alias: ['cocoknama', 'matchname'],
+    name: 'acocokannombrepasangan',
+    alias: ['cocoknombre', 'matchname'],
     category: 'primbon',
-    description: 'Cek kecocokan nama pasangan',
-    usage: '.kecocokannamapasangan <nama1> <nama2>',
-    example: '.kecocokannamapasangan putu keyla',
+    description: 'Cek acocokan nombre pasangan',
+    usage: '.acocokannombrepasangan <nombre1> <nombre2>',
+    example: '.acocokannombrepasangan putu ayla',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (m.args.length < 2) {
-        return m.reply(`💕 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ ɴᴀᴍᴀ*\n\n> Format: nama1 nama2\n\n\`Contoh: ${m.prefix}kecocokannamapasangan putu keyla\``)
+        return m.reply(`💕 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ ɴᴀᴍᴀ*\n\n> Format: nombre1 nombre2\n\n\`Ejemplo: ${m.prefix}acocokannombrepasangan putu ayla\``)
     }
     
     const [nama1, nama2] = m.args
@@ -26,12 +26,12 @@ async function handler(m, { sock }) {
     m.react('💕')
     
     try {
-        const url = `https://api.siputzx.my.id/api/primbon/kecocokan_nama_pasangan?nama1=${encodeURIComponent(nama1)}&nama2=${encodeURIComponent(nama2)}`
+        const url = `https://api.siputzx.my.id/api/primbon/acocokan_nombre_pasangan?nombre1=${encodeURIComponent(nama1)}&nombre2=${encodeURIComponent(nama2)}`
         const { data } = await axios.get(url, { timeout: 30000 })
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal menganalisa`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo menganalisa`)
         }
         
         const result = data.data

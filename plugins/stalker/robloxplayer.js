@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'robloxplayer',
     alias: ['robloxsearch', 'searchroblox', 'robloxfind'],
     category: 'stalker',
-    description: 'Search Roblox player by username',
+    description: 'Buscar jugador de Roblox por username',
     usage: '.robloxplayer <username>',
     example: '.robloxplayer linkmon',
     isOwner: false,
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     if (!query) {
         return m.reply(
             `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n` +
-            `> Masukkan username untuk dicari\n\n` +
+            `> Ingresa el username para buscar\n\n` +
             `\`${m.prefix}robloxplayer linkmon\``
         )
     }
@@ -39,28 +39,28 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data?.length) {
             m.react('❌')
-            return m.reply(`❌ Tidak ditemukan player dengan username: ${query}`)
+            return m.reply(`❌ No se encontró jugador con username: ${query}`)
         }
         
         const players = res.data.data.slice(0, 10)
         
         let text = `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n`
         text += `> Query: \`${query}\`\n`
-        text += `> Ditemukan: *${players.length}* player\n\n`
+        text += `> Resultados: *${players.length}* jugadores\n\n`
         
         players.forEach((player, i) => {
             text += `╭┈┈⬡「 ${i + 1}. *${player.displayName}* 」\n`
             text += `┃ 🆔 ID: \`${player.id}\`\n`
             text += `┃ 👤 Username: \`${player.name}\`\n`
             text += `┃ 📛 Display: *${player.displayName}*\n`
-            text += `┃ ✅ Verified: ${player.hasVerifiedBadge ? 'Ya' : 'Tidak'}\n`
+            text += `┃ ✅ Verificado: ${player.hasVerifiedBadge ? 'Sí' : 'No'}\n`
             if (player.previousUsernames?.length > 0) {
                 text += `┃ 📜 Previous: ${player.previousUsernames.join(', ')}\n`
             }
             text += `╰┈┈⬡\n\n`
         })
         
-        text += `> _Gunakan \`.robloxstalk <username>\` untuk info detail_`
+        text += `> _Usa \`.robloxstalk <username>\` para info detallada_`
         
         await m.reply(text)
         m.react('✅')

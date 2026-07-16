@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "bingimage",
   alias: ["imagesearch", "carigambar", "bingimg"],
   category: "search",
-  description: "Cari artwork di Pixiv",
+  description: "Buscar artwork en Pixiv",
   usage: ".carigambar <query>",
   example: ".carigambar rem",
   isOwner: false,
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `❌ *Masukkan kata kunci pencarian!*\n\n> Contoh: ${m.prefix}carigambar rem`,
+        `❌ *¡Ingresa la palabra clave de búsqueda!*\n\n> Ejemplo: ${m.prefix}carigambar rem`,
       );
     }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
     if (!data.status) {
       await m.react("❌");
-      return m.reply(`❌ *Tidak ditemukan hasil untuk:* ${query}`);
+      return m.reply(`❌ *No se encontraron resultados para:* ${query}`);
     }
     const results = data.result;
     const album = await Promise.all(

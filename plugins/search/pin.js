@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "pin",
   alias: ["pinsearch", "pinterestsearch", "pins"],
   category: "search",
-  description: "Cari gambar di Pinterest (album)",
+  description: "Buscar imagen en Pinterest (álbum)",
   usage: ".pin <query>",
   example: ".pin Zhao Lusi",
   isOwner: false,
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
   if (!query) {
     return m.reply(
       `🔍 *ᴘɪɴᴛᴇʀᴇsᴛ sᴇᴀʀᴄʜ*\n\n` +
-      `> Contoh:\n` +
+      `> Ejemplo:\n` +
       `\`${m.prefix}pin Zhao Lusi\``,
     );
   }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url)?.slice(0, 10);
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: ${query}`);
+      return m.reply(`❌ No se encontraron resultados para: ${query}`);
     }
 
     const mediaList = [];
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply("❌ Gagal memuat gambar");
+      return m.reply("❌ Error al cargar la imagen");
     }
 
     try {

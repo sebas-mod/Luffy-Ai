@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "jadwalbola",
   alias: ["bola", "football", "soccer", "jadwalsepakbola"],
   category: "info",
-  description: "Lihat jadwal pertandingan sepak bola",
+  description: "Ver calendario de partidos de fútbol",
   usage: ".jadwalbola [liga]",
   example: ".jadwalbola inggris",
   isOwner: false,
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
     );
 
     if (!data?.status || !data?.data || data.data.length === 0) {
-      throw new Error("Tidak ada jadwal tersedia");
+      throw new Error("No hay calendario disponible");
     }
 
     let matches = data.data;
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     if (matches.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan jadwal untuk: \`${filter}\``);
+      return m.reply(`❌ No se encontró calendario para: \`${filter}\``);
     }
 
     const grouped = {};
@@ -83,8 +83,8 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
-    let text = `⚽ *ᴊᴀᴅᴡᴀʟ ᴘᴇʀᴛᴀɴᴅɪɴɢᴀɴ*\n\n`;
-    if (filter) text += `> Filter: \`${filter}\`\n\n`;
+    let text = `⚽ *ᴄᴀʟᴇɴᴅᴀʀɪᴏ ᴅᴇ ᴘᴀʀᴛɪᴅᴏs*\n\n`;
+    if (filter) text += `> Filtro: \`${filter}\`\n\n`;
 
     for (const [date, games] of Object.entries(grouped)) {
       text += `📅 *${date}*\n\n`;
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
       }
     }
 
-    text += `Total: *${matches.length}* pertandingan`;
+    text += `Total: *${matches.length}* partidos`;
 
     m.react("✅");
 

@@ -4,7 +4,7 @@ import config from "../../config.js";
 
 const pluginConfig = {
   name: "autotyping",
-  alias: ["typing", "autoketik"],
+  alias: ["typing", "autoescribe"],
   category: "owner",
   description: "Muestra automáticamente que el bot está escribiendo al recibir mensajes",
   usage: ".autotyping on/off",
@@ -28,9 +28,9 @@ async function handler(m, { sock }) {
       `⌨️ *Auto Typing*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
         `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}autotyping on* — Aktifkan\n` +
-        `> *${m.prefix}autotyping off* — Nonaktifkan\n\n` +
-        `_Bot akan menampilkan indikator typing saat menerima pesan_`
+        `> *${m.prefix}autotyping on* — Activokan\n` +
+        `> *${m.prefix}autotyping off* — Nonactivokan\n\n` +
+        `_Bot va a mostrando indikator typing cuando menerima mensaje_`
     );
   }
 
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     db.setting("autoTyping", true);
     const ctx = saluranCtx();
     return m.reply(
-      `⌨️ *Auto Typing Aktif*\n\n` +
-        `> Bot akan menampilkan indikator typing`,
+      `⌨️ *Auto Typing Activo*\n\n` +
+        `> Bot va a mostrando indikator typing`,
       { contextInfo: ctx }
     );
   }
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("autoTyping", false);
     return m.reply(
-      `⌨️ *Auto Typing Nonaktif*\n\n` +
-        `> Bot tidak akan menampilkan indikator typing`
+      `⌨️ *Auto Typing Nonactivo*\n\n` +
+        `> Bot no va a mostrando indikator typing`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}autotyping on* atau *${m.prefix}autotyping off*`
+    `❌ *Opsi No Valid*\n\n> Usa *${m.prefix}autotyping on* o *${m.prefix}autotyping off*`
   );
 }
 

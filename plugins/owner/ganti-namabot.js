@@ -2,12 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
-    name: 'ganti-namabot',
-    alias: ['setnamabot', 'setnamebot', 'gantibot'],
+    name: 'ganti-nombrebot',
+    alias: ['setnombrebot', 'setnamebot', 'gantibot'],
     category: 'owner',
     description: 'Cambia el nombre del bot en config.js',
-    usage: '.ganti-namabot <nama baru>',
-    example: '.ganti-namabot Ourin MD',
+    usage: '.ganti-nombrebot <nombre nuevo>',
+    example: '.ganti-nombrebot Ourin MD',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -21,7 +21,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
     
     if (!newName) {
-        return m.reply(`🤖 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ʙᴏᴛ*\n\n> Nama saat ini: *${config.bot?.name || '-'}*\n\n*Penggunaan:*\n\`${m.prefix}ganti-namabot <nama baru>\``)
+        return m.reply(`🤖 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ʙᴏᴛ*\n\n> Nombre actualmente: *${config.bot?.name || '-'}*\n\n*Uso:*\n\`${m.prefix}ganti-nombrebot <nombre nuevo>\``)
     }
     
     try {
@@ -37,7 +37,7 @@ async function handler(m, { sock, config }) {
         
         config.bot.name = newName
         
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama bot diganti ke: *${newName}*`)
+        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nombre del bot cambiado a: *${newName}*`)
         
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

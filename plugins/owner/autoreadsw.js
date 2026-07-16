@@ -26,7 +26,7 @@ async function handler(m) {
             `👁️ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ*\n\n` +
             `> Status: *${current.enabled ? '✅ ON' : '❌ OFF'}*\n\n` +
             `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-            `> \`${m.prefix}autoreadsw on\` — Aktifkan\n` +
+            `> \`${m.prefix}autoreadsw on\` — Activokan\n` +
             `> \`${m.prefix}autoreadsw off\` — Matikan`
         )
     }
@@ -37,7 +37,7 @@ async function handler(m) {
         await m.react('✅')
         return m.reply(
             `✅ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Bot akan otomatis membaca semua story WA`
+            `> Bot va a automáticamente leyendo todos story WA`
         )
     }
 
@@ -48,7 +48,7 @@ async function handler(m) {
         return m.reply(`❌ *ᴀᴜᴛᴏ ʀᴇᴀᴅ sᴛᴏʀʏ ᴅɪᴍᴀᴛɪᴋᴀɴ*`)
     }
 
-    return m.reply(`❌ Gunakan \`on\` atau \`off\``)
+    return m.reply(`❌ Usa \`on\` o \`off\``)
 }
 
 export { pluginConfig as config, handler }

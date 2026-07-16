@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "unreg",
   alias: ["unregister", "hapusdaftar"],
   category: "user",
-  description: "Hapus data pendaftaran kamu dari bot",
+  description: "Eliminar tus datos de registro del bot",
   usage: ".unreg",
   example: ".unreg",
   isOwner: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
 
   if (!user?.isRegistered) {
     return m.reply(
-      `❌ Kamu belum terdaftar!\n\n` + `> Daftar dengan \`${m.prefix}daftar\``,
+      `❌ ¡Aún no estás registrado!\n\n` + `> Regístrate con \`${m.prefix}daftar\``,
     );
   }
 
@@ -44,9 +44,9 @@ async function handler(m, { sock }) {
     m.chat,
     {
       text:
-        `✅ *ᴜɴʀᴇɢɪsᴛᴇʀ ʙᴇʀʜᴀsɪʟ!*\n\n` +
-        `Data pendaftaran kamu sudah dihapus.\n\n` +
-        `> Untuk daftar ulang: \`${m.prefix}daftar\``,
+        `✅ *ᴜɴʀᴇɢɪsᴛᴇʀ ᴇxɪᴛᴏsᴏ!*\n\n` +
+        `Tus datos de registro han sido eliminados.\n\n` +
+        `> Para registrarte de nuevo: \`${m.prefix}daftar\``,
       contextInfo: {
         forwardingScore: 9999,
         isForwarded: true,

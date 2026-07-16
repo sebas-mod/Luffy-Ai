@@ -4,7 +4,7 @@ const pluginConfig = {
     name: "notiflimit",
     alias: ["notifenergi"],
     category: "owner",
-    description: "Mengaktifkan atau mematikan notifikasi potong limit secara global.",
+    description: "Activar o desactivar notificación de corte de límite globalmente.",
     usage: ".notiflimit",
     example: ".notiflimit",
     isOwner: true,
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
     const newStatus = db.setting("notiflimit") ? "AKTIF ✅" : "MATI ❌";
 
-    await m.reply(`*NOTIFIKASI LIMIT (GLOBAL)*\n\nStatus saat ini: *${newStatus}*\n\n> Ketika aktif, bot akan selalu memberitahu sisa limit SEMUA PENGGUNA setiap kali ada pemotongan saat menggunakan fitur bot.`);
+    await m.reply(`*NOTIFICACIÓN DE LÍMITE (GLOBAL)*\n\nEstado actual: *${newStatus}*\n\n> Cuando está activo, el bot siempre notificará el límite restante de TODOS LOS USUARIOS cada vez que se haga un corte al usar funciones del bot.`);
 }
 
 export { pluginConfig as config, handler };

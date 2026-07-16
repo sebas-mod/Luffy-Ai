@@ -33,8 +33,8 @@ const pluginConfig = {
   alias: ["statusgrupv2"],
   category: "owner",
   description: "Publica un estado de grupo V2 en los grupos elegidos",
-  usage: ".swgcv2 <teks> atau reply media",
-  example: ".swgcv2 Halo semua!",
+  usage: ".swgcv2 <texto> o reply media",
+  example: ".swgcv2 Halo todos!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -56,7 +56,7 @@ async function handler(m, { sock, db }) {
 
     if (!pendingData) {
       await m.reply(
-        `⚠️ *Tidak ada data pending. Silakan kirim ulang media + .swgcv2*`,
+        `⚠️ *No hay datos pendientes. Por favor envía de nuevo el media + .swgcv2*`,
       );
       return;
     }
@@ -88,7 +88,7 @@ async function handler(m, { sock, db }) {
         upload: sock.waUploadToServer
       });
 
-      const msgType = Object.keys(genMsg.message).find(k => k.endsWith('Message') && k !== 'senderKeyDistributionMessage');
+      const msgType = Object.keys(genMsg.message).find(k => k.endsWith('Message') && k !== 'senderAyDistributionMessage');
 
       let mediaMessage = {};
       if (msgType) {
@@ -131,16 +131,16 @@ async function handler(m, { sock, db }) {
       await handleAntiSwGc(syntheticRawMsg, sock, db);
 
       const mediaType = pendingData.rawContent.text
-        ? "Teks"
+        ? "Texto"
         : pendingData.rawContent.image
-          ? "Gambar"
+          ? "Imagen"
           : pendingData.rawContent.video
             ? "Video"
             : pendingData.rawContent.audio
               ? "Audio"
               : "Media";
 
-      const successMsg = `✅ Berhasil up sw (V2) ke grup ${groupName}`;
+      const successMsg = `✅ Éxito up sw (V2) al grupo ${groupName}`;
 
       await m.reply(successMsg);
       pendingSwgcV2.delete(m.sender);
@@ -154,7 +154,7 @@ async function handler(m, { sock, db }) {
       }
     } catch (error) {
       await m.reply(
-        `❌ *ᴇʀʀᴏʀ*\n\n` + `> Gagal posting story V2.\n` + `> _${error.message}_`,
+        `❌ *ᴇʀʀᴏʀ*\n\n` + `> Fallo posting story V2.\n` + `> _${error.message}_`,
       );
       pendingSwgcV2.delete(m.sender);
       if (pendingData?.tempFile && fs.existsSync(pendingData.tempFile)) {
@@ -179,7 +179,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.quoted.download();
       if (!buffer) {
-        await m.reply(`❌ Gagal mengambil media.`);
+        await m.reply(`❌ Error al obtener el media.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -212,7 +212,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.download();
       if (!buffer) {
-        await m.reply(`❌ Gagal mengambil media.`);
+        await m.reply(`❌ Fallo mengambil media.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -242,9 +242,9 @@ async function handler(m, { sock, db }) {
   } else {
     await m.reply(
       `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-      `> \`${m.prefix}swgcv2 teks\` - Story teks\n` +
-      `> Reply gambar/video/audio + \`${m.prefix}swgcv2\`\n` +
-      `> Kirim gambar/video + caption \`${m.prefix}swgcv2\``,
+      `> \`${m.prefix}swgcv2 texto\` - Story texto\n` +
+      `> Reply imagen/video/audio + \`${m.prefix}swgcv2\`\n` +
+      `> Envía imagen/video + caption \`${m.prefix}swgcv2\``,
     );
     return;
   }
@@ -262,7 +262,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      await m.reply(`⚠️ *Bot tidak berada di grup manapun.*`);
+      await m.reply(`⚠️ *El bot no está en ningún grupo.*`);
       return;
     }
 
@@ -274,9 +274,9 @@ async function handler(m, { sock, db }) {
 
     const prefix = m.prefix || ".";
     const mediaType = rawContent.text
-      ? "Teks"
+      ? "Texto"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
@@ -293,7 +293,7 @@ async function handler(m, { sock, db }) {
         `📋 *ᴘɪʟɪʜ ɢʀᴜᴘ ᴜɴᴛᴜᴋ ᴘᴏsᴛ sᴛᴏʀʏ ᴠ2*\n\n` +
         `> Media: *${mediaType}*\n` +
         `> Total Grup: *${groupList.length}*\n\n` +
-        `_Pilih grup dari daftar di bawah:_`,
+        `_Selecciona el grupo de la lista de abajo:_`,
       contextInfo: {
         ...saluranCtx(),
         forwardedNewsletterMessageInfo: {
@@ -309,7 +309,7 @@ async function handler(m, { sock, db }) {
             title: "🏠 Pilih Grup",
             sections: [
               {
-                title: "Daftar Grup",
+                title: "Lista Grup",
                 rows: groupRows,
               },
             ],
@@ -327,7 +327,7 @@ async function handler(m, { sock, db }) {
   } catch (error) {
     await m.reply(
       `❌ *ᴇʀʀᴏʀ*\n\n` +
-      `> Gagal mengambil daftar grup.\n` +
+      `> Error al obtener la lista de grupos.\n` +
       `> _${error.message}_`,
     );
     if (tempFile && fs.existsSync(tempFile)) {

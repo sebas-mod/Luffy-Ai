@@ -5,7 +5,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Agrega palabras tóxicas a la lista',
     usage: '.addtoxic <kata>',
-    example: '.addtoxic kata_kasar',
+    example: '.addtoxic palabra_ofensiva',
     isOwner: false,
     isPremium: false,
     isGroup: true,

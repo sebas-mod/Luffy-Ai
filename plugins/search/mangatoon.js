@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'mangatoon',
     alias: ['mtoon', 'mangatoonsearch', 'searchmangatoon'],
     category: 'search',
-    description: 'Cari komik di Mangatoon',
+    description: 'Buscar cómic en Mangatoon',
     usage: '.mangatoon <query>',
     example: '.mangatoon love',
     isOwner: false,
@@ -37,7 +37,7 @@ async function fetchMangatoon(query) {
     })
 
     if (!data?.status || !data?.data?.results) {
-        throw new Error(data?.message || 'Hasil Mangatoon tidak ditemukan')
+        throw new Error(data?.message || 'Resultados de Mangatoon no encontrados')
     }
 
     return data.data
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`📚 *MANGATOON SEARCH*\n\n> Contoh:\n\`${m.prefix}mangatoon love\``)
+        return m.reply(`📚 *MANGATOON SEARCH*\n\n> Ejemplo:\n\`${m.prefix}mangatoon love\``)
     }
 
     m.react('🔍')
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
         if (items.length === 0) {
             m.react('❌')
-            return m.reply(`❌ Tidak ditemukan komik Mangatoon untuk: ${query}`)
+            return m.reply(`❌ No se encontraron cómics de Mangatoon para: ${query}`)
         }
 
         let caption = '📚 *MANGATOON SEARCH*\n\n'

@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "craft",
   alias: ["buat", "create"],
   category: "rpg",
-  description: "Craft item dari materials",
+  description: "Fabricar objetos con materiales",
   usage: ".craft <item>",
   example: ".craft sword",
   isOwner: false,
@@ -60,12 +60,12 @@ async function handler(m, { sock }) {
   const itemKey = args[0]?.toLowerCase();
 
   if (!itemKey) {
-    let txt = `Halo Petualang! Mau merakit alat apa nih? 🛠️✨\n\n`;
-    txt += `*Daftar Resep Rakitan:*\n`;
+    let txt = `¡Hola Aventurero! ¿Qué herramienta quieres ensamblar? 🛠️✨\n\n`;
+    txt += `*Lista de Recetas de Ensamblaje:*\n`;
 
     for (const [key, recipe] of Object.entries(RECIPES)) {
       txt += `\n*${recipe.name}*\n`;
-      txt += `📦 Bahan yang dibutuhin:\n`;
+      txt += `📦 Materiales necesarios:\n`;
       for (const [mat, qty] of Object.entries(recipe.materials)) {
         const userHas = user.inventory[mat] || 0;
         const status = userHas >= qty ? "✅" : "❌";
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
 
   const recipe = RECIPES[itemKey];
   if (!recipe) {
-    return m.reply(`Hayo, mau rakit apaan tuh? Barangnya nggak ada di daftar kak! 😂\nCek list yang bener pake \`.craft\` ya!`);
+    return m.reply(`Oye, ¿qué quieres ensamblar? ¡No está en la lista! 😂\n¡Revisa la lista correctamente con \`.craft\`!`);
   }
 
   const missingMaterials = [];
@@ -90,11 +90,11 @@ async function handler(m, { sock }) {
   }
   
   if (missingMaterials.length > 0) {
-      return m.reply(`Eits, bahannya belum cukup buat ngerakit *${recipe.name}* nih! 😭\n\nKekurangannya:\n${missingMaterials.join("\n")}\n\nKumpulin dulu deh, baru balik ke sini! 🏃💨`);
+      return m.reply(`¡Eh, los materiales no son suficientes para ensamblar *${recipe.name}*! 😭\n\nTe faltan:\n${missingMaterials.join("\n")}\n\n¡Consíguelos primero y vuelve! 🏃💨`);
   }
 
   await m.react("🛠️");
-  await m.reply(`Tok tok tok... Krek... 🛠️🔩\nSedang serius merakit *${recipe.name}*... Bentar lagi jadi!`);
+  await m.reply(`Toc toc toc... Creak... 🛠️🔩\nEnsamblando seriamente *${recipe.name}*... ¡Ya casi está listo!`);
   await new Promise((r) => setTimeout(r, 2000));
 
   for (const [mat, qty] of Object.entries(recipe.materials)) {
@@ -114,12 +114,12 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let txt = `YEAYY! BARANGNYA UDAH JADI! 🎉🛠️\n\n`;
-  txt += `Kamu berhasil merakit:\n`;
+  let txt = `¡¡GENIAL!! ¡ESTÁ LISTO! 🎉🛠️\n\n`;
+  txt += `Lograste ensamblar:\n`;
   txt += `📦 Item: *${recipe.name} x${resultQty}*\n`;
 
   if (recipe.bonus) {
-    txt += `\n*Status Bonus Aktif:*\n`;
+    txt += `\n*Bono de Estadísticas Activo:*\n`;
     for (const [stat, value] of Object.entries(recipe.bonus)) {
       txt += `📈 ${stat.toUpperCase()}: *+${value}*\n`;
     }

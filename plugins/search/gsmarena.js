@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "gsmarena",
   alias: ["gsm", "phonespec", "spesifikasi"],
   category: "search",
-  description: "Cari spesifikasi HP di GSMArena",
+  description: "Buscar especificaciones de celular en GSMArena",
   usage: ".gsmarena <nama hp>",
   example: ".gsmarena infinix hot 50",
   isOwner: false,
@@ -22,8 +22,8 @@ async function handler(m) {
   if (!text) {
     return m.reply(
       `📱 *ɢsᴍᴀʀᴇɴᴀ*\n\n` +
-        `> Cari spesifikasi HP lengkap\n\n` +
-        `\`Contoh: ${m.prefix}gsmarena samsung galaxy s25\``,
+        `> Buscar especificaciones completas de celular\n\n` +
+        `\`Ejemplo: ${m.prefix}gsmarena samsung galaxy s25\``,
     );
   }
 
@@ -34,7 +34,7 @@ async function handler(m) {
 
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`📱 HP tidak ditemukan untuk *${text}*`);
+      return m.reply(`📱 Celular no encontrado para *${text}*`);
     }
 
     if (results.length === 1) {
@@ -67,7 +67,7 @@ function formatList(results, query, prefix) {
     }
   });
 
-  txt += `\n> Ketik \`${prefix}gsmarena <nama lengkap>\` untuk detail`;
+  txt += `\n> Escribe \`${prefix}gsmarena <nombre completo>\` para detalles`;
   return txt;
 }
 

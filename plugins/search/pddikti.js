@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "pddikti",
   alias: ["dikti", "carimahasiswa"],
   category: "search",
-  description: "Cari data Mahasiswa, Dosen, PT, dan Prodi dari PDDIKTI",
+  description: "Buscar datos de Estudiantes, Docentes, Universidades y Programas desde PDDIKTI",
   usage: ".pddikti <mode> <query>",
   example: ".pddikti all Gibran Khalil\n.pddikti detail <id_mahasiswa>",
   cooldown: 15,
@@ -142,7 +142,7 @@ async function handler(m, { args }) {
   if (args.length === 0) {
     return m.reply(
       `🎓 *PDDIKTI SEARCH*\n\n` +
-      `> Mode pencarian:\n` +
+      `> Modos de búsqueda:\n` +
       `- \`.pddikti all <query>\`\n` +
       `- \`.pddikti mhs <nama/NIM>\`\n` +
       `- \`.pddikti dosen <nama/NIDN>\`\n` +
@@ -159,7 +159,7 @@ async function handler(m, { args }) {
     const mode = args[0].toLowerCase();
     
     if (mode === "detail") {
-      if (args.length < 2) return m.reply("❌ Masukkan ID Mahasiswa!");
+      if (args.length < 2) return m.reply("❌ ¡Ingresa el ID del Estudiante!");
       const mhsId = args[1];
       const res = await pddikti({ mode: "detail", mahasiswaId: mhsId });
       
@@ -169,7 +169,7 @@ async function handler(m, { args }) {
       }
       
       const r = res.Result;
-      let txt = `🎓 *DETAIL MAHASISWA*\n\n`;
+      let txt = `🎓 *DETALLE DEL ESTUDIANTE*\n\n`;
       txt += `- 📝 Nama          : *${r.nama}*\n`;
       txt += `- 🆔 NIM           : *${r.nim}*\n`;
       txt += `- 👤 Jenis Kelamin : *${r.jenisKelamin ?? "-"}*\n`;
@@ -186,7 +186,7 @@ async function handler(m, { args }) {
     
     // For other modes
     const query = args.slice(1).join(" ");
-    if (!query) return m.reply("❌ Masukkan kata kunci pencarian!");
+    if (!query)       return m.reply("❌ ¡Ingresa la palabra clave de búsqueda!");
     
     const res = await pddikti({ mode, query });
     if (!res.Status) {

@@ -15,7 +15,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    await m.reply('🛑 *Stopping Bot...*\n\n> Bot dimatikan. Harus dinyalakan manual dari terminal.')
+    await m.reply('🛑 *Stopping Bot...*\n\n> Bot dimatikan. Debe dinyalva a manual de terminal.')
     console.log('Stopping via command...')
     
     // Allow message to send before exit

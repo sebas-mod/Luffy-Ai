@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "ping",
   alias: ["speed", "p", "latency", "sys", "status"],
   category: "main",
-  description: "Cek performa dan status sistem bot secara real-time (Canvas Epic)",
+  description: "Verificar rendimiento y estado del sistema del bot en tiempo real (Canvas Épico)",
   usage: ".ping",
   example: ".ping",
   isOwner: false,
@@ -332,32 +332,32 @@ async function handler(m, { sock }) {
     const imageBuffer = await createEpicPingCanvas(data);
 
     const caption = 
-      `🏓 *PONG!* (${data.ping}ms)\n\n` +
-      `Berikut adalah detail spesifikasi dan performa server secara lengkap:\n\n` +
-      `🖥️ *INFORMASI SISTEM*\n` +
+      `🏓 *¡PONG!* (${data.ping}ms)\n\n` +
+      `Estos son los detalles de las especificaciones y rendimiento del servidor:\n\n` +
+      `🖥️ *INFORMACIÓN DEL SISTEMA*\n` +
       `> ◦ *OS:* ${data.osType} (${data.osRel})\n` +
-      `> ◦ *Platform:* ${data.osPlatform} (${data.osArch})\n` +
+      `> ◦ *Plataforma:* ${data.osPlatform} (${data.osArch})\n` +
       `> ◦ *Hostname:* ${data.osHost}\n` +
       `> ◦ *NodeJS:* ${data.nodeVer}\n` +
-      `> ◦ *Engine V8:* ${data.v8}\n\n` +
-      `💻 *INFORMASI CPU*\n` +
-      `> ◦ *Model:* ${data.cpuModel.trim()}\n` +
-      `> ◦ *Cores:* ${data.cpuCores} Core(s)\n` +
-      `> ◦ *Speed:* ${data.cpuSpeed} MHz\n` +
-      `> ◦ *Load Avg:* ${data.load[0]} (1m), ${data.load[1]} (5m), ${data.load[2]} (15m)\n\n` +
-      `🧠 *PENGGUNAAN MEMORI*\n` +
-      `> ◦ *Total RAM:* ${fmtSize(data.totalMem)}\n` +
-      `> ◦ *Dipakai:* ${fmtSize(data.usedMem)} (${data.memPct}%)\n` +
-      `> ◦ *Sisa Bebas:* ${fmtSize(data.freeMem)}\n\n` +
-      `📦 *MEMORI NODEJS*\n` +
+      `> ◦ *Motor V8:* ${data.v8}\n\n` +
+      `💻 *INFORMACIÓN DE CPU*\n` +
+      `> ◦ *Modelo:* ${data.cpuModel.trim()}\n` +
+      `> ◦ *Núcleos:* ${data.cpuCores} Núcleo(s)\n` +
+      `> ◦ *Velocidad:* ${data.cpuSpeed} MHz\n` +
+      `> ◦ *Carga Prom:* ${data.load[0]} (1m), ${data.load[1]} (5m), ${data.load[2]} (15m)\n\n` +
+      `🧠 *USO DE MEMORIA*\n` +
+      `> ◦ *RAM Total:* ${fmtSize(data.totalMem)}\n` +
+      `> ◦ *Usado:* ${fmtSize(data.usedMem)} (${data.memPct}%)\n` +
+      `> ◦ *Libre:* ${fmtSize(data.freeMem)}\n\n` +
+      `📦 *MEMORIA NODEJS*\n` +
       `> ◦ *RSS:* ${fmtSize(data.memNode.rss)}\n` +
       `> ◦ *Heap Total:* ${fmtSize(data.memNode.heapTotal)}\n` +
-      `> ◦ *Heap Used:* ${fmtSize(data.memNode.heapUsed)}\n` +
-      `> ◦ *External:* ${fmtSize(data.memNode.external)}\n\n` +
-      `⏱️ *WAKTU AKTIF (UPTIME)*\n` +
-      `> ◦ *Uptime Server:* ${data.upOS}\n` +
-      `> ◦ *Uptime Bot:* ${data.upBot}\n\n` +
-      `Sistem berjalan stabil dan menyelesaikan kalkulasi dalam waktu eksekusi *${data.ping}ms*.`;
+      `> ◦ *Heap Usado:* ${fmtSize(data.memNode.heapUsed)}\n` +
+      `> ◦ *Externo:* ${fmtSize(data.memNode.external)}\n\n` +
+      `⏱️ *TIEMPO ACTIVO (UPTIME)*\n` +
+      `> ◦ *Uptime del Servidor:* ${data.upOS}\n` +
+      `> ◦ *Uptime del Bot:* ${data.upBot}\n\n` +
+      `El sistema está funcionando de forma estable y completó los cálculos en *${data.ping}ms*.`;
 
     await sock.sendMessage(m.chat, { image: imageBuffer, caption: caption }, { quoted: m });
     await m.react("✅");

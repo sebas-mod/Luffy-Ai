@@ -17,7 +17,7 @@ const pluginConfig = {
     name: 'lirik',
     alias: ['lyric', 'lyrics', 'liriklagu'],
     category: 'search',
-    description: 'Cari lirik lagu',
+    description: 'Buscar letra de canción',
     usage: '.lirik <query>',
     example: '.lirik sempurna',
     isOwner: false,
@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `Hai kak! ✨ Lupa masukin judul lagunya ya? 😅\n\n` +
-            `Coba deh ketik perintahnya begini: *${m.prefix}lirik sempurna andra and the backbone* 🎶\n\n` +
-            `Yuk, masukin judulnya biar kita bisa nyanyi bareng! 🎤🔥`
+            `¡Hola! ✨ ¿Olvidaste poner el título de la canción? 😅\n\n` +
+            `Intenta escribir el comando así: *${m.prefix}lirik perfecto andra and the backbone* 🎶\n\n` +
+            `¡Vamos, pon el título para que podamos cantar juntos! 🎤🔥`
         )
     }
     
@@ -47,19 +47,19 @@ async function handler(m, { sock }) {
         
         if (!data || !data.lyrics || !data.lyrics.plain_lyrics) {
             m.react('❌')
-            return m.reply(`Waduh, maaf banget kak 🥺 lirik lagu *${query}* nggak ketemu nih di database. Coba pakai kata kunci atau judul yang lebih spesifik ya! 💔`)
+            return m.reply(`Vaya, lo siento mucho 🥺 la letra de la canción *${query}* no se encontró en la base de datos. ¡Intenta con una palabra clave o título más específico! 💔`)
         }
         
         const title = data.title || query
-        const artist = data.artist || data.lyrics.artist_name || 'Tidak diketahui'
+        const artist = data.artist || data.lyrics.artist_name || 'Desconocido'
         const lyricsText = data.lyrics.plain_lyrics
         
-        const texts = `Ketemu nih liriknya! 🎉\n\n` +
-                      `🎵 *Judul:* ${title}\n` +
-                      `🎤 *Artis:* ${artist}\n\n` +
-                      `Ini dia lirik lengkapnya buat kamu:\n\n` +
+        const texts = `¡Se encontró la letra! 🎉\n\n` +
+                      `🎵 *Título:* ${title}\n` +
+                      `🎤 *Artista:* ${artist}\n\n` +
+                      `Aquí está la letra completa para ti:\n\n` +
                       `${lyricsText}\n\n` +
-                      `Selamat bernyanyi ria, kak! 🎧💖`
+                      `¡Feliz canto, amigo! 🎧💖`
                       
         if (data.thumbnail && data.thumbnail !== '-') {
             await sock.sendMessage(m.chat, {
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
         
     } catch (error) {
         m.react('☢')
-        m.reply(`Yah, server liriknya lagi ngambek nih kak 😭 Coba lagi nanti ya! 🛠️✨`)
+        m.reply(`¡Vaya, el servidor de letras está molesto! 😭 ¡Intenta de nuevo más tarde! 🛠️✨`)
     }
 }
 

@@ -6,8 +6,8 @@ const pluginConfig = {
   alias: ["eplugin", "pluginenable", "onplugin"],
   category: "owner",
   description: "Vuelve a activar un plugin desactivado",
-  usage: ".enableplugin <nama_plugin>",
-  example: ".enableplugin sticker",
+  usage: ".enableplugin <nombre_plugin>",
+  example: ".enableplugin sticar",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -57,9 +57,9 @@ async function handler(m, { sock }) {
   if (!pluginName) {
     return m.reply(
       `🔌 *ᴇɴᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Masukkan nama plugin yang ingin diaktifkan\n\n` +
-        `*Contoh:*\n` +
-        `> \`${m.prefix}enableplugin sticker\`\n` +
+        `> Ingresa el nombre del plugin que quieres activar\n\n` +
+        `*Ejemplo:*\n` +
+        `> \`${m.prefix}enableplugin sticar\`\n` +
         `> \`${m.prefix}enableplugin tiktok\``,
     );
   }
@@ -67,13 +67,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`❌ Plugin *${pluginName}* tidak ditemukan!`);
+    return m.reply(`❌ Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled !== false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* sudah aktif!`);
+    return m.reply(`⚠️ Plugin *${pluginName}* ya activo!`);
   }
 
   try {
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
         `┃ 📄 File: *${file}*\n` +
         `┃ 🟢 Status: *Enabled*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot atau gunakan hot reload untuk apply.`,
+        `> Restart bot o usa hot reload para apply.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

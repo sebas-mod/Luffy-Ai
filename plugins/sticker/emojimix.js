@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'emojimix',
     alias: ['mixemoji', 'emix'],
     category: 'sticker',
-    description: 'Gabungkan 2 emoji menjadi 1',
+    description: 'Combina 2 emojis en 1',
     usage: '.emojimix <emoji1><emoji2>',
     example: '.emojimix 😂🔥',
     isOwner: false,
@@ -23,8 +23,8 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🎭 *ᴇᴍᴏᴊɪ ᴍɪx*\n\n` +
-            `> Gabungkan 2 emoji menjadi 1\n\n` +
-            `> Contoh: \`${m.prefix}emojimix 😂🔥\``
+            `> Combina 2 emojis en 1\n\n` +
+            `> Ejemplo: \`${m.prefix}emojimix 😂🔥\``
         )
     }
     
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     const emojis = text.match(emojiRegex)
     
     if (!emojis || emojis.length < 2) {
-        return m.reply(`❌ Masukkan minimal 2 emoji!\n\nContoh: ${m.prefix}emojimix 😂🔥`)
+        return m.reply(`❌ ¡Ingresa al menos 2 emojis!\n\nEjemplo: ${m.prefix}emojimix 😂🔥`)
     }
     
     const emoji1 = emojis[0]
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         const data = await f(apiUrl)
         
         if (!data.results || data.results.length === 0) {
-            return m.reply(`❌ Kombinasi emoji tidak ditemukan!\n\nCoba emoji lain.`)
+            return m.reply(`❌ ¡Combinación de emojis no encontrada!\n\nPrueba con otros emojis.`) // ¡No encontré esa mezcla!
         }
         
         const imageUrl = data.results[0].url

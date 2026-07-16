@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "searchthatsong",
   alias: ["sts", "carilagu"],
   category: "search",
-  description: "Mencari detail sebuah lagu dari lirik atau potongan kata",
+  description: "Buscar detalles de una canción por letra o fragmento de palabras",
   usage: ".searchthatsong <potongan lirik>",
   example: ".searchthatsong ku menangis membayangkan",
   isOwner: false,
@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Masukkan potongan lirik atau nama lagu yang ingin dicari.\n\nContoh: `.sts ku menangis membayangkan`");
+    return m.reply("❌ Ingresa un fragmento de letra o nombre de canción que quieras buscar.\n\nEjemplo: `.sts lloro imaginando`");
   }
 
   await m.react("🕕");
@@ -125,14 +125,14 @@ async function handler(m, { sock }) {
 
     if (!result.song) {
       await m.react("❌");
-      return m.reply("⚠️ Lagu tidak ditemukan. Coba gunakan lirik yang lebih spesifik.");
+      return m.reply("⚠️ Canción no encontrada. Intenta con una letra más específica.");
     }
 
     let caption = `🎵 *SEARCH THAT SONG* 🎵\n\n`;
     caption += `*Judul:* ${result.song}\n`;
-    if (result.artist) caption += `*Artis:* ${result.artist}\n`;
+    if (result.artist) caption += `*Artista:* ${result.artist}\n`;
     if (result.album) caption += `*Album:* ${result.album}\n`;
-    if (result.year) caption += `*Tahun:* ${result.year}\n`;
+    if (result.year) caption += `*Año:* ${result.year}\n`;
     if (result.genre) caption += `*Genre:* ${result.genre}\n`;
     if (result.youtubeUrl) caption += `*YouTube:* ${result.youtubeUrl}\n`;
     if (result.relevantChunk) caption += `\n*Match:* ${result.relevantChunk}\n`;
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SearchThatSong]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mencari lagu. Server mungkin sedang bermasalah.");
+    m.reply("😔 Ocurrió un error al buscar la canción. El servidor podría estar fallando.");
   }
 }
 

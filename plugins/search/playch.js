@@ -15,7 +15,7 @@ const pluginConfig = {
   name: "playch",
   alias: ["pch", "playsaluran"],
   category: "search",
-  description: "Putar musik ke saluran (convert opus)",
+  description: "Reproducir música al canal (convertir opus)",
   usage: ".playch <query> atau .playch --idch <id> <query>",
   example: ".playch komang",
   cooldown: 15,

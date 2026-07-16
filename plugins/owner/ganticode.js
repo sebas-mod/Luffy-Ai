@@ -8,7 +8,7 @@ const pluginConfig = {
   alias: ["replaceplugin", "updateplugin", "gantiplugin"],
   category: "owner",
   description: "Cambia el código de un plugin existente",
-  usage: ".ganticode [namafile] [folder]",
+  usage: ".ganticode [nombrefile] [folder]",
   example: ".ganticode ping main",
   isOwner: true,
   isPremium: false,
@@ -55,11 +55,11 @@ async function handler(m, { sock }) {
   if (!quoted) {
     return m.reply(
       `🔄 *GANTI CODE*\n\n` +
-        `Reply code plugin baru dengan caption:\n` +
+        `Reply code plugin nuevo con caption:\n` +
         `\`${m.prefix}ganticode\` - Auto detect\n` +
-        `\`${m.prefix}ganticode namafile\` - Custom nama\n` +
-        `\`${m.prefix}ganticode namafile folder\` - Custom nama + folder\n\n` +
-        `⚠️ *PERINGATAN:*\nCode lama akan di-backup sebelum diganti`,
+        `\`${m.prefix}ganticode nombrefile\` - Custom nombre\n` +
+        `\`${m.prefix}ganticode nombrefile folder\` - Custom nombre + folder\n\n` +
+        `⚠️ *PERINGATAN:*\nEl código antiguo se respaldará antes de ser reemplazado`,
     );
   }
 
@@ -72,19 +72,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nGagal download file`);
+      return m.reply(`❌ *GAGAL*\n\nError al descargar el archivo`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`❌ *GAGAL*\n\nCode terlalu pendek atau tidak valid`);
+    return m.reply(`❌ *GAGAL*\n\nEl código es demasiado corto o no válido`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode bukan format plugin yang valid\nHarus ada export dan config`,
+      `❌ *GAGAL*\n\nEl código no es un formato de plugin válido\nDebe tener export y config`,
     );
   }
 
@@ -96,14 +96,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nTidak bisa mendeteksi nama plugin\nGunakan \`${m.prefix}ganticode <namafile>\``,
+      `❌ *GAGAL*\n\nNo se puede detectar el nombre del plugin\nUsa \`${m.prefix}ganticode <nombrefile>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNama file tidak valid`);
+    return m.reply(`❌ *GAGAL*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -178,7 +178,7 @@ async function handler(m, { sock }) {
       replyText += `💾 *Backup:*\n\`${relBackup}\`\n\n`;
     }
 
-    replyText += `Plugin sudah aktif dan siap digunakan!`;
+    replyText += `¡El plugin ya está activo y listo para usar!`;
 
     return m.reply(replyText);
   } catch (error) {

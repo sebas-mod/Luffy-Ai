@@ -19,7 +19,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const keyword = m.args.join(' ')
     if (!keyword) {
-        return m.reply(`🌙 *ᴛᴀꜰsɪʀ ᴍɪᴍᴘɪ*\n\n> Masukkan kata kunci mimpi\n\n\`Contoh: ${m.prefix}tafsirmimpi bertemu\``)
+        return m.reply(`🌙 *ᴛᴀꜰsɪʀ ᴍɪᴍᴘɪ*\n\n> Ingresa kata kunci mimpi\n\n\`Ejemplo: ${m.prefix}tafsirmimpi bertemu\``)
     }
     
     m.react('🌙')
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.hasil?.length) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ditemukan tafsir untuk: ${keyword}`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No encontrado tafsir para: ${keyword}`)
         }
         
         const r = data.data
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
         })
         
         if (r.total > 10) {
-            response += `_...dan ${r.total - 10} hasil lainnya_`
+            response += `_...y ${r.total - 10} hasil otros_`
         }
         
         m.react('✅')

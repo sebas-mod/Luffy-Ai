@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "crime",
   alias: ["curi", "jahat"],
   category: "rpg",
-  description: "Melakukan kejahatan membobol ATM (risiko tinggi)",
+  description: "Cometer un crimen asaltando un ATM (alto riesgo)",
   usage: ".crime",
   example: ".crime",
   isOwner: false,
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
   if (!user.rpg) user.rpg = {};
 
   await m.react("💣");
-  await m.reply("Memasang alat peretas di ATM seberang jalan... 💣💻");
+  await m.reply("Instalando dispositivo de hacking en el ATM de enfrente... 💣💻");
   await new Promise((r) => setTimeout(r, 2500));
 
   const successRate = 0.5;
@@ -39,8 +39,8 @@ async function handler(m, { sock }) {
 
     db.save();
 
-    let txt = `HACKING SUKSES!! 💻💵\n\n`;
-    txt += `Mesin ATM ngeluarin duit kayak air terjun! Lu langsung kabur bawa koper penuh duit.\n\n`;
+    let txt = `¡¡HACKING EXITOSO!! 💻💵\n\n`;
+    txt += `¡El cajero automático expulsa dinero como una cascada! Huyes rápidamente con un maletín lleno.\n\n`;
     txt += `💰 Hasil Bobol: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP Kriminal: *+${expGain}*`;
 
@@ -54,9 +54,9 @@ async function handler(m, { sock }) {
 
     db.save();
 
-    let txt = `NGIIING NGIING!! ALARM BUNYI!! 🚨🚓\n\n`;
-    txt += `Sialan, mesinnya error dan polisi langsung ngepung dari segala arah!\n`;
-    txt += `Lu dipentung pake tongkat polisi terus dipaksa bayar denda.\n\n`;
+    let txt = `¡¡PIIII PIIII!! ¡¡SUENA LA ALARMA!! 🚨🚓\n\n`;
+    txt += `¡Maldita sea, la máquina dio error y la policía te rodea desde todas partes!\n`;
+    txt += `Te golpean con un bastón policial y te obligan a pagar una multa.\n\n`;
     txt += `💸 Denda Pidana: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
     txt += `🤕 Memar Kena Pentung: *-15 HP*`;
 

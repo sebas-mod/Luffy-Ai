@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'tqto',
     alias: ['thanksto', 'credits', 'kredit'],
     category: 'main',
-    description: 'Menampilkan daftar kontributor bot',
+    description: 'Mostrar lista de contribuidores del bot',
     usage: '.tqto',
     example: '.tqto',
     isOwner: false,
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
     const headers = ['No', 'Nama', 'Role / Tier']
     const rows = credits.map((c, i) => [i + 1, c.name, c.role])
 
-    await m.reply(`🍟 *Berikut ini adalah orang orang yang sudah berkontribusi di bot ${config.bot.name}*
+    await m.reply(`🍟 *Estas son las personas que han contribuido en el bot ${config.bot.name}*
         
 ${credits.map((c, i) => `*${i + 1}*. *${c.name}* [ ${c.icon} ${c.role} ]`).join('\n')}}`)
 }

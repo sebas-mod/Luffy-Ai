@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'system',
     alias: ['ram', 'cpu', 'disk', 'latency', 'ping'],
     category: 'main',
-    description: 'Menampilkan informasi sistem (RAM, CPU, Disk, Latency)',
+    description: 'Mostrar información del sistema (RAM, CPU, Disco, Latencia)',
     usage: '.ram | .cpu | .disk | .ping',
     isGroup: false,
     isBotAdmin: false,
@@ -47,7 +47,7 @@ async function getDiskUsage() {
             return `💿 *Disk Usage*\nTotal: ${parts[1]}\nUsed: ${parts[2]}\nFree: ${parts[3]}\nUse%: ${parts[4]}`;
         }
     } catch (e) {
-        return '❌ Gagal mengambil info disk';
+        return '❌ Error al obtener info del disco';
     }
 }
 
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
         }
     } catch (e) {
         console.error('System Plugin Error:', e);
-        m.reply('❌ Terjadi kesalahan mengambil data sistem.');
+        m.reply('❌ Ocurrió un error al obtener datos del sistema.');
     }
 }
 

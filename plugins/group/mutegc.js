@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "mutegc",
   alias: ["mutegrup", "mutebot", "blockbot", "lockbot"],
   category: "group",
-  description: "Blokir command bot untuk member, hanya admin/owner yang bisa pakai",
+  description: "Bloquea comandos del bot para miembros, solo admin/owner puede usar",
   usage: ".mutegc",
   example: ".mutegc",
   isOwner: false,
@@ -25,10 +25,10 @@ async function handler(m, { sock }) {
 
   if (groupData.mutegc) {
     return m.reply(
-      `🔇 *Mute GC Sudah Aktif*\n\n` +
-        `> Member tidak bisa menggunakan command bot di grup ini\n` +
-        `> Hanya admin grup dan owner bot yang bisa akses\n\n` +
-        `_Ketik *${m.prefix}unmutegc* untuk membuka_`
+      `🔇 *Mute GC Ya Activo*\n\n` +
+        `> Los miembros no pueden usar comandos del bot en este grupo\n` +
+        `> Solo el admin del grupo y el owner del bot pueden acceder\n\n` +
+        `_Escribe *${m.prefix}unmutegc* para desbloquear_`
     );
   }
 
@@ -39,9 +39,9 @@ async function handler(m, { sock }) {
   return m.reply(
     `🔇 *Mute GC Aktif*\n\n` +
       `> Grup: *${groupName}*\n` +
-      `> Member tidak bisa menggunakan command bot\n` +
-      `> Admin grup dan owner bot tetap bisa akses\n\n` +
-      `_Ketik *${m.prefix}unmutegc* untuk membuka_`,
+      `> Los miembros no pueden usar comandos del bot\n` +
+      `> Admin del grupo y owner del bot siguen pudiendo acceder\n\n` +
+      `_Escribe *${m.prefix}unmutegc* para desbloquear_`,
     { contextInfo: ctx }
   );
 }

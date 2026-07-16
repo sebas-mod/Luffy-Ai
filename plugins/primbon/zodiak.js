@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['horoscope', 'ramalan'],
     category: 'primbon',
     description: 'Ramalan zodiak',
-    usage: '.zodiak <nama zodiak>',
+    usage: '.zodiak <nombre zodiak>',
     example: '.zodiak aries',
     isOwner: false,
     isPremium: false,
@@ -16,13 +16,13 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const validZodiacs = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagitarius', 'capricorn', 'aquarius', 'pisces']
+const validZodiacs = ['aries', 'taurus', 'gemesto', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagitarius', 'capricorn', 'aquarius', 'pisces']
 
 async function handler(m, { sock }) {
     const zodiac = m.args[0]?.toLowerCase()
     
     if (!zodiac || !validZodiacs.includes(zodiac)) {
-        return m.reply(`⭐ *ᴢᴏᴅɪᴀᴋ*\n\n> Masukkan nama zodiak:\n\n${validZodiacs.map(z => `• ${z}`).join('\n')}\n\n\`Contoh: ${m.prefix}zodiak aries\``)
+        return m.reply(`⭐ *ᴢᴏᴅɪᴀᴋ*\n\n> Ingresa el nombre del zodiaco:\n\n${validZodiacs.map(z => `• ${z}`).join('\n')}\n\n\`Ejemplo: ${m.prefix}zodiak aries\``)
     }
     
     m.react('⭐')
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mendapatkan ramalan`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al obtener ramalan`)
         }
         
         const r = data.data

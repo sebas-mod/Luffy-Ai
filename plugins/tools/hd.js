@@ -7,8 +7,8 @@ const config = {
   name: "remini",
   alias: ["hd", "enhance", "upscale"],
   category: "tools",
-  description: "Enhance gambar jadi HD",
-  usage: ".remini (reply gambar)",
+  description: "Mejorar imagen a HD",
+  usage: ".remini (responder con imagen)",
   example: ".remini",
   cooldown: 15,
   energi: 1,
@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
 
   if (!img) {
     return m.reply(
-      `*🪁 HD IMAGE*\n> Reply gambar\n\n\`\`\`${m.prefix}remini\`\`\``,
+      `*🪁 HD IMAGE*\n> Responde con imagen\n\n\`\`\`${m.prefix}remini\`\`\``,
     );
   }
 
@@ -47,11 +47,11 @@ async function handler(m, { sock }) {
         throw new Error("API Faa response invalid");
       }
     } catch (err) {
-      throw new Error("Gagal melakukan upscale, coba lagi.");
+      throw new Error("Error al realizar el upscale, resultado vacío.");
     }
 
     if (!resultUrl) {
-      throw new Error("Gagal melakukan upscale, coba lagi.");
+      throw new Error("Error al realizar el upscale, resultado vacío.");
     }
 
     m.react("✅");

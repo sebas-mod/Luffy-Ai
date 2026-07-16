@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "genshinstalk",
   alias: ["genshin", "stalkgenshin", "gi"],
   category: "stalker",
-  description: "Melihat informasi akun Genshin Impact berdasarkan UID.",
+  description: "Ver información de una cuenta de Genshin Impact por UID.",
   usage: ".genshinstalk <uid>",
   example: ".genshinstalk 856012067",
   isOwner: false,
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const uid = m.text?.trim() || m.args[0];
 
   if (!uid) {
-    return m.reply("❌ *UID Genshin-nya mana nih?*\n\nKamu harus memasukkan UID pemain Genshin Impact yang ingin di-stalk. \n\nContoh: `.genshinstalk 856012067`");
+    return m.reply("❌ *¿Dónde está el UID de Genshin?*\n\nDebes ingresar el UID del jugador de Genshin Impact que quieres rastrear. \n\nEjemplo: `.genshinstalk 856012067`");
   }
 
   await m.react("🕕");
@@ -38,29 +38,29 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`⚠️ *Pencarian Gagal!*\n\nUID *${uid}* tidak ditemukan atau profilnya diprivat. Pastikan UID yang kamu masukkan sudah benar ya.`);
+      return m.reply(`⚠️ *¡Búsqueda Fallida!*\n\nEl UID *${uid}* no se encontró o el perfil es privado. Asegúrese de que el UID que ingresó sea correcto.`);
     }
 
     const r = data.result.player_info;
     const imageUrl = data.result.image_url;
     
     let caption = `🌟 *GENSHIN IMPACT STALK* 🌟\n\n`;
-    caption += `Halo Traveler! Ini dia informasi akun untuk UID *${data.result.id}*:\n\n`;
+    caption += `¡Hola Viajero! Aquí está la información de la cuenta para el UID *${data.result.id}*:\n\n`;
     
-    caption += `👤 *INFO PEMAIN*\n`;
+    caption += `👤 *INFO DEL JUGADOR*\n`;
     caption += `  - Nickname: *${r.nickname || "-"}*\n`;
-    caption += `  - Adventure Rank (AR): ${r.level || "-"}\n`;
-    caption += `  - World Level (WL): ${r.world_level || "-"}\n`;
+    caption += `  - Nivel de Aventura (AR): ${r.level || "-"}\n`;
+    caption += `  - Nivel de Mundo (WL): ${r.world_level || "-"}\n`;
     caption += `  - Signature: ${r.signature || "-"}\n\n`;
     
-    caption += `🏆 *PENCAPAIAN*\n`;
-    caption += `  - Total Achievement: ${r.achievements || "-"}\n`;
-    caption += `  - Spiral Abyss: ${r.spiral_abyss || "Belum ada data"}\n`;
+    caption += `🏆 *LOGROS*\n`;
+    caption += `  - Logros Totales: ${r.achievements || "-"}\n`;
+    caption += `  - Abismo Espiral: ${r.spiral_abyss || "Sin datos aún"}\n`;
     if (r.theater) caption += `  - Imaginarium Theater: ${r.theater}\n`;
     if (r.stygian_onslaught) caption += `  - Stygian Onslaught: ${r.stygian_onslaught}\n`;
     caption += `\n`;
     
-    caption += `Gimana, statnya bagus nggak? Pamerin ke teman-temanmu yuk! 🚀`;
+    caption += `¿Qué tal, están buenos los stats? ¡Presúmelo a tus amigos! 🚀`;
 
     if (imageUrl) {
       await sock.sendMessage(m.chat, {
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Genshin Stalk]", error.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menarik data dari server Genshin Impact. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Ocurrió un problema en nuestro sistema.* \n\nEl sistema no pudo obtener datos del servidor Genshin Impact. Por favor, inténtalo de nuevo en unos momentos.");
   }
 }
 

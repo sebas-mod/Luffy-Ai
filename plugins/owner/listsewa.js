@@ -2,7 +2,7 @@ import { getDatabase } from '../../src/lib/ourin-database.js'
 import * as timeHelper from '../../src/lib/ourin-time.js'
 const pluginConfig = {
     name: 'listsewa',
-    alias: ['sewalist', 'daftarsewa'],
+    alias: ['sewalist', 'listasewa'],
     category: 'owner',
     description: 'Muestra los grupos registrados en alquiler',
     usage: '.listsewa',
@@ -52,8 +52,8 @@ function handler(m) {
         return m.reply(
             `📋 *DAFTAR SEWA*\n\n` +
             `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
-            `Belum ada grup terdaftar\n\n` +
-            `Tambah dengan: *${m.prefix}addsewa <link> <durasi>*`
+            `Aún no hay grup terlista\n\n` +
+            `Tambah con: *${m.prefix}addsewa <link> <durasi>*`
         )
     }
 
@@ -70,7 +70,7 @@ function handler(m) {
 
     let text = `📋 *DAFTAR SEWA*\n\n`
     text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-    text += `Total: *${groupIds.length}* grup (${active.length} aktif, ${expired.length} expired)\n\n`
+    text += `Total: *${groupIds.length}* grup (${active.length} activo, ${expired.length} expired)\n\n`
 
     for (let i = 0; i < sorted.length; i++) {
         const gid = sorted[i]
@@ -87,7 +87,7 @@ function handler(m) {
 
     text += `*AKSI:*\n`
     text += `• *${m.prefix}renewsewa <id> <durasi>* — Perpanjang\n`
-    text += `• *${m.prefix}delsewa <id>* — Hapus dari whitelist`
+    text += `• *${m.prefix}delsewa <id>* — Hapus de whitelist`
 
     return m.reply(text)
 }

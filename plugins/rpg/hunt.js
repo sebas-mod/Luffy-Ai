@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "hunt",
   alias: ["berburu", "hunting"],
   category: "rpg",
-  description: "Berburu hewan untuk mendapatkan daging dan kulit",
+  description: "Cazar animales para obtener carne y cuero",
   usage: ".hunt",
   example: ".hunt",
   isOwner: false,
@@ -28,21 +28,21 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`⚡ Aduh kak, stamina kamu habis!\n\nButuh *${staminaCost} Stamina* buat pergi berburu.\nStamina kamu sisa: *${user.rpg.stamina}*`);
+    return m.reply(`⚡ ¡Ay, se te acabó la stamina!\n\nNecesitas *${staminaCost} Stamina* para ir a cazar.\nTu stamina restante: *${user.rpg.stamina}*`);
   }
 
   user.rpg.stamina -= staminaCost;
 
-  await m.reply("🏹 _Mengendap-endap di balik semak belukar... Menyiapkan anak panah..._ 🌿🤫");
+  await m.reply("🏹 _Escondido entre los arbustos... Preparando la flecha..._ 🌿🤫");
   await new Promise((r) => setTimeout(r, 2500));
 
   const animals = [
-    { name: "🐰 Kelinci Hutan", item: "rabbit", chance: 50, exp: 100 },
-    { name: "🦌 Rusa Jantan", item: "deer", chance: 30, exp: 200 },
-    { name: "🐗 Babi Hutan Liar", item: "boar", chance: 20, exp: 300 },
-    { name: "🐻 Beruang Madu", item: "bear", chance: 10, exp: 500 },
-    { name: "🦁 Singa Padang Rumput", item: "lion", chance: 5, exp: 800 },
-    { name: "🐉 Anak Naga Kuno", item: "dragon", chance: 1, exp: 2000 },
+    { name: "🐰 Conejo", item: "rabbit", chance: 50, exp: 100 },
+    { name: "🦌 Ciervo", item: "deer", chance: 30, exp: 200 },
+    { name: "🐗 Jabalí", item: "boar", chance: 20, exp: 300 },
+    { name: "🐻 Oso", item: "bear", chance: 10, exp: 500 },
+    { name: "🦁 León", item: "lion", chance: 5, exp: 800 },
+    { name: "🐉 Cría de Dragón Antiguo", item: "dragon", chance: 1, exp: 2000 },
   ];
 
   const rand = Math.random() * 100;
@@ -64,12 +64,12 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let txt = `🏹 *TANGKAPAN BERHASIL!* 🏹\n\n`;
-  txt += `Wah jago banget bidikannya kak! Kamu berhasil menembak:\n`;
+  let txt = `🏹 ¡¡CAPTURA EXITOSA!! 🏹\n\n`;
+  txt += `¡Increíble puntería! Lograste abatir:\n`;
   txt += `🎯 *${caught.name}* (+1)\n\n`;
-  txt += `*Hasil Perburuan:*\n`;
-  txt += `✨ EXP Bertambah: *+${caught.exp}*\n`;
-  txt += `⚡ Stamina Terpakai: *-${staminaCost}*`;
+  txt += `*Resultado de la caza:*\n`;
+  txt += `✨ EXP: *+${caught.exp}*\n`;
+  txt += `⚡ Stamina usada: *-${staminaCost}*`;
 
   await m.reply(txt);
 }

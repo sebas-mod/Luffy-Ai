@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "infotourney",
   alias: ["tourney", "turnamen", "mltourney"],
   category: "info",
-  description: "Info turnamen Mobile Legends terbaru",
+  description: "Info de torneos de Mobile Legends más recientes",
   usage: ".infotourney",
   example: ".infotourney",
   isOwner: false,
@@ -73,14 +73,14 @@ async function handler(m, { sock }) {
 
     if (!tournaments || tournaments.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Tidak ada turnamen yang ditemukan");
+      return m.reply("❌ No se encontró ningún torneo");
     }
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-AI";
 
     let text = `🏆 *ɪɴꜰᴏ ᴛᴜʀɴᴀᴍᴇɴ ᴍᴏʙɪʟᴇ ʟᴇɢᴇɴᴅs*\n\n`;
-    text += `> 5 Turnamen Terbaru\n\n`;
+    text += `> 5 Torneos Más Recientes\n\n`;
 
     for (let i = 0; i < tournaments.length; i++) {
       const t = tournaments[i];

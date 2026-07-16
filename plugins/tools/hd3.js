@@ -9,8 +9,8 @@ const config = {
   name: "hd3",
   alias: ["enhance3", "upscale3"],
   category: "tools",
-  description: "Enhance gambar jadi HD (BeautyPlus)",
-  usage: ".hd3 (reply gambar)",
+  description: "Mejorar imagen a HD (BeautyPlus)",
+  usage: ".hd3 (responder con imagen)",
   example: ".hd3",
   cooldown: 20,
   energi: 2,
@@ -265,7 +265,7 @@ async function handler(m, { sock }) {
 
   if (!img) {
     return m.reply(
-      `*🪄 BEAUTYPLUS ENHANCER*\n> Reply gambar untuk di-HD-kan\n\n\`\`\`${m.prefix}hd3\`\`\``
+      `*🪄 BEAUTYPLUS ENHANCER*\n> Responde con imagen para mejorarla a HD\n\n\`\`\`${m.prefix}hd3\`\`\``
     );
   }
 
@@ -283,7 +283,7 @@ async function handler(m, { sock }) {
     const resultUrl = await getResult(taskId, uid);
 
     if (!resultUrl) {
-      throw new Error("Gagal melakukan upscale, hasil kosong.");
+      throw new Error("Error al realizar el upscale, resultado vacío.");
     }
 
     m.react("✅");

@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'listjadibot',
     alias: ['jadibotlist', 'alljadibot'],
     category: 'owner',
-    description: 'Muestra todas las sesiones de jadibot guardadas',
+    description: 'Muestra todas las sesiones de jadibot guardhays',
     usage: '.listjadibot',
     example: '.listjadibot',
     isOwner: true,
@@ -20,12 +20,12 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (sessions.length === 0) {
-        return m.reply(`❌ Tidak ada session jadibot tersimpan`)
+        return m.reply(`❌ No hay session jadibot tersimpan`)
     }
 
     let txt = `🤖 *ᴅᴀꜰᴛᴀʀ ᴊᴀᴅɪʙᴏᴛ*\n\n`
     txt += `> 📊 Total: *${sessions.length}* session\n`
-    txt += `> 🟢 Aktif: *${active.length}*\n`
+    txt += `> 🟢 Activo: *${active.length}*\n`
     txt += `> ⚫ Offline: *${sessions.length - active.length}*\n\n`
 
     sessions.forEach((s, i) => {
@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
         txt += `${status} *${i + 1}.* @${s.id} — _${label}_\n`
     })
 
-    txt += `\n> \`${m.prefix}listjadibotaktif\` — Detail aktif\n`
-    txt += `> \`${m.prefix}stopalljadibot\` — Stop semua\n`
-    txt += `> \`${m.prefix}stopdandeletejadibot @user\` — Hapus session`
+    txt += `\n> \`${m.prefix}listjadibotactivo\` — Detail activo\n`
+    txt += `> \`${m.prefix}stopalljadibot\` — Stop todos\n`
+    txt += `> \`${m.prefix}stopydeletejadibot @user\` — Hapus session`
 
     const mentions = sessions.map(s => s.jid)
 
@@ -47,14 +47,14 @@ async function handler(m, { sock }) {
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🟢 Lihat Aktif',
-                    id: `${m.prefix}listjadibotaktif`
+                    display_text: '🟢 Lihat Activo',
+                    id: `${m.prefix}listjadibotactivo`
                 })
             },
             {
                 name: 'quick_reply',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🛑 Stop Semua',
+                    display_text: '🛑 Stop Todos',
                     id: `${m.prefix}stopalljadibot`
                 })
             }

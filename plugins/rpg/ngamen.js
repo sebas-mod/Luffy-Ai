@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ngamen",
   alias: ["nyanyi", "konser"],
   category: "rpg",
-  description: "Ngamen di jalanan untuk mencari koin",
+  description: "Cantar en las calles para ganar monedas",
   usage: ".ngamen",
   example: ".ngamen",
   isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Suara serak, tenggorokan kering! 🥵\n\nNgamen butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Minum es teh dulu gih! ☕`);
+    return m.reply(`¡Voz ronca, garganta seca! 🥵\n\nCantar requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Toma un té helado primero! ☕`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
   const loc = locations[Math.floor(Math.random() * locations.length)];
   const earning = Math.floor(Math.random() * (loc.max - loc.min + 1)) + loc.min;
 
-  await m.reply(`Mulai jreng-jreng gitar di *${loc.name}*... 🎶\nSemoga hari ini banyak yang ngasih receh! 💸`);
+  await m.reply(`Comienzas a rasguear la guitarra en *${loc.name}*... 🎶\n¡Espera que hoy te den buenas propinas! 💸`);
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
   user.koin = (user.koin || 0) + earning;
@@ -55,12 +55,12 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `ALHAMDULILLAH HASIL NGAMEN! 🎸✨\n\n`;
-  txt += `Lokasi: *${loc.name}*\n`;
-  txt += `💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  let txt = `¡ALABADO SEA DIOS, RESULTADO DEL CANTO! 🎸✨\n\n`;
+  txt += `Ubicación: *${loc.name}*\n`;
+  txt += `💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Lumayan buat beli nasi bungkus hari ini! 🤤`;
+  txt += `¡Sirve para comprar arroz hoy! 🤤`;
 
   m.reply(txt);
 }

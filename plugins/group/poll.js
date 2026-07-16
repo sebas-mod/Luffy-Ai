@@ -4,7 +4,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Crear encuesta/votación en el grupo',
     usage: '.poll <pertanyaan> | <opsi1>, <opsi2>, ...',
-    example: '.poll Makan apa? | Nasi Goreng, Mie Ayam, Bakso',
+    example: '.poll ¿Qué comer? | Arroz Frito, Pollo con Fideos, Sopa de Albóndigas',
     isOwner: false,
     isPremium: false,
     isGroup: true,

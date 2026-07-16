@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "hourly",
   alias: ["jam", "perjam"],
   category: "rpg",
-  description: "Klaim hadiah per jam",
+  description: "Reclamar recompensa cada hora",
   usage: ".hourly",
   example: ".hourly",
   isOwner: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
 function msToTime(duration) {
   const minutes = Math.floor((duration / (1000 * 60)) % 60);
   const seconds = Math.floor((duration / 1000) % 60);
-  return `${minutes} menit ${seconds} detik`;
+  return `${minutes} minutos ${seconds} segundos`;
 }
 
 async function handler(m, { sock }) {
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
   if (now - lastClaim < COOLDOWN) {
     const remaining = COOLDOWN - (now - lastClaim);
-    return m.reply(`Eits, buru-buru amat kak! 😂\n\nJatah jam ini udah kamu ambil, tunggu *${msToTime(remaining)}* lagi ya baru balik ke sini! 🏃💨`);
+    return m.reply(`¡Eh, qué apurado estás! 😂\n\nTu ración de esta hora ya fue reclamada, espera *${msToTime(remaining)}* más antes de volver. 🏃💨`);
   }
 
   const expReward = isPremium ? 1000 : 200;
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
 
   await m.react("⏰");
 
-  let txt = `WAKTUNYA GAJIAN JAM-JAMAN! ⏰✨\n\n`;
-  txt += `Ini dia jatah kamu:\n`;
-  txt += `💸 Koin: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
+  let txt = `¡¡ES HORA DEL SUeldo POR HORA! ⏰✨\n\n`;
+  txt += `Esta es tu ración:\n`;
+  txt += `💸 Monedas: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n\n`;
-  txt += `Balik lagi 1 jam kemudian ya kak! 😘`;
+  txt += `¡Vuelve en 1 hora! 😘`;
 
   m.reply(txt);
 }

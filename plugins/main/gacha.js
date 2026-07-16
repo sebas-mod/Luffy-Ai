@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "gacha",
   alias: ["spin", "pull", "lucky"],
   category: "rpg",
-  description: "Gacha untuk dapat hadiah random",
+  description: "Gacha para obtener premios aleatorios",
   usage: ".gacha",
   example: ".gacha",
   isOwner: false,
@@ -188,8 +188,8 @@ async function handler(m, { sock }) {
   }
 
   text += `*Rarity:* ${rarityColors[reward.rarity]}\n`;
-  text += `*Hadiah:* ${typeEmoji} ${rewardText}\n\n`;
-  text += `_Cooldown: 5 menit_`;
+  text += `*Premio:* ${typeEmoji} ${rewardText}\n\n`;
+  text += `_Cooldown: 5 minutos_`;
 
   await m.reply(text);
 }

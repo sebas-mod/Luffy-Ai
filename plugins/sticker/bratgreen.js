@@ -6,9 +6,9 @@ const pluginConfig = {
   name: "bratgreen",
   alias: ["brat2"],
   category: "sticker",
-  description: "Membuat sticker brat ijo",
-  usage: ".brat2 <text>",
-  example: ".brat2 Hai semua",
+  description: "Crear sticker brat verde",
+  usage: ".brat2 <texto>",
+  example: ".brat2 Hola a todos",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const text = m.args.join(" ").trim();
   if (!text) {
-    return m.reply(`🖼️ *BRAT GREEN*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratgreen Hai semua\``);
+    return m.reply(`🖼️ *BRAT GREEN*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}bratgreen Hola a todos\``);
   }
 
   m.react("🕕");

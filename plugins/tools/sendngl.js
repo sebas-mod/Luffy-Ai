@@ -21,11 +21,11 @@ async function handler(m, { sock }) {
   const [link, kata] = text;
   if (!link)
     return m.reply(
-      `*LINK NGL NYA MANA ??*\nContoh: \`${m?.prefix}sendngl https://ngl.link/xxxx | hai`,
+      `*¿DÓNDE ESTÁ EL ENLACE NGL??*\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   if (!kata)
     return m.reply(
-      `*KATA KATA NYA MANA ??*\n\nContoh: \`${m?.prefix}sendngl https://ngl.link/xxxx | hai`,
+      `*¿DÓNDE ESTÁ EL TEXTO??*\n\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   m.react("🎴");
 
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
     await sock.sendMessage(
       m.chat,
       {
-        text: `✅ *DONE*\n\nBerhasil mengirim pesan!\nTarget: ${link}\nPesan: ${kata}`,
+        text: `✅ *LISTO*\n\n¡Mensaje enviado con éxito!\nDestino: ${link}\nMensaje: ${kata}`,
       },
       { quoted: m },
     );

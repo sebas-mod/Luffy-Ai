@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "apkmod-get",
   alias: ["apkmodget", "getapkmod"],
   category: "search",
-  description: "Download APK MOD dari hasil pencarian",
+  description: "Descargar APK MOD desde los resultados de búsqueda",
   usage: ".apkmod-get <no> <query>",
   example: ".apkmod-get 1 vpn",
   isOwner: false,

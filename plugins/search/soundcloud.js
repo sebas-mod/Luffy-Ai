@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "soundcloud",
   alias: ["scsearch", "scs"],
   category: "search",
-  description: "Cari lagu di SoundCloud",
+  description: "Buscar canción en SoundCloud",
   usage: ".soundcloud judul",
   example: ".soundcloud Only We Know",
   isOwner: false,
@@ -71,7 +71,7 @@ async function handler(m, { args, sock }) {
   try {
     const data = await scSearch(args.join(" "));
     if (!data.length) {
-      return m.reply(`❌ Aduh kak, lagunya nggak ketemu nih! Coba cari dengan judul yang beda ya. 😭`);
+      return m.reply(`❌ ¡Vaya, la canción no se encontró! Prueba con otro título. 😭`);
     }
     let thumb = data.find((v) => v.artwork)?.artwork || null;
     let txt = `🎧 *HASIL PENCARIAN SOUNDCLOUD* 🎧\n\n`;
@@ -88,7 +88,7 @@ async function handler(m, { args, sock }) {
     }
     txt += contentTxt.trim().split("\n").map(line => line.trim() ? `${line}` : ``).join("\n");
     txt += `\n\n`;
-    txt += `Kalo mau download lagunya, pake fitur \`${m.prefix}playsc\` aja kak! 😉`;
+    txt += `Si quieres descargar la canción, usa la función \`${m.prefix}playsc\`! 😉`;
     if (thumb) {
       await sock.sendMedia(m.chat, thumb, txt.trim(), m, { type: "image" });
     } else {
@@ -96,7 +96,7 @@ async function handler(m, { args, sock }) {
     }
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Maaf kak, terjadi kesalahan sistem!\nError: ${e.message}`);
+    m.reply(`❌ Lo siento, ¡ocurrió un error del sistema!\nError: ${e.message}`);
   }
 }
 

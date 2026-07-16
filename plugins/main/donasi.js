@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "donasi",
   alias: ["donate", "donation", "support", "saweria", "trakteer"],
   category: "main",
-  description: "Informasi donasi untuk mendukung bot dengan QRIS",
+  description: "Información de donaciones para apoyar al bot con QRIS",
   usage: ".donasi",
   example: ".donasi",
   isOwner: false,
@@ -29,16 +29,16 @@ async function handler(m, { sock }) {
   const links = donasiConfig.links || [];
   const qrisUrl = donasiConfig.qris || "";
   const benefits = donasiConfig.benefits || [
-    "Mendukung development",
-    "Server lebih stabil",
-    "Fitur baru lebih cepat",
-    "Priority support",
+    "Apoyar el desarrollo",
+    "Servidor más estable",
+    "Funciones nuevas más rápido",
+    "Soporte prioritario",
   ];
 
-  let text = `DONASI KE OWNER ${botName} 🙏`;
+  let text = `DONACIONES AL OWNER ${botName} 🙏`;
 
   if (payments.length > 0 || links.length > 0) {
-    text += `Pembayaran\n`;
+    text += `Pago\n`;
     for (const pay of payments) {
       text += `🏦 *${pay.name
         ?.toLowerCase()
@@ -62,8 +62,8 @@ async function handler(m, { sock }) {
   } else {
     text += `╭┈┈⬡「 💳 *ᴘᴀʏᴍᴇɴᴛ* 」\n`;
     text += `┃\n`;
-    text += `┃ > Belum dikonfigurasi\n`;
-    text += `┃ > Edit config.donasi\n`;
+    text += `┃ > Aún no está configurado\n`;
+    text += `┃ > Editar config.donasi\n`;
     text += `┃\n`;
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   }
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
   }
   text += `\n`;
 
-  text += `_Donasi berapapun sangat berharga_\n`;
+  text += `_Cualquier donación es muy valiosa_\n`;
   text += `Contact: @${config.owner?.number?.[0] || "owner"}`;
 
   const copyButtons = payments.map((pay) => ({

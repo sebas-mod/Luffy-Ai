@@ -47,7 +47,7 @@ const pluginConfig = {
   name: "welcome",
   alias: ["wc"],
   category: "group",
-  description: "Mengatur welcome message untuk grup",
+  description: "Configurar mensaje de bienvenida para el grupo",
   usage: ".welcome <on/off>",
   example: ".welcome on",
   isOwner: false,

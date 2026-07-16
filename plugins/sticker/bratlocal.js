@@ -15,9 +15,9 @@ const pluginConfig = {
   name: "bratlocal",
   alias: ["bratgojo", "bratgojovid", "bratvermeil", "bratvermeilvid"],
   category: "canvas",
-  description: "Bikin brat versi lokal (Gojo & Vermeil)",
-  usage: ".bratgojo <teks>",
-  example: ".bratgojo Halo",
+  description: "Crear brat versión local (Gojo & Vermeil)",
+  usage: ".bratgojo <texto>",
+  example: ".bratgojo Hola",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -68,7 +68,7 @@ const VIDEO_CONFIG = {
 async function downloadBuffer(url) {
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error(`Gagal download: ${res.status} ${res.statusText}`);
+    throw new Error(`Error al descargar: ${res.status} ${res.statusText}`);
   }
   return Buffer.from(await res.arrayBuffer());
 }
@@ -313,7 +313,7 @@ function buildManifest(frames, framePaths) {
 
 async function encodeVideo(concatPath, outputPath, configObj) {
   if (configObj.outputFormat !== "mp4") {
-    throw new Error("Saat ini output hanya support mp4");
+    throw new Error("Salida actual solo soporta mp4");
   }
 
   const args = [
@@ -336,7 +336,7 @@ async function encodeVideo(concatPath, outputPath, configObj) {
 async function createBratVideo(text, template) {
   const frames = buildRevealFrames(text, VIDEO_CONFIG);
   if (!frames.length) {
-    throw new Error("Teks kosong");
+    throw new Error("Texto vacío");
   }
 
   const tmpDir = await fsp.mkdtemp(path.join(os.tmpdir(), "bratvid-"));
@@ -386,7 +386,7 @@ async function createBratVideo(text, template) {
 async function handler(m, { sock }) {
   const text = m.text;
   if (!text) {
-    return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+    return m.reply(`⚠️ ¡Por favor ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``); // ¡Vamos, no seas tímido!
   }
 
   await m.react("🕕");
@@ -407,7 +407,7 @@ async function handler(m, { sock }) {
       template = TEMPLATES.vermeil;
       isVideo = true;
     } else {
-      throw new Error("Command tidak valid");
+      throw new Error("Comando no válido");
     }
 
     const inputText = normalizeText(text);

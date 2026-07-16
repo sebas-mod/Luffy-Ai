@@ -6,9 +6,9 @@ const pluginConfig = {
   name: "ttp",
   alias: ["texttopicture"],
   category: "maker",
-  description: "Membuat stiker keren dari teks",
-  usage: ".ttp <teks>",
-  example: ".ttp Hai Cantik",
+  description: "Crear sticker genial a partir de texto",
+  usage: ".ttp <texto>",
+  example: ".ttp Hola Bonita",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ *Waduh, teksnya mana nih?*\n\nKamu harus memasukkan teks yang ingin dijadikan stiker.\n\nContoh: `.ttp Hai Cantik`");
+    return m.reply("❌ *¡Vaya, ¿dónde está el texto?*\n\nDebes ingresar el texto que quieres convertir en sticker.\n\nEjemplo: `.ttp Hola Bonita`"); // ¡No seas tímido!
   }
 
   await m.react("🕕");
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[TTP Maker]", err.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat stiker. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Ocurrió un problema en nuestro sistema.* \n\nEl sistema no pudo contactar al servidor de creación de stickers. Por favor, intenta de nuevo en unos momentos."); // ¡No te preocupes!
   }
 }
 

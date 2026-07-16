@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "divorce",
   alias: ["cerai", "pisah"],
   category: "rpg",
-  description: "Bercerai dari pasangan",
+  description: "Divorciarse de tu pareja",
   usage: ".divorce",
   example: ".divorce",
   isOwner: false,
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
   if (!user.rpg) user.rpg = {};
 
   if (!user.rpg.spouse) {
-    return m.reply(`Halu tingkat tinggi... Nikah aja belum masa udah mau cerai? 😂💔\nCari pasangan dulu gih pake \`.marry @user\``);
+    return m.reply(`Alucinación nivel extremo... ¿Todavía no te has casado y ya quieres divorciarte? 😂💔\nBusca una pareja primero usando \`.marry @user\``);
   }
 
   const spouseJid = user.rpg.spouse;
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
 
   const divorceCost = 25000;
   if ((user.koin || 0) < divorceCost) {
-    return m.reply(`Aduh, biaya pengacara buat cerai mahal bos! 😭\nButuh *Rp 25.000* buat tanda tangan surat cerai, duit lu cuma *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\nTahan dulu aja berantemnya!`);
+    return m.reply(`¡Uf, los honorarios del abogado para divorciarte son caros! 😭\nNecesitas *Rp 25.000* para firmar los papeles, tu dinero es solo *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\n¡Aguanta un poco más peleando!`);
   }
 
   user.koin -= divorceCost;
@@ -48,13 +48,13 @@ async function handler(m, { sock }) {
   await m.react("💔");
 
   let txt = `⛈️ *SIDANG PERCERAIAN SELESAI* ⛈️\n\n`;
-  txt += `Palu telah diketuk. Dengan berat hati, hubungan antara:\n`;
+  txt += `El martillo ha caído. Con pesar, la relación entre:\n`;
   txt += `💔 @${m.sender.split("@")[0]}\n`;
   txt += `         -- PUTUS DENGAN --\n`;
   txt += `💔 @${spouseJid.split("@")[0]}\n\n`;
   txt += `😭 *RESMI BERAKHIR! KINI KALIAN KEMBALI JOMBLO!* 😭\n\n`;
   txt += `💸 Biaya Pengacara/Sidang: *Rp -${divorceCost.toLocaleString("id-ID")}*\n\n`;
-  txt += `> _"Sudah sudah... nangisnya di pojokan aja. Life must go on..." - Hakim Bot_ 🥀🚬`;
+  txt += `> _"Ya basta... llora en un rincón. ¡La vida debe continuar!" - Juez Bot_ 🥀🚬`;
 
   await m.reply(txt, { mentions: [m.sender, spouseJid] });
 }

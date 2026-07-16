@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'quotesimage',
     alias: ['quoteimg', 'quotes-image', 'qimg'],
     category: 'random',
-    description: 'Random quotes image',
+    description: 'Imagen de frase aleatoria',
     usage: '.quotesimage',
     example: '.quotesimage',
     isOwner: false,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
         
         if (!res.status || !res.data?.url) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil quotes image`)
+            return m.reply(`❌ Error al obtener la imagen de frase`)
         }
         
         await sock.sendMedia(m.chat, res.data.url, null, m, {

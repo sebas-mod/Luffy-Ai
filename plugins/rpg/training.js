@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "training",
   alias: ["train", "latihan", "workout"],
   category: "rpg",
-  description: "Latihan untuk meningkatkan stats",
+  description: "Entrenar para mejorar estadísticas",
   usage: ".training <attack/defense/health>",
   example: ".training attack",
   isOwner: false,
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
 
   if (!trainType) {
     let txt = `🏋️ *ᴛʀᴀɪɴɪɴɢ sʏsᴛᴇᴍ*\n\n`;
-    txt += `> Latihan untuk meningkatkan stats!\n\n`;
+    txt += `> Entrena para mejorar tus estadísticas!\n\n`;
     txt += `*📊 *sᴛᴀᴛs ᴋᴀᴍᴜ:*
 \n`;
     txt += `> ⚔️ Attack: *${user.rpg.attack || 10}*\n`;
@@ -58,13 +58,13 @@ async function handler(m, { sock }) {
 
   const training = TRAINING_TYPES[trainType];
   if (!training) {
-    return m.reply(`❌ Training tidak ditemukan!\n\n> Ketik \`${m.prefix}training\` untuk melihat daftar.`);
+    return m.reply(`❌ ¡Entrenamiento no encontrado!\n\n> Escribe \`${m.prefix}training\` para ver la lista.`);
   }
 
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < training.staminaCost) {
-    return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴋᴜʀᴀɴɢ*\n\n` + `> Butuh: ${training.staminaCost}\n` + `> Punya: ${user.rpg.stamina}\n\n` + `💡 Gunakan \`${m.prefix}rest\` atau makan makanan`);
+    return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ sᴜꜰɪᴄɪᴇɴᴛᴇ*\n\n` + `> Necesitas: ${training.staminaCost}\n` + `> Tienes: ${user.rpg.stamina}\n\n` + `💡 Usa \`${m.prefix}rest\` o come algo`);
   }
 
   user.rpg.stamina -= training.staminaCost;

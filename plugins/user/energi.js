@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'energi',
     alias: ['cekenergi', 'myenergi', 'energy', 'limit', 'ceklimit'],
     category: 'user',
-    description: 'Cek energi user',
+    description: 'Ver energía del usuario',
     usage: '.energi [@user]',
     example: '.energi',
     isOwner: false,
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     const db = getDatabase()
     
     let targetJid = m.sender
-    let targetName = m.pushName || 'Kamu'
+    let targetName = m.pushName || 'Tú'
     
     if (m.quoted) {
         targetJid = m.quoted.sender
@@ -67,12 +67,12 @@ text += `*〔 ⚡ Energi 〕* ${energiDisplay}\n`
 text += `*〔 💎 Status 〕* ${userStatus}\n\n`
     
     if (!energiEnabled) {
-        text += `🔌 Sistem energi dinonaktifkan — semua command gratis`
+        text += `🔌 Sistema de energía desactivado — todos los comandos son gratis`
     } else if (isSelf && !isUnlimited && finalEnergi < 10) {
-        text += `⚠️ Energi hampir habis!\n`
-        text += `Gunakan \`.buyenergi\` untuk beli`
+        text += `⚠️ ¡La energía casi se agota!\n`
+        text += `Usa \`.buyenergi\` para comprar`
     } else if (isUnlimited) {
-        text += `✨ Energi unlimited aktif!`
+        text += `✨ ¡Energía ilimitada activa!`
     }
     
     await m.reply(text)

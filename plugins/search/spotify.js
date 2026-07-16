@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "spotify",
   alias: ["spotifysearch", "spsearch"],
   category: "search",
-  description: "Mencari daftar lagu di Spotify berdasarkan judul atau artis",
+  description: "Buscar lista de canciones en Spotify por título o artista",
   usage: ".spotify <query>",
   example: ".spotify neffex grateful",
   isOwner: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
   if (!text) {
-    return m.reply("❌ *Waduh, kata kuncinya mana nih?*\n\nKamu harus memasukkan judul lagu atau nama artis yang ingin dicari di Spotify. \n\nContoh penggunaan: `.spotify bruno mars`");
+    return m.reply("❌ *¡Oye, la palabra clave está vacía!*\n\nDebes ingresar el título de la canción o nombre del artista que quieres buscar en Spotify. \n\nEjemplo de uso: `.spotify bruno mars`");
   }
 
   await m.react("🕕");
@@ -32,22 +32,22 @@ async function handler(m, { sock, text }) {
 
     if (!data.status || !data.data || !data.data.results || data.data.results.length === 0) {
       await m.react("❌");
-      return m.reply(`⚠️ *Maaf, lagu tidak ditemukan!* \n\nAku sudah mencari dengan kata kunci *${text}* tapi tidak ada hasil di Spotify. Coba gunakan judul yang lebih spesifik ya.`);
+      return m.reply(`⚠️ *Lo siento, ¡no se encontró la canción!* \n\nBusqué con la palabra clave *${text}* pero no hay resultados en Spotify. Intenta con un título más específico.`);
     }
 
     const results = data.data.results;
     const firstResult = results[0];
 
-    let contentText = `✨ *HASIL PENCARIAN SPOTIFY* ✨\n\nHalo! Aku berhasil menemukan beberapa lagu berdasarkan kata kunci *${text}*. Berikut adalah daftar teratasnya:\n\n`;
+    let contentText = `✨ *RESULTADOS DE BÚSQUEDA SPOTIFY* ✨\n\n¡Hola! Encontré algunas canciones basadas en la palabra clave *${text}*. Aquí está el top:\n\n`;
 
     results.forEach((t, i) => {
       contentText += `*${i + 1}. ${t.title}*\n`;
-      contentText += `   🎤 Artis: ${t.artist}\n`;
-      contentText += `   ⏱️ Durasi: ${t.duration}\n`;
+      contentText += `   🎤 Artista: ${t.artist}\n`;
+      contentText += `   ⏱️ Duración: ${t.duration}\n`;
       contentText += `   🔗 Link: ${t.url}\n\n`;
     });
 
-    contentText += `*Catatan*: Kamu bisa menyalin link lagu di atas dan menggunakan perintah \`.spdl <link>\` untuk mengunduhnya secara langsung! Atau tekan tombol di bawah ini untuk lagu pertama. 🚀`;
+    contentText += `*Nota*: ¡Puedes copiar el enlace de la canción de arriba y usar el comando \`.spdl <enlace>\` para descargarla directamente! O presiona el botón de abajo para la primera canción. 🚀`;
 
     let thumbnailBuffer = null;
     try {
@@ -88,7 +88,7 @@ async function handler(m, { sock, text }) {
   } catch (err) {
     console.error("[Spotify Search]", err.message);
     await m.react("☢");
-    m.reply("😔 *Aduh, sepertinya API sedang bermasalah.* \n\nTerjadi kesalahan fatal saat mencoba memproses pencarian Spotify. Silakan coba lagi nanti ya!");
+    m.reply("😔 *Vaya, parece que la API está fallando.* \n\nOcurrió un error al procesar la búsqueda de Spotify. ¡Por favor, intenta de nuevo más tarde!");
   }
 }
 

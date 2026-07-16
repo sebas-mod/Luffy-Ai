@@ -12,7 +12,7 @@ const pluginConfig = {
   name: "play",
   alias: ["playaudio"],
   category: "search",
-  description: "Putar musik dari YouTube (Siputzx API)",
+  description: "Reproducir música de YouTube (API Siputzx)",
   usage: ".play <query>",
   example: ".play komang",
   cooldown: 15,
@@ -54,30 +54,30 @@ async function getPlayAudioDownload(url) {
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`🎵 *ᴘʟᴀʏ*\n\n> Contoh:\n\`${m.prefix}play komang\``);
+    return m.reply(`🎵 *ᴘʟᴀʏ*\n\n> Ejemplo:\n\`${m.prefix}play komang\``);
 
   m.react("🕐");
 
   try {
     const search = await yts(query);
-    if (!search.videos.length) throw "Video tidak ditemukan";
+    if (!search.videos.length) throw "Video no encontrado";
 
     const video = search.videos[0];
 
     let info = `🎵 *NOW PLAYING*\n\n`;
-    info += `📌 *Judul:* ${video.title}\n\n`;
-    info += `*DETAIL*\n`;
-    info += `👤 Channel: *${video.author.name}*\n`;
-    info += `⏱️ Durasi: *${video.duration.timestamp}*\n`;
-    info += `👀 Views: *${formatViews(video.views)}*\n`;
-    info += `📅 Upload: *${video.ago}*\n`;
+    info += `📌 *Título:* ${video.title}\n\n`;
+    info += `*DETALLE*\n`;
+    info += `👤 Canal: *${video.author.name}*\n`;
+    info += `⏱️ Duración: *${video.duration.timestamp}*\n`;
+    info += `👀 Vistas: *${formatViews(video.views)}*\n`;
+    info += `📅 Subido: *${video.ago}*\n`;
     info += `🆔 ID: \`${video.videoId}\`\n\n`;
     if (video.description) {
       const desc = video.description.substring(0, 150).replace(/\n/g, " ");
-      info += `*Deskripsi:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
+      info += `*Descripción:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
     }
     info += `🔗 ${video.url}\n\n`;
-    info += `_⏳ mengirim audio, harap tunggu..._`;
+    info += `_⏳ enviando audio, por favor espera..._`;
 
     await sock.sendPreview(
       m.chat,
@@ -119,7 +119,7 @@ async function handler(m, { sock, text }) {
     console.error("[Play]", err);
     m.react("😭");
     m.reply(
-      `Wahhh, fitur putar musiknya lagi ada kendala kak, coba lagi nanti yak, jangan spam`,
+      `¡Vaya, la función de reproducción de música está teniendo problemas, intenta de nuevo más tarde, por favor no hagas spam!`,
     );
   }
 }

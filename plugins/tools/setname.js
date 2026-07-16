@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'setname',
     alias: ['setnamebot', 'setbotnama'],
     category: 'tools',
-    description: 'Mengubah nama profil bot',
-    usage: '.setname <nama baru>',
+    description: 'Cambiar nombre de perfil del bot',
+    usage: '.setname <nuevo nombre>',
     example: '.setname Luffy-AI',
     isOwner: true,
     isPremium: false,
@@ -19,8 +19,8 @@ async function handler(m, { sock }) {
     
     if (!newName) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setname Nama Bot Baru\``
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> \`${m.prefix}setname Nuevo Nombre del Bot\``
         )
         return
     }
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (newName.length < 1 || newName.length > 25) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Nama bot harus 1-25 karakter.`
+            `> El nombre del bot debe tener 1-25 caracteres.`
         )
         return
     }
@@ -37,13 +37,13 @@ async function handler(m, { sock }) {
         await sock.updateProfileName(newName)
         
         await m.reply(
-            `✅ *ɴᴀᴍᴀ ʙᴏᴛ ᴅɪᴜʙᴀʜ*\n\n` +
-            `> Nama bot sekarang: *${newName}*`
+            `✅ *ɴᴀᴍᴀ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴏ*\n\n` +
+            `> Nombre actual del bot: *${newName}*`
         )
     } catch (error) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah nama bot.\n` +
+            `> No se puede cambiar el nombre del bot.\n` +
             `> _${error.message}_`
         )
     }

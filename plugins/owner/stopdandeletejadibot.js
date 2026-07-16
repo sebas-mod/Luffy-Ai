@@ -1,12 +1,12 @@
 import { stopJadibot, getAllJadibotSessions } from '../../src/lib/ourin-jadibot-manager.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
-    name: 'stopdandeletejadibot',
+    name: 'stopydeletejadibot',
     alias: ['deletejadibot', 'removejadibot', 'hapusjadibot'],
     category: 'owner',
     description: 'Detiene y elimina permanentemente la sesión jadibot de un usuario',
-    usage: '.stopdandeletejadibot @user',
-    example: '.stopdandeletejadibot @628xxx',
+    usage: '.stopydeletejadibot @user',
+    example: '.stopydeletejadibot @628xxx',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -32,18 +32,18 @@ async function handler(m, { sock }) {
         const sessions = getAllJadibotSessions()
 
         if (sessions.length === 0) {
-            return m.reply(`❌ Tidak ada session jadibot tersimpan`)
+            return m.reply(`❌ No hay session jadibot tersimpan`)
         }
 
         let txt = `🗑️ *sᴛᴏᴘ & ᴅᴇʟᴇᴛᴇ ᴊᴀᴅɪʙᴏᴛ*\n\n`
-        txt += `Pilih target dengan mention atau reply:\n\n`
+        txt += `Pilih target con mention o reply:\n\n`
 
         sessions.forEach((s, i) => {
             const status = s.isActive ? '🟢' : '⚫'
             txt += `${status} *${i + 1}.* @${s.id}\n`
         })
 
-        txt += `\n> Contoh: \`${m.prefix}stopdandeletejadibot @628xxx\``
+        txt += `\n> Ejemplo: \`${m.prefix}stopydeletejadibot @628xxx\``
 
         return sock.sendMessage(m.chat, {
             text: txt,
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const session = sessions.find(s => s.id === id)
 
     if (!session) {
-        return m.reply(`❌ Session jadibot untuk *@${id}* tidak ditemukan`, { mentions: [target] })
+        return m.reply(`❌ Session jadibot para *@${id}* no encontrado`, { mentions: [target] })
     }
 
     await m.react('🕕')
@@ -68,10 +68,10 @@ async function handler(m, { sock }) {
 
         await sock.sendMessage(m.chat, {
             text: `🗑️ *ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴀᴘᴜs*\n\n` +
-                `> 📱 Nomor: *@${id}*\n` +
+                `> 📱 Número: *@${id}*\n` +
                 `> 🗑️ Status: *Deleted*\n\n` +
-                `Session telah dihapus secara permanen.\n` +
-                `User perlu \`.jadibot\` ulang untuk membuat session baru.`,
+                `Sesión ha sido eliminada de forma permanente.\n` +
+                `El usuario necesita \`.jadibot\` ulang para crear una nueva sesión.`,
             mentions: [target]
         }, { quoted: m })
     } catch (error) {

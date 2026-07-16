@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "bluearchive-char",
   alias: ["bachar"],
   category: "info",
-  description: "Lihat info character Blue Archive",
+  description: "Ver info del personaje de Blue Archive",
   usage: ".bluearchive-char <nama>",
   example: ".bluearchive-char shiroko",
   isOwner: false,
@@ -55,7 +55,7 @@ class BluArchive {
         .filter((u) => u.includes(name.toLowerCase().split(" ")[0]))
         .slice(0, 5);
       throw new Error(
-        `Character "${name}" tidak ditemukan.\n\n> Mungkin maksud: ${suggestions.join(", ") || "tidak ada"}`,
+        `Character "${name}" no encontrado.\n\n> Quizás quiso decir: ${suggestions.join(", ") || "ninguno"}`,
       );
     }
 
@@ -80,8 +80,8 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ᴄʜᴀʀᴀᴄᴛᴇʀ*\n\n` +
-        `> Lihat info character Blue Archive\n\n` +
-        `> *Contoh:*\n` +
+        `> Ver info del personaje de Blue Archive\n\n` +
+        `> *Ejemplo:*\n` +
         `> ${m.prefix}bluearchive-char shiroko\n` +
         `> ${m.prefix}bachar hoshino\n` +
         `> ${m.prefix}ba aru`,

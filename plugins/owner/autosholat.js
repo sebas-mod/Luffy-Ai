@@ -13,7 +13,7 @@ const pluginConfig = {
   alias: ["sholat", "autoadzan"],
   category: "owner",
   description: "Activa recordatorios automáticos de oración con audio y cierre del grupo",
-  usage: ".autosholat on/off/status/kota <nama>",
+  usage: ".autosholat on/off/status/kota <nombre>",
   example: ".autosholat on",
   isOwner: true,
   isPremium: false,
@@ -31,8 +31,8 @@ async function handler(m, { sock, db }) {
   const database = getDatabase();
   
   if (!args || args === "status") {
-    const status = database.setting("autoSholat") ? "Aktif ✅" : "Nonaktif ❌";
-    const closeGroup = database.setting("autoSholatCloseGroup") ? "Ya ✅" : "Tidak ❌";
+    const status = database.setting("autoSholat") ? "Activo ✅" : "Nonactivo ❌";
+    const closeGroup = database.setting("autoSholatCloseGroup") ? "Ya ✅" : "No ❌";
     const duration = database.setting("autoSholatDuration") || 5;
     const kotaSetting = database.setting("autoSholatKota") || { id: "1301", nama: "KOTA JAKARTA" };
     
@@ -44,25 +44,25 @@ async function handler(m, { sock, db }) {
         jadwalText += `- **${nama.charAt(0).toUpperCase() + nama.slice(1)}**: ${waktu}\n`;
       }
     } catch {
-      jadwalText = "- Gagal memuat jadwal dari MyQuran\n";
+      jadwalText = "- Fallo al cargar el horario de MyQuran\n";
     }
 
     return m.reply(
-      `🕌 **Auto Sholat - Sistem Pengingat Waktu Beribadah**\n\n` +
-      `Sistem saat ini telah diatur untuk membantu kamu dan para anggota grup mengingat waktu beribadah secara otomatis. Berikut adalah pengaturan yang sedang berjalan:\n\n` +
+      `🕌 **Auto Sholat - Sistema de Recordatorio de Tiempo de Oración**\n\n` +
+      `El sistema está configurado para ayudarte a ti y a los miembros del grupo a recordar el tiempo de oración de forma automática. Lo siguiente es la configuración actual:\n\n` +
       `- **Status Pengingat**: ${status}\n` +
-      `- **Penutupan Grup Otomatis**: ${closeGroup}\n` +
-      `- **Durasi Penutupan**: ${duration} menit\n` +
-      `- **Lokasi Pengingat Saat Ini**: ${kotaSetting.nama}\n\n` +
-      `**Jadwal Sholat Hari Ini:**\n` +
+      `- **Cierre Automático del Grupo**: ${closeGroup}\n` +
+      `- **Duración del Cierre**: ${duration} minuto\n` +
+      `- **Ubicación del Recordatorio**: ${kotaSetting.nama}\n\n` +
+      `**Horario de Oración de Hoy:**\n` +
       jadwalText + `\n` +
-      `**Panduan Pengaturan Fitur:**\n` +
-      `- Ketik \`${m.prefix}autosholat on\` untuk mengaktifkan sistem pengingat.\n` +
-      `- Ketik \`${m.prefix}autosholat off\` untuk mematikan sistem pengingat.\n` +
-      `- Ketik \`${m.prefix}autosholat close on\` atau \`off\` untuk menyalakan/mematikan fitur tutup grup otomatis.\n` +
-      `- Ketik \`${m.prefix}autosholat duration <angka>\` untuk menentukan berapa lama grup akan ditutup (dalam menit).\n` +
-      `- Ketik \`${m.prefix}autosholat kota <nama daerah>\` untuk menyinkronkan waktu sholat dengan daerah yang kamu pilih.\n\n` +
-      `_Semua jadwal diambil secara presisi dan langsung dari pusat data MyQuran API._`
+      `**Guía de Configuración:**\n` +
+      `- Escribe \`${m.prefix}autosholat on\` para activar el sistema de recordatorio.\n` +
+      `- Escribe \`${m.prefix}autosholat off\` para desactivar el sistema de recordatorio.\n` +
+      `- Escribe \`${m.prefix}autosholat close on\` o \`off\` para activar/desactivar el cierre automático del grupo.\n` +
+      `- Escribe \`${m.prefix}autosholat duration <angka>\` para determinar cuánto tiempo el grupo será cerrado (en minutos).\n` +
+      `- Escribe \`${m.prefix}autosholat kota <nombre daerah>\` para sincronizar el tiempo de oración con la región que elijas.\n\n` +
+      `_Todos los horarios se obtienen de forma precisa y directa del centro de datos de MyQuran API._`
     );
   }
 
@@ -71,8 +71,8 @@ async function handler(m, { sock, db }) {
     await m.react("✅");
     const kota = database.setting("autoSholatKota") || { nama: "KOTA JAKARTA" };
     return m.reply(
-      `✅ **Sistem Pengingat Sholat Berhasil Diaktifkan!**\n\n` +
-      `Mulai sekarang, aku akan mengirimkan pesan pemberitahuan beserta rekaman audio adzan tepat saat waktu sholat tiba. Seluruh informasi disesuaikan dengan zona waktu di **${kota.nama}** ya!`
+      `✅ **Sistema de Recordatorio de Oración Activado con Éxito!**\n\n` +
+      `A partir de ahora, enviaré mensajes de notificación junto con la grabación de audio del adhan cuando llegue el tiempo de oración. Toda la información se ajustará a la zona horaria de **${kota.nama}** ya!`
     );
   }
 
@@ -80,8 +80,8 @@ async function handler(m, { sock, db }) {
     database.setting("autoSholat", false);
     await m.react("❌");
     return m.reply(
-      `❌ **Sistem Pengingat Sholat Dinonaktifkan.**\n\n` +
-      `Baiklah, aku tidak akan lagi menyiarkan jadwal sholat dan memutarkan audio adzan secara otomatis ke grup-grup.`
+      `❌ **Sistema de Recordatorio de Oración Desactivado.**\n\n` +
+      `Está bien, ya no volveré a transmitir el horario de oración y a reproducir el audio del adhan de forma automática a los grupos.`
     );
   }
 
@@ -91,44 +91,44 @@ async function handler(m, { sock, db }) {
       database.setting("autoSholatCloseGroup", true);
       await m.react("🔒");
       return m.reply(
-        `🔒 **Fitur Tutup Grup Otomatis Diaktifkan!**\n\n` +
-        `Saat waktu sholat tiba, aku akan secara otomatis menutup akses obrolan grup agar semuanya bisa fokus beribadah terlebih dahulu. Keren, kan?`
+        `🔒 **Cierre Automático del Grupo Activado!**\n\n` +
+        `Cuando llegue el tiempo de oración, cerraré automáticamente el chat del grupo para que todos puedan enfocarse en la oración primero. ¿Verdad?`
       );
     }
     if (subArg === "off") {
       database.setting("autoSholatCloseGroup", false);
       await m.react("🔓");
       return m.reply(
-        `🔓 **Fitur Tutup Grup Otomatis Dimatikan.**\n\n` +
-        `Sekarang grup tidak akan ditutup saat azan berkumandang, sehingga obrolan bisa terus berjalan tanpa hambatan.`
+        `🔓 **Cierre Automático del Grupo Desactivado.**\n\n` +
+        `Ahora el grupo no será cerrado cuando suene el adhan, por lo que el chat podrá continuar sin interrupciones.`
       );
     }
-    return m.reply(`Oh, maaf. Formatnya sedikit keliru. Silakan gunakan \`${m.prefix}autosholat close on\` atau \`${m.prefix}autosholat close off\`.`);
+    return m.reply(`Oh, lo siento. El formato es un poco confuso. Por favor usa \`${m.prefix}autosholat close on\` o \`${m.prefix}autosholat close off\`.`);
   }
 
   if (args === "duration") {
     const duration = parseInt(m.args[1]);
     if (isNaN(duration) || duration < 1 || duration > 60) {
-      return m.reply(`Tolong masukkan angka antara 1 sampai 60 untuk durasi penutupan grup (dalam menit).`);
+      return m.reply(`Por favor ingresa un número entre 1 y 60 para la duración del cierre del grupo (en minutos).`);
     }
     database.setting("autoSholatDuration", duration);
     await m.react("⏱️");
     return m.reply(
-      `⏱️ **Durasi Penutupan Grup Telah Diperbarui!**\n\n` +
-      `Nantinya, akses obrolan di grup akan dikunci selama **${duration} menit** berturut-turut pada setiap jadwal sholat sebelum kubuka kembali secara otomatis.`
+      `⏱️ **Duración del Cierre Grup Ha Dipernuevoi!**\n\n` +
+      `Luego, el acceso al chat del grupo se bloqueará durante **${duration} minuto** consecutivos en cada horario de oración antes de abrirlo de vuelta automáticamente.`
     );
   }
 
   if (args === "kota") {
     const kotaName = m.args.slice(1).join(" ").trim();
     if (!kotaName) {
-      return m.reply(`Tolong sebutkan nama kotanya juga! Misalnya, \`${m.prefix}autosholat kota Surabaya\`.`);
+      return m.reply(`Por favor menciona también el nombre de la ciudad! Misalnya, \`${m.prefix}autosholat kota Surabaya\`.`);
     }
     await m.react("🔍");
     try {
       const result = await searchKota(kotaName);
       if (!result) {
-        return m.reply(`Aduh, aku sudah mencari di database MyQuran tapi nama daerah **${kotaName}** tidak dapat kutemukan. Coba nama kota yang lain?`);
+        return m.reply(`Vaya, estuve buscando en la base de datos de MyQuran pero el nombre de la región **${kotaName}** no pude encontrar. Prueba con otro nombre de ciudad?`);
       }
       database.setting("autoSholatKota", {
         id: result.id,
@@ -136,15 +136,15 @@ async function handler(m, { sock, db }) {
       });
       await m.react("📍");
       return m.reply(
-        `📍 **Lokasi Pengingat Berhasil Diperbarui!**\n\n` +
-        `Seluruh jadwal sholat sekarang telah dikalibrasi ulang untuk menyesuaikan dengan wilayah **${result.lokasi}**.`
+        `📍 **Ubicación del Recordatorio Actualizada!**\n\n` +
+        `Todos los horarios de oración han sido recalibrados para ajustarse a la región **${result.lokasi}**.`
       );
     } catch (e) {
       await m.reply(te(m.prefix, m.command, m.pushName));
     }
   }
 
-  return m.reply(`Perintah yang kamu masukkan kurang tepat. Kamu bisa menggunakan parameter seperti \`on\`, \`off\`, \`status\`, \`close\`, \`duration\`, atau \`kota\`.`);
+  return m.reply(`Comando yang kamu ingresa kurang tepat. Kamu puede mengusa parameter seperti \`on\`, \`off\`, \`status\`, \`close\`, \`duration\`, o \`kota\`.`);
 }
 
 async function runAutoSholat(sock) {
@@ -195,10 +195,10 @@ async function runAutoSholat(sock) {
           
           try {
             const caption =
-              `🕌 **Pemberitahuan Waktu Sholat ${sholat.toUpperCase()}** 🕌\n\n` +
-              `Sudah saatnya mengistirahatkan sejenak urusan duniamu! Waktu untuk menunaikan ibadah sholat **${sholat}** telah tiba untuk wilayah **${kotaSetting.nama}** dan sekitarnya (tepatnya pada pukul **${waktu} WIB**).\n\n` +
-              `Mari segarkan pikiran, ambil air wudhu, dan hampiri panggilan suci-Nya. Selamat menunaikan ibadah sholat! 🤲\n\n` +
-              (closeGroup ? `_Sebagai bentuk penghormatan, sistem akan menutup obrolan grup ini untuk sementara waktu (selama ${duration} menit)._` : "");
+              `🕌 **Notificación de Tiempo de Oración ${sholat.toUpperCase()}** 🕌\n\n` +
+              `Es hora de descansar un momento de tus asuntos mundanos! Tiempo para realizar la oración **${sholat}** ha llegado para la región **${kotaSetting.nama}** y sekitarnya (tepatnya en pukul **${waktu} WIB**).\n\n` +
+              `Mari segarkan pikiran, ambil air wudhu, y hampiri panggilan suci-Nya. Que disfrutes realizar tu oración! 🤲\n\n` +
+              (closeGroup ? `_Como forma de respeto, el sistema cerrará el chat de este grupo por un tiempo temporal (durante ${duration} minuto)._` : "");
             
             const msgTeks = await sock.sendMessage(jid, {
               text: caption,
@@ -215,7 +215,7 @@ async function runAutoSholat(sock) {
             }
             await new Promise((res) => setTimeout(res, 500));
           } catch (e) {
-            console.log(`Gagal mengirim pesan sholat ke grup ${jid}:`, e.message);
+            console.log(`Fallo enviar mensaje sholat al grupo ${jid}:`, e.message);
           }
         }
         
@@ -225,21 +225,21 @@ async function runAutoSholat(sock) {
               try {
                 await sock.groupSettingUpdate(jid, "not_announcement");
                 await sock.sendMessage(jid, {
-                  text: `✅ **Waktu Penutupan Telah Berakhir**\n\nSesi ibadah sholat **${sholat}** telah usai. Obrolan grup sekarang sudah kubuka kembali secara otomatis. Selamat melanjutkan aktivitas kembali!`,
+                  text: `✅ **Tiempo de Cierre Ha Finalizado**\n\nLa sesión de oración **${sholat}** ha terminado. El chat del grupo ahora se abrirá de vuelta automáticamente. Que disfrutes continuar con tus actividades!`,
                 });
                 await new Promise((res) => setTimeout(res, 600));
               } catch (e) {
-                console.log(`Gagal membuka obrolan grup ${jid}:`, e.message);
+                console.log(`Fallo abriendo obrolan grup ${jid}:`, e.message);
               }
             }
-            console.log(`Selesai mereset pembukaan seluruh grup.`);
+            console.log(`Completado el restablecimiento de apertura de todos los grupos.`);
           }, duration * 60 * 1000);
         }
         
-        console.log(`Penyiaran adzan ${sholat} berhasil dilakukan ke ${groupList.length} grup secara paralel.`);
+        console.log(`Transmisión del adhan ${sholat} éxito realizada a ${groupList.length} grup de forma paralel.`);
       } catch (error) {
         global.isFetchingGroups = false;
-        console.error("Terdapat kesalahan pada eksekutor:", error.message);
+        console.error("Ocurrió un error en el ejecutor:", error.message);
       }
       
       setTimeout(() => {

@@ -7,7 +7,7 @@ const pluginConfig = {
     alias: ['gantiourinlevelup', 'setourinlevelup'],
     category: 'owner',
     description: 'Cambia la imagen ourin-levelup.jpg',
-    usage: '.ganti-ourin-levelup.jpg (reply/kirim gambar)',
+    usage: '.ganti-ourin-levelup.jpg (reply/envía imagen)',
     example: '.ganti-ourin-levelup.jpg',
     isOwner: true,
     isPremium: false,
@@ -20,16 +20,16 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
-    if (!isImage) return m.reply(`🖼️ *ɢᴀɴᴛɪ OURIN-LEVELUP.JPG*\n\n> Kirim/reply gambar untuk mengganti\n> File: assets/images/ourin-levelup.jpg`)
+    if (!isImage) return m.reply(`🖼️ *ɢᴀɴᴛɪ OURIN-LEVELUP.JPG*\n\n> Envía/reply imagen para mengganti\n> File: assets/images/ourin-levelup.jpg`)
     try {
         let buffer = m.quoted && m.quoted.isMedia ? await m.quoted.download() : await m.download()
-        if (!buffer) return m.reply('❌ Gagal mendownload gambar')
-        await m.reply(`⏳ Sedang mengupload gambar...`)
+        if (!buffer) return m.reply('❌ Error al descargar imagen')
+        await m.reply(`⏳ Está subiendo imagen...`)
         try {
             const newUrl = await updateAssetUrl('ourin-levelup', buffer, 'ourin-levelup.jpg')
-            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Gambar ourin-levelup.jpg telah diganti ke URL baru:\n> ${newUrl}\n> Config telah diupdate secara realtime!`)
+            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Imagen ourin-levelup.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
         } catch (e) {
-            m.reply(`❌ Gagal mengupload gambar: ${e.message}`)
+            m.reply(`❌ Error al subir imagen: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "harilibur",
   alias: ["libur", "harinasional"],
   category: "info",
-  description: "Menampilkan informasi hari libur dan hari nasional mendatang",
+  description: "Mostrar información de días festivos y días nacionales próximos",
   usage: ".harilibur",
   example: ".harilibur",
   isOwner: false,
@@ -31,24 +31,24 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Gagal mengambil informasi hari libur saat ini.");
+      return m.reply("⚠️ ¡No se pudo obtener la información de días festivos!");
     }
 
     const r = data.result;
-    let caption = `📅 *HARI LIBUR & NASIONAL MENDATANG* 📅\n\n`;
+    let caption = `📅 *DÍAS FESTIVOS Y NACIONALES PRÓXIMOS* 📅\n\n`;
 
     if (r.mendatang.hari_libur && r.mendatang.hari_libur.length > 0) {
-      caption += `*Hari Libur Mendatang*\n`;
+      caption += `*Próximos Días Festivos*\n`;
       r.mendatang.hari_libur.slice(0, 5).forEach(item => {
-        caption += `- ${item.date}: ${item.event} (${item.daysUntil} hari lagi)\n`;
+        caption += `- ${item.date}: ${item.event} (${item.daysUntil} días más)\n`;
       });
       caption += `\n`;
     }
 
     if (r.mendatang.event_nasional && r.mendatang.event_nasional.length > 0) {
-      caption += `*Hari Nasional Mendatang*\n`;
+      caption += `*Próximos Días Nacionales*\n`;
       r.mendatang.event_nasional.slice(0, 5).forEach(item => {
-        caption += `- ${item.date}: ${item.event} (${item.daysUntil} hari lagi)\n`;
+        caption += `- ${item.date}: ${item.event} (${item.daysUntil} días más)\n`;
       });
     }
 
@@ -56,9 +56,9 @@ async function handler(m, { sock }) {
     await m.react("✅");
 
   } catch (error) {
-    console.error("[Hari Libur]", error.message);
+    console.error("[Días Festivos]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mengambil data hari libur.");
+    m.reply("😔 Ocurrió un error al obtener los datos de días festivos.");
   }
 }
 

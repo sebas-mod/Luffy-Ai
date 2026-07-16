@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "inventory",
   alias: ["inv", "tas", "bag"],
   category: "rpg",
-  description: "Melihat isi inventory RPG",
+  description: "Ver el contenido del inventario RPG",
   usage: ".inventory",
   example: ".inventory",
   isOwner: false,
@@ -22,26 +22,26 @@ const ITEMS = {
   mythic: { emote: "🎁", name: "Mythic Crate" },
   legendary: { emote: "💎", name: "Legendary Crate" },
 
-  rock: { emote: "🪨", name: "Batu" },
-  coal: { emote: "⚫", name: "Batubara" },
-  iron: { emote: "⛓️", name: "Besi" },
-  gold: { emote: "🥇", name: "Emas" },
-  diamond: { emote: "💠", name: "Berlian" },
-  emerald: { emote: "💚", name: "Emerald" },
+  rock: { emote: "🪨", name: "Piedra" },
+  coal: { emote: "⚫", name: "Carbón" },
+  iron: { emote: "⛓️", name: "Hierro" },
+  gold: { emote: "🥇", name: "Oro" },
+  diamond: { emote: "💠", name: "Diamante" },
+  emerald: { emote: "💚", name: "Esmeralda" },
 
-  trash: { emote: "🗑️", name: "Sampah" },
-  fish: { emote: "🐟", name: "Ikan" },
-  prawn: { emote: "🦐", name: "Udang" },
-  octopus: { emote: "🐙", name: "Gurita" },
-  shark: { emote: "🦈", name: "Hiu" },
-  whale: { emote: "🐳", name: "Paus" },
+  trash: { emote: "🗑️", name: "Basura" },
+  fish: { emote: "🐟", name: "Pez" },
+  prawn: { emote: "🦐", name: "Camarón" },
+  octopus: { emote: "🐙", name: "Pulpo" },
+  shark: { emote: "🦈", name: "Tiburón" },
+  whale: { emote: "🐳", name: "Ballena" },
 
   potion: { emote: "🥤", name: "Health Potion" },
   mpotion: { emote: "🧪", name: "Mana Potion" },
   stamina: { emote: "⚡", name: "Stamina Potion" },
 
-  herb: { emote: "🌿", name: "Herba" },
-  leather: { emote: "👞", name: "Kulit" },
+  herb: { emote: "🌿", name: "Hierba" },
+  leather: { emote: "👞", name: "Cuero" },
   mysterybox: { emote: "📦", name: "Mystery Box" },
 
   kunai: { emote: "🗡️", name: "Kunai" },
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
   const user = db.getUser(m.sender);
   if (!user.inventory) user.inventory = {};
 
-  let invText = `🎒 *Isi Tas Kamu Nih Kak!* ✨\n\n`;
+  let invText = `🎒 ¡Este es el contenido de tu Mochila! ✨\n\n`;
 
   invText += `❤️ HP: *${user.rpg?.health || 100}*\n`;
   invText += `💸 Koin: *${(user.koin || 0).toLocaleString("id-ID")}*\n`;
@@ -64,8 +64,8 @@ async function handler(m, { sock }) {
 
   let hasItem = false;
   const categories = {
-    "📦 *Koleksi Crates*": ["common", "uncommon", "mythic", "legendary"],
-    "⛏️ *Hasil Tambang*": [
+    "📦 *Colección de Cajas*": ["common", "uncommon", "mythic", "legendary"],
+    "⛏️ *Minerales*": [
       "rock",
       "coal",
       "iron",
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
       "diamond",
       "emerald",
     ],
-    "🎣 *Hasil Mancing*": [
+    "🎣 *Pesca*": [
       "trash",
       "fish",
       "prawn",
@@ -81,9 +81,9 @@ async function handler(m, { sock }) {
       "shark",
       "whale",
     ],
-    "🌿 *Hasil Dungeon*": ["herb", "leather", "mysterybox"],
-    "🧪 *Potions & Buffs*": ["potion", "mpotion", "stamina"],
-    "⛩️ *Perlengkapan Shinobi*": ["kunai", "shuriken", "chakra", "scroll", "bowlramen"],
+    "🌿 *Objetos de Dungeon*": ["herb", "leather", "mysterybox"],
+    "🧪 *Pociones y Buffs*": ["potion", "mpotion", "stamina"],
+    "⛩️ *Equipo Shinobi*": ["kunai", "shuriken", "chakra", "scroll", "bowlramen"],
   };
 
   for (const [catName, items] of Object.entries(categories)) {
@@ -104,10 +104,10 @@ async function handler(m, { sock }) {
   }
 
   if (!hasItem) {
-    invText += `Loh, tas kamu masih kosong melompong kak! 🕸️\n`;
-    invText += `Yuk main command RPG lain buat dapetin item seru! 🚀\n`;
+    invText += `¡Vaya, tu mochila aún está vacía! 🕸️\n`;
+    invText += `¡Prueba otros comandos RPG para obtener objetos! 🚀\n`;
   } else {
-    invText += `Ketik *.use <nama item>* buat pake barangnya ya! 🎒💖\n`;
+    invText += `Escribe *.use <nombre del objeto>* para usarlo. 🎒💖\n`;
   }
 
   await m.reply(invText);

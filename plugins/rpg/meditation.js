@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "meditation",
   alias: ["rest", "istirahat", "tidur", "sleep"],
   category: "rpg",
-  description: "Istirahat untuk pulihkan HP dan stamina",
+  description: "Descansar para recuperar HP y stamina",
   usage: ".meditation",
   example: ".meditation",
   isOwner: false,
@@ -35,7 +35,7 @@ async function handler(m) {
         `> ⚡ Stamina: ${currentStamina}/${maxStamina}\n` +
         `> ❤️ Health: ${currentHealth}/${maxHealth}\n` +
         `> 💙 Mana: ${currentMana}/${maxMana}\n\n` +
-        `💡 Kamu sudah dalam kondisi prima!`,
+        `💡 ¡Ya estás en óptimas condiciones!`,
     );
   }
 
@@ -62,7 +62,7 @@ async function handler(m) {
       `> ❤️ Health: *+${healthRecovered}* (${user.rpg.health}/${maxHealth})\n` +
       `> 💙 Mana: *+${manaRecovered}* (${user.rpg.mana}/${maxMana})\n` +
       `\n\n` +
-      `> Kamu merasa lebih segar! 🌟`,
+      `> ¡Te sientes más fresco! 🌟`,
   );
 }
 

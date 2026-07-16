@@ -8,7 +8,7 @@ const pluginConfig = {
   name: ["antibot", "botdetect"],
   alias: [],
   category: "group",
-  description: "Deteksi dan kick bot WhatsApp (baileys) dari grup",
+  description: "Detecta y expulsa bots de WhatsApp (baileys) del grupo",
   usage: ".antibot <on/off>",
   example: ".antibot on",
   isOwner: false,
@@ -24,7 +24,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antibot: "🤖 *AntiBot* — @%user% terdeteksi sebagai bot dan di-kick.",
+    antibot: "🤖 *AntiBot* — @%user% detectado como bot y expulsado.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {
@@ -188,8 +188,8 @@ function handler(m, { sock }) {
   if (!args || args === "status") {
     return m.reply(
       `🤖 *AntiBot*\n\n` +
-      `> Status: ${current ? "✅ Aktif" : "❌ Nonaktif"}\n\n` +
-      `> Deteksi: *Smart Heuristic*\n\n` +
+      `> Estado: ${current ? "✅ Activo" : "❌ Inactivo"}\n\n` +
+      `> Detección: *Smart Heuristic*\n\n` +
       `> \`.antibot on/off\``,
     );
   }
@@ -198,17 +198,17 @@ function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, antibot: true });
     db.save();
     m.react("✅");
-    return m.reply(`✅ *AntiBot diaktifkan*`);
+    return m.reply(`✅ *AntiBot activado*`);
   }
 
   if (args === "off") {
     db.setGroup(m.chat, { ...groupData, antibot: false });
     db.save();
     m.react("❌");
-    return m.reply(`❌ *AntiBot dinonaktifkan*`);
+    return m.reply(`❌ *AntiBot desactivado*`);
   }
 
-  return m.reply(`❌ Gunakan \`.antibot on\` atau \`.antibot off\``);
+  return m.reply(`❌ Usa \`.antibot on\` o \`.antibot off\``);
 }
 
 function isBotMessage(m) {

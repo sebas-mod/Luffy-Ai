@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "streamer",
   alias: ["live", "vtuber"],
   category: "rpg",
-  description: "Live streaming game dapet donasi besar tapi resiko dibanned platform!",
+  description: "Transmitir en vivo para ganar donaciones (riesgo de ban)",
   usage: ".streamer",
   example: ".streamer",
   isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock, plugin }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Mata sepet kebanyakan natap layar! 😵\n\nStreaming butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Tidur dulu woi! 🛏️`);
+    return m.reply(`¡Ojos quemados de mirar tanto la pantalla! 😵\n\nStreaming requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Duerme primero! 🛏️`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -42,7 +42,7 @@ async function handler(m, { sock, plugin }) {
     db.db.data.users[m.sender.split("@")[0]].lastStreamer = Date.now() + (extraCooldown * 1000);
     
     await m.react("🚫");
-    return m.reply(`AKUN STREAMING KAMU DI-BANNED! 🚫😱\n\nAda viewers iseng yang ngereport akun kamu gara-gara afk terlalu lama!\nKamu tidak dapet donasi apa-apa dan **terkena penalti larangan streaming selama 5 menit ekstra**!\n\n⚡ Stamina tetap berkurang: -${staminaCost}\n\nSabar ya bang, coba ajuin banding... 😔`);
+    return m.reply(`¡TU CUENTA DE STREAMING FUE BANEADA! 🚫😱\n\n¡Un espectador tramposo te reportó por estar AFK demasiado tiempo!\n¡No recibiste donaciones y **recibiste una penalización de 5 minutos de ban extra**!\n\n⚡ Stamina sigue reducida: -${staminaCost}\n\nTen paciencia, intenta apelar... 😔`);
   }
 
   const earning = Math.floor(Math.random() * 30000) + 10000;
@@ -58,9 +58,9 @@ async function handler(m, { sock, plugin }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `LIVE STREAMING SELESAI! 🎥✨\n\n💵 Pendapatan Iklan: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (saweranPaus > 0) txt += `🐳 SAWERAN SULTAN: *+Rp ${saweranPaus.toLocaleString("id-ID")}*\nWah, ada penonton sultan nyawer paus! 🐋🔥\n`;
-  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nMakasih yang udah nyawer! Lopyu pull! 💖`;
+  let txt = `¡STREAMING EN VIVO TERMINADO! 🎥✨\n\n💵 Ingreso por anuncios: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  if (saweranPaus > 0) txt += `🐳 DONACIÓN DEL SULTÁN: *+Rp ${saweranPaus.toLocaleString("id-ID")}*\n¡Vaya, ¡un espectador sultán donó una fortuna! 🐋🔥\n`;
+  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Gracias por las donaciones! ¡Te queremos! 💖`;
   
   m.reply(txt);
 }

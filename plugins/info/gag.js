@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "gag",
   alias: ["growagarden", "gaginfo"],
   category: "info",
-  description: "Menampilkan informasi stok Grow a Garden",
+  description: "Mostrar información del stock de Grow a Garden",
   usage: ".gag",
   example: ".gag",
   isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Gagal mengambil informasi Grow a Garden saat ini.");
+      return m.reply("⚠️ No se pudo obtener la información de Grow a Garden en este momento.");
     }
 
     const r = data.result;
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[GAG Info]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mengambil data GAG.");
+    m.reply("😔 Ocurrió un error al obtener los datos de GAG.");
   }
 }
 

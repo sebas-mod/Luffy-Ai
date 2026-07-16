@@ -5,7 +5,7 @@ const pluginConfig = {
     name: "sc",
     alias: ["script"],
     category: "main",
-    description: "Link script bot wa terbaru",
+    description: "Enlace al script del bot WA más reciente",
     usage: ".sc",
     example: ".sc",
     isPremium: false,
@@ -21,15 +21,15 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     return await sock.sendMessage(m.chat, {
         image: getAssetBuffer("ourin"),
-        caption: `🌾 Halo kak *${m.pushName}*
+        caption: `🌾 Hola kak *${m.pushName}*
         
-Untuk asli dari bot ini, kamu bisa dapatkan melalui link, nanti kamu tinggal cari kata kunci *OURIN MD*`,
-        footer: "💬 Link ini nanti akan mengarahkan kamu ke Youtube *Zanspiw*",
+Para el script original de este bot, puedes obtenerlo a través del enlace, solo busca la palabra clave *OURIN MD*`,
+        footer: "💬 Este enlace te redirigirá a Youtube *Zanspiw*",
         interactiveButtons: [
             {
                 name: "cta_url",
                 buttonParamsJson: JSON.stringify({
-                    display_text: "🥐 Kunjungi Youtube Zanspiw",
+                    display_text: "🥐 Visita Youtube Zanspiw",
                     url: "https://youtube.com/@JanpiwWok",
                     merchant_url: "https://youtube.com/@JanpiwWok"
                 })

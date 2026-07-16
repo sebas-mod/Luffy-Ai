@@ -10,7 +10,7 @@ const pluginConfig = {
   name: "pap",
   alias: ["papcewe", "papcowo", "papfemboy"],
   category: "search",
-  description: "Minta pap cewe, cowo, atau femboy dari Pinterest",
+  description: "Pedir pap de chica, chico, o femboy desde Pinterest",
   usage: ".pap <cewe/cowo/femboy>",
   example: ".pap cewe",
   isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   const validTypes = ["cewe", "cowo", "femboy"];
 
   if (!arg || !validTypes.includes(arg)) {
-    return m.reply("❌ Pilih salah satu tipe pap yang tersedia: `cewe`, `cowo`, atau `femboy`.\n\nContoh: `.pap cewe`");
+    return m.reply("❌ Elige uno de los tipos de pap disponibles: `chica`, `chico`, o `femboy`.\n\nEjemplo: `.pap chica`");
   }
 
   await m.react("🕕");
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ Waduh, pap ${query} lagi kosong nih. Coba lagi nanti.`);
+      return m.reply(`❌ ¡Vaya, el pap ${query} está vacío ahora mismo. Intenta de nuevo más tarde!`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("⚠️ Gambar tidak tersedia.");
+      return m.reply("⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
               imageMessage: mediaMessage.imageMessage
             },
             footer: {
-              text: "Pilih menu pap lainnya di bawah ini 👇"
+              text: "Elige otro menú de pap abajo 👇"
             },
             body: {
               text: `📸 *PAP ${arg.toUpperCase()}*`
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PAP Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Gagal memuat PAP. Server Pinterest mungkin sedang bermasalah.");
+    m.reply("😔 Error al cargar PAP. El servidor de Pinterest podría estar fallando.");
   }
 }
 

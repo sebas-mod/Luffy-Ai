@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "enchant",
   alias: ["upgrade", "enhance", "tingkatkan"],
   category: "rpg",
-  description: "Upgrade equipment dengan enchantment",
+  description: "Mejorar equipamiento con encantamiento",
   usage: ".enchant <item>",
   example: ".enchant sword",
   isOwner: false,
@@ -17,13 +17,13 @@ const pluginConfig = {
 };
 
 const ENCHANTABLE = {
-  sword: { name: "⚔️ Pedang", stat: "attack", bonus: 5, cost: 500, successRate: 70 },
-  shield: { name: "🛡️ Perisai", stat: "defense", bonus: 4, cost: 500, successRate: 70 },
-  armor: { name: "🦺 Armor", stat: "health", bonus: 20, cost: 800, successRate: 60 },
-  helmet: { name: "⛑️ Helm", stat: "defense", bonus: 3, cost: 400, successRate: 75 },
-  bow: { name: "🏹 Busur", stat: "attack", bonus: 4, cost: 450, successRate: 72 },
-  goldsword: { name: "🗡️ Pedang Emas", stat: "attack", bonus: 10, cost: 2000, successRate: 50 },
-  diamondarmor: { name: "💎 Armor Berlian", stat: "health", bonus: 50, cost: 5000, successRate: 40 },
+  sword: { name: "⚔️ Espada", stat: "attack", bonus: 5, cost: 500, successRate: 70 },
+  shield: { name: "🛡️ Escudo", stat: "defense", bonus: 4, cost: 500, successRate: 70 },
+  armor: { name: "🦺 Armadura", stat: "health", bonus: 20, cost: 800, successRate: 60 },
+  helmet: { name: "⛑️ Casco", stat: "defense", bonus: 3, cost: 400, successRate: 75 },
+  bow: { name: "🏹 Arco", stat: "attack", bonus: 4, cost: 450, successRate: 72 },
+  goldsword: { name: "🗡️ Espada de Oro", stat: "attack", bonus: 10, cost: 2000, successRate: 50 },
+  diamondarmor: { name: "💎 Armadura de Diamante", stat: "health", bonus: 50, cost: 5000, successRate: 40 },
 };
 
 async function handler(m, { sock }) {
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
   if (!itemName) {
     let txt = `✨ *ᴇɴᴄʜᴀɴᴛ - ᴜᴘɢʀᴀᴅᴇ ᴇǫᴜɪᴘ*\n\n`;
-    txt += `> Tingkatkan equipment untuk bonus stats!\n\n`;
+    txt += `> ¡Mejora tu equipo para obtener bonos de estadísticas!\n\n`;
     txt += `*📦 *ɪᴛᴇᴍ:*
 \n`;
 
@@ -59,27 +59,27 @@ async function handler(m, { sock }) {
 
   const item = ENCHANTABLE[itemName];
   if (!item) {
-    return m.reply(`❌ Item tidak bisa di-enchant!\n\n> Ketik \`${m.prefix}enchant\` untuk melihat daftar.`);
+    return m.reply(`❌ ¡Este objeto no se puede encantar!\n\n> Escribe \`${m.prefix}enchant\` para ver la lista.`);
   }
 
   if ((user.inventory[itemName] || 0) < 1) {
-    return m.reply(`❌ Kamu tidak punya ${item.name}!`);
+    return m.reply(`❌ ¡No tienes ${item.name}!`);
   }
 
   const currentLevel = user.rpg.enchants[itemName] || 0;
   if (currentLevel >= 10) {
-    return m.reply(`❌ ${item.name} sudah level MAX (10)!`);
+    return m.reply(`❌ ¡${item.name} ya está en nivel MAX (10)!`);
   }
 
   const cost = item.cost * (currentLevel + 1);
   if ((user.koin || 0) < cost) {
-    return m.reply(`❌ *ʙᴀʟᴀɴᴄᴇ ᴋᴜʀᴀɴɢ*\n\n` + `> Butuh: ${cost.toLocaleString()}\n` + `> Balance: ${(user.koin || 0).toLocaleString()}`);
+    return m.reply(`❌ *ʙᴀʟᴀɴᴄᴇ ɪɴꜰᴜꜰiciente*\n\n` + `> Necesitas: ${cost.toLocaleString()}\n` + `> Balance: ${(user.koin || 0).toLocaleString()}`);
   }
 
   user.koin -= cost;
 
   await m.react("✨");
-  await m.reply(`✨ *ᴍᴇɴɢ-ᴇɴᴄʜᴀɴᴛ ${item.name.toUpperCase()}...*\n\n> Level ${currentLevel} → ${currentLevel + 1}`);
+  await m.reply(`✨ *ᴇɴᴄʜᴀɴᴛɪɴɢ ${item.name.toUpperCase()}...*\n\n> Nivel ${currentLevel} → ${currentLevel + 1}`);
   await new Promise((r) => setTimeout(r, 2000));
 
   const adjustedRate = Math.max(20, item.successRate - currentLevel * 5);
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
         `*✨ *ʀᴇsᴜʟᴛ:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
-        `> 📊 Level: *${currentLevel} → ${currentLevel + 1}*\n` +
+        `> 📊 Nivel: *${currentLevel} → ${currentLevel + 1}*\n` +
         `> 💪 Bonus: *+${item.bonus} ${item.stat}*\n` +
         `> 💰 Cost: *-${cost.toLocaleString()}*\n` +
         `> ✨ EXP: *+150*\n` +
@@ -113,10 +113,10 @@ async function handler(m, { sock }) {
         `*😢 *ʀᴇsᴜʟᴛ:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
-        `> 📊 Level: *${currentLevel}* (tidak naik)\n` +
-        `> 💰 Cost: *-${cost.toLocaleString()}* (hangus)\n` +
+        `> 📊 Nivel: *${currentLevel}* (no subió)\n` +
+        `> 💰 Costo: *-${cost.toLocaleString()}* (perdido)\n` +
         `\n\n` +
-        `💡 *Tips:* Coba lagi! Rate: ${adjustedRate}%`,
+        `💡 *Consejo:* ¡Inténtalo de nuevo! Probabilidad: ${adjustedRate}%`,
     );
   }
 }

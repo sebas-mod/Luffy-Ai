@@ -20,7 +20,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
     const defaults = {
-        antidocument: '⚠ *AntiDocument* — Dokumen dari @%user% dihapus.',
+        antidocument: '⚠ *AntiDocument* — Documento de @%user% eliminado.',
     }
     let text = config.groupProtection?.[key] || defaults[key] || ''
     for (const [k, v] of Object.entries(replacements)) {

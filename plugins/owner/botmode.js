@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'botmode',
     alias: ['setmode', 'mode'],
     category: 'owner',
-    description: 'Configura el modo del bot (md/cpanel/store/pushkontak/all)',
+    description: 'Configura el modo del bot (md/cpanel/store/pushcontacto/all)',
     usage: '.botmode <mode>',
     example: '.botmode store',
     isOwner: true,
@@ -17,15 +17,15 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const VALID_MODES = ['md', 'cpanel', 'store', 'pushkontak', 'otp', 'all']
+const VALID_MODES = ['md', 'cpanel', 'store', 'pushcontacto', 'otp', 'all']
 
 const MODE_DESCRIPTIONS = {
-    md: 'Mode default, semua fitur kecuali panel/store/pushkontak',
-    cpanel: 'Mode panel, main + group + sticker + owner + tools + panel',
-    store: 'Mode store manual, main + group + sticker + owner + store',
-    pushkontak: 'Mode pushkontak, main + group + sticker + owner + pushkontak',
-    otp: 'Mode OTP service, main + group + sticker + owner + otp',
-    all: 'Mode full, SEMUA fitur dari semua mode bisa diakses'
+    md: 'Mode default, todos fesor acuali panel/store/pushcontacto',
+    cpanel: 'Mode panel, main + group + sticar + owner + tools + panel',
+    store: 'Mode store manual, main + group + sticar + owner + store',
+    pushkontak: 'Mode pushcontacto, main + group + sticar + owner + pushcontacto',
+    otp: 'Mode OTP service, main + group + sticar + owner + otp',
+    all: 'Mode full, SEMUA fesor de todos mode puede diakses'
 }
 
 async function handler(m, { sock }) {
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
         txt += `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n`
         txt += `> \`${m.prefix}botmode store\` - Manual order\n`
         txt += `> \`${m.prefix}botmode md\` → Mode default\n`
-        txt += `> \`${m.prefix}botmode all\` → Semua fitur`
+        txt += `> \`${m.prefix}botmode all\` → Todos fesor`
         
         await m.reply(txt)
         return
@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
 
     let extraInfo = ''
     if (mode === 'store' && m.isGroup) {
-        extraInfo = `\n\n📋 *Manual mode*\n> Admin perlu confirm order manual`
+        extraInfo = `\n\n📋 *Manual mode*\n> El admin necesita confirmar el orden manual`
     }
 
     await m.reply(
@@ -106,7 +106,7 @@ async function handler(m, { sock }) {
         `> ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +
         `\n\n` +
-        (m.isGroup ? `> _Mode grup ini juga diubah._` : `> _Mode global diubah._`)
+        (m.isGroup ? `> _El modo de este grupo también fue cambiado._` : `> _El modo global fue cambiado._`)
     )
 
     console.log(`[BotMode] Changed to ${mode.toUpperCase()} by ${m.pushName} (${m.sender})`)

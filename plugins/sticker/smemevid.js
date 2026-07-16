@@ -12,9 +12,9 @@ const pluginConfig = {
     name: 'smemevid',
     alias: ['smemevideo', 'memevid'],
     category: 'sticker',
-    description: 'Membuat sticker meme dari video',
-    usage: '.smemevid <top>|<bottom>',
-    example: '.smemevid WIDTH OR HEIGHT|WHY NOT BOTH?',
+    description: 'Crear sticker meme de un video',
+    usage: '.smemevid <arriba>|<abajo>',
+    example: '.smemevid ANCHO O ALTO|¿POR QUÉ NO AMBOS?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -27,12 +27,12 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const isVideo = m.isVideo || (m.quoted && m.quoted.isVideo) || (m.quoted && m.quoted.type === 'videoMessage')
     if (!isVideo) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Reply atau kirim video dengan caption\n\n\`Contoh: ${m.prefix}smemevid Top|Bottom\``)
+        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Responde o envía un video con caption\n\n\`Ejemplo: ${m.prefix}smemevid Arriba|Abajo\``)
     }
 
     const input = m.args.join(' ')
     if (!input || !input.includes('|')) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Format: top|bottom\n\n\`Contoh: ${m.prefix}smemevid WIDTH OR HEIGHT|WHY NOT BOTH?\``)
+        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Formato: arriba|abajo\n\n\`Ejemplo: ${m.prefix}smemevid ANCHO O ALTO|¿POR QUÉ NO AMBOS?\``)
     }
 
     const [top, bottom] = input.split('|').map(s => s.trim().toUpperCase())
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
         if (!mediaBuffer) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mengunduh video`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al descargar el video`)
         }
 
         const tempId = Date.now()
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
         const metadata = await getMetadata(inputVideo)
         const videoStream = metadata.streams.find(s => s.codec_type === 'video')
-        if (!videoStream) throw new Error('Stream video tidak ditemukan')
+        if (!videoStream) throw new Error('Stream de video no encontrado')
 
         const size = 512
         
@@ -137,7 +137,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         m.react('☢')
-        m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Terjadi kesalahan saat memproses video`)
+        m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Ocurrió un error al procesar el video`)
     } finally {
         try { fs.unlinkSync(inputVideo); } catch {}
         try { fs.unlinkSync(outputVideo); } catch {}

@@ -2,8 +2,8 @@ const pluginConfig = {
   name: "kalkulatormbg",
   alias: ["kkmbg"],
   category: "tools",
-  description: "Hitung durasi dan perbandingan dana Makan Bergizi Gratis (MBG)",
-  usage: ".kkmbg <jumlah_uang>",
+  description: "Calcular duración y comparación de fondos de Comida Nutritiva Gratis (MBG)",
+  usage: ".kkmbg <cantidad_dinero>",
   example: ".kkmbg 1000000000",
   isOwner: false,
   isPremium: false,
@@ -87,11 +87,11 @@ function formatRupiah(angka) {
 
 async function handler(m, { args }) {
   if (!args[0]) {
-    let txt = `🧮 *KALKULATOR MBG (Makan Bergizi Gratis)* 🧮\n\n`;
-    txt += `Halo kak! Penasaran berapa lama uang kamu bisa nyuplai program Makan Bergizi Gratis se-Indonesia?\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}kkmbg <nominal uang>\`\n\n`;
-    txt += `*Contoh:*\n`;
+    let txt = `🧮 *CALCULADORA MBG (Comida Nutritiva Gratis)* 🧮\n\n`;
+    txt += `¡Hola! ¿Cuánto tiempo puede abastecer tu dinero al programa de Comida Nutritiva Gratis a nivel nacional?\n\n`;
+    txt += `*Cómo Usar:*\n`;
+    txt += `👉 \`${m.prefix}kkmbg <cantidad de dinero>\`\n\n`;
+    txt += `*Ejemplo:*\n`;
     txt += `\`${m.prefix}kkmbg 1000000000\``;
     return m.reply(txt);
   }
@@ -101,30 +101,30 @@ async function handler(m, { args }) {
   try {
     const uang = Number(args[0].replace(/[^0-9]/g, ''));
     if (isNaN(uang) || uang <= 0) {
-      return m.reply("❌ Kak, tolong masukin angka uang yang valid ya! (Cuma angka aja, misal 500000)");
+      return m.reply("❌ ¡Por favor ingresa una cantidad de dinero válida! (Solo números, por ejemplo 500000)");
     }
 
     const data = hitungMBG(uang);
 
     let contentTxt = `💰 *Dana :* ${formatRupiah(uang)}\n\n`;
     contentTxt += `⏳ *Durasi MBG:*\n`;
-    contentTxt += `${data.durasi.tahun} TAHUN, ${data.durasi.bulan} BULAN, ${data.durasi.hari} HARI\n`;
-    contentTxt += `${data.durasi.jam} JAM, ${data.durasi.menit} MENIT, ${data.durasi.detik} DETIK\n`;
-    contentTxt += `_(Berdasarkan pengeluaran ~Rp ${(data.pengeluaran / 1000000000).toFixed(1)} Miliar/hari)_\n\n`;
+    contentTxt += `${data.durasi.tahun} AÑOS, ${data.durasi.bulan} MESES, ${data.durasi.hari} DÍAS\n`;
+    contentTxt += `${data.durasi.jam} HORAS, ${data.durasi.menit} MINUTOS, ${data.durasi.detik} SEGUNDOS\n`;
+    contentTxt += `_(Basado en gasto ~Rp ${(data.pengeluaran / 1000000000).toFixed(1)} Mil millones/día)_\n\n`;
     
-    contentTxt += `🍱 *Setara Porsi Makan:*\n`;
+    contentTxt += `🍱 *Porciones Equivalentes:*\n`;
     contentTxt += `${data.porsi.toLocaleString('id-ID')} porsi (@ Rp 15.000/porsi)\n\n`;
 
-    contentTxt += `📊 *Perbandingan Gaji Indonesia:*\n`;
+    contentTxt += `📊 *Comparación de Salario Indonesia:*\n`;
     contentTxt += `🏢 UMR DKI Jakarta (Rp 5,4 Jt/bulan): ${data.gajiIndonesia.dki}\n`;
     contentTxt += `🏭 UMR Jawa Tengah (Rp 2,04 Jt/bulan): ${data.gajiIndonesia.jateng}\n`;
     contentTxt += `👨‍🏫 Gaji Guru Honorer (Rp 300rb/bulan): ${data.gajiIndonesia.guru}\n\n`;
 
-    contentTxt += `⚽ *Perbandingan Gaji Pesepakbola:*\n`;
+    contentTxt += `⚽ *Comparación de Salario de Futbolistas:*\n`;
     for (let p of data.pemain) {
       contentTxt += `🏆 ${p.nama}\n`;
       contentTxt += `💵 ${formatRupiah(p.gaji)}/tahun\n`;
-      contentTxt += `📈 Persentase: ${p.persen}\n\n`;
+      contentTxt += `📈 Porcentaje: ${p.persen}\n\n`;
     }
 
     let txt = `🍽️ *HASIL HITUNG KALKULATOR MBG* 🍽️\n\n`;
@@ -133,7 +133,7 @@ async function handler(m, { args }) {
     await m.reply(txt);
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Maaf kak, terjadi kesalahan saat menghitung! 😭\nError: ${e.message}`);
+    m.reply(`❌ Lo siento, ocurrió un error al calcular! 😭\nError: ${e.message}`);
   }
 }
 

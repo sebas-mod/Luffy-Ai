@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "unmutegc",
   alias: ["unmutegrup", "unmutebot", "unblockbot", "unlockbot"],
   category: "group",
-  description: "Buka blokir command bot untuk member di grup",
+  description: "Desbloquea comandos del bot para miembros en el grupo",
   usage: ".unmutegc",
   example: ".unmutegc",
   isOwner: false,

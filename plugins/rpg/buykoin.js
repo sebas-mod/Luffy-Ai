@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "buykoin",
   alias: ["belikoin", "belicoin", "exptokoin", "exptocoin"],
   category: "rpg",
-  description: "Tukar EXP menjadi Koin",
+  description: "Canjear EXP por Monedas",
   usage: ".buykoin <jumlah>",
   example: ".buykoin 10000",
   isOwner: false,
@@ -28,14 +28,14 @@ async function handler(m, { sock }) {
 
   if (!amountStr) {
     let txt = `💱 *Buy Koin*\n\n`;
-    txt += `> Tukar EXP menjadi Koin!\n\n`;
-    txt += `*📊 Kurs:*\n`;
+    txt += `> ¡Intercambia EXP por Monedas!\n\n`;
+    txt += `*📊 Tipo de Cambio:*\n`;
     txt += `> 💎 ${EXP_PER_KOIN} EXP = 1 Koin\n\n`;
     txt += `*📋 Saldo:*\n`;
     txt += `> 🚄 EXP: *${(user.exp || 0).toLocaleString("id-ID")}*\n`;
     txt += `> 💰 Koin: *${(user.koin || 0).toLocaleString("id-ID")}*\n\n`;
-    txt += `> Contoh: \`.buykoin 10000\`\n`;
-    txt += `> Akan menggunakan ${10000 * EXP_PER_KOIN} EXP untuk 10.000 Koin`;
+    txt += `> Ejemplo: \`.buykoin 10000\`\n`;
+    txt += `> Se usarán ${10000 * EXP_PER_KOIN} EXP para 10.000 Monedas`;
 
     return m.reply(txt);
   }
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   }
 
   if (!koinAmount || koinAmount <= 0) {
-    return m.reply(`❌ Masukkan jumlah koin yang valid!`);
+    return m.reply(`❌ ¡Ingresa una cantidad válida de monedas!`);
   }
 
   const expNeeded = koinAmount * EXP_PER_KOIN;
@@ -56,10 +56,10 @@ async function handler(m, { sock }) {
   if ((user.exp || 0) < expNeeded) {
     const maxPossible = Math.floor((user.exp || 0) / EXP_PER_KOIN);
     return m.reply(
-      `❌ *EXP tidak cukup!*\n\n` +
-        `> Dibutuhkan: *${expNeeded.toLocaleString("id-ID")} EXP*\n` +
-        `> EXP kamu: *${(user.exp || 0).toLocaleString("id-ID")} EXP*\n\n` +
-        `> Maksimal: *${maxPossible.toLocaleString("id-ID")} Koin*`,
+      `❌ *¡EXP insuficiente!*\n\n` +
+        `> Necesitas: *${expNeeded.toLocaleString("id-ID")} EXP*\n` +
+        `> Tu EXP: *${(user.exp || 0).toLocaleString("id-ID")} EXP*\n\n` +
+        `> Máximo: *${maxPossible.toLocaleString("id-ID")} Monedas*`,
     );
   }
 
@@ -75,11 +75,11 @@ async function handler(m, { sock }) {
 
   await m.react("💱");
 
-  let txt = `💱 *Tukar Berhasil!*\n\n`;
+  let txt = `💱 *¡Intercambio Exitoso!*\n\n`;
   txt += `*📋 Detail:*\n`;
   txt += `> 🚄 EXP: *-${expNeeded.toLocaleString("id-ID")}*\n`;
   txt += `> 💰 Koin: *+${koinAmount.toLocaleString("id-ID")}*\n\n`;
-  txt += `*📊 Saldo Sekarang:*\n`;
+  txt += `*📊 Saldo Actual:*\n`;
   txt += `> 🚄 EXP: *${newExp.toLocaleString("id-ID")}*\n`;
   txt += `> 💰 Koin: *${newKoin.toLocaleString("id-ID")}*`;
 

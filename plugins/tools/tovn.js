@@ -5,8 +5,8 @@ const pluginConfig = {
     name: 'tovn',
     alias: ['tovoicenote', 'toptt', 'audiotovn'],
     category: 'tools',
-    description: 'Mengubah audio/video menjadi voice note',
-    usage: '.tovn (reply/caption audio/video)',
+    description: 'Convertir audio/video a nota de voz',
+    usage: '.tovn (responder/caption audio/video)',
     example: '.tovn',
     isOwner: false,
     isPremium: false,
@@ -57,10 +57,10 @@ async function handler(m, { sock }) {
     if (!mediaSource) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak ada audio/video yang terdeteksi!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> 1. Kirim audio/video + caption \`${m.prefix}tovn\`\n` +
-            `> 2. Reply audio/video dengan \`${m.prefix}tovn\``
+            `> ¡No se detectó ningún audio/video!\n\n` +
+            `*Cómo usar:*\n` +
+            `> 1. Envía audio/video + caption \`${m.prefix}tovn\`\n` +
+            `> 2. Responde a audio/video con \`${m.prefix}tovn\``
         )
         return
     }
@@ -82,8 +82,8 @@ async function handler(m, { sock }) {
             await m.react('❌')
             await m.reply(
                 `❌ *ɢᴀɢᴀʟ*\n\n` +
-                `> Tidak dapat mengunduh media.\n` +
-                `> Media mungkin sudah tidak tersedia.`
+                `> No se pudo descargar el medio.\n` +
+                `> Es posible que el medio ya no esté disponible.`
             )
             return
         }
@@ -108,8 +108,8 @@ async function handler(m, { sock }) {
             await m.react('❌')
             await m.reply(
                 `❌ *ᴋᴏɴᴠᴇʀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Gagal mengkonversi ke voice note.\n` +
-                `> Pastikan ffmpeg terinstall dengan benar.`
+                `> Error al convertir a nota de voz.\n` +
+                `> Asegúrate de que ffmpeg esté instalado correctamente.`
             )
             return
         }
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
         await m.react('❌')
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Terjadi kesalahan saat memproses.\n` +
+            `> Ocurrió un error al procesar.\n` +
             `> _${error.message}_`
         )
     } finally {

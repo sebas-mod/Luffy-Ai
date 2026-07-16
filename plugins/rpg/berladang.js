@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "berladang",
   alias: ["farm", "tanam", "berkebun"],
   category: "rpg",
-  description: "Berladang untuk mendapat hasil panen",
+  description: "Cultivar para obtener cosecha",
   usage: ".berladang",
   example: ".berladang",
   isOwner: false,
@@ -28,20 +28,20 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Aduh kak, encok nih badan! 🥵\n\nBuat nyangkul butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*.\nMakan atau istirahat dulu gih! 🛌💤`);
+    return m.reply(`¡Ay no, el cuerpo está hecho trizas! 🥵\n\nArar requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*.\n¡Come o descansa primero! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("🌾");
-  await m.reply(`Menyiapkan cangkul dan menyiram tanah... 🌱💧\nSemoga hari ini panen berlimpah!`);
+  await m.reply(`Preparando el azadón y regando la tierra... 🌱💧\n¡Esperemos que hoy sea una cosecha abundante!`);
   await new Promise((r) => setTimeout(r, 3000));
 
   const crops = [
-    { item: "padi", name: "🌾 Padi", chance: 90, min: 2, max: 8, price: 100 },
-    { item: "jagung", name: "🌽 Jagung", chance: 70, min: 1, max: 5, price: 150 },
-    { item: "tomat", name: "🍅 Tomat", chance: 50, min: 1, max: 4, price: 200 },
-    { item: "wortel", name: "🥕 Wortel", chance: 40, min: 1, max: 3, price: 250 },
+    { item: "padi", name: "🌾 Arroz", chance: 90, min: 2, max: 8, price: 100 },
+    { item: "jagung", name: "🌽 Maíz", chance: 70, min: 1, max: 5, price: 150 },
+    { item: "tomat", name: "🍅 Tomate", chance: 50, min: 1, max: 4, price: 200 },
+    { item: "wortel", name: "🥕 Zanahoria", chance: 40, min: 1, max: 3, price: 250 },
     { item: "strawberry", name: "🍓 Strawberry", chance: 20, min: 1, max: 2, price: 500 },
     { item: "melon", name: "🍈 Melon", chance: 10, min: 1, max: 1, price: 1000 },
   ];
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
   if (results.length === 0) {
     user.inventory["padi"] = (user.inventory["padi"] || 0) + 1;
-    results.push({ name: "🌾 Padi", qty: 1, value: 100 });
+    results.push({ name: "🌾 Arroz", qty: 1, value: 100 });
     totalValue = 100;
   }
 
@@ -72,15 +72,15 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `PANEN RAYA KAK! 🚜🌾\n\n`;
-  txt += `Gila, kebun kamu hari ini ngasilin banyak banget:\n`;
+  let txt = `¡COSECHA ABUNDANTE! 🚜🌾\n\n`;
+  txt += `¡Vaya, tu huerto dio muchísimo hoy:\n`;
   for (const r of results) {
     txt += `• ${r.name}: *+${r.qty}* (Est. Rp ${r.value.toLocaleString("id-ID")})\n`;
   }
-  txt += `\n💰 Total Estimasi Nilai: *Rp ${totalValue.toLocaleString("id-ID")}*\n`;
-  txt += `📈 EXP Petani: *+${expGain}*\n`;
+  txt += `\n💰 Valor Total Estimado: *Rp ${totalValue.toLocaleString("id-ID")}*\n`;
+  txt += `📈 EXP del Agricultor: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Kamu bisa jual hasil panen ini ke pasar pakai \`${m.prefix}sellall\` ya! 🧺✨`;
+  txt += `¡Puedes vender esta cosecha en el mercado usando \`${m.prefix}sellall\`! 🧺✨`;
 
   m.reply(txt);
 }

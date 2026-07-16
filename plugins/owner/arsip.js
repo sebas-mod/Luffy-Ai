@@ -3,7 +3,7 @@ const pluginConfig = {
   alias: [],
   category: "owner",
   description: "Archiva o desarchiva un chat",
-  usage: ".arsip <nomor/reply> atau .arsip buka <nomor>",
+  usage: ".arsip <número/reply> o .arsip buka <número>",
   example: ".arsip 628xxx",
   isOwner: true,
   cooldown: 3,
@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     } else if (!m.isGroup) {
       targetJid = m.chat;
     }
-  } else if (action === "semua") {
+  } else if (action === "todos") {
     try {
       await m.react("🕕");
       global.isFetchingGroups = true;
@@ -42,11 +42,11 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `📁 *${count} grup diarsipkan*\n\n> Private chat tidak bisa diarsipkan sekaligus (tidak ada daftar chat)`,
+        `📁 *${count} grup diarsipkan*\n\n> Private chat no se puede diarsipkan sekaligus (no hay lista chat)`,
       );
     } catch (err) {
       global.isFetchingGroups = false;
-      return m.reply(`❌ Gagal: ${err.message}`);
+      return m.reply(`❌ Fallo: ${err.message}`);
     }
   } else {
     if (m.mentionedJid?.length > 0) {
@@ -65,10 +65,10 @@ async function handler(m, { sock }) {
     return m.reply(
       "📁 *ᴀʀsɪᴘ ᴄʜᴀᴛ*\n\n" +
         "> `.arsip 628xxx` — Arsipkan chat\n" +
-        "> `.arsip` (di private chat) — Arsipkan chat ini\n" +
-        "> `.arsip` (reply pesan) — Arsipkan chat pengirim\n" +
+        "> `.arsip` (di private chat) — Arsipkan chat esto\n" +
+        "> `.arsip` (reply mensaje) — Arsipkan chat pengirim\n" +
         "> `.arsip buka 628xxx` — Buka arsip chat\n" +
-        "> `.arsip semua` — Arsipkan semua chat",
+        "> `.arsip todos` — Arsipkan todos chat",
     );
   }
 
@@ -78,11 +78,11 @@ async function handler(m, { sock }) {
     const target = targetJid.split("@")[0];
     return m.reply(
       archive
-        ? `📁 *ᴄʜᴀᴛ ᴅɪᴀʀsɪᴘᴋᴀɴ*\n\n> Target: ${target}\n> Gunakan \`.arsip buka ${target}\` untuk membuka`
+        ? `📁 *ᴄʜᴀᴛ ᴅɪᴀʀsɪᴘᴋᴀɴ*\n\n> Target: ${target}\n> Usa \`.arsip buka ${target}\` para abriendo`
         : `📂 *ᴀʀsɪᴘ ᴅɪʙᴜᴋᴀ*\n\n> Target: ${target}`,
     );
   } catch (err) {
-    return m.reply(`❌ Gagal: ${err.message}`);
+    return m.reply(`❌ Fallo: ${err.message}`);
   }
 }
 

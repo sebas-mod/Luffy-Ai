@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'slowmode',
     alias: ['slow', 'setslowmode'],
     category: 'group',
-    description: 'Slowmode grup — batasi kecepatan pesan member',
+    description: 'Slowmode del grupo — limita la velocidad de mensajes de los miembros',
     usage: '.slowmode <on/off/onlycommand> [detik]',
     example: '.slowmode on 30',
     isOwner: false,
@@ -27,8 +27,8 @@ const PRESETS = {
 }
 
 const MODES = {
-    all: 'Semua pesan + command dihapus',
-    onlycommand: 'Command di-silent, chat biasa tetap jalan',
+    all: 'Todos los mensajes + comandos eliminados',
+    onlycommand: 'Comandos silenciados, chat normal sigue funcionando',
 }
 
 async function handler(m, { sock }) {

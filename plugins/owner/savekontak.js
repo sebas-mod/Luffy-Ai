@@ -1,10 +1,10 @@
 const pluginConfig = {
-    name: "savekontak",
-    alias: ["sv", "svkontak"],
+    name: "savecontacto",
+    alias: ["sv", "svcontacto"],
     category: "owner",
     description: "Guarda los contactos del grupo en un archivo VCF",
-    usage: ".savekontak <nama>",
-    example: ".savekontak Fulan",
+    usage: ".savecontacto <nombre>",
+    example: ".savecontacto Fulan",
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -27,15 +27,15 @@ async function handler(m, { sock, args }) {
             if (chats[target]) {
                 groups.push(chats[target]);
             } else {
-                return m.reply("❌ Grup tidak ditemukan.");
+                return m.reply("❌ Grup no encontrado.");
             }
         }
 
         if (groups.length === 0) {
-            return m.reply("❌ Bot tidak berada di grup mana pun.");
+            return m.reply("❌ El bot no está en ningún grupo.");
         }
 
-        m.reply(`⏳ Sedang mengekstrak kontak dari ${groups.length} grup...`);
+        m.reply(`⏳ Está mengekstrak contacto de ${groups.length} grup...`);
 
         let vcards = "";
         let count = 0;
@@ -59,19 +59,19 @@ async function handler(m, { sock, args }) {
         }
 
         if (count === 0) {
-            return m.reply("❌ Tidak ada kontak yang bisa diekstrak.");
+            return m.reply("❌ No hay contactos que puedan ser extraídos.");
         }
 
         await sock.sendMessage(m.chat, {
             document: Buffer.from(vcards, "utf8"),
-            fileName: `${baseName}_${count}_Kontak.vcf`,
+            fileName: `${baseName}_${count}_Contacto.vcf`,
             mimetype: "text/vcard",
-            caption: `✅ *Berhasil mengekstrak ${count} kontak ke dalam VCF.*`
+            caption: `✅ *Éxito mengekstrak ${count} contacto a en VCF.*`
         }, { quoted: m });
 
         await sock.sendMessage(m.chat, {
             contacts: {
-                displayName: `${count} Kontak`,
+                displayName: `${count} Contacto`,
                 contacts: contactArray
             }
         }, { quoted: m });
@@ -84,32 +84,32 @@ async function handler(m, { sock, args }) {
     const groupList = Object.values(chats);
 
     if (groupList.length === 0) {
-        return m.reply("❌ Bot tidak berada di grup mana pun.");
+        return m.reply("❌ Bot no berhay en el grupo mana pun.");
     }
 
     const sections = [
         {
-            title: "Daftar Grup",
+            title: "Lista Grup",
             rows: groupList.map(g => ({
                 header: "",
                 title: g.subject,
                 description: `Miembros: ${g.participants?.length || 0}`,
-                id: `${m.prefix}savekontak get ${g.id} ${baseName}`
+                id: `${m.prefix}savecontacto get ${g.id} ${baseName}`
             }))
         }
     ];
 
     await sock.sendMessage(m.chat, {
         text: `📇 *SISTEM SAVE KONTAK (VCF)*\n\n` +
-            `Sistem ekstraksi kontak otomatis dari grup yang diikuti bot.\n` +
-            `Nama Base: *${baseName}*\n\n` +
+            `Sistema de extracción de contactoss automáticamente de los grupos que sigue el bot.\n` +
+            `Nombre Base: *${baseName}*\n\n` +
             `*PENGGUNAAN:*\n` +
-            `• *${m.prefix || "."}savekontak <nama>* — Menyimpan dengan nama kustom\n` +
-            `• *${m.prefix || "."}savekontak* — Menyimpan dengan nama default "User"\n\n` +
+            `• *${m.prefix || "."}savecontacto <nombre>* — Guarydo con nombre kustom\n` +
+            `• *${m.prefix || "."}savecontacto* — Guarydo con nombre default "User"\n\n` +
             `*PENJELASAN ALUR PENGGUNAAN:*\n` +
-            `1. Pilih grup spesifik dari tombol *Pilih Grup* di bawah, atau klik *Semua Grup* untuk mengekstrak kontak secara global.\n` +
-            `2. Bot akan mengumpulkan nomor peserta dan mengabaikan nomor bot sendiri.\n` +
-            `3. Hasil akan dikirim berupa file dokumen (*.vcf*) beserta list kontak WhatsApp agar bisa langsung disave.`,
+            `1. Pilih grup spesifik de tombol *Pilih Grup* di bawah, o klik *Todos Grup* para mengekstrak contacto de forma global.\n` +
+            `2. El bot recopilará los números de participantes e ignorará su propio número.\n` +
+            `3. El resultado se enviará como un archivo de documento (*.vcf*) junto con la lista de contactos de WhatsApp para que puedas guardarlos directamente.`,
         footer: "Powered by ReviewBot",
         interactiveButtons: [
             {
@@ -122,8 +122,8 @@ async function handler(m, { sock, args }) {
             {
                 name: "quick_reply",
                 buttonParamsJson: JSON.stringify({
-                    display_text: "Semua Grup",
-                    id: `${m.prefix}savekontak get all ${baseName}`
+                    display_text: "Todos Grup",
+                    id: `${m.prefix}savecontacto get all ${baseName}`
                 })
             }
         ]

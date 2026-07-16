@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'setrules',
     alias: ['setbotrules', 'setaturanbot'],
     category: 'owner',
-    description: 'Configura reglas personalizadas para el bot',
+    description: 'Configura reglas personalizhays para el bot',
     usage: '.setrules <text>',
     example: '.setrules 1. Jangan spam\n2. Hormati sesama',
     isOwner: true,
@@ -22,8 +22,8 @@ function handler(m) {
     if (!text) {
         return m.reply(
             `📝 *sᴇᴛ ʙᴏᴛ ʀᴜʟᴇs*\n\n` +
-            `> Masukkan teks rules yang baru\n\n` +
-            `\`Contoh:\`\n` +
+            `> Ingresa el texto de las reglas nuevas\n\n` +
+            `\`Ejemplo:\`\n` +
             `\`${m.prefix}setrules 1. Jangan spam\\n2. Hormati sesama\``
         )
     }
@@ -32,8 +32,8 @@ function handler(m) {
     
     m.reply(
         `✅ *ʙᴏᴛ ʀᴜʟᴇs ᴅɪᴜᴘᴅᴀᴛᴇ*\n\n` +
-        `> Rules bot berhasil diubah!\n` +
-        `> Ketik \`${m.prefix}rules\` untuk melihat.`
+        `> ¡Las reglas del bot han sido cambiadas con éxito!\n` +
+        `> Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'birthday',
     alias: ['bday', 'ultah', 'ulangtahun'],
     category: 'user',
-    description: 'Lihat ulang tahun member',
+    description: 'Ver cumpleaños de miembros',
     usage: '.birthday [@user]',
     example: '.birthday @user',
     isOwner: false,
@@ -25,16 +25,16 @@ async function handler(m, { sock }) {
     if (!user?.birthday) {
         if (target === m.sender) {
             return m.reply(
-                `❌ Kamu belum set birthday!\n\n` +
-                `> Gunakan: ${m.prefix}setbirthday DD-MM\n` +
-                `> Contoh: ${m.prefix}setbirthday 25-12`
+                `❌ ¡Aún no has configurado tu cumpleaños!\n\n` +
+                `> Usa: ${m.prefix}setbirthday DD-MM\n` +
+                `> Ejemplo: ${m.prefix}setbirthday 25-12`
             )
         }
-        return m.reply(`❌ User belum set birthday!`)
+        return m.reply(`❌ ¡El usuario no ha configurado su cumpleaños!`)
     }
     
     const [day, month] = user.birthday.split('-').map(Number)
-    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     
     const now = new Date()
     const currentYear = now.getFullYear()
@@ -55,17 +55,17 @@ async function handler(m, { sock }) {
     text += `┃ 📅 ${day} ${months[month - 1]}\n`
     
     if (isToday) {
-        text += `┃ 🎉 *HARI INI ULTAH!*\n`
+        text += `┃ 🎉 *¡HOY ES SU CUMPLEAÑOS!*\n`
     } else {
-        text += `┃ 🕕 ${diffDays} hari lagi\n`
+        text += `┃ 🕕 ${diffDays} días más\n`
     }
     
     text += `╰┈┈┈┈┈┈┈┈⬡`
     
     if (isToday) {
         text += `\n\n🎊 *HAPPY BIRTHDAY!* 🎊\n`
-        text += `> Semoga panjang umur dan\n`
-        text += `> sukses selalu! 🎉🎂`
+        text += `> Que tengas mucha salud y éxito\n`
+        text += `> siempre! 🎉🎂`
     }
     
     await m.reply(text, { mentions: [target] })

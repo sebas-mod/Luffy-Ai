@@ -25,12 +25,12 @@ async function handler(m, { sock }) {
   if (!mode || (mode !== "on" && mode !== "off")) {
     return m.reply(
       `🎛️ *KONTROL SISTEM ENERGI*\n\n` +
-      `Fitur kendali utama untuk menghidupkan atau mematikan seluruh sistem potongan energi bot secara global.\n\n` +
+      `La función principal para activar o desactivar todo el sistema de descuento de energía del bot de forma global.\n\n` +
       `*STATUS SAAT INI:*\n` +
       `- Mode: *${currentStatus ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
       `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}sistemenergi on* — Menghidupkan potongan energi\n` +
-      `- *${m.prefix}sistemenergi off* — Mematikan potongan energi (Unlimited mode)\n\n` +
+      `- *${m.prefix}sistemenergi on* — Activar el descuento de energía\n` +
+      `- *${m.prefix}sistemenergi off* — Desactivar el descuento de energía (Modo ilimitado)\n\n` +
       `*CONTOH PENGGUNAAN:*\n` +
       `- *${m.prefix}sistemenergi on*`
     );
@@ -46,10 +46,10 @@ async function handler(m, { sock }) {
   await m.react("✅");
   return m.reply(
     `✅ *STATUS SISTEM ENERGI BERHASIL DIUBAH*\n\n` +
-    `Sistem Energi kini telah berhasil di-*${isEnabled ? "HIDUPKAN" : "MATIKAN"}*.\n\n` +
-    `*Status Terkini:*\n` +
+    `Sistem Energi asto ha éxito di-*${isEnabled ? "HIDUPKAN" : "MATIKAN"}*.\n\n` +
+    `*Status Terasto:*\n` +
     `- Mode: *${isEnabled ? "AKTIF 🔋" : "NONAKTIF (UNLIMITED) ♾️"}*\n\n` +
-    `_Semua perubahan sudah tersimpan dan akan segera diterapkan pada sistem bot._`
+    `_Todos perubahan ya tersimpan y va a segera diterapkan en sistem bot._`
   );
 }
 

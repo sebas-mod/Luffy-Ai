@@ -4,7 +4,7 @@ const pluginConfig = {
     alias: ['delcmdsticker', 'removesticker', 'unsticker'],
     category: 'group',
     description: 'Eliminar sticker command',
-    usage: '.delstickercmd <command> atau reply sticker',
+    usage: '.delstickercmd <comando> o responder a un sticker',
     example: '.delstickercmd menu',
     isOwner: false,
     isPremium: false,
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
         
         txt += `*Elimina con:*\n`
         txt += `> \`.delstickercmd <command>\`\n`
-        txt += `> atau reply sticker + \`.delstickercmd\``
+        txt += `> o responder a un sticker + \`.delstickercmd\``
         
         return m.reply(txt)
     }

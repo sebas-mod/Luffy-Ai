@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'wastalk',
     alias: ['whatsappstalk', 'stalkwa'],
     category: 'stalker',
-    description: 'Stalk profile WhatsApp',
+    description: 'Rastrear perfil de WhatsApp',
     usage: '.wastalk <nomor/tag>',
     example: '.wastalk 6281234567890',
     isGroup: false,
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     try {
         const onWa = await sock.onWhatsApp(num);
         if (!onWa || !onWa[0]?.exists) {
-            return m.reply('❌ User not exists on WhatsApp');
+            m.reply('❌ El usuario no existe en WhatsApp');
         }
 
         let img = 'https://telegra.ph/file/70e8de9b1879568954f09.jpg';
@@ -100,7 +100,7 @@ async function handler(m, { sock }) {
 
     } catch (e) {
         console.error('WaStalk Error:', e);
-        m.reply('❌ Failed to stalk user.');
+        m.reply('❌ Error al rastrear al usuario.');
     }
 }
 

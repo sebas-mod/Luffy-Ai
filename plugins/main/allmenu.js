@@ -19,7 +19,7 @@ const pluginConfig = {
   name: "allmenu",
   alias: ["fullmenu", "am", "allcommand", "semua"],
   category: "main",
-  description: "Menampilkan semua command lengkap per kategori",
+  description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",
   example: ".allmenu",
   isOwner: false,
@@ -124,17 +124,17 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   let txt = ``;
 
   const weatherCodeMap = {
-    0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+    0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
   };
 
-  let weatherText = "Merangin Cerah Berawan 22°C ☀️";
+  let weatherText = "Merangin Despejado con nubes 22°C ☀️";
   try {
     const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=Merangin&count=1`);
     const loc = geo.data.results?.[0];
     if (loc) {
       const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`);
       const current = res.data.current;
-      const kondisi = weatherCodeMap[current.weather_code] || "Cerah Berawan";
+      const kondisi = weatherCodeMap[current.weather_code] || "Despejado con nubes";
       weatherText = `Merangin ${kondisi} ${Math.round(current.temperature_2m)}°C`;
     }
   } catch (e) { }
@@ -146,22 +146,22 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const pushName = m.pushName || "User";
   const timeNow = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' }).replace(/\./g, ':');
 
-  txt += `✦ *Informasi User*\n`;
-  txt += `• Nama   : ${pushName}\n`;
-  txt += `• Status : ${userRole}\n`;
-  txt += `• Limit  : ${userLimit}\n\n`;
-  txt += `✦ *Informasi Bot*\n`;
-  txt += `• Nama   : ${botName}\n`;
-  txt += `• Fitur  : ${totalFeatures} fitur\n`;
-  txt += `• Versi  : ${botVersion}\n`;
-  txt += `• Waktu  : ${timeNow} WIB\n\n`;
-  txt += `✦ *Kelebihan Bot Ini*\n`;
-  txt += `• Fast response\n`;
-  txt += `• Stable system\n`;
-  txt += `• Multi feature\n`;
-  txt += `• User friendly\n\n`;
-  txt += `Silakan pilih menu di bawah ini.\n`;
-  txt += `Gunakan sesuai kebutuhan dan jangan lupa gunakan dengan bijak.\n\n`;
+  txt += `✦ *Información Usuario*\n`;
+  txt += `• Nombre  : ${pushName}\n`;
+  txt += `• Estado  : ${userRole}\n`;
+  txt += `• Límite  : ${userLimit}\n\n`;
+  txt += `✦ *Información Bot*\n`;
+  txt += `• Nombre  : ${botName}\n`;
+  txt += `• Funciones : ${totalFeatures} funciones\n`;
+  txt += `• Versión : ${botVersion}\n`;
+  txt += `• Hora    : ${timeNow} WIB\n\n`;
+  txt += `✦ *Ventajas de Este Bot*\n`;
+  txt += `• Respuesta rápida\n`;
+  txt += `• Sistema estable\n`;
+  txt += `• Multifuncional\n`;
+  txt += `• Fácil de usar\n\n`;
+  txt += `Selecciona el menú de abajo.\n`;
+  txt += `Úsalo según tus necesidades y no olvides usarlo con responsabilidad.\n\n`;
   const categoryOrder = [
     "owner",
     "main",
@@ -260,7 +260,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `> Halo *${pushName}* 👋 Perkenalkan aku *${botName}*, buatan *${devName}* Saya siap membantu kebutuhanmu, mulai dari download video, main game, tanya jawab, nyari info/sesuatu, bikin sticker, dan lain-lain.\n\n`,
+                    text: `> Hola *${pushName}* 👋 Permíteme presentarme, soy *${botName}*, creado por *${devName}* Estoy listo para ayudarte con lo que necesites, desde descargar videos, jugar, preguntar, buscar info/algo, crear stickers, y mucho más.\n\n`,
                   },
                   footer: {
                     text: txt
@@ -281,7 +281,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                       limited_time_offer: {
                         text: `${greeting}`,
                         url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
                     }),
@@ -289,7 +289,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                       {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍅 Kembali Ke Menu Utama",
+                          display_text: "🍅 Volver al Menú Principal",
                           id: m.prefix + "menu"
                         })
                       }
@@ -309,24 +309,24 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           const h = Math.floor(seconds % (3600 * 24) / 3600);
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Horas ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
@@ -342,7 +342,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               messageContextInfo: {},
               interactiveMessage: {
                 header: { title: "", subtitle: "", hasMediaAttachment: true, videoMessage: media4.videoMessage },
-                footer: { text: `Please select the button in below` },
+                footer: { text: `Selecciona el botón de abajo` },
                 body: { text: txt },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -364,11 +364,11 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     { name: "", buttonParamsJson: "" },
                     {
                       name: "quick_reply",
-                      buttonParamsJson: JSON.stringify({ display_text: "📂 Kembali Ke Daftar Kategori", id: m.prefix + "menucat" })
+                      buttonParamsJson: JSON.stringify({ display_text: "📂 Volver a la Lista de Categorías", id: m.prefix + "menucat" })
                     },
                     {
                       name: "quick_reply",
-                      buttonParamsJson: JSON.stringify({ display_text: "🍅 Kembali Ke Menu Utama", id: m.prefix + "menu" })
+                      buttonParamsJson: JSON.stringify({ display_text: "🍅 Volver al Menú Principal", id: m.prefix + "menu" })
                     },
                   ]
                 }
@@ -382,20 +382,20 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
       }
       case 6: {
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
@@ -543,7 +543,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                 participant: m.sender,
               },
               message: {
-                conversation: "setelin musiknya nya bang"
+                conversation: "Pon la música hermano"
               }
             };
             await sock.sendMessage(m.chat, {
@@ -583,7 +583,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     forwardingScore: 9,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: "120363351980387532@newsletter",
-                      newsletterName: "Ourin Bot",
+                      newsletterName: "Luffy-AI",
                       serverMessageId: 127,
                     },
                   },

@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'koin',
     alias: ['saldo', 'money', 'cash', 'coin', 'coins'],
     category: 'user',
-    description: 'Cek koin user',
+    description: 'Ver monedas del usuario',
     usage: '.koin [@user]',
     example: '.koin',
     isOwner: false,
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     const db = getDatabase()
     
     let targetJid = m.sender
-    let targetName = m.pushName || 'Kamu'
+    let targetName = m.pushName || 'Tú'
     
     if (m.quoted) {
         targetJid = m.quoted.sender
@@ -56,7 +56,7 @@ if (isSelf) {
   text += `\n*〔 🛒 SHOP 〕*\n`
   text += `• \`.buyenergi <jml>\` (1 = 100 koin)\n`
   text += `• \`.buyfitur\` (1 = 3000 koin)\n`
-  text += `\n_🎮 Main game untuk dapat koin!_`
+  text += `\n_🎮 ¡Juega para obtener monedas!_`
 }
     
     await m.reply(text)

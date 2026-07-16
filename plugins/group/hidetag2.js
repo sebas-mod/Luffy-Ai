@@ -6,7 +6,7 @@ const pluginConfig = {
     alias: ['n', 'ht2'],
     category: 'group',
     description: 'Hidetag con estilo fakeQuoted',
-    usage: '.h2 <text> atau reply pesan',
+    usage: '.h2 <texto> o responder a un mensaje',
     example: '.n Pengumuman penting!',
     isOwner: false,
     isPremium: false,

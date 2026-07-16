@@ -23,7 +23,7 @@ async function handler(m) {
             db.setting('onlyAdmin', false)
             db.save()
             await m.react('❌')
-            return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
+            return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> El bot puede ser usado por todos')
         }
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
@@ -35,9 +35,9 @@ async function handler(m) {
             '╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n' +
             '┃ ✅ Admin grup\n' +
             '┃ ✅ Owner bot\n' +
-            '┃ ❌ Member biasa\n' +
+            '┃ ❌ Miembro regular\n' +
             '╰┈┈⬡\n\n' +
-            '> Gunakan `.onlyadmin off` untuk menonaktifkan'
+            '> Usa `.onlyadmin off` para desactivar'
         )
     }
 
@@ -46,7 +46,7 @@ async function handler(m) {
             db.setting('onlyAdmin', false)
             db.save()
             await m.react('❌')
-            return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
+            return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot puede accedido por todos')
         }
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
@@ -58,10 +58,10 @@ async function handler(m) {
             '╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n' +
             '┃ ✅ Admin grup\n' +
             '┃ ✅ Owner bot\n' +
-            '┃ ✅ Private chat (semua)\n' +
-            '┃ ❌ Member biasa di grup\n' +
+            '┃ ✅ Private chat (todos)\n' +
+            '┃ ❌ Miembro regular en el grupo\n' +
             '╰┈┈⬡\n\n' +
-            '> Gunakan `.onlyadmin off` untuk menonaktifkan'
+            '> Usa `.onlyadmin off` para desactivando'
         )
     }
 
@@ -69,15 +69,15 @@ async function handler(m) {
         return m.reply(
             `🔒 *ᴏɴʟʏᴀᴅᴍɪɴ*\n\n` +
             `> Status: ${current ? '✅ Aktif' : '❌ Nonaktif'}\n\n` +
-            `*Penggunaan:*\n` +
-            `> \`.onlyadmin on\` — Aktifkan\n` +
-            `> \`.onlyadmin off\` — Nonaktifkan\n\n` +
-            `_Hanya admin grup, owner, dan private chat yang bisa akses bot_`
+            `*Uso:*\n` +
+            `> \`.onlyadmin on\` — Activokan\n` +
+            `> \`.onlyadmin off\` — Nonactivokan\n\n` +
+            `_Solo admin grup, owner, y private chat que puede acceder al bot_`
         )
     }
 
     if (args === 'on') {
-        if (current) return m.reply('⚠️ OnlyAdmin sudah aktif.')
+        if (current) return m.reply('⚠️ OnlyAdmin ya activo.')
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
         db.setting('publicAdmin', false)
@@ -88,21 +88,21 @@ async function handler(m) {
             '╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n' +
             '┃ ✅ Admin grup\n' +
             '┃ ✅ Owner bot\n' +
-            '┃ ✅ Private chat (semua)\n' +
-            '┃ ❌ Member biasa di grup\n' +
+            '┃ ✅ Private chat (todos)\n' +
+            '┃ ❌ Member biasa en el grupo\n' +
             '╰┈┈⬡'
         )
     }
 
     if (args === 'off') {
-        if (!current) return m.reply('⚠️ OnlyAdmin sudah nonaktif.')
+        if (!current) return m.reply('⚠️ OnlyAdmin ya inactivo.')
         db.setting('onlyAdmin', false)
         db.save()
         await m.react('❌')
-        return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot bisa diakses semua orang')
+        return m.reply('❌ *ᴏɴʟʏᴀᴅᴍɪɴ ɴᴏɴᴀᴋᴛɪꜰ*\n\n> Bot puede diakses todos orang')
     }
 
-    return m.reply('❌ Argumen tidak valid. Gunakan: `on` atau `off`')
+    return m.reply('❌ Argumen no válido. Usa: `on` o `off`')
 }
 
 export { pluginConfig as config, handler }

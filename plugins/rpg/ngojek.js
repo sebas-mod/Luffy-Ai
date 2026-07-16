@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ngojek",
   alias: ["ojek", "gojek", "ojol"],
   category: "rpg",
-  description: "Ngojek untuk mendapat uang",
+  description: "Trabajar de motorista para ganar dinero",
   usage: ".ngojek",
   example: ".ngojek",
   isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Mesin motornya udah panas banget kak, mending istirahat dulu! 🥵🏍️💨\n\nNgojek butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}* doang. Ngopi dulu gih! ☕`);
+    return m.reply(`¡El motor está muy caliente, mejor descansa! 🥵🏍️💨\n\nNecesitas *${staminaCost} Stamina* para trabajar, solo tienes *${user.rpg.stamina}*. ¡Toma un café! ☕`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   const tips = Math.random() > 0.7 ? Math.floor(Math.random() * 5000) + 1000 : 0;
   const totalEarning = earning + tips;
 
-  await m.reply(`Nyalain motor, tarik gas! Mencari penumpang... 🏍️💨\nAda orderan *${order.type}* sejauh *${order.distance}* nih, Gasss! 🗺️`);
+  await m.reply(`¡Encendiendo la moto, acelerando! Buscando pasajeros... 🏍️💨\nHay un pedido de *${order.type}* a *${order.distance}* de distancia, ¡Vamos! 🗺️`);
   await new Promise((r) => setTimeout(r, 3000));
 
   user.koin = (user.koin || 0) + totalEarning;
@@ -59,16 +59,16 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `ALHAMDULILLAH ORDERAN KELAR! 🏍️✨\n\n`;
-  txt += `Rincian narik ojol hari ini:\n`;
-  txt += `📱 Tipe: *${order.type}*\n`;
-  txt += `💵 Tarif: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  let txt = `¡¡ALABADO SEA DIOS, PEDIDO COMPLETADO! 🏍️✨\n\n`;
+  txt += `Resumen del trabajo hoy:\n`;
+  txt += `📱 Tipo: *${order.type}*\n`;
+  txt += `💵 Tarifa: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
   if (tips > 0) {
-    txt += `🎁 Tips Customer: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+    txt += `🎁 Propina del cliente: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
   }
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Lumayan buat nambah-nambahin jajan kak! Semangat narik lagi nanti! 🔥💪`;
+  txt += `¡Sirve para comprar algo! ¡Sigue así! 🔥💪`;
 
   m.reply(txt);
 }

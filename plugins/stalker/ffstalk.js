@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ffstalk",
   alias: ["freefireid", "stalkff", "ff"],
   category: "stalker",
-  description: "Melihat informasi lengkap akun Free Fire berdasarkan ID.",
+  description: "Ver información completa de una cuenta de Free Fire por ID.",
   usage: ".ffstalk <id>",
   example: ".ffstalk 470699855",
   isOwner: false,
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const uid = m.text?.trim() || m.args[0];
 
   if (!uid) {
-    return m.reply("❌ *Waduh, ID Free Fire-nya belum dimasukkan!*\n\nKamu harus mengetikkan UID pemain Free Fire yang ingin di-stalk. \n\nContoh: `.ffstalk 470699855`");
+    return m.reply("❌ *¡Oye, el ID de Free Fire no se ha ingresado!*\n\nDebes escribir el UID del jugador de Free Fire que quieres rastrear. \n\nEjemplo: `.ffstalk 470699855`");
   }
 
   await m.react("🕕");
@@ -38,35 +38,35 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`⚠️ *Pencarian Gagal!*\n\nID *${uid}* tidak ditemukan atau API sedang bermasalah. Pastikan ID yang kamu masukkan sudah benar ya.`);
+      return m.reply(`⚠️ *¡Búsqueda Fallida!*\n\nEl ID *${uid}* no se encontró o la API está fallando. Asegúrese de que el ID que ingresó sea correcto.`);
     }
 
     const r = data.result;
     
     let caption = `🔥 *FREE FIRE STALK - PROFILE INFO* 🔥\n\n`;
-    caption += `Halo! Ini dia hasil pencarian profil untuk UID *${r.uid}*:\n\n`;
+    caption += `Halo! Aquí están los resultados de la búsqueda del perfil para el UID *${r.uid}*:\n\n`;
     
-    caption += `👤 *INFO DASAR*\n`;
-    caption += `  - Nama: *${r.name || "-"}*\n`;
-    caption += `  - Level: ${r.level || "-"} (EXP: ${r.exp || "-"})\n`;
-    caption += `  - Region: ${r.region || "-"}\n`;
+    caption += `👤 *INFO BÁSICA*\n`;
+    caption += `  - Nombre: *${r.name || "-"}*\n`;
+    caption += `  - Nivel: ${r.level || "-"} (EXP: ${r.exp || "-"})\n`;
+    caption += `  - Región: ${r.region || "-"}\n`;
     caption += `  - Likes: ${r.likes || "-"} ❤️\n`;
     caption += `  - Credit Score: ${r.credit_score || "-"}\n`;
     caption += `  - Bio: ${r.signature || "-"}\n\n`;
     
-    caption += `🏆 *RANKING & AKTIVITAS*\n`;
+    caption += `🏆 *RANKING Y ACTIVIDAD*\n`;
     caption += `  - BR Rank Point: ${r.br_rank_point || "-"} (Max: ${r.br_max_rank || "-"})\n`;
     caption += `  - CS Rank Point: ${r.cs_rank_point || "-"} (Max: ${r.cs_max_rank || "-"})\n`;
     caption += `  - Season ID: ${r.season_id || "-"}\n`;
-    caption += `  - Akun Dibuat: ${r.created_at || "-"}\n`;
-    caption += `  - Terakhir Login: ${r.last_login || "-"}\n\n`;
+    caption += `  - Cuenta Creada: ${r.created_at || "-"}\n`;
+    caption += `  - Último Login: ${r.last_login || "-"}\n\n`;
     
-    caption += `🛡️ *GUILD INFO*\n`;
-    caption += `  - Nama Guild: ${r.guild_name && r.guild_name !== "None" ? r.guild_name : "Tidak ada guild"}\n`;
+    caption += `🛡️ *INFO DE GUILD*\n`;
+    caption += `  - Nombre Guild: ${r.guild_name && r.guild_name !== "None" ? r.guild_name : "Sin guild"}\n`;
     if (r.guild_name && r.guild_name !== "None") {
-      caption += `  - Level Guild: ${r.guild_level || "-"}\n`;
-      caption += `  - Anggota: ${r.guild_member || "-"}/${r.guild_capacity || "-"}\n`;
-      caption += `  - Ketua Guild: ${r.guild_leader_name || "-"} (UID: ${r.guild_leader_uid || "-"})\n`;
+      caption += `  - Nivel Guild: ${r.guild_level || "-"}\n`;
+      caption += `  - Miembros: ${r.guild_member || "-"}/${r.guild_capacity || "-"}\n`;
+      caption += `  - Líder Guild: ${r.guild_leader_name || "-"} (UID: ${r.guild_leader_uid || "-"})\n`;
     }
     caption += `\n`;
     
@@ -74,11 +74,11 @@ async function handler(m, { sock }) {
     caption += `  - Pet Level: ${r.pet_level || "-"}\n`;
     caption += `  - Pet EXP: ${r.pet_exp || "-"}\n\n`;
     
-    caption += `🔧 *LAINNYA*\n`;
-    caption += `  - Bahasa: ${r.language ? r.language.replace("Language_", "") : "-"}\n`;
-    caption += `  - Mode Favorit: ${r.mode_prefer ? r.mode_prefer.replace("ModePrefer_", "") : "-"}\n\n`;
+    caption += `🔧 *OTROS*\n`;
+    caption += `  - Idioma: ${r.language ? r.language.replace("Language_", "") : "-"}\n`;
+    caption += `  - Modo Favorito: ${r.mode_prefer ? r.mode_prefer.replace("ModePrefer_", "") : "-"}\n\n`;
 
-    caption += `Keren banget kan profilnya? Bagikan ke temanmu yuk! 🚀`;
+    caption += `¡El perfil es genial, verdad? ¡Compártelo con tus amigos! 🚀`;
 
     const isValidUrl = r.banner_image && (r.banner_image.startsWith("http://") || r.banner_image.startsWith("https://"));
 
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[FFStalk]", error.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menarik data dari server Free Fire. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Ocurrió un problema en nuestro sistema.* \n\nEl sistema no pudo obtener datos del servidor Free Fire. Por favor, inténtalo de nuevo en unos momentos.");
   }
 }
 

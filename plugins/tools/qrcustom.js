@@ -5,7 +5,7 @@ const pluginConfig = {
     name: ['qrcustom', 'qrcode', 'qr'],
     alias: [],
     category: 'tools',
-    description: 'Generate QR code custom dengan logo',
+    description: 'Generar QR code personalizado con logo',
     usage: '.qrcustom <url>',
     example: '.qrcustom https://wa.me/628xxx',
     isOwner: false,
@@ -43,11 +43,11 @@ async function handler(m, { sock }) {
     
     if (!data) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}qrcustom <url/text>\`\n\n` +
-            `*Contoh:*\n` +
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> \`${m.prefix}qrcustom <url/texto>\`\n\n` +
+            `*Ejemplo:*\n` +
             `> \`${m.prefix}qrcustom https://wa.me/628xxx\`\n\n` +
-            `💡 Reply gambar untuk custom logo di tengah QR`
+            `💡 Responde con una imagen para personalizar el logo en el centro del QR`
         )
     }
     

@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "daily",
   alias: ["claim", "harian", "bonus"],
   category: "user",
-  description: "Claim hadiah harian (Exp, Money, Potion)",
+  description: "Reclamar recompensa diaria (Exp, Money, Potion)",
   usage: ".daily",
   example: ".daily",
   isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const hours = Math.floor(remaining / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
     return m.reply(
-      `🕕 *ᴄᴏᴏʟᴅᴏᴡɴ*\n\n> Kamu sudah klaim hari ini.\n> Tunggu: *${hours} jam ${minutes} menit* lagi.`,
+      `🕕 *ᴄᴏᴏʟᴅᴏᴡɴ*\n\n> Ya reclamaste hoy.\n> Espera: *${hours} horas ${minutes} minutos* más.`,
     );
   }
 
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
   txt += `┃ 💰 Koin: *+${moneyReward.toLocaleString("id-ID")}*\n`;
   txt += `┃ 🥤 Potion: *+${potionReward}*\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  txt += `> Jangan lupa claim lagi besok!`;
+  txt += `> ¡No olvides reclamar de nuevo mañana!`;
 
   await m.reply(txt, { mentions: [m.sender] });
 }

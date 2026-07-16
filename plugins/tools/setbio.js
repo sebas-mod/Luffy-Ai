@@ -2,9 +2,9 @@ const pluginConfig = {
     name: 'setbio',
     alias: ['setbiobot', 'setstatus', 'setabout'],
     category: 'tools',
-    description: 'Mengubah bio/status bot',
-    usage: '.setbio <bio baru>',
-    example: '.setbio Bot WhatsApp by Lucky Archz',
+    description: 'Cambiar bio/estado del bot',
+    usage: '.setbio <nuevo bio>',
+    example: '.setbio Bot WhatsApp de Lucky Archz',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -19,9 +19,9 @@ async function handler(m, { sock }) {
     
     if (!newBio && m.args?.length === 0) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setbio Bio bot baru\`\n` +
-            `> \`${m.prefix}setbio clear\` - Hapus bio`
+            `⚠️ *CÓMO USAR*\n\n` +
+            `> \`${m.prefix}setbio Nuevo bio del bot\`\n` +
+            `> \`${m.prefix}setbio clear\` - Borrar bio`
         )
         return
     }
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     if (bioToSet.length > 139) {
         await m.reply(
             `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Bio maksimal 139 karakter.`
+            `> Bio máximo 139 caracteres.`
         )
         return
     }
@@ -41,20 +41,20 @@ async function handler(m, { sock }) {
         
         if (bioToSet) {
             await m.reply(
-                `✅ *ʙɪᴏ ʙᴏᴛ ᴅɪᴜʙᴀʜ*\n\n` +
-                `> Bio bot sekarang:\n` +
+                `✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴏ*\n\n` +
+                `> Bio actual del bot:\n` +
                 `> _${bioToSet}_`
             )
         } else {
             await m.reply(
-                `✅ *ʙɪᴏ ʙᴏᴛ ᴅɪʜᴀᴘᴜs*\n\n` +
-                `> Bio bot berhasil dihapus!`
+                `✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ʙᴏʀʀᴀᴅᴏ*\n\n` +
+                `> ¡Bio del bot eliminada correctamente!`
             )
         }
     } catch (error) {
         await m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah bio bot.\n` +
+            `> No se puede cambiar el bio del bot.\n` +
             `> _${error.message}_`
         )
     }

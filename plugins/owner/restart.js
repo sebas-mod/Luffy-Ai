@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'restart',
     alias: ['reset', 'reboot', 'restartbot'],
     category: 'owner',
-    description: 'Reinicia el proceso del bot',
+    description: 'Reestocia el proceso del bot',
     usage: '.restart',
     example: '.restart',
     isOwner: true,
@@ -30,12 +30,12 @@ async function handler(m, { sock }) {
                   `┃ 🔧 Method: Process Spawn\n` +
                   `┃ 📦 PID: ${process.pid}\n` +
                   `╰┈┈⬡\n\n` +
-                  `> Bot akan restart dalam 2 detik...\n` +
-                  `> Proses mungkin memakan waktu 10-30 detik`
+                  `> Bot va a restart en 2 segundo...\n` +
+                  `> Proses mungkin memva a tiempo 10-30 segundo`
         }, { quoted: m })
         
         console.log('[Restart] Command triggered by:', m.sender)
-        console.log('[Restart] Initiating graceful restart...')
+        console.log('[Restart] Estotiating graceful restart...')
         
         setTimeout(() => {
             const cwd = process.cwd()

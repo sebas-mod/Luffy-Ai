@@ -5,8 +5,8 @@ const pluginConfig = {
     alias: ['jodoh', 'cekjodoh'],
     category: 'primbon',
     description: 'Ramalan jodoh berdasarkan primbon Jawa',
-    usage: '.ramalanjodoh nama1 tgl1 bln1 thn1 nama2 tgl2 bln2 thn2',
-    example: '.ramalanjodoh putu 16 11 2007 keyla 1 1 2008',
+    usage: '.ramalanjodoh nombre1 tgl1 bln1 thn1 nombre2 tgl2 bln2 thn2',
+    example: '.ramalanjodoh putu 16 11 2007 ayla 1 1 2008',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (m.args.length < 8) {
-        return m.reply(`💑 *ʀᴀᴍᴀʟᴀɴ ᴊᴏᴅᴏʜ*\n\n> Format:\nrama1 tgl1 bln1 thn1 nama2 tgl2 bln2 thn2\n\n\`Contoh:\n${m.prefix}ramalanjodoh putu 16 11 2007 keyla 1 1 2008\``)
+        return m.reply(`💑 *ʀᴀᴍᴀʟᴀɴ ᴊᴏᴅᴏʜ*\n\n> Format:\nrama1 tgl1 bln1 thn1 nombre2 tgl2 bln2 thn2\n\n\`Ejemplo:\n${m.prefix}ramalanjodoh putu 16 11 2007 ayla 1 1 2008\``)
     }
     
     const [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = m.args
@@ -26,12 +26,12 @@ async function handler(m, { sock }) {
     m.react('💑')
     
     try {
-        const url = `https://api.siputzx.my.id/api/primbon/ramalanjodoh?nama1=${encodeURIComponent(nama1)}&tgl1=${tgl1}&bln1=${bln1}&thn1=${thn1}&nama2=${encodeURIComponent(nama2)}&tgl2=${tgl2}&bln2=${bln2}&thn2=${thn2}`
+        const url = `https://api.siputzx.my.id/api/primbon/ramalanjodoh?nombre1=${encodeURIComponent(nama1)}&tgl1=${tgl1}&bln1=${bln1}&thn1=${thn1}&nombre2=${encodeURIComponent(nama2)}&tgl2=${tgl2}&bln2=${bln2}&thn2=${thn2}`
         const { data } = await axios.get(url, { timeout: 30000 })
         
         if (!data?.status || !data?.data?.result) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal meramal`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo meramal`)
         }
         
         const r = data.data.result

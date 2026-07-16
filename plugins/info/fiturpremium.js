@@ -5,7 +5,7 @@ const config = {
   name: "fiturpremium",
   alias: ["listprem", "listpremium", "fiturprem"],
   category: "info",
-  description: "Melihat daftar seluruh fitur premium bot",
+  description: "Ver la lista de todas las funciones premium del bot",
   usage: ".fiturpremium",
   example: ".fiturpremium",
   isOwner: false,
@@ -41,8 +41,8 @@ async function handler(m, { sock }) {
   if (premiumFeatures.length === 0) {
     await m.react("✅");
     return m.reply(
-      `📝 *DAFTAR FITUR PREMIUM*\n\n` +
-      `Saat ini belum ada fitur yang terdaftar sebagai fitur premium eksklusif.`
+      `📝 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+      `Actualmente no hay funciones registradas como premium exclusivas.`
     );
   }
   
@@ -52,10 +52,10 @@ async function handler(m, { sock }) {
   
   await m.react("✅");
   return m.reply(
-    `💎 *DAFTAR FITUR PREMIUM*\n\n` +
-    `Berikut adalah seluruh daftar fitur eksklusif yang hanya bisa diakses oleh member berstatus Premium:\n\n` +
+    `💎 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+    `Estas son todas las funciones exclusivas a las que solo pueden acceder los miembros con estatus Premium:\n\n` +
     `${listText}\n\n` +
-    `_Untuk berlangganan premium, silakan hubungi owner._`
+    `_Para suscribirte a premium, contacta al owner._`
   );
 }
 

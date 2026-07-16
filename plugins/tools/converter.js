@@ -8,8 +8,8 @@ const pluginConfig = {
   name: "converter",
   alias: ["convert", "konversi"],
   category: "tools",
-  description: "Convert file ke format lain",
-  usage: ".converter <format> (reply file)",
+  description: "Convertir archivo a otro formato",
+  usage: ".converter <formato> (responder con archivo)",
   example: ".converter mp3",
   isOwner: false,
   isPremium: true,
@@ -26,22 +26,22 @@ async function handler(m, { sock }) {
   if (!m.quoted && !m.isMedia) {
     return m.reply(
       `🔄 *ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n` +
-        `> Reply file dengan format tujuan\n\n` +
-        `*Format:*\n` +
-        `> \`${m.prefix}converter <format>\`\n\n` +
-        `*Contoh:*\n` +
+        `> Responde a un archivo con el formato deseado\n\n` +
+        `*Formato:*\n` +
+        `> \`${m.prefix}converter <formato>\`\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}converter mp3\`\n` +
         `> \`${m.prefix}converter mp4\`\n` +
         `> \`${m.prefix}converter png\`\n\n` +
-        `*Cara pakai:*\n` +
-        `> 1. Reply file yang mau diconvert\n` +
-        `> 2. Ketik \`${m.prefix}converter <format>\``,
+        `*Cómo usar:*\n` +
+        `> 1. Responde al archivo que quieres convertir\n` +
+        `> 2. Escribe \`${m.prefix}converter <formato>\``,
     );
   }
 
   if (!targetFormat) {
     return m.reply(
-      `❌ Masukkan format tujuan!\n\n> Contoh: \`${m.prefix}converter mp3\``,
+      `❌ ¡Ingresa el formato deseado!\n\n> Ejemplo: \`${m.prefix}converter mp3\``,
     );
   }
 
@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
   }
 
   if (!mediaMessage) {
-    return m.reply(`❌ Reply file yang mau diconvert!`);
+    return m.reply(`❌ ¡Responde al archivo que quieres convertir!`);
   }
 
   m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇɴɢᴜɴᴅᴜʜ ғɪʟᴇ...*`);
+  await m.reply(`🕒 *ᴅᴇsᴄᴀʀɢᴀɴᴅᴏ ᴀʀᴄʜɪᴠᴏ...*`);
 
   let tempFile = null;
 
@@ -87,13 +87,13 @@ async function handler(m, { sock }) {
     tempFile = path.join(tempDir, `convert_${Date.now()}.${ext}`);
     fs.writeFileSync(tempFile, buffer);
 
-    await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪɴɢ...*\n\n> ${ext} → ${targetFormat}`);
+    await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪᴇɴᴅᴏ...*\n\n> ${ext} → ${targetFormat}`);
 
     const result = await mconverter.convert(tempFile, targetFormat);
 
     if (result.error) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ ᴄᴏɴᴠᴇʀᴛ*\n\n> ${result.error}`);
+      return m.reply(`❌ *ᴇʀʀᴏʀ ᴅᴇ ᴄᴏɴᴠᴇʀsɪóɴ*\n\n> ${result.error}`);
     }
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";

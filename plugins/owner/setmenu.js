@@ -52,13 +52,13 @@ const VARIANTS = {
   v6: {
     id: 6,
     name: "LOCATION",
-    desc: "Location Message dengan Buttons",
+    desc: "Location Message con Buttons",
     emoji: "📍",
   },
   v7: {
     id: 7,
     name: "RA NGERTI",
-    desc: "Location Message dengan Buttons",
+    desc: "Location Message con Buttons",
     emoji: "📍",
   },
 };
@@ -69,7 +69,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1* s/d *v7*`);
+      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1* s/d *v7*`);
       return;
     }
     db.setting("menuVariant", selected.id);
@@ -98,16 +98,16 @@ async function handler(m, { sock, db }) {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
         title: "🎨 Pilih Variant Menu",
-        sections: [{ title: "Daftar Variant Menu", rows }],
+        sections: [{ title: "Lista Variant Menu", rows }],
       }),
     },
   ];
 
   const bodyText =
     `🎨🖼️ *MENU VARIANT*\n\n` +
-    `Atur tampilan menu utama bot ketika user mengetik perintah menu 📋✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `> Pilih variant menu dari tombol di bawah 👇`;
+    `Configura el aspecto del menú principal del bot cuando el usuario escribe el comando menú 📋✨\n` +
+    `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
+    `> Pilih variant menu de tombol di bawah 👇`;
 
   await sock.sendButton(
     m.chat,

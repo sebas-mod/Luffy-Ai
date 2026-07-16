@@ -3,7 +3,7 @@ const pluginConfig = {
     alias: ['pinmsg', 'pinpesan'],
     category: 'group',
     description: 'Fijar mensaje importante en el grupo',
-    usage: '.pinchat (reply pesan)',
+    usage: '.pinchat (responder a un mensaje)',
     example: '.pinchat',
     isOwner: false,
     isPremium: false,

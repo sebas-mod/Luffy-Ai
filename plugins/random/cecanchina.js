@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'cecanchina',
     alias: ['cewekchina', 'cewekcina'],
     category: 'cecan',
-    description: 'Random gambar cewek cantik China',
+    description: 'Imagen aleatoria de chica china',
     usage: '.cecanchina',
     example: '.cecanchina',
     isOwner: false,

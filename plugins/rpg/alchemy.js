@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "alchemy",
   alias: ["potion", "brew", "ramuan"],
   category: "rpg",
-  description: "Buat potion dan ramuan dari herba",
+  description: "Crear pociones y brebajes con hierbas",
   usage: ".alchemy <potion>",
   example: ".alchemy healthpotion",
   isOwner: false,
@@ -21,63 +21,63 @@ const POTIONS = {
   healthpotion: {
     name: "❤️ Health Potion",
     materials: { herb: 3 },
-    effect: "Pulihkan 50 HP",
+    effect: "Restaura 50 HP",
     exp: 80,
     result: "healthpotion",
   },
   manapotion: {
     name: "💙 Mana Potion",
     materials: { herb: 2, flower: 1 },
-    effect: "Pulihkan 50 Mana",
+    effect: "Restaura 50 Mana",
     exp: 90,
     result: "manapotion",
   },
   staminapotion: {
     name: "⚡ Stamina Potion",
     materials: { herb: 2, mushroom: 1 },
-    effect: "Pulihkan 30 Stamina",
+    effect: "Restaura 30 Stamina",
     exp: 100,
     result: "staminapotion",
   },
   strengthpotion: {
     name: "💪 Strength Potion",
     materials: { herb: 3, dragonscale: 1 },
-    effect: "+20 ATK (5 menit)",
+    effect: "+20 ATK (5 min)",
     exp: 200,
     result: "strengthpotion",
   },
   defensepotion: {
     name: "🛡️ Defense Potion",
     materials: { herb: 3, iron: 2 },
-    effect: "+15 DEF (5 menit)",
+    effect: "+15 DEF (5 min)",
     exp: 180,
     result: "defensepotion",
   },
   luckpotion: {
     name: "🍀 Luck Potion",
     materials: { herb: 5, diamond: 1 },
-    effect: "+30% Drop Rate (10 menit)",
+    effect: "+30% Drop Rate (10 min)",
     exp: 300,
     result: "luckpotion",
   },
   exppotion: {
     name: "✨ EXP Potion",
     materials: { herb: 4, gold: 2 },
-    effect: "+50% EXP (15 menit)",
+    effect: "+50% EXP (15 min)",
     exp: 250,
     result: "exppotion",
   },
   antidote: {
     name: "💊 Antidote",
     materials: { herb: 2 },
-    effect: "Sembuhkan racun",
+    effect: "Cura el veneno",
     exp: 50,
     result: "antidote",
   },
   elixir: {
     name: "🧪 Elixir",
     materials: { herb: 10, diamond: 2, gold: 5 },
-    effect: "Pulihkan semua stats",
+    effect: "Restaura todas las estadísticas",
     exp: 500,
     result: "elixir",
   },
@@ -94,26 +94,26 @@ async function handler(m, { sock }) {
   const potionName = args[0]?.toLowerCase();
 
   if (!potionName) {
-    let txt = `Halo Alchemist! Mau ngeracik ramuan apa hari ini? 🧙‍♂️🧪\n\n`;
-    txt += `*Daftar Buku Resep Ramuan:*\n`;
+    let txt = `¡Hola Alquimista! ¿Qué poción vas a preparar hoy? 🧙‍♂️🧪\n\n`;
+    txt += `*Lista de Recetas de Pociones:*\n`;
 
     for (const [key, pot] of Object.entries(POTIONS)) {
       const mats = Object.entries(pot.materials)
         .map(([m, qty]) => `${qty}x ${m}`)
         .join(", ");
       txt += `\n*${pot.name}*\n`;
-      txt += `📦 Bahan: ${mats}\n`;
+      txt += `📦 Materiales: ${mats}\n`;
       txt += `💫 Efek: ${pot.effect}\n`;
       txt += `👉 Ketik: \`.alchemy ${key}\`\n`;
     }
-    txt += `\n💡 *Tips:* Bahan herba bisa kamu dapetin dari \`.garden\` atau \`.dungeon\`! 🌱`;
+    txt += `\n💡 *Consejo:* ¡Los materiales de hierba se consiguen en \`.garden\` o \`.dungeon\`! 🌱`;
 
     return m.reply(txt);
   }
 
   const potion = POTIONS[potionName];
   if (!potion) {
-    return m.reply(`Waduh, itu racikan berbahaya kak! Resepnya nggak ada di buku! 😂\nCek list yang bener pake \`.alchemy\` ya!`);
+    return m.reply(`¡Vaya, ¡esa mezcla es peligrosa! La receta no está en el libro. 😂\n¡Revisa la lista correctamente con \`.alchemy\`!`);
   }
 
   const missingMaterials = [];
@@ -125,11 +125,11 @@ async function handler(m, { sock }) {
   }
 
   if (missingMaterials.length > 0) {
-    return m.reply(`Eits, bahannya belum cukup buat ngeracik *${potion.name}* nih! 😭\n\nKekurangannya:\n${missingMaterials.join("\n")}\n\nKumpulin herba dulu deh! 🏃💨`);
+    return m.reply(`¡Eh, los materiales no son suficientes para preparar *${potion.name}*! 😭\n\nTe faltan:\n${missingMaterials.join("\n")}\n\n¡Consigue las hierbas primero! 🏃💨`);
   }
 
   await m.react("🧪");
-  await m.reply(`Blubuk blubuk... BZZZZ! 🧪✨\nMencampur bahan kimia untuk meracik *${potion.name}*... Awas meledak! 💥`);
+  await m.reply(`Blubuk blubuk... ¡BZZZZ! 🧪✨\nMezclando químicos para preparar *${potion.name}*... ¡Cuidado, podría explotar! 💥`);
   await new Promise((r) => setTimeout(r, 3000));
 
   for (const [material, needed] of Object.entries(potion.materials)) {
@@ -144,12 +144,12 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `CLLINGGG!! RAMUAN BERHASIL DIBUAT! 🎉🧪\n\n` +
-      `Kamu berhasil meracik:\n` +
-      `📦 Item: *${potion.name}*\n` +
-      `💫 Efek: *${potion.effect}*\n` +
+    `CLLINGGG!! ¡POCIÓN CREADA CON ÉXITO! 🎉🧪\n\n` +
+      `Lograste preparar:\n` +
+      `📦 Objeto: *${potion.name}*\n` +
+      `💫 Efecto: *${potion.effect}*\n` +
       `📈 EXP Alchemy: *+${potion.exp}*\n\n` +
-      `Jangan diminum sekaligus kalau nggak mau sakit perut! 😂`
+      `¡No te la bebas toda de una vez si no quieres malestar estomacal! 😂`
   );
 }
 

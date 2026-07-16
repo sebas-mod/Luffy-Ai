@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'styleteks',
     alias: ['fancytext', 'font', 'gaya', 'tulisan', 'fontstyle'],
     category: 'tools',
-    description: 'Mengubah teks biasa menjadi berbagai gaya tulisan keren (fancy text).',
+    description: 'Convertir texto normal en varios estilos de escritura geniales (fancy text).',
     usage: '.styleteks <teks>',
     example: '.styleteks Halo Dunia',
     isOwner: false,
@@ -51,7 +51,7 @@ function slashThrough(text) { return text.split("").join("̷") + "̷"; }
 async function handler(m, { text, sock }) {
     const contohTeks = "Zann";
     let helpMsg = `✨ *FANCY TEXT GENERATOR* ✨\n\n`;
-    helpMsg += `Ubah teks biasamu menjadi gaya tulisan yang unik dan keren!\n\n`;
+    helpMsg += `¡Convierte tu texto normal en estilos de escritura únicos y geniales!\n\n`;
     helpMsg += `🔮 *DAFTAR GAYA FONT:*\n`;
 
     const allStyles = [...Object.keys(FONTS), "Strike Through", "Underline", "Slash Through"];
@@ -70,10 +70,10 @@ async function handler(m, { text, sock }) {
         helpMsg += `🔹 *${name}* ➔ ${preview}\n`;
     });
 
-    helpMsg += `\n*CARA PENGGUNAAN:*\n`;
-    helpMsg += `- Ketik \`${m.prefix}styleteks <Nama Font> | <Teks>\`\n`;
-    helpMsg += `- Contoh: \`${m.prefix}styleteks Cursive | Ini tulisan keren\`\n\n`;
-    helpMsg += `_Pastikan mengetikkan nama font sesuai daftar di atas (boleh huruf kecil/besar) dan gunakan garis lurus (|) sebagai pemisah!_`;
+    helpMsg += `\n*CÓMO USAR:*\n`;
+    helpMsg += `- Escribe \`${m.prefix}styleteks <Nombre de Font> | <Texto>\`\n`;
+    helpMsg += `- Ejemplo: \`${m.prefix}styleteks Cursive | Este es un texto genial\`\n\n`;
+    helpMsg += `_Asegúrate de escribir el nombre de la fuente según la lista de arriba (se aceptan mayúsculas/minúsculas) y usa la barra vertical (|) como separador!_`;
 
     if (!text || !text.includes('|')) {
         return m.reply(helpMsg);
@@ -88,7 +88,7 @@ async function handler(m, { text, sock }) {
 
         if (!teksAsli) {
             await m.react('❌');
-            return m.reply(`❌ *TEKS KOSONG*\n\nJangan lupa masukkan teks yang ingin diubah setelah garis lurus.\nContoh: \`${m.prefix}styleteks Cursive | Halo Dunia\``);
+            return m.reply(`❌ *TEXTO VACÍO*\n\nNo olvides ingresar el texto que quieres cambiar después de la barra.\nEjemplo: \`${m.prefix}styleteks Cursive | Hola Mundo\``);
         }
 
         let hasil = "";
@@ -117,7 +117,7 @@ async function handler(m, { text, sock }) {
 
         if (!found) {
             await m.react('❌');
-            return m.reply(`❌ *FONT TIDAK DITEMUKAN*\n\nGaya font *${parts[0].trim()}* tidak terdaftar.\nSilakan ketik \`${m.prefix}styleteks\` untuk melihat daftar font yang tersedia.`);
+            return m.reply(`❌ *FUENTE NO ENCONTRADA*\n\nEl estilo de fuente *${parts[0].trim()}* no está registrado.\nEscribe \`${m.prefix}styleteks\` para ver la lista de fuentes disponibles.`);
         }
 
         await sock.sendMessage(m.chat, {
@@ -126,7 +126,7 @@ async function handler(m, { text, sock }) {
                 {
                     name: "cta_copy",
                     buttonParamsJson: JSON.stringify({
-                        display_text: "📋 Copy Hasil Teks",
+                        display_text: "📋 Copiar Resultado del Texto",
                         id: "copy",
                         copy_code: hasil
                     })
@@ -139,7 +139,7 @@ async function handler(m, { text, sock }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MENGUBAH TEKS*\n\nMaaf, sistem sedang mengalami gangguan saat mencoba mengubah gaya teksmu.`);
+        m.reply(`❌ *FALLÓ AL CAMBIAR EL TEXTO*\n\nLo siento, el sistema tuvo problemas al intentar cambiar el estilo de tu texto.`);
     }
 }
 

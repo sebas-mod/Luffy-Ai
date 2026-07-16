@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "am-data",
   alias: ["alightmotion-data"],
   category: "tools",
-  description: "Lihat data project Alight Motion dari link share",
+  description: "Ver datos de proyecto Alight Motion desde enlace de compartir",
   usage: ".am-data <url>",
   example: ".am-data https://alightcreative.com/am/share/...",
   cooldown: 15,
@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
   const url = m.text?.trim();
   if (!url || !url.includes("alightcreative.com")) {
     return m.reply(
-      `📱 *ᴀʟɪɢʜᴛ ᴍᴏᴛɪᴏɴ ᴅᴀᴛᴀ*\n\n` +
-        `- Lihat info project AM dari link share\n` +
-        `- Masukkan URL share Alight Motion\n\n` +
+        `📱 *ᴀʟɪɢʜᴛ ᴍᴏᴛɪᴏɴ ᴅᴀᴛᴀ*\n\n` +
+        `- Ver info de proyecto AM desde enlace de compartir\n` +
+        `- Ingresa la URL de compartir de Alight Motion\n\n` +
         `\`${m.prefix}am-data <url>\``,
     );
   }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     if (!res?.status || !info) {
       m.react("❌");
       return m.reply(
-        `📱 *ɢᴀɢᴀʟ ᴍᴇᴍʙᴀᴄᴀ ᴅᴀᴛᴀ*\n\n` + `- Pastikan URL share valid`,
+        `📱 *ɢᴀɢᴀʟ ʟᴇᴇʀ ᴅᴀᴛᴏs*\n\n` + `- Asegúrate de que la URL de compartir sea válida`,
       );
     }
 
@@ -70,26 +70,26 @@ async function handler(m, { sock }) {
     const projects =
       info.projects
         ?.map((p) => `  - *${p.title}* (${p.type}, ${fmtSize(p.size)})`)
-        .join("\n") || "  - Tidak ada";
+        .join("\n") || "  - Sin datos";
 
     const effects = info.requiredEffects?.length
       ? info.requiredEffects.slice(0, 8).join(", ") +
         (info.requiredEffects.length > 8
-          ? `, +${info.requiredEffects.length - 8} lagi`
+          ? `, +${info.requiredEffects.length - 8} más`
           : "")
       : "-";
 
     let msg =
       `📱 *ᴀʟɪɢʜᴛ ᴍᴏᴛɪᴏɴ ᴅᴀᴛᴀ*\n\n` +
-      `- *Judul* → ${info.title || "-"}\n` +
-      `- *Ukuran* → ${fmtSize(info.size)}\n` +
-      `- *Download* → ${info.downloads ?? 0}x\n` +
+      `- *Título* → ${info.title || "-"}\n` +
+      `- *Tamaño* → ${fmtSize(info.size)}\n` +
+      `- *Descargas* → ${info.downloads ?? 0}x\n` +
       `- *Likes* → ${info.likes ?? 0}\n` +
-      `- *Versi* → \`${info.amVersionString || "-"}\`\n` +
+      `- *Versión* → \`${info.amVersionString || "-"}\`\n` +
       `- *Platform* → ${info.amPlatform || "-"}\n` +
       `- *Max FF* → v${info.maxFFVer || "-"}\n` +
-      `- *Tanggal* → ${fmtDate(info.shareDate)}\n\n` +
-      `🎬 *Project*\n${projects}\n\n` +
+      `- *Fecha* → ${fmtDate(info.shareDate)}\n\n` +
+      `🎬 *Proyectos*\n${projects}\n\n` +
       `✨ *Effects* → ${effects}`;
 
     if (info.largeThumbUrl) {

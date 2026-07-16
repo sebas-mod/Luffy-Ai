@@ -20,7 +20,7 @@ const pluginConfig = {
 
 function gpMsg(key, replacements = {}) {
     const defaults = {
-        antisticker: '⚠ *AntiSticker* — Sticker dari @%user% dihapus.',
+        antisticker: '⚠ *AntiSticker* — Sticker de @%user% eliminado.',
     }
     let text = config.groupProtection?.[key] || defaults[key] || ''
     for (const [k, v] of Object.entries(replacements)) {

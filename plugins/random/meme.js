@@ -8,7 +8,7 @@ const pluginConfig = {
     name: 'meme',
     alias: ['randommeme', 'memeindonesia'],
     category: 'random',
-    description: 'Random meme Indonesia',
+    description: 'Meme aleatorio de Indonesia',
     usage: '.meme',
     example: '.meme',
     isOwner: false,

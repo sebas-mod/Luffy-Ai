@@ -9,7 +9,7 @@ const pluginConfig = {
     name: 'animeapaini',
     alias: ['whatanime', 'animesearch', 'sauceanime', 'searchanime'],
     category: 'search',
-    description: 'Identifikasi anime dari gambar/screenshot',
+    description: 'Identificar anime desde imagen/screenshot',
     usage: '.animeapaini (reply gambar)',
     example: '.animeapaini',
     isOwner: false,
@@ -53,17 +53,17 @@ async function handler(m, { sock }) {
     }
     
     if (m.isVideo || m.quoted?.isVideo) {
-        return m.reply(`❌ *ᴛɪᴅᴀᴋ ᴅɪᴅᴜᴋᴜɴɢ*\n\n> Hanya gambar/screenshot yang didukung\n> Video tidak bisa diproses\n\n\`Reply atau kirim gambar dengan caption ${m.prefix}animeapaini\``)
+        return m.reply(`❌ *NO SOPORTADO*\n\n> Solo se admiten imágenes/screenshots\n> Los videos no se pueden procesar\n\n\`Responde o envía una imagen con el caption ${m.prefix}animeapaini\``)
     }
     
     if (!imageMsg && !imageBuffer) {
         return m.reply(
-            `🔍 *ᴀɴɪᴍᴇ ᴀᴘᴀ ɪɴɪ?*\n\n` +
-            `> Kirim gambar dengan caption:\n` +
+            `🔍 *¿QUÉ ANIME ES ESTE?*\n\n` +
+            `> Envía una imagen con el caption:\n` +
             `> \`${m.prefix}animeapaini\`\n\n` +
-            `> Atau reply gambar dengan:\n` +
+            `> O responde a una imagen con:\n` +
             `> \`${m.prefix}animeapaini\`\n\n` +
-            `⚠️ *Catatan:* Video tidak didukung, hanya gambar/screenshot`
+            `⚠️ *Nota:* Los videos no están soportados, solo imágenes/screenshots`
         )
     }
     
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
         
         if (!imageBuffer || imageBuffer.length < 100) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil gambar. Coba kirim ulang.`)
+            return m.reply(`❌ Error al obtener la imagen. Intenta enviarla de nuevo.`)
         }
         
         await m.react('🕕')
@@ -94,7 +94,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Anime tidak ditemukan. Coba dengan screenshot yang lebih jelas.`)
+            return m.reply(`❌ Anime no encontrado. Intenta con un screenshot más claro.`)
         }
         
         const d = res.data.data

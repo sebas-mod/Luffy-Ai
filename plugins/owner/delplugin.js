@@ -8,7 +8,7 @@ const pluginConfig = {
   alias: ["delpl", "hapusplugin", "removeplugin"],
   category: "owner",
   description: "Elimina un plugin por nombre",
-  usage: ".delplugin <nama>",
+  usage: ".delplugin <nombre>",
   example: ".delplugin bliblidl",
   isOwner: true,
   isPremium: false,
@@ -46,8 +46,8 @@ async function handler(m, { sock }) {
   if (!name) {
     return m.reply(
       `🗑️ *DEL PLUGIN*\n\n` +
-        `Hapus plugin berdasarkan nama\n\n` +
-        `*Contoh:*\n` +
+        `Hapus plugin berdasarkan nombre\n\n` +
+        `*Ejemplo:*\n` +
         `\`${m.prefix}delplugin bliblidl\``,
     );
   }
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`❌ *GAGAL*\n\nPlugin \`${name}\` tidak ditemukan`);
+      return m.reply(`❌ *GAGAL*\n\nPlugin \`${name}\` no encontrado`);
     }
 
     let unloadResult = { success: false };
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         `│ Folder: \`${found.folder}\`\n` +
         `│ Unload: ${unloadResult.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
         `╰───────⬣\n\n` +
-        `Plugin sudah dihapus dan tidak aktif!`,
+        `Plugin ya eliminado y no activo!`,
     );
   } catch (error) {
     await m.react("☢");

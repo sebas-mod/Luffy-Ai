@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "kurir",
   alias: ["antar", "paket"],
   category: "rpg",
-  description: "Nganter paket orang, awas anjing galak!",
+  description: "Entregar paquetes, ¡cuidado con los perros!",
   usage: ".kurir",
   example: ".kurir",
   isOwner: false,
@@ -27,12 +27,12 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Pinggang encok kebanyakan bawa kardus! 😩\n\nKurir butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Ngurut dulu gih! 💆‍♂️`);
+    return m.reply(`¡Espalda destrozada de cargar cajas! 😩\n\nMensajero requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Masa un poco! 💆‍♂️`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("📦");
-  await m.reply(`Pakettt!!! 📦\nMencari alamat yang sesuai di maps... 🗺️`);
+  await m.reply(`¡¡¡Paquete!!! 📦\nBuscando la dirección correcta en el mapa... 🗺️`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     
     await m.react("🐕");
-    return m.reply(`GUK GUK GUK! DIKEJAR ANJING GALAK! 🐕💨\n\nKamu lari keliling komplek demi nyelametin paket orang!\n⚡ Stamina Tambahan: -${extraStamina}\n📈 EXP Kompensasi Lari: *+${expGain}*\n💵 Pendapatan: 0 (Paketnya dilempar ke pagar)\n\nNafas ngos-ngosan banget asli! 🥵`);
+    return m.reply(`¡GUAU GUAU GUAU! ¡PERRO FEROZ TE PERSIGUE! 🐕💨\n\n¡Corriste por todo el complejo para salvar el paquete!\n⚡ Estamina Extra: -${extraStamina}\n📈 EXP por Correr: *+${expGain}*\n💵 Ingresos: 0 (Lanzaste el paquete por la cerca)\n\n¡Te faltó el aire de verdad! 🥵`);
   }
 
-  const items = ["Dokumen Rahasia", "Baju Online", "Skincare Bini Orang", "Panci Emak-emak"];
+  const items = ["Documentos Secretos", "Ropa Online", "Cosméticos de Ajena", "Olla de la Vecina"];
   const item = items[Math.floor(Math.random() * items.length)];
   const earning = Math.floor(Math.random() * 15000) + 5000;
   let tips = 0;
@@ -63,9 +63,9 @@ async function handler(m, { sock }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `ALHAMDULILLAH PAKET SAMPAI! 📦✨\n\nBarang: *${item}*\n💵 Ongkir: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (tips > 0) txt += `🎁 Tips Tambahan: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
-  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBerhasil nganter tepat waktu! 🚚💨`;
+  let txt = `¡¡GRACIAS A DIOS, EL PAQUETE LLEGÓ!! 📦✨\n\nArtículo: *${item}*\n💵 Envío: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  if (tips > 0) txt += `🎁 Propina Extra: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Entregado a tiempo! 🚚💨`;
   m.reply(txt);
 }
 

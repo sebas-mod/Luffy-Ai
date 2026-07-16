@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'ytstalk',
     alias: ['youtubestalk', 'stalkyt'],
     category: 'stalker',
-    description: 'Stalk channel YouTube',
+    description: 'Rastrear canal de YouTube',
     usage: '.ytstalk <username>',
     example: '.ytstalk mrbeast',
     isOwner: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n> Masukkan username YouTube\n\n\`Contoh: ${m.prefix}ytstalk mrbeast\``)
+        return m.reply(`📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n> Ingresa el username de YouTube\n\n\`Ejemplo: ${m.prefix}ytstalk mrbeast\``)
     }
     
     m.react('🔍')
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Channel *${username}* tidak ditemukan`)
+            return m.reply(`❌ Canal *${username}* no encontrado`)
         }
         
         const c = res.data.data
@@ -42,10 +42,10 @@ async function handler(m, { sock }) {
         let caption = `📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n` +
             `👤 *Nama:* ${c.name}\n` +
             `🔗 *Username:* @${username}\n` +
-            `✅ *Verified:* ${c.verified ? 'Ya' : 'Tidak'}\n\n` +
-            `👥 *Subscribers:* ${c.subscribers}\n` +
-            `🎬 *Total Video:* ${c.video_count}\n\n` +
-            `📝 *Deskripsi:*\n${c.about || '-'}\n\n` +
+            `✅ *Verificado:* ${c.verified ? 'Sí' : 'No'}\n\n` +
+            `👥 *Suscriptores:* ${c.subscribers}\n` +
+            `🎬 *Total de Videos:* ${c.video_count}\n\n` +
+            `📝 *Descripción:*\n${c.about || '-'}\n\n` +
             `🔗 ${c.url}`
             
         m.react('✅')

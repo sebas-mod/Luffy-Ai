@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['tambahenergi', 'giveenergi', 'addenergy'],
     category: 'owner',
     description: 'Añade energía a un usuario',
-    usage: '.addenergi <jumlah> @user',
+    usage: '.addenergi <cantidad> @user',
     example: '.addenergi 100 @user',
     isOwner: true,
     isPremium: false,
@@ -54,10 +54,10 @@ async function handler(m, { sock }) {
     if (!targetJid || (!isUnlimited && amount <= 0)) {
         return m.reply(
             `⚡ *ᴀᴅᴅ ᴇɴᴇʀɢɪ*\n\n` +
-            `> \`.addenergi <jumlah>\` - ke diri sendiri\n` +
-            `> \`.addenergi <jumlah> @user\` - ke user\n` +
+            `> \`.addenergi <cantidad>\` - a uno mismo\n` +
+            `> \`.addenergi <cantidad> @user\` - al usuario\n` +
             `> \`.addenergi --unlimited\` - unlimited\n\n` +
-            `\`Contoh: ${m.prefix}addenergi 100\``
+            `\`Ejemplo: ${m.prefix}addenergi 100\``
         )
     }
 
@@ -70,8 +70,8 @@ async function handler(m, { sock }) {
     if (!isUnlimited && effectiveUnlimited) {
         return m.reply(
             `⚡ *INFORMASI*\n` +
-            `@${targetJid.split('@')[0]} sudah memiliki energi *∞ Unlimited*\n` +
-            `Tidak perlu menambahkan energi lagi`,
+            `@${targetJid.split('@')[0]} ya memiliki energi *∞ Unlimited*\n` +
+            `No es necesario agregando energi de nuevo`,
             { mentions: [targetJid] }
         )
     }
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ *Energi @${targetJid.split('@')[0]} sekarang unlimited / tidak terbatas*`,
+            `✅ *Energi @${targetJid.split('@')[0]} ahora unlimited / ilimitado*`,
             { mentions: [targetJid] }
         )
     } else {
@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ Energi *@${targetJid.split('@')[0]}* berhasil di tambahkan sebanyak *${formatNumber(amount)}*!\nSekarang dia mempunyai *${formatNumber(newEnergi)}* energi`,
+            `✅ Energi *@${targetJid.split('@')[0]}* éxito agregado por la cantidad de *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newEnergi)}* energi`,
             { mentions: [targetJid] }
         )
     }

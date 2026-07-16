@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'tiktokstalk',
     alias: ['ttstalk', 'stalktt'],
     category: 'stalker',
-    description: 'Stalk akun TikTok',
+    description: 'Rastrear cuenta de TikTok',
     usage: '.tiktokstalk <username>',
     example: '.tiktokstalk mrbeast',
     isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]?.replace('@', '')
     
     if (!username) {
-        return m.reply(`🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Masukkan username TikTok\n\n\`Contoh: ${m.prefix}tiktokstalk mrbeast\``)
+        return m.reply(`🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Ingresa el username de TikTok\n\n\`Ejemplo: ${m.prefix}tiktokstalk mrbeast\``)
     }
     
     m.react('🔍')
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Username *@${username}* tidak ditemukan`)
+            return m.reply(`❌ Username *@${username}* no encontrado`)
         }
         
         const d = res.data.data
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
         
         const caption = `🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n` +
             `👤 *Username:* @${d.username}\n` +
-            `📛 *Nama:* ${d.nickname}\n` +
-            `✅ *Verified:* ${d.verified ? 'Ya' : 'Tidak'}\n` +
-            `🔒 *Private:* ${d.private ? 'Ya' : 'Tidak'}\n\n` +
-            `👥 *Followers:* ${shortNum(s.followers)}\n` +
-            `👤 *Following:* ${shortNum(s.following)}\n` +
+            `📛 *Nombre:* ${d.nickname}\n` +
+            `✅ *Verificado:* ${d.verified ? 'Sí' : 'No'}\n` +
+            `🔒 *Privado:* ${d.private ? 'Sí' : 'No'}\n\n` +
+            `👥 *Seguidores:* ${shortNum(s.followers)}\n` +
+            `👤 *Siguiendo:* ${shortNum(s.following)}\n` +
             `❤️ *Likes:* ${shortNum(s.hearts)}\n` +
             `🎬 *Videos:* ${shortNum(s.videos)}\n\n` +
             `📝 *Bio:*\n${d.signature || '-'}\n\n` +

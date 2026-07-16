@@ -10,7 +10,7 @@ const pluginConfig = {
     alias: ['>', 'run', 'execute'],
     category: 'owner',
     description: 'Ejecuta código JS desde un mensaje respondido (solo dueño)',
-    usage: '.> (reply pesan berisi kode)',
+    usage: '.> (reply mensaje bercontenido kode)',
     example: '.> (reply)',
     isOwner: true,
     isPremium: false,
@@ -39,12 +39,12 @@ async function handler(m, { sock, store }) {
     if (!code) {
         return m.reply(
             `⚙️ *ᴇxᴇᴄ*\n\n` +
-            `> Reply pesan berisi kode JavaScript!\n\n` +
-            `*Atau:*\n` +
+            `> Reply mensaje bercontenido kode JavaScript!\n\n` +
+            `*O:*\n` +
             `> .> <code>\n\n` +
-            `*Contoh:*\n` +
-            `> Reply pesan: \`return m.chat\`\n` +
-            `> Lalu ketik: .>`
+            `*Ejemplo:*\n` +
+            `> Reply mensaje: \`return m.chat\`\n` +
+            `> Lalu escribe: .>`
         )
     }
 

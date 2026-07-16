@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'jadibot',
     alias: ['jadibotqr', 'becomebot', 'bot'],
     category: 'main',
-    description: 'Jadikan nomor kamu menjadi bot (Pairing Code / QR)',
+    description: 'Convierte tu número en un bot (Código de Emparejamiento / QR)',
     usage: '.jadibot atau .jadibot qr',
     example: '.jadibot',
     isOwner: false,
@@ -18,13 +18,13 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const sender = m.sender
-    if (!sender) return m.reply('❌ Gagal mengidentifikasi nomor kamu')
+    if (!sender) return m.reply('❌ No se pudo identificar tu número')
 
     if (isJadibotActive(sender)) {
         return m.reply(
-            `⚠️ *ᴊᴀᴅɪʙᴏᴛ ꜱᴜᴅᴀʜ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Nomor kamu sudah menjadi bot\n` +
-            `> Ketik \`${m.prefix}stopjadibot\` untuk menghentikan`
+            `⚠️ *ᴊᴀᴅɪʙᴏᴛ ʏᴀ ᴇsᴛᴀ ᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> Tu número ya es un bot\n` +
+            `> Escribe \`${m.prefix}stopjadibot\` para detenerlo`
         )
     }
 
@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
 
     if (useQR) {
         await m.reply(
-            `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴍᴏᴅᴇ*\n\n` +
-            `> Menyiapkan koneksi...\n` +
-            `> Scan QR Code yang akan dikirim`
+            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴍᴏᴅᴇ Qʀ*\n\n` +
+            `> Preparando conexión...\n` +
+            `> Escanea el código QR que se enviará`
         )
     } else {
         await m.reply(
-            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ*\n\n` +
-            `> Menyiapkan koneksi...`
+            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴄᴏᴅɪɢᴏ ᴅᴇ ᴇᴍᴘᴀʀᴇᴊᴀᴍɪᴇɴᴛᴏ*\n\n` +
+            `> Preparando conexión...`
         )
     }
 
@@ -48,9 +48,9 @@ async function handler(m, { sock }) {
         await startJadibot(sock, m, sender, !useQR)
     } catch (e) {
         await m.reply(
-            `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ*\n\n` +
-            `> ${e.message || 'Terjadi kesalahan'}\n\n` +
-            `Coba lagi dalam beberapa menit.`
+            `❌ *ᴊᴀᴅɪʙᴏᴛ ꜰᴀʟʟᴏ*\n\n` +
+            `> ${e.message || 'Ocurrió un error'}\n\n` +
+            `Intenta de nuevo en unos minutos.`
         )
     }
 }

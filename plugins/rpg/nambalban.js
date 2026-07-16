@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "nambalban",
   alias: ["tambal", "bengkel"],
   category: "rpg",
-  description: "Buka jasa tambal ban, awas ban meledak!",
+  description: "Abrir taller de reparación de llantas, ¡cuidado con los estallidos!",
   usage: ".nambalban",
   example: ".nambalban",
   isOwner: false,
@@ -27,12 +27,12 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Pompa angin macet, tangan kapalan! 🤕\n\nNambal butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Minum es teh dulu! 🧊`);
+    return m.reply(`¡La bomba de aire se atascó y las manos te arden! 🤕\n\nReparar neumáticos requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Toma un té helado primero! 🧊`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("🛠️");
-  await m.reply(`Sssshh... ngecek ban bocor pakai air sabun... 🫧\nKetemu paku nancep! 📍`);
+  await m.reply(`Shhh... revisando neumático con agua y jabón... 🫧\n¡Encontraste un clavo clavado! 📍`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     const healthLoss = 15;
     user.rpg.health = Math.max(0, (user.rpg.health ?? 100) - healthLoss);
     await m.react("💥");
-    return m.reply(`DUAAAAR! BANNYA MELEDAK! 💥😭\n\nKamu mompa kerasa kenceng dan ban truk itu meledak di depan muka!\n💔 HP berkurang: -${healthLoss}\n⚡ Stamina: -${staminaCost}\n💵 Pendapatan: 0\n\nMuka item kena asep ban, apes bener! 💀`);
+    return m.reply(`¡¡PUM! ¡¡EL NEUMÁTICO EXPLOTÓ!! 💥😭\n\n¡Inflaste con fuerza y el neumático del camión explotó en tu cara!\n💔 HP Reducido: -${healthLoss}\n⚡ Stamina: -${staminaCost}\n💵 Ingresos: 0\n\n¡Tu cara cubierta de hollín, qué mala suerte! 💀`);
   }
 
   const earning = Math.floor(Math.random() * 20000) + 10000;
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`HASIL NAMBAL BAN! 🛠️✨\n\n💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nSemoga di jalan nggak bocor lagi tuh orang! 💨`);
+  m.reply(`¡RESULTADO DE LA REPARACIÓN! 🛠️✨\n\n💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Espero que no se vuelva a pinchad en camino! 💨`);
 }
 
 export { pluginConfig as config, handler };

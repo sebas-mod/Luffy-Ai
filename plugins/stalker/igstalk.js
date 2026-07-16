@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'igstalk',
     alias: ['instagramstalk', 'stalking'],
     category: 'stalker',
-    description: 'Stalk akun Instagram',
+    description: 'Rastrear cuenta de Instagram',
     usage: '.igstalk <username>',
     example: '.igstalk cristiano',
     isOwner: false,
@@ -21,9 +21,9 @@ const pluginConfig = {
 function shortNum(num) {
     if (!num) return '0'
     num = parseInt(num)
-    if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace('.0', '') + ' miliar'
-    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace('.0', '') + ' jt'
-    if (num >= 1_000) return (num / 1_000).toFixed(1).replace('.0', '') + ' rb'
+    if (num >= 1_000_000_000) return (num / 1_000_000_000).toFixed(1).replace('.0', '') + ' mil millones'
+    if (num >= 1_000_000) return (num / 1_000_000).toFixed(1).replace('.0', '') + ' M'
+    if (num >= 1_000) return (num / 1_000).toFixed(1).replace('.0', '') + ' K'
     return num.toString()
 }
 
@@ -33,8 +33,8 @@ async function handler(m, { sock }) {
     if (!username) {
         return m.reply(
             `📸 *ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ*\n\n` +
-            `> Masukkan username Instagram\n\n` +
-            `\`Contoh: ${m.prefix}igstalk cristiano\``
+            `> Ingresa el username de Instagram\n\n` +
+            `\`Ejemplo: ${m.prefix}igstalk cristiano\``
         )
     }
     
@@ -49,17 +49,17 @@ async function handler(m, { sock }) {
         const d = res.data?.data
         if (!res.data?.status || !d?.username) {
             m.react('❌')
-            return m.reply(`❌ Akun *@${username}* tidak ditemukan`)
+            return m.reply(`❌ Cuenta *@${username}* no encontrada`)
         }
         
         const caption = `📸 *ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ*\n\n` +
             `👤 *Username:* ${d.username}\n` +
-            `📛 *Nama:* ${d.full_name || '-'}\n` +
-            `✅ *Verified:* ${d.is_verified ? 'Ya' : 'Tidak'}\n` +
-            `🔒 *Private:* ${d.is_private ? 'Ya' : 'Tidak'}\n\n` +
-            `👥 *Pengikut:* ${shortNum(d.stats?.followers)}\n` +
-            `👤 *Mengikuti:* ${shortNum(d.stats?.following)}\n` +
-            `📷 *Postingan:* ${shortNum(d.stats?.posts)}\n\n` +
+            `📛 *Nombre:* ${d.full_name || '-'}\n` +
+            `✅ *Verificado:* ${d.is_verified ? 'Sí' : 'No'}\n` +
+            `🔒 *Privado:* ${d.is_private ? 'Sí' : 'No'}\n\n` +
+            `👥 *Seguidores:* ${shortNum(d.stats?.followers)}\n` +
+            `👤 *Siguiendo:* ${shortNum(d.stats?.following)}\n` +
+            `📷 *Publicaciones:* ${shortNum(d.stats?.posts)}\n\n` +
             `📝 *Bio:*\n${d.bio || '-'}\n\n` +
             `🔗 https://instagram.com/${d.username}`
         

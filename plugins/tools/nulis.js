@@ -11,9 +11,9 @@ const pluginConfig = {
   name: "nulis",
   alias: ["tulis", "write"],
   category: "tools",
-  description: "Generate tulisan tangan di kertas",
-  usage: ".nulis <teks>",
-  example: ".nulis Aku cinta kamu selamanya",
+  description: "Generar escritura manual en papel",
+  usage: ".nulis <texto>",
+  example: ".nulis Te amo para siempre",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -45,23 +45,23 @@ async function handler(m, { sock }) {
   const text = m.args?.join(" ");
   if (!text) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}nulis <teks>\`\n\n` +
-        `> Contoh:\n` +
-        `> \`${m.prefix}nulis Aku cinta kamu selamanya\``,
+      `⚠️ *CÓMO USAR*\n\n` +
+        `> \`${m.prefix}nulis <texto>\`\n\n` +
+        `> Ejemplo:\n` +
+        `> \`${m.prefix}nulis Te quiero para siempre\``,
     );
   }
   if (text.length > 500) {
-    return m.reply(`❌ *ᴛᴇᴋs ᴛᴇʀʟᴀʟᴜ ᴘᴀɴᴊᴀɴɢ*\n\n> Maksimal 500 karakter`);
+    return m.reply(`❌ *ᴛᴇxᴛᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ʟᴀʀɢᴏ*\n\n> Máximo 500 caracteres`);
   }
   const inputUrl = getAssetBuffer("ourin-kertas");
   if (!inputUrl) {
     return m.reply(
-      `❌ *ᴛᴇᴍᴘʟᴀᴛᴇ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n> File template kertas tidak ditemukan di config.assets`,
+      `❌ *ᴘʟᴀɴᴛɪʟʟᴀ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> El archivo de plantilla de papel no se encontró en config.assets`,
     );
   }
   await m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇᴍᴘʀᴏsᴇs...*\n\n> Membuat tulisan tangan...`);
+  await m.reply(`🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Creando escritura manual...`);
   try {
     const { createCanvas, loadImage, GlobalFonts } = _canvas;
     if (!_fontRegistered) {
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
     await sock.sendMedia(
       m.chat,
       buffer,
-      `✅ *ʟᴜʟɪsᴀɴ ᴛᴀɴɢᴀɴ*\n\n> Hatihati ketahuan! 📖`,
+      `✅ *ᴇsᴄʀɪᴛᴜʀᴀ ᴍᴀɴᴜᴀʟ*\n\n> ¡Cuidado que te descubren! 📖`,
       m,
       { type: "image", contextInfo: saluranCtx() },
     );

@@ -7,7 +7,7 @@ const pluginConfig = {
   alias: ["broadcastpc", "bcprivate"],
   category: "owner",
   description: "Envía un mensaje masivo a todos los contactos privados",
-  usage: ".bcpc <pesan>",
+  usage: ".bcpc <mensaje>",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -44,16 +44,16 @@ async function handler(m, { sock }) {
       `📱 *BROADCAST PRIVATE CHAT*\n\n` +
         `Jeda: ${jeda}ms (${(jeda / 1000).toFixed(1)}s)\n\n` +
         `*PENGGUNAAN:*\n` +
-        `• \`${m.prefix}bcpc <pesan>\` — Kirim ke semua kontak\n` +
-        `• \`${m.prefix}bcpc (reply media)\` — Kirim dengan media\n\n` +
-        `⚠️ *Peringatan:* Bot akan mengirim pesan ke semua kontak yang tersimpan!\n\n` +
-        `ℹ️ *Note:* Kontak hanya terdeteksi jika mereka sudah pernah mengirim pesan ke bot. Kontak yang hanya disimpan tapi belum pernah chat tidak akan muncul.`,
+        `• \`${m.prefix}bcpc <mensaje>\` — Envía a todos contacto\n` +
+        `• \`${m.prefix}bcpc (reply media)\` — Envía con media\n\n` +
+        `⚠️ *Advertencia:* ¡El bot va a enviar el mensaje a todos los contactos guardados!\n\n` +
+        `ℹ️ *Nota:* Los contactos solo se detectan si ya han enviado mensaje al bot. Contactos que solo están guardados pero nunca han chateado no aparecerán.`,
     );
   }
 
   if (global.statusBcpc) {
     return m.reply(
-      `❌ Broadcast private sedang berjalan.\nKetik \`${m.prefix}stopbcpc\` untuk menghentikan.`,
+      `❌ Broadcast private está en ejecución.\nEscribe \`${m.prefix}stopbcpc\` para detenerlo.`,
     );
   }
 
@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
     if (privateJids.size === 0) {
       m.react("❌");
       return m.reply(
-        "❌ Tidak ada kontak ditemukan.\n\nPastikan bot sudah pernah menerima pesan dari kontak tersebut.",
+        "❌ No hay contacto encontrado.\n\nAsegúrate de que el bot haya recibido un mensaje de contacto mencionado.",
       );
     }
 
@@ -131,12 +131,12 @@ async function handler(m, { sock }) {
           `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ*\n\n` +
           `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
           `┃ 📝 ᴘᴇsᴀɴ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
-          `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "Tidak"}\`\n` +
-          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` kontak\n` +
+          `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "No"}\`\n` +
+          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` contacto\n` +
           `┃ ⏱️ ᴊᴇᴅᴀ: \`${jeda}ms\`\n` +
-          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} menit\`\n` +
+          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} minuto\`\n` +
           `╰┈┈⬡\n\n` +
-          `> Memulai broadcast...`,
+          `> Ejecutando broadcast...`,
         contextInfo: ctx,
       },
       { quoted: m },
@@ -187,7 +187,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     delete global.statusBcpc;
     m.react("❌");
-    m.reply("Gagal: " + e.message);
+    m.reply("Fallo: " + e.message);
   }
 }
 

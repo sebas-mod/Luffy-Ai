@@ -28,7 +28,7 @@ const pluginConfig = {
   name: "menu",
   alias: ["help", "bantuan", "commands", "m"],
   category: "main",
-  description: "Menampilkan menu utama bot",
+  description: "Mostrar menú principal del bot",
   usage: ".menu",
   example: ".menu",
   isOwner: false,
@@ -256,25 +256,25 @@ async function buildMenuText(
   const totalUsers = db.getUserCount();
   let txt = `${greeting}\n\n`;
   txt += `      ${m.pushName || "User"}\n\n`;
-  txt += `Halo Kawan 🌱\n`;
-  txt += `Perkenalkan aku ${botConfig.bot?.name || "Denia Al"}, buatan ${botConfig.bot?.developer || "Alesha"} Saya siap membantu\n`;
-  txt += `kebutuhanmu, mulai dari download\n`;
-  txt += `video, main game, tanya jawab, nyari\n`;
-  txt += `info/sesuatu, bikin sticker, dan lain-lain.\n\n`;
+  txt += `Hola Amigo 🌱\n`;
+  txt += `Permíteme presentarme, soy ${botConfig.bot?.name || "Denia Al"}, creado por ${botConfig.bot?.developer || "Alesha"} Estoy listo para ayudarte\n`;
+  txt += `con lo que necesites, desde descargar\n`;
+  txt += `videos, jugar, preguntar, buscar\n`;
+  txt += `info/algo, crear stickers, y mucho más.\n\n`;
 
-  txt += `    ᯓ INFO USER\n`;
-  txt += `╭   • Nama : ${m.pushName || "User"}\n`;
-  txt += `┆   • Status : ${userRole}\n`;
-  txt += `┆   • Mode : ${(botConfig.mode || "public").toUpperCase()}\n`;
-  txt += `┆   • Nomor : ${m.sender.split("@")[0]}\n`;
-  txt += `┆   • Waktu : ${timeStr} WIB\n`;
+  txt += `    ᯓ INFO USUARIO\n`;
+  txt += `╭   • Nombre : ${m.pushName || "User"}\n`;
+  txt += `┆   • Estado : ${userRole}\n`;
+  txt += `┆   • Modo : ${(botConfig.mode || "public").toUpperCase()}\n`;
+  txt += `┆   • Número : ${m.sender.split("@")[0]}\n`;
+  txt += `┆   • Hora : ${timeStr} WIB\n`;
   txt += `╰➤------------------------------\n`;
 
   txt += `    ᯓ INFO BOT\n`;
-  txt += `╭  • Name : ${botConfig.bot?.name || "Luffy-AI"}\n`;
-  txt += `┆  • Author : ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┆  • Versi : ${botConfig.bot?.version || "1.2.0"}\n`;
-  txt += `┆  • Type script : OURIN x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `╭  • Nombre : ${botConfig.bot?.name || "Luffy-AI"}\n`;
+  txt += `┆  • Autor : ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `┆  • Versión : ${botConfig.bot?.version || "1.2.0"}\n`;
+  txt += `┆  • Tipo script : OURIN x ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Uptime : ${uptimeFormatted}\n`;
   txt += `╰➤------------------------------\n`;
   const categoryOrder = [
@@ -353,7 +353,7 @@ async function buildMenuText(
     categoryLines.push(`${prefix}menucat ${category} ${emoji}`);
   }
   if (categoryLines.length > 0) {
-    txt += ` ✦ DAFTAR MENU ✦\n`;
+    txt += ` ✦ LISTA DE MENÚS ✦\n`;
     txt += `╭   • ${categoryLines[0]}\n`;
     for (let i = 1; i < categoryLines.length; i++) {
       txt += `┆   • ${categoryLines[i]}\n`;
@@ -473,7 +473,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     const zann_pengin_rehat = categories.sorted.map(({ cat, cmds, emoji }) => {
       return {
         title: `${emoji} ${toMonoUpperBold(cat)}`,
-        description: `Command ini memiliki  (${cmds.length}) Perintah`,
+        description: `Este comando tiene (${cmds.length}) Comandos`,
         id: `${m.prefix}menucat ${cat}`,
       };
     });
@@ -483,38 +483,38 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           await sock.sendMessage(m.chat, {
             image: fs.readFileSync(config.assets["ourin"]),
             caption: ``,
-            footer: `Hai @${m.pushName} 👋
+            footer: `Hola @${m.pushName} 👋
             
-🌿 Selamat datang di assistant ${config.bot?.name}
+🌿 Bienvenido al asistente ${config.bot?.name}
 
-╭┈┈⫹⫺ *INFORMASI BOT* ⫹⫺┈┈╮
-│ ◈ *Nama Bot* : *${config.bot?.name}*
-│ ◈ *Versi* : *${config.bot.version}*  
-│ ◈ *Pengembang* : *${config.bot.developer}*  
-│ ◈ *Pustaka* : \`ourin-baileys\`
+╭┈┈⫹⫺ *INFORMACIÓN DEL BOT* ⫹⫺┈┈╮
+│ ◈ *Nombre Bot* : *${config.bot?.name}*
+│ ◈ *Versión* : *${config.bot.version}*  
+│ ◈ *Desarrollador* : *${config.bot.developer}*  
+│ ◈ *Librería* : \`ourin-baileys\`
 ╰┈┈┈┈┈┈┈┈
 
-╭┈┈⫹⫺ *INFORMASI PENGGUNA* ⫹⫺┈┈╮
-│ ◈ *Nama* : *${m.pushName}*
-│ ◈ *Member?* : *${m?.isOwner ? "Bukan, tapi Owner" : m?.isPremium ? "Bukan, tapi Premium" : "Iyapp"}*
-│ ◈ *Level* : *${user.level || 0}*
+╭┈┈⫹⫺ *INFORMACIÓN DEL USUARIO* ⫹⫺┈┈╮
+│ ◈ *Nombre* : *${m.pushName}*
+│ ◈ *¿Miembro?* : *${m?.isOwner ? "No, pero Owner" : m?.isPremium ? "No, pero Premium" : "Sí"}*
+│ ◈ *Nivel* : *${user.level || 0}*
 │ ◈ *Exp* : *${user.exp || 0}* 
-│ ◈ *Energi* : *${user.energi || 0}*
-│ ◈ *Koin* : *${user.koin || 0}*
-│ ◈ *Register* : *${user.isRegistered ? "Sudah" : "Belum"}*
-│ ◈ *Energi* : *${user.energi || 0}*
+│ ◈ *Energía* : *${user.energi || 0}*
+│ ◈ *Monedas* : *${user.koin || 0}*
+│ ◈ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
+│ ◈ *Energía* : *${user.energi || 0}*
 ╰┈┈┈┈┈┈┈┈
 
-Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
+Presiona el botón de abajo para más información y para elegir categoría
 `,
             interactiveButtons: [
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "🍃 Menu Utama",
+                  title: "🍃 Menú Principal",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Aquí están las opciones",
                       rows: zann_pengin_rehat
                     }
                   ],
@@ -524,24 +524,24 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "Selengkapnya",
+                  title: "Más información",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Aquí están las opciones",
                       rows: [
                         {
-                          title: "🍔 Lihat semua menu yang ada di bot ini",
-                          description: "Silahkan tap lalu kirim",
+                          title: "🍔 Ver todos los menús de este bot",
+                          description: "Toca y envía",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🥰 Kamu mau samaan kayak bot ini?",
-                          description: "Silahkan tap lalu kirim, nanti bot akan mengirimkan sebuah link download",
+                          title: "🥰 ¿Quieres ser igual que este bot?",
+                          description: "Toca y envía, el bot te enviará un link de descarga",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🌾 Siapakah owner dari bot ini?",
-                          description: "Tap dan klik kirim untuk melanjutkan",
+                          title: "🌾 ¿Quién es el dueño de este bot?",
+                          description: "Toca y envía para continuar",
                           id: `${m.prefix}owner`
                         },
                       ]
@@ -585,29 +585,29 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `🥞 *Hello Brother*
+                    text: `🥞 *Hola Hermano*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+🍅 *INFORMACIÓN DEL BOT*
+> 🤖 *Nombre*: ${config.bot?.name}
+> ⚙️ *Versión*: ${config.bot?.version}
+> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
+> 🧩 *Librería*: \`ourin-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
+🍅 *INFORMACIÓN DEL USUARIO*
+> 🧑 *Nombre*: ${m.pushName}
+> 🥐 *Rol*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+> 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}
+> 🥩 *Energía*: ${user.energi || 0}
+> 🎏 *Monedas*: ${user.koin || 0}
+> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}
 
 ${readmore}${s}`
                   },
                   footer: {
-                    text: "Pilih tombol dibawah untuk info lebih lanjut"
+                    text: "Selecciona el botón de abajo para más información"
                   },
                   contextInfo: {
                     isForwarded: true,
@@ -625,14 +625,14 @@ ${readmore}${s}`
                       limited_time_offer: {
                         text: `${greeting}`,
                         url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
                       bottom_sheet: {
                         in_thread_buttons_limit: 2,
                         divider_indices: [1, 2, 3, 4, 5, 999],
-                        list_title: "Silahkan pilih menu yang kamu inginkan",
-                        button_title: "🍅 Selengkapnya",
+                        list_title: "Selecciona el menú que desees",
+                        button_title: "🍅 Más información",
                       },
                       tap_target_configuration: {
                         title: " X ",
@@ -652,7 +652,7 @@ ${readmore}${s}`
                       {
                         name: "cta_url",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍫 Owner Kami",
+                          display_text: "🍫 Nuestro Owner",
                           url: `https://wa.me/${botConfig.owner?.number?.[0]}`,
                           merchant_url: `https://wa.me/${config.owner?.number?.[0]}`,
                         })
@@ -660,7 +660,7 @@ ${readmore}${s}`
                       {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍛 Dapatkan Script ( Gratis )",
+                          display_text: "🍛 Obtener Script ( Gratis )",
                           id: `${m.prefix}sc`
                         })
                       }
@@ -697,27 +697,27 @@ ${readmore}${s}`
             locationMessage: {
               jpegThumbnail: await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 170).toBuffer(),
               name: config.bot.name,
-              address: `Versi saat ini: ${config.bot.version}`
+              address: `Versión actual: ${config.bot.version}`
             },
-            contentText: `🥞 *Hello Brother*
+            contentText: `🥞 *Hola Hermano*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+🍅 *INFORMACIÓN DEL BOT*
+> 🤖 *Nombre*: ${config.bot?.name}
+> ⚙️ *Versión*: ${config.bot?.version}
+> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
+> 🧩 *Librería*: \`ourin-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
+🍅 *INFORMACIÓN DEL USUARIO*
+> 🧑 *Nombre*: ${m.pushName}
+> 🥐 *Rol*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+> 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}`,
-            footerText: '🍔 Silahkan pilih dari salah satu tombol di bawah',
+> 🥩 *Energía*: ${user.energi || 0}
+> 🎏 *Monedas*: ${user.koin || 0}
+> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
+            footerText: '🍔 Selecciona uno de los botones de abajo',
             headerType: 6,
           },
         };
@@ -756,16 +756,16 @@ Welcome to ${config.bot?.name}, Our bot will help you
           return {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: `${cat.emoji} ${cat.cat} Menu`,
-              sections: [
-                {
-                  title: "Please select the command",
-                  highlight_label: config.bot.name,
-                  rows: cat.cmds.map((cmd, i) => {
-                    return {
-                      title: (i + 1).toString() + " " + cmd,
-                      description: "Select this command?",
-                      id: `${prefix}${cmd}`
+                title: `${cat.emoji} Menú ${cat.cat}`,
+                sections: [
+                  {
+                    title: "Selecciona el comando",
+                    highlight_label: config.bot.name,
+                    rows: cat.cmds.map((cmd, i) => {
+                      return {
+                        title: (i + 1).toString() + " " + cmd,
+                        description: "¿Seleccionar este comando?",
+                        id: `${prefix}${cmd}`
                     }
                   })
                 }
@@ -786,21 +786,21 @@ Welcome to ${config.bot?.name}, Our bot will help you
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona el botón de abajo`
                 },
                 body: {
-                  text: `*${greeting} ${m.pushName}*, 𝘔𝘺 𝘯𝘢𝘮𝘦 𝘪𝘴 ${config.bot.name}.
+                  text: `*${greeting} ${m.pushName}*, Mi nombre es ${config.bot.name}.
 
-  🏔 𝘐 𝘊𝘢𝘯 𝘩𝘦𝘭𝘱 𝘺𝘰𝘶 𝘸𝘪𝘵𝘩 𝘴𝘦𝘷𝘦𝘳𝘢𝘭 𝘵𝘩𝘪𝘯𝘨𝘴 𝘸𝘪𝘵𝘩𝘪𝘯 𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱. 𝘈𝘯𝘥 𝘐 𝘢𝘮 𝘈𝘳𝘮𝘦𝘥 𝘢 *𝘑𝘢𝘷𝘢𝘴𝘤𝘳𝘪𝘱𝘵* 𝘗𝘳𝘰𝘨𝘳𝘢𝘮 𝘈𝘴𝘴𝘦𝘮𝘣𝘭𝘦𝘥 𝘣𝘺 𝘮𝘺 𝘤𝘳𝘦𝘢𝘵𝘰𝘳.
+  🏔 Puedo ayudarte con varias cosas dentro de WhatsApp. Y estoy armado con un programa *JavaScript* ensamblado por mi creador.
 
-\`INFORMATION BOT\`
-> 🍛 *Creator*: ${config.bot?.developer}
-> 🥞 *Name*: ${config.bot?.name}
-> 🥩 *Version*: ${config.bot?.version}
-> 🍂 *Type*: \`Plugin x Cases\`
-> 🦴 *Mode*: *${config.mode === 'public' ? '🍕 Unlock for everyone' : '🥖 Only for Owner'}*
+\`INFORMACIÓN DEL BOT\`
+> 🍛 *Creador*: ${config.bot?.developer}
+> 🥞 *Nombre*: ${config.bot?.name}
+> 🥩 *Versión*: ${config.bot?.version}
+> 🍂 *Tipo*: \`Plugin x Cases\`
+> 🦴 *Modo*: *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
 
-Enjoy your use brother.`
+Disfruta tu uso, hermano.`
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -817,8 +817,8 @@ Enjoy your use brother.`
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver Categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -832,7 +832,7 @@ Enjoy your use brother.`
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🧀 Visit My Creator",
+                        display_text: "🧀 Visita a mi Creador",
                         url: `https://wa.me/${botConfig.owner?.number?.[0]}`,
                         merchant_url: `https://wa.me/${config.owner?.number?.[0]}`,
                       })
@@ -860,22 +860,22 @@ Enjoy your use brother.`
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Horas ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "☀️ Despejado",
+          1: "🌤️ Despejado con nubes",
+          2: "⛅ Nublado",
+          3: "☁️ Cielo cubierto",
+          45: "🌫️ Neblinoso",
+          48: "🌫️ Niebla espesa",
+          51: "🌦️ Lluvia ligera",
+          61: "🌧️ Lluvia",
+          63: "🌧️ Lluvia fuerte",
+          65: "⛈️ Tormenta",
+          80: "🌦️ Lluvia local",
+          95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -885,18 +885,18 @@ Enjoy your use brother.`
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
         const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
@@ -931,25 +931,25 @@ Enjoy your use brother.`
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona el botón de abajo`
                 },
                 body: {
-                  text: `🍟 Hai *${m.pushName}* 
+                  text: `🍟 Hola *${m.pushName}* 
                   
-_i am an automated system (WhatsApp bot) that can help to do something search and get data / information only through WhatsApp._
+_Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos/información solo a través de WhatsApp._
 
 *\`乂 I N F O - B O T\`*
-┌ ◦ Name : ${config.bot.name}
-│ ◦ Author : @${config.bot.developer}
-│ ◦ Type Script : Case x Plugins
+┌ ◦ Nombre : ${config.bot.name}
+│ ◦ Autor : @${config.bot.developer}
+│ ◦ Tipo Script : Case x Plugins
 │ ◦ Uptime : ${runtime(process.uptime())}
-└ ◦ Versi : ${config.bot.version}
+└ ◦ Versión : ${config.bot.version}
 
-*\`乂 I N F O - U S E R\`*
-┌ ◦ Nama : ${m.pushName}
-│ ◦ Status : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
-│ ◦ Mode : ${config.mode === "public" ? "Bisa digunakan semua" : "Hanya Owner :b"}
-│ ◦ Nomor : @${m.sender.split("@")[0]}
+*\`乂 I N F O - U S U A R I O\`*
+┌ ◦ Nombre : ${m.pushName}
+│ ◦ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Gratis"}
+│ ◦ Modo : ${config.mode === "public" ? "Disponible para todos" : "Solo Owner :b"}
+│ ◦ Número : @${m.sender.split("@")[0]}
 └ ◦ ${greeting}
 `
                 },
@@ -974,8 +974,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver Categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1000,7 +1000,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Peraturan  𐦯",
+                        display_text: "𐔌 Reglas  𐦯",
                         id: `${prefix}rules`
                       })
                     },
@@ -1025,22 +1025,22 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Horas ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "☀️ Despejado",
+          1: "🌤️ Despejado con nubes",
+          2: "⛅ Nublado",
+          3: "☁️ Cielo cubierto",
+          45: "🌫️ Neblinoso",
+          48: "🌫️ Niebla espesa",
+          51: "🌦️ Lluvia ligera",
+          61: "🌧️ Lluvia",
+          63: "🌧️ Lluvia fuerte",
+          65: "⛈️ Tormenta",
+          80: "🌦️ Lluvia local",
+          95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -1050,18 +1050,18 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
         const rawStats = fs.readFileSync(path.join(process.cwd(), 'database/main/stats.json'), 'utf8')
@@ -1080,7 +1080,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           }
           topCmdText += `╰➤------------------------------\n`
         } else {
-          topCmdText += `╭   • Belum ada command\n╰➤------------------------------\n`
+          topCmdText += `╭   • Aún no hay comandos\n╰➤------------------------------\n`
         }
 
         const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
@@ -1117,8 +1117,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver Categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1143,7 +1143,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Peraturan  𐦯",
+                        display_text: "𐔌 Reglas  𐦯",
                         id: `${prefix}rules`
                       })
                     },
@@ -1216,7 +1216,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `╭╮ \`✧ ${toMathSansBold("MENU CATEGORY")}\`\n`;
         const { sorted } = getSortedCategories(m, botMode);
         for (const cat of sorted) {
-          case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} fitur\n`;
+          case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
         }
         case7Text += `╰╯`;
 
@@ -1270,7 +1270,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
                   }
                 },
                 body: { text: case7Text },
-                footer: { text: `Use: ${m?.prefix}menucat <category>\n\nIf you have any questions, please contact the owner.` },
+                footer: { text: `Uso: ${m?.prefix}menucat <categoría>\n\nSi tienes alguna pregunta, contacta al owner.` },
                 contextInfo: {
                   mentionedJid: [m.sender],
                   isForwarded: true,
@@ -1281,7 +1281,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
                     {
                       name: "cta_url",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "🥐 Contact Owner",
+                        display_text: "🥐 Contactar Owner",
                         url: "http://wa.me/" + config.owner.number[0],
                         merchant_url: "http://wa.me/" + config.owner.number[0]
                       })
@@ -1413,7 +1413,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
                 participant: m.sender,
               },
               message: {
-                conversation: "setelin musiknya nya bang"
+                conversation: "Pon la música hermano"
               }
             };
             await sock.sendMessage(m.chat, {

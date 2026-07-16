@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "slot",
   alias: ["slots", "mesin"],
   category: "rpg",
-  description: "Main slot machine gambling",
+  description: "Jugar a la máquina tragamonedas",
   usage: ".slot <bet>",
   example: ".slot 5000",
   isOwner: false,
@@ -25,11 +25,11 @@ async function handler(m, { sock }) {
   let bet = parseInt(args[0]);
 
   if (!bet || bet < 1000) {
-    return m.reply(`Taruhan minimal buat narik tuas slot ini *Rp 1.000* bro! 🎰\nContoh: \`.slot 5000\``);
+    return m.reply(`¡La apuesta mínima para esta máquina es *Rp 1.000*, bro! 🎰\nEjemplo: \`.slot 5000\``);
   }
 
   if ((user.koin || 0) < bet) {
-    return m.reply(`Koin lu kering kerontang! 💸\nUang lu: *Rp ${(user.koin || 0).toLocaleString("id-ID")}*\nButuh: *Rp ${bet.toLocaleString("id-ID")}*`);
+    return m.reply(`¡Tus monedas están secas! 💸\nTu dinero: *Rp ${(user.koin || 0).toLocaleString("id-ID")}*\nNecesitas: *Rp ${bet.toLocaleString("id-ID")}*`);
   }
 
   user.koin -= bet;
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
   const result = [spin(), spin(), spin()];
 
-  await sendRpgPreview(sock, m.chat, `🎰 *TREK TREK TREK...* Tuas ditarik! Mesin slot berputar cepat...`, "🎰 MESIN SLOT", "Spin!", {
+  await sendRpgPreview(sock, m.chat, `🎰 *TREK TREK TREK...* ¡Palanca tirada! La máquina gira rápidamente...`, "🎰 MÁQUINA TRAGAMONEDAS", "¡Girar!", {
     quoted: m,
   });
   await new Promise((r) => setTimeout(r, 2500));
@@ -60,35 +60,35 @@ async function handler(m, { sock }) {
   if (result[0] === result[1] && result[1] === result[2]) {
     if (result[0] === "7️⃣") {
       multiplier = 10;
-      winText = "GILA!! JACKPOT 777!! 🎉💸 (10x Lipat)";
+      winText = "¡¡LOCURA!! ¡¡JACKPOT 777!! 🎉💸 (x10)";
     } else if (result[0] === "💎") {
       multiplier = 5;
-      winText = "MANTAP! SUPER DIAMOND!! 💎✨ (5x Lipat)";
+      winText = "¡¡INCREÍBLE! ¡¡SÚPER DIAMANTE!! 💎✨ (x5)";
     } else {
       multiplier = 3;
-      winText = "ASIK! TRIPLE COMBO!! 🍒🎰 (3x Lipat)";
+      winText = "¡¡GENIAL! ¡¡TRIPLE COMBO!! 🍒🎰 (x3)";
     }
   } else if (result[0] === result[1] || result[1] === result[2] || result[0] === result[2]) {
     multiplier = 1.5;
-    winText = "LUMAYAN LAH! DOUBLE!! 👍 (1.5x Lipat)";
+    winText = "¡BIEN! ¡DOBLE! 👍 (x1.5)";
   }
 
   const winnings = Math.floor(bet * multiplier);
   user.koin = (user.koin || 0) + winnings;
 
-  let txt = `🎰 *HASIL MESIN SLOT* 🎰\n\n`;
+  let txt = `🎰 *RESULTADO DE LA MÁQUINA* 🎰\n\n`;
   txt += `[ ${result[0]} | ${result[1]} | ${result[2]} ]\n\n`;
 
   if (multiplier > 0) {
     txt += `${winText}\n`;
-    txt += `💰 Uang Cair: *+Rp ${winnings.toLocaleString("id-ID")}*\n`;
+    txt += `💰 Ganancia: *+Rp ${winnings.toLocaleString("id-ID")}*\n`;
   } else {
-    txt += `ZONK!! Duit lu ditelan mesin slot! 😭💸\n`;
-    txt += `💸 Uang Hangus: *-Rp ${bet.toLocaleString("id-ID")}*\n`;
+    txt += `¡¡TRUENO! ¡La máquina se comió tu dinero! 😭💸\n`;
+    txt += `💸 Dinero Perdido: *-Rp ${bet.toLocaleString("id-ID")}*\n`;
   }
 
   db.save();
-  await sendRpgPreview(sock, m.chat, txt, "🎰 RESULT", "Selesai", { quoted: m });
+  await sendRpgPreview(sock, m.chat, txt, "🎰 RESULTADO", "Listo", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

@@ -18,7 +18,7 @@ const pluginConfig = {
   name: "pinvid",
   alias: ["pinvideo", "pinterestv", "pinv"],
   category: "search",
-  description: "Search video Pinterest (album)",
+  description: "Buscar video de Pinterest (álbum)",
   usage: ".pinvid <query>",
   example: ".pinvid anime",
   isOwner: false,
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
   if (!query) {
     return m.reply(
       `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴠɪᴅᴇᴏ sᴇᴀʀᴄʜ*\n\n` +
-        `> Masukkan query pencarian\n\n` +
+        `> Ingresa la palabra clave de búsqueda\n\n` +
         `\`${m.prefix}pinvid anime\``,
     );
   }
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
     if (!res.data?.status || !res.data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const videos = res.data.data.slice(0, 5);
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Gagal mengunduh video`);
+      return m.reply(`❌ Error al descargar el video`);
     }
 
     m.react("📤");

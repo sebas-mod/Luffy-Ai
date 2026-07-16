@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "anticall",
   alias: ["antitelpon", "antitelp", "rejectcall"],
   category: "owner",
-  description: "Rechaza automáticamente las llamadas entrantes",
+  description: "Rechaza automáticamente las llamhays entrantes",
   usage: ".anticall on/off",
   example: ".anticall on",
   isOwner: true,
@@ -28,9 +28,9 @@ async function handler(m, { sock }) {
       `📞 *Anti Call*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
         `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticall on* — Aktifkan\n` +
-        `> *${m.prefix}anticall off* — Nonaktifkan\n\n` +
-        `_Bot akan otomatis menolak panggilan masuk_`
+        `> *${m.prefix}anticall on* — Activokan\n` +
+        `> *${m.prefix}anticall off* — Nonactivokan\n\n` +
+        `_Bot va a automáticamente menolak panggilan masuk_`
     );
   }
 
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     db.setting("antiCall", true);
     const ctx = saluranCtx();
     return m.reply(
-      `📞 *Anti Call Aktif*\n\n` +
-        `> Bot akan otomatis menolak panggilan masuk`,
+      `📞 *Anti Call Activo*\n\n` +
+        `> Bot va a automáticamente menolak panggilan masuk`,
       { contextInfo: ctx }
     );
   }
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("antiCall", false);
     return m.reply(
-      `📞 *Anti Call Nonaktif*\n\n` +
-        `> Bot tidak akan menolak panggilan masuk`
+      `📞 *Anti Call Nonactivo*\n\n` +
+        `> Bot no va a menolak panggilan masuk`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}anticall on* atau *${m.prefix}anticall off*`
+    `❌ *Opsi No Valid*\n\n> Usa *${m.prefix}anticall on* o *${m.prefix}anticall off*`
   );
 }
 

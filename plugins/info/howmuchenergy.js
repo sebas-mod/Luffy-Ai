@@ -5,7 +5,7 @@ const config = {
   name: "howmuchenergy",
   alias: ["cekenergi"],
   category: "info",
-  description: "Mengecek penggunaan energi banyak fitur sekaligus",
+  description: "Verificar el consumo de energía de múltiples funciones a la vez",
   usage: ".howmuchenergy <nama_fitur1> <nama_fitur2> ...",
   example: ".howmuchenergy hd jpm",
   isOwner: false,
@@ -20,14 +20,14 @@ const config = {
 async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
-      `🔍 *PENGECEKAN ENERGI FITUR*\n\n` +
-      `Sistem untuk mengetahui berapa besar potongan energi yang dibutuhkan untuk menggunakan satu atau banyak fitur sekaligus.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}howmuchenergy <nama_fitur1> <nama_fitur2> ...*\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `🔍 *VERIFICACIÓN DE ENERGÍA DE FUNCIONES*\n\n` +
+      `Sistema para saber cuánta energía se necesita para usar una o varias funciones a la vez.\n\n` +
+      `*USO:*\n` +
+      `- *${m.prefix}howmuchenergy <nombre_funcion1> <nombre_funcion2> ...*\n\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}howmuchenergy hd jpm*\n\n` +
-      `*PENJELASAN:*\n` +
-      `Masukkan perintah beserta satu atau banyak nama fitur yang ingin kamu cek. Pisahkan dengan spasi.`
+      `*EXPLICACIÓN:*\n` +
+      `Ingresa el comando junto con uno o varios nombres de funciones que quieras verificar. Sepáralos con espacios.`
     );
   }
 
@@ -36,14 +36,14 @@ async function handler(m, { sock }) {
   const db = getDatabase();
   const overrides = db.setting("capenergi") || {};
   
-  let responseText = `🔋 *DETAIL ENERGI FITUR*\n\n`;
+  let responseText = `🔋 *DETALLE DE ENERGÍA DE FUNCIONES*\n\n`;
   
   for (const cmd of m.args) {
     const targetCommand = cmd.toLowerCase();
     const plugin = getPlugin(targetCommand);
     
     if (!plugin) {
-      responseText += `❌ *${targetCommand}* : Tidak ditemukan!\n\n`;
+      responseText += `❌ *${targetCommand}* : ¡No encontrado!\n\n`;
       continue;
     }
     

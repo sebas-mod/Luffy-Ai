@@ -10,8 +10,8 @@ const pluginConfig = {
     name: 'tovideo',
     alias: ['tovid', 'stickertovideo', 'giftomp4', 'webmtomp4'],
     category: 'tools',
-    description: 'Mengubah sticker animasi menjadi video MP4',
-    usage: '.tovideo (reply/caption sticker animasi)',
+    description: 'Convertir sticker animado a video MP4',
+    usage: '.tovideo (responder/caption sticker animado)',
     example: '.tovideo',
     isOwner: false,
     isPremium: false,
@@ -114,10 +114,10 @@ async function handler(m, { sock }) {
     if (!downloadFn) {
         return m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak ada sticker yang terdeteksi!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> 1. Kirim sticker + caption \`${m.prefix}tovideo\`\n` +
-            `> 2. Reply sticker dengan \`${m.prefix}tovideo\``
+            `> ¡No se detectó ningún sticker!\n\n` +
+            `*Cómo usar:*\n` +
+            `> 1. Envía sticker + caption \`${m.prefix}tovideo\`\n` +
+            `> 2. Responde a sticker con \`${m.prefix}tovideo\``
         )
     }
 
@@ -128,7 +128,7 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat mengunduh sticker.`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudo descargar el sticker.`)
         }
 
         const animated = isAnimatedWebp(buffer)
@@ -138,7 +138,7 @@ async function handler(m, { sock }) {
             const pngBuffer = await sharp(buffer).png().toBuffer()
             await sock.sendMessage(m.chat, {
                 image: pngBuffer,
-                caption: `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Sticker statis → gambar`
+                caption: `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Sticker estático → imagen`
             }, { quoted: m })
             await m.react('✅')
             return
@@ -146,14 +146,14 @@ async function handler(m, { sock }) {
         const gifBuffer = await webpToGif(buffer)
         if (!gifBuffer) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Sticker tidak bisa dikonversi (tidak animated)`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El sticker no se puede convertir (no es animado)`)
         }
 
         const mp4Buffer = await gifToMp4(gifBuffer)
 
         if (!mp4Buffer || mp4Buffer.length < 100) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Video output kosong`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El video de salida está vacío`)
         }
 
         await sock.sendMedia(m.chat, mp4Buffer, null, m, {

@@ -1,7 +1,7 @@
 import config from '../../config.js'
 /**
  * @file plugins/owner/self.js
- * @description Plugin untuk mengaktifkan mode self (hanya owner & bot)
+ * @description Plugin para activar modo privado (solo owner y bot)
  */
 import { getDatabase } from '../../src/lib/ourin-database.js'
 import te from '../../src/lib/ourin-error.js'
@@ -28,11 +28,11 @@ async function handler(m, { sock }) {
     try {
         const isRealOwner = validateOwner(m);
         if (!isRealOwner) {
-            return await m.reply('🚫 *ᴀᴋsᴇs ᴅɪᴛᴏʟᴀᴋ*\n\n> Hanya owner yang bisa mengubah mode bot!');
+            return await m.reply('🚫 *ᴀᴋsᴇs ᴅɪᴛᴏʟᴀᴋ*\n\n> ¡Solo el dueño puede cambiar el modo del bot!');
         }
         const currentMode = config.mode;
         if (currentMode === 'self') {
-            return await m.reply('ℹ️ Bot sudah dalam mode *self*');
+            return await m.reply('ℹ️ Bot ya en mode *self*');
         }
         config.mode = 'self';
         const db = getDatabase();
@@ -40,10 +40,10 @@ async function handler(m, { sock }) {
         db.save();
         
         const responseText = `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Bot sekarang hanya merespon:\n` +
+            `> Bot ahora solo merespon:\n` +
             `> • Owner bot\n` +
             `> • Bot sendiri (fromMe)\n\n` +
-            `_Gunakan .public untuk membuka akses_`;
+            `_Usa .public para abriendo akses_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to SELF by ${m.pushName} (${m.sender})`);
     } catch (error) {

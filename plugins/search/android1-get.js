@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "android1-get",
   alias: ["an1get", "an1dl"],
   category: "search",
-  description: "Download APK dari Android1",
+  description: "Descargar APK desde Android1",
   usage: ".android1-get <url>",
   example: ".android1-get https://an1.com/xxx",
   isOwner: false,
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
   const url = m.text?.trim();
 
   if (!url || !url.includes("an1.com")) {
-    return m.reply(`❌ URL tidak valid! Harus URL dari an1.com`);
+    return m.reply(`❌ ¡URL no válida! Debe ser una URL de an1.com`);
   }
 
   m.react("🕕");
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
 
       m.react("✅");
     } else {
-      let caption = `> ⚠️ Download URL tidak tersedia`;
+      let caption = `> ⚠️ URL de descarga no disponible`;
 
       await sock.sendMessage(
         m.chat,

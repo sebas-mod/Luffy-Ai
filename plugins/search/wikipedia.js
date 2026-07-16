@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "wikipedia",
   alias: ["wiki", "wp"],
   category: "search",
-  description: "Mencari artikel lengkap dari Wikipedia",
+  description: "Buscar artículo completo de Wikipedia",
   usage: ".wikipedia <query>",
   example: ".wikipedia Rendang",
   isOwner: false,
@@ -189,7 +189,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Masukkan kata kunci pencarian Wikipedia.\n\nContoh: `.wikipedia Indonesia`");
+    return m.reply("❌ Ingresa la palabra clave de búsqueda en Wikipedia.\n\nEjemplo: `.wikipedia Indonesia`");
   }
 
   await m.react("🕕");
@@ -199,7 +199,7 @@ async function handler(m, { sock }) {
 
     if (!search.results.length) {
       await m.react("❌");
-      return m.reply(`⚠️ Artikel tentang *${query}* tidak ditemukan di Wikipedia.`);
+      return m.reply(`⚠️ El artículo sobre *${query}* no se encontró en Wikipedia.`);
     }
 
     const first = search.results[0];
@@ -207,12 +207,12 @@ async function handler(m, { sock }) {
     const r = detail.article;
 
     let text = `📚 *WIKIPEDIA SEARCH* 📚\n\n`;
-    text += `*Judul:* ${r.Title}\n`;
-    if (r.Description) text += `*Deskripsi:* ${r.Description}\n`;
-    text += `\n*Ringkasan:*\n${r.Extract || "Tidak ada ringkasan tersedia."}\n\n`;
+    text += `*Título:* ${r.Title}\n`;
+    if (r.Description) text += `*Descripción:* ${r.Description}\n`;
+    text += `\n*Resumen:*\n${r.Extract || "No hay resumen disponible."}\n\n`;
 
     if (Object.keys(r.Infobox).length > 0) {
-      text += `*Info Tambahan:*\n`;
+      text += `*Información Adicional:*\n`;
       let count = 0;
       for (const [key, val] of Object.entries(r.Infobox)) {
         if (count >= 5) break;
@@ -222,7 +222,7 @@ async function handler(m, { sock }) {
       text += `\n`;
     }
 
-    text += `\n🔗 *Selengkapnya:* ${r.Url}`;
+    text += `\n🔗 *Más información:* ${r.Url}`;
 
     if (r.Images && r.Images.length > 0) {
       await sock.sendMessage(m.chat, {
@@ -238,7 +238,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Wikipedia Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mencari artikel di Wikipedia.");
+    m.reply("😔 Ocurrió un error al buscar el artículo en Wikipedia.");
   }
 }
 

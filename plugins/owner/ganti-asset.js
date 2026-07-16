@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const isMedia = isImage || isVideo || isAudio || isDocument;
 
         if (!isMedia) {
-            return m.reply(`🖼️ *ɢᴀɴᴛɪ ᴀssᴇᴛ*\n\n> Silakan reply media (gambar/video/audio/document) dengan pesan \`${m.prefix}ganti-asset\``);
+            return m.reply(`🖼️ *ɢᴀɴᴛɪ ᴀssᴇᴛ*\n\n> Por favor reply media (imagen/video/audio/document) con mensaje \`${m.prefix}ganti-asset\``);
         }
 
         m.react('🕕');
@@ -45,13 +45,13 @@ async function handler(m, { sock }) {
         }
 
         if (!buffer) {
-            return m.reply('❌ Gagal mendownload media.');
+            return m.reply('❌ Error al descargar media.');
         }
 
         const assets = config.assets || {};
         const keys = Object.keys(assets);
         if (keys.length === 0) {
-            return m.reply('❌ Tidak ada asset di config.js.');
+            return m.reply('❌ No hay assets en config.js.');
         }
 
         const imageKeys = [];
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         const orderedKeys = [...imageKeys, ...videoKeys, ...audioKeys, ...fontKeys, ...otherKeys];
 
         let listText = `📂 *PILIH ASSET YANG INGIN DIGANTI*\n\n`;
-        listText += `_Silakan reply pesan ini dengan nomor (1-${orderedKeys.length})_\n\n`;
+        listText += `_Por favor reply mensaje esto con número (1-${orderedKeys.length})_\n\n`;
 
         let idx = 1;
         if (imageKeys.length > 0) {
@@ -149,7 +149,7 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     if (num < 1 || num > session.keys.length) {
         if (m.quoted && m.quoted.fromMe) {
-            await m.reply(`❌ Nomor tidak valid. Pilih antara 1-${session.keys.length}.`);
+            await m.reply(`❌ Número no válido. Pilih antara 1-${session.keys.length}.`);
         }
         return false;
     }
@@ -162,19 +162,19 @@ async function gantiAssetAnswerHandler(m, sock) {
     const isFontUpload = session.isFontUpload;
 
     if (session.imageKeys && session.imageKeys.includes(selectedKey) && !isImageUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file gambar (Image).`);
+        await m.reply(`❌ ¡El formato no es adecuado!\n> Asset *${selectedKey}* membutuhkan file imagen (Image).`);
         return true;
     }
     if (session.videoKeys && session.videoKeys.includes(selectedKey) && !isVideoUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file video.`);
+        await m.reply(`❌ Format no sesuai!\n> Asset *${selectedKey}* membutuhkan file video.`);
         return true;
     }
     if (session.audioKeys && session.audioKeys.includes(selectedKey) && !isAudioUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file audio.`);
+        await m.reply(`❌ Format no sesuai!\n> Asset *${selectedKey}* membutuhkan file audio.`);
         return true;
     }
     if (session.fontKeys && session.fontKeys.includes(selectedKey) && !isFontUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file dokumen font (.ttf/.otf).`);
+        await m.reply(`❌ Format no sesuai!\n> Asset *${selectedKey}* membutuhkan file documento font (.ttf/.otf).`);
         return true;
     }
 
@@ -189,12 +189,12 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     try {
         const newPath = await updateAssetUrl(selectedKey, session.buffer, filename);
-        await m.reply(`✅ *BERHASIL*\n\n> Asset *${selectedKey}* telah diganti ke:\n> ${newPath}\n> Config telah diupdate secara realtime!`);
+        await m.reply(`✅ *BERHASIL*\n\n> Asset *${selectedKey}* ha sido cambiado a:\n> ${newPath}\n> Config ha sido actualizado en tiempo real!`);
         delete global.gantiAssetSessions[m.chat];
         await m.react('✅');
     } catch (e) {
         await m.react('❌');
-        await m.reply(`❌ Gagal mengganti asset: ${e.message}`);
+        await m.reply(`❌ Error al cambiar el asset: ${e.message}`);
     }
 
     return true;

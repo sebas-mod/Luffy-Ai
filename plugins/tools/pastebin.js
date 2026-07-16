@@ -5,9 +5,9 @@ const pluginConfig = {
   name: "pastebin",
   alias: ["paste", "pb"],
   category: "tools",
-  description: "Upload teks ke Pastebin",
-  usage: ".pastebin <text>",
-  example: '.pastebin console.log("Hello World")',
+  description: "Subir texto a Pastebin",
+  usage: ".pastebin <texto>",
+  example: '.pastebin console.log("Hola Mundo")',
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -27,17 +27,17 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📋 *ᴘᴀsᴛᴇʙɪɴ ᴜᴘʟᴏᴀᴅ*\n\n` +
-        `Kirim teks untuk di-upload ke Pastebin.\n\n` +
-        `*Cara pakai:*\n` +
-        `• \`${m.prefix}pastebin <text>\`\n` +
-        `• Reply teks dengan \`${m.prefix}pastebin\`\n\n` +
-        `> Contoh: \`${m.prefix}pastebin console.log("Hello")\``,
+        `Envía texto para subir a Pastebin.\n\n` +
+        `*Cómo usar:*\n` +
+        `• \`${m.prefix}pastebin <texto>\`\n` +
+        `• Responde a texto con \`${m.prefix}pastebin\`\n\n` +
+        `> Ejemplo: \`${m.prefix}pastebin console.log("Hola")\``,
     );
   }
 
   const api_dev_key = "h9WMT2Mn9QW-qDhvUSc-KObqAYcjI0he";
   const api_paste_code = text.trim();
-  const api_paste_name = `Paste dari ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
+  const api_paste_name = `Pegado de ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
 
   const data = new URLSearchParams({
     api_dev_key,
@@ -64,13 +64,13 @@ async function handler(m, { sock }) {
     }
 
     const responseText =
-      `✅ *ᴘᴀsᴛᴇʙɪɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-      `┃ 📝 ᴊᴜᴅᴜʟ: *${api_paste_name}*\n` +
-      `┃ 📊 ᴜᴋᴜʀᴀɴ: *${text.length} chars*\n` +
+      `✅ *ᴘᴀsᴛᴇʙɪɴ ᴇxɪᴛᴏsᴏ*\n\n` +
+      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇs* 」\n` +
+      `┃ 📝 ᴛɪᴛᴜʟᴏ: *${api_paste_name}*\n` +
+      `┃ 📊 ᴛᴀᴍᴀñᴏ: *${text.length} chars*\n` +
       `┃ 🔗 ʟɪɴᴋ: ${url}\n` +
       `╰┈┈⬡\n\n` +
-      `> Paste akan expired sesuai pengaturan Pastebin.`;
+      `> El pegado expirará según la configuración de Pastebin.`;
     await sendToolsPreview(
       sock,
       m.chat,

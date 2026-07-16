@@ -8,8 +8,8 @@ const pluginConfig = {
     name: 'attp',
     alias: ['attp2', 'attp3'],
     category: 'sticker',
-    description: 'Membuat sticker animated text',
-    usage: '.attp <teks>',
+    description: 'Crear sticker de texto animado',
+    usage: '.attp <texto>',
     example: '.attp Hello World',
     isOwner: false,
     isPremium: false,
@@ -31,12 +31,12 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🎨 *ᴀɴɪᴍᴀᴛᴇᴅ ᴛᴇxᴛ sᴛɪᴄᴋᴇʀ*\n\n` +
-            `> Masukkan teks untuk sticker\n\n` +
-            `> Contoh: \`${m.prefix}attp Hello World\``
+            `> Ingresa el texto para el sticker\n\n` +
+            `> Ejemplo: \`${m.prefix}attp Hello World\``
         )
     }
     if (text.length > 100) {
-        return m.reply(`❌ Teks terlalu panjang! Maksimal 100 karakter.`)
+        return m.reply(`❌ ¡Texto demasiado largo! Máximo 100 caracteres.`)
     }
     m.react('🕕')
     try {
@@ -44,11 +44,11 @@ async function handler(m, { sock }) {
         const url = `https://api.neoxr.eu/api/attp3?text=${encodeURIComponent(text)}&color=${color}&apikey=${NEOXR_APIKEY}`
         const data = await f(url)
         if (!data?.status || !data?.data?.url) {
-            throw new Error('API tidak mengembalikan data yang valid')
+            throw new Error('La API no devolvió datos válidos')
         }
         const stickerUrl = data.data.url
         const stickerRes = await f(stickerUrl, 'buffer')
-        if (!stickerRes) throw new Error('Gagal mengunduh sticker dari server')
+        if (!stickerRes) throw new Error('Error al descargar el sticker del servidor')
         let finalSticker = stickerRes
         try {
             finalSticker = await addExifToWebp(stickerRes, {

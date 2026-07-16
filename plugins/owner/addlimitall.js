@@ -6,7 +6,7 @@ const pluginConfig = {
     alias: ['addenergianall', 'bonusenergiall'],
     category: 'owner',
     description: 'Añade límite/energía a todos los miembros del grupo',
-    usage: '.addenergiall <jumlah>',
+    usage: '.addenergiall <cantidad>',
     example: '.addenergiall 50',
     isOwner: true,
     isPremium: false,
@@ -22,14 +22,14 @@ async function handler(m, { sock }) {
         const amount = parseInt(m.args[0])
         
         if (isNaN(amount) || amount <= 0) {
-            return m.reply(`⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n> Masukkan jumlah limit yang ingin ditambahkan.\n\n\`Contoh: ${m.prefix}addlimitall 50\``)
+            return m.reply(`⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n> Ingresa la cantidad de límite que quieres agregar.\n\n\`Ejemplo: ${m.prefix}addlimitall 50\``)
         }
         
         const groupMeta = m.groupMetadata
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No hay miembros en este grupo`)
         }
         
         await m.react('🕕')
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         await db.save()
         await m.react('⚡')
         await m.reply(
-           `✅ Berhasil menambahkan limit ke semua member ( Total *${successCount}* Member ) di grup *${gb?.subject}*`,
+           `✅ Éxito agregando limit a todos los miembros ( Total *${successCount}* Member ) en el grupo *${gb?.subject}*`,
             )
         
     } catch (error) {

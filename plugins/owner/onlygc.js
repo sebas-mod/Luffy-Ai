@@ -26,9 +26,9 @@ async function handler(m, { sock }) {
       `🏘️ *Only Group*\n\n` +
         `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
         `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}onlygc on* — Bot hanya bisa diakses di grup\n` +
-        `> *${m.prefix}onlygc off* — Bot bisa diakses di mana saja\n\n` +
-        `_Jika aktif, mode Only Private akan otomatis nonaktif_`
+        `> *${m.prefix}onlygc on* — Bot solo puede diakses en el grupo\n` +
+        `> *${m.prefix}onlygc off* — Bot puede diakses di mana saja\n\n` +
+        `_Si activo, mode Only Private va a automáticamente nonactivo_`
     );
   }
 
@@ -38,9 +38,9 @@ async function handler(m, { sock }) {
     db.save();
     await m.react("✅");
     return m.reply(
-      `🏘️ *Only Group Aktif*\n\n` +
-        `> Bot hanya bisa diakses di grup\n` +
-        `> Mode Only Private dinonaktifkan`
+      `🏘️ *Only Group Activo*\n\n` +
+        `> Bot solo puede diakses en el grupo\n` +
+        `> Mode Only Private dinonactivokan`
     );
   }
 
@@ -49,13 +49,13 @@ async function handler(m, { sock }) {
     db.save();
     await m.react("❌");
     return m.reply(
-      `🏘️ *Only Group Nonaktif*\n\n` +
-        `> Bot bisa diakses di mana saja`
+      `🏘️ *Only Group Nonactivo*\n\n` +
+        `> Bot puede diakses di mana saja`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}onlygc on* atau *${m.prefix}onlygc off*`
+    `❌ *Opsi No Valid*\n\n> Usa *${m.prefix}onlygc on* o *${m.prefix}onlygc off*`
   );
 }
 

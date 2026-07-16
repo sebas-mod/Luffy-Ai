@@ -49,7 +49,7 @@ const pluginConfig = {
   name: "dafont",
   alias: ["nerdfont", "font"],
   category: "search",
-  description: "Cari font di DaFont",
+  description: "Buscar fuente en DaFont",
   usage: ".dafont <query>",
   example: ".dafont Coolvetica",
   isOwner: false,
@@ -83,16 +83,16 @@ async function handler(m, { sock }) {
     await sock.sendMessage(
       m.chat,
       {
-        text: "Silahkan pilih font yang ingin kamu download",
-        footer: "Click tombol di bawah ini",
+        text: "Por favor, elige la fuente que quieres descargar",
+        footer: "Haz clic en el botón de abajo",
         interactiveButtons: [
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: `Pilih Font Disini`,
+              title: `Elige Fuente Aquí`,
               sections: [
                 {
-                  title: "Aku harap, font ini dapat membantu kamu",
+                  title: "Espero que esta fuente te sea de ayuda",
                   highlight_label: "Font Pilihan",
                   rows: rows,
                 },

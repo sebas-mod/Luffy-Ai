@@ -8,7 +8,7 @@ const pluginConfig = {
   alias: ["kuranglevel", "removelevel", "dellvl"],
   category: "owner",
   description: "Reduce el nivel de un usuario (mediante experiencia)",
-  usage: ".dellevel <jumlah> @user",
+  usage: ".dellevel <cantidad> @user",
   example: ".dellevel 5 @user",
   isOwner: true,
   isPremium: false,
@@ -42,10 +42,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `📊 *ᴅᴇʟ ʟᴇᴠᴇʟ*\n\n` +
         `╭┈┈⬡「 📋 *ᴜsᴀɢᴇ* 」\n` +
-        `┃ > \`.dellevel <jumlah>\` - ke diri sendiri\n` +
-        `┃ > \`.dellevel <jumlah> @user\` - ke orang lain\n` +
+        `┃ > \`.dellevel <cantidad>\` - a uno mismo\n` +
+        `┃ > \`.dellevel <cantidad> @user\` - a orang otro\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Contoh: \`${m.prefix}dellevel 5\``,
+        `> Ejemplo: \`${m.prefix}dellevel 5\``,
     );
   }
 

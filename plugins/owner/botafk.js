@@ -4,9 +4,9 @@ const pluginConfig = {
     name: 'botafk',
     alias: ['afkbot', 'afkmode'],
     category: 'owner',
-    description: 'Mode AFK untuk bot - bot tidak merespon command, hanya reply pesan AFK',
+    description: 'Mode AFK para bot - bot no merespon command, solo reply mensaje AFK',
     usage: '.botafk <alasan>',
-    example: '.botafk Lagi istirahat',
+    example: '.botafk De nuevo istirahat',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -54,10 +54,10 @@ async function handler(m, { sock }) {
             `╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n` +
             `┃ ✅ Owner bot\n` +
             `┃ ✅ Bot sendiri (fromMe)\n` +
-            `┃ ❌ Semua user lain\n` +
+            `┃ ❌ Todos user otro\n` +
             `╰┈┈⬡\n\n` +
-            `> User lain akan dapat pesan AFK\n` +
-            `> Ketik \`${m.prefix}botafk\` untuk kembali online`
+            `> User otro va a puede mensaje AFK\n` +
+            `> Escribe \`${m.prefix}botafk\` para ambali online`
         )
     }
 }
@@ -69,9 +69,9 @@ function formatDuration(ms) {
     const days = Math.floor(hours / 24)
     
     if (days > 0) return `${days} hari ${hours % 24} jam`
-    if (hours > 0) return `${hours} jam ${minutes % 60} menit`
-    if (minutes > 0) return `${minutes} menit ${seconds % 60} detik`
-    return `${seconds} detik`
+    if (hours > 0) return `${hours} jam ${minutes % 60} minuto`
+    if (minutes > 0) return `${minutes} minuto ${seconds % 60} segundo`
+    return `${seconds} segundo`
 }
 
 export { pluginConfig as config, handler }

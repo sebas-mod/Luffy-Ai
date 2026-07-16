@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "casino",
   alias: ["judi", "gamble"],
   category: "rpg",
-  description: "Bermain casino untuk judi",
+  description: "Jugar en el casino para apostar",
   usage: ".casino <jumlah>",
   example: ".casino 10000",
   isOwner: false,
@@ -24,13 +24,13 @@ async function handler(m, { sock }) {
   let bet = args[0];
 
   if (!bet) {
-    let txt = `🎰 *LAS VEGAS KELILING* 🎰\n\n`;
-    txt += `Selamat datang di Kasino! Mau ngadu nasib sama bandar?\n\n`;
-    txt += `*Cara Taruhan:*\n`;
-    txt += `👉 \`${m.prefix}casino <jumlah>\`\n\n`;
-    txt += `Contoh:\n`;
+    let txt = `🎰 *LAS VEGAS MÓVIL* 🎰\n\n`;
+    txt += `¡Bienvenido al Casino! ¿Quieres competir contra la casa?\n\n`;
+    txt += `*Cómo Apostar:*\n`;
+    txt += `👉 \`${m.prefix}casino <cantidad>\`\n\n`;
+    txt += `Ejemplo:\n`;
     txt += `👉 \`${m.prefix}casino 10000\`\n`;
-    txt += `👉 \`${m.prefix}casino all\` (Nekat bener!)`;
+    txt += `👉 \`${m.prefix}casino all\` (¡Te vas a lo loco!)`;
     return m.reply(txt);
   }
 
@@ -41,15 +41,15 @@ async function handler(m, { sock }) {
   }
 
   if (isNaN(bet) || bet < 1000) {
-    return m.reply(`Hadeh... mau judi kok modal receh? 💸\nMinimal taruhan di sini *Rp 1.000* bro!`);
+    return m.reply(`Vaya... ¿apostar con monedas? 💸\n¡La apuesta mínima aquí es *Rp 1.000*, tío!`);
   }
 
   if (bet > (user.koin || 0)) {
-    return m.reply(`Jangan ngutang bos! 😂\nUang lu cuma *Rp ${(user.koin || 0).toLocaleString("id-ID")}* tapi sok-sokan taruhan *Rp ${bet.toLocaleString("id-ID")}*.\nSana kerja dulu!`);
+    return m.reply(`¡No pidas prestado, jefe! 😂\nSolo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}* pero pretendes apostar *Rp ${bet.toLocaleString("id-ID")}*.\n¡Ve a trabajar primero!`);
   }
 
   await m.react("🎰");
-  await m.reply(`🎲 Bandar mengocok dadu dan memutar roda Roulette... Tahan napas lu!`);
+  await m.reply(`🎲 El dealer mezcla los dados y gira la ruleta... ¡Respira hondo!`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const playerScore = Math.floor(Math.random() * 100);
@@ -58,40 +58,40 @@ async function handler(m, { sock }) {
   let result, emoji, moneyChange, bandarTaunt;
 
   if (playerScore > botScore) {
-    result = "MENANG!";
+    result = "¡GANASTE!";
     emoji = "🎉";
     moneyChange = bet;
     user.koin = (user.koin || 0) + bet;
-    bandarTaunt = `"Cih! Kebetulan doang lu hoki kali ini." - *Bandar* 😒`;
+    bandarTaunt = `"¡Cih! Solo tuviste suerte esta vez." - *Dealer* 😒`;
   } else if (playerScore < botScore) {
-    result = "KALAH TELAK!";
+    result = "¡DERROTA ABSOLUTA!";
     emoji = "💸";
     moneyChange = -bet;
     user.koin = (user.koin || 0) - bet;
-    bandarTaunt = `"AHAHA! Udah miskin makin miskin lu! Pulang sana!" - *Bandar* 😈`;
+    bandarTaunt = `"¡JAJAJA! ¡Eras pobre y ahora más pobre! ¡Lárgate!" - *Dealer* 😈`;
   } else {
-    result = "SERI!";
+    result = "¡EMPATE!";
     emoji = "🤝";
     moneyChange = 0;
-    bandarTaunt = `"Hoo... Imbang ya? Boleh juga nyali lu." - *Bandar* 👀`;
+    bandarTaunt = `"Hoo... ¿Empate? No está mal tu valentía." - *Dealer* 👀`;
   }
 
   db.save();
 
   await m.react(emoji);
 
-  let txt = `🎰 *MEJA KASINO DITUTUP!* 🎰\n\n`;
-  txt += `*Papan Skor:*\n`;
-  txt += `👤 Poin Lu: *${playerScore}*\n`;
-  txt += `🤖 Poin Bandar: *${botScore}*\n\n`;
-  txt += `*Hasil: ${emoji} ${result}*\n`;
+  let txt = `🎰 *¡¡MESA DEL CASINO CERRADA!!* 🎰\n\n`;
+  txt += `*Marcador:*\n`;
+  txt += `👤 Tus Puntos: *${playerScore}*\n`;
+  txt += `🤖 Puntos del Dealer: *${botScore}*\n\n`;
+  txt += `*Resultado: ${emoji} ${result}*\n`;
   if (moneyChange !== 0) {
-    txt += `Uang Bandar: *${moneyChange > 0 ? "+" : ""}Rp ${moneyChange.toLocaleString("id-ID")}*\n\n`;
+    txt += `Dinero del Dealer: *${moneyChange > 0 ? "+" : ""}Rp ${moneyChange.toLocaleString("id-ID")}*\n\n`;
   } else {
-    txt += `Uang Kembali (Balik Modal)\n\n`;
+    txt += `Dinero devuelto (recuperas tu apuesta)\n\n`;
   }
   txt += `${bandarTaunt}\n\n`;
-  txt += `*Sisa Saldo Lu:* Rp ${(user.koin || 0).toLocaleString("id-ID")}`;
+  txt += `*Tu Saldo:* Rp ${(user.koin || 0).toLocaleString("id-ID")}`;
 
   m.reply(txt);
 }

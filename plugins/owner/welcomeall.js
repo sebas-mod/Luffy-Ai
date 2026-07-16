@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     if (!action || !['on', 'off'].includes(action)) {
         return m.reply(
             `👋 *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ*\n\n` +
-            `> Aktifkan/nonaktifkan welcome di SEMUA grup sekaligus\n\n` +
+            `> Activokan/nonactivokan welcome di SEMUA grup sekaligus\n\n` +
             `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
             `┃ ${m.prefix}welcomeall on\n` +
             `┃ ${m.prefix}welcomeall off\n` +
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
                 `┃ 🌐 Total Grup: *${count}*\n` +
                 `┃ ✅ Welcome: *AKTIF*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Semua member baru akan disambut otomatis!`
+                `> Todos los miembros nuevo va a disambut automáticamente!`
             )
         } else {
             return m.reply(
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
                 `┃ 🌐 Total Grup: *${count}*\n` +
                 `┃ ❌ Welcome: *NONAKTIF*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Welcome dinonaktifkan di semua grup.`
+                `> Welcome dinonactivokan di todos los grupos.`
             )
         }
     } catch (error) {

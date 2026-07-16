@@ -14,7 +14,7 @@ const pluginConfig = {
     alias: ["uploadch", "uploadsaluran", "uch"],
     category: "owner",
   description: "Sube una imagen, audio, video o texto a un canal",
-    usage: ".upch <id saluran> <teks opsional>",
+    usage: ".upch <id saluran> <texto opsional>",
     example: ".upch 12xxx@newsletter Halo!",
     cooldown: 10,
     energi: 0,
@@ -30,7 +30,7 @@ async function toOggOpus(inputBuf) {
     const out = path.join(tmp, `upch_out_${id}.ogg`)
     try {
         fs.writeFileSync(inp, inputBuf)
-        await run(`ffmpeg -y -i "${inp}" -vn -map_metadata -1 -ac 1 -ar 48000 -c:a libopus -b:a 96k -vbr on -application audio -f ogg "${out}"`)
+        await run(`ffmpeg -y -i "${inp}" -vn -map_methayta -1 -ac 1 -ar 48000 -c:a libopus -b:a 96k -vbr on -application audio -f ogg "${out}"`)
         return fs.readFileSync(out)
     } finally {
         try { fs.unlinkSync(inp) } catch {}
@@ -68,13 +68,13 @@ async function handler(m, { sock }) {
     if (!isMedia && !caption) {
         return m.reply(
             `📤 *UPLOAD SALURAN*\n\n` +
-            `Kirim/reply media dengan caption:\n` +
-            `  \`${m.prefix}upch 12xxx@newsletter <teks opsional>\`\n\n` +
+            `Envía/reply media con caption:\n` +
+            `  \`${m.prefix}upch 12xxx@newsletter <texto opsional>\`\n\n` +
             `*Support:*\n` +
-            `  🖼️ Gambar\n` +
+            `  🖼️ Imagen\n` +
             `  🎥 Video\n` +
             `  🎵 Audio/VN\n` +
-            `  📝 Teks (tanpa media)`
+            `  📝 Texto (tanpa media)`
         )
     }
 
@@ -84,11 +84,11 @@ async function handler(m, { sock }) {
         if (!isMedia && caption) {
             await sock.sendMessage(chId, { text: caption })
             await m.react("✅")
-            return m.reply(`✅ Teks berhasil dikirim ke saluran`)
+            return m.reply(`✅ Texto enviado con éxito a saluran`)
         }
 
         const mediaBuf = await downloadMediaMessage(quoted, "buffer", {})
-        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("Media terlalu kecil atau gagal download")
+        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("El media es demasiado pequeño o falló la descarga")
 
         if (isImage) {
             await sock.sendMessage(chId, {
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Gambar berhasil dikirim ke saluran")
+            return m.reply("✅ Imagen enviado con éxito a saluran")
         }
 
         if (isVideo) {
@@ -105,12 +105,12 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Video berhasil dikirim ke saluran")
+            return m.reply("✅ Video enviado con éxito a saluran")
         }
 
         if (isAudio) {
             const opusBuf = await toOggOpus(mediaBuf)
-            if (opusBuf.length < 5000) throw new Error("Konversi opus gagal")
+            if (opusBuf.length < 5000) throw new Error("La conversión a opus falló")
             const waveform = generateWaveform(opusBuf)
             await sock.sendMessage(chId, {
                 audio: opusBuf,
@@ -119,10 +119,10 @@ async function handler(m, { sock }) {
                 waveform: Array.from(waveform)
             })
             await m.react("✅")
-            return m.reply("✅ Audio berhasil dikirim ke saluran")
+            return m.reply("✅ Audio enviado con éxito a saluran")
         }
 
-        m.reply("❌ Tipe media tidak didukung")
+        m.reply("❌ Tipo de media no soportado")
     } catch (e) {
         console.error("[UpCh]", e)
         await m.react("☢")

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "stats",
   alias: ["botstats", "status", "stat"],
   category: "main",
-  description: "Menampilkan statistik bot",
+  description: "Mostrar estadísticas del bot",
   usage: ".stats",
   example: ".stats",
   isOwner: false,
@@ -86,7 +86,7 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
     ];
 
     await sock.sendTableV2(m.chat, table, m, {
-      title: "📊 Berikut ini adalah statistik dari bot kami",
+      title: "📊 Estas son las estadísticas de nuestro bot",
       footer: botConfig?.bot?.name,
     });
   } catch (error) {

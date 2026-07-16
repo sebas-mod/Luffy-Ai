@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "robloxstalk",
   alias: ["rblxstalk", "rbxstalk", "stalkroblox", "stalkrbx"],
   category: "stalker",
-  description: "Stalk akun Roblox berdasarkan username",
+  description: "Rastrear cuenta de Roblox por username",
   usage: ".robloxstalk <username>",
   example: ".robloxstalk Linkmon99",
   isOwner: false,
@@ -24,7 +24,7 @@ async function Roblox(username) {
   const searchJson = await search.json();
 
   if (!searchJson.data || !searchJson.data.length) {
-    return { error: "User tidak ditemukan" };
+    return { error: "Usuario no encontrado" };
   }
 
   const user = searchJson.data[0];
@@ -97,7 +97,7 @@ async function Roblox(username) {
     groups: groups.data,
     games: games.data,
     badges: badges.data,
-    inventory: inventory?.data || "private / tidak tersedia",
+    inventory: inventory?.data || "privado / no disponible",
     presence,
   };
 }
@@ -115,8 +115,8 @@ async function handler(m, { sock }) {
   if (!username) {
     return m.reply(
       `🎮 *ʀᴏʙʟᴏx sᴛᴀʟᴋ*\n\n` +
-        `> Masukkan username Roblox\n\n` +
-        `\`Contoh: ${m.prefix}robloxstalk Linkmon99\``,
+        `> Ingresa el username de Roblox\n\n` +
+        `\`Ejemplo: ${m.prefix}robloxstalk Linkmon99\``,
     );
   }
 
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
 
     if (res.error) {
       m.react("❌");
-      return m.reply(`❌ Username *${username}* tidak ditemukan`);
+      return m.reply(`❌ Username *${username}* no encontrado`);
     }
 
     const topGroups =
@@ -137,25 +137,25 @@ async function handler(m, { sock }) {
           (v) =>
             `  ◦ ${v.group.name} (${v.group.memberCount} members) — ${v.role.name}`,
         )
-        .join("\n") || "  ◦ Tidak ada";
+        .join("\n") || "  ◦ Ninguno";
 
     const topGames =
       res.games
         ?.slice(0, 5)
         .map(
           (v) =>
-            `  ◦ ${v.name} (${(v.placeVisits || 0).toLocaleString()} visits)`,
+            `  ◦ ${v.name} (${(v.placeVisits || 0).toLocaleString()} visitas)`,
         )
-        .join("\n") || "  ◦ Tidak ada";
+        .join("\n") || "  ◦ Ninguno";
 
     const topBadges =
       res.badges
         ?.slice(0, 5)
         .map(
           (v) =>
-            `  ◦ ${v.name} (${v.statistics?.awardedCount?.toLocaleString() || 0} awarded)`,
+            `  ◦ ${v.name} (${v.statistics?.awardedCount?.toLocaleString() || 0} otorgados)`,
         )
-        .join("\n") || "  ◦ Tidak ada";
+        .join("\n") || "  ◦ Ninguno";
 
     const topInventory = Array.isArray(res.inventory)
       ? res.inventory
@@ -168,8 +168,8 @@ async function handler(m, { sock }) {
       : `  ◦ ${res.inventory}`;
 
     const presInfo = res.presence
-      ? `Status: ${presenceType[res.presence.userPresenceType] || res.presence.userPresenceType}\n  Last Location: ${res.presence.lastLocation || "-"}\n  PlaceId: ${res.presence.placeId || "-"}\n  GameId: ${res.presence.gameId || "-"}`
-      : "tidak tersedia";
+      ? `Estado: ${presenceType[res.presence.userPresenceType] || res.presence.userPresenceType}\n  Última Ubicación: ${res.presence.lastLocation || "-"}\n  PlaceId: ${res.presence.placeId || "-"}\n  GameId: ${res.presence.gameId || "-"}`
+      : "no disponible";
 
     const caption =
       `🎮 *ʀᴏʙʟᴏx sᴛᴀʟᴋ*\n\n` +
@@ -177,22 +177,22 @@ async function handler(m, { sock }) {
       `🆔 *ID*: ${res.id}\n` +
       `🎄 *Username*: ${res.username}\n` +
       `📛 *Display*: ${res.displayName}\n` +
-      `✅ *Verified*: ${res.verified ? "Ya" : "Tidak"}\n` +
-      `📅 *Created*: ${res.created ? new Date(res.created).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : "-"}\n` +
+      `✅ *Verificado*: ${res.verified ? "Sí" : "No"}\n` +
+      `📅 *Creado*: ${res.created ? new Date(res.created).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" }) : "-"}\n` +
       `\n` +
       `*SOCIAL*\n` +
-      `👥 *Friends*: ${res.social.friends?.toLocaleString()}\n` +
-      `👤 *Followers*: ${res.social.followers?.toLocaleString()}\n` +
-      `➕ *Following*: ${res.social.following?.toLocaleString()}\n` +
+      `👥 *Amigos*: ${res.social.friends?.toLocaleString()}\n` +
+      `👤 *Seguidores*: ${res.social.followers?.toLocaleString()}\n` +
+      `➕ *Siguiendo*: ${res.social.following?.toLocaleString()}\n` +
       `\n` +
       `*PRESENCE*\n` +
       `${presInfo}\n` +
       `\n\n` +
       `📝 *Bio:*\n${res.description?.substring(0, 300) || "-"}\n` +
-      `👥 *Groups* (${res.groups?.length || 0}):\n${topGroups}\n` +
-      `🎮 *Games* (${res.games?.length || 0}):\n${topGames}\n` +
-      `🏆 *Badges* (${res.badges?.length || 0}):\n${topBadges}\n` +
-      `🎒 *Inventory*:\n${topInventory}\n` +
+      `👥 *Grupos* (${res.groups?.length || 0}):\n${topGroups}\n` +
+      `🎮 *Juegos* (${res.games?.length || 0}):\n${topGames}\n` +
+      `🏆 *Insignias* (${res.badges?.length || 0}):\n${topBadges}\n` +
+      `🎒 *Inventario*:\n${topInventory}\n` +
       `🔗 https://roblox.com/users/${res.id}/profile`;
 
     m.react("✅");

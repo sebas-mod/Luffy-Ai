@@ -6,7 +6,7 @@ const pluginConfig = {
     alias: ['tambahlevel', 'givelevel', 'addlvl'],
     category: 'owner',
     description: 'Añade nivel a un usuario (mediante experiencia)',
-    usage: '.addlevel <jumlah> @user',
+    usage: '.addlevel <cantidad> @user',
     example: '.addlevel 5 @user',
     isOwner: true,
     isPremium: false,
@@ -39,10 +39,10 @@ async function handler(m, { sock }) {
     if (!targetJid || levels <= 0) {
         return m.reply(
             `📊 *ADD LEVEL*\n\n` +
-            `Sistem untuk menambahkan level kepada member secara instan.\n\n` +
+            `Sistema para agregar nivel a un miembro de forma instantánea.\n\n` +
             `*PENGGUNAAN:*\n` +
-            `- *${m.prefix}addlevel <jumlah>* — (ke diri sendiri)\n` +
-            `- *${m.prefix}addlevel <jumlah> @user* — (ke orang lain)\n\n` +
+            `- *${m.prefix}addlevel <cantidad>* — (a uno mismo)\n` +
+            `- *${m.prefix}addlevel <cantidad> @user* — (a orang otro)\n\n` +
             `*CONTOH PENGGUNAAN:*\n` +
             `- *${m.prefix}addlevel 5*\n` +
             `- *${m.prefix}addlevel 10 @user*`
@@ -71,10 +71,10 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *BERHASIL MENAMBAH LEVEL*\n\n` +
-        `Level milik *@${targetJid.split('@')[0]}* telah sukses ditambahkan sebanyak *${levels} Level*.\n\n` +
-        `*Statistik Terkini:*\n` +
-        `- Level Sekarang: *${finalLevel}*\n` +
-        `- Role Saat Ini: *${getRole(finalLevel)}*\n` +
+        `Nivel de *@${targetJid.split('@')[0]}* ha sido exitosamente aumentado por la cantidad de *${levels} Level*.\n\n` +
+        `*Estadísticas:*\n` +
+        `- Level Ahora: *${finalLevel}*\n` +
+        `- Role Cuando Esto: *${getRole(finalLevel)}*\n` +
         `- Total XP: *${user.exp.toLocaleString()}* XP`,
         { mentions: [targetJid] }
     )

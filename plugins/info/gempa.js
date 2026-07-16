@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "gempa",
   alias: ["bmkg", "infogempa", "earthquake"],
   category: "info",
-  description: "Info gempa terkini dari BMKG",
+  description: "Info de terremotos actuales del BMKG",
   usage: ".gempa",
   example: ".gempa",
   isOwner: false,
@@ -32,18 +32,18 @@ async function handler(m, { sock }) {
       : null;
 
     const text =
-      `🌍 *Info Gempa Terkini — BMKG*\n\n` +
-      `> 📅 Tanggal: *${g.Tanggal}*\n` +
-      `> 🕐 Jam: *${g.Jam}*\n` +
-      `> 📐 Koordinat: *${g.Coordinates}*\n` +
-      `> 📍 Lintang: *${g.Lintang}*\n` +
-      `> 📍 Bujur: *${g.Bujur}*\n` +
-      `> 💥 Magnitude: *${g.Magnitude}*\n` +
-      `> 🔽 Kedalaman: *${g.Kedalaman}*\n` +
-      `> 🗺️ Wilayah: *${g.Wilayah}*\n` +
-      `> ⚠️ Potensi: *${g.Potensi}*\n` +
-      `> 🏠 Dirasakan: *${g.Dirasakan}*\n\n` +
-      `_Sumber: BMKG Indonesia_`;
+      `🌍 *Info Terremoto Actual — BMKG*\n\n` +
+      `> 📅 Fecha: *${g.Tanggal}*\n` +
+      `> 🕐 Hora: *${g.Jam}*\n` +
+      `> 📐 Coordenadas: *${g.Coordinates}*\n` +
+      `> 📍 Latitud: *${g.Lintang}*\n` +
+      `> 📍 Longitud: *${g.Bujur}*\n` +
+      `> 💥 Magnitud: *${g.Magnitude}*\n` +
+      `> 🔽 Profundidad: *${g.Kedalaman}*\n` +
+      `> 🗺️ Región: *${g.Wilayah}*\n` +
+      `> ⚠️ Potencial: *${g.Potensi}*\n` +
+      `> 🏠 Sensación: *${g.Dirasakan}*\n\n` +
+      `_Fuente: BMKG Indonesia_`;
 
     await m.react("✅");
 
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     await m.react("☢");
     await m.reply(
-      `❌ *Gagal mengambil data gempa*\n\n> ${e.message || "Coba lagi nanti"}`,
+      `❌ *Error al obtener datos del terremoto*\n\n> ${e.message || "Intenta de nuevo más tarde"}`,
     );
   }
 }

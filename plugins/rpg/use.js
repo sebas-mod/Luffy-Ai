@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "use",
   alias: ["pake", "makan", "open"],
   category: "rpg",
-  description: "Menggunakan item consumable atau membuka crate",
+  description: "Usar objeto consumible o abrir caja",
   usage: ".use <item>",
   example: ".use potion",
   isOwner: false,
@@ -23,12 +23,10 @@ async function handler(m, { sock }) {
 
   if (!itemKey) {
     return m.reply(
-      `🎒 *ᴜsᴇ ɪᴛᴇᴍ*\n\n` +
-      `*📋 *ᴜsᴀɢᴇ:*
-\n` +
-      `> > \`.use <nama_item>\`\n` +
-      `> > Cek inventory: \`.inventory\`\n` +
-      ``,
+      `🎒 *USAR ITEM*\n\n` +
+      `*📋 CÓMO USAR:*\n` +
+      `> > \`.use <nombre_item>\`\n` +
+      `> > Ver inventario: \`.inventory\`\n`,
     );
   }
 
@@ -45,8 +43,8 @@ async function handler(m, { sock }) {
 
   if (count <= 0) {
     return m.reply(
-      `❌ *ɪᴛᴇᴍ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n` +
-      `> Kamu tidak memiliki item *${itemKey}*!\n` +
+      `❌ *ITEM NO ENCONTRADO*\n\n` +
+      `> No tienes el item *${itemKey}*!\n` +
       `> Cek inventory: \`.inventory\``,
     );
   }
@@ -60,40 +58,40 @@ async function handler(m, { sock }) {
       }
       user.rpg.health = Math.min(user.rpg.health + 50, user.rpg.maxHealth);
       user.inventory[itemKey]--;
-      msg = `🥤 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu meminum *Health Potion*.\n> ❤️ Health sekarang: ${user.rpg.health}/${user.rpg.maxHealth}`;
+      msg = `🥤 *ITEM USADO*\n\n> Tomaste *Health Potion*.\n> ❤️ Vida actual: ${user.rpg.health}/${user.rpg.maxHealth}`;
       break;
 
     case "mpotion":
       if (user.rpg.mana >= user.rpg.maxMana) {
-        return m.reply(`💧 *ᴍᴀɴᴀ ᴘᴇɴᴜʜ*\n\n> Mana kamu sudah penuh!`);
+        return m.reply(`💧 *MANA LLENO*\n\n> ¡Tu mana está al máximo!`);
       }
       user.rpg.mana = Math.min(user.rpg.mana + 50, user.rpg.maxMana);
       user.inventory[itemKey]--;
-      msg = `🧪 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu meminum *Mana Potion*.\n> 💧 Mana sekarang: ${user.rpg.mana}/${user.rpg.maxMana}`;
+      msg = `🧪 *ITEM USADO*\n\n> Tomaste *Mana Potion*.\n> 💧 Mana actual: ${user.rpg.mana}/${user.rpg.maxMana}`;
       break;
 
     case "stamina":
       if (user.rpg.stamina >= user.rpg.maxStamina) {
-        return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴘᴇɴᴜʜ*\n\n> Stamina kamu sudah penuh!`);
+        return m.reply(`⚡ *STAMINA LLENA*\n\n> ¡Tu stamina está al máximo!`);
       }
       user.rpg.stamina = Math.min(user.rpg.stamina + 20, user.rpg.maxStamina);
       user.inventory[itemKey]--;
-      msg = `⚡ *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu meminum *Stamina Potion*.\n> ⚡ Stamina sekarang: ${user.rpg.stamina}/${user.rpg.maxStamina}`;
+      msg = `⚡ *ITEM USADO*\n\n> Tomaste *Stamina Potion*.\n> ⚡ Stamina actual: ${user.rpg.stamina}/${user.rpg.maxStamina}`;
       break;
 
     case "herb":
       if (user.rpg.health >= user.rpg.maxHealth) {
-        return m.reply(`❤️ *ʜᴇᴀʟᴛʜ ᴘᴇɴᴜʜ*\n\n> Nyawa kamu sudah penuh!`);
+        return m.reply(`❤️ *VIDA LLENA*\n\n> ¡Tu salud está al máximo!`);
       }
       user.rpg.health = Math.min(user.rpg.health + 20, user.rpg.maxHealth);
       user.inventory[itemKey]--;
-      msg = `🌿 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu mengunyah *Herba*.\n> ❤️ Health sekarang: ${user.rpg.health}/${user.rpg.maxHealth}`;
+      msg = `🌿 *ITEM USADO*\n\n> Masticaste *Hierba*.\n> ❤️ Vida actual: ${user.rpg.health}/${user.rpg.maxHealth}`;
       break;
 
     case "leather":
       user.rpg.attack = (user.rpg.attack || 10) + 3;
       user.inventory[itemKey]--;
-      msg = `👞 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu memakai *Kulit* sebagai pelindung.\n> ⚔️ Attack bertambah: +3 (sekarang: ${user.rpg.attack})`;
+      msg = `👞 *ITEM USADO*\n\n> Equipaste *Cuero* como protección.\n> ⚔️ Ataque aumentó: +3 (actual: ${user.rpg.attack})`;
       break;
 
     case "mysterybox": {
@@ -123,33 +121,33 @@ async function handler(m, { sock }) {
         user.inventory[pick.type] = (user.inventory[pick.type] || 0) + qty;
         rewardMsg = `${pick.icon} ${pick.type}: +${qty}`;
       }
-      msg = `📦 *ᴍʏsᴛᴇʀʏ ʙᴏx ᴅɪʙᴜᴋᴀ!*\n\n> Kamu membuka Mystery Box...\n> ${rewardMsg}`;
+      msg = `📦 *¡CAJA MISTERIOSA ABIERTA!*\n\n> Abriste la Mystery Box...\n> ${rewardMsg}`;
       break;
     }
 
     case "bowlramen":
       if (user.rpg.health >= user.rpg.maxHealth) {
-        return m.reply(`❤️ *ʜᴇᴀʟᴛʜ ᴘᴇɴᴜʜ*\n\n> Nyawa kamu sudah penuh, tidak perlu makan ramen lagi!`);
+        return m.reply(`❤️ *VIDA LLENA*\n\n> ¡Tu salud está al máximo, no necesitas comer ramen!`);
       }
       user.rpg.health = Math.min(user.rpg.health + 40, user.rpg.maxHealth);
       user.inventory[itemKey]--;
-      msg = `🍜 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu memakan semangkuk *Ramen Hangat*.\n> ❤️ Health memulih: ${user.rpg.health}/${user.rpg.maxHealth}`;
+      msg = `🍜 *ITEM USADO*\n\n> Comiste un tazón de *Ramen Caliente*.\n> ❤️ Vida recuperada: ${user.rpg.health}/${user.rpg.maxHealth}`;
       break;
 
     case "chakra":
       if (user.rpg.stamina >= user.rpg.maxStamina) {
-        return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴘᴇɴᴜʜ*\n\n> Stamina/Chakra kamu sudah penuh!`);
+        return m.reply(`⚡ *STAMINA LLENA*\n\n> ¡Tu stamina/chakra está al máximo!`);
       }
       user.rpg.stamina = Math.min(user.rpg.stamina + 30, user.rpg.maxStamina);
       user.inventory[itemKey]--;
-      msg = `🌀 *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu menyerap *Kepingan Chakra*.\n> ⚡ Stamina bertambah: ${user.rpg.stamina}/${user.rpg.maxStamina}`;
+      msg = `🌀 *ITEM USADO*\n\n> Absorbiste el *Fragmento de Chakra*.\n> ⚡ Stamina aumentó: ${user.rpg.stamina}/${user.rpg.maxStamina}`;
       break;
 
     case "kunai":
     case "shuriken":
       user.rpg.attack = (user.rpg.attack || 10) + 2;
       user.inventory[itemKey]--;
-      msg = `🗡️ *ɪᴛᴇᴍ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Kamu melengkapi dirimu dengan *${itemKey.toUpperCase()}*.\n> ⚔️ Attack bertambah: +2 (sekarang: ${user.rpg.attack})`;
+      msg = `🗡️ *ITEM USADO*\n\n> Equipaste *${itemKey.toUpperCase()}*.\n> ⚔️ Ataque aumentó: +2 (actual: ${user.rpg.attack})`;
       break;
 
     case "scroll": {
@@ -169,7 +167,7 @@ async function handler(m, { sock }) {
         db.updateExp(m.sender, amount);
         sRewardMsg = `${sPick.icon} EXP Ninja: +${amount.toLocaleString("id-ID")}`;
       }
-      msg = `📜 *sᴄʀᴏʟʟ ᴅɪʙᴀᴄᴀ!*\n\n> Kamu membuka Gulungan Rahasia Ninja...\n> ${sRewardMsg}`;
+      msg = `📜 *¡PERGAMINO LEÍDO!*\n\n> Abriste el Pergamino Secreto Ninja...\n> ${sRewardMsg}`;
       break;
     }
 
@@ -189,15 +187,15 @@ async function handler(m, { sock }) {
       db.updateExp(m.sender, rewardExp);
 
       msg =
-        `🎁 *ᴄʀᴀᴛᴇ ᴅɪʙᴜᴋᴀ*\n\n` +
-        `> Kamu membuka *${itemKey} Crate*!\n` +
+        `🎁 *¡CAJA ABIERTA!*\n\n` +
+        `> Abriste la *${itemKey} Crate*!\n` +
         `> 💰 Money: +Rp ${rewardMoney.toLocaleString("id-ID")}\n` +
         `> 🚄 Exp: +${rewardExp}`;
       break;
 
     default:
       return m.reply(
-        `❌ *ɪᴛᴇᴍ ᴛɪᴅᴀᴋ ᴅᴀᴘᴀᴛ ᴅɪɢᴜɴᴀᴋᴀɴ*\n\n> Item *${itemKey}* tidak bisa digunakan langsung.`,
+        `❌ *ITEM NO UTILIZABLE*\n\n> El item *${itemKey}* no se puede usar directamente.`,
       );
   }
 

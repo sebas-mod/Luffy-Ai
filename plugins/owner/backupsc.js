@@ -97,7 +97,7 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `📦 *ʙᴀᴄᴋᴜᴘ sᴄʀɪᴘᴛ*\n\n> Memproses backup...\n> Mohon tunggu sebentar...`,
+    `📦 *ʙᴀᴄᴋᴜᴘ sᴄʀɪᴘᴛ*\n\n> Procesando la copia de seguridad...\n> Por favor espera un momento...`,
   );
   try {
     const projectRoot = process.cwd();
@@ -134,12 +134,12 @@ async function handler(m, { sock }) {
       output.on("close", () => {
         try {
           if (!fs.existsSync(zipFilePath)) {
-            fail(new Error("File backup tidak ditemukan setelah proses zip"));
+            fail(new Error("Archivo de backup no encontrado después del proceso zip"));
             return;
           }
           const stats = fs.statSync(zipFilePath);
           if (stats.size <= 0) {
-            fail(new Error("File backup kosong atau 0KB"));
+            fail(new Error("El archivo de backup está vacío o es de 0KB"));
             return;
           }
           succeed();
@@ -175,7 +175,7 @@ async function handler(m, { sock }) {
 
       addDirectory(projectRoot);
       if (fileCount === 0) {
-        fail(new Error("Tidak ada file yang masuk ke backup script"));
+        fail(new Error("No hay archivos que se incluyan en la copia de seguridad del script"));
         return;
       }
       archive.finalize();

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "challenge",
   alias: ["daily", "dailychallenge", "tantangan"],
   category: "rpg",
-  description: "Daily challenge untuk hadiah spesial",
+  description: "Desafíos diarios para recompensas especiales",
   usage: ".challenge",
   example: ".challenge",
   isOwner: false,
@@ -18,13 +18,13 @@ const pluginConfig = {
 };
 
 const CHALLENGES = [
-  { name: "⚔️ Kalahkan 5 Monster", type: "kill", target: 5, reward: { gold: 500, exp: 200 } },
-  { name: "🎣 Tangkap 3 Ikan", type: "fish", target: 3, reward: { gold: 300, exp: 150 } },
-  { name: "⛏️ Tambang 10 Ore", type: "mine", target: 10, reward: { gold: 400, exp: 180 } },
-  { name: "🌱 Panen 5 Hasil Kebun", type: "harvest", target: 5, reward: { gold: 350, exp: 160 } },
-  { name: "🧪 Racik 3 Potion", type: "craft", target: 3, reward: { gold: 450, exp: 190 } },
-  { name: "💰 Kumpulkan 1000 Koin", type: "earn", target: 1000, reward: { gold: 500, exp: 250 } },
-  { name: "🗺️ Selesaikan 2 Ekspedisi", type: "expedition", target: 2, reward: { gold: 600, exp: 300 } },
+  { name: "⚔️ Derrotar 5 Monstruos", type: "kill", target: 5, reward: { gold: 500, exp: 200 } },
+  { name: "🎣 Pescar 3 Peces", type: "fish", target: 3, reward: { gold: 300, exp: 150 } },
+  { name: "⛏️ Minar 10 Minerales", type: "mine", target: 10, reward: { gold: 400, exp: 180 } },
+  { name: "🌱 Cosechar 5 Cultivos", type: "harvest", target: 5, reward: { gold: 350, exp: 160 } },
+  { name: "🧪 Preparar 3 Pociones", type: "craft", target: 3, reward: { gold: 450, exp: 190 } },
+  { name: "💰 Recoger 1000 Monedas", type: "earn", target: 1000, reward: { gold: 500, exp: 250 } },
+  { name: "🗺️ Completar 2 Expediciones", type: "expedition", target: 2, reward: { gold: 600, exp: 300 } },
 ];
 
 function getNewDailyChallenge() {
@@ -57,11 +57,11 @@ async function handler(m, { sock }) {
 
   if (action === "claim") {
     if (!isComplete) {
-      return m.reply(`❌ Tantangannya belum selesai nih kak!\nProgress kamu baru: *${challenge.progress}/${challenge.target}*`);
+      return m.reply(`❌ ¡El desafío no está terminado!\nTu progreso: *${challenge.progress}/${challenge.target}*`);
     }
 
     if (challenge.claimed) {
-      return m.reply(`Wah kak, hadiah untuk hari ini udah diambil! Tunggu tantangan baru besok ya! 😉`);
+      return m.reply(`¡Ya reclamaste la recompensa de hoy! Espera al desafío de mañana. 😉`);
     }
 
     user.koin = (user.koin || 0) + challenge.reward.gold;
@@ -73,32 +73,32 @@ async function handler(m, { sock }) {
     await m.react("🎉");
     return m.reply(
       `🎉 *TANTANGAN HARIAN SELESAI!!* 🎉\n\n` +
-        `Kerja bagus kak! Ini hadiah dari Guild buat kamu:\n` +
+        `¡Buen trabajo! Aquí está tu recompensa del Guild:\n` +
         `💰 Koin: *+Rp ${challenge.reward.gold.toLocaleString()}*\n` +
         `✨ EXP: *+${challenge.reward.exp}*\n` +
         `\n\n` +
-        `> _Tantangan baru akan diberikan besok pagi!_`
+        `> _¡Nuevos desafíos se entregarán mañana por la mañana!_`
     );
   }
 
-  let txt = `📋 *TANTANGAN HARIAN GUILD* 📋\n\n`;
-  txt += `Selesaikan tugas khusus hari ini untuk dapet uang jajan tambahan kak!\n\n`;
+  txt += `📋 *DESAFÍOS DIARIOS DEL GUILD* 📋\n\n`;
+  txt += `¡Completa las tareas especiales de hoy para ganar dinero extra!\n\n`;
   
-  txt += `*Tugas Kamu Hari Ini:*\n`;
+  txt += `*Tu Tarea de Hoy:*\n`;
   txt += `🎯 *${challenge.name}*\n`;
-  txt += `📊 Progress: *${challenge.progress}/${challenge.target}*\n`;
-  txt += `Status: ${isComplete ? "✅ *BISA DICLAIM!*" : "⏳ _Sedang dikerjakan..._"}\n\n`;
+  txt += `📊 Progreso: *${challenge.progress}/${challenge.target}*\n`;
+  txt += `Status: ${isComplete ? "✅ ¡¡LISTO PARA RECLAMAR!!" : "⏳ _En progreso..._"}\n\n`;
 
-  txt += `*🎁 Hadiah Tambahan:*\n`;
+  txt += `*🎁 Recompensa Extra:*\n`;
   txt += `💰 Koin: *Rp ${challenge.reward.gold.toLocaleString()}*\n`;
   txt += `✨ EXP: *${challenge.reward.exp}*\n\n`;
 
   if (isComplete && !challenge.claimed) {
-    txt += `> 💡 Yuk buruan ketik \`${m.prefix}challenge claim\` untuk klaim hadiahnya kak!`;
+    txt += `> 💡 ¡Escribe \`${m.prefix}challenge claim\` para reclamar tu recompensa!`;
   } else if (challenge.claimed) {
-    txt += `> ✅ Kamu hebat! Hadiah sudah diambil. Besok ada misi baru lagi ya!`;
+    txt += `> ✅ ¡Eres genial! Ya reclamaste la recompensa. ¡Mañana habrá nueva misi!`;
   } else {
-    txt += `> Semangat kerjainnya kak! Kalau udah selesai nanti ambil hadiahnya.`;
+    txt += `> ¡Esfuérzate en completarla! Cuando termines, reclama tu recompensa.`;
   }
 
   return m.reply(txt);

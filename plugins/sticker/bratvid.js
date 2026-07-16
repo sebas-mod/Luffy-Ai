@@ -10,9 +10,9 @@ const pluginConfig = {
     name: 'bratvid',
     alias: ['bratgif', 'bratvideo'],
     category: 'sticker',
-    description: 'Membuat sticker brat animated',
-    usage: '.bratvid <text>',
-    example: '.bratvid Hai semua',
+    description: 'Crear sticker brat animado',
+    usage: '.bratvid <texto>',
+    example: '.bratvid Hola a todos',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -25,7 +25,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const text = m.args.join(' ')
     if (!text) {
-        return m.reply(`🎬 *ʙʀᴀᴛ ᴀɴɪᴍᴀᴛᴇᴅ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid Hai semua\``)
+        return m.reply(`🎬 *ʙʀᴀᴛ ᴀɴɪᴍᴀᴛᴇᴅ*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}bratvid Hola a todos\``) // ¡Shishishi, esto será genial!
     }
     
     m.react('🕕')

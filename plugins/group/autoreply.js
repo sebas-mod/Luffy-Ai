@@ -360,7 +360,7 @@ async function handler(m, { sock }) {
         const customReplies = groupData.customReplies || []
         
         const defaultTriggers = [
-            { trigger: '@mention', reply: '👋 Hai! Ada yang manggil bot?' },
+            { trigger: '@mention', reply: '👋 ¡Hola! ¿Alguien llamó al bot?' },
             { trigger: 'p', reply: '💬 ¡Saluda antes de conversar!' },
             { trigger: 'bot / ourin', reply: '🤖 ¡Bot activo y listo!' },
             { trigger: 'assalamualaikum', reply: 'Waalaikumsalam hermano' }

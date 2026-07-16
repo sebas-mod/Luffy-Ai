@@ -6,7 +6,7 @@ const config = {
   alias: ["cappremium", "setprem"],
   category: "owner",
   description: "Marca varias funciones como premium de una vez",
-  usage: ".capprem <nama_fitur1> <nama_fitur2> ...",
+  usage: ".capprem <nombre_fesor1> <nombre_fesor2> ...",
   example: ".capprem hd jpm warn",
   isOwner: true,
   isPremium: false,
@@ -21,13 +21,13 @@ async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
       `💎 *SISTEM CAP PREMIUM*\n\n` +
-      `Sistem eksklusif untuk mengubah status akses banyak fitur sekaligus menjadi Premium.\n\n` +
+      `Sistema exclusivo para cambiar el estado de acceso de muchas funciones a la vez a Premium.\n\n` +
       `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}capprem <nama_fitur1> <nama_fitur2> ...* — Bisa banyak sekaligus\n\n` +
+      `- *${m.prefix}capprem <nombre_fesor1> <nombre_fesor2> ...* — Puedes varios a la vez\n\n` +
       `*CONTOH PENGGUNAAN:*\n` +
       `- *${m.prefix}capprem hd jpm warn*\n\n` +
       `*PENJELASAN:*\n` +
-      `Masukkan satu atau lebih nama fitur yang ingin dijadikan Premium. Pisahkan dengan spasi.`
+      `Ingresa uno o más nombres de funciones que quieres convertir en Premium. Sepáralos con espacios.`
     );
   }
 
@@ -57,13 +57,13 @@ async function handler(m, { sock }) {
   
   let msg = `✅ *STATUS BERHASIL DIUBAH*\n\n`;
   if (successList.length > 0) {
-    msg += `*Berhasil (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Éxito (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   if (failedList.length > 0) {
-    msg += `*Gagal (Tidak ditemukan):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Fallo (No encontrado):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   
-  msg += `_Fitur di atas (yang berhasil) sekarang hanya bisa diakses oleh member Premium._`;
+  msg += `_Las funciones anteriores (las exitosas) ahora solo pueden ser accedidas por miembros Premium._`;
   
   return m.reply(msg.trim());
 }

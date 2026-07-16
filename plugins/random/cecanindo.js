@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'cecanindo',
     alias: ['cewekindo', 'cewekindonesia'],
     category: 'cecan',
-    description: 'Random gambar cewek cantik Indonesia',
+    description: 'Imagen aleatoria de chica indonesia',
     usage: '.cecanindo',
     example: '.cecanindo',
     isOwner: false,

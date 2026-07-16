@@ -13,8 +13,8 @@ const pluginConfig = {
   name: "stickerpack",
   alias: ["sp", "stickersearch", "searchsticker"],
   category: "sticker",
-  description: "Cari dan kirim sticker pack",
-  usage: ".stickerpack <query>",
+  description: "Buscar y enviar sticker packs",
+  usage: ".stickerpack <búsqueda>",
   example: ".stickerpack anime",
   isOwner: false,
   isPremium: false,
@@ -28,7 +28,7 @@ const pluginConfig = {
 class StickerAPI {
   async search(query, page = 1) {
     try {
-      if (!query) throw new Error("Query kosong");
+      if (!query) throw new Error("Búsqueda vacía");
       const res = await axios
         .post("https://getstickerpack.com/api/v1/stickerdb/search", {
           query,
@@ -94,9 +94,9 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `── .✦ 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 𝗣𝗔𝗖𝗞 ✦. ── 𝜗ৎ\n\n` +
-        `Cari dan kirim sticker pack!\n\n` +
-        `╭─〔 Cara Pakai 〕───⬣\n` +
+        `── .✦ 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 𝗣𝗔𝗖𝗞 ✦. ── 𝜗ৎ\n\n` +
+        `¡Busca y envía sticker packs!\n\n` +
+        `╭─〔 Cómo Usar 〕───⬣\n` +
         `│  ✦ ${m.prefix}stickerpack <query>\n` +
         `╰──────────────⬣\n\n` +
         `*${m.prefix}stickerpack anime*\n` +
@@ -114,7 +114,7 @@ async function handler(m, { sock }) {
     if (!search.status || !search.data?.length) {
       await m.react("✘");
       return m.reply(
-        `── .✦ ──\n\n> Tidak ada sticker pack untuk: *${query}* .☘︎ ݁˖`,
+        `── .✦ ──\n\n> No hay sticker packs para: *${query}* .☘︎ ݁˖`,
       );
     }
 
@@ -124,11 +124,11 @@ async function handler(m, { sock }) {
 
     if (!detail.status || !detail.stickers?.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Gagal mengambil detail sticker pack .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> Error al obtener detalles del sticker pack .☘︎ ݁˖`);
     }
 
     await m.reply(
-      `── .✦ ──\n\n> Mengunduh *${randPick.name}*\n> ${Math.min(detail.stickers.length, MAX_STICKERS)} sticker .☘︎ ݁˖`,
+      `── .✦ ──\n\n> Descargando *${randPick.name}*\n> ${Math.min(detail.stickers.length, MAX_STICKERS)} stickers .☘︎ ݁˖`,
     );
 
     const limited = detail.stickers.slice(0, MAX_STICKERS);
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
 
     if (!stickerBuffers.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Gagal mendownload sticker .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> Error al descargar stickers .☘︎ ݁˖`);
     }
 
     const packname = randPick.name || config.sticker?.packname || "Luffy-AI";
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
     } catch (packErr) {
       console.error("[StickerPack] Pack send failed:", packErr.message);
       await m.reply(
-        `── .✦ ──\n\n> Pack gagal, mengirim satu per satu... .☘︎ ݁˖`,
+        `── .✦ ──\n\n> Pack falló, enviando uno por uno... .☘︎ ݁˖`,
       );
 
       let sent = 0;
@@ -198,11 +198,11 @@ async function handler(m, { sock }) {
       if (sent > 0) {
         await m.react("✓");
         await m.reply(
-          `── .✦ ──\n\n> Berhasil kirim *${sent}* sticker dari *${packname}* .☘︎ ݁˖`,
+          `── .✦ ──\n\n> ¡Enviados *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
         );
       } else {
         await m.react("✘");
-        await m.reply(`── .✦ ──\n\n> Gagal mengirim sticker .☘︎ ݁˖`);
+        await m.reply(`── .✦ ──\n\n> Error al enviar stickers .☘︎ ݁˖`);
       }
     }
   } catch (error) {

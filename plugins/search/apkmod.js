@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "apkmod",
   alias: ["modapk2", "apkpremium"],
   category: "search",
-  description: "Cari dan download APK MOD Premium",
+  description: "Buscar y descargar APK MOD Premium",
   usage: ".apkmod <query>",
   example: ".apkmod vpn",
   isOwner: false,
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📱 *ᴀᴘᴋ ᴍᴏᴅ sᴇᴀʀᴄʜ*\n\n` +
-        `> Cari APK MOD Premium\n\n` +
+        `> Buscar APK MOD Premium\n\n` +
         `> Contoh:\n` +
         `\`${m.prefix}apkmod vpn\``,
     );
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: \`${text}\``);
+      return m.reply(`❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 15);

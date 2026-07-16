@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "breeding",
   alias: ["breed", "kawin", "petbreed"],
   category: "rpg",
-  description: "Breeding pets untuk mendapat pet baru",
+  description: "Cruzar mascotas para obtener una nueva",
   usage: ".breeding @user",
   example: ".breeding @user",
   isOwner: false,
@@ -52,50 +52,50 @@ async function handler(m, { sock }) {
 
   if (!mentioned) {
     return m.reply(
-      `💕 *Peternakan & Kawin Silang* 💕\n\n` +
-        `Sistem ini ngebolehin peliharaan kamu kawin sama peliharaan player lain!\nSiapa tau dapet keturunan langka! ✨\n\n` +
-        `*Cara Pemakaian:*\n` +
-        `👉 \`${m.prefix}breeding @user_target\`\n\n` +
-        `*Syarat:* \n` +
-        `1. Kamu & Target sama-sama punya pet\n` +
-        `2. Kedua pet minimal Level 5\n` +
-        `3. Biaya persalinan: *Rp 3.000*`
+      `💕 *Cría y Cruce de Mascotas* 💕\n\n` +
+        `¡Este sistema permite cruzar tu mascota con la de otro jugador!\n¡Quién sabe, tal vez obtengas una descendencia rara! ✨\n\n` +
+        `*Cómo Usar:*\n` +
+        `👉 \`${m.prefix}breeding @user_objetivo\`\n\n` +
+        `*Requisitos:* \n` +
+        `1. Ambos deben tener mascota\n` +
+        `2. Ambas mascotas mínimo Nivel 5\n` +
+        `3. Costo de parto: *Rp 3.000*`
     );
   }
 
   if (mentioned === m.sender) {
-    return m.reply(`Hayo, mau kawin sama diri sendiri? Nggak bisa dong! Tag temanmu! 😂❌`);
+    return m.reply(`Oye, ¿vas a cruzarte contigo mismo? ¡Eso no se puede! ¡Etiqueta a un amigo! 😂❌`);
   }
 
   if (!user.rpg.pet) {
-    return m.reply(`Kamu aja belum punya peliharaan kak! Beli dulu sana di \`${m.prefix}petshop\` 😭`);
+    return m.reply(`¡Tú no tienes mascota! ¡Ve a comprar una en \`${m.prefix}petshop\`! 😭`);
   }
 
   const partner = db.getUser(mentioned);
   if (!partner?.rpg?.pet) {
-    return m.reply(`Target yang kamu tag ternyata nggak punya peliharaan! Kasihan pet kamu dicuekin. 💔`);
+    return m.reply(`¡El objetivo que etiquetaste no tiene mascota! Qué lástima por la tuya. 💔`);
   }
 
   const myPet = user.rpg.pet;
   const partnerPet = partner.rpg.pet;
 
   if ((myPet.level || 1) < 5) {
-    return m.reply(`Pet kamu masih terlalu bocil buat kawin! Minimal *Level 5* kak (Sekarang Level ${myPet.level || 1}). 🐣`);
+    return m.reply(`¡Tu mascota es muy joven para cruzar! Mínimo *Nivel 5* (Ahora: Nivel ${myPet.level || 1}). 🐣`);
   }
 
   if ((partnerPet.level || 1) < 5) {
-    return m.reply(`Pet pasanganmu masih terlalu kecil buat dikawinin! Minimal *Level 5* kak (Sekarang Level ${partnerPet.level || 1}). 🐣`);
+    return m.reply(`¡La mascota del compañero es muy joven! Mínimo *Nivel 5* (Ahora: Nivel ${partnerPet.level || 1}). 🐣`);
   }
 
   const breedingCost = 3000;
   if ((user.koin || 0) < breedingCost) {
-    return m.reply(`Uang kamu nggak cukup buat bayar dokter hewan kak! Butuh Rp ${breedingCost.toLocaleString()}. 😭`);
+    return m.reply(`¡No tienes suficiente dinero para pagar al veterinario! Necesitas Rp ${breedingCost.toLocaleString()}. 😭`);
   }
 
   user.koin -= breedingCost;
 
   await m.react("💕");
-  await m.reply(`Cieee, ${PET_NAMES[myPet.type]} kamu sama ${PET_NAMES[partnerPet.type]} temenmu lagi berduaan nih... 💕✨\nTunggu bentar ya, dokternya lagi meriksa persalinan!`);
+  await m.reply(`Uy, tu ${PET_NAMES[myPet.type]} y el ${PET_NAMES[partnerPet.type]} de tu amigo están a solas... 💕✨\nEspera un momento, el doctor está revisando el parto!`);
   await new Promise((r) => setTimeout(r, 4000));
 
   const breedKey = [myPet.type, partnerPet.type].sort().join("+");
@@ -124,18 +124,18 @@ async function handler(m, { sock }) {
 
   await m.react(isRare ? "🎉" : "✅");
 
-  let txt = `AWWW!! ADA KELAHIRAN BARU! 🍼✨\n\n`;
+  let txt = `¡AWWW! ¡NACIMIENTO! 🍼✨\n\n`;
   if (isRare) {
-    txt += `🎉 *LUCKY!! KETURUNAN LANGKA!!* 🎉\n`;
+    txt += `🎉 *¡¡SUERTE!! ¡¡DESCENDENCIA RARA!!* 🎉\n`;
   }
   
-  txt += `Selamat! Kamu berhasil menetaskan bayi:\n`;
-  txt += `🐣 Spesies: *${PET_NAMES[resultPetType]}*\n\n`;
+  txt += `¡Felicidades! Eclosionaste un bebé:\n`;
+  txt += `🐣 Especie: *${PET_NAMES[resultPetType]}*\n\n`;
   
-  txt += `Dapat EXP *+${expReward}*\n`;
-  txt += `Biaya Bersalin: *Rp -${breedingCost.toLocaleString()}*\n\n`;
+  txt += `EXP obtenida: *+${expReward}*\n`;
+  txt += `Costo de Parto: *Rp -${breedingCost.toLocaleString()}*\n\n`;
   
-  txt += `*(Bayi peliharaanmu disimpan ke dalam Pet Storage. Total simpananmu: ${user.rpg.petStorage.length} ekor)*`;
+  txt += `*(Tu bebé fue guardado en la Pet Storage. Total guardados: ${user.rpg.petStorage.length})*`;
 
   return m.reply(txt, { mentions: [m.sender, mentioned] });
 }

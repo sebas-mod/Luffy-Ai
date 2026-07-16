@@ -49,8 +49,8 @@ function isToxic(text, toxicList) {
 
 function gpMsg(key, replacements = {}) {
     const defaults = {
-        antitoxicWarn: '⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.',
-        antitoxicAction: '🚫 @%user% di-%method% karena toxic. (%warn%/%max%)',
+        antitoxicWarn: '⚠ @%user% ha dicho palabras ofensivas.\nAdvertencia %warn% de %max%, la siguiente infracción puede ser -%method%.',
+        antitoxicAction: '🚫 @%user% ha sido -%method% por comportamiento tóxico. (%warn%/%max%)',
     }
     let text = config.groupProtection?.[key] || defaults[key] || ''
     for (const [k, v] of Object.entries(replacements)) {

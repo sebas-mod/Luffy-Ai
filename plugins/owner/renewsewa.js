@@ -49,7 +49,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "menit", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minuto", h: "jam", d: "hari", m: "bulan", y: "tahun" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
       `📝 *PERPANJANG SEWA*\n\n` +
         `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
         `*FORMAT DURASI:*\n` +
-        `• 30i = 30 menit\n` +
+        `• 30i = 30 minuto\n` +
         `• 12h = 12 jam\n` +
         `• 7d = 7 hari\n` +
         `• 1m = 1 bulan\n` +
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
         `*CONTOH:*\n` +
         `• ${m.prefix}renewsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}renewsewa 120363xxx 1m\n\n` +
-        `💡 Durasi ditambahkan ke sisa waktu yang ada, bukan di-reset`,
+        `💡 La duración se añade al tiempo restante, no se reinicia`,
     );
   }
 
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
 
   if (!durationMs)
     return m.reply(
-      `❌ Format durasi tidak valid\nContoh: 7d, 1m, 1y, lifetime`,
+      `❌ Format durasi no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup tidak ditemukan`);
+      return m.reply(`❌ Grup no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `❌ Grup tidak terdaftar\nGunakan *${m.prefix}addsewa* untuk menambahkan`,
+        `❌ Grup no terlista\nUsa *${m.prefix}addsewa* para agregando`,
       );
     }
 
@@ -129,7 +129,7 @@ async function handler(m, { sock }) {
     } else {
       if (existing.isLifetime) {
         await m.react("❌");
-        return m.reply(`❌ Grup ini sudah Permanent, tidak perlu diperpanjang`);
+        return m.reply(`❌ Este grupo ya es Permanente, no es necesario extenderlo`);
       }
       const baseTime =
         existing.expiredAt > Date.now() ? existing.expiredAt : Date.now();
@@ -152,12 +152,12 @@ async function handler(m, { sock }) {
     let text = `✅ *SEWA DIPERPANJANG*\n\n`;
     text += `Grup: *${groupName}*\n`;
     text += `Tambahan: *${formatDuration(durationStr)}*\n`;
-    text += `Expired baru: *${expiredStr}*`;
+    text += `Expired nuevo: *${expiredStr}*`;
 
     try {
       await sock.sendText(
         groupId,
-        `📢 Sewa bot telah diperpanjang!\n\nTambahan: *${formatDuration(durationStr)}*\nExpired baru: *${expiredStr}*`,
+        `📢 Sewa bot ha diperpanjang!\n\nTambahan: *${formatDuration(durationStr)}*\nExpired nuevo: *${expiredStr}*`,
         null,
         {
           contextInfo: saluranCtx(),

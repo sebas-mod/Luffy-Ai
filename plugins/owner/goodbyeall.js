@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     if (!action || !['on', 'off'].includes(action)) {
         return m.reply(
             `👋 *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ*\n\n` +
-            `> Aktifkan/nonaktifkan goodbye di SEMUA grup sekaligus\n\n` +
+            `> Activar/desactivar la despedida en TODOS los grupos a la vez\n\n` +
             `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
             `┃ ${m.prefix}goodbyeall on\n` +
             `┃ ${m.prefix}goodbyeall off\n` +
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
                 `┃ 🌐 Total Grup: *${count}*\n` +
                 `┃ ✅ Goodbye: *AKTIF*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Member yang keluar akan dikirim pesan perpisahan!`
+                `> ¡Los miembros que se van recibirán un mensaje de despedida!`
             )
         } else {
             return m.reply(
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
                 `┃ 🌐 Total Grup: *${count}*\n` +
                 `┃ ❌ Goodbye: *NONAKTIF*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Goodbye dinonaktifkan di semua grup.`
+                `> La despedida ha sido desactivada en todos los grupos.`
             )
         }
     } catch (error) {

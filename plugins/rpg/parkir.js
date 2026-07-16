@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "parkir",
   alias: ["kangparkir", "markir"],
   category: "rpg",
-  description: "Jadi tukang parkir minimarket, waspada satpol PP!",
+  description: "Ser estacionador de supermercado, ¡cuidado con la policía municipal!",
   usage: ".parkir",
   example: ".parkir",
   isOwner: false,
@@ -27,12 +27,12 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Kaki pegel kebanyakan berdiri! 😫\n\nMarkir butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Istirahat dulu di pos! 🏚️`);
+    return m.reply(`¡Piernas adoloridas de estar parado mucho tiempo! 😫\n\nEstacionar requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Descansa en el puesto! 🏚️`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("🅿️");
-  await m.reply(`Priiiit! Terus, terus, bales kiri dikit! 🏁\nMulai narik duit parkir di minimarket... 💰`);
+  await m.reply(`¡Piiip! ¡Sigue, sigue, un poco a la izquierda! 🏁\nEmpezando a cobrar el estacionamiento... 💰`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
@@ -41,14 +41,14 @@ async function handler(m, { sock }) {
     const denda = Math.floor(Math.random() * 5000) + 1000;
     user.koin = Math.max(0, (user.koin || 0) - denda);
     await m.react("🚨");
-    return m.reply(`WADUH ADA RAZIA SATPOL PP! 🚓💨\n\nKamu lari terbirit-birit dan duit recehanmu jatuh senilai *Rp ${denda.toLocaleString("id-ID")}*!\n⚡ Stamina: -${staminaCost}\n\nApes banget hari ini! 😭`);
+    return m.reply(`¡¡OH NO, REDADA DE LA POLICÍA!! 🚓💨\n\n¡Corriste despavorido y tus monedas cayeron por valor de *Rp ${denda.toLocaleString("id-ID")}*!\n⚡ Stamina: -${staminaCost}\n\n¡Qué mala suerte hoy! 😭`);
   } else if (gacha > 0.9) {
     const jackpot = Math.floor(Math.random() * 50000) + 20000;
     user.koin = (user.koin || 0) + jackpot;
     const expGain = Math.floor(jackpot / 20);
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     await m.react("🤑");
-    return m.reply(`JACKPOT! ADA MOBIL SPORT SULTAN! 🏎️✨\n\nPas mau keluar, kaca mobil turun dan sultan ngasih pecahan 100k!\n💵 Pendapatan: *+Rp ${jackpot.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nAlhamdulillah rejeki anak soleh! 🙏`);
+    return m.reply(`¡JACKPOT! ¡HAY UN AUTO DEPORTIVO DEL SULTÁN! 🏎️✨\n\nAl salir, baja la ventanilla y el sultán te da un billete de 100k!\n💵 Ingreso: *+Rp ${jackpot.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Alabado sea Dios, bendiciones del cielo! 🙏`);
   }
 
   const earning = Math.floor(Math.random() * 8000) + 2000;
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`HASIL MARKIR HARI INI! 🅿️✨\n\n💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nReceh demi receh lama-lama jadi bukit! 💪`);
+  m.reply(`¡RESULTADO DEL ESTACIONAMIENTO HOY! 🅿️✨\n\n💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nDe moneda en moneda, ¡se forma una montaña! 💪`);
 }
 
 export { pluginConfig as config, handler };

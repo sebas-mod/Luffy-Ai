@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'linesticker',
     alias: ['linepack', 'line'],
     category: 'sticker',
-    description: 'Download sticker pack LINE',
+    description: 'Descargar pack de stickers LINE',
     usage: '.linesticker <url>',
     example: '.linesticker https://store.line.me/stickershop/product/9801/en',
     isOwner: false,
@@ -23,15 +23,15 @@ async function handler(m, { sock }) {
     if (!url || !url.includes('store.line.me')) {
         return m.reply(
             `🎨 *ʟɪɴᴇ sᴛɪᴄᴋᴇʀ ᴘᴀᴄᴋ*\n\n` +
-            `> Download LINE sticker pack\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
+            `> Descargar pack de stickers LINE\n\n` +
+            `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
             `┃ ${m.prefix}linesticker <url>\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `*ᴄᴀʀᴀ ᴅᴀᴘᴀᴛ ᴜʀʟ:*\n` +
-            `> 1. Buka https://store.line.me\n` +
-            `> 2. Pilih sticker pack\n` +
-            `> 3. Copy URL dari browser\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
+            `*CÓMO OBTENER LA URL:*\n` +
+            `> 1. Abre https://store.line.me\n` +
+            `> 2. Elige un pack de stickers\n` +
+            `> 3. Copia la URL del navegador\n\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> ${m.prefix}linesticker https://store.line.me/stickershop/product/9801/en`
         )
     }
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         const apikey = config.APIkey?.neoxr
         if (!apikey) {
             await m.react('❌')
-            return m.reply(`❌ API Key Neoxr tidak ditemukan di config!`)
+            return m.reply(`❌ ¡API Key de Neoxr no encontrada en la configuración!`)
         }
         
         const apiUrl = `https://api.neoxr.eu/api/linesticker?url=${encodeURIComponent(url)}&apikey=${apikey}`
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             await m.react('❌')
-            return m.reply(`❌ Gagal mengambil sticker dari URL tersebut!`)
+            return m.reply(`❌ ¡Error al obtener stickers de esa URL!`)
         }
         
         const data = res.data.data
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
         
         if (!stickerUrls.length) {
             await m.react('❌')
-            return m.reply(`❌ Tidak ada sticker ditemukan!`)
+            return m.reply(`❌ ¡No se encontraron stickers!`)
         }
         
         await m.reply(
@@ -72,10 +72,10 @@ async function handler(m, { sock }) {
             `╭┈┈⬡「 📦 *ɪɴꜰᴏ* 」\n` +
             `┃ 📝 *Title:* ${title}\n` +
             `┃ 👤 *Author:* ${author}\n` +
-            `┃ 🎬 *Animated:* ${isAnimated ? 'Ya' : 'Tidak'}\n` +
+            `┃ 🎬 *Animado:* ${isAnimated ? 'Sí' : 'No'}\n` +
             `┃ 📊 *Total:* ${stickerUrls.length}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> 🕕 Mengirim sticker...`
+            `> 🕕 Enviando stickers...`
         )
         
         const maxStickers = Math.min(stickerUrls.length, 10)
@@ -106,10 +106,10 @@ async function handler(m, { sock }) {
         
         if (sent > 0) {
             await m.react('✅')
-            await m.reply(`✅ Berhasil kirim ${sent}/${stickerUrls.length} sticker`)
+            await m.reply(`✅ ¡Enviados ${sent}/${stickerUrls.length} stickers!`)
         } else {
             await m.react('☢')
-            await m.reply(`❌ Gagal mengirim sticker`)
+            await m.reply(`❌ Error al enviar stickers`)
         }
         
     } catch (error) {

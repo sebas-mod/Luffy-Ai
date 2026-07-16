@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['delpartner', 'listpartner'],
     category: 'owner',
     description: 'Gestiona la lista de socios del bot',
-    usage: '.addpartner <nomor/@tag> [hari]\n.delpartner <nomor/@tag>\n.listpartner\n.cekpartner <nomor/@tag>',
+    usage: '.addpartner <número/@tag> [hari]\n.delpartner <número/@tag>\n.listpartner\n.cekpartner <número/@tag>',
     example: '.addpartner 6281234567890 30',
     isOwner: true,
     isPremium: false,
@@ -36,10 +36,10 @@ async function handler(m, { sock }) {
         if (!target) {
             return m.reply(
                 `🤝 *ᴀᴅᴅ ᴘᴀʀᴛɴᴇʀ*\n\n` +
-                `> Cara pakai:\n` +
+                `> Cómo usar:\n` +
                 `> \`${m.prefix}addpartner @tag [hari]\`\n` +
                 `> \`${m.prefix}addpartner 6281xxx 30\`\n\n` +
-                `> Default: 30 hari`
+                `> Predeterminado: 30 días`
             )
         }
         let targetNumber = target.replace(/@.+/g, '')
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
             targetNumber = '62' + targetNumber.slice(1)
         }
         if (config.isOwner(targetNumber)) {
-            return m.reply(`⚠️ @${targetNumber} sudah menjadi owner!`, { mentions: [target] })
+            return m.reply(`⚠️ @${targetNumber} ya menjadi owner!`, { mentions: [target] })
         }
         const existingIndex = db.data.partner.findIndex(p => p.id === targetNumber)
         const days = parseInt(m.args?.find(a => /^\d+$/.test(a) && a.length <= 4)) || 30
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
             
             db.data.partner[existingIndex].expired = newExpired
             db.data.partner[existingIndex].name = pushName
-            message = `Partner diperpanjang`
+            message = `Socio extendido`
         } else {
             newExpired = now + (days * 24 * 60 * 60 * 1000)
             db.data.partner.push({
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
                 name: pushName,
                 addedAt: now
             })
-            message = `Berhasil ditambahkan`
+            message = `Agregado con éxito`
         }
 
         db.save()
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
         const expDate = new Date(newExpired).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
 
         await m.reply(
-            `✅ Berhasil ${existingIndex !== -1 ? 'memperpanjang' : 'menambahkan'} partner @${targetNumber} selama *${days} hari*\nExpired: *${expDate}*`,
+            `✅ Éxito ${existingIndex !== -1 ? 'extendiendo' : 'agregando'} partner @${targetNumber} durante *${days} días*\nExpired: *${expDate}*`,
             { mentions: [target] }
         )
         return
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
     if (cmd === 'delpartner') {
         const target = await extractNumber(m)
         if (!target) {
-            return m.reply(`⚠️ Tag atau reply user yang ingin dihapus dari partner.`)
+            return m.reply(`⚠️ Etiqueta o responde al usuario que quieres eliminar de partner.`)
         }
         let targetNumber = target.replace(/@.+/g, '')
         if (targetNumber.startsWith('08')) {
@@ -100,9 +100,9 @@ async function handler(m, { sock }) {
         
         if (db.data.partner.length < initialLength) {
             db.save()
-            await m.reply(`✅ Berhasil menghapus @${targetNumber} dari partner`, { mentions: [target] })
+            await m.reply(`✅ Éxito eliminando @${targetNumber} de partner`, { mentions: [target] })
         } else {
-            return m.reply(`⚠️ User tersebut bukan partner.`)
+            return m.reply(`⚠️ Ese usuario no es socio.`)
         }
         return
     }
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
     if (cmd === 'listpartner') {
         const partners = db.data.partner
         if (!partners.length) {
-            return m.reply(`🤝 *ᴅᴀꜰᴛᴀʀ ᴘᴀʀᴛɴᴇʀ*\n\n> Belum ada partner.`)
+            return m.reply(`🤝 *ᴅᴀꜰᴛᴀʀ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay socios.`)
         }
 
         let txt = `🤝 *DAFTAR PARTNER*\n\n`

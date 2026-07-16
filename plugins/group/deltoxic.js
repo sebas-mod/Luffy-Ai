@@ -5,7 +5,7 @@ const pluginConfig = {
     category: 'group',
     description: 'Eliminar palabra tóxica de la lista',
     usage: '.deltoxic <kata>',
-    example: '.deltoxic kata_kasar',
+    example: '.deltoxic palabra_ofensiva',
     isOwner: false,
     isPremium: false,
     isGroup: true,

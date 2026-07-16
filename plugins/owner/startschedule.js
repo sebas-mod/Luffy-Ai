@@ -6,8 +6,8 @@ const pluginConfig = {
     name: 'startschedule',
     alias: ['startscheduler', 'schedstart', 'resumeschedule'],
     category: 'owner',
-    description: 'Reinicia uno o todos los planificadores',
-    usage: '.startschedule <nama|all>',
+    description: 'Reestocia uno o todos los planificadores',
+    usage: '.startschedule <nombre|all>',
     example: '.startschedule sholat',
     isOwner: true,
     isPremium: false,
@@ -26,15 +26,15 @@ async function handler(m, { sock, args }) {
             const helpText = `▶️ *sᴛᴀʀᴛ sᴄʜᴇᴅᴜʟᴇʀ*
 
 *Usage:*
-\`.startschedule <nama>\`
+\`.startschedule <nombre>\`
 
 *Available schedulers:*
 • \`limitreset\` - Daily Limit Reset
 • \`groupschedule\` - Group Schedule
-• \`sewa\` - Sewa Checker
+• \`sewa\` - Sewa Checar
 • \`messages\` - Scheduled Messages
 • \`sholat\` - Sholat Scheduler
-• \`all\` - Semua scheduler
+• \`all\` - Todos scheduler
 
 *Example:*
 \`.startschedule sholat\`
@@ -49,7 +49,7 @@ async function handler(m, { sock, args }) {
             const wasEnabled = db.setting('autoSholat');
             
             if (wasEnabled) {
-                await m.reply(`ℹ️ Sholat Scheduler sudah dalam keadaan aktif`);
+                await m.reply(`ℹ️ El Sholat Scheduler ya está activo`);
                 return;
             }
             
@@ -59,9 +59,9 @@ async function handler(m, { sock, args }) {
             await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
 
 > Scheduler: *Sholat Scheduler*
-> Status: ✅ Aktif
+> Status: ✅ Activo
 
-_Notifikasi waktu sholat akan dikirim ke grup yang mengaktifkan fitur ini_`);
+_Las notificaciones de tiempo de oración se enviarán al grupo que active esto_`);
             return;
         }
         
@@ -77,13 +77,13 @@ _Notifikasi waktu sholat akan dikirim ke grup yang mengaktifkan fitur ini_`);
             await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
 
 > Scheduler: *${result.name}*
-> Status: ✅ Aktif
+> Status: ✅ Activo
 
-_Scheduler telah dimulai kembali_`);
+_El scheduler ha sido iniciado de nuevo_`);
         } else {
-            await m.reply(`❌ Scheduler tidak ditemukan atau sudah aktif
+            await m.reply(`❌ Scheduler no encontrado o ya activo
 
-Gunakan \`.startschedule\` untuk melihat daftar scheduler`);
+Usa \`.startschedule\` para ver la lista de planificadores`);
         }
     } catch (error) {
         console.error('[StartSchedule Error]', error);

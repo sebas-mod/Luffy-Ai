@@ -11,7 +11,7 @@ const pluginConfig = {
         'topenergi', 'topenergy'
     ],
     category: 'main',
-    description: 'Lihat leaderboard global (koin, exp, energi)',
+    description: 'Ver leaderboard global (monedas, exp, energía)',
     usage: '.leaderboard',
     example: '.topkoin',
     isOwner: false,
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     }
     
     if (users.length === 0) {
-        return m.reply(`📊 *ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ*\n\n> Belum ada data user terdaftar di database.`)
+        return m.reply(`📊 *ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ*\n\n> Aún no hay datos de usuarios registrados en la base de datos.`)
     }
     
     const senderJid = m.sender.replace('@s.whatsapp.net', '')
@@ -88,8 +88,8 @@ async function handler(m, { sock }) {
             maxEnergiUser.jid.includes('@') ? maxEnergiUser.jid : maxEnergiUser.jid + "@s.whatsapp.net"
         ]
         
-        const overviewText = `🏆 *LEADERBOARD OVERVIEW* 🏆\n\n` +
-            `_Pilih tombol di bawah untuk melihat ranking!_`
+        const overviewText = `🏆 *RESUMEN DEL LEADERBOARD* 🏆\n\n` +
+            `_Elige el botón de abajo para ver el ranking!_`
             try {
                 await sock.sendButton(m.chat, fs.readFileSync(path.join(process.cwd(), 'assets', 'images', 'ourin.jpg')), overviewText, m, {
                     buttons: [
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
     const totalField = users.reduce((sum, u) => sum + (u[field] || 0), 0)
     
     let text = `🏆 *${title}* 🏆\n\n`
-    text += `Peringkat para penguasa tertinggi saat ini!\n\n`
+    text += `Ranking de los gobernantes más altos en este momento!\n\n`
     text += `╭┈┈⬡「 ${emoji} *RANKING* 」\n`
     
     const mentions = []
@@ -168,9 +168,9 @@ async function handler(m, { sock }) {
     
     const myRankIndex = users.findIndex(u => u.jid === m.sender)
     if (myRankIndex !== -1) {
-        text += `> Posisi kamu: *#${myRankIndex + 1}* dari *${formatNumber(users.length)}* user.`
+        text += `> Tu posición: *#${myRankIndex + 1}* de *${formatNumber(users.length)}* usuarios.`
     } else {
-        text += `> Kamu belum terdaftar di database.`
+        text += `> Aún no estás registrado en la base de datos.`
     }
     
     await m.reply(text, { mentions })

@@ -47,16 +47,16 @@ async function handler(m, { sock, plugins }) {
   if (isAdd) {
     if (!target)
       return m.reply(
-        `❌ *Target Invalid*\n\nTag user / Reply chat / Tulis nomor target`,
+        `❌ *Target Invalid*\n\nEtiqueta usuario / Responde chat / Escribe el número destino`,
       );
     const cleanArgs = m.args.filter(
       (a) => !a.includes("@") && !/^\d{10,}$/.test(a),
     );
     if (cleanArgs.length < 2) {
       return m.reply(
-        `⚠️ *Format Salah*\n\n` +
+        `⚠️ *Formato Incorrecto*\n\n` +
           `Format: \`${m.prefix}addakses <command> <durasi> <target>\`\n\n` +
-          `*Contoh:*\n` +
+          `*Ejemplo:*\n` +
           `> \`${m.prefix}addakses addowner 30d @user\` (30 Hari)\n` +
           `> \`${m.prefix}addakses unban permanent @user\` (Selamanya)\n\n` +
           `*Durasi Support:* 1h, 1d, 30d, 1y`,
@@ -83,7 +83,7 @@ async function handler(m, { sock, plugins }) {
 
     if (activeAccess.length === 0) {
       return m.reply(
-        `📊 *ᴜsᴇʀ ᴀᴄᴄᴇss*\n\nTarget: @${target.split("@")[0]}\nStatus: *Tidak punya akses khusus*`,
+        `📊 *ᴜsᴇʀ ᴀᴄᴄᴇss*\n\nTarget: @${target.split("@")[0]}\nStatus: *No tiene acceso especial*`,
         {
           mentions: sock.parseMention(`@${target.split("@")[0]}`),
         },
@@ -118,10 +118,10 @@ async function handler(m, { sock, plugins }) {
       try {
         const durationMs = ms(durationTarget);
         if (!durationMs)
-          return m.reply(`❌ Format durasi salah! Gunakan: 1h, 1d, 30d`);
+          return m.reply(`❌ ¡Formato de duración incorrecto! Usa: 1h, 1d, 30d`);
         expiredTime = Date.now() + durationMs;
       } catch {
-        return m.reply(`❌ Format durasi tidak dikenali!`);
+        return m.reply(`❌ ¡Formato de duración desconocido!`);
       }
     }
 
@@ -154,7 +154,7 @@ async function handler(m, { sock, plugins }) {
     );
   }
   if (isDel) {
-    if (!target) return m.reply(`❌ Tag user yang mau dihapus aksesnya!`);
+    if (!target) return m.reply(`❌ ¡Etiqueta al usuario que quieres eliminar el acceso!`);
     const now = Date.now();
     const activeAccess = user.access.filter(
       (a) => a.expired === null || a.expired > now,
@@ -164,17 +164,17 @@ async function handler(m, { sock, plugins }) {
       specificCmd = specificCmd.toLowerCase();
       const idx = user.access.findIndex((a) => a.cmd === specificCmd);
       if (idx === -1)
-        return m.reply(`❌ User tidak punya akses command \`${specificCmd}\``);
+        return m.reply(`❌ El usuario no tiene acceso al comando \`${specificCmd}\``);
 
       user.access.splice(idx, 1);
       db.setUser(target, user);
       return m.reply(
-        `✅ Akses \`${specificCmd}\` berhasil dicabut dari @${target.split("@")[0]}`,
+        `✅ Acceso \`${specificCmd}\` removido con éxito de @${target.split("@")[0]}`,
       );
     }
 
     if (activeAccess.length === 0) {
-      return m.reply(`⚠️ User ini tidak memiliki akses command apapun.`);
+      return m.reply(`⚠️ Este usuario no tiene acceso a ningún comando.`);
     }
     const rows = activeAccess.map((acc) => {
       const exp = acc.expired ? ms(acc.expired - now) : "Permanent";
@@ -185,7 +185,7 @@ async function handler(m, { sock, plugins }) {
       };
     });
     const listMessage = {
-      text: `🔓 *CABUT AKSES*\n\nPilih akses command yang ingin dihapus dari @${target.split("@")[0]}`,
+      text: `🔓 *CABUT AKSES*\n\nSelecciona el acceso del comando que quieres eliminar de @${target.split("@")[0]}`,
       title: "Manage Access",
       buttonText: "PILIH COMMAND",
       sections: [

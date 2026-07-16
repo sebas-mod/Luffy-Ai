@@ -3,7 +3,7 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Sale de un grupo o lo elimina',
-    usage: '.hapusgrup (di dalam grup) atau .hapusgrup <jid>',
+    usage: '.hapusgrup (dentro de grup) o .hapusgrup <jid>',
     example: '.hapusgrup',
     isOwner: true,
     cooldown: 5,
@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
     if (!targetJid || !targetJid.endsWith('@g.us')) {
         return m.reply(
             '🗑️ *ʜᴀᴘᴜs ɢʀᴜᴘ*\n\n' +
-            '> `.hapusgrup` (di dalam grup) — Keluar dari grup ini\n' +
-            '> `.hapusgrup <id_grup>` — Keluar dari grup tertentu\n\n' +
-            '⚠️ Bot akan keluar dari grup, bukan menghapus grup secara permanen'
+            '> `.hapusgrup` (dentro de grup) — Aluar del grupo esto\n' +
+            '> `.hapusgrup <id_grup>` — Aluar del grupo tertentu\n\n' +
+            '⚠️ Bot va a aluar del grupo, no eliminará el grupo de forma permanente'
         )
     }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
             `> ID: ${targetJid}`
         )
     } catch (err) {
-        return m.reply(`❌ Gagal keluar dari grup: ${err.message}`)
+        return m.reply(`❌ Fallo aluar del grupo: ${err.message}`)
     }
 }
 

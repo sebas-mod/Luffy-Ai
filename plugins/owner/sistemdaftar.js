@@ -44,12 +44,12 @@ function getRegistrationStats(db) {
 }
 
 const pluginConfig = {
-  name: "sistemdaftar",
-  alias: ["regmode", "wajibdaftar", "togglereg"],
+  name: "sistemlista",
+  alias: ["regmode", "wajiblista", "togglereg"],
   category: "owner",
   description: "Gestiona el registro obligatorio y sus estadísticas",
-  usage: ".sistemdaftar <on/off/stats>",
-  example: ".sistemdaftar stats",
+  usage: ".sistemlista <on/off/stats>",
+  example: ".sistemlista stats",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -75,14 +75,14 @@ async function handler(m, { sock }) {
         `Status: ${currentStatus ? "✅ ON (Wajib Daftar)" : "❌ OFF"}\n\n` +
         `*Statistik:*\n` +
         `> Total registered: *${stats.totalRegistered}*\n` +
-        `> Register hari ini: *${stats.registeredToday}*\n` +
-        `> Unreg hari ini: *${stats.unregisteredToday}*\n` +
-        `> Sesi aktif: *${stats.activeSessions}*\n\n` +
+        `> Register hari esto: *${stats.registeredToday}*\n` +
+        `> Unreg hari esto: *${stats.unregisteredToday}*\n` +
+        `> Sesi activo: *${stats.activeSessions}*\n\n` +
         `*Usage:*\n` +
-        `> \`${m.prefix}sistemdaftar on\` - Wajibkan daftar\n` +
-        `> \`${m.prefix}sistemdaftar off\` - Matikan wajib daftar\n` +
-        `> \`${m.prefix}sistemdaftar stats\` - Lihat statistik\n\n` +
-        `> Jika ON, user harus \`${m.prefix}daftar\` sebelum pakai command`,
+        `> \`${m.prefix}sistemlista on\` - Wajibkan lista\n` +
+        `> \`${m.prefix}sistemlista off\` - Matikan wajib lista\n` +
+        `> \`${m.prefix}sistemlista stats\` - Lihat statistik\n\n` +
+        `> Si ON, user debe \`${m.prefix}lista\` antes de usar el comando`,
     );
   }
 
@@ -95,9 +95,9 @@ async function handler(m, { sock }) {
           `Status sistem: ${currentStatus ? "✅ ON (Wajib Daftar)" : "❌ OFF"}\n\n` +
           `╭┈┈⬡「 📈 *sᴛᴀᴛs* 」\n` +
           `┃ Total registered: *${stats.totalRegistered}*\n` +
-          `┃ Register hari ini: *${stats.registeredToday}*\n` +
-          `┃ Unreg hari ini: *${stats.unregisteredToday}*\n` +
-          `┃ Sesi aktif: *${stats.activeSessions}*\n` +
+          `┃ Register hari esto: *${stats.registeredToday}*\n` +
+          `┃ Unreg hari esto: *${stats.unregisteredToday}*\n` +
+          `┃ Sesi activo: *${stats.activeSessions}*\n` +
           `╰┈┈┈┈┈┈┈┈⬡`,
         contextInfo: getRegistrationContextInfo(),
       },
@@ -121,8 +121,8 @@ async function handler(m, { sock }) {
       {
         text:
           `✅ *sɪsᴛᴇᴍ ᴅᴀꜰᴛᴀʀ ᴅɪᴀᴋᴛɪꜰᴋᴀɴ!*\n\n` +
-          `User sekarang wajib daftar sebelum menggunakan command!\n\n` +
-          `> Command: \`${m.prefix}daftar\``,
+          `User ahora wajib lista antes de mengusa command!\n\n` +
+          `> Command: \`${m.prefix}lista\``,
         contextInfo: getRegistrationContextInfo(),
       },
       { quoted: m },
@@ -145,7 +145,7 @@ async function handler(m, { sock }) {
       {
         text:
           `❌ *sɪsᴛᴇᴍ ᴅᴀꜰᴛᴀʀ ᴅɪɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ!*\n\n` +
-          `User tidak perlu daftar untuk menggunakan command.`,
+          `User no es necesario lista para mengusa command.`,
         contextInfo: getRegistrationContextInfo(),
       },
       { quoted: m },
@@ -156,7 +156,7 @@ async function handler(m, { sock }) {
   }
 
   return m.reply(
-    `❌ Option tidak valid!\n\n> Gunakan: \`on\`, \`off\`, atau \`stats\``,
+    `❌ Option no válido!\n\n> Usa: \`on\`, \`off\`, o \`stats\``,
   );
 }
 

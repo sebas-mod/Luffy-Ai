@@ -4,7 +4,7 @@ const pluginConfig = {
     alias: [],
     category: 'group',
     description: 'Abrir mensaje de vista única al responder',
-    usage: '.rvo (reply pesan 1x lihat)',
+    usage: '.rvo (responder a un mensaje de vista única)',
     example: '.rvo',
     isOwner: false,
     isPremium: false,

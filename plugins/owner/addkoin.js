@@ -4,7 +4,7 @@ const pluginConfig = {
     alias: ['tambahkoin', 'givekoin', 'addcoin', 'adddcoin'],
     category: 'owner',
     description: 'Añade monedas a un usuario (máx. 9 billones)',
-    usage: '.addkoin <jumlah> @user',
+    usage: '.addkoin <cantidad> @user',
     example: '.addkoin 100000 @user',
     isOwner: true,
     isPremium: false,
@@ -46,10 +46,10 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `💰 *ᴀᴅᴅ ᴋᴏɪɴ*\n\n` +
-            `> \`.addkoin <jumlah>\` - ke diri sendiri\n` +
-            `> \`.addkoin <jumlah> @user\` - ke orang lain\n` +
+            `> \`.addkoin <cantidad>\` - a uno mismo\n` +
+            `> \`.addkoin <cantidad> @user\` - a orang otro\n` +
             `> Max: 9.000.000.000.000 (9T)\n\n` +
-            `\`Contoh: ${m.prefix}addkoin 100000\``
+            `\`Ejemplo: ${m.prefix}addkoin 100000\``
         )
     }
 
@@ -60,8 +60,8 @@ async function handler(m, { sock }) {
     if (user.koin === -1) {
         return m.reply(
             `💰 *INFORMATION*\n` +
-            `@${targetJid.split('@')[0]} sudah memiliki koin *∞ Unlimited*\n` +
-            `Tidak perlu menambahkan koin lagi`,
+            `@${targetJid.split('@')[0]} ya memiliki koin *∞ Unlimited*\n` +
+            `No es necesario agregando koin de nuevo`,
             { mentions: [targetJid] }
         )
     }
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     await m.reply(
-        `✅ Berhasil menambahkan koin *@${targetJid.split('@')[0]}* sebanyak *${formatKoin(amount)}*`,
+        `✅ Éxito agregando koin *@${targetJid.split('@')[0]}* por la cantidad de *${formatKoin(amount)}*`,
         { mentions: [targetJid] }
     )
 }

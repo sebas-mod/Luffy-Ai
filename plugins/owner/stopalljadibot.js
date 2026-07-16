@@ -2,7 +2,7 @@ import { stopAllJadibots, getActiveJadibots } from '../../src/lib/ourin-jadibot-
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'stopalljadibot',
-    alias: ['stopsemuajadibot', 'killalljadibots'],
+    alias: ['stoptodosjadibot', 'killalljadibots'],
     category: 'owner',
     description: 'Detiene todos los jadibots activos',
     usage: '.stopalljadibot',
@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (active.length === 0) {
-        return m.reply(`❌ Tidak ada jadibot yang aktif`)
+        return m.reply(`❌ No hay jadibots activos`)
     }
 
     await m.react('🕕')
@@ -36,8 +36,8 @@ async function handler(m, { sock }) {
             text: `🛑 *sᴇᴍᴜᴀ ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴇɴᴛɪᴋᴀɴ*\n\n` +
                 `> 📊 Total: *${stopped.length}* jadibot\n` +
                 `> 💾 Session: *Tersimpan*\n\n` +
-                `Dihentikan: ${names}\n\n` +
-                `> Semua session disimpan dan bisa diaktifkan ulang.`,
+                `Detenidos: ${names}\n\n` +
+                `> Todas las sesiones están guardadas y pueden activarse de nuevo.`,
             mentions: stopped.map(id => id + '@s.whatsapp.net')
         }, { quoted: m })
     } catch (error) {

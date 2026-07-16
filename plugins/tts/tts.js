@@ -5,8 +5,8 @@ const pluginConfig = {
   alias: ["say"],
   category: "tts",
   description: "Google Text To Speech",
-  usage: ".tts <text>",
-  example: ".tts halo semua",
+  usage: ".tts <texto>",
+  example: ".tts hola a todos",
   cooldown: 10,
   energi: 1,
   isEnabled: true,
@@ -16,7 +16,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text) {
-    return m.reply(`🎤 *Google TTS*\n\nGunakan:\n${m.prefix}tts halo dunia`);
+    return m.reply(`🎤 *Google TTS*\n\nUsa:\n${m.prefix}tts hola mundo`);
   }
 
   m.react("🎤");

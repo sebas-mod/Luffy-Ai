@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "google",
   alias: ["gsearch", "googlenews"],
   category: "search",
-  description: "Cari berita di Google News",
+  description: "Buscar noticias en Google News",
   usage: ".google <query>",
   example: ".google gempa hari ini",
   isOwner: false,
@@ -23,12 +23,12 @@ async function handler(m) {
     m.react("❌");
     return m.reply(
       `🔍 *Google News*\n\n` +
-        `Cari berita terbaru dari Google News.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}google <topik>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}google gempa hari ini*\n` +
-        `> *${m.prefix}google teknologi terbaru*`,
+        `Busca las últimas noticias de Google News.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}google <tema>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}google terremoto hoy*\n` +
+        `> *${m.prefix}google tecnología más reciente*`,
     );
   }
 
@@ -46,7 +46,7 @@ async function handler(m) {
 
     if (items.length === 0) {
       m.react("☢");
-      return m.reply(`❌ Nggak nemu hasil buat: *${query}*`);
+      return m.reply(`❌ No se encontraron resultados para: *${query}*`);
     }
 
     let txt = `🔍 *Google News*\n\n`;
@@ -64,7 +64,7 @@ async function handler(m) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mencari di Google, coba lagi nanti");
+    m.reply("❌ Error al buscar en Google, intenta de nuevo más tarde");
   }
 }
 

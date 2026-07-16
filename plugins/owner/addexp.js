@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['tambahexp', 'giveexp', 'addxp'],
     category: 'owner',
     description: 'Añade experiencia a un usuario (máx. 9 mil millones)',
-    usage: '.addexp <jumlah> @user',
+    usage: '.addexp <cantidad> @user',
     example: '.addexp 10000 @user',
     isOwner: true,
     isPremium: false,
@@ -47,15 +47,15 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `⭐ *ᴀᴅᴅ ᴇxᴘ*\n\n` +
-            `> \`.addexp <jumlah>\` - ke diri sendiri\n` +
-            `> \`.addexp <jumlah> @user\` - ke user\n` +
+            `> \`.addexp <cantidad>\` - a uno mismo\n` +
+            `> \`.addexp <cantidad> @user\` - al usuario\n` +
             `> Max: 9.000.000.000 (9B)\n\n` +
-            `\`Contoh: ${m.prefix}addexp 10000\``
+            `\`Ejemplo: ${m.prefix}addexp 10000\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah exp harus lebih dari 0`)
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> La cantidad de EXP debe ser mayor a 0`)
     }
     
     if (amount > MAX_EXP) {
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
     await m.react('✅')
     
     await m.reply(
-        `✅ Berhasil menambahkan exp *${formatNumber(amount)}* ke *@${targetJid.split('@')[0]}*`,
+        `✅ Éxito agregando exp *${formatNumber(amount)}* a *@${targetJid.split('@')[0]}*`,
         { mentions: [targetJid] }
     )
 }

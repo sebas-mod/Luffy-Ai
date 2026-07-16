@@ -8,7 +8,7 @@ const pluginConfig = {
   name: "emojitoanimasi",
   alias: ["emoji2sticker", "emojisticker", "e2s"],
   category: "tools",
-  description: "Konversi emoji ke sticker animasi",
+  description: "Convertir emoji a sticker animado",
   usage: ".emojitoanimasi <emoji>",
   example: ".emojitoanimasi 😳",
   cooldown: 5,
@@ -22,8 +22,8 @@ async function handler(m, { sock }) {
   if (!emoji) {
     return m.reply(
       `🎭 *ᴇᴍᴏᴊɪ ᴛᴏ ᴀɴɪᴍᴀsɪ*\n\n` +
-        `> Konversi emoji ke sticker animasi\n\n` +
-        `*Contoh:*\n` +
+        `> Convertir emoji a sticker animado\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}emojitoanimasi 😳\``,
     );
   }
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji tidak ditemukan atau API error");
+      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji no encontrado o error en la API");
     }
 
     const webpUrl = data.data.url;

@@ -8,9 +8,9 @@ const pluginConfig = {
   name: "ttselon",
   alias: ["elontts", "ttselonmusk"],
   category: "tts",
-  description: "Text to Speech dengan suara Elon Musk",
-  usage: ".ttselon <text>",
-  example: ".ttselon To Mars!",
+  description: "Text to Speech con la voz de Elon Musk",
+  usage: ".ttselon <texto>",
+  example: ".ttselon ¡A Marte!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
   if (!text)
     return m.reply(
-      `🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n> Gunakan: \`${m.prefix}ttselon <text>\``,
+      `🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n> Usa: \`${m.prefix}ttselon <texto>\``,
     );
 
   m.react("🚀");
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     const voice = res.data?.result?.find((v) => v.elon_musk && !v.error);
     if (!voice) {
       m.react("❌");
-      return m.reply(`❌ Elon voice error. Coba TTS lain.`);
+      return m.reply(`❌ Error de voz de Elon. Prueba otro TTS.`);
     }
 
     const tempDir = path.join(process.cwd(), "temp");

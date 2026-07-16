@@ -113,7 +113,7 @@ const pluginConfig = {
   alias: ["listuser", "registeredusers", "daftarlist"],
   category: "user",
   description:
-    "Lihat daftar user yang sudah terdaftar dengan filter dan pagination",
+    "Ver lista de usuarios registrados con filtro y paginación",
   usage: ".listdaftar [page <nomor>] [search <nama>] [sort terbaru]",
   example: ".listdaftar search zann sort terbaru page 2",
   isOwner: true,
@@ -132,7 +132,7 @@ async function handler(m, { sock }) {
   let registeredUsers = Object.values(allUsers).filter((u) => u.isRegistered);
 
   if (registeredUsers.length === 0) {
-    return m.reply(`❌ Belum ada user yang terdaftar!`);
+    return m.reply(`❌ ¡Aún no hay usuarios registrados!`);
   }
 
   if (options.search) {
@@ -152,7 +152,7 @@ async function handler(m, { sock }) {
 
   if (registeredUsers.length === 0) {
     return m.reply(
-      `❌ Tidak ada user yang cocok dengan pencarian: *${options.search}*`,
+      `❌ No hay usuarios que coincidan con la búsqueda: *${options.search}*`,
     );
   }
 
@@ -165,9 +165,9 @@ async function handler(m, { sock }) {
   );
 
   let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴜsᴇʀ ᴛᴇʀᴅᴀꜰᴛᴀʀ*\n\n`;
-  text += `> Total hasil: *${registeredUsers.length}* user\n`;
-  text += `> Halaman: *${page}/${totalPages}*\n`;
-  text += `> Urut: *${options.sort === "terbaru" ? "Terbaru" : "Default"}*\n`;
+  text += `> Total de resultados: *${registeredUsers.length}* usuarios\n`;
+  text += `> Página: *${page}/${totalPages}*\n`;
+  text += `> Orden: *${options.sort === "terbaru" ? "Más recientes" : "Predeterminado"}*\n`;
   if (options.search) {
     text += `> Search: *${options.search}*\n`;
   }
@@ -185,11 +185,11 @@ async function handler(m, { sock }) {
       user.lastRegisteredAt || user.registeredAt,
     );
     text += `${listNumber}. ${genderEmoji} *${user.regName || "Unknown"}*\n`;
-    text += `   > @${user.jid} | ${user.regAge || "?"} tahun | ${registeredAt}\n`;
+    text += `   > @${user.jid} | ${user.regAge || "?"} años | ${registeredAt}\n`;
   });
 
   if (totalPages > 1) {
-    text += `\n> Gunakan \`${m.prefix}listdaftar page ${page + 1 > totalPages ? totalPages : page + 1}\` untuk halaman lain`;
+    text += `\n> Usa \`${m.prefix}listdaftar page ${page + 1 > totalPages ? totalPages : page + 1}\` para otra página`;
   }
 
   const mentions = displayUsers.map((u) => u.jid + "@s.whatsapp.net");

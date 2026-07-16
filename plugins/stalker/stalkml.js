@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'stalkml',
     alias: ['mlstalk', 'ceknickml', 'nickml'],
     category: 'stalker',
-    description: 'Mengetahui nama/nickname akun Mobile Legends berdasarkan ID dan Server.',
+    description: 'Conocer el nombre/nickname de una cuenta de Mobile Legends por ID y Servidor.',
     usage: '.stalkml <id> | <server>',
     example: '.stalkml 1264042367 | 15139',
     isOwner: false,
@@ -34,11 +34,11 @@ async function handler(m, { text }) {
     if (!text) {
         return m.reply(
             `🎮 *STALKER MOBILE LEGENDS* 🎮\n\n` +
-            `Fitur ini akan membantumu untuk melacak dan mengetahui *nickname* atau nama dari akun Mobile Legends seseorang hanya dengan menggunakan *ID* dan *Server* nya saja!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}stalkml <ID> | <Server>\`\n` +
-            `- Contoh: \`${m.prefix}stalkml 1264042367 | 15139\`\n\n` +
-            `_Pemisahan ID dan Server juga bisa menggunakan spasi atau format tanda kurung seperti 1264042367(15139)._`
+            `¡Esta función te ayudará a rastrear y conocer el *nickname* o nombre de una cuenta de Mobile Legends solo usando su *ID* y *Servidor*!\n\n` +
+            `*CÓMO USAR:*\n` +
+            `- Escribe \`${m.prefix}stalkml <ID> | <Servidor>\`\n` +
+            `- Ejemplo: \`${m.prefix}stalkml 1264042367 | 15139\`\n\n` +
+            `_La separación de ID y Servidor también se puede hacer con espacio o formato entre paréntesis como 1264042367(15139)._`
         );
     }
 
@@ -82,7 +82,7 @@ async function handler(m, { text }) {
 
         if (!userId || !serverId) {
             await m.react('❌');
-            return m.reply(`❌ *FORMAT SALAH*\n\nPastikan kamu memasukkan ID dan Server yang lengkap.\nContoh: \`${m.prefix}stalkml 1264042367 | 15139\``);
+            return m.reply(`❌ *FORMATO INCORRECTO*\n\nAsegúrate de ingresar el ID y Servidor completos.\nEjemplo: \`${m.prefix}stalkml 1264042367 | 15139\``);
         }
 
         const res = await fetch(`https://api.isan.eu.org/nickname/ml?id=${userId}&server=${serverId}`, { 
@@ -106,12 +106,12 @@ async function handler(m, { text }) {
             await m.react('✅');
         } else {
             await m.react('❌');
-            return m.reply(`❌ *AKUN TIDAK DITEMUKAN*\n\nMaaf, sistem tidak dapat menemukan akun dengan ID *${userId}* dan Server *${serverId}*. Pastikan ID dan Server sudah diketik dengan benar.`);
+            return m.reply(`❌ *CUENTA NO ENCONTRADA*\n\nLo siento, el sistema no pudo encontrar una cuenta con ID *${userId}* y Servidor *${serverId}*. Asegúrate de que el ID y Servidor estén escritos correctamente.`);
         }
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MELACAK AKUN*\n\nMaaf, sistem sedang mengalami gangguan saat memanggil API untuk melacak akun tersebut. Silakan coba beberapa saat lagi.`);
+        m.reply(`❌ *FALLÓ EL RASTREO DE LA CUENTA*\n\nLo siento, el sistema tuvo problemas al llamar a la API para rastrear la cuenta. Por favor, inténtalo de nuevo en unos momentos.`);
     }
 }
 

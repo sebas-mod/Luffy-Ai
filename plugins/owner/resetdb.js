@@ -33,23 +33,23 @@ async function handler(m, { sock }) {
         
         return m.reply(
             `⚠️ *ᴘᴇʀɪɴɢᴀᴛᴀɴ!*\n\n` +
-            `> Ini akan menghapus SEMUA data:\n` +
+            `> Esto va a eliminando SEMUA data:\n` +
             `> • Data user\n` +
             `> • Data group\n` +
             `> • Data clan\n` +
-            `> • Semua statistik\n\n` +
+            `> • Todos statistik\n\n` +
             `╭┈┈⬡「 ⚠️ *ᴋᴏɴғɪʀᴍᴀsɪ* 」\n` +
-            `┃ Ketik: *.resetdb confirm*\n` +
-            `┃ dalam 60 detik\n` +
+            `┃ Escribe: *.resetdb confirm*\n` +
+            `┃ en 60 segundo\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> ❌ Aksi ini TIDAK BISA dibatalkan!`
+            `> ❌ Aksi esto TIDAK BISA dibatalkan!`
         )
     }
     
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`❌ Timeout! Ketik *.resetdb* ulang untuk memulai.`)
+        return m.reply(`❌ Timeout! Escribe *.resetdb* ulang para estociando.`)
     }
     
     delete global.resetDbPending[m.sender]
@@ -92,7 +92,7 @@ async function handler(m, { sock }) {
             `┃ 👥 Groups: ${groupCount}\n` +
             `┃ ⚔️ Clans: ${clanCount}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> Backup disimpan di:\n` +
+            `> Backup dcontenidompan di:\n` +
             `> \`${path.basename(backupPath)}\``
         )
         

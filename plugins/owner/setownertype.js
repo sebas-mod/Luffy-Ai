@@ -19,8 +19,8 @@ const pluginConfig = {
 }
 
 const VARIANTS = {
-    1: { name: 'Current Design', desc: 'Tampilan default saat ini' },
-    2: { name: 'Multiple Contact', desc: 'Kirim contact card semua owner' }
+    1: { name: 'Current Design', desc: 'Tampilan default actualmente' },
+    2: { name: 'Multiple Contact', desc: 'Envía contact card todos owner' }
 }
 
 async function handler(m, { sock, db }) {
@@ -34,7 +34,7 @@ async function handler(m, { sock, db }) {
         await db.save()
 
         await m.reply(
-            `✅ Owner type diubah ke *V${id}*\n\n` +
+            `✅ Tipo de owner cambiado a *V${id}*\n\n` +
             `> *${VARIANTS[id].name}*\n` +
             `> _${VARIANTS[id].desc}_`
         )
@@ -54,7 +54,7 @@ async function handler(m, { sock, db }) {
     }
 
     await sock.sendMessage(m.chat, {
-        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Type saat ini: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Pilih variant owner:`,
+        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Type actualmente: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Pilih variant owner:`,
         footer: config.bot?.name || 'Luffy-AI',
         contextInfo: {
             mentionedJid: [m.sender],

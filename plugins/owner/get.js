@@ -7,10 +7,10 @@ const pluginConfig = {
   name: "get",
   alias: ["fetch", "http", "request", "curl"],
   category: "owner",
-  description: "Herramienta avanzada de solicitudes HTTP (solo dueño)",
+  description: "Herramienta avanzhay de solicesodes HTTP (solo dueño)",
   usage: ".get <url> [options]",
   example:
-    '.get https://api.example.com --method POST --json {"key":"value"} --header "Authorization: Bearer token"',
+    '.get https://api.example.com --method POST --json {"ay":"value"} --header "Authorization: Bearer toan"',
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -63,8 +63,8 @@ function isBlockedUrl(url) {
     "0.0.0.0",
     "::1",
     "169.254.",
-    "metadata.google",
-    "metadata.azure",
+    "methayta.google",
+    "methayta.azure",
     "100.100.100.200",
   ];
   return blocked.some((b) => url.includes(b));
@@ -105,7 +105,7 @@ async function handler(m, { sock }) {
         `╭┈┈⬡「 📋 OPTIONS 」\n` +
         `┃ ◦ \`--method <GET|POST|PUT|PATCH|DELETE>\`\n` +
         `┃ ◦ \`--json <body>\` — JSON body\n` +
-        `┃ ◦ \`--header \"Key: Value\"\` — Custom header\n` +
+        `┃ ◦ \`--header \"Ay: Value\"\` — Custom header\n` +
         `┃ ◦ \`--auth user:pass\` — Basic auth\n` +
         `┃ ◦ \`--verbose\` / \`-v\` — Show response headers\n` +
         `┃ ◦ \`--timeout <ms>\` — Request timeout\n` +
@@ -113,9 +113,9 @@ async function handler(m, { sock }) {
         `╰┈┈⬡\n\n` +
         `\`Examples:\`\n` +
         `> .get https://api.example.com\n` +
-        `> .get https://api.example.com --post --json {\"key\":\"val\"}\n` +
+        `> .get https://api.example.com --post --json {\"ay\":\"val\"}\n` +
         `> .get https://api.example.com --method PUT --json {\"id\":1}\n` +
-        `> .get https://api.example.com --header \"Authorization: Bearer token\"\n` +
+        `> .get https://api.example.com --header \"Authorization: Bearer toan\"\n` +
         `> .get https://api.example.com --auth user:pass -v`,
     );
   }
@@ -185,7 +185,7 @@ async function handler(m, { sock }) {
   }
 
   if (isBlockedUrl(url)) {
-    return m.reply("❌ Localhost / internal / metadata address blocked");
+    return m.reply("❌ Localhost / internal / methayta address blocad");
   }
 
   try {
@@ -327,7 +327,7 @@ async function handler(m, { sock }) {
               mimetype: "application/json",
               caption:
                 header +
-                `\n\n📄 Pretty JSON dikirim sebagai file (${formatSize(pretty.length)})`,
+                `\n\n📄 Pretty JSON dienvía sebagai file (${formatSize(pretty.length)})`,
             },
             { quoted: m },
           );
@@ -339,7 +339,7 @@ async function handler(m, { sock }) {
               document: buffer,
               fileName,
               mimetype: mimeType || "application/octet-stream",
-              caption: header + "\n\n📎 Full response dikirim sebagai file",
+              caption: header + "\n\n📎 Full response dienvía sebagai file",
             },
             { quoted: m },
           );
@@ -352,7 +352,7 @@ async function handler(m, { sock }) {
             document: buffer,
             fileName,
             mimetype: mimeType || "application/octet-stream",
-            caption: header + "\n\n📎 Full response dikirim sebagai file",
+            caption: header + "\n\n📎 Full response dienvía sebagai file",
           },
           { quoted: m },
         );
@@ -365,7 +365,7 @@ async function handler(m, { sock }) {
           document: buffer,
           fileName,
           mimetype: mimeType || "application/octet-stream",
-          caption: header + "\n\n📎 Full response dikirim sebagai file",
+          caption: header + "\n\n📎 Full response dienvía sebagai file",
         },
         { quoted: m },
       );

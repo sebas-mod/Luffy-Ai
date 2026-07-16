@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'livescore',
     alias: ['skorbola', 'livebola', 'skor'],
     category: 'info',
-    description: 'Menampilkan live score pertandingan sepak bola dari Goal.com',
+    description: 'Mostrar marcador en vivo de partidos de fútbol desde Goal.com',
     usage: '.livescore',
     example: '.livescore',
     isOwner: false,
@@ -39,12 +39,12 @@ async function ambilLivescore(edisi = 'id') {
 
 function _statusIndo(status) {
   const map = {
-    FIXTURE: 'Belum Mulai',
-    LIVE: 'Berlangsung',
-    FINISHED: 'Selesai',
-    POSTPONED: 'Ditunda',
-    CANCELLED: 'Dibatalkan',
-    HALF_TIME: 'Turun Minum'
+    FIXTURE: 'Por comenzar',
+    LIVE: 'En curso',
+    FINISHED: 'Finalizado',
+    POSTPONED: 'Pospuesto',
+    CANCELLED: 'Cancelado',
+    HALF_TIME: 'Descanso'
   };
   return map[status] || status;
 }
@@ -74,10 +74,10 @@ async function handler(m, { text }) {
         
         if (!rapi || rapi.length === 0) {
             await m.react('❌');
-            return m.reply(`⚽ *LIVESCORE BOLA* ⚽\n\nSaat ini tidak ada pertandingan yang sedang berlangsung atau dijadwalkan.`);
+            return m.reply(`⚽ *MARCADOR EN VIVO* ⚽\n\nEn este momento no hay partidos en curso ni programados.`);
         }
         
-        let caption = `⚽ *LIVE SCORE BOLA HARI INI* ⚽\n\n`;
+        let caption = `⚽ *MARCADOR EN VIVO DE HOY* ⚽\n\n`;
         
         let count = 0;
         for (const grup of rapi) {
@@ -102,14 +102,14 @@ async function handler(m, { text }) {
             count++;
         }
         
-        caption += `_Sumber: Goal.com_`;
+        caption += `_Fuente: Goal.com_`;
         
         await m.reply(caption.trim());
         await m.react('✅');
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MENGAMBIL SKOR*\n\nMaaf, sistem gagal mengambil data live score saat ini. Error: _${e.message}_`);
+        m.reply(`❌ *ERROR AL OBTENER MARCADOR*\n\nLo siento, el sistema no pudo obtener los datos del marcador en vivo. Error: _${e.message}_`);
     }
 }
 

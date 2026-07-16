@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "daily",
   alias: ["harian", "claim"],
   category: "rpg",
-  description: "Klaim hadiah harian",
+  description: "Reclamar recompensa diaria",
   usage: ".daily",
   example: ".daily",
   isOwner: false,
@@ -22,7 +22,7 @@ function msToTime(duration) {
   const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((duration / (1000 * 60)) % 60);
   const seconds = Math.floor((duration / 1000) % 60);
-  return `${hours} jam ${minutes} menit ${seconds} detik`;
+  return `${hours} horas ${minutes} minutos ${seconds} segundos`;
 }
 
 async function handler(m, { sock }) {
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
 
   if (now - lastClaim < COOLDOWN) {
     const remaining = COOLDOWN - (now - lastClaim);
-    return m.reply(`Sabar kak, jatah absen harian kamu udah diambil! 😂\n\nTunggu *${msToTime(remaining)}* lagi ya buat ambil jatah besok. Jangan serakah! 🏃💨`);
+    return m.reply(`¡Ten paciencia, tu recompensa diaria ya fue reclamada! 😂\n\nEspera *${msToTime(remaining)}* más para reclamar la de mañana. ¡No seas codicioso! 🏃💨`);
   }
 
   const expReward = isPremium ? 5000 : 1000;
@@ -54,16 +54,16 @@ async function handler(m, { sock }) {
 
   await m.react("🎁");
 
-  let txt = `ASIKK! Gajian harian udah cair nih kak! 🎉✨\n\n`;
-  txt += `Ini jatah kamu buat hari ini:\n`;
-  txt += `💸 Koin: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
+  let txt = `¡GENIAL! ¡El sueldo diario ya cayó! 🎉✨\n\n`;
+  txt += `Esta es tu ración de hoy:\n`;
+  txt += `💸 Monedas: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n`;
-  txt += `⚡ Energi: *+${energiReward}*\n\n`;
+  txt += `⚡ Energía: *+${energiReward}*\n\n`;
   
   if (isPremium) {
-    txt += `👑 *Wih, bonus member Premium emang beda! Sultan mah bebas!* 😎💸`;
+    txt += `👑 *¡Wow, el bonus de Premium es diferente! ¡Los sultanes son libres!* 😎💸`;
   } else {
-    txt += `Mau bonus lebih gede? Yuk *Upgrade Premium* kak! Biar makin kaya! 🤑💎`;
+    txt += `¿Quieres un bonus mayor? ¡*Upgrade Premium*! ¡Para ser aún más rico! 🤑💎`;
   }
 
   m.reply(txt);

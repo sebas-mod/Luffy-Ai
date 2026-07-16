@@ -23,28 +23,28 @@ async function handler(m, { sock }) {
     if (!args) {
         return m.reply(
             `⚠️ *PENGATURAN AUDIO ALL MENU*\n\n` +
-            `Sistem manajemen gaya audio khusus untuk tampilan All Menu.\n\n` +
+            `Sistema de gestión de estilo de audio especial para la vista All Menu.\n\n` +
             `*PENGGUNAAN:*\n` +
-            `• *${m.prefix}setaudioallmenu 1* — PTT Voice Note dengan reply pesan asli\n` +
-            `• *${m.prefix}setaudioallmenu 2* — PTT Voice Note dengan reply fake polling\n` +
-            `• *${m.prefix}setaudioallmenu 3* — Audio musik biasa dengan reply fake text\n` +
-            `• *${m.prefix}setaudioallmenu 4* — Audio musik biasa dengan reply fake troli order\n\n` +
+            `• *${m.prefix}setaudioallmenu 1* — PTT Voice Note con reply mensaje asli\n` +
+            `• *${m.prefix}setaudioallmenu 2* — PTT Voice Note con reply faa polling\n` +
+            `• *${m.prefix}setaudioallmenu 3* — Audio musik biasa con reply faa text\n` +
+            `• *${m.prefix}setaudioallmenu 4* — Audio musik biasa con reply faa troli order\n\n` +
             `*PENJELASAN VARIAN:*\n` +
-            `- *Varian 1 & 2* akan secara otomatis mengkonversi file MP3 menjadi Opus (Voice Note) murni menggunakan ffmpeg, sehingga terlihat lebih natural layaknya rekaman suara asli.\n` +
-            `- *Varian 3 & 4* mengirimkan file dalam format MP3 biasa tanpa konversi, namun menggunakan *Fake Quoted* yang terlihat elegan dan keren di layar obrolan.\n\n` +
-            `Saat ini All Menu menggunakan varian: *${db.setting("allmenuAudioStyle") || 1}*`
+            `- *Varian 1 & 2* va a de forma automáticamente convertirá automáticamente los archivos MP3 a Opus (Voice Note) puro usando ffmpeg, para que se vea más natural como una grabación de voz real.\n` +
+            `- *Varian 3 & 4* enviará el archivo en formato MP3 sin conversión, pero usando *Faa Quoted* que se ve elegante en la pantalla del chat.\n\n` +
+            `Actualmente All Menu mengusa varian: *${db.setting("allmenuAudioStyle") || 1}*`
         );
     }
 
     const newStyle = parseInt(args);
     if (isNaN(newStyle) || newStyle < 1 || newStyle > 4) {
-        return m.reply(`❌ *GAGAL*\n\nPilihan varian audio harus berupa angka 1 sampai 4.\nContoh: *${m.prefix}setaudioallmenu 2*`);
+        return m.reply(`❌ *GAGAL*\n\nLa opción de variante de audio debe ser un número del 1 al 4.\nEjemplo: *${m.prefix}setaudioallmenu 2*`);
     }
 
     await m.react("🕕");
     db.setting("allmenuAudioStyle", newStyle);
     db.save();
-    await m.reply(`✅ *BERHASIL*\n\nGaya audio All Menu telah sukses diubah menjadi *Varian ${newStyle}*. Silakan tes dengan mengetik *${m.prefix}allmenu*.`);
+    await m.reply(`✅ *BERHASIL*\n\nGaya audio All Menu ha sido exitosamente cambiado a *Varian ${newStyle}*. Por favor prueba escribiendo *${m.prefix}allmenu*.`);
     await m.react("✅");
 }
 

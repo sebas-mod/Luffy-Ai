@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'cekidch',
     alias: ['idch', 'channelid', 'infoch', 'channelinfo'],
     category: 'tools',
-    description: 'Cek ID dan info lengkap channel dari link',
+    description: 'Verificar ID e información completa del canal desde un enlace',
     usage: '.cekidch <link channel>',
     example: '.cekidch https://whatsapp.com/channel/xxxxx',
     isOwner: false,
@@ -37,13 +37,13 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗖𝗛𝗔𝗡𝗡𝗘𝗟 ✦. ── 𝜗ৎ\n\n` +
-            `> Masukkan link channel WhatsApp\n\n` +
+            `> Ingresa el enlace del canal de WhatsApp\n\n` +
             `> \`${m.prefix}cekidch https://whatsapp.com/channel/xxxxx\``
         )
     }
 
     if (!text.includes('https://whatsapp.com/channel/')) {
-        return m.reply(`── .✦ ──\n\n> Link channel tidak valid .☘︎ ݁˖`)
+        return m.reply(`── .✦ ──\n\n> Enlace del canal no válido .☘︎ ݁˖`)
     }
 
     m.react('🕕')
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
  
         if (!metadata?.id) {
             m.react('✘')
-            return m.reply(`── .✦ ──\n\n> Channel tidak ditemukan .☘︎ ݁˖`)
+            return m.reply(`── .✦ ──\n\n> Canal no encontrado .☘︎ ݁˖`)
         }
 
         const chName = metadata.name || 'Unknown'
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
             {
                 name: 'cta_url',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '✦ Buka Channel',
+                    display_text: '✦ Abrir Canal',
                     url: text
                 })
             }

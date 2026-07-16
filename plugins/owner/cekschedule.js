@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         for (const sched of status.schedulers) {
             const statusIcon = sched.running ? '✅' : '❌';
             text += `${statusIcon} *${sched.name}*\n`;
-            text += `   └ Key: \`${sched.key}\`\n`;
+            text += `   └ Ay: \`${sched.key}\`\n`;
             text += `   └ ${sched.description}\n`;
 
             if (sched.lastRun && sched.lastRun !== '-' && sched.lastRun !== 'Never') {
@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
 
         const sholatIcon = sholatEnabled ? '✅' : '❌';
         text += `${sholatIcon} *Sholat Scheduler*\n`;
-        text += `   └ Key: \`sholat\`\n`;
-        text += `   └ Notifikasi waktu sholat (real-time)\n`;
+        text += `   └ Ay: \`sholat\`\n`;
+        text += `   └ Notifikasi tiempo sholat (real-time)\n`;
 
         if (sholatEnabled) {
             const kotaSetting = db.setting('autoSholatKota') || { id: '1301', nama: 'KOTA JAKARTA' };
@@ -81,17 +81,17 @@ async function handler(m, { sock }) {
 
                 text += `   └ Next: ${nextSholat} (${nextTime} WIB)\n`;
             } catch {
-                text += `   └ _Gagal memuat jadwal_\n`;
+                text += `   └ _Fallo memuat jadwal_\n`;
             }
         }
 
         text += `\n`;
         text += `━━━━━━━━━━━━━━━━━━━\n`;
-        text += `✅ Aktif: ${status.summary.totalActive + (sholatEnabled ? 1 : 0)}\n`;
-        text += `❌ Nonaktif: ${status.summary.totalInactive + (!sholatEnabled ? 1 : 0)}\n\n`;
+        text += `✅ Activo: ${status.summary.totalActive + (sholatEnabled ? 1 : 0)}\n`;
+        text += `❌ Nonactivo: ${status.summary.totalInactive + (!sholatEnabled ? 1 : 0)}\n\n`;
 
-        text += `> Gunakan \`.stopschedule <key>\` untuk stop\n`;
-        text += `> Gunakan \`.startschedule <key>\` untuk start`;
+        text += `> Usa \`.stopschedule <ay>\` para stop\n`;
+        text += `> Usa \`.startschedule <ay>\` para start`;
 
         await m.reply(text);
     } catch (error) {

@@ -1,11 +1,11 @@
 import config from '../../config.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
-    name: ['unblock', 'unblocknomor'],
+    name: ['unblock', 'unblocknúmero'],
     alias: [],
     category: 'owner',
     description: 'Desbloquea un número de WhatsApp',
-    usage: '.unblock <nomor/reply/mention>',
+    usage: '.unblock <número/reply/mention>',
     example: '.unblock 628xxx',
     isOwner: true,
     cooldown: 5,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
         targetJid = m.quoted.sender || m.quoted.participant
     } else if (m.args[0]) {
         let num = m.args[0].replace(/[^0-9]/g, '')
-        if (!num) return m.reply('❌ Nomor tidak valid.')
+        if (!num) return m.reply('❌ Número no válido.')
         targetJid = num + '@s.whatsapp.net'
     } else if (!m.isGroup) {
         targetJid = m.chat
@@ -31,10 +31,10 @@ async function handler(m, { sock }) {
     if (!targetJid) {
         return m.reply(
             '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
-            '> `.unblock 628xxx` — Unblock via nomor\n' +
-            '> `.unblock` (reply pesan) — Unblock pengirim\n' +
+            '> `.unblock 628xxx` — Unblock via número\n' +
+            '> `.unblock` (reply mensaje) — Unblock pengirim\n' +
             '> `.unblock @mention` — Unblock yang di-mention\n' +
-            '> `.unblock` (di private chat) — Unblock user ini'
+            '> `.unblock` (di private chat) — Unblock user esto'
         )
     }
 

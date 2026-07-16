@@ -38,8 +38,8 @@ const pluginConfig = {
   name: "dafont",
   alias: ["font", "daffont", "carifont"],
   category: "tools",
-  description: "Cari dan download font dari DaFont",
-  usage: ".dafont <nama font>",
+  description: "Buscar y descargar fuentes de DaFont",
+  usage: ".dafont <nombre de fuente>",
   example: ".dafont arial",
   isOwner: false,
   isPremium: false,
@@ -56,13 +56,13 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🔤 *DaFont Search*\n\n` +
-        `Cari font dari DaFont, lalu reply nomor buat download.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}dafont <nama font>*\n\n` +
-        `*CONTOH:*\n` +
+        `Busca fuentes en DaFont y luego responde con el número para descargar.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}dafont <nombre de fuente>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}dafont arial*\n` +
         `> *${m.prefix}dafont horror*\n\n` +
-        `_Setelah daftar muncul, reply pesan bot dengan nomor font buat download_`
+        `_Una vez que aparezca la lista, responde al mensaje del bot con el número de la fuente para descargarla_`
     );
   }
 
@@ -73,22 +73,22 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *DaFont Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *DaFont Falló*\n\n> ${result.error}`);
     }
 
     const items = result.results.slice(0, 10);
 
-    let txt = `🔤 *DaFont — ${result.count} Font Ditemukan*\n\n`;
-    txt += `> Pencarian: *${text}*\n\n`;
+    let txt = `🔤 *DaFont — ${result.count} Fuentes Encontradas*\n\n`;
+    txt += `> Búsqueda: *${text}*\n\n`;
 
     items.forEach((v, i) => {
       txt += `*${i + 1}.* ${v.name}\n`;
-      txt += `   ├ 👤 Author: ${v.author}\n`;
-      txt += `   ├ 📥 Downloads: ${v.downloads || "-"}\n`;
-      txt += `   └ 📜 License: ${v.license || "-"}\n`;
+      txt += `   ├ 👤 Autor: ${v.author}\n`;
+      txt += `   ├ 📥 Descargas: ${v.downloads || "-"}\n`;
+      txt += `   └ 📜 Licencia: ${v.license || "-"}\n`;
     });
 
-    txt += `\n_Reply pesan ini dengan nomor font buat download file-nya_`;
+    txt += `\n_Responde a este mensaje con el número de la fuente para descargar el archivo_`;
 
     const session = setSession(m.sender, items);
     session.chat = m.chat;
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mencari font, coba lagi nanti");
+    m.reply("❌ Error al buscar la fuente, intenta de nuevo más tarde");
   }
 }
 
@@ -115,9 +115,9 @@ async function dafontAnswerHandler(m, sock) {
   const v = session.data[index];
 
   let detail = `🔤 *${v.name}*\n\n` +
-    `> 👤 Author: ${v.author}\n` +
-    `> 📥 Downloads: ${v.downloads || "-"}\n` +
-    `> 📜 License: ${v.license || "-"}`;
+    `> 👤 Autor: ${v.author}\n` +
+    `> 📥 Descargas: ${v.downloads || "-"}\n` +
+    `> 📜 Licencia: ${v.license || "-"}`;
 
   if (v.preview) {
     await sock.sendMedia(m.chat, v.preview, detail, m, { type: "image" });

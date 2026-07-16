@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'cecankorea',
     alias: ['cewekkorea', 'cewekkor'],
     category: 'cecan',
-    description: 'Random gambar cewek cantik Korea',
+    description: 'Imagen aleatoria de chica coreana',
     usage: '.cecankorea',
     example: '.cecankorea',
     isOwner: false,

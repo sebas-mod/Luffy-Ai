@@ -46,31 +46,31 @@ const VARIANTS = {
   v5: {
     id: 5,
     name: "FAKE ORDER",
-    desc: "Teks dengan fake quoted order message",
+    desc: "Texto con faa quoted order message",
     emoji: "🛒",
   },
   v6: {
     id: 6,
     name: "SIMPLE DOCUMENT",
-    desc: "Seperti V2 tapi tanpa fake contact quote (quoted ori)",
+    desc: "Seperti V2 tapi tanpa faa contact quote (quoted ori)",
     emoji: "📄",
   },
   v7: {
     id: 7,
     name: "FAKE LOCATION",
-    desc: "Teks dengan fake quoted location message",
+    desc: "Texto con faa quoted location message",
     emoji: "📍",
   },
   v8: {
     id: 8,
     name: "FAKE SIGNUP",
-    desc: "Teks dengan fake quoted signup message",
+    desc: "Texto con faa quoted signup message",
     emoji: "🥠",
   },
   v9: {
     id: 9,
     name: "FAKE ORDER",
-    desc: "Teks dengan fake quoted order message",
+    desc: "Texto con faa quoted order message",
     emoji: "🍙",
   },
   v10: {
@@ -82,7 +82,7 @@ const VARIANTS = {
   v11: {
     id: 11,
     name: "ANIMATED BOT NAME",
-    desc: "Teks animasi loop bertahap mengambil dari nama bot",
+    desc: "Texto animasi loop bertahap mengambil de nombre bot",
     emoji: "🌀",
   },
 };
@@ -93,7 +93,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1* s/d *v11*`);
+      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nUsa: *v1* s/d *v11*`);
       return;
     }
 
@@ -102,7 +102,7 @@ async function handler(m, { sock, db }) {
 
     let warningMsg = "";
     if (selected.id === 11) {
-      warningMsg = `\n\n⚠ *PERINGATAN KHUSUS V11:*\n_Penggunaan variant animasi ini memiliki kemungkinan dapat menyebabkan nomor bot ter-banned, kinerja panel melambat, dan spam di console._`;
+      warningMsg = `\n\n⚠ *PERINGATAN KHUSUS V11:*\n_Uso variant animasi esto memiliki amungkinan puede menyebabkan número bot ter-banned, kinerja panel melambat, y spam di console._`;
     }
 
     await m.reply(
@@ -129,16 +129,16 @@ async function handler(m, { sock, db }) {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
         title: "💬 Pilih Variant Reply",
-        sections: [{ title: "Daftar Variant Reply", rows }],
+        sections: [{ title: "Lista Variant Reply", rows }],
       }),
     },
   ];
 
   const bodys =
     `💬📨 *REPLY VARIANT*\n\n` +
-    `Atur tampilan balasan bot ketika membalas pesan user 💬✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `⚠ *PERINGATAN:*\n_Khusus penggunaan v11 (Animasi) berisiko menyebabkan nomor bot ter-banned, panel melambat, & spam di console._\n\n`
+    `Atur tampilan respondean bot escribea memresponde mensaje user 💬✨\n` +
+    `Variant activo actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
+    `⚠ *PERINGATAN:*\n_Khusus uso v11 (Animasi) bercontenidoko menyebabkan número bot ter-banned, panel melambat, & spam di console._\n\n`
 
   await sock.sendButton(
     m.chat,

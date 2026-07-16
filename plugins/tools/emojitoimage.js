@@ -8,8 +8,8 @@ const pluginConfig = {
   name: "emojitoimage",
   alias: ["emoji2img", "emojiimg", "e2i"],
   category: "tools",
-  description: "Konversi emoji ke gambar HD (style Apple)",
-  usage: ".emojitoimage <emoji> [style]",
+  description: "Convertir emoji a imagen HD (estilo Apple)",
+  usage: ".emojitoimage <emoji> [estilo]",
   example: ".emojitoimage 😳 apple",
   cooldown: 5,
   energi: 1,
@@ -33,13 +33,13 @@ async function handler(m, { sock }) {
 
   if (!emoji) {
     return m.reply(
-      `🖼️ *ᴇᴍᴏᴊɪ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
-        `> Konversi emoji ke gambar HD\n\n` +
-        `*Format:*\n` +
-        `> \`${m.prefix}emojitoimage <emoji> [style]\`\n\n` +
-        `*Contoh:*\n` +
+        `🖼️ *ᴇᴍᴏᴊɪ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
+        `> Convertir emoji a imagen HD\n\n` +
+        `*Formato:*\n` +
+        `> \`${m.prefix}emojitoimage <emoji> [estilo]\`\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}emojitoimage 😳 apple\`\n\n` +
-        `*Style tersedia:*\n` +
+        `*Estilos disponibles:*\n` +
         `> ${STYLES.join(", ")}`,
     );
   }
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji tidak ditemukan atau API error");
+      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji no encontrado o error de API");
     }
 
     const imgUrl = data.data.url;

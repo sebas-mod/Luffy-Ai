@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "adventure",
   alias: ["adv", "petualangan"],
   category: "rpg",
-  description: "Berpetualang untuk mendapat Exp dan hadiah",
+  description: "Aventurarse para obtener EXP y recompensas",
   usage: ".adventure",
   example: ".adventure",
   isOwner: false,
@@ -25,14 +25,14 @@ async function handler(m, { sock }) {
   user.rpg.health = user.rpg.health || 100;
 
   if (user.rpg.health < 30) {
-    return m.reply(`Aduh kak, HP kamu sekarat nih! 😭💔\n\nMinimal butuh *30 HP* buat berpetualang biar nggak mati di jalan.\nSekarang HP kamu cuma sisa *${user.rpg.health} HP*. Yuk nge-heal dulu! 💉✨`);
+    return m.reply(`¡Ay, tu HP está por los suelos! 😭💔\n\nNecesitas al menos *30 HP* para aventurarte sin morir en el camino.\nAhora solo tienes *${user.rpg.health} HP*. ¡Ve a curarte! 💉✨`);
   }
 
-  const locations = ["🌲 Hutan Gelap", "🏔️ Gunung Es Abadi", "🏜️ Padang Pasir Kematian", "🌋 Gunung Berapi", "🏰 Kastil Tua Berhantu", "🌊 Pantai Misterius"];
+  const locations = ["🌲 Bosque Oscuro", "🏔️ Monte Hielo Eterno", "🏜️ Desierto de la Muerte", "🌋 Volcán", "🏰 Castillo Antiguo Embrujado", "🌊 Playa Misteriosa"];
   const location = locations[Math.floor(Math.random() * locations.length)];
 
   await m.react("🗺️");
-  await m.reply(`Mengepak ransel dan menyalakan obor... Memasuki *${location}*... ⚔️🗺️\nHati-hati ya kak, auranya lumayan mencekam!`);
+  await m.reply(`Preparando la mochila y encendiendo la antorcha... Entrando en *${location}*... ⚔️🗺️\n¡Ten cuidado, el ambiente está muy tenso!`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const isWin = Math.random() < 0.6;
@@ -46,29 +46,29 @@ async function handler(m, { sock }) {
 
     db.save();
 
-    let txt = `🗡️ *PETUALANGAN BERHASIL!!* 🗡️\n\n`;
-    txt += `📍 Lokasi: *${location}*\n\n`;
-    txt += `Wah hebat kak! Kamu berhasil ngalahin monster penjaga dan nemuin peti harta karun!\n`;
-    txt += `💰 Koin: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
+    let txt = `🗡️ *¡¡AVENTURA EXITOSA!!* 🗡️\n\n`;
+    txt += `📍 Ubicación: *${location}*\n\n`;
+    txt += `¡Genial! ¡Lograste derrotar al monstruo guardián y encontraste un cofre del tesoro!\n`;
+    txt += `💰 Monedas: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP: *+${expGain.toLocaleString("id-ID")}*\n\n`;
-    txt += `Kembali dengan selamat! Lanjut petualang lagi nanti ya kak! 🚀✨`;
+    txt += `¡Regresaste a salvo! ¡Sigue aventurándote más tarde! 🚀✨`;
 
     await m.reply(txt);
   } else {
     const healthLoss = Math.floor(Math.random() * 30) + 10;
     user.rpg.health = Math.max(0, user.rpg.health - healthLoss);
 
-    let msg = `☠️ *DISERGAP MONSTER!!* ☠️\n\n`;
-    msg += `📍 Lokasi: *${location}*\n\n`;
-    msg += `Aduh kak! Langkah kamu ketahuan, sekelompok monster nyerang bertubi-tubi!\n`;
-    msg += `❤️ HP Berkurang: *-${healthLoss} HP* (Sisa: ${user.rpg.health})\n\n`;
+    let msg = `☠️ *¡¡EMBOSCADO POR MONSTRUOS!!* ☠️\n\n`;
+    msg += `📍 Ubicación: *${location}*\n\n`;
+    msg += `¡Ay! ¡Te descubrieron, un grupo de monstruos te atacó sin piedad!\n`;
+    msg += `❤️ HP Reducido: *-${healthLoss} HP* (Restante: ${user.rpg.health})\n\n`;
 
     if (user.rpg.health <= 0) {
       user.rpg.health = 0;
       user.exp = Math.floor((user.exp || 0) / 2);
-      msg += `💀 *KAMU MATI!*\nYaampun kak... Kamu tewas di tempat. EXP kamu kena penalti 50% nih. 💔🥀`;
+      msg += `💀 ¡¡HAS MUERTO!!\n¡Vaya... moriste en el campo! Tu EXP recibió una penalización del 50%. 💔🥀`;
     } else {
-      msg += `Untung kamu masih sempet kabur kak! Mending istirahat dulu buat ngeheal ya! 🏃💨`;
+      msg += `¡Tuvo suerte que pudiste escapar! Mejor descansa para curarte. 🏃💨`;
     }
 
     db.save();

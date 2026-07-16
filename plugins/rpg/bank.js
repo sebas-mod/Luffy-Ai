@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "bank",
   alias: ["atm", "nabung", "deposit", "tarik", "withdraw"],
   category: "rpg",
-  description: "Bank system untuk menyimpan uang aman dari rampok",
+  description: "Sistema bancario para guardar dinero a salvo de los ladrones",
   usage: ".bank <deposit/withdraw> <jumlah>",
   example: ".bank deposit 10000",
   isOwner: false,
@@ -47,8 +47,8 @@ async function handler(m, { sock }) {
       amount = parseInt(amountStr);
     }
 
-    if (!amount || amount <= 0) return m.reply(`Hayo kak, masukin jumlah koin yang bener dong! Masa nabung angka gaib 😂💸`);
-    if (currentBalance < amount) return m.reply(`Eits, uang *cash* kamu nggak cukup kak! 😭\nDi dompet cuma ada *Rp ${currentBalance.toLocaleString("id-ID")}* nih. Nyari duit dulu gih! 🏃💨`);
+    if (!amount || amount <= 0) return m.reply(`¡Oye, ingresa un número de monedas válido! ¿Vas a guardar aire? 😂💸`);
+    if (currentBalance < amount) return m.reply(`¡Eh, no tienes suficiente dinero en efectivo! 😭\nEn tu billetera solo hay *Rp ${currentBalance.toLocaleString("id-ID")}*. ¡Ve a buscar más! 🏃💨`);
 
     db.db.data.users[cleanJid].koin = currentBalance - amount;
     db.db.data.users[cleanJid].rpg.bank = currentBank + amount;
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     await db.save();
 
     const newBank = db.db.data.users[cleanJid].rpg.bank;
-    return m.reply(`Makasih kak udah nabung di Bank RPG! 🏦💖\n\n✅ Deposit berhasil: *Rp ${amount.toLocaleString("id-ID")}*\n💳 Saldo Tabungan: *Rp ${newBank.toLocaleString("id-ID")}*\n\nUangnya kita simpen dengan aman ya! 🔒✨`);
+    return m.reply(`¡Gracias por depositar en el Banco RPG! 🏦💖\n\n✅ Depósito exitoso: *Rp ${amount.toLocaleString("id-ID")}*\n💳 Saldo Ahorrado: *Rp ${newBank.toLocaleString("id-ID")}*\n\n¡Tu dinero está a salvo! 🔒✨`);
   }
 
   if (action === "withdraw" || action === "tarik") {
@@ -67,8 +67,8 @@ async function handler(m, { sock }) {
       amount = parseInt(amountStr);
     }
 
-    if (!amount || amount <= 0) return m.reply(`Hayo kak, masukin jumlah koin yang bener dong! Mau narik angin? 😂💸`);
-    if (currentBank < amount) return m.reply(`Yahh kak, saldo tabungan kamu nggak cukup! 😭\nDi rekening cuma ada *Rp ${currentBank.toLocaleString("id-ID")}* nih. Jangan ngadi-ngadi deh! 🫣`);
+    if (!amount || amount <= 0) return m.reply(`¡Oye, ingresa un número válido! ¿Vas a retirar viento? 😂💸`);
+    if (currentBank < amount) return m.reply(`¡No tienes suficiente en tu cuenta! 😭\nSolo hay *Rp ${currentBank.toLocaleString("id-ID")}*. ¡No pidas lo imposible! 🫣`);
 
     db.db.data.users[cleanJid].rpg.bank = currentBank - amount;
     db.db.data.users[cleanJid].koin = currentBalance + amount;
@@ -76,16 +76,16 @@ async function handler(m, { sock }) {
     await db.save();
 
     const newBalance = db.db.data.users[cleanJid].koin;
-    return m.reply(`Uangnya berhasil ditarik ya kak! 🏧💸\n\n✅ Penarikan: *Rp ${amount.toLocaleString("id-ID")}*\n💰 Uang Cash: *Rp ${newBalance.toLocaleString("id-ID")}*\n\nJangan boros-boros pakainya ya! 🛍️✨`);
+    return m.reply(`¡Dinero retirado con éxito! 🏧💸\n\n✅ Retiro: *Rp ${amount.toLocaleString("id-ID")}*\n💰 Efectivo: *Rp ${newBalance.toLocaleString("id-ID")}*\n\n¡No lo gastes todo de una vez! 🛍️✨`);
   }
 
-  let txt = `Halo kak! Selamat datang di Bank RPG! 🏦✨\nMau ngecek saldo atau ada keperluan lain nih?\n\n`;
-  txt += `💰 Uang Dompet: *Rp ${currentBalance.toLocaleString("id-ID")}*\n`;
-  txt += `💳 Saldo Tabungan: *Rp ${currentBank.toLocaleString("id-ID")}*\n\n`;
-  txt += `*Layanan Bank:* 💁‍♀️\n`;
-  txt += `Nabung: \`.bank deposit <jumlah>\`\n`;
-  txt += `Tarik tunai: \`.bank withdraw <jumlah>\`\n\n`;
-  txt += `*(Pake kata 'all' kalau mau nabung/narik semuanya sekaligus!)* 🚀`;
+  let txt = `¡Hola! Bienvenido al Banco RPG! 🏦✨\n¿Quieres verificar tu saldo o necesitas algo?\n\n`;
+  txt += `💰 Dinero en Billetera: *Rp ${currentBalance.toLocaleString("id-ID")}*\n`;
+  txt += `💳 Saldo Ahorrado: *Rp ${currentBank.toLocaleString("id-ID")}*\n\n`;
+  txt += `*Servicios del Banco:* 💁‍♀️\n`;
+  txt += `Ahorrar: \`.bank deposit <cantidad>\`\n`;
+  txt += `Retirar: \`.bank withdraw <cantidad>\`\n\n`;
+  txt += `*(¡Usa 'all' si quieres ahorrar/retirar todo de una vez!)* 🚀`;
 
   await m.reply(txt);
 }

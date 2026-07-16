@@ -7,7 +7,7 @@ const pluginConfig = {
   alias: ["gp", "getcode", "plugincode", "sourcecode"],
   category: "owner",
   description: "Obtiene el código fuente de un plugin",
-  usage: ".getplugin <nama plugin>",
+  usage: ".getplugin <nombre plugin>",
   example: ".getplugin menu",
   isOwner: true,
   isPremium: false,
@@ -104,14 +104,14 @@ async function handler(m, { sock }) {
   if (!pluginName) {
     return m.reply(
       `📦 *ɢᴇᴛ ᴘʟᴜɢɪɴ*\n\n` +
-      `> Dapatkan source code plugin\n\n` +
+      `> Obtener el código fuente del plugin\n\n` +
       `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n` +
-      `┃ .getplugin <nama>\n` +
+      `┃ .getplugin <nombre>\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `*Contoh:*\n` +
+      `*Ejemplo:*\n` +
       `> .getplugin menu\n` +
-      `> .getplugin sticker\n` +
-      `> .getplugin game/tebakgambar`,
+      `> .getplugin sticar\n` +
+      `> .getplugin game/tebakimagen`,
     );
   }
 
@@ -140,10 +140,10 @@ async function handler(m, { sock }) {
   if (!pluginInfo) {
     const similar = getSimilarPlugins(pluginName, pluginsDir);
     let text = `❌ *ᴘʟᴜɢɪɴ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n`;
-    text += `> Plugin \`${pluginName}\` tidak ditemukan\n\n`;
+    text += `> El plugin \`${pluginName}\` no fue encontrado\n\n`;
 
     if (similar.length > 0) {
-      text += `*Mungkin maksud kamu:*\n`;
+      text += `*Quizás buscas:*\n`;
       similar.forEach((s) => {
         text += `> - \`${s}\`\n`;
       });
@@ -159,18 +159,18 @@ async function handler(m, { sock }) {
       document: code.toString("utf-8"),
       fileName: pluginInfo.file,
       fileLength: 999999999,
-      caption: `🦪 Halo Ownerku ${m.pushName}, berikut ini adalah source code dari plugin yang kamu minta
+      caption: `🦪 Halo Ownerku ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste
       
-Kamu bisa simpan dokumen diatas, atau  kamu juga bisa copy code lewat tombol dibawah
+Puedes guardar el documento de arriba, o también puedes copiar el código mediante el botón de abajo
 
-❓ *Kenapa Lewat Dokumen?*
-Karena baris kode terlalu panjang, takutnya kalau pakai code block bisa bikin fc :(`,
-      footer: "🍙 Bisa copy code dibawah",
+❓ *¿Por qué por documento?*
+Porque las líneas de código son muy largas, y usar un bloque de código podría causar fallo :(`,
+      footer: "🍙 Puedes copiar el código abajo",
       interactiveButtons: [
         {
           name: 'cta_copy',
           buttonParamsJson: JSON.stringify({
-            display_text: '🥠 Copy Code nya',
+            display_text: '🥠 Copiar código',
             copy_code: code
           })
         }
@@ -180,10 +180,10 @@ Karena baris kode terlalu panjang, takutnya kalau pakai code block bisa bikin fc
 
   await new AIRich(sock)
     .addText(
-      `🍿 Hallo Ownerku ${m.pushName}, berikut ini adalah source code dari plugin yang kamu minta\n- 🥗 Nama Plugin : ${pluginInfo.file}\n- ☘ Category : ${pluginInfo.category}\n\n`,
+      `🍿 Hallo Ownerku ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste\n- 🥗 Nombre Plugin : ${pluginInfo.file}\n- ☘ Category : ${pluginInfo.category}\n\n`,
     )
     .addCode("javascript", code.toString("utf-8"))
-    .addText("\n\nNote : copy dulu code diatas")
+    .addText("\n\nNota: copia primero el código de arriba")
     .send(m.chat);
 }
 

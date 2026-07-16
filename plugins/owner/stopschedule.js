@@ -7,7 +7,7 @@ const pluginConfig = {
     alias: ['stopscheduler', 'schedstop', 'pauseschedule'],
     category: 'owner',
     description: 'Detiene uno o todos los planificadores',
-    usage: '.stopschedule <nama|all>',
+    usage: '.stopschedule <nombre|all>',
     example: '.stopschedule sholat',
     isOwner: true,
     isPremium: false,
@@ -26,15 +26,15 @@ async function handler(m, { sock, args }) {
             const helpText = `🛑 *sᴛᴏᴘ sᴄʜᴇᴅᴜʟᴇʀ*
 
 *Usage:*
-\`.stopschedule <nama>\`
+\`.stopschedule <nombre>\`
 
 *Available schedulers:*
 • \`limitreset\` - Daily Limit Reset
 • \`groupschedule\` - Group Schedule
-• \`sewa\` - Sewa Checker
+• \`sewa\` - Sewa Checar
 • \`messages\` - Scheduled Messages
 • \`sholat\` - Sholat Scheduler
-• \`all\` - Semua scheduler
+• \`all\` - Todos scheduler
 
 *Example:*
 \`.stopschedule sholat\`
@@ -49,7 +49,7 @@ async function handler(m, { sock, args }) {
             const wasEnabled = db.setting('autoSholat');
             
             if (!wasEnabled) {
-                await m.reply(`ℹ️ Sholat Scheduler sudah dalam keadaan nonaktif`);
+                await m.reply(`ℹ️ Sholat Scheduler ya en ahayan nonactivo`);
                 return;
             }
             
@@ -61,7 +61,7 @@ async function handler(m, { sock, args }) {
 > Scheduler: *Sholat Scheduler*
 > Status: ❌ Dihentikan
 
-_Gunakan \`.startschedule sholat\` untuk mengaktifkan kembali_`);
+_Usa \`.startschedule sholat\` para activando ambali_`);
             return;
         }
         
@@ -79,11 +79,11 @@ _Gunakan \`.startschedule sholat\` untuk mengaktifkan kembali_`);
 > Scheduler: *${result.name}*
 > Status: ❌ Dihentikan
 
-_Gunakan \`.startschedule ${target}\` untuk mengaktifkan kembali_`);
+_Usa \`.startschedule ${target}\` para activando ambali_`);
         } else {
-            await m.reply(`❌ Scheduler tidak ditemukan atau sudah nonaktif
+            await m.reply(`❌ Scheduler no encontrado o ya inactivo
 
-Gunakan \`.stopschedule\` untuk melihat daftar scheduler`);
+Usa \`.stopschedule\` para viendo lista scheduler`);
         }
     } catch (error) {
         console.error('[StopSchedule Error]', error);

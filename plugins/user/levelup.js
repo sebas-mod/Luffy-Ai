@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'levelup',
     alias: ['lvlup', 'levelnotif'],
     category: 'user',
-    description: 'Toggle notifikasi level up',
+    description: 'Activar/desactivar notificación de subida de nivel',
     usage: '.levelup <on/off>',
     example: '.levelup on',
     isOwner: false,
@@ -28,8 +28,8 @@ function handler(m, { sock }) {
         db.save()
         return m.reply(
             `✅ *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-            `> Status: *ON* ✅\n` +
-            `> Kamu akan menerima notifikasi saat naik level!`
+            `> Estado: *ON* ✅\n` +
+            `> ¡Recibirás una notificación al subir de nivel!`
         )
     }
     
@@ -38,18 +38,18 @@ function handler(m, { sock }) {
         db.save()
         return m.reply(
             `❌ *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-            `> Status: *OFF* ❌\n` +
-            `> Notifikasi level up dinonaktifkan.`
+            `> Estado: *OFF* ❌\n` +
+            `> Notificación de subida de nivel desactivada.`
         )
     }
     
     const status = user.settings.levelupNotif !== false ? 'ON ✅' : 'OFF ❌'
     return m.reply(
         `🔔 *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-        `> Status saat ini: *${status}*\n\n` +
-        `╭┈┈⬡「 📋 *ᴜsᴀɢᴇ* 」\n` +
-        `┃ > \`.levelup on\` - Aktifkan\n` +
-        `┃ > \`.levelup off\` - Nonaktifkan\n` +
+        `> Estado actual: *${status}*\n\n` +
+        `╭┈┈⬡「 📋 *USO* 」\n` +
+        `┃ > \`.levelup on\` - Activar\n` +
+        `┃ > \`.levelup off\` - Desactivar\n` +
         `╰┈┈┈┈┈┈┈┈⬡`
     )
 }

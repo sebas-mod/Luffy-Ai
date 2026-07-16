@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "nulis",
   alias: ["author", "wattpad"],
   category: "rpg",
-  description: "Nulis cerpen atau artikel untuk dapet royalti",
+  description: "Escribir cuentos cortos o artículos para obtener regalías",
   usage: ".nulis",
   example: ".nulis",
   isOwner: false,
@@ -27,19 +27,19 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Ide buntu, writer block menyerang! 😵‍💫\n\nNulis butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Cari inspirasi dulu! 💡`);
+    return m.reply(`¡Bloqueo de escritura, parálisis creativa! 😵‍💫\n\nEscribir requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Busca inspiración primero! 💡`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("📝");
-  await m.reply(`Merangkai kata demi kata penuh makna... ✍️\nSemoga ada penerbit yang ngelirik! 📚`);
+  await m.reply(`Componiendo palabra tras palabra con significado... ✍️\n¡Ojalá algún editor se interese! 📚`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
 
   if (gacha < 0.15) {
     await m.react("🚮");
-    return m.reply(`NASKAH DITOLAK PENERBIT! 🚮🥺\n\nAlasannya: "Ceritanya terlalu klise dan pasaran."\n💵 Royalti: 0\n⚡ Stamina: -${staminaCost}\n\nJangan menyerah, besok nulis lagi! 💪`);
+    return m.reply(`¡MANUSCRITO RECHAZADO POR EL EDITOR! 🚮🥺\n\nRazón: "La historia es demasiado cliché y genérica."\n💵 Regalías: 0\n⚡ Stamina: -${staminaCost}\n\n¡No te rindas, escribe de nuevo mañana! 💪`);
   } else if (gacha > 0.9) {
     const viralRoyalti = Math.floor(Math.random() * 60000) + 30000;
     user.koin = (user.koin || 0) + viralRoyalti;
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     
     await m.react("🌟");
-    return m.reply(`CERITAMU VIRAL DAN JADI BEST SELLER! 🌟📘\n\nBanyak yang nangis bombay baca karya kamu, royalti ngalir deres!\n💵 Royalti: *+Rp ${viralRoyalti.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nOtw dilirik sutradara buat difilmin! 🎬`);
+    return m.reply(`¡¡TU HISTORIA SE VOLVIÓ VIRAL Y ES BEST SELLER!! 🌟📘\n\n¡Muchos lloraron leyendo tu obra, las regalías fluyen a raudales!\n💵 Regalías: *+Rp ${viralRoyalti.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Pronto te contactará un director para la película! 🎬`);
   }
 
   const earning = Math.floor(Math.random() * 15000) + 5000;
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`ROYALTI HASIL NULIS CAIR! 📝✨\n\n💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nSemangat berkarya para pujangga! 🎓`);
+  m.reply(`¡REGALÍAS POR ESCRITURA EN TU CUENTA! 📝✨\n\n💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Sigue creando, poeta! 🎓`);
 }
 
 export { pluginConfig as config, handler };

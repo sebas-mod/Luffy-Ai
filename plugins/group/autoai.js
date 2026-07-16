@@ -29,27 +29,27 @@ const characters = {
   furina: {
     name: "Furina",
     instruction:
-      "Kamu adalah Furina dari Genshin Impact. Bicara santai tapi elegan, sedikit dramatis, kadang agak bangga diri tapi tetap hangat. Jangan terlalu panjang, jawab langsung ke inti seperti chat biasa. Sesekali boleh nyenggol tema panggung atau laut. Jangan mengaku sebagai AI.",
+      "Eres Furina de Genshin Impact. Hablas de forma relajada pero elegante, un poco dramática, a veces algo presumida pero siempre cálida. No hagas respuestas muy largas, ve al grano como en un chat normal. De vez en cuando puedes mencionar temas de escenarios o el mar. No admitas ser una IA.",
   },
   zeta: {
     name: "Zeta",
     instruction:
-      "Kamu adalah Zeta dari Spy x Family. Bicara serius dan tenang, tapi selalu agak curiga seperti mencium konspirasi. Tetap natural seperti orang ngobrol biasa, singkat dan langsung ke poin. Jangan mengaku sebagai AI.",
+      "Eres Zeta de Spy x Family. Hablas de forma seria y tranquila, pero siempre algo sospechosa como si olieras una conspiración. Mantente natural como alguien conversando normal, sé breve y ve al grano. No admitas ser una IA.",
   },
   kobo: {
     name: "Kobo Kanaeru",
     instruction:
-      "Kamu adalah Kobo Kanaeru. Bicara santai, ceria, agak usil. Gaya chat biasa, tidak terlalu panjang. Boleh sedikit random atau lucu. Jangan berlebihan pakai caps atau emoji. Jangan mengaku sebagai AI.",
+      "Eres Kobo Kanaeru. Hablas de forma relajada, alegre, algo traviesa. Estilo de chat normal, no muy larga. Puedes ser un poco random o graciosa. No abuses de mayúsculas ni emojis. No admitas ser una IA.",
   },
   elaina: {
     name: "Elaina",
     instruction:
-      "Kamu adalah Elaina. Bicara lembut, tenang, percaya diri, sedikit narsis halus. Jawab singkat, rapi, dan langsung ke inti seperti chat normal. Jangan mengaku sebagai AI.",
+      "Eres Elaina. Hablas de forma suave, tranquila, segura de ti misma, con un poco de narcisismo sutil. Responde de forma breve, ordenada y directa como en un chat normal. No admitas ser una IA.",
   },
   waguri: {
     name: "Waguri",
     instruction:
-      "Kamu adalah Waguri. Bicara singkat, agak dingin tapi sebenarnya peduli. Sedikit tsundere, to the point, seperti chat biasa. Jangan mengaku sebagai AI.",
+      "Eres Waguri. Hablas de forma breve, algo fría pero en realidad te importa. Un poco tsundere, directa, como en un chat normal. No admitas ser una IA.",
   },
   bell409: {
     name: "Bell409",
@@ -196,11 +196,11 @@ async function handler(m) {
               `  ▸ ${k} - ${v.name} (${v.instruction.substring(0, 40)}${v.instruction.length > 40 ? "..." : ""})`,
           )
           .join("\n")
-      : "  ▸ (belum ada custom persona)";
+      : "  ▸ (aún no hay persona personalizada)";
     let txt = `🤖 *ᴅᴀғᴛᴀʀ ᴘᴇʀsᴏɴᴀ*\n\n`;
-    txt += `*Bawaan:*\n${builtIn}\n\n`;
-    txt += `*Custom:*\n${custom}\n\n`;
-    txt += `*Global:* ${db.db.data.autoai_global.enabled ? "✅ Aktif" : "❌ Nonaktif"}\n\n`;
+    txt += `*Predeterminadas:*\n${builtIn}\n\n`;
+    txt += `*Personalizadas:*\n${custom}\n\n`;
+    txt += `*Global:* ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}\n\n`;
     txt += `> .autoai on --ourinmode=<key>\n`;
     txt += `> .autoai tambahpersona nama | logic\n`;
     txt += `> .autoai hapuspersona nama\n`;
@@ -209,11 +209,11 @@ async function handler(m) {
   }
 
   if (subcmd === "global") {
-    if (!m.isOwner) return m.reply(`❌ Hanya owner yang bisa toggle global!`);
+    if (!m.isOwner) return m.reply(`❌ ¡Solo el owner puede activar/desactivar global!`);
     const globalMode = (args[1] || "").toLowerCase();
     if (!["on", "off"].includes(globalMode))
       return m.reply(
-        `❌ Format salah!\n\n> .autoai global on/off\n\n> Global saat ini: ${db.db.data.autoai_global.enabled ? "✅ Aktif" : "❌ Nonaktif"}`,
+        `❌ ¡Formato incorrecto!\n\n> .autoai global on/off\n\n> Global actual: ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}`,
       );
     if (globalMode === "on") {
       const modeMatch = fullArgs.match(/--ourinmode=(\w+)/i);
@@ -251,7 +251,7 @@ async function handler(m) {
           characterName = existingGlobal.characterName || "Global";
         } else {
           return m.reply(
-            `❌ Belum ada persona global yang diset!\n\n> .autoai global on --ourinmode=furina\n> .autoai global on --ourinmode=custom --logic=...`,
+            `❌ ¡Aún no hay persona global configurada!\n\n> .autoai global on --ourinmode=furina\n> .autoai global on --ourinmode=custom --logic=...`,
           );
         }
       } else {
@@ -260,7 +260,7 @@ async function handler(m) {
           ...Object.keys(db.db.data.autoai_personas),
           "custom",
         ].join(", ");
-        return m.reply(`❌ Karakter tidak valid!\n\n> Tersedia: ${charList}`);
+        return m.reply(`❌ ¡Personaje no válido!\n\n> Disponibles: ${charList}`);
       }
 
       db.db.data.autoai_global = {
@@ -275,18 +275,18 @@ async function handler(m) {
       return m.reply(
         `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n` +
           `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
-          `┃ 🎭 Karakter: *${characterName}*\n` +
-          `┃ 📢 Response: *${responseType === "voice" ? "🎤 Voice Note" : "💬 Text"}*\n` +
+          `┃ 🎭 Personaje: *${characterName}*\n` +
+          `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> ℹ️ AutoAI aktif di seluruh grup\n` +
-          `> ℹ️ Grup yang sudah punya config tetap pakai config sendiri\n` +
-          `> ℹ️ Ketik *.autoai global off* untuk menonaktifkan`,
+          `> ℹ️ AutoAI activo en todos los grupos\n` +
+          `> ℹ️ Los grupos con configuración propia mantienen su config\n` +
+          `> ℹ️ Escribe *.autoai global off* para desactivar`,
       );
     } else {
       db.db.data.autoai_global.enabled = false;
       db.save();
       return m.reply(
-        `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅɪɴᴏɴᴀᴋᴛɪғᴋᴀɴ*\n\n> AutoAI hanya aktif di grup yang sudah di-set`,
+        `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅᴇꜱᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> AutoAI solo activo en grupos que lo tengan configurado`,
       );
     }
   }
@@ -312,28 +312,28 @@ async function handler(m) {
       ? customP.map(([k, v]) => `> ${k} - ${v.name} (custom)`).join("\n")
       : "";
     let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ*\n\n`;
-    txt += `> Mengaktifkan/menonaktifkan auto AI response\n\n`;
-    txt += `*Penggunaan:*\n`;
-    txt += `> .autoai on --ourinmode=<karakter|custom> --type=<text|voice> --mode=<onlychat|assistant>\n`;
+    txt += `> Activar/desactivar respuesta automática de IA\n\n`;
+    txt += `*Uso:*\n`;
+    txt += `> .autoai on --ourinmode=<personaje|custom> --type=<text|voice> --mode=<onlychat|assistant>\n`;
     txt += `> .autoai off\n`;
-    txt += `> .autoai tambahpersona nama | logic\n`;
-    txt += `> .autoai hapuspersona nama\n`;
+    txt += `> .autoai tambahpersona nombre | lógica\n`;
+    txt += `> .autoai hapuspersona nombre\n`;
     txt += `> .autoai listpersona\n`;
     txt += `> .autoai global on/off\n`;
     txt += `> .autoai enablecommand / disablecommand\n\n`;
-    txt += `*Karakter bawaan:*\n${charList}\n`;
-    if (customList) txt += `\n*Karakter custom:*\n${customList}\n`;
-    txt += `\n*Global:* ${db.db.data.autoai_global.enabled ? "✅ Aktif" : "❌ Nonaktif"}\n\n`;
-    txt += `*Response Type:*\n`;
-    txt += `> text - Reply dengan text biasa\n`;
-    txt += `> voice - Reply dengan voice note (TTS)\n\n`;
-    txt += `*Mode AutoAI:*\n`;
-    txt += `> assistant - Bot bisa jalankan aksi (buka tutup grup, kick, rich message)\n`;
-    txt += `> onlychat - Bot hanya murni chat santai biasa\n\n`;
-    txt += `*Contoh:*\n`;
+    txt += `*Personajes predeterminados:*\n${charList}\n`;
+    if (customList) txt += `\n*Personajes personalizados:*\n${customList}\n`;
+    txt += `\n*Global:* ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}\n\n`;
+    txt += `*Tipo de respuesta:*\n`;
+    txt += `> text - Responder con texto normal\n`;
+    txt += `> voice - Responder con nota de voz (TTS)\n\n`;
+    txt += `*Modo AutoAI:*\n`;
+    txt += `> assistant - El bot puede ejecutar acciones (abrir/cerrar grupo, kick, mensaje enriquecido)\n`;
+    txt += `> onlychat - El bot solo chatea de forma relajada\n\n`;
+    txt += `*Ejemplo:*\n`;
     txt += `> .autoai on --ourinmode=furina --type=text\n`;
-    txt += `> .autoai on --ourinmode=custom --logic=kamu adalah nexa ai\n`;
-    txt += `> .autoai tambahpersona nexa | kamu adalah nexa ai\n`;
+    txt += `> .autoai on --ourinmode=custom --logic=eres un asistente IA...\n`;
+    txt += `> .autoai tambahpersona nexa | eres un asistente IA...\n`;
     txt += `> .autoai global on --ourinmode=furina`;
     return m.reply(txt);
   }
@@ -342,10 +342,10 @@ async function handler(m) {
     db.db.data.autoai[m.chat] = { enabled: false };
     db.save();
     const globalStatus = db.db.data.autoai_global?.enabled
-      ? `\n\n> ℹ️ Global masih aktif, tapi grup ini opted-out\n> ℹ️ Ketik *.autoai global off* untuk matikan global`
+      ? `\n\n> ℹ️ Global sigue activo, pero este grupo ha salido\n> ℹ️ Escribe *.autoai global off* para desactivar global`
       : "";
     return m.reply(
-      `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪɴᴏɴᴀᴋᴛɪғᴋᴀɴ*\n\n> Auto AI untuk grup ini telah dimatikan\n> Semua command kembali aktif${globalStatus}`,
+      `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅᴇꜱᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> AutoAI para este grupo ha sido desactivado\n> Todos los comandos vuelven a estar activos${globalStatus}`,
     );
   }
 
@@ -356,14 +356,14 @@ async function handler(m) {
       "custom",
     ].join(", ");
     return m.reply(
-      `❌ Karakter tidak valid!\n\n> Karakter tersedia: ${charList}\n\n> Contoh: .autoai on --ourinmode=furina --type=voice\n> Custom: .autoai on --ourinmode=custom --logic=kamu adalah nexa ai`,
+      `❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --ourinmode=furina --type=voice\n> Custom: .autoai on --ourinmode=custom --logic=eres un asistente IA`,
     );
   }
 
   if (charKey === "custom") {
     if (!customLogic) {
       return m.reply(
-        `❌ Mode custom membutuhkan --logic!\n\n> Contoh: .autoai on --ourinmode=custom --logic=kamu adalah nexa ai, ...`,
+        `❌ ¡El modo custom requiere --logic!\n\n> Ejemplo: .autoai on --ourinmode=custom --logic=eres un asistente IA, ...`,
       );
     }
     db.db.data.autoai[m.chat] = {
@@ -381,16 +381,16 @@ async function handler(m) {
     db.save();
     let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
     txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
-    txt += `┃ 🎭 Karakter: *Custom*\n`;
-    txt += `┃ 🧠 Logic: ${customLogic.substring(0, 100)}${customLogic.length > 100 ? "..." : ""}\n`;
-    txt += `┃ 📢 Response: *${responseType === "voice" ? "🎤 Voice Note" : "💬 Text"}*\n`;
-    txt += `┃ 👤 Diaktifkan: @${m.sender.split("@")[0]}\n`;
+    txt += `┃ 🎭 Personaje: *Custom*\n`;
+    txt += `┃ 🧠 Lógica: ${customLogic.substring(0, 100)}${customLogic.length > 100 ? "..." : ""}\n`;
+    txt += `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n`;
+    txt += `┃ 👤 Activado por: @${m.sender.split("@")[0]}\n`;
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-    txt += `> ℹ️ Semua command (kecuali owner) dinonaktifkan\n`;
-    txt += `> ℹ️ Bot respond ketika di-reply atau di-tag\n`;
+    txt += `> ℹ️ Todos los comandos (excepto owner) desactivados\n`;
+    txt += `> ℹ️ El bot responde cuando le reply o le etiquetan\n`;
     txt +=
-      responseType === "voice" ? `> ℹ️ Response dalam bentuk voice note\n` : "";
-    txt += `> ℹ️ Ketik *.autoai off* untuk menonaktifkan`;
+      responseType === "voice" ? `> ℹ️ La respuesta es en nota de voz\n` : "";
+    txt += `> ℹ️ Escribe *.autoai off* para desactivar`;
     return m.reply(txt, { mentions: [m.sender] });
   }
 
@@ -411,15 +411,15 @@ async function handler(m) {
     db.save();
     let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
     txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
-    txt += `┃ 🎭 Karakter: *${customPersona.name}* (custom)\n`;
-    txt += `┃ 📢 Response: *${responseType === "voice" ? "🎤 Voice Note" : "💬 Text"}*\n`;
-    txt += `┃ 👤 Diaktifkan: @${m.sender.split("@")[0]}\n`;
+    txt += `┃ 🎭 Personaje: *${customPersona.name}* (custom)\n`;
+    txt += `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n`;
+    txt += `┃ 👤 Activado por: @${m.sender.split("@")[0]}\n`;
     txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-    txt += `> ℹ️ Semua command (kecuali owner) dinonaktifkan\n`;
-    txt += `> ℹ️ Bot respond ketika di-reply atau di-tag\n`;
+    txt += `> ℹ️ Todos los comandos (excepto owner) desactivados\n`;
+    txt += `> ℹ️ El bot responde cuando le reply o le etiquetan\n`;
     txt +=
-      responseType === "voice" ? `> ℹ️ Response dalam bentuk voice note\n` : "";
-    txt += `> ℹ️ Ketik *.autoai off* untuk menonaktifkan`;
+      responseType === "voice" ? `> ℹ️ La respuesta es en nota de voz\n` : "";
+    txt += `> ℹ️ Escribe *.autoai off* para desactivar`;
     return m.reply(txt, { mentions: [m.sender] });
   }
 
@@ -430,7 +430,7 @@ async function handler(m) {
       "custom",
     ].join(", ");
     return m.reply(
-      `❌ Karakter tidak valid!\n\n> Karakter tersedia: ${charList}\n\n> Contoh: .autoai on --ourinmode=furina --type=voice`,
+      `❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --ourinmode=furina --type=voice`,
     );
   }
 
@@ -450,15 +450,15 @@ async function handler(m) {
 
   let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
   txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
-  txt += `┃ 🎭 Karakter: *${characters[charKey].name}*\n`;
-  txt += `┃ 📢 Response: *${responseType === "voice" ? "🎤 Voice Note" : "💬 Text"}*\n`;
-  txt += `┃ 👤 Diaktifkan: @${m.sender.split("@")[0]}\n`;
+  txt += `┃ 🎭 Personaje: *${characters[charKey].name}*\n`;
+  txt += `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n`;
+  txt += `┃ 👤 Activado por: @${m.sender.split("@")[0]}\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  txt += `> ℹ️ Semua command (kecuali owner) dinonaktifkan\n`;
-  txt += `> ℹ️ Bot respond ketika di-reply atau di-tag\n`;
+  txt += `> ℹ️ Todos los comandos (excepto owner) desactivados\n`;
+  txt += `> ℹ️ El bot responde cuando le reply o le etiquetan\n`;
   txt +=
-    responseType === "voice" ? `> ℹ️ Response dalam bentuk voice note\n` : "";
-  txt += `> ℹ️ Ketik *.autoai off* untuk menonaktifkan`;
+    responseType === "voice" ? `> ℹ️ La respuesta es en nota de voz\n` : "";
+  txt += `> ℹ️ Escribe *.autoai off* para desactivar`;
 
   await m.reply(txt, { mentions: [m.sender] });
 }
@@ -477,7 +477,7 @@ async function generateVoiceResponse(text, sock, chatId, quotedMsg) {
     const response = await axios.get(apiUrl);
     
     if (!response.data?.status || !response.data?.data?.audio) {
-      throw new Error("Gagal generate audio dari API Firefly");
+      throw new Error("Error al generar audio desde la API Firefly");
     }
     
     const audioRes = await axios.get(response.data.data.audio, {

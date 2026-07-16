@@ -6,8 +6,8 @@ const config = {
   alias: ["setenergi"],
   category: "owner",
   description: "Cambia de una vez el consumo de energía de varias funciones",
-  usage: ".capenergi <nama_fitur1> <nama_fitur2> ... <jumlah>",
-  example: ".capenergi hd fakedev 5",
+  usage: ".capenergi <nombre_fesor1> <nombre_fesor2> ... <cantidad>",
+  example: ".capenergi hd faadev 5",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -21,15 +21,15 @@ async function handler(m, { sock }) {
   if (m.args.length < 2) {
     return m.reply(
       `⚙️ *SISTEM CAP ENERGI*\n\n` +
-      `Sistem untuk mengubah secara dinamis jumlah energi yang dipotong untuk banyak fitur sekaligus.\n\n` +
+      `Sistema para cambiar de forma dinámica la cantidad de energía que se descuenta para muchas funciones a la vez.\n\n` +
       `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}capenergi <nama_fitur1> <nama_fitur2> ... <jumlah>*\n\n` +
+      `- *${m.prefix}capenergi <nombre_fesor1> <nombre_fesor2> ... <cantidad>*\n\n` +
       `*CONTOH PENGGUNAAN:*\n` +
-      `- *${m.prefix}capenergi hd jpm 5* (Fitur HD & JPM memotong 5 energi)\n` +
-      `- *${m.prefix}capenergi hd 0* (Fitur HD menjadi gratis energi)\n\n` +
+      `- *${m.prefix}capenergi hd jpm 5* (Fesor HD & JPM memotong 5 energi)\n` +
+      `- *${m.prefix}capenergi hd 0* (Fesor HD menjadi gratis energi)\n\n` +
       `*PENJELASAN:*\n` +
-      `1. Masukkan satu atau banyak nama fitur yang ingin diubah.\n` +
-      `2. Di akhiran (kata terakhir) harus berupa ANGKA (jumlah potongan energi).`
+      `1. Ingresa uno o muchos nombres de funciones que quieres cambiar.\n` +
+      `2. Al final (última palabra) debe ser un NÚMERO (cantidad de descuento de energía).`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   const cost = parseInt(rawCost);
   
   if (isNaN(cost) || cost < 0) {
-    return m.reply(`❌ *GAGAL*\n\nJumlah energi (di argumen paling akhir) harus berupa angka 0 atau lebih.`);
+    return m.reply(`❌ *GAGAL*\n\nLa cantidad de energía (en el último argumento) debe ser un número 0 o mayor.`);
   }
 
   const commands = m.args.slice(0, -1);
@@ -68,13 +68,13 @@ async function handler(m, { sock }) {
   
   let msg = `✅ *POTONGAN ENERGI BERHASIL DIUBAH*\n\n`;
   if (successList.length > 0) {
-    msg += `*Berhasil diubah jadi ${cost} Energi:*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Éxito cambiado a ${cost} Energi:*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   if (failedList.length > 0) {
-    msg += `*Gagal (Tidak ditemukan):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Fallo (No encontrado):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   
-  msg += `_Pengaturan tersimpan ke dalam database dan langsung berlaku._`;
+  msg += `_La configuración se ha guardado en la base de datos y se aplica inmediatamente._`;
   return m.reply(msg.trim());
 }
 

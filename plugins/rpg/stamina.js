@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "stamina",
   alias: ["energy", "cekstamina"],
   category: "rpg",
-  description: "Cek dan pulihkan stamina",
+  description: "Verificar y recuperar stamina",
   usage: ".stamina / .stamina isi",
   example: ".stamina",
   isOwner: false,
@@ -37,11 +37,11 @@ async function handler(m, { sock }) {
     const potionCost = 5000;
 
     if (user.rpg.stamina >= user.rpg.maxStamina) {
-      return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴘᴇɴᴜʜ*\n\n> Stamina kamu sudah penuh!`);
+      return m.reply(`⚡ *ᴇꜱᴛᴀᴍɪɴᴀ ʟʟᴇɴᴀ*\n\n> ¡Tu estamina ya está llena!`);
     }
 
     if ((user.koin || 0) < potionCost) {
-      return m.reply(`❌ *sᴀʟᴅᴏ ᴛɪᴅᴀᴋ ᴄᴜᴋᴜᴘ*\n\n` + `> Biaya: Rp ${potionCost.toLocaleString("id-ID")}\n` + `> Saldo: Rp ${(user.koin || 0).toLocaleString("id-ID")}`);
+      return m.reply(`❌ *ꜱᴀʟᴅᴏ ɪɴꜰᴜꜰiciente*\n\n` + `> Costo: Rp ${potionCost.toLocaleString("id-ID")}\n` + `> Saldo: Rp ${(user.koin || 0).toLocaleString("id-ID")}`);
     }
 
     user.koin -= potionCost;
@@ -54,12 +54,12 @@ async function handler(m, { sock }) {
     return sendRpgPreview(
       sock,
       m.chat,
-      `⚡ *sᴛᴀᴍɪɴᴀ ᴅɪɪsɪ*\n\n` +
+      `⚡ *ᴇꜱᴛᴀᴍɪɴᴀ ʀᴇꜱᴛᴀᴜʀᴀᴅᴀ*\n\n` +
         `*💊 *ʀᴇsᴛᴏʀᴇ:*
 \n` +
         `> ⚡ Stamina: *+${restored}*\n` +
-        `> 💵 Biaya: *-Rp ${potionCost.toLocaleString("id-ID")}*\n` +
-        `> 📊 Sekarang: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n` +
+        `> 💵 Costo: *-Rp ${potionCost.toLocaleString("id-ID")}*\n` +
+        `> 📊 Actualmente: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n` +
         ``,
       "⚡ STAMINA",
       "Restore",
@@ -75,8 +75,8 @@ async function handler(m, { sock }) {
   txt += `> ⚡ Stamina: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n`;
   txt += `> 📊 [${staminaBar}]\n`;
   txt += `\n\n`;
-  txt += `> Isi stamina: \`${m.prefix}stamina isi\` (Rp 5.000)\n`;
-  txt += `> Stamina pulih otomatis setiap jam`;
+  txt += `> Restaurar estamina: \`${m.prefix}stamina isi\` (Rp 5.000)\n`;
+  txt += `> La estamina se restaura automáticamente cada hora`;
 
   await sendRpgPreview(sock, m.chat, txt, "⚡ STAMINA", "Status", {
     quoted: m,

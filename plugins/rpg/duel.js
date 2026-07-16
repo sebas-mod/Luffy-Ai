@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "duel",
   alias: ["pvp", "fight"],
   category: "rpg",
-  description: "Duel PvP dengan player lain",
+  description: "Duelo PvP con otro jugador",
   usage: ".duel @user <bet>",
   example: ".duel @user 5000",
   isOwner: false,
@@ -27,30 +27,30 @@ async function handler(m, { sock }) {
 
   if (!target) {
     let txt = `⚔️ *DUEL TARUHAN* ⚔️\n\n`;
-    txt += `Tantang teman kamu untuk duel dengan uang taruhan kak!\n\n`;
-    txt += `*Cara Menantang:*\n`;
+    txt += `¡Desafía a tu amigo a un duelo por dinero!\n\n`;
+    txt += `*Cómo Desafiar:*\n`;
     txt += `👉 \`.duel @user 5000\`\n`;
-    txt += `_(Artinya kamu ngajak dia duel dengan taruhan Rp 5.000)_`;
+    txt += `_(Significa que lo retas a un duelo con apuesta de Rp 5.000)_`;
     return m.reply(txt);
   }
 
   if (target === m.sender) {
-    return m.reply(`Hihihi kak, masak kamu mau ngajak berantem sama cermin? Tag teman yang lain yuk! 😂`);
+    return m.reply(`Jajajaja, ¿vas a pelearte con tu espejo? ¡Busca a otro amigo! 😂`);
   }
 
   if (bet < 1000) {
-    return m.reply(`Wah taruhannya kekecilan kak! Minimal uang taruhan buat duel itu *Rp 1.000* ya! 💸`);
+    return m.reply(`¡Vaya, la apuesta es demasiado baja! ¡La mínima es *Rp 1.000*! 💸`);
   }
 
   const player1 = db.getUser(m.sender);
   const player2 = db.getUser(target) || db.setUser(target);
 
   if ((player1.koin || 0) < bet) {
-    return m.reply(`Aduh kak, saldo kamu nggak cukup buat pasang taruhan segitu!\nKoin kamu sekarang: *Rp ${(player1.koin || 0).toLocaleString("id-ID")}*`);
+    return m.reply(`¡Ay, tu saldo no alcanza para esa apuesta!\nTus monedas: *Rp ${(player1.koin || 0).toLocaleString("id-ID")}*`);
   }
 
   if ((player2.koin || 0) < bet) {
-    return m.reply(`Yah kak, sepertinya saldo lawan kamu nggak cukup buat meladeni taruhan ini. Cari lawan lain atau turunin taruhannya ya!`);
+    return m.reply(`Vaya, parece que el oponente no tiene suficiente dinero para la apuesta. ¡Busca otro o reduce la apuesta!`);
   }
 
   if (!player1.rpg) player1.rpg = {};
@@ -60,10 +60,10 @@ async function handler(m, { sock }) {
   player2.rpg.health = player2.rpg.health || 100;
 
   if (player1.rpg.health < 30) {
-    return m.reply(`Eh tunggu kak! Darah kamu sekarat banget (*${player1.rpg.health} HP*). Minimal harus punya *30 HP* buat ikut duel. Istirahat dulu yuk! 💉`);
+    return m.reply(`¡Espera! Tu salud es muy baja (*${player1.rpg.health} HP*). Necesitas mínimo *30 HP* para el duelo. ¡Descansa primero! 💉`);
   }
 
-  await sendRpgPreview(sock, m.chat, `⚔️ *DUEL DIMULAI!* ⚔️\n\n@${m.sender.split("@")[0]} dengan berani menantang @${target.split("@")[0]}!\n💰 Total Taruhan di Tengah: *Rp ${(bet * 2).toLocaleString("id-ID")}*`, "⚔️ ARENA DUEL", "Bertarung!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, `⚔️ *¡¡DUELO COMIENZA!!* ⚔️\n\n@${m.sender.split("@")[0]} desafía valientemente a @${target.split["@")[0]}!\n💰 Total de Apuestas: *Rp ${(bet * 2).toLocaleString("id-ID")}*`, "⚔️ ARENA DE DUELO", "¡A pelear!", { quoted: m });
 
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -84,12 +84,12 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let txt = `⚔️ *HASIL DUEL BERDARAH* ⚔️\n\n`;
-  txt += `🏆 *Pemenang:* @${winner.split("@")[0]}\n`;
-  txt += `💀 *Kalah:* @${loser.split("@")[0]} (Mundur dengan luka parah)\n\n`;
-  txt += `🎁 *Pemenang Berhak Membawa Pulang:*\n`;
-  txt += `> 💰 Uang Taruhan Lawan: *+Rp ${bet.toLocaleString("id-ID")}*\n`;
-  txt += `> ✨ Bonus EXP Pertarungan: *+${expGain} EXP*`;
+  let txt = `⚔️ *RESULTADO DEL DUELO SANGRIENTO* ⚔️\n\n`;
+  txt += `🏆 *Ganador:* @${winner.split("@")[0]}\n`;
+  txt += `💀 *Perdedor:* @${loser.split["@")[0]} (Retira con heridas graves)\n\n`;
+  txt += `🎁 *El Ganador Se Lleva:*\n`;
+  txt += `> 💰 Apuesta del Oponente: *+Rp ${bet.toLocaleString("id-ID")}*\n`;
+  txt += `> ✨ Bonus EXP de Batalla: *+${expGain} EXP*`;
 
   await sendRpgPreview(sock, m.chat, txt, "⚔️ ARENA DUEL", "Hasil Duel!", { quoted: m });
 }

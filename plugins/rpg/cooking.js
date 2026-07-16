@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "cooking",
   alias: ["chef"],
   category: "rpg",
-  description: "Masak makanan untuk stamina dan HP",
+  description: "Cocinar comida para stamina y HP",
   usage: ".cooking <recipe>",
   example: ".cooking friedrice",
   isOwner: false,
@@ -18,12 +18,12 @@ const pluginConfig = {
 };
 
 const RECIPES = {
-  bread: { name: "🍞 Roti", materials: { wheat: 2 }, effect: { stamina: 10, health: 5 }, exp: 30 },
-  friedrice: { name: "🍚 Nasi Goreng", materials: { rice: 2, egg: 1 }, effect: { stamina: 25, health: 15 }, exp: 60 },
+  bread: { name: "🍞 Pan", materials: { wheat: 2 }, effect: { stamina: 10, health: 5 }, exp: 30 },
+  friedrice: { name: "🍚 Arroz Frito", materials: { rice: 2, egg: 1 }, effect: { stamina: 25, health: 15 }, exp: 60 },
   steak: { name: "🥩 Steak", materials: { meat: 2, herb: 1 }, effect: { stamina: 40, health: 30 }, exp: 100 },
-  soup: { name: "🍲 Sup", materials: { carrot: 2, potato: 2, meat: 1 }, effect: { stamina: 35, health: 40 }, exp: 90 },
+  soup: { name: "🍲 Sopa", materials: { carrot: 2, potato: 2, meat: 1 }, effect: { stamina: 35, health: 40 }, exp: 90 },
   sushi: { name: "🍣 Sushi", materials: { fish: 3, rice: 2 }, effect: { stamina: 30, health: 25 }, exp: 80 },
-  cake: { name: "🍰 Kue", materials: { wheat: 3, egg: 2, strawberry: 2 }, effect: { stamina: 50, health: 20 }, exp: 120 },
+  cake: { name: "🍰 Pastel", materials: { wheat: 3, egg: 2, strawberry: 2 }, effect: { stamina: 50, health: 20 }, exp: 120 },
   ramen: { name: "🍜 Ramen", materials: { wheat: 2, egg: 1, meat: 1, herb: 1 }, effect: { stamina: 45, health: 35 }, exp: 110 },
   pizza: { name: "🍕 Pizza", materials: { wheat: 3, tomato: 2, meat: 2 }, effect: { stamina: 60, health: 30 }, exp: 140 },
   smoothie: { name: "🥤 Smoothie", materials: { strawberry: 3, watermelon: 1 }, effect: { stamina: 30, mana: 20 }, exp: 70 },
@@ -41,8 +41,8 @@ async function handler(m, { sock }) {
   const recipeName = args[0]?.toLowerCase();
 
   if (!recipeName) {
-    let txt = `Halo Master Chef! Mau masak resep yang mana nih? 👨‍🍳🍳\n\n`;
-    txt += `*Daftar Resep Rahasia:*\n`;
+    let txt = `¡Hola Maestro Chef! ¿Qué receta vas a preparar? 👨‍🍳🍳\n\n`;
+    txt += `*Lista de Recetas Secretas:*\n`;
 
     for (const [key, recipe] of Object.entries(RECIPES)) {
       const mats = Object.entries(recipe.materials)
@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
         .map(([e, v]) => `+${v} ${e}`)
         .join(", ");
       txt += `\n*${recipe.name}*\n`;
-      txt += `📦 Bahan: ${mats}\n`;
+      txt += `📦 Materiales: ${mats}\n`;
       txt += `💫 Efek: ${effects}\n`;
       txt += `👉 Ketik: \`.cooking ${key}\`\n`;
     }
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
 
   const recipe = RECIPES[recipeName];
   if (!recipe) {
-    return m.reply(`Hayo, resep apaan tuh? Nggak ada di buku menu kak! 😂\nCek daftar resepnya pake \`.cooking\` ya!`);
+    return m.reply(`Oye, ¿qué receta es esa? ¡No está en el libro de recetas! 😂\n¡Consulta la lista con \`.cooking\`!`);
   }
 
   const missingMaterials = [];
@@ -74,11 +74,11 @@ async function handler(m, { sock }) {
   }
 
   if (missingMaterials.length > 0) {
-    return m.reply(`Eits, bahan kamu belum lengkap buat masak *${recipe.name}*! 😭\n\nYang kurang:\n${missingMaterials.join("\n")}\n\nCari bahannya dulu gih! 🛒🏃`);
+    return m.reply(`¡Eh, te faltan ingredientes para cocinar *${recipe.name}*! 😭\n\nFaltan:\n${missingMaterials.join("\n")}\n\n¡Consígelos primero! 🛒🏃`);
   }
 
   await m.react("👨‍🍳");
-  await m.reply(`Srengg... Srenggg... 🔥🍳\nLagi masak *${recipe.name}* nih, wanginya nyebar sekampung! 🤤`);
+  await m.reply(`Chissss... Chissss... 🔥🍳\nCocinando *${recipe.name}*, ¡el aroma se expande por todo el barrio! 🤤`);
   await new Promise((r) => setTimeout(r, 3000));
 
   for (const [material, needed] of Object.entries(recipe.materials)) {
@@ -111,12 +111,12 @@ async function handler(m, { sock }) {
     .join("\n");
 
   return m.reply(
-    `TADAA! MASAKAN MATANG! 🍽️✨\n\n` +
-      `Kamu langsung melahap *${recipe.name}* yang enak banget!\n` +
-      `Efek yang kamu dapet:\n` +
+    `¡TACHÁN! ¡COMIDA LISTA! 🍽️✨\n\n` +
+      `¡Te comiste *${recipe.name}* que estaba divino!\n` +
+      `Efectos obtenidos:\n` +
       `${effectTexts}\n\n` +
       `📈 Bonus EXP Masak: *+${recipe.exp}*\n\n` +
-      `Kenyang banget rasanya, siap tempur lagi! 🔥`
+      `¡Barriga llena, listo para luchar otra vez! 🔥`
   );
 }
 

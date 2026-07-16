@@ -7,7 +7,7 @@ const pluginConfig = {
     alias: ['addban', 'block'],
     category: 'owner',
     description: 'Impide que un usuario use el bot',
-    usage: '.ban <nomor/@tag>',
+    usage: '.ban <número/@tag>',
     example: '.ban 6281234567890',
     isOwner: true,
     isPremium: false,
@@ -45,13 +45,13 @@ async function handler(m, { sock }) {
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
             `🚫 *ʙᴀɴ ᴜsᴇʀ*\n\n` +
-            `> Masukkan nomor atau tag user\n\n` +
-            `\`Contoh: ${m.prefix}ban 6281234567890\``
+            `> Ingresa número o tag user\n\n` +
+            `\`Ejemplo: ${m.prefix}ban 6281234567890\``
         )
     }
 
     if (config.isOwner(targetNumber)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat ban owner`)
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No puede ban owner`)
     }
 
     const db = getDatabase()
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Nomor \`${targetNumber}\` sudah dibanned`)
+        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` ya dibanned`)
     }
 
     bannedList.push(targetNumber)

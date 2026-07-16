@@ -5,9 +5,9 @@ const pluginConfig = {
     name: 'qc',
     alias: ['qcstc', 'stcqc', 'qcstic', 'qcstick', 'quotesticker'],
     category: 'sticker',
-    description: 'Membuat sticker quote chat dengan warna custom',
-    usage: '.qc <warna> <text>',
-    example: '.qc pink Hai semuanya!',
+    description: 'Crear sticker de cita con color personalizado',
+    usage: '.qc <color> <texto>',
+    example: '.qc pink ¡Hola a todos!',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -83,12 +83,12 @@ async function handler(m, { sock }) {
         const colorList = Object.keys(COLORS).join(', ')
         return m.reply(
             `💬 *ǫᴜᴏᴛᴇ sᴛɪᴄᴋᴇʀ*\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-            `┃ ◦ \`${m.prefix}qc <warna> <text>\`\n` +
-            `┃ ◦ Reply pesan + \`${m.prefix}qc <warna>\`\n` +
+            `╭┈┈⬡「 📋 *CÓMO USAR* 」\n` +
+            `┃ ◦ \`${m.prefix}qc <color> <texto>\`\n` +
+            `┃ ◦ Responder a un mensaje + \`${m.prefix}qc <color>\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Contoh: \`${m.prefix}qc pink Hai semuanya!\`\n\n` +
-            `╭┈┈⬡「 🎨 *ᴡᴀʀɴᴀ* 」\n` +
+            `> Ejemplo: \`${m.prefix}qc pink ¡Hola a todos!\`\n\n` +
+            `╭┈┈⬡「 🎨 *COLORES* 」\n` +
             `┃ ${colorList}\n` +
             `╰┈┈⬡`
         )
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
     const backgroundColor = COLORS[color]
     
     if (!backgroundColor) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Warna \`${color}\` tidak ditemukan!\n> Gunakan salah satu warna yang tersedia.`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no fue encontrado!\n> Usa uno de los colores disponibles.`)
     }
     
     let message = args.slice(1).join(' ')
@@ -108,11 +108,11 @@ async function handler(m, { sock }) {
     }
     
     if (!message) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text untuk quote!`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
     }
     
     if (message.length > 80) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Maksimal 80 karakter! (Saat ini: ${message.length})`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
     }
     
     m.react('🕕')

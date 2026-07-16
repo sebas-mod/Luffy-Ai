@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "mining",
   alias: ["mine", "tambang"],
   category: "rpg",
-  description: "Menambang untuk mendapatkan ores dan gems",
+  description: "Minar para obtener minerales y gemas",
   usage: ".mining",
   example: ".mining",
   isOwner: false,
@@ -28,21 +28,21 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Aduh kak, badan kamu udah remuk duluan! 🥵\n\nNambang batu tuh berat, butuh *${staminaCost} Stamina*. Stamina kamu sisa *${user.rpg.stamina}* doang. Istirahat gih! 🛌💤`);
+    return m.reply(`¡Ay, tu cuerpo está destrozado! 🥵\n\nMinar piedra es pesado, requiere *${staminaCost} Stamina*. Solo tienes *${user.rpg.stamina}*. ¡Descansa! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("⛏️");
-  await m.reply("Trangg! Tranggg! ⛏️💎\nMemecah batu keras di kedalaman gua...");
+  await m.reply("¡Trang! ¡Tranggg! ⛏️💎\nRompiendo roca dura en las profundidades de la cueva...");
   await new Promise((r) => setTimeout(r, 3000));
 
   const drops = [
     { item: "rock", chance: 80, name: "🪨 Batu", min: 2, max: 5 },
     { item: "coal", chance: 50, name: "⚫ Batubara", min: 1, max: 3 },
-    { item: "iron", chance: 30, name: "⛓️ Besi", min: 1, max: 2 },
-    { item: "gold", chance: 15, name: "🥇 Emas", min: 1, max: 1 },
-    { item: "diamond", chance: 5, name: "💠 Berlian", min: 1, max: 1 },
+    { item: "iron", chance: 30, name: "⛓️ Hierro", min: 1, max: 2 },
+    { item: "gold", chance: 15, name: "🥇 Oro", min: 1, max: 1 },
+    { item: "diamond", chance: 5, name: "💠 Diamante", min: 1, max: 1 },
     { item: "emerald", chance: 2, name: "💚 Emerald", min: 1, max: 1 },
   ];
 
@@ -67,14 +67,14 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `CROOT! BATUNYA PECAH KAK! ⛏️✨\n\n`;
-  txt += `Kamu berhasil dapetin material ini:\n`;
+  let txt = `¡CRACK! ¡LA PIEDRA SE ROMPIÓ! ⛏️✨\n\n`;
+  txt += `Conseguiste estos materiales:\n`;
   for (const r of results) {
     txt += `• ${r.name}: *+${r.qty}*\n`;
   }
   txt += `\n📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Simpen baik-baik ya kak, nanti bisa dicraft atau dijual! 💎💰`;
+  txt += `¡Guárdalos bien, puedes usarlos para fabricar o vender! 💎💰`;
 
   await m.reply(txt);
 }

@@ -10,7 +10,7 @@ const pluginConfig = {
   name: "ttsearch",
   alias: ["tiktoksearch", "tts", "searchtiktok"],
   category: "search",
-  description: "Cari video TikTok",
+  description: "Buscar video de TikTok",
   usage: ".ttsearch <query>",
   example: ".ttsearch jj epep",
   isOwner: false,
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
 ┃
 ╰┈┈⬡
 
-> \`Contoh: ${m.prefix}ttsearch anime\``,
+> \`Ejemplo: ${m.prefix}ttsearch anime\``,
     );
   }
 
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const maxShow = Math.min(videos.length, 5);

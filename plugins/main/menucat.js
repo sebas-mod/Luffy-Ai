@@ -17,7 +17,7 @@ const pluginConfig = {
   name: "menucat",
   alias: ["mc", "category", "cat"],
   category: "main",
-  description: "Menampilkan commands dalam kategori tertentu",
+  description: "Mostrar comandos en una categoría específica",
   usage: ".menucat <kategori>",
   example: ".menucat tools",
   isOwner: false,
@@ -201,13 +201,13 @@ async function handler(m, { sock, db }) {
     });
 
     let txt = ``;
-    txt += createBracketBox("🤖", "KETERANGAN", [
-      "Ⓞ = Hanya untuk owner",
-      "ⓟ = Hanya untuk premium",
-      "Ⓛ = Membutuhkan limit",
-      "Ⓐ = Hanya untuk admin",
-      "Ⓖ = Hanya di dalam grup",
-      "Ⓟ = Hanya di private chat",
+    txt += createBracketBox("🤖", "LEYENDA", [
+      "Ⓞ = Solo para owner",
+      "ⓟ = Solo para premium",
+      "Ⓛ = Requiere límite",
+      "Ⓐ = Solo para admin",
+      "Ⓖ = Solo en grupo",
+      "Ⓟ = Solo en chat privado",
     ]);
 
     for (const cat of visibleCats) {
@@ -253,7 +253,7 @@ async function handler(m, { sock, db }) {
                       text: txt,
                     },
                     footer: {
-                      text: "Pilih tombol dibawah untuk kembali ke menu utama",
+                      text: "Selecciona el botón de abajo para volver al menú principal",
                     },
                     contextInfo: {
                       isForwarded: true,
@@ -269,7 +269,7 @@ async function handler(m, { sock, db }) {
                         limited_time_offer: {
                           text: `${greeting}`,
                           url: "Hai",
-                          copy_code: "Dibuat oleh " + config.bot?.developer,
+                          copy_code: "Creado por " + config.bot?.developer,
                           expiration_time: Date.now() + 1000000,
                         },
                       }),
@@ -277,7 +277,7 @@ async function handler(m, { sock, db }) {
                         {
                           name: "quick_reply",
                           buttonParamsJson: JSON.stringify({
-                            display_text: "🍅 Kembali Ke Menu Utama",
+                            display_text: "🍅 Volver al Menú Principal",
                             id: m.prefix + "menu",
                           }),
                         },
@@ -298,7 +298,7 @@ async function handler(m, { sock, db }) {
             const h = Math.floor(seconds % (3600 * 24) / 3600);
             const m = Math.floor(seconds % 3600 / 60);
             const s = Math.floor(seconds % 60);
-            return `${d} Jam ${m} Menit ${s} Detik`;
+            return `${d} Horas ${m} Minutos ${s} Segundos`;
           }
 
           const weatherCode = {
@@ -331,7 +331,7 @@ async function handler(m, { sock, db }) {
                 messageContextInfo: {},
                 interactiveMessage: {
                   header: { title: "", subtitle: "", hasMediaAttachment: true, videoMessage: media4.videoMessage },
-                  footer: { text: `Please select the button in below` },
+                  footer: { text: `Selecciona el botón de abajo` },
                   body: { text: txt },
                   contextInfo: {
                     mentionedJid: [m.sender],
@@ -346,7 +346,7 @@ async function handler(m, { sock, db }) {
                   nativeFlowMessage: {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
-                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
+                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Selecciona el menú", button_title: "🍙 Ver Categoría" },
                       tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
                     }),
                     buttons: [
@@ -382,12 +382,12 @@ async function handler(m, { sock, db }) {
 
   if (!matchedCat) {
     return m.reply(
-      `❌ *KATEGORI TIDAK DITEMUKAN*\n\n> Kategori \`${categoryArg}\` tidak ada.\n> Ketik \`${prefix}menucat\` untuk list kategori.`,
+      `❌ *CATEGORÍA NO ENCONTRADA*\n\n> La categoría \`${categoryArg}\` no existe.\n> Escribe \`${prefix}menucat\` para ver la lista de categorías.`,
     );
   }
 
   if (matchedCat === "owner" && !m.isOwner) {
-    return m.reply(`❌ *AKSES DITOLAK*\n\n> Kategori ini hanya untuk owner.`);
+    return m.reply(`❌ *ACCESO DENEGADO*\n\n> Esta categoría es solo para el owner.`);
   }
 
   const pluginCommands = commandsByCategory[matchedCat] || [];
@@ -396,7 +396,7 @@ async function handler(m, { sock, db }) {
 
   if (allCommands.length === 0) {
     return m.reply(
-      `❌ *KOSONG*\n\n> Kategori \`${matchedCat}\` tidak memiliki command.`,
+      `❌ *VACÍO*\n\n> La categoría \`${matchedCat}\` no tiene comandos.`,
     );
   }
 
@@ -467,7 +467,7 @@ async function handler(m, { sock, db }) {
                       {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "📂 Kembali Ke Daftar Kategori",
+                          display_text: "📂 Volver a la Lista de Categorías",
                           id: m.prefix + "menucat",
                         }),
                       },
@@ -495,24 +495,24 @@ async function handler(m, { sock, db }) {
           const h = Math.floor(seconds % (3600 * 24) / 3600);
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} Horas ${m} Minutos ${s} Segundos`;
         }
 
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
@@ -568,20 +568,20 @@ async function handler(m, { sock, db }) {
       }
       case 6: {
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Despejado con nubes", 2: "⛅ Nublado", 3: "☁️ Cielo cubierto", 45: "🌫️ Neblinoso", 48: "🌫️ Niebla espesa", 51: "🌦️ Lluvia ligera", 61: "🌧️ Lluvia", 63: "🌧️ Lluvia fuerte", 65: "⛈️ Tormenta", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 

@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['quoted', 'inspect'],
     category: 'tools',
     description: 'Obtiene el JSON de un mensaje respondido',
-    usage: '.q (reply pesan)',
+    usage: '.q (reply mensaje)',
     isOwner: true,
     cooldown: 3,
     isEnabled: true
@@ -13,7 +13,7 @@ const pluginConfig = {
 
 async function handler(m) {
     if (!m.quoted) {
-        return m.reply('❌ *Reply pesan yang ingin di-inspect*')
+        return m.reply('❌ *Responde al mensaje que quieres inspeccionar*')
     }
 
     try {

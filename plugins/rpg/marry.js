@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "marry",
   alias: ["nikah", "wedding", "propose"],
   category: "rpg",
-  description: "Menikahi player lain",
+  description: "Casarse con otro jugador",
   usage: ".marry @user",
   example: ".marry @user",
   isOwner: false,
@@ -26,33 +26,33 @@ async function handler(m, { sock }) {
 
   if (!target) {
     let txt = `💒 *CATATAN SIPIL RPG* 💒\n\n`;
-    txt += `Mau melamar ayang? Tag orangnya di sini!\n\n`;
-    txt += `*Cara Melamar:*\n`;
+    txt += `¡¿Quieres proponerle matrimonio a tu ser amado? ¡Menciona a la persona aquí!\n\n`;
+    txt += `*Cómo Proponer:*\n`;
     txt += `👉 \`${m.prefix}marry @user\`\n\n`;
-    txt += `*Syarat:* \n`;
-    txt += `💍 Biaya Nikah: *Rp 50.000*\n`;
-    txt += `(Pastikan doi belum punya pasangan ya!)`;
+    txt += `*Requisitos:* \n`;
+    txt += `💍 Costo de Boda: *Rp 50.000*\n`;
+    txt += `(¡Asegúrate de que no tenga pareja!)`;
     return m.reply(txt);
   }
 
   if (target === m.sender) {
-    return m.reply(`Aduh kasihan banget jomblo kronis... Masa mau nikah sama diri sendiri? Cari jodoh sana! 😭💔`);
+    return m.reply(`Pobrecito, soltero crónico... ¿Quieres casarte contigo mismo? ¡Busca a alguien! 😭💔`);
   }
 
   const partner = db.getUser(target) || db.setUser(target);
   if (!partner.rpg) partner.rpg = {};
 
   if (user.rpg.spouse) {
-    return m.reply(`HEH! Lu kan udah punya pasangan si @${user.rpg.spouse.split("@")[0]}!\nMau poligami? Di server ini nggak boleh! Cerai dulu gih sana pakai \`.divorce\` 😡🔪`, { mentions: [user.rpg.spouse] });
+    return m.reply(`¡EY! Ya tienes pareja, @${user.rpg.spouse.split("@")[0]}!\n¿Quieres poligamia? ¡En este servidor no está permitido! Divórciate primero usando \`.divorce\` 😡🔪`, { mentions: [user.rpg.spouse] });
   }
 
   if (partner.rpg.spouse) {
-    return m.reply(`Sakit tak berdarah... 🥀\n@${target.split("@")[0]} ternyata udah nikah sama orang lain!\nLangkahmu terhenti di *friendzone*...`, { mentions: [target] });
+    return m.reply(`Dolor sin sangre... 🥀\n@${target.split("@")[0]} resulta que ya está casado con otra persona!\nTu avance se detuvo en la *zona de amigos*...`, { mentions: [target] });
   }
 
   const marriageCost = 50000;
   if ((user.koin || 0) < marriageCost) {
-    return m.reply(`Astaga... miskin kok nekat mau nikah? 🤦‍♂️\nBiaya KUA dan katering *Rp 50.000*, tapi duit lu cuma *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\nKerja keras dulu bang!`);
+    return m.reply(`Dios mío... ¿pobre pero insistiendo en casarte? 🤦‍♂️\nEl costo de la boda y el catering es *Rp 50.000*, pero solo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\n¡Trabaja duro primero, hermano!`);
   }
 
   user.koin -= marriageCost;
@@ -66,13 +66,13 @@ async function handler(m, { sock }) {
   await m.react("💍");
 
   let txt = `💒 *PENGUMUMAN PERNIKAHAN!!* 💒\n\n`;
-  txt += `Segenap penghuni server mengucapkan selamat kepada:\n\n`;
+  txt += `Todos los habitantes del servidor felicitan a:\n\n`;
   txt += `👨‍💼/👰 @${m.sender.split("@")[0]}\n`;
-  txt += `           💖 dengan 💖\n`;
+  txt += `           💖 con 💖\n`;
   txt += `👨‍💼/👰 @${target.split("@")[0]}\n\n`;
-  txt += `🎉 *MEREKA RESMI MENJADI PASANGAN!* 🎉\n\n`;
-  txt += `💍 Biaya Resepsi: *Rp -${marriageCost.toLocaleString("id-ID")}*\n\n`;
-  txt += `> _"Semoga langgeng sampai akhir hayat server ini!" - Pendeta Bot_ 🥺💕`;
+  txt += `🎉 *¡SON OFICIALMENTE UNA PAREJA!* 🎉\n\n`;
+  txt += `💍 Costo de Recepción: *Rp -${marriageCost.toLocaleString("id-ID")}*\n\n`;
+  txt += `> _"¡Que duren hasta el último día de este servidor!" - Sacerdote Bot_ 🥺💕`;
 
   await m.reply(txt, { mentions: [m.sender, target] });
 }

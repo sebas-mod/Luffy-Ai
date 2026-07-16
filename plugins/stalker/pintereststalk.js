@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "pintereststalk",
   alias: ["pinterestid", "stalkpinterest", "stalkpin"],
   category: "stalker",
-  description: "Melihat informasi lengkap akun Pinterest berdasarkan username.",
+  description: "Ver información completa de una cuenta de Pinterest por username.",
   usage: ".pintereststalk <username>",
   example: ".pintereststalk dims",
   isOwner: false,
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const username = m.text?.trim() || m.args[0];
 
   if (!username) {
-    return m.reply("❌ *Waduh, username Pinterest-nya belum dimasukkan!*\n\nKamu harus mengetikkan username Pinterest yang ingin di-stalk. \n\nContoh: `.pintereststalk dims`");
+    return m.reply("❌ *¡Oye, el username de Pinterest no se ha ingresado!*\n\nDebes escribir el username de Pinterest que quieres rastrear. \n\nEjemplo: `.pintereststalk dims`");
   }
 
   await m.react("🕕");
@@ -38,31 +38,30 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`⚠️ *Pencarian Gagal!*\n\nUsername *${username}* tidak ditemukan di Pinterest. Pastikan penulisannya sudah benar ya.`);
+      return m.reply(`⚠️ *¡Búsqueda Fallida!*\n\nEl username *${username}* no se encontró en Pinterest. Asegúrese de que esté escrito correctamente.`);
     }
 
     const r = data.result;
     
     let caption = `📌 *PINTEREST STALK - PROFILE INFO* 📌\n\n`;
-    caption += `Halo! Ini dia hasil pencarian profil untuk username *@${r.username}*:\n\n`;
+    caption += `¡Hola! Aquí están los resultados de la búsqueda del perfil para el username *@${r.username}*:\n\n`;
     
-    caption += `👤 *INFO PROFIL*\n`;
-    caption += `  - Nama Lengkap: *${r.full_name || "-"}*\n`;
-    caption += `  - Username: @${r.username}\n`;
+    caption += `👤 *INFO DEL PERFIL*\n`;
+    caption += `  - Nombre Completo: *${r.full_name || "-"}*\n`;
     caption += `  - Bio: ${r.bio || "-"}\n`;
-    caption += `  - Tipe Akun: ${r.account_type || "-"}\n`;
-    caption += `  - Akun Dibuat: ${r.created_at || "-"}\n\n`;
+    caption += `  - Tipo de Cuenta: ${r.account_type || "-"}\n`;
+    caption += `  - Cuenta Creada: ${r.created_at || "-"}\n\n`;
     
-    caption += `📊 *STATISTIK*\n`;
-    caption += `  - Pengikut (Followers): ${r.stats?.followers || 0}\n`;
-    caption += `  - Diikuti (Following): ${r.stats?.following || 0}\n`;
-    caption += `  - Total Pin: ${r.stats?.pins || 0}\n`;
-    caption += `  - Total Board: ${r.stats?.boards || 0}\n\n`;
+    caption += `📊 *ESTADÍSTICAS*\n`;
+    caption += `  - Seguidores (Followers): ${r.stats?.followers || 0}\n`;
+    caption += `  - Siguiendo (Following): ${r.stats?.following || 0}\n`;
+    caption += `  - Total Pines: ${r.stats?.pins || 0}\n`;
+    caption += `  - Total Tableros: ${r.stats?.boards || 0}\n\n`;
     
-    caption += `🔗 *LINK PROFIL*\n`;
+    caption += `🔗 *ENLACE DEL PERFIL*\n`;
     caption += `  - ${r.profile_url}\n\n`;
 
-    caption += `Suka mengumpulkan inspirasi dari Pinterest ya? Pamerin ke temanmu yuk! 🚀`;
+    caption += `¿Te gusta recopilar inspiración de Pinterest? ¡Compártelo con tus amigos! 🚀`;
 
     const imageUrl = r.image?.original || r.image?.large || r.image?.medium || r.image?.small;
 
@@ -80,7 +79,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Pinterest Stalk]", error.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menarik data dari server Pinterest. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Ocurrió un problema en nuestro sistema.* \n\nEl sistema no pudo obtener datos del servidor Pinterest. Por favor, inténtalo de nuevo en unos momentos.");
   }
 }
 

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "freelance",
   alias: ["desain", "koding"],
   category: "rpg",
-  description: "Mengerjakan project online klien bule",
+  description: "Realizar proyectos online para clientes extranjeros",
   usage: ".freelance",
   example: ".freelance",
   isOwner: false,
@@ -27,19 +27,19 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Otak ngebul mikirin error! 🤯\n\nFreelance butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Refreshing dulu woi! 🌿`);
+    return m.reply(`¡Cerebro humeante pensando en errores! 🤯\n\nFreelance requiere *${staminaCost} Stamina*, te quedan *${user.rpg.stamina}*. ¡Tómate un descanso! 🌿`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("💻");
-  await m.reply(`Ngetik kode / nggambar di laptop... ⌨️\nSemoga klien nggak minta revisi! 🙏`);
+  await m.reply(`Escribiendo código / dibujando en la laptop... ⌨️\n¡Ojalá el cliente no pida revisiones! 🙏`);
   await new Promise(r => setTimeout(r, 4000));
 
   const gacha = Math.random();
 
   if (gacha < 0.2) {
     await m.react("📉");
-    return m.reply(`KLIEN KABUR GAK MAU BAYAR! 📉😡\n\nUdah dikerjain begadang 3 hari 3 malem, eh malah di-ghosting!\n💵 Bayaran: 0\n⚡ Stamina melayang: -${staminaCost}\n\nApes banget, lain kali harus pake DP! 😭`);
+    return m.reply(`¡EL CLIENTE HUYÓ Y NO QUISO PAGAR! 📉😡\n\nTrabajaste 3 noches sin dormir y ¡te dejaron en visto!\n💵 Pago: 0\n⚡ Stamina perdida: -${staminaCost}\n\nQué mala suerte, ¡la próxima exige anticipo! 😭`);
   } else if (gacha > 0.85) {
     const dollarRate = 16000;
     const payment = Math.floor(Math.random() * 10) + 5;
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     
     await m.react("💸");
-    return m.reply(`DIBAYAR PAKE DOLLAR OLEH BULE! 💸✨\n\nKlien luar negeri puas banget dan ngasih $${payment}!\n💵 Bayaran: *+Rp ${totalRupiah.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nUang jajan sultan menanti! 🤑`);
+    return m.reply(`¡PAGADO CON DÓLARES POR UN EXTRANJERO! 💸✨\n\n¡El cliente internacional está encantado y te dio $${payment}!\n💵 Pago: *+Rp ${totalRupiah.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Te esperan los dulces del sultán! 🤑`);
   }
 
   const earning = Math.floor(Math.random() * 40000) + 15000;
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`PROJECT SELESAI DAN ACC! 💻✨\n\n💵 Bayaran Lokal: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nLumayan buat beli kopi kapal api! ☕`);
+  m.reply(`¡PROYECTO TERMINADO Y APROBADO! 💻✨\n\n💵 Pago local: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Sirve para comprar café! ☕`);
 }
 
 export { pluginConfig as config, handler };

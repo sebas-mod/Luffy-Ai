@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'warn',
     alias: ['warning', 'peringatan'],
     category: 'group',
-    description: 'Memberi peringatan kepada member',
+    description: 'Dar advertencia a un miembro del grupo',
     usage: '.warn @user <alasan>',
     example: '.warn @user spam',
     isOwner: false,

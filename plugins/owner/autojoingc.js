@@ -23,14 +23,14 @@ async function handler(m) {
   if (!arg || !["on", "off"].includes(arg)) {
     const current = db.setting("autoJoinGc") || false;
     return m.reply(
-      `🔗 *AUTO JOIN GROUP*\n\nStatus: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — aktifkan\n\`${m.prefix}autojoingc off\` — nonaktifkan`,
+      `🔗 *AUTO JOIN GROUP*\n\nStatus: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — activokan\n\`${m.prefix}autojoingc off\` — nonactivokan`,
     );
   }
   const enabled = arg === "on";
   db.setting("autoJoinGc", enabled);
   await db.save();
   m.reply(
-    `${enabled ? "✅" : "❌"} Auto join group *${enabled ? "diaktifkan" : "dinonaktifkan"}*`,
+    `${enabled ? "✅" : "❌"} Auto join group *${enabled ? "activado" : "desactivado"}*`,
   );
 }
 async function autoJoinDetector(m, sock) {
@@ -51,9 +51,9 @@ async function autoJoinDetector(m, sock) {
     } catch (e) {
       const msg = e.message || String(e);
       if (msg.includes("already") || msg.includes("participant")) {
-        await m.reply(`⚠️ Sudah ada di grup tersebut`);
-      } else if (msg.includes("expired") || msg.includes("revoked")) {
-        await m.reply(`❌ Link grup sudah expired/revoked`);
+        await m.reply(`⚠️ Ya existe en el grupo dicho`);
+      } else if (msg.includes("expired") || msg.includes("revoad")) {
+        await m.reply(`❌ Link grup ya expired/revoad`);
       } else {
         await m.reply(te(m.prefix, m.command, m.pushName));
       }
