@@ -55,7 +55,7 @@
     "enabled": true
   },
   "autoReactSW": {
-    "enabled": true,
+    "enabled": false,
     "emoji": "🔥"
   },
   "customPaymentText": "",
