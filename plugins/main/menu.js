@@ -1329,44 +1329,21 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         const isRpg = Boolean(user.rpg);
         const roleName = m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🏴‍☠️ Pirata";
 
-        const greetingText = `${greeting} *${m.pushName || "User"}* 🏴‍☠️
+        const fullText = `${greeting} *${m.pushName || "User"}* 🏴‍☠️
 
-Soy *${config.bot?.name || "Luffy-AI"}*, tu asistente virtual. Estoy aquí para lo que necesites:
+Soy *${config.bot?.name || "Luffy-AI"}*, tu asistente. Estoy aquí para lo que necesites 🤙
 
-📥 *Descargar* — música, videos, fotos de redes sociales
-🎮 *Jugar* — minijuegos, adivinanzas, RPG, duels
-🏷️ *Etiquetar* — menciones masivas, stickers personalizados
-🖼️ *Stickers* — crear stickers con texto o imagen
-🤖 *IA* — preguntas, generación de imágenes
-⚔️ *RPG* — aventuras, bosses, duelos entre piratas
-🔍 *Buscar* — información, trending, curiosidades
-🔧 *Herramientas* — conversores, utilidades varias
+${readmore}👤 *TU INFO*
+> 📛 ${m.pushName || "User"} — ${roleName}
+> 📋 Registrado: ${isReg ? "✅" : "❌"} · RPG: ${isRpg ? "⚔️ Sí" : "❌ No"}
+> ⭐ Nv.${userLevel} · 💫 ${userExp.toLocaleString()} EXP
+> ⚡ ${userEnergi} energía · 💰 ${userBelly.toLocaleString()} Belly
 
-Escribe *.allmenu* para ver todos los comandos`;
-
-        const userInfoText = `
-╔════════════════════╗
-║   👤 *INFO USUARIO*
-╠════════════════════╣
-║ 📛 *Nombre* : ${m.pushName || "User"}
-║ 🎭 *Rol* : ${roleName}
-║ 📋 *Registrado* : ${isReg ? "✅ Sí" : "❌ No"}
-║ ⚔️ *RPG Activo* : ${isRpg ? "✅ Sí" : "❌ No"}
-║ ⭐ *Nivel* : ${userLevel}
-║ 💫 *EXP* : ${userExp.toLocaleString()}
-║ ⚡ *Energía* : ${userEnergi}
-║ 💰 *Belly* : ${userBelly.toLocaleString()}
-╠════════════════════╣
-║ 🤖 *INFO BOT*
-║ 📛 Nombre : ${config.bot?.name || "Luffy-AI"}
-║ 👨‍💻 Autor : ${config.bot?.developer || "Owner"}
-║ ⚙️ Versión : ${config.bot?.version || "1.0"}
-║ 📦 Comandos : *${totalCmds}*
-║ 📂 Categorías : *${catCount}*
-║ ⏱️ Uptime : ${uptimeFormatted}
-╚════════════════════╝`;
-
-        const fullText = greetingText + readmore + userInfoText;
+🤖 *BOT INFO*
+> 📛 ${config.bot?.name || "Luffy-AI"} · v${config.bot?.version || "1.0"}
+> 👨‍💻 ${config.bot?.developer || "Owner"}
+> 📦 ${totalCmds} comandos · 📂 ${catCount} categorías
+> ⏱️ ${uptimeFormatted}`;
 
         const media = await prepareWAMessageMedia({
           image: bannerBuffer
@@ -1379,7 +1356,7 @@ Escribe *.allmenu* para ver todos los comandos`;
               interactiveMessage: {
                 header: {
                   title: `🏴‍☠️ ${config.bot?.name || "Luffy-AI"}`,
-                  subtitle: `${greeting} — ${totalCmds} comandos disponibles`,
+                  subtitle: `${greeting}`,
                   hasMediaAttachment: true,
                   imageMessage: media.imageMessage
                 },
@@ -1387,7 +1364,7 @@ Escribe *.allmenu* para ver todos los comandos`;
                   text: fullText
                 },
                 footer: {
-                  text: "Selecciona una opción 👇"
+                  text: "Toca el botón de abajo 👇"
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
