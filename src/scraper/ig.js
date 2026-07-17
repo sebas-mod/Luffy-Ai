@@ -1,13 +1,15 @@
+import axios from "axios";
+
 const API_URL = "https://apiyosoyyo-ofc.onrender.com/api/instagram";
 
 async function instagramDownloader(url) {
-  const res = await fetch(
-    `${API_URL}?url=${encodeURIComponent(url)}&apiKey=Sebas-api2026`,
-  );
-  const json = await res.json();
+  const { data: json } = await axios.get(API_URL, {
+    params: { url, apiKey: "Sebas-api2026" },
+    timeout: 30000,
+  });
 
   if (!json.result?.success) {
-    throw new Error("No se pudo obtener el contenido de Instagram.");
+    throw new Error(json.message || "No se pudo obtener el contenido de Instagram.");
   }
 
   const { data } = json.result;
