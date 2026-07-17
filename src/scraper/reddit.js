@@ -49,7 +49,7 @@ async function RedditDL(redditUrl) {
       };
     }
 
-    return { status: false, error: "Gagal mengambil data" };
+    return { status: false, error: "Error al obtener datos" };
   } catch (e) {
     return { status: false, error: e.message };
   }

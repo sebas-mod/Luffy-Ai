@@ -34,22 +34,22 @@ async function handler(m, { sock }) {
     const stolen = Math.floor(Math.random() * 15000) + 5000;
     const expGain = Math.floor(stolen / 20);
 
-    user.koin = (user.koin || 0) + stolen;
+    user.belly = (user.belly || 0) + stolen;
     await addExpWithLevelCheck(sock, m, db, user, expGain);
 
     db.save();
 
     let txt = `¡¡HACKING EXITOSO!! 💻💵\n\n`;
     txt += `¡El cajero automático expulsa dinero como una cascada! Huyes rápidamente con un maletín lleno.\n\n`;
-    txt += `💰 Hasil Bobol: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
-    txt += `📈 EXP Kriminal: *+${expGain}*`;
+    txt += `💰 Ganancia del Robo: *+Belly ${stolen.toLocaleString("es-ES")}*\n`;
+    txt += `📈 EXP Criminal: *+${expGain}*`;
 
     await m.reply(txt);
   } else {
     const fine = Math.floor(Math.random() * 10000) + 5000;
-    const actualFine = Math.min(fine, user.koin || 0);
+    const actualFine = Math.min(fine, user.belly || 0);
 
-    user.koin = Math.max(0, (user.koin || 0) - actualFine);
+    user.belly = Math.max(0, (user.belly || 0) - actualFine);
     user.rpg.health = Math.max(0, (user.rpg.health || 100) - 15);
 
     db.save();
@@ -57,8 +57,8 @@ async function handler(m, { sock }) {
     let txt = `¡¡PIIII PIIII!! ¡¡SUENA LA ALARMA!! 🚨🚓\n\n`;
     txt += `¡Maldita sea, la máquina dio error y la policía te rodea desde todas partes!\n`;
     txt += `Te golpean con un bastón policial y te obligan a pagar una multa.\n\n`;
-    txt += `💸 Denda Pidana: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
-    txt += `🤕 Memar Kena Pentung: *-15 HP*`;
+    txt += `💸 Multa Penal: *-Belly ${actualFine.toLocaleString("es-ES")}*\n`;
+    txt += `🤕 Moretón por Porrazo: *-15 HP*`;
 
     await m.reply(txt);
   }

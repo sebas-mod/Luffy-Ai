@@ -193,7 +193,7 @@ async function handler(m, { sock }) {
     if (groupIds.length === 0) {
       m.react("❌");
       return m.reply(
-        `❌ *No hay grupos*\n\n> El bot no encontró grupos a los que pueda enviar${blCount > 0 ? ` (${blCount} grup di-blacklist)` : ""}`,
+        `❌ *No hay grupos*\n\n> El bot no encontró grupos a los que pueda enviar${blCount > 0 ? ` (${blCount} grupos en lista negra)` : ""}`,
       );
     }
 
@@ -201,7 +201,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
 
     await m.reply(
-      `📢 *Broadcast Grup Dimulai*\n\n` +
+      `📢 *Broadcast de Grupos Iniciado*\n\n` +
         `> 📝 Mensaje: *${text.substring(0, 50)}${text.length > 50 ? "..." : ""}*\n` +
         `> 📷 Media: *${mediaBuffer ? mediaType : "No hay"}*\n` +
         `> 👥 Target: *${groupIds.length}* grup\n` +
@@ -219,7 +219,7 @@ async function handler(m, { sock }) {
         delete global.stopBcgc;
         delete global.statusBcgc;
         await m.reply(
-          `⏹️ *Broadcast Grup Dihentikan*\n\n` +
+          `⏹️ *Broadcast de Grupos Detenido*\n\n` +
             `> ✅ Éxito: *${success}*\n` +
             `> ❌ Fallo: *${failed}*\n` +
             `> ⏸️ Sisa: *${groupIds.length - success - failed}*`,
@@ -306,7 +306,7 @@ async function handleSetDelay(m, db, input) {
         `Ajusta el tiempo de pausa entre el envío de mensajes a cada grupo.\n` +
         `Cuanto mayor sea la pausa, más seguro estarás contra la detección de spam.\n\n` +
         `> Jeda actualmente: *${formatDelay(current)}* (*${current}ms*)\n\n` +
-        `*CARA PAKAI:*\n` +
+        `*CÓMO USAR:*\n` +
         `> *${m.prefix}jedabcgc <angka><satuan>*\n\n` +
         `*SATUAN:*\n` +
         `> *s* — segundos • *m* — minutos • *h* — hora • *d* — día\n\n` +
@@ -324,7 +324,7 @@ async function handleSetDelay(m, db, input) {
 
   db.setting("jedaBcgc", ms);
   return m.reply(
-    `✅ *Jeda Broadcast Grup Diubah*\n\n` +
+    `✅ *Pausa de Broadcast de Grupos Cambiada*\n\n` +
       `> Antes denya: *${formatDelay(current)}* (*${current}ms*)\n` +
       `> Ahora: *${formatDelay(ms)}* (*${ms}ms*)\n\n` +
       `> Estimación 100 grup: *${Math.ceil((100 * ms) / 60000)} minutos*`,

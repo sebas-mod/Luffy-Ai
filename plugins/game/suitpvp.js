@@ -18,6 +18,15 @@ const pluginConfig = {
 
 if (!global.suitGames) global.suitGames = {}
 
+function normalizeChoice(c) {
+    const map = {
+        batu: 'batu', piedra: 'batu', rock: 'batu',
+        gunting: 'gunting', tijera: 'gunting', scissors: 'gunting',
+        kertas: 'kertas', papel: 'kertas', paper: 'kertas'
+    }
+    return map[c.toLowerCase()] || c.toLowerCase()
+}
+
 const TIMEOUT = 90000
 const WIN_REWARD = 1000
 
@@ -166,12 +175,12 @@ async function answerHandler(m, sock) {
                         const afk = !room.pilih ? room.p : room.p2
                         const winner = !room.pilih ? room.p2 : room.p
                         
-                        db.updateKoin(winner, WIN_REWARD)
+                        db.updateBelly(winner, WIN_REWARD)
                         
                         await sock.sendMessage(room.chat, {
                             text: `⏱️ *¡TIEMPO AGOTADO!*\n\n` +
                                 `@${afk.split('@')[0]} no eligio!\n` +
-                                `@${winner.split('@')[0]} ¡gano! +Rp ${WIN_REWARD.toLocaleString()}`,
+                                `@${winner.split('@')[0]} ¡gano! +Belly ${WIN_REWARD.toLocaleString()}`,
                             mentions: [afk, winner]
                         })
                     }
@@ -200,7 +209,7 @@ async function answerHandler(m, sock) {
         
         if (!choices.test(text)) return false
         
-        const choice = text.toLowerCase()
+        const choice = normalizeChoice(text)
         
         if (m.sender === room.p && !room.pilih) {
             room.pilih = choice
@@ -251,10 +260,10 @@ async function answerHandler(m, sock) {
             if (tie) {
                 resultTxt += `🤝 *¡EMPATE!*`
             } else {
-                db.updateKoin(winner, WIN_REWARD)
+                db.updateBelly(winner, WIN_REWARD)
                 
                 resultTxt += `🏆 @${winner.split('@')[0]} ¡gano!\n`
-                resultTxt += `> +Rp ${WIN_REWARD.toLocaleString()}`
+                resultTxt += `> +Belly ${WIN_REWARD.toLocaleString()}`
             }
             
             await sock.sendMessage(room.chat, {

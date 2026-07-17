@@ -811,7 +811,7 @@ async function serialize(sock, msg, store = {}) {
     const formatUptime = (uptime) => {
       const hours = Math.floor((uptime % 86400) / 3600);
       const minutes = Math.floor((uptime % 3600) / 60);
-      return `${hours} JAM ${minutes} MENIT`;
+      return `${hours} HORAS ${minutes} MINUTOS`;
     };
 
     const db = getDatabase();
@@ -859,7 +859,7 @@ async function serialize(sock, msg, store = {}) {
         message: {
           contactMessage: {
             displayName: `🪸 ${config.bot?.name}`,
-            vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=13135550002:+1 (313) 555-0002\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+            vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=13135550002:+1 (313) 555-0002\nitem1.X-ABLabel:Movil\nEND:VCARD`,
             sendEphemeral: true,
           },
         },
@@ -911,7 +911,7 @@ async function serialize(sock, msg, store = {}) {
           url: config.info?.website || "https://github.com",
           title: config.bot?.name || "Luffy-AI",
           description:
-            `Pengembang: ${config.bot.developer} | Versi: ${config.bot.version}` ||
+            `Desarrollador: ${config.bot.developer} | Version: ${config.bot.version}` ||
             "WhatsApp Bot",
           image: thumbnail,
           previewType: 0,

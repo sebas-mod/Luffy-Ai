@@ -17,7 +17,7 @@ const pluginConfig = {
 }
 
 function formatNumber(num) {
-    if (num === -1) return '∞ Unlimited'
+    if (num === -1) return '∞ Ilimitado'
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
 
@@ -55,16 +55,16 @@ async function handler(m, { sock }) {
     
     const isSelf = targetJid === m.sender
     
-    let userStatus = 'Free'
+    let userStatus = 'Gratis'
     if (isOwner) userStatus = 'Owner'
     else if (user.isPremium) userStatus = 'Premium'
-    if (!energiEnabled) userStatus += ' (Energi OFF)'
+    if (!energiEnabled) userStatus += ' (Energía Desactivada)'
     
-    let text = `*〔 ⚡ ENERGI INFO 〕*\n\n`
+    let text = `*〔 ⚡ INFO ENERGÍA 〕*\n\n`
 
-text += `*〔 👤 User 〕* ${targetName}\n`
-text += `*〔 ⚡ Energi 〕* ${energiDisplay}\n`
-text += `*〔 💎 Status 〕* ${userStatus}\n\n`
+text += `*〔 👤 Usuario 〕* ${targetName}\n`
+text += `*〔 ⚡ Energía 〕* ${energiDisplay}\n`
+text += `*〔 💎 Estado 〕* ${userStatus}\n\n`
     
     if (!energiEnabled) {
         text += `🔌 Sistema de energía desactivado — todos los comandos son gratis`

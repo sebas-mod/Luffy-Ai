@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'potensipenyakit',
     alias: ['cekpenyakit', 'penyakit'],
     category: 'primbon',
-    description: 'Cek potensi penyakit berdasarkan fecha lahir',
+    description: 'Verificar potencial de enfermedad según fecha de nacimiento',
     usage: '.potensipenyakit <tgl> <bln> <thn>',
     example: '.potensipenyakit 12 05 1998',
     isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo menganalisa`)
+            return m.reply(`❌ *FALLÓ*\n\n> Fallo al analizar`)
         }
         
         const result = data.data

@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
             fs.unlinkSync(tmpFile);
         } catch (e) {}
         if (result.status === 'eror' || !result.prompt) {
-            return await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${result.msg || 'No se puede generar prompt de esta imagen'}`);
+            return await m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> ${result.msg || 'No se puede generar prompt de esta imagen'}`);
         }
         const responseText = `🎨 *ɪᴍᴀɢᴇ ᴛᴏ ᴘʀᴏᴍᴘᴛ*\n\n` +
             `\`\`\`${result.prompt}\`\`\`\n\n` +

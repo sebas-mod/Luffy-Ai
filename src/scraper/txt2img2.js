@@ -60,7 +60,7 @@ async function getResult(sessionHash, eventId) {
       if (done) return;
       done = true;
       res.data.destroy();
-      reject(new Error("Timeout menunggu hasil"));
+      reject(new Error("Tiempo de espera agotado esperando resultado"));
     }, 180000);
 
     res.data.on("data", (chunk) => {
@@ -84,7 +84,7 @@ async function getResult(sessionHash, eventId) {
 
           if (json.msg === "process_completed") {
             const url = extractUrl(json.output);
-            if (!url) throw new Error("URL hasil tidak ditemukan");
+            if (!url) throw new Error("URL de resultado no encontrado");
 
             done = true;
             clearTimeout(timer);
@@ -94,7 +94,7 @@ async function getResult(sessionHash, eventId) {
           }
 
           if (json.msg === "process_failed") {
-            throw new Error("Generate gagal");
+            throw new Error("Generación falló");
           }
         } catch (err) {
           done = true;
@@ -117,7 +117,7 @@ async function getResult(sessionHash, eventId) {
       if (done) return;
       done = true;
       clearTimeout(timer);
-      reject(new Error("Stream selesai tanpa hasil"));
+      reject(new Error("Stream finalizado sin resultado"));
     });
   });
 }
@@ -147,11 +147,11 @@ async function Txt2Img2(prompt) {
     const check = await checkPrompt(prompt);
 
     if (check.flagged) {
-      return { status: false, code: 400, prompt, error: "Prompt terdeteksi tidak aman" };
+      return { status: false, code: 400, prompt, error: "Prompt detectado como no seguro" };
     }
 
     if (check.rateLimited) {
-      return { status: false, code: 429, prompt, error: "Rate limited, coba lagi nanti" };
+      return { status: false, code: 429, prompt, error: "Límite de tasa, inténtalo de nuevo más tarde" };
     }
 
     const sessionHash = crypto.randomBytes(8).toString("hex");
@@ -178,7 +178,7 @@ async function Txt2Img2(prompt) {
     const eventId = joinRes.data?.event_id;
 
     if (!eventId) {
-      return { status: false, code: 500, prompt, error: "event_id tidak ditemukan" };
+      return { status: false, code: 500, prompt, error: "event_id no encontrado" };
     }
 
     const url = await getResult(sessionHash, eventId);

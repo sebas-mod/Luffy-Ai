@@ -240,21 +240,21 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
             })
             coverBuffer = Buffer.from(res.data)
         } catch (e) {
-            console.log(`[AutoAnime-Winbu] ⚠️ Cover gagal: ${e.message}`)
+            console.log(`[AutoAnime-Winbu] ⚠️ Cover fallo: ${e.message}`)
         }
     }
 
     const caption =
         `*ANIME UPDATE! ✨*\n\n` +
-        `📺 Judul: *${meta.title}*\n` +
-        `🎞️ Episode: ${meta.episode}\n` +
-        `📊 Kualitas: *${linkObj.quality}*`
+        `📺 Titulo: *${meta.title}*\n` +
+        `🎞️ Episodio: ${meta.episode}\n` +
+        `📊 Calidad: *${linkObj.quality}*`
 
     for (const gid of groupIds) {
         try {
             const msgPayload = coverBuffer
-                ? { image: coverBuffer, caption, footer: 'Klik tombol di bawah untuk download video 👇' }
-                : { text: caption, footer: 'Klik tombol di bawah untuk download video 👇' }
+                ? { image: coverBuffer, caption, footer: 'Haz clic en el boton de abajo para descargar el video 👇' }
+                : { text: caption, footer: 'Haz clic en el boton de abajo para descargar el video 👇' }
 
             await sock.sendMessage(gid, {
                 ...msgPayload,
@@ -289,7 +289,7 @@ async function runCheck() {
     }
 
     const sent = loadSent()
-    console.log(`[AutoAnime-Winbu] 🔍 Check: ${new Date().toLocaleString('id-ID')}`)
+    console.log(`[AutoAnime-Winbu] 🔍 Check: ${new Date().toLocaleString('es-ES')}`)
 
     let animeList
     try {
@@ -300,7 +300,7 @@ async function runCheck() {
     }
 
     if (animeList.length === 0) {
-        console.log('[AutoAnime-Winbu] Tidak ada anime')
+        console.log('[AutoAnime-Winbu] No hay anime')
         return
     }
 

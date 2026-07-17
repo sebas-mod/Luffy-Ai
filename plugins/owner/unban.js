@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` no en lista banned`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Número \`${targetNumber}\` no en lista banned`)
     }
 
     bannedList.splice(index, 1)

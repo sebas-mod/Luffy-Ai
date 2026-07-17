@@ -5,7 +5,7 @@ const pluginConfig = {
   alias: ["tf", "kirim", "pay"],
   category: "rpg",
   description: "Transferir dinero u objetos a otro usuario",
-  usage: ".transfer <money/nama_item> <jumlah> @user",
+  usage: ".transfer <money/nombre_item> <cantidad> @user",
   example: ".transfer money 10000 @tag",
   isOwner: false,
   isPremium: false,
@@ -48,22 +48,22 @@ function handler(m, { sock }) {
 
   const recipient = db.getUser(target) || db.setUser(target);
 
-  if (type === "money" || type === "balance" || type === "koin") {
-    if ((sender.koin || 0) < amount) {
-      return m.reply(`¡TRANSACCIÓN RECHAZADA! ❌\nSaldo insuficiente. Saldo: *Rp ${(sender.koin || 0).toLocaleString("id-ID")}* | Envío: *Rp ${amount.toLocaleString("id-ID")}* 💸`);
+  if (type === "money" || type === "balance" || type === "belly") {
+    if ((sender.belly || 0) < amount) {
+      return m.reply(`¡TRANSACCIÓN RECHAZADA! ❌\nSaldo insuficiente. Saldo: *Belly ${(sender.belly || 0).toLocaleString("es-ES")}* | Envío: *Belly ${amount.toLocaleString("es-ES")}* 💸`);
     }
 
-    sender.koin -= amount;
-    recipient.koin = (recipient.koin || 0) + amount;
+    sender.belly -= amount;
+    recipient.belly = (recipient.belly || 0) + amount;
 
     db.setUser(m.sender, sender);
     db.setUser(target, recipient);
     db.save();
     
-    let txt = `💸 *TRANSFER BERHASIL!* 💸\n\n`;
+    let txt = `💸 *¡TRANSFERENCIA EXITOSA!* 💸\n\n`;
     txt += `El Banco Central ha enviado los fondos:\n`;
-    txt += `💳 Nominal: *Rp ${amount.toLocaleString("id-ID")}*\n`;
-    txt += `👤 Penerima: @${target.split("@")[0]}\n\n`;
+    txt += `💳 Monto: *Belly ${amount.toLocaleString("es-ES")}*\n`;
+    txt += `👤 Destinatario: @${target.split("@")[0]}\n\n`;
     txt += `> _"¡Gracias por usar el servicio del Banco Bot!"_ 🏦✨`;
 
     return m.reply(txt, { mentions: [target] });

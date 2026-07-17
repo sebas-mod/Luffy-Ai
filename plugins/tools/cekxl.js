@@ -5,8 +5,8 @@ const pluginConfig = {
     name: "cekxl",
     alias: ["checkxl", "xlcheck", "xlcek"],
     category: "tools",
-    description: "Cek informasi paket dan kuota nomor XL/Axis secara detail",
-    usage: ".cekxl <nomor>",
+    description: "Verificar información de paquetes y cuota del número XL/Axis de forma detallada",
+    usage: ".cekxl <número>",
     example: ".cekxl 083150850721",
     isOwner: false,
     isPremium: false,
@@ -66,8 +66,8 @@ async function handler(m, { sock }) {
             return m.reply(`❌ No se puede verificar el número *${cleanNum}*, asegúrate de que sea un número XL o Axis activo`)
         }
 
-        let txt = `📱 *INFORMASI XL/AXIS*\n\n`
-        txt += `📞 Nomor: *${cleanNum}*\n`
+        let txt = `📱 *INFORMACION XL/AXIS*\n\n`
+        txt += `📞 Numero: *${cleanNum}*\n`
 
         if (data.msisdn) txt += `🆔 MSISDN: *${data.msisdn}*\n`
         if (data.status) txt += `📊 Status: *${data.status}*\n`

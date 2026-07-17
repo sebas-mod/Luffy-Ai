@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'sifatusahabisnis',
     alias: ['usahabisnis', 'sifatbisnis'],
     category: 'primbon',
-    description: 'Cek sifat usaha/bisnis berdasarkan fecha lahir',
+    description: 'Verificar naturaleza del negocio según fecha de nacimiento',
     usage: '.sifatusahabisnis <tgl> <bln> <thn>',
     example: '.sifatusahabisnis 1 1 2000',
     isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo menganalisa`)
+            return m.reply(`❌ *FALLÓ*\n\n> Fallo al analizar`)
         }
         
         const r = data.data

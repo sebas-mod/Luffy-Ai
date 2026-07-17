@@ -36,7 +36,7 @@ async function createEnhanceTask(filePath, apiKey = DEFAULT_API_KEY) {
   const payload = response.data;
 
   if (!payload?.status || !payload?.data?.pollUrl) {
-    throw new Error(payload?.message || "Gagal membuat task HD video");
+    throw new Error(payload?.message || "Error al crear tarea de video HD");
   }
 
   return {
@@ -75,7 +75,7 @@ async function pollEnhanceTask(
       if (normalizedStatus === "success") {
         const result = payload?.data?.result;
         if (!result?.res_url) {
-          throw new Error("HD video selesai tetapi url hasil tidak ditemukan");
+          throw new Error("HD video completado pero URL de resultado no encontrada");
         }
 
         return {
@@ -91,7 +91,7 @@ async function pollEnhanceTask(
         const terminalError = new Error(
           payload?.message ||
             payload?.data?.message ||
-            `HD video gagal dengan status ${status}`,
+            `HD video fallo con estado ${status}`,
         );
         terminalError.isTerminal = true;
         throw terminalError;
@@ -99,7 +99,7 @@ async function pollEnhanceTask(
 
       if (!payload?.status && !PENDING_STATUSES.has(normalizedStatus)) {
         const terminalError = new Error(
-          payload?.message || "Polling HD video gagal",
+          payload?.message || "Polling HD video falló",
         );
         terminalError.isTerminal = true;
         throw terminalError;
@@ -113,7 +113,7 @@ async function pollEnhanceTask(
         throw new Error(
           error?.response?.data?.message ||
             error?.message ||
-            "Polling HD video gagal",
+            "Polling HD video falló",
         );
       }
     }
@@ -121,7 +121,7 @@ async function pollEnhanceTask(
     await delay(pollIntervalMs);
   }
 
-  throw new Error(lastPayload?.message || "Timeout menunggu hasil HD video");
+  throw new Error(lastPayload?.message || "Tiempo de espera agotado esperando resultado de HD video");
 }
 
 async function videoenhancer(

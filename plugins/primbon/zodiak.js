@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'zodiak',
     alias: ['horoscope', 'ramalan'],
     category: 'primbon',
-    description: 'Ramalan zodiak',
+    description: 'Horóscopo del zodiaco',
     usage: '.zodiak <nombre zodiak>',
     example: '.zodiak aries',
     isOwner: false,
@@ -33,19 +33,19 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al obtener ramalan`)
+            return m.reply(`❌ *FALLÓ*\n\n> Error al obtener predicción`)
         }
         
         const r = data.data
         const response = `⭐ *ᴢᴏᴅɪᴀᴋ ${zodiac.toUpperCase()}*\n\n` +
             `${r.zodiak}\n\n` +
-            `🔢 *ɴᴏᴍᴏʀ:* ${r.nomor_keberuntungan}\n` +
-            `🌸 *ʙᴜɴɢᴀ:* ${r.bunga_keberuntungan}\n` +
-            `🎨 *ᴡᴀʀɴᴀ:* ${r.warna_keberuntungan}\n` +
-            `💎 *ʙᴀᴛᴜ:* ${r.batu_keberuntungan}\n` +
-            `🔥 *ᴇʟᴇᴍᴇɴ:* ${r.elemen_keberuntungan}\n` +
-            `🪐 *ᴘʟᴀɴᴇᴛ:* ${r.planet_yang_mengitari}\n` +
-            `💕 *ᴘᴀsᴀɴɢᴀɴ:* ${r.pasangan_zodiak}`
+            `🔢 *ɴᴜ́ᴍᴇʀᴏ:* ${r.nomor_keberuntungan}\n` +
+            `🌸 *ғʟᴏʀ:* ${r.bunga_keberuntungan}\n` +
+            `🎨 *ᴄᴏʟᴏʀ:* ${r.warna_keberuntungan}\n` +
+            `💎 *ᴘɪᴇᴅʀᴀ:* ${r.batu_keberuntungan}\n` +
+            `🔥 *ᴇʟᴇᴍᴇɴᴛᴏ:* ${r.elemen_keberuntungan}\n` +
+            `🪐 *ᴘʟᴀɴᴇᴛᴀ:* ${r.planet_yang_mengitari}\n` +
+            `💕 *ᴘᴀʀᴇᴊᴀ:* ${r.pasangan_zodiak}`
         
         m.react('✅')
         await m.reply(response)

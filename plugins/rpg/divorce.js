@@ -30,11 +30,11 @@ async function handler(m, { sock }) {
   const partner = db.getUser(spouseJid);
 
   const divorceCost = 25000;
-  if ((user.koin || 0) < divorceCost) {
-    return m.reply(`¡Uf, los honorarios del abogado para divorciarte son caros! 😭\nNecesitas *Rp 25.000* para firmar los papeles, tu dinero es solo *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\n¡Aguanta un poco más peleando!`);
+  if ((user.belly || 0) < divorceCost) {
+    return m.reply(`¡Uf, los honorarios del abogado para divorciarte son caros! 😭\nNecesitas *Belly 25.000* para firmar los papeles, tu dinero es solo *Belly ${(user.belly || 0).toLocaleString("es-ES")}*.\n¡Aguanta un poco más peleando!`);
   }
 
-  user.koin -= divorceCost;
+  user.belly -= divorceCost;
   user.rpg.spouse = null;
   user.rpg.marriedAt = null;
 
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
 
   await m.react("💔");
 
-  let txt = `⛈️ *SIDANG PERCERAIAN SELESAI* ⛈️\n\n`;
+  let txt = `⛈️ *AUDIENCIA DE DIVORCIO COMPLETADA* ⛈️\n\n`;
   txt += `El martillo ha caído. Con pesar, la relación entre:\n`;
   txt += `💔 @${m.sender.split("@")[0]}\n`;
-  txt += `         -- PUTUS DENGAN --\n`;
+  txt += `         -- SEPARADO DE --\n`;
   txt += `💔 @${spouseJid.split("@")[0]}\n\n`;
-  txt += `😭 *RESMI BERAKHIR! KINI KALIAN KEMBALI JOMBLO!* 😭\n\n`;
-  txt += `💸 Biaya Pengacara/Sidang: *Rp -${divorceCost.toLocaleString("id-ID")}*\n\n`;
+  txt += `😭 *¡OFICIALMENTE TERMINADO! ¡AHORA VUELVEN A ESTAR SOLTEROS!* 😭\n\n`;
+  txt += `💸 Costo de Abogado/Audiencia: *Belly -${divorceCost.toLocaleString("es-ES")}*\n\n`;
   txt += `> _"Ya basta... llora en un rincón. ¡La vida debe continuar!" - Juez Bot_ 🥀🚬`;
 
   await m.reply(txt, { mentions: [m.sender, spouseJid] });

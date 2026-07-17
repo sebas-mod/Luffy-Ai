@@ -39,25 +39,25 @@ async function handler(m, { sock }) {
 
   if (gacha < 0.2) {
     const rugi = Math.floor(Math.random() * 10000) + 5000;
-    user.koin = Math.max(0, (user.koin || 0) - rugi);
+    user.belly = Math.max(0, (user.belly || 0) - rugi);
     await m.react("🌧️");
-    return m.reply(`¡LLUVIA FUERTE! ¡VENTAS EN CRISIS! 🌧️🥶\n\nNadie compra y tus fritos se pusieron todos blandos.\nPérdida de Capital: *Rp ${rugi.toLocaleString("id-ID")}*\n⚡ Stamina: -${staminaCost}\n\n¡Mañana revisa el pronóstico del tiempo! ☂️`);
+    return m.reply(`¡LLUVIA FUERTE! ¡VENTAS EN CRISIS! 🌧️🥶\n\nNadie compra y tus fritos se pusieron todos blandos.\nPérdida de Capital: *Belly ${rugi.toLocaleString("es-ES")}*\n⚡ Stamina: -${staminaCost}\n\n¡Mañana revisa el pronóstico del tiempo! ☂️`);
   } else if (gacha > 0.85) {
     const lakuKeras = Math.floor(Math.random() * 80000) + 40000;
-    user.koin = (user.koin || 0) + lakuKeras;
+    user.belly = (user.belly || 0) + lakuKeras;
     const expGain = Math.floor(lakuKeras / 20);
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     await m.react("🤑");
-    return m.reply(`¡PASAN CICLISTAS Y LO COMPRAN TODO! 🚴‍♂️✨\n\n¡Un grupo de ciclistas de élite se detiene y compra todas las bebidas isotónicas y caramelos!\n💵 Facturación Sorpresa: *+Rp ${lakuKeras.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Puedes irte a casa temprano! 🎉`);
+    return m.reply(`¡PASAN CICLISTAS Y LO COMPRAN TODO! 🚴‍♂️✨\n\n¡Un grupo de ciclistas de élite se detiene y compra todas las bebidas isotónicas y caramelos!\n💵 Facturación Sorpresa: *+Belly ${lakuKeras.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Puedes irte a casa temprano! 🎉`);
   }
 
   const earning = Math.floor(Math.random() * 25000) + 10000;
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`¡VENTAS NORMALES! 🛒✨\n\n💵 Facturación: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Mañana a abastecerse de nuevo! 🛍️`);
+  m.reply(`¡VENTAS NORMALES! 🛒✨\n\n💵 Facturación: *+Belly ${earning.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Mañana a abastecerse de nuevo! 🛍️`);
 }
 
 export { pluginConfig as config, handler };

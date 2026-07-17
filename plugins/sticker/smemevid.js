@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
         if (!mediaBuffer) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al descargar el video`)
+            return m.reply(`❌ *Falló*\n\n> Error al descargar el video`)
         }
 
         const tempId = Date.now()
@@ -137,7 +137,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         m.react('☢')
-        m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Ocurrió un error al procesar el video`)
+        m.reply(`❌ *Falló*\n\n> Ocurrió un error al procesar el video`)
     } finally {
         try { fs.unlinkSync(inputVideo); } catch {}
         try { fs.unlinkSync(outputVideo); } catch {}

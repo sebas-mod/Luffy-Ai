@@ -50,10 +50,10 @@ function handler(m) {
 
     if (groupIds.length === 0) {
         return m.reply(
-            `📋 *DAFTAR SEWA*\n\n` +
-            `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
-            `Aún no hay grup en lista\n\n` +
-            `Tambah con: *${m.prefix}addsewa <link> <durasi>*`
+            `📋 *LISTA DE ALQUILER*\n\n` +
+            `Status: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n` +
+            `Aún no hay grupo(s) en lista\n\n` +
+            `Agregar con: *${m.prefix}addsewa <link> <duracion>*`
         )
     }
 
@@ -68,9 +68,9 @@ function handler(m) {
     const active = sorted.filter(id => sewaGroups[id].isLifetime || sewaGroups[id].expiredAt > Date.now())
     const expired = sorted.filter(id => !sewaGroups[id].isLifetime && sewaGroups[id].expiredAt <= Date.now())
 
-    let text = `📋 *DAFTAR SEWA*\n\n`
-    text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-    text += `Total: *${groupIds.length}* grup (${active.length} activo, ${expired.length} expired)\n\n`
+    let text = `📋 *LISTA DE ALQUILER*\n\n`
+    text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+    text += `Total: *${groupIds.length}* grupo(s) (${active.length} activo, ${expired.length} expired)\n\n`
 
     for (let i = 0; i < sorted.length; i++) {
         const gid = sorted[i]
@@ -81,13 +81,13 @@ function handler(m) {
 
         text += `${status} *${i + 1}. ${data.name || 'Unknown'}*\n`
         text += `   ID: ${gid.split('@')[0]}\n`
-        text += `   Sisa: ${countdown}\n`
+        text += `   Tiempo restante: ${countdown}\n`
         text += `   Agregado: ${addedDate}\n\n`
     }
 
-    text += `*AKSI:*\n`
-    text += `• *${m.prefix}renewsewa <id> <durasi>* — Perpanjang\n`
-    text += `• *${m.prefix}delsewa <id>* — Hapus de whitelist`
+    text += `*ACCIONES:*\n`
+    text += `• *${m.prefix}renewsewa <id> <duracion>* — Extender\n`
+    text += `• *${m.prefix}delsewa <id>* — Eliminar de la lista blanca`
 
     return m.reply(text)
 }

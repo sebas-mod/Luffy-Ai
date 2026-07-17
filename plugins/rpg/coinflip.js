@@ -36,14 +36,14 @@ async function handler(m, { sock }) {
   }
 
   if (!bet || bet < 1000) {
-    return m.reply(`¡Apuestas de mentira no cuentan! Mínimo *Rp 1.000*, jefe! 🪙`);
+    return m.reply(`¡Apuestas de mentira no cuentan! Mínimo *Belly 1.000*, jefe! 🪙`);
   }
 
-  if ((user.koin || 0) < bet) {
-    return m.reply(`¿Dónde están tus monedas? Solo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}* en el bolsillo, ¡y quieres apostar *Rp ${bet.toLocaleString("id-ID")}*! 😜`);
+  if ((user.belly || 0) < bet) {
+    return m.reply(`¿Dónde están tus monedas? Solo tienes *Belly ${(user.belly || 0).toLocaleString("es-ES")}* en el bolsillo, ¡y quieres apostar *Belly ${bet.toLocaleString("es-ES")}*! 😜`);
   }
 
-  user.koin -= bet;
+  user.belly -= bet;
 
   const userChoice = choice === "heads" || choice === "h" ? "heads" : "tails";
   const result = Math.random() < 0.5 ? "heads" : "tails";
@@ -60,12 +60,12 @@ async function handler(m, { sock }) {
 
   if (isWin) {
     const winnings = bet * 2;
-    user.koin = (user.koin || 0) + winnings;
+    user.belly = (user.belly || 0) + winnings;
     txt += `🎉 ¡¡GENIAL! ¡¡ACERTASTE!!\n`;
-    txt += `💰 Ganancia: *+Rp ${winnings.toLocaleString("id-ID")}*`;
+    txt += `💰 Ganancia: *+Belly ${winnings.toLocaleString("es-ES")}*`;
   } else {
     txt += `🤣 ¡¡JA JA JA! ¡¡TE EQUIVOCASTE!!\n`;
-    txt += `💸 El dealer se lleva tus monedas: *-Rp ${bet.toLocaleString("id-ID")}*`;
+    txt += `💸 El dealer se lleva tus monedas: *-Belly ${bet.toLocaleString("es-ES")}*`;
   }
 
   db.save();

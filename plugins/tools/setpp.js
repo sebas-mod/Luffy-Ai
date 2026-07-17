@@ -3,7 +3,7 @@ const pluginConfig = {
     alias: ['setprofilebot', 'setppbot', 'setfotobot'],
     category: 'tools',
     description: 'Cambiar foto de perfil del bot',
-    usage: '.setpp (reply gambar)',
+    usage: '.setpp (responder imagen)',
     example: '.setpp',
     isOwner: true,
     isPremium: false,
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
         )
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
             `> No se pudo cambiar la foto del bot.\n` +
             `> _${error.message}_`
         )

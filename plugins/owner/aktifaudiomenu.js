@@ -24,7 +24,7 @@ async function handler(m, { sock, db }) {
     if (!option) {
         return m.reply(
             `🔊 *ᴀᴜᴅɪᴏ ᴍᴇɴᴜ sᴇᴛᴛɪɴɢ*\n\n` +
-            `> Status: *${current ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
+            `> Status: *${current ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
             `*Forma de uso:*\n` +
             `> \`${m.prefix}activoaudiomenu ya\` - Activar audio\n` +
             `> \`${m.prefix}activoaudiomenu gak\` - Desactivar audio`

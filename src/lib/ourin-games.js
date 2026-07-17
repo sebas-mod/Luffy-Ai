@@ -179,7 +179,9 @@ class OurinGames {
         let text = `${pick(TIMEOUT_MESSAGES)}\n\n`;
         text += `Respuesta: *${answer}*\n\n`;
         text += `_Nadie pudo responder~_`;
-        await m.reply(text);
+        try {
+          await sock.sendMessage(chatId, { text });
+        } catch { }
       });
     };
 
@@ -190,7 +192,8 @@ class OurinGames {
       if (!session || session.gameType !== gameType) return false;
 
       const userAnswer = (m.body || "").trim();
-      if (!userAnswer || userAnswer.startsWith(".")) return false;
+      const prefix = config.command?.prefix || ".";
+      if (!userAnswer || userAnswer.startsWith(prefix)) return false;
 
       if (isSurrender(userAnswer)) {
         endSession(chatId);
@@ -223,12 +226,12 @@ class OurinGames {
           // umm, maaf yak, kalau sc ini banyak kurangnya
         } else if (cfg.rewards) {
           totalLimit = cfg.rewards.limit || cfg.rewards.energi || 0;
-          totalBalance = cfg.rewards.koin || cfg.rewards.balance || 0;
+          totalBalance = cfg.rewards.belly || cfg.rewards.balance || 0;
           totalExp = cfg.rewards.exp || 0;
         } else {
           const reward = getRandomReward();
           totalLimit = reward.limit;
-          totalBalance = reward.koin;
+          totalBalance = reward.belly;
           totalExp = reward.exp;
         }
 
@@ -241,13 +244,13 @@ class OurinGames {
           cfg.rewards !== null
         ) {
           totalLimit += fastResult.bonus.limit;
-          totalBalance += fastResult.bonus.koin;
+          totalBalance += fastResult.bonus.belly;
           totalExp += fastResult.bonus.exp;
-          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} Límite, +${fastResult.bonus.koin} Belly\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
+          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} Límite, +${fastResult.bonus.belly} Belly\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
         }
 
         if (totalLimit > 0) db.updateEnergi(m.sender, totalLimit);
-        if (totalBalance > 0) db.updateKoin(m.sender, totalBalance);
+        if (totalBalance > 0) db.updateBelly(m.sender, totalBalance);
 
         if (totalExp > 0) {
           if (!user.rpg) user.rpg = {};

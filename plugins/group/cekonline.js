@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
         
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
         }
         
         await m.reply(`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴏɴʟɪɴᴇ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)

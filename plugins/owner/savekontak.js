@@ -84,7 +84,7 @@ async function handler(m, { sock, args }) {
     const groupList = Object.values(chats);
 
     if (groupList.length === 0) {
-        return m.reply("❌ Bot no berhay en el grupo mana pun.");
+        return m.reply("❌ Bot no está en ningún grupo.");
     }
 
     const sections = [

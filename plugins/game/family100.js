@@ -14,6 +14,10 @@ import {
 import { getDatabase } from "../../src/lib/ourin-database.js";
 import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
 
+function normalizeStr(s) {
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9 ]/g, '').trim();
+}
+
 const pluginConfig = {
   name: "family100",
   alias: ["f100", "survei"],
@@ -139,19 +143,20 @@ async function family100AnswerHandler(m, sock) {
     return true;
   }
 
-  const correctAnswers = session.question.respuesta.map((j) => j.toLowerCase());
+  const correctAnswers = session.question.respuesta.map((j) => normalizeStr(j.toLowerCase()));
   const answered = session.answered || [];
+  const normalizedUserAnswer = normalizeStr(userAnswer);
 
-  if (answered.includes(userAnswer)) {
+  if (answered.includes(normalizedUserAnswer)) {
     await m.react("⚠️");
     await m.reply(`Cuidado, la respuesta *${userAnswer}* ya la alguien dijo antes! Busca otra 😂✨`);
     return true;
   }
 
   const matchIndex = correctAnswers.findIndex((ans) => {
-    const similarity = getSimilarity(ans, userAnswer);
+    const similarity = getSimilarity(ans, normalizedUserAnswer);
     return (
-      similarity >= 0.8 || ans.includes(userAnswer) || userAnswer.includes(ans)
+      similarity >= 0.8 || ans.includes(normalizedUserAnswer) || normalizedUserAnswer.includes(ans)
     );
   });
 
@@ -159,8 +164,8 @@ async function family100AnswerHandler(m, sock) {
     const originalAnswer = session.question.respuesta[matchIndex];
 
     if (!answered.includes(originalAnswer.toLowerCase())) {
-      session.answered.push(originalAnswer.toLowerCase());
-      session.answeredBy[originalAnswer.toLowerCase()] = m.sender;
+      session.answered.push(normalizeStr(originalAnswer.toLowerCase()));
+      session.answeredBy[normalizeStr(originalAnswer.toLowerCase())] = m.sender;
 
       const db = getDatabase();
       const user = db.getUser(m.sender);
@@ -168,7 +173,7 @@ async function family100AnswerHandler(m, sock) {
       const answerReward = getRandomReward();
       if (!user.rpg) user.rpg = {};
       await addExpWithLevelCheck(sock, m, db, user, answerReward.exp);
-      db.updateKoin(m.sender, answerReward.koin);
+      db.updateBelly(m.sender, answerReward.belly);
       db.save();
 
       if (session.answered.length === correctAnswers.length) {
@@ -190,7 +195,7 @@ async function family100AnswerHandler(m, sock) {
       }
 
       const total = session.question.respuesta.length;
-      let text = `¡Correcto! ✅🎉\n@${m.sender.split("@")[0]} obtuvo *+${answerReward.exp} EXP* y *+${answerReward.koin} Belly*! 💸✨\n\n`;
+      let text = `¡Correcto! ✅🎉\n@${m.sender.split("@")[0]} obtuvo *+${answerReward.exp} EXP* y *+${answerReward.belly} Belly*! 💸✨\n\n`;
       text += `*Pregunta:* ${session.question.pregunta}\n\n`;
       session.question.respuesta.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());

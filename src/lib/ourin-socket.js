@@ -476,7 +476,7 @@ async function extendSocket(sock) {
     } else if (isUrlObject(source)) data = { url: source.url };
     else
       throw new Error(
-        "Source harus berupa Buffer, URL string, path file, object { url }, atau payload media",
+        "Source debe ser Buffer, string URL, ruta de archivo, objeto { url }, o payload de media",
       );
     const mediaType = options.type || options.mediaType;
     const captionField = caption != null ? { caption } : {};

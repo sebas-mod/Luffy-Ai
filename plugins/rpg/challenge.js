@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
       return m.reply(`¡Ya reclamaste la recompensa de hoy! Espera al desafío de mañana. 😉`);
     }
 
-    user.koin = (user.koin || 0) + challenge.reward.gold;
+    user.belly = (user.belly || 0) + challenge.reward.gold;
     await addExpWithLevelCheck(sock, m, db, user, challenge.reward.exp);
 
     challenge.claimed = true;
@@ -72,9 +72,9 @@ async function handler(m, { sock }) {
 
     await m.react("🎉");
     return m.reply(
-      `🎉 *TANTANGAN HARIAN SELESAI!!* 🎉\n\n` +
+      `🎉 *DESAFÍOS DIARIOS COMPLETADOS!!* 🎉\n\n` +
         `¡Buen trabajo! Aquí está tu recompensa del Guild:\n` +
-        `💰 Belly: *+Rp ${challenge.reward.gold.toLocaleString()}*\n` +
+        `💰 Belly: *+Belly ${challenge.reward.gold.toLocaleString()}*\n` +
         `✨ EXP: *+${challenge.reward.exp}*\n` +
         `\n\n` +
         `> _¡Nuevos desafíos se entregarán mañana por la mañana!_`
@@ -87,10 +87,10 @@ async function handler(m, { sock }) {
   txt += `*Tu Tarea de Hoy:*\n`;
   txt += `🎯 *${challenge.name}*\n`;
   txt += `📊 Progreso: *${challenge.progress}/${challenge.target}*\n`;
-  txt += `Status: ${isComplete ? "✅ ¡¡LISTO PARA RECLAMAR!!" : "⏳ _En progreso..._"}\n\n`;
+  txt += `Estado: ${isComplete ? "✅ ¡¡LISTO PARA RECLAMAR!!" : "⏳ _En progreso..._"}\n\n`;
 
   txt += `*🎁 Recompensa Extra:*\n`;
-  txt += `💰 Belly: *Rp ${challenge.reward.gold.toLocaleString()}*\n`;
+  txt += `💰 Belly: *Belly ${challenge.reward.gold.toLocaleString()}*\n`;
   txt += `✨ EXP: *${challenge.reward.exp}*\n\n`;
 
   if (isComplete && !challenge.claimed) {

@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'setdeskgc',
     alias: ['setdesc', 'setdescgc', 'setdeskripsi', 'setdesk'],
     category: 'group',
-    description: 'Mengubah deskripsi grup',
+    description: 'Cambia la descripción del grupo',
     usage: '.setdeskgc <deskripsi baru>',
     example: '.setdeskgc Grup para diskusi',
     isOwner: false,
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
         }
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ғᴀʟʟᴏ*\n\n` +
             `> No se pudo cambiar la descripción del grupo.\n` +
             `> _${error.message}_`
         )

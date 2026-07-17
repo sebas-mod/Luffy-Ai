@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
     const finalLevel = addResult.newLevel || calculateLevel(user.exp)
     
     await m.reply(
-        `✅ *BERHASIL MENAMBAH LEVEL*\n\n` +
+        `✅ *NIVEL AÑADIDO CON ÉXITO*\n\n` +
         `Nivel de *@${targetJid.split('@')[0]}* ha sido exitosamente aumentado por la cantidad de *${levels} Level*.\n\n` +
         `*Estadísticas:*\n` +
         `- Level Ahora: *${finalLevel}*\n` +

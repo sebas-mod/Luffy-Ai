@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
       return m.reply(`¡Ya reclamaste esta recompensa! 😒`);
     }
 
-    user.koin = (user.koin || 0) + quest.reward.money;
+    user.belly = (user.belly || 0) + quest.reward.money;
     db.updateExp(m.sender, quest.reward.exp);
     user.quest[questId].claimed = true;
 
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
     let txt = `💰 ¡¡MISIÓN COMPLETADA!! 💰\n\n`;
     txt += `¡Completaste la misión *${quest.name}*!\n`;
     txt += `Aquí está tu recompensa:\n`;
-    txt += `💵 Dinero de Misión: *+Rp ${quest.reward.money.toLocaleString("id-ID")}*\n`;
+    txt += `💵 Dinero de Misión: *+Belly ${quest.reward.money.toLocaleString("es-ES")}*\n`;
     txt += `📈 EXP Extra: *+${quest.reward.exp}*\n\n`;
     txt += `> _"¡Buen trabajo!" - Recepcionista del Guild_ 👩‍💼`;
     return m.reply(txt);
@@ -114,7 +114,7 @@ async function handler(m, { sock }) {
     let txt = `📜 ¡¡MISIÓN ACEPTADA! 📜\n\n`;
     txt += `¡Tomaste un papel de misión del Panel de Recompensas! 📜✨\n`;
     txt += `🎯 Objetivo: *${quest.name}* (${quest.desc})\n`;
-    txt += `🎁 Recompensa: *Rp ${quest.reward.money.toLocaleString("id-ID")}* & *${quest.reward.exp} EXP*\n\n`;
+    txt += `🎁 Recompensa: *Belly ${quest.reward.money.toLocaleString("es-ES")}* & *${quest.reward.exp} EXP*\n\n`;
     txt += `> _"¡Buena suerte en tu viaje!"_ 💖`;
     return m.reply(txt);
   }
@@ -137,7 +137,7 @@ async function handler(m, { sock }) {
 
     txt += `🎯 *${quest.name}*\n`;
     txt += `   ├ Tarea: ${quest.desc}\n`;
-    txt += `   ├ Recompensa: Rp ${quest.reward.money.toLocaleString("id-ID")} & ${quest.reward.exp} EXP\n`;
+    txt += `   ├ Recompensa: Belly ${quest.reward.money.toLocaleString("es-ES")} & ${quest.reward.exp} EXP\n`;
     txt += `   ├ Estado: *${status}*\n`;
     txt += `   └ Aceptar: \`${m.prefix}quest take ${quest.id}\`\n\n`;
   }

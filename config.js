@@ -83,9 +83,9 @@ const config = {
       { name: "Trakteer", url: "trakteer.id/username" },
     ],
     benefits: [
-      "Mendukung development",
-      "Server lebih stabil",
-      "Fitur baru lebih cepat",
+      "Apoyando el desarrollo",
+      "Servidor más estable",
+      "Nuevas funciones más rápido",
       "Priority support",
     ],
     qris: "https://imgdrop.web.id/KodpV.webp",
@@ -147,7 +147,7 @@ const config = {
   registration: {
     enabled: false, // Jika true, user harus mendaftar sebelum menggunakan bot
     rewards: {
-      koin: 30000,
+      belly: 30000,
       energi: 300,
       exp: 300000,
     },

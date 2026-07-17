@@ -1,4 +1,5 @@
 import { nightActionHandler } from './werewolf.js'
+import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'wwsorcerer',
     alias: ['sorcerer', 'wws'],
@@ -16,7 +17,12 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    return await nightActionHandler(m, { sock })
+    try {
+        return await nightActionHandler(m, { sock })
+    } catch (error) {
+        console.error('[WWSORCERER ERROR]', error)
+        await m.reply(te(m.prefix, m.command, m.pushName))
+    }
 }
 
 export { pluginConfig as config, handler }

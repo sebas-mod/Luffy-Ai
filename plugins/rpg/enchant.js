@@ -38,9 +38,9 @@ async function handler(m, { sock }) {
   const itemName = args[0]?.toLowerCase();
 
   if (!itemName) {
-    let txt = `✨ *ᴇɴᴄʜᴀɴᴛ - ᴜᴘɢʀᴀᴅᴇ ᴇǫᴜɪᴘ*\n\n`;
+    let txt = `✨ *ENCANTAR - MEJORAR EQUIPO*\n\n`;
     txt += `> ¡Mejora tu equipo para obtener bonos de estadísticas!\n\n`;
-    txt += `*📦 *ɪᴛᴇᴍ:*
+    txt += `*📦 *ITEMS:*
 \n`;
 
     for (const [key, item] of Object.entries(ENCHANTABLE)) {
@@ -72,14 +72,14 @@ async function handler(m, { sock }) {
   }
 
   const cost = item.cost * (currentLevel + 1);
-  if ((user.koin || 0) < cost) {
-    return m.reply(`❌ *ʙᴀʟᴀɴᴄᴇ ɪɴꜰᴜꜰiciente*\n\n` + `> Necesitas: ${cost.toLocaleString()}\n` + `> Balance: ${(user.koin || 0).toLocaleString()}`);
+  if ((user.belly || 0) < cost) {
+    return m.reply(`❌ *SALDO INSUFICIENTE*\n\n` + `> Necesitas: ${cost.toLocaleString()}\n` + `> Balance: ${(user.belly || 0).toLocaleString()}`);
   }
 
-  user.koin -= cost;
+  user.belly -= cost;
 
   await m.react("✨");
-  await m.reply(`✨ *ᴇɴᴄʜᴀɴᴛɪɴɢ ${item.name.toUpperCase()}...*\n\n> Nivel ${currentLevel} → ${currentLevel + 1}`);
+  await m.reply(`✨ *ENCANTANDO ${item.name.toUpperCase()}...*\n\n> Nivel ${currentLevel} → ${currentLevel + 1}`);
   await new Promise((r) => setTimeout(r, 2000));
 
   const adjustedRate = Math.max(20, item.successRate - currentLevel * 5);
@@ -94,8 +94,8 @@ async function handler(m, { sock }) {
 
     await m.react("🎉");
     return m.reply(
-      `🎉 *ᴇɴᴄʜᴀɴᴛ ʙᴇʀʜᴀsɪʟ!*\n\n` +
-        `*✨ *ʀᴇsᴜʟᴛ:*
+      `🎉 *¡ENCANTO EXITOSO!*\n\n` +
+        `*✨ *RESULTADO:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
         `> 📊 Nivel: *${currentLevel} → ${currentLevel + 1}*\n` +
@@ -109,8 +109,8 @@ async function handler(m, { sock }) {
 
     await m.react("💔");
     return m.reply(
-      `💔 *ᴇɴᴄʜᴀɴᴛ ɢᴀɢᴀʟ!*\n\n` +
-        `*😢 *ʀᴇsᴜʟᴛ:*
+      `💔 *¡ENCANTO FALLIDO!*\n\n` +
+        `*😢 *RESULTADO:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
         `> 📊 Nivel: *${currentLevel}* (no subió)\n` +

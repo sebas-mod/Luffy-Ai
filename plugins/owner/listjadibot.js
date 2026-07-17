@@ -35,8 +35,8 @@ async function handler(m, { sock }) {
     })
 
     txt += `\n> \`${m.prefix}listjadibotactivo\` — Detail activo\n`
-    txt += `> \`${m.prefix}stopalljadibot\` — Stop todos\n`
-    txt += `> \`${m.prefix}stopydeletejadibot @user\` — Hapus session`
+    txt += `> \`${m.prefix}stopalljadibot\` — Detener todos\n`
+    txt += `> \`${m.prefix}stopydeletejadibot @user\` — Eliminar sesión`
 
     const mentions = sessions.map(s => s.jid)
 

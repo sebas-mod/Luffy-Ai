@@ -53,13 +53,13 @@ async function handler(m, { sock, plugin }) {
   }
 
   const totalEarning = earning + saweranPaus;
-  user.koin = (user.koin || 0) + totalEarning;
+  user.belly = (user.belly || 0) + totalEarning;
   const expGain = Math.floor(totalEarning / 30);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `¡STREAMING EN VIVO TERMINADO! 🎥✨\n\n💵 Ingreso por anuncios: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (saweranPaus > 0) txt += `🐳 DONACIÓN DEL SULTÁN: *+Rp ${saweranPaus.toLocaleString("id-ID")}*\n¡Vaya, ¡un espectador sultán donó una fortuna! 🐋🔥\n`;
+  let txt = `¡STREAMING EN VIVO TERMINADO! 🎥✨\n\n💵 Ingreso por anuncios: *+Belly ${earning.toLocaleString("es-ES")}*\n`;
+  if (saweranPaus > 0) txt += `🐳 DONACIÓN DEL SULTÁN: *+Belly ${saweranPaus.toLocaleString("es-ES")}*\n¡Vaya, ¡un espectador sultán donó una fortuna! 🐋🔥\n`;
   txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Gracias por las donaciones! ¡Te queremos! 💖`;
   
   m.reply(txt);

@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
         return await nightActionHandler(m, { sock })
     } catch (error) {
         console.error('[WWSEE ERROR]', error)
-        m.reply(te(m.prefix, m.command, m.pushName))
+        await m.reply(te(m.prefix, m.command, m.pushName))
     }
 }
 

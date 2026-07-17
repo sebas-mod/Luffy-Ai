@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     m.react('🕕')
     
     try {
-        const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
+        const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('es-ES')
         const fake = await generate(saldo)
         await sock.sendMedia(m.chat, fake, null, m, {
             type: 'image',

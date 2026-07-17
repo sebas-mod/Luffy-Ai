@@ -1,7 +1,7 @@
 import config from '../../config.js'
 import { getDatabase } from '../../src/lib/ourin-database.js'
 const pluginConfig = {
-    name: 'koin',
+    name: 'belly',
     alias: ['saldo', 'money', 'cash', 'coin', 'coins'],
     category: 'user',
     description: 'Ver belly del usuario',
@@ -16,7 +16,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-function formatKoin(num) {
+function formatBelly(num) {
     if (num >= 1000000000000) return (num / 1000000000000).toFixed(2) + 'T'
     if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B'
     if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M'
@@ -39,22 +39,22 @@ async function handler(m, { sock }) {
     }
     
     const user = db.getUser(targetJid) || db.setUser(targetJid)
-    const koinDisplay = formatKoin(user.koin || 0)
+    const bellyDisplay = formatBelly(user.belly || 0)
     
     const isSelf = targetJid === m.sender
     
     let text = `*〔 💰 BELLY INFO 〕*\n\n`
 
-text += `*〔 👤 User 〕* ${targetName}\n`
-text += `*〔 💰 Belly 〕* ${koinDisplay}\n`
-const isOwner = config.isOwner(targetJid) ? 'Owner' : ''
-const isPremium = user.isPremium ? 'Premium' : 'Free'
+text += `*〔 👤 Usuario 〕* ${targetName}\n`
+text += `*〔 💰 Belly 〕* ${bellyDisplay}\n`
+const isOwner = config.isOwner(targetJid) ? 'Propietario' : ''
+const isPremium = user.isPremium ? 'Premium' : 'Gratis'
 
-text += `*〔 💎 Status 〕* ${isOwner || isPremium}\n`
+text += `*〔 💎 Estado 〕* ${isOwner || isPremium}\n`
 
 if (isSelf) {
-  text += `\n*〔 🛒 SHOP 〕*\n`
-  text += `• \`.buyenergi <jml>\` (1 = 100 belly)\n`
+  text += `\n*〔 🛒 TIENDA 〕*\n`
+  text += `• \`.buyenergi <cant>\` (1 = 100 belly)\n`
   text += `• \`.buyfitur\` (1 = 3000 belly)\n`
   text += `\n_🎮 ¡Juega para obtener belly!_`
 }

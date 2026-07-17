@@ -72,19 +72,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nError al descargar el archivo`);
+      return m.reply(`❌ *ERROR*\n\nError al descargar el archivo`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`❌ *GAGAL*\n\nEl código es demasiado corto o no válido`);
+    return m.reply(`❌ *ERROR*\n\nEl código es demasiado corto o no válido`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `❌ *GAGAL*\n\nEl código no es un formato de plugin válido\nDebe tener export y config`,
+      `❌ *ERROR*\n\nEl código no es un formato de plugin válido\nDebe tener export y config`,
     );
   }
 
@@ -96,14 +96,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nNo se puede detectar el nombre del plugin\nUsa \`${m.prefix}ganticode <nombrefile>\``,
+      `❌ *ERROR*\n\nNo se puede detectar el nombre del plugin\nUsa \`${m.prefix}ganticode <nombrefile>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNombre de archivo no válido`);
+    return m.reply(`❌ *ERROR*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -159,7 +159,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
 
     let replyText =
-      `✅ *CODE ${isNewFile ? "DITAMBAH" : "DIGANTI"}*\n\n` +
+      `✅ *CODE ${isNewFile ? "AÑADIDO" : "REEMPLAZADO"}*\n\n` +
       `╭─〔 *DETAIL* 〕───⬣\n` +
       `│ File: \`${fileName}.js\`\n` +
       `│ Folder: \`${targetFolder}\`\n` +

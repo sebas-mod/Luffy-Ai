@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     db.save()
     
     await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n` +
+        `✅ *ᴇxɪᴛᴏ*\n\n` +
         `> Default limit direset a config: \`${configDefault}\`\n` +
         `> User nuevo va a menpuede limit de config`
     )

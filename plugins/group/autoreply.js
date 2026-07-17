@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     
     if (action === 'private') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡Solo el propietario puede configurar autoreply privado!`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡Solo el propietario puede configurar autoreply privado!`)
         }
         
         const subAction = args[1]?.toLowerCase()
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
     
     if (action === 'global') {
         if (!m.isOwner) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡Solo el propietario puede configurar autoreply global!`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡Solo el propietario puede configurar autoreply global!`)
         }
         
         const subAction = args[1]?.toLowerCase()
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
             const reply = fullBody.substring(pipeIdx + 1)
             
             if (!trigger.trim() || !reply) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El trigger y la respuesta no pueden estar vacíos!`)
+                return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El trigger y la respuesta no pueden estar vacíos!`)
             }
             
             const existingIndex = globalCustomReplies.findIndex(r => r.trigger.toLowerCase() === trigger.trim().toLowerCase())
@@ -113,12 +113,12 @@ async function handler(m, { sock }) {
         if (subAction === 'del' || subAction === 'rm') {
             const trigger = args.slice(2).join(' ').toLowerCase().trim()
             if (!trigger) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡Ingresa el trigger que quieres eliminar!`)
+                return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡Ingresa el trigger que quieres eliminar!`)
             }
             
             const index = globalCustomReplies.findIndex(r => r.trigger === trigger)
             if (index === -1) {
-                return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El trigger \`${trigger}\` no fue encontrado!`)
+                return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El trigger \`${trigger}\` no fue encontrado!`)
             }
             
             globalCustomReplies.splice(index, 1)
@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
     }
     
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡Solo los admin pueden configurar autoreply en el grupo!`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡Solo los admin pueden configurar autoreply en el grupo!`)
     }
     
     const groupData = db.getGroup(m.chat) || {}
@@ -253,7 +253,7 @@ async function handler(m, { sock }) {
         const reply = fullBody.substring(pipeIdx + 1)
         
         if (!trigger) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El trigger no puede estar vacío!`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El trigger no puede estar vacío!`)
         }
         
         let imageBuffer = null
@@ -327,14 +327,14 @@ async function handler(m, { sock }) {
         const trigger = args.slice(1).join(' ').toLowerCase().trim()
         
         if (!trigger) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡Ingresa el trigger que quieres eliminar!\n\n\`${m.prefix}autoreply del hola\``)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡Ingresa el trigger que quieres eliminar!\n\n\`${m.prefix}autoreply del hola\``)
         }
         
         const customReplies = groupData.customReplies || []
         const index = customReplies.findIndex(r => r.trigger === trigger)
         
         if (index === -1) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El trigger \`${trigger}\` no fue encontrado!`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El trigger \`${trigger}\` no fue encontrado!`)
         }
         
         if (customReplies[index].image) {

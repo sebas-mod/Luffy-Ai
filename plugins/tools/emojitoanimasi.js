@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji no encontrado o error en la API");
+      return m.reply("❌ *ꜰᴀʟʟᴏ*\n\n> Emoji no encontrado o error en la API");
     }
 
     const webpUrl = data.data.url;

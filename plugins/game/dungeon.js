@@ -79,7 +79,7 @@ const DUNGEONS = [
         id: 5,
         name: "🌋 Montana de Fuego",
         levelReq: 20,
-        monsters: ["Elemental Api", "Golem Magma", "Naga Kecil", "Hellhound"],
+        monsters: ["Elemental de Fuego", "Golem Magma", "Dragón Pequeño", "Hellhound"],
         minReward: 900,
         maxReward: 1700,
         dropChance: 60,
@@ -88,7 +88,7 @@ const DUNGEONS = [
         id: 6,
         name: "🧊 Cueva de Hielo Eterno",
         levelReq: 25,
-        monsters: ["Golem Es", "Raksasa Frost", "Yeti Ganas", "Serigala Salju"],
+        monsters: ["Golem de Hielo", "Gigante Frost", "Yeti Feroz", "Lobo de Nieve"],
         minReward: 1300,
         maxReward: 2400,
         dropChance: 65,
@@ -97,7 +97,7 @@ const DUNGEONS = [
         id: 7,
         name: "☁️ Ruinas del Cielo",
         levelReq: 30,
-        monsters: ["Harpy Petir", "Griffin Liar", "Valkyrie Jatuh", "Golem Angin"],
+        monsters: ["Harpié del Trueno", "Grifo Salvaje", "Valkyria Caída", "Golem de Viento"],
         minReward: 1800,
         maxReward: 3300,
         dropChance: 70,
@@ -106,7 +106,7 @@ const DUNGEONS = [
         id: 8,
         name: "🌊 Oceano de Sombras",
         levelReq: 35,
-        monsters: ["Kraken Bayi", "Siren Pemikat", "Hiu Hantu", "Leviathan Merah"],
+        monsters: ["Kraken Bebé", "Sirena Seductora", "Tiburón Fantasma", "Leviatán Rojo"],
         minReward: 2500,
         maxReward: 4500,
         dropChance: 75,
@@ -115,7 +115,7 @@ const DUNGEONS = [
         id: 9,
         name: "🕳️ Abismo de la Nada",
         levelReq: 40,
-        monsters: ["Malaikat Kematian", "Void Walker", "Shadow Fiend", "Behemoth"],
+        monsters: ["Ángel de la Muerte", "Void Walker", "Shadow Fiend", "Behemoth"],
         minReward: 3500,
         maxReward: 6000,
         dropChance: 80,
@@ -124,7 +124,7 @@ const DUNGEONS = [
         id: 10,
         name: "👹 Infierno Profundo",
         levelReq: 50,
-        monsters: ["Iblis Merah", "Succubus Mematikan", "Cerberus", "Raja Iblis"],
+        monsters: ["Demonio Rojo", "Succubus Mortal", "Cerberus", "Rey Demonio"],
         minReward: 5000,
         maxReward: 10000,
         dropChance: 90,
@@ -329,7 +329,7 @@ async function dungeonAnswerHandler(m, sock) {
                     }
                 }
 
-                user.koin = (user.koin || 0) + goldReward;
+                user.belly = (user.belly || 0) + goldReward;
                 await addExpWithLevelCheck(sock, m, db, user, expReward);
 
                 reportText += `🎉 *¡VICTORIA BRILLANTE!*\n\n`;
@@ -345,8 +345,8 @@ async function dungeonAnswerHandler(m, sock) {
 
                 await m.react("🏆");
             } else {
-                const goldLoss = Math.floor((user.koin || 0) * 0.15);
-                user.koin = Math.max(0, (user.koin || 0) - goldLoss);
+                const goldLoss = Math.floor((user.belly || 0) * 0.15);
+                user.belly = Math.max(0, (user.belly || 0) - goldLoss);
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - 40);
 
                 reportText += `💀 *¡DERROTA TRAGICA!*\n\n`;

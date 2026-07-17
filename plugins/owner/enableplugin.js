@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `🔌 *ᴇɴᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
+      `🔌 *ACTIVAR PLUGIN*\n\n` +
         `> Ingresa el nombre del plugin que quieres activar\n\n` +
         `*Ejemplo:*\n` +
         `> \`${m.prefix}enableplugin sticar\`\n` +
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled !== false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* ya activo!`);
+    return m.reply(`⚠️ Plugin *${pluginName}* ya está activo!`);
   }
 
   try {
@@ -84,14 +84,14 @@ async function handler(m, { sock }) {
     fs.writeFileSync(filePath, content);
 
     await m.reply(
-      `✅ *ᴘʟᴜɢɪɴ ᴇɴᴀʙʟᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `✅ *PLUGIN ACTIVADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
-        `┃ 📁 Category: *${category}*\n` +
-        `┃ 📄 File: *${file}*\n` +
-        `┃ 🟢 Status: *Enabled*\n` +
+        `┃ 📁 Categoría: *${category}*\n` +
+        `┃ 📄 Archivo: *${file}*\n` +
+        `┃ 🟢 Estado: *Activado*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot o usa hot reload para apply.`,
+        `> Reinicia el bot o usa recarga rápida para aplicar.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

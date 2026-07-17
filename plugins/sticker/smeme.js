@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     }
     if (!mediaBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al descargar el medio`);
+      return m.reply(`❌ *Falló*\n\n> Error al descargar el medio`);
     }
     let imageBuffer;
     try {
@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
     }
     if (!imageUrl) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al subir la imagen, intenta de nuevo más tarde`);
+      return m.reply(`❌ *Falló*\n\n> Error al subir la imagen, intenta de nuevo más tarde`);
     }
     console.log("[SMEME] Image uploaded:", imageUrl);
     const encodeText = (text) => {

@@ -1,11 +1,11 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
 const pluginConfig = {
-    name: 'addkoin',
-    alias: ['tambahkoin', 'givekoin', 'addcoin', 'adddcoin'],
+    name: 'addbelly',
+    alias: ['tambahbelly', 'givebelly', 'addcoin', 'adddcoin'],
     category: 'owner',
     description: 'Añade monedas a un usuario (máx. 9 billones)',
-    usage: '.addkoin <cantidad> @user',
-    example: '.addkoin 100000 @user',
+    usage: '.addbelly <cantidad> @user',
+    example: '.addbelly 100000 @user',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -15,8 +15,8 @@ const pluginConfig = {
     isEnabled: true
 }
 
-const MAX_KOIN = 9000000000000
-function formatKoin(num) {
+const MAX_BELLY = 9000000000000
+function formatBelly(num) {
     if (num === -1) return '∞ Unlimited'
     if (num >= 1000000000000) return (num / 1000000000000).toFixed(2) + 'T'
     if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B'
@@ -46,31 +46,31 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `💰 *ᴀᴅᴅ ʙᴇʟʟʏ*\n\n` +
-            `> \`.addkoin <cantidad>\` - a uno mismo\n` +
-            `> \`.addkoin <cantidad> @user\` - a persona más\n` +
+            `> \`.addbelly <cantidad>\` - a uno mismo\n` +
+            `> \`.addbelly <cantidad> @user\` - a persona más\n` +
             `> Max: 9.000.000.000.000 (9T)\n\n` +
-            `\`Ejemplo: ${m.prefix}addkoin 100000\``
+            `\`Ejemplo: ${m.prefix}addbelly 100000\``
         )
     }
 
-    if (amount > MAX_KOIN) amount = MAX_KOIN
+    if (amount > MAX_BELLY) amount = MAX_BELLY
 
     const user = db.getUser(targetJid) || db.setUser(targetJid)
 
-    if (user.koin === -1) {
+    if (user.belly === -1) {
         return m.reply(
             `💰 *INFORMATION*\n` +
-            `@${targetJid.split('@')[0]} ya memiliki belly *∞ Unlimited*\n` +
+            `@${targetJid.split('@')[0]} ya tiene monedas *∞ Unlimited*\n` +
             `No es necesario agregando belly de nuevo`,
             { mentions: [targetJid] }
         )
     }
 
-    const newKoin = db.updateKoin(targetJid, amount)
+    const newBelly = db.updateBelly(targetJid, amount)
 
     await m.react('✅')
     await m.reply(
-        `✅ Éxito agregando belly *@${targetJid.split('@')[0]}* por la cantidad de *${formatKoin(amount)}*`,
+        `✅ Éxito agregando belly *@${targetJid.split('@')[0]}* por la cantidad de *${formatBelly(amount)}*`,
         { mentions: [targetJid] }
     )
 }

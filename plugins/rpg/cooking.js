@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
       `¡Te comiste *${recipe.name}* que estaba divino!\n` +
       `Efectos obtenidos:\n` +
       `${effectTexts}\n\n` +
-      `📈 Bonus EXP Masak: *+${recipe.exp}*\n\n` +
+      `📈 Bonus EXP Cocina: *+${recipe.exp}*\n\n` +
       `¡Barriga llena, listo para luchar otra vez! 🔥`
   );
 }

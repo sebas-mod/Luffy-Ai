@@ -30,7 +30,7 @@ async function handler(m) {
         const files = fs.readdirSync(tempPath)
 
         if (!files.length) {
-            return m.reply('📁 Folder temp ya kosong!')
+            return m.reply('📁 Folder temp ¡ya está vacía!')
         }
 
         let deleted = 0

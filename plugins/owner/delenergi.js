@@ -49,13 +49,13 @@ async function handler(m, { sock }) {
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> La cantidad debe ser mayor a 0`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> La cantidad debe ser mayor a 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Usuario no encontrado en la base de datos`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Usuario no encontrado en la base de datos`)
     }
     
     if (user.energi === -1) {

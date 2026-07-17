@@ -36,7 +36,7 @@ export class ChatGPT {
   }
 
   async send(message, opts = {}) {
-    if (!message?.trim()) throw new Error("Pesan tidak boleh kosong.");
+    if (!message?.trim()) throw new Error("El mensaje no puede estar vacío.");
 
     const {
       conversationId = null,
@@ -98,7 +98,7 @@ export class ChatGPT {
 
   async _uploadImage(filePath, ctx = {}) {
     if (!fs.existsSync(filePath)) {
-      throw new Error(`File tidak ditemukan: ${filePath}`);
+      throw new Error(`Archivo no encontrado: ${filePath}`);
     }
 
     const fileBuffer = fs.readFileSync(filePath);
@@ -121,7 +121,7 @@ export class ChatGPT {
 
     const { upload_url, file_id } = registerRes;
     if (!upload_url || !file_id) {
-      throw new Error(`Gagal mendaftar file: ${JSON.stringify(registerRes)}`);
+      throw new Error(`Error al registrar archivo: ${JSON.stringify(registerRes)}`);
     }
 
     const uploadRes = await _fetch(upload_url, {
@@ -135,7 +135,7 @@ export class ChatGPT {
     });
 
     if (!uploadRes.ok) {
-      throw new Error(`Upload blob gagal: HTTP ${uploadRes.status}`);
+      throw new Error(`Upload blob fallo: HTTP ${uploadRes.status}`);
     }
 
     const processBody = {
@@ -551,11 +551,11 @@ function buildPrompt({ message, instruction = "", history = [] }) {
   if (instruction?.trim()) {
     parts.push(
       [
-        "IKUTI INSTRUKSI SISTEM BERIKUT SECARA KETAT.",
-        "Jangan ringkas, jangan abaikan, dan jangan ubah format tag yang diminta.",
-        "Jika instruksi sistem meminta tag seperti [ACTION:...] atau [RICH:...], keluarkan persis format itu.",
-        "Jangan bungkus jawaban dengan markdown code fence kecuali memang isi RICH:CODE yang diminta.",
-        "Jangan jelaskan aturan. Langsung jawab sesuai instruksi.",
+        "SIGUE LAS INSTRUCCIONES DEL SISTEMA A CONTINUACIÓN ESTRICTAMENTE.",
+        "No resumas, no ignores y no cambies el formato de etiquetas solicitado.",
+        "Si las instrucciones del sistema piden etiquetas como [ACTION:...] o [RICH:...], produce exactamente ese formato.",
+        "No envuelvas la respuesta con markdown code fence a menos que sea contenido RICH:CODE solicitado.",
+        "No expliques las reglas. Responde directamente según las instrucciones.",
         "",
         "SYSTEM INSTRUCTION:",
         instruction.trim(),
@@ -575,20 +575,20 @@ function buildPrompt({ message, instruction = "", history = [] }) {
       .join("\n");
 
     if (formattedHistory) {
-      parts.push(`RIWAYAT PERCAKAPAN:\n${formattedHistory}`);
+      parts.push(`HISTORIAL DE CONVERSACION:\n${formattedHistory}`);
     }
   }
 
   parts.push(
     [
-      "PESAN USER SAAT INI:",
+      "MENSAJE ACTUAL DEL USUARIO:",
       String(message || "").trim(),
       "",
-      "ATURAN OUTPUT:",
-      "- Pertahankan format tag spesial secara persis bila dibutuhkan.",
-      "- Jangan ubah [ACTION:TYPE param=value] menjadi variasi lain.",
-      "- Jangan ubah [RICH:TYPE]...[/RICH:TYPE] menjadi markdown biasa.",
-      "- Jangan tambahkan pagar kode ``` di awal atau akhir jawaban.",
+      "REGLAS DE SALIDA:",
+      "- Manten el formato de etiqueta especial exactamente cuando se necesite.",
+      "- No cambies [ACTION:TYPE param=value] a otra variacion.",
+      "- No cambies [RICH:TYPE]...[/RICH:TYPE] a markdown normal.",
+      "- No agregues bloques de codigo ```",
     ].join("\n"),
   );
 

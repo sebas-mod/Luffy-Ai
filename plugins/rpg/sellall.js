@@ -63,20 +63,20 @@ async function handler(m, { sock }) {
     return m.reply(`❌ *NO HAY OBJETOS*\n\n> No hay objetos para vender!`);
   }
 
-  user.koin = (user.koin || 0) + totalEarned;
+  user.belly = (user.belly || 0) + totalEarned;
 
   db.save();
 
   let txt = `💰 ¡¡VENTA EXITOSA!!\n\n`;
   txt += `*📦 Objetos vendidos:*\n`;
   for (const s of soldItems.slice(0, 10)) {
-    txt += `> ${s.item}: ${s.qty}x = Rp ${s.earned.toLocaleString("id-ID")}\n`;
+    txt += `> ${s.item}: ${s.qty}x = Belly ${s.earned.toLocaleString("es-ES")}\n`;
   }
   if (soldItems.length > 10) {
     txt += `> ... y ${soldItems.length - 10} objetos más\n`;
   }
   txt += `\n\n`;
-  txt += `> 💵 Total: *Rp ${totalEarned.toLocaleString("id-ID")}*`;
+  txt += `> 💵 Total: *Belly ${totalEarned.toLocaleString("es-ES")}*`;
 
   await m.reply(txt);
 }

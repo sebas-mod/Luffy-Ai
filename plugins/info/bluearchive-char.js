@@ -6,7 +6,7 @@ const pluginConfig = {
   alias: ["bachar"],
   category: "info",
   description: "Ver info del personaje de Blue Archive",
-  usage: ".bluearchive-char <nama>",
+  usage: ".bluearchive-char <nombre>",
   example: ".bluearchive-char shiroko",
   isOwner: false,
   isPremium: false,

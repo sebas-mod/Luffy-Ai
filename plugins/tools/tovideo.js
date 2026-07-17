@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
 
     if (!downloadFn) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
             `> ¡No se detectó ningún sticker!\n\n` +
             `*Cómo usar:*\n` +
             `> 1. Envía sticker + caption \`${m.prefix}tovideo\`\n` +
@@ -128,7 +128,7 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudo descargar el sticker.`)
+            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el sticker.`)
         }
 
         const animated = isAnimatedWebp(buffer)
@@ -138,7 +138,7 @@ async function handler(m, { sock }) {
             const pngBuffer = await sharp(buffer).png().toBuffer()
             await sock.sendMessage(m.chat, {
                 image: pngBuffer,
-                caption: `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Sticker estático → imagen`
+                caption: `✅ *ᴇxɪᴛᴏ*\n\n> Sticker estático → imagen`
             }, { quoted: m })
             await m.react('✅')
             return
@@ -146,14 +146,14 @@ async function handler(m, { sock }) {
         const gifBuffer = await webpToGif(buffer)
         if (!gifBuffer) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El sticker no se puede convertir (no es animado)`)
+            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> El sticker no se puede convertir (no es animado)`)
         }
 
         const mp4Buffer = await gifToMp4(gifBuffer)
 
         if (!mp4Buffer || mp4Buffer.length < 100) {
             await m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El video de salida está vacío`)
+            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> El video de salida está vacío`)
         }
 
         await sock.sendMedia(m.chat, mp4Buffer, null, m, {

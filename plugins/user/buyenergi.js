@@ -4,7 +4,7 @@ const pluginConfig = {
     alias: ['belienergi', 'purchaseenergi', 'buyenergy'],
     category: 'user',
     description: 'Comprar energía con monedas (1 energía = 100 monedas)',
-    usage: '.buyenergi <jumlah>',
+    usage: '.buyenergi <cantidad>',
     example: '.buyenergi 10',
     isOwner: false,
     isPremium: false,
@@ -31,8 +31,8 @@ async function handler(m, { sock }) {
         return m.reply(
             `🛒 *ʙᴜʏ ᴇɴᴇʀɢɪ*\n\n` +
             `╭┈┈⬡「 💰 *ɪɴꜰᴏ* 」\n` +
-            `┃ 💵 ʜᴀʀɢᴀ: *${PRICE_PER_ENERGI}* belly/energi\n` +
-            `┃ 💰 ᴛᴜs ʙᴇʟʟʏ: *${formatNumber(user.koin || 0)}*\n` +
+            `┃ 💵 ᴘʀᴇᴄɪᴏ: *${PRICE_PER_ENERGI}* belly/energi\n` +
+            `┃ 💰 ᴛᴜs ʙᴇʟʟʏ: *${formatNumber(user.belly || 0)}*\n` +
             `╰┈┈⬡\n\n` +
             `> Usa: \`.buyenergi <cantidad>\`\n\n` +
             `\`Ejemplo: ${m.prefix}buyenergi 10\``
@@ -42,41 +42,41 @@ async function handler(m, { sock }) {
     const totalPrice = amount * PRICE_PER_ENERGI
     const user = db.getUser(m.sender) || db.setUser(m.sender)
     
-    if ((user.koin || 0) < totalPrice) {
+    if ((user.belly || 0) < totalPrice) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟó*\n\n` +
             `> ¡No tienes suficientes Belly!\n` +
             `> Necesitas: *${formatNumber(totalPrice)}*\n` +
-            `> Tienes: *${formatNumber(user.koin || 0)}*`
+            `> Tienes: *${formatNumber(user.belly || 0)}*`
         )
     }
     
-    db.updateKoin(m.sender, -totalPrice)
+    db.updateBelly(m.sender, -totalPrice)
     
     if (user.energi === -1) {
-        db.updateKoin(m.sender, totalPrice)
+        db.updateBelly(m.sender, totalPrice)
         m.react('✅')
         return m.reply(
-            `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
+            `✅ *ᴄᴏᴍᴘʀᴀ ᴇxɪᴛᴏꜱᴀ*\n\n` +
             `> ¡Pero ya tienes energía ilimitada!\n` +
             `> Belly devueltas.`
         )
     }
     
     const newEnergi = db.updateEnergi(m.sender, amount)
-    const newKoin = db.getUser(m.sender).koin
+    const newBelly = db.getUser(m.sender).belly
     
     m.react('✅')
     
     await m.reply(
-        `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
+        `✅ *ᴄᴏᴍᴘʀᴀ ᴇxɪᴛᴏꜱᴀ*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ ⚡ ᴇɴᴇʀɢɪ: *+${formatNumber(amount)}*\n` +
-        `┃ 💵 ʜᴀʀɢᴀ: *-${formatNumber(totalPrice)}* Belly\n` +
+        `┃ ⚡ ᴇɴᴇʀɢíᴀ: *+${formatNumber(amount)}*\n` +
+        `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(totalPrice)}* Belly\n` +
         `╰┈┈⬡\n\n` +
         `╭┈┈⬡「 💰 *sᴀʟᴅᴏ* 」\n` +
-        `┃ ⚡ ᴇɴᴇʀɢɪ: *${formatNumber(newEnergi)}*\n` +
-        `┃ 💰 ʙᴇʟʟʏ: *${formatNumber(newKoin)}*\n` +
+        `┃ ⚡ ᴇɴᴇʀɢíᴀ: *${formatNumber(newEnergi)}*\n` +
+        `┃ 💰 ʙᴇʟʟʏ: *${formatNumber(newBelly)}*\n` +
         `╰┈┈⬡`
     )
 }

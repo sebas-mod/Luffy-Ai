@@ -58,13 +58,13 @@ async function handler(m, { sock }) {
   }
 
   const totalEarning = earning + tips;
-  user.koin = (user.koin || 0) + totalEarning;
+  user.belly = (user.belly || 0) + totalEarning;
   const expGain = Math.floor(totalEarning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `¡¡GRACIAS A DIOS, EL PAQUETE LLEGÓ!! 📦✨\n\nArtículo: *${item}*\n💵 Envío: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (tips > 0) txt += `🎁 Propina Extra: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+  let txt = `¡¡GRACIAS A DIOS, EL PAQUETE LLEGÓ!! 📦✨\n\nArtículo: *${item}*\n💵 Envío: *+Belly ${earning.toLocaleString("es-ES")}*\n`;
+  if (tips > 0) txt += `🎁 Propina Extra: *+Belly ${tips.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Entregado a tiempo! 🚚💨`;
   m.reply(txt);
 }

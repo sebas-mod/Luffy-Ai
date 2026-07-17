@@ -41,7 +41,7 @@ async function fluxImage(message, ratio = "1:1") {
 
   const data = r.data;
   if (!data?.status || !data?.result?.url) {
-    throw new Error(data?.message || data?.error || "Gagal membuat gambar");
+    throw new Error(data?.message || data?.error || "Error al crear imagen");
   }
 
   return data.result;

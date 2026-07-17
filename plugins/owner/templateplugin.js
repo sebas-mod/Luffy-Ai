@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'templateplugin',
     alias: ['tplplugin', 'plugin-template'],
     category: 'owner',
-    description: 'Genera una plantilla de plugin (solo dueño)',
+    description: 'Genera una plantilla de plugin (solo propietario)',
     usage: '.templateplugin',
     example: '.templateplugin',
     isOwner: true,
@@ -16,7 +16,7 @@ const pluginConfig = {
 }
 function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *¡Solo para el dueño!*')
+        return m.reply('❌ *¡Solo para el propietario!*')
     }
     const template = `
 const pluginConfig = {

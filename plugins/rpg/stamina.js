@@ -37,14 +37,14 @@ async function handler(m, { sock }) {
     const potionCost = 5000;
 
     if (user.rpg.stamina >= user.rpg.maxStamina) {
-      return m.reply(`⚡ *ᴇꜱᴛᴀᴍɪɴᴀ ʟʟᴇɴᴀ*\n\n> ¡Tu estamina ya está llena!`);
+      return m.reply(`⚡ *ESTAMINA LLENA*\n\n> ¡Tu estamina ya está llena!`);
     }
 
-    if ((user.koin || 0) < potionCost) {
-      return m.reply(`❌ *ꜱᴀʟᴅᴏ ɪɴꜰᴜꜰiciente*\n\n` + `> Costo: Rp ${potionCost.toLocaleString("id-ID")}\n` + `> Saldo: Rp ${(user.koin || 0).toLocaleString("id-ID")}`);
+    if ((user.belly || 0) < potionCost) {
+      return m.reply(`❌ *SALDO INSUFICIENTE*\n\n` + `> Costo: Belly ${potionCost.toLocaleString("es-ES")}\n` + `> Saldo: Belly ${(user.belly || 0).toLocaleString("es-ES")}`);
     }
 
-    user.koin -= potionCost;
+    user.belly -= potionCost;
     const restored = user.rpg.maxStamina - user.rpg.stamina;
     user.rpg.stamina = user.rpg.maxStamina;
 
@@ -54,11 +54,11 @@ async function handler(m, { sock }) {
     return sendRpgPreview(
       sock,
       m.chat,
-      `⚡ *ᴇꜱᴛᴀᴍɪɴᴀ ʀᴇꜱᴛᴀᴜʀᴀᴅᴀ*\n\n` +
-        `*💊 *ʀᴇsᴛᴏʀᴇ:*
+      `⚡ *ESTAMINA RESTAURADA*\n\n` +
+        `*💊 *RESTAURAR:*
 \n` +
         `> ⚡ Stamina: *+${restored}*\n` +
-        `> 💵 Costo: *-Rp ${potionCost.toLocaleString("id-ID")}*\n` +
+        `> 💵 Costo: *-Belly ${potionCost.toLocaleString("es-ES")}*\n` +
         `> 📊 Actualmente: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n` +
         ``,
       "⚡ STAMINA",
@@ -69,16 +69,16 @@ async function handler(m, { sock }) {
 
   const staminaBar = createStaminaBar(user.rpg.stamina, user.rpg.maxStamina);
 
-  let txt = `⚡ *sᴛᴀᴍɪɴᴀ sᴛᴀᴛᴜs*\n\n`;
-  txt += `*📊 *ɪɴꜰᴏ:*
+  let txt = `⚡ *ESTADO DE ESTAMINA*\n\n`;
+  txt += `*📊 *INFO:*
 \n`;
   txt += `> ⚡ Stamina: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n`;
   txt += `> 📊 [${staminaBar}]\n`;
   txt += `\n\n`;
-  txt += `> Restaurar estamina: \`${m.prefix}stamina isi\` (Rp 5.000)\n`;
+  txt += `> Restaurar estamina: \`${m.prefix}stamina restore\` (Belly 5.000)\n`;
   txt += `> La estamina se restaura automáticamente cada hora`;
 
-  await sendRpgPreview(sock, m.chat, txt, "⚡ STAMINA", "Status", {
+  await sendRpgPreview(sock, m.chat, txt, "⚡ STAMINA", "Estado", {
     quoted: m,
   });
 }

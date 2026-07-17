@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
         }
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
             `> No se puede cambiar el bio del bot.\n` +
             `> _${error.message}_`
         )

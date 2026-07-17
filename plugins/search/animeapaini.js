@@ -34,7 +34,7 @@ async function uploadToTempfiles(buffer) {
     if (response.data?.files?.[0]?.url) {
         return response.data
     }
-    throw new Error('Upload gagal')
+    throw new Error('Error en la subida')
 }
 
 

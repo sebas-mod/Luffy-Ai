@@ -1,11 +1,11 @@
 import { getDatabase } from "../../src/lib/ourin-database.js";
 const pluginConfig = {
-  name: "buykoin",
-  alias: ["belikoin", "belicoin", "exptokoin", "exptocoin"],
+  name: "buybelly",
+  alias: ["belibelly", "belicoin", "exptobelly", "exptocoin"],
   category: "rpg",
   description: "Canjear EXP por Belly",
-  usage: ".buykoin <jumlah>",
-  example: ".buykoin 10000",
+  usage: ".buybelly <cantidad>",
+  example: ".buybelly 10000",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isEnabled: true,
 };
 
-const EXP_PER_KOIN = 2;
+const EXP_PER_BELLY = 2;
 
 async function handler(m, { sock }) {
   const db = getDatabase();
@@ -30,58 +30,58 @@ async function handler(m, { sock }) {
     let txt = `💱 *Buy Belly*\n\n`;
     txt += `> ¡Intercambia EXP por Belly!\n\n`;
     txt += `*📊 Tipo de Cambio:*\n`;
-    txt += `> 💎 ${EXP_PER_KOIN} EXP = 1 Belly\n\n`;
+    txt += `> 💎 ${EXP_PER_BELLY} EXP = 1 Belly\n\n`;
     txt += `*📋 Saldo:*\n`;
-    txt += `> 🚄 EXP: *${(user.exp || 0).toLocaleString("id-ID")}*\n`;
-    txt += `> 💰 Belly: *${(user.koin || 0).toLocaleString("id-ID")}*\n\n`;
-    txt += `> Ejemplo: \`.buykoin 10000\`\n`;
-    txt += `> Se usarán ${10000 * EXP_PER_KOIN} EXP para 10.000 Belly`;
+    txt += `> 🚄 EXP: *${(user.exp || 0).toLocaleString("es-ES")}*\n`;
+    txt += `> 💰 Belly: *${(user.belly || 0).toLocaleString("es-ES")}*\n\n`;
+    txt += `> Ejemplo: \`.buybelly 10000\`\n`;
+    txt += `> Se usarán ${10000 * EXP_PER_BELLY} EXP para 10.000 Belly`;
 
     return m.reply(txt);
   }
 
-  let koinAmount = 0;
+  let bellyAmount = 0;
   if (amountStr === "all" || amountStr === "max") {
-    koinAmount = Math.floor((user.exp || 0) / EXP_PER_KOIN);
+    bellyAmount = Math.floor((user.exp || 0) / EXP_PER_BELLY);
   } else {
-    koinAmount = parseInt(amountStr);
+    bellyAmount = parseInt(amountStr);
   }
 
-  if (!koinAmount || koinAmount <= 0) {
+  if (!bellyAmount || bellyAmount <= 0) {
     return m.reply(`❌ ¡Ingresa una cantidad válida de belly!`);
   }
 
-  const expNeeded = koinAmount * EXP_PER_KOIN;
+  const expNeeded = bellyAmount * EXP_PER_BELLY;
 
   if ((user.exp || 0) < expNeeded) {
-    const maxPossible = Math.floor((user.exp || 0) / EXP_PER_KOIN);
+    const maxPossible = Math.floor((user.exp || 0) / EXP_PER_BELLY);
     return m.reply(
       `❌ *¡EXP insuficiente!*\n\n` +
-        `> Necesitas: *${expNeeded.toLocaleString("id-ID")} EXP*\n` +
-        `> Tu EXP: *${(user.exp || 0).toLocaleString("id-ID")} EXP*\n\n` +
-        `> Máximo: *${maxPossible.toLocaleString("id-ID")} Belly*`,
+        `> Necesitas: *${expNeeded.toLocaleString("es-ES")} EXP*\n` +
+        `> Tu EXP: *${(user.exp || 0).toLocaleString("es-ES")} EXP*\n\n` +
+        `> Máximo: *${maxPossible.toLocaleString("es-ES")} Belly*`,
     );
   }
 
-  // Use manual user update instead of updateKoin/updateExp to do batch update
+  // Use manual user update instead of updateBelly/updateExp to do batch update
   // But since logic was db.setUser, let's stick to update logic here
   const newExp = (user.exp || 0) - expNeeded;
-  const newKoin = (user.koin || 0) + koinAmount;
+  const newBelly = (user.belly || 0) + bellyAmount;
 
   db.setUser(m.sender, {
     exp: newExp,
-    koin: newKoin,
+    belly: newBelly,
   });
 
   await m.react("💱");
 
   let txt = `💱 *¡Intercambio Exitoso!*\n\n`;
-  txt += `*📋 Detail:*\n`;
-  txt += `> 🚄 EXP: *-${expNeeded.toLocaleString("id-ID")}*\n`;
-  txt += `> 💰 Belly: *+${koinAmount.toLocaleString("id-ID")}*\n\n`;
+  txt += `*📋 Detalle:*\n`;
+  txt += `> 🚄 EXP: *-${expNeeded.toLocaleString("es-ES")}*\n`;
+  txt += `> 💰 Belly: *+${bellyAmount.toLocaleString("es-ES")}*\n\n`;
   txt += `*📊 Saldo Actual:*\n`;
-  txt += `> 🚄 EXP: *${newExp.toLocaleString("id-ID")}*\n`;
-  txt += `> 💰 Belly: *${newKoin.toLocaleString("id-ID")}*`;
+  txt += `> 🚄 EXP: *${newExp.toLocaleString("es-ES")}*\n`;
+  txt += `> 💰 Belly: *${newBelly.toLocaleString("es-ES")}*`;
 
   m.reply(txt);
 }

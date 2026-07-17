@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
 
         db.save()
 
-        const expDate = new Date(newExpired).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+        const expDate = new Date(newExpired).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 
         await m.reply(
             `✅ Éxito ${existingIndex !== -1 ? 'extendiendo' : 'agregando'} partner @${targetNumber} durante *${days} días*\nExpired: *${expDate}*`,
@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
         const mentions = []
         partners.forEach((p, i) => {
             const num = p.id
-            const expDate = new Date(p.expired).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
+            const expDate = new Date(p.expired).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
             const remaining = Math.ceil((p.expired - Date.now()) / (1000 * 60 * 60 * 24))
             txt += `${i + 1}. @${num} — ${expDate} (${remaining > 0 ? remaining + 'd' : 'Expired'})\n`
             mentions.push(`${num}@s.whatsapp.net`)

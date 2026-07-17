@@ -92,7 +92,7 @@ async function handler(m, { sock }) {
     m.react("☢");
     let msg = e.message;
     if (
-      msg.includes("Gagal download") ||
+      msg.includes("Error al descargar") ||
       msg.includes("decrypt") ||
       msg.includes("download") ||
       msg.includes("Timeout") ||

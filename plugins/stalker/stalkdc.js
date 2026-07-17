@@ -54,7 +54,7 @@ async function fetchLatestVersion() {
     headers: { referer: 'https://www.google.com/' },
   });
   const m = String(res.data).match(/releases\/([\w-]+)\//);
-  if (!m) throw new Error('gagal grab versi collector (v) dari api.js');
+  if (!m) throw new Error('error al obtener versión del collector (v) de api.js');
   _cachedV = m[1];
   return _cachedV;
 }
@@ -70,7 +70,7 @@ function extractRresp(body) {
 }
 
 async function solveRecaptchaV3({ sitekey, url, action, hl = 'id', retries = 2 } = {}) {
-  if (!sitekey) throw new Error('sitekey wajib diisi');
+  if (!sitekey) throw new Error('sitekey debe completarse');
   const base = `${RECAPTCHA_BASE}api2/`;
   const params = {
     ar: '1',
@@ -94,7 +94,7 @@ async function solveRecaptchaV3({ sitekey, url, action, hl = 'id', retries = 2 }
       if (anchorRes.status !== 200) throw new Error(`anchor HTTP ${anchorRes.status}`);
 
       const cMatch = String(anchorRes.data).match(/id="recaptcha-token"\s+value="([^"]+)"/);
-      if (!cMatch) throw new Error('recaptcha-token tidak ditemukan di anchor');
+      if (!cMatch) throw new Error('recaptcha-token no encontrado en anchor');
 
       const postData = new URLSearchParams({
         v: params.v,
@@ -119,7 +119,7 @@ async function solveRecaptchaV3({ sitekey, url, action, hl = 'id', retries = 2 }
       if (reloadRes.status !== 200) throw new Error(`reload HTTP ${reloadRes.status}`);
 
       const token = extractRresp(reloadRes.data);
-      if (!token) throw new Error('rresp/token tidak ditemukan di reload');
+      if (!token) throw new Error('rresp/token no encontrado en recarga');
 
       return { token, version: params.v };
     } catch (err) {
@@ -152,7 +152,7 @@ async function lookupUser(discordId, recaptchaToken) {
   );
 
   if (typeof res.data !== 'object') {
-    throw new Error(`Response bukan JSON (HTTP ${res.status})`);
+    throw new Error(`Response no es JSON (HTTP ${res.status})`);
   }
   return res.data;
 }
@@ -187,7 +187,7 @@ async function handler(m, { text, sock }) {
         }
 
         const d = resp.data || {};
-        const isBot = d.is_bot ? 'Ya (Bot)' : 'Tidak (User)';
+        const isBot = d.is_bot ? 'Si (Bot)' : 'No (User)';
         const badges = (d.badges || []).map((b) => b.name).join(', ') || '-';
         
         let caption = `👾 *DISCORD STALKER* 👾\n\n`;

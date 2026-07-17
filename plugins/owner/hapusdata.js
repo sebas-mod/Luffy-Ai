@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         await sock.sendMessage(m.chat, {
             text:
                 `🗑️ *ᴅᴀᴛᴀ ᴅɪʀᴇsᴇᴛ*\n\n` +
-                `> 📁 File direset: *${result.resetCount}/${result.total}*\n` +
+                `> 📁 File reiniciado: *${result.resetCount}/${result.total}*\n` +
                 `> 💾 Backup: \`${result.backupFolder}/\`\n\n` +
                 `Todos los datos han sido restaurados a los valores predeterminados.\n\n` +
                 `> ⚠️ Reinicia el bot para asegurar que los datos estén sincronizados`

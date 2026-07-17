@@ -48,7 +48,7 @@ async function getPlayAudioDownload(url) {
     return { download: fallback.dl, title: fallback.title, isFallback: true };
   }
 
-  throw new Error(fallback?.mess || "Gagal mendapatkan audio play URL");
+  throw new Error(fallback?.mess || "Error al obtener la URL de audio");
 }
 
 async function handler(m, { sock, text }) {

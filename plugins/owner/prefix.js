@@ -99,7 +99,7 @@ function handler(m, { sock }) {
                 `> Added: \`${newPrefixes.join('` `')}\`\n\n` +
                 `*Todos prefix activo:*\n` +
                 `> \`${getAllPrefixes().join('` `')}\`` +
-                `${data.noprefix ? '\n> + *noprefix* aktif' : ''}`
+                `${data.noprefix ? '\n> + *noprefix* activo' : ''}`
             )
             break
         }
@@ -187,7 +187,7 @@ function handler(m, { sock }) {
                 `> Deleted: \`${deleted.length > 0 ? deleted.join('` `') : 'None'}\`\n\n` +
                 `*Todos prefix activo:*\n` +
                 `> \`${getAllPrefixes().join('` `')}\`` +
-                `${data.noprefix ? '\n> + *noprefix* aktif' : ''}`
+                `${data.noprefix ? '\n> + *noprefix* activo' : ''}`
             )
             break
         }
@@ -199,7 +199,7 @@ function handler(m, { sock }) {
             let text = `📋 *ʟɪsᴛ ᴘʀᴇғɪx*\n\n`
             text += `╭┈┈⬡「 ⚙️ *ᴄᴏɴғɪɢ* 」\n`
             text += `┃ Default: \`${configPref}\`\n`
-            text += `┃ Noprefix: ${data.noprefix ? '✅ Aktif' : '❌ Nonaktif'}\n`
+            text += `┃ Noprefix: ${data.noprefix ? '✅ Activo' : '❌ Inactivo'}\n`
             text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
             
             if (data.prefixes.length > 0) {

@@ -6,7 +6,7 @@ const pluginConfig = {
   alias: ["gsm", "phonespec", "spesifikasi"],
   category: "search",
   description: "Buscar especificaciones de celular en GSMArena",
-  usage: ".gsmarena <nama hp>",
+  usage: ".gsmarena <nombre del celular>",
   example: ".gsmarena infinix hot 50",
   isOwner: false,
   isPremium: false,

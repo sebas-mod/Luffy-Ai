@@ -89,10 +89,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `🔗 *Join Grup*\n\n` +
         `El bot se unirá al grupo basándose en el enlace de invitación que proporcionaste.\n\n` +
-        `*PENGGUNAAN:*\n` +
+        `*USO:*\n` +
         `> *${m.prefix}join <link>* — Join via link langsung\n` +
         `> *${m.prefix}join* (reply mensaje) — Unirse del enlace en el mensaje respondido\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}join https://chat.whatsapp.com/xxx*\n` +
         `> Responde a un mensaje con enlace y luego escribe *${m.prefix}join*\n\n` +
         `_El bot detectará todos los enlaces de grupo en el mensaje y se unirá uno por uno_`

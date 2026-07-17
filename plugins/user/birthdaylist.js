@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     
     if (birthdays.length === 0) {
         return m.reply(
-            `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴅᴀᴛᴀ*\n\n` +
+            `❌ *ꜱɪɴ ᴅᴀᴛᴏꜱ*\n\n` +
             `> Aún ningún miembro ha configurado su cumpleaños\n\n` +
             `> Usa: .setbirthday DD-MM`
         )
@@ -58,10 +58,10 @@ async function handler(m, { sock }) {
         return a.day - b.day
     })
     
-    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']
+    const months = ['Jan', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
     
     let text = `╭━━━━━━━━━━━━━━━━━╮\n`
-    text += `┃  🎂 *ᴅᴀғᴛᴀʀ ᴜʟᴛᴀʜ*\n`
+    text += `┃  🎂 *ʟɪꜱᴛᴀ ᴅᴇ ᴄᴜᴍᴘʟᴇᴀñᴏꜱ*\n`
     text += `╰━━━━━━━━━━━━━━━━━╯\n\n`
     text += `╭┈┈⬡「 📋 *${birthdays.length} ᴍᴇᴍʙᴇʀ* 」\n`
     
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
     for (const b of birthdays.slice(0, 15)) {
         const isToday = b.day === currentDay && b.month === currentMonth
         const emoji = isToday ? '🎉' : '🎂'
-        text += `┃ ${emoji} ${b.day} ${months[b.month - 1]} - @${b.jid.split('@')[0]}${isToday ? ' *HARI INI!*' : ''}\n`
+        text += `┃ ${emoji} ${b.day} ${months[b.month - 1]} - @${b.jid.split('@')[0]}${isToday ? ' *¡ʜᴏʏ!*' : ''}\n`
         mentions.push(b.jid)
     }
     
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     }
     
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-    text += `> Configurar birthday: .setbirthday DD-MM`
+    text += `> Configurar cumpleaños: .setbirthday DD-MM`
     
     await m.reply(text, { mentions })
 }

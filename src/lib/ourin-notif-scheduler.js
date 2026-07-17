@@ -9,17 +9,17 @@ const notifCronJobs = new Map()
 let refreshJob = null
 
 const MAKAN_MESSAGES = [
-    '🍽️ *Waktunya makan {label}!*\n\n⏰ *{jam} ART*\n\nJangan skip makan ya, tubuh butuh asupan energi biar tetap produktif 💪\n{menu}\n\n📌 _Diatur oleh @{sender}_',
-    '🥗 *Heyy @{sender}, udah jam {jam} nih!*\n\nSaatnya isi perut dulu 🍛\nMakan yang bergizi biar badan tetap fit!\n{menu}',
-    '🍜 *Reminder makan {label}*\n\n⏰ *{jam} ART*\n\nPerut kosong bikin mood jelek lho 😤\nYuk makan dulu sebelum lanjut aktivitas\n{menu}\n\n📌 _Diatur oleh @{sender}_',
-    '🍜 *MAKAN DULU WOYY @{sender}*\n\nPakai ? {menu}',
+    '🍽️ *¡Es hora de comer {label}!*\n\n⏰ *{jam} ART*\n\nNo te saltes la comida, tu cuerpo necesita energía para seguir productivo 💪\n{menu}\n\n📌 _Configurado por @{sender}_',
+    '🥗 *Heyy @{sender}, ¡son las {jam}!*\n\nEs hora de llenar el estómago 🍛\nCome algo nutritivo para mantenerte en forma\n{menu}',
+    '🍜 *Recordatorio de comida {label}*\n\n⏰ *{jam} ART*\n\nEl estómago vacío arruina el ánimo 😤\nCome antes de continuar con tus actividades\n{menu}\n\n📌 _Configurado por @{sender}_',
+    '🍜 *COME PRIMERO WOWY @{sender}*\n\n¿Usa? {menu}',
 ]
 
 const TIDUR_MESSAGES = [
-    '🌙 *Waktunya istirahat!*\n\n⏰ *{jam} ART*\n\nTaruh HP-nya, pejamkan mata 😴\nTidur cukup bikin otak fresh buat besok!\n_Selamat malam_ 🌟\n\n📌 _Diatur oleh @{sender}_',
-    '💤 *Udah jam {jam} nih @{sender}!*\n\nYuk istirahat, jangan begadang terus 🛏️\nKesehatan itu investasi paling berharga\n_Mimpi indah ya_ ✨',
-    '😴 *Reminder tidur malam*\n\n⏰ *{jam} ART*\n\nLayar HP itu musuh tidur nyenyak 📵\nMatikan notifikasi dan rebahan sekarang!\n_Good night_ 🌜\n\n📌 _Diatur oleh @{sender}_',
-    '*TURU WOYY @{sender}*\n\n⏰ Udah jam *{jam}*',
+    '🌙 *¡Es hora de descansar!*\n\n⏰ *{jam} ART*\n\nDéjalo el celular, cierra los ojos 😴\nDormir bien mantiene la mente fresca para mañana\n_Buenas noches_ 🌟\n\n📌 _Configurado por @{sender}_',
+    '💤 *¡Ya son las {jam} @{sender}!*\n\nVen a descansar, no sigas desvelado 🛏️\nLa salud es la inversión más valiosa\n_Dulces sueños_ ✨',
+    '😴 *Recordatorio de sueño nocturno*\n\n⏰ *{jam} ART*\n\nLa pantalla del celular es enemigo del sueño reparador 📵\nApaga las notificaciones y recuéstate ahora\n_Buenas noches_ 🌜\n\n📌 _Configurado por @{sender}_',
+    '*A DORMIR WOWY @{sender}*\n\n⏰ Ya son las *{jam}*',
 ]
 
 function getRandomMessage(templates, jam, menu, label, senderJid) {
@@ -35,10 +35,10 @@ function getRandomMessage(templates, jam, menu, label, senderJid) {
 
 function getMealLabel(jam) {
     const hour = parseInt(jam.split(':')[0], 10)
-    if (hour >= 4 && hour < 10) return 'pagi'
-    if (hour >= 10 && hour < 15) return 'siang'
-    if (hour >= 15 && hour < 18) return 'sore'
-    return 'malam'
+    if (hour >= 4 && hour < 10) return 'mañana'
+    if (hour >= 10 && hour < 15) return 'mediodía'
+    if (hour >= 15 && hour < 18) return 'tarde'
+    return 'noche'
 }
 
 function clearNotifCronJobs() {

@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
         timeout: 15000,
       });
       ppBuffer = Buffer.from(res.data);
-      source = "default (target no punya PP)";
+      source = "default (objetivo no tiene PP)";
     }
     const processed = await resizeForPP(ppBuffer);
     const botJid = sock.user?.id;
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.split("@")[0];
     await m.react("✅");
     return m.reply(
-      `✅ *ᴘᴘ ʙᴇʀʜᴀsɪʟ ᴅɪᴄᴏʟᴏɴɢ!*\n\n` +
+      `✅ *ᴘᴇʀғɪʟ ᴄᴏᴘɪᴀᴅᴏ ᴇxɪᴛᴏꜱᴀᴍᴇɴᴛᴇ!*\n\n` +
         `> 🎯 Target: @${targetNumber}\n` +
         `> 📸 Sumber: ${source}`,
       { mentions: [targetJid] },

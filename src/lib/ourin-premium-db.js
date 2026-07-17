@@ -147,7 +147,7 @@ function isPartner(jid) {
 
 function addOwner(jid, name = 'Unknown') {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
-    if (isOwner(cleanJid)) return { success: false, message: 'Sudah menjadi owner' }
+    if (isOwner(cleanJid)) return { success: false, message: 'Ya es propietario' }
 
     const owners = loadOwners()
     owners.push({
@@ -157,18 +157,18 @@ function addOwner(jid, name = 'Unknown') {
         addedAt: new Date().toISOString()
     })
     saveOwners(owners)
-    return { success: true, message: 'Berhasil ditambahkan sebagai owner' }
+    return { success: true, message: 'Agregado exitosamente como propietario' }
 }
 
 function removeOwner(jid) {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
     const owners = loadOwners()
     const index = owners.findIndex(o => o.number === cleanJid || o.jid === cleanJid)
-    if (index === -1) return { success: false, message: 'Tidak ditemukan di daftar owner' }
+    if (index === -1) return { success: false, message: 'No se encontró en la lista de propietarios' }
 
     owners.splice(index, 1)
     saveOwners(owners)
-    return { success: true, message: 'Berhasil dihapus dari owner' }
+    return { success: true, message: 'Eliminado exitosamente de propietarios' }
 }
 
 function addPremium(jid, days = 30, name = 'Unknown') {
@@ -184,7 +184,7 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         premiumList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         premiumList[existing].name = name || premiumList[existing].name
         savePremium(premiumList)
-        return { success: true, message: `Premium diperpanjang ${days} hari`, expiredAt: premiumList[existing].expiredAt }
+        return { success: true, message: `Premium extendido ${days} días`, expiredAt: premiumList[existing].expiredAt }
     }
 
     premiumList.push({
@@ -195,18 +195,18 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePremium(premiumList)
-    return { success: true, message: `Berhasil ditambahkan sebagai premium ${days} hari`, expiredAt }
+    return { success: true, message: `Agregado exitosamente como premium por ${days} días`, expiredAt }
 }
 
 function removePremium(jid) {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
     const premiumList = loadPremium()
     const index = premiumList.findIndex(p => p.number === cleanJid || p.jid === cleanJid)
-    if (index === -1) return { success: false, message: 'Tidak ditemukan di daftar premium' }
+    if (index === -1) return { success: false, message: 'No se encontró en la lista de premium' }
 
     premiumList.splice(index, 1)
     savePremium(premiumList)
-    return { success: true, message: 'Berhasil dihapus dari premium' }
+    return { success: true, message: 'Eliminado exitosamente de premium' }
 }
 
 function addPartner(jid, days = 30, name = 'Unknown') {
@@ -222,7 +222,7 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         partnerList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         partnerList[existing].name = name || partnerList[existing].name
         savePartners(partnerList)
-        return { success: true, message: `Partner diperpanjang ${days} hari`, expiredAt: partnerList[existing].expiredAt }
+        return { success: true, message: `Partner extendido ${days} días`, expiredAt: partnerList[existing].expiredAt }
     }
 
     partnerList.push({
@@ -233,18 +233,18 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePartners(partnerList)
-    return { success: true, message: `Berhasil ditambahkan sebagai partner ${days} hari`, expiredAt }
+    return { success: true, message: `Agregado exitosamente como partner por ${days} días`, expiredAt }
 }
 
 function removePartner(jid) {
     const cleanJid = jid?.replace(/@.+/g, '') || ''
     const partnerList = loadPartners()
     const index = partnerList.findIndex(p => p.number === cleanJid || p.jid === cleanJid)
-    if (index === -1) return { success: false, message: 'Tidak ditemukan di daftar partner' }
+    if (index === -1) return { success: false, message: 'No se encontró en la lista de partners' }
 
     partnerList.splice(index, 1)
     savePartners(partnerList)
-    return { success: true, message: 'Berhasil dihapus dari partner' }
+    return { success: true, message: 'Eliminado exitosamente de partners' }
 }
 
 function getOwnerList() {

@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         )
     }
     
-    await m.reply(`🕕 *ᴍᴇᴍʙᴜᴀᴛ ᴘᴛᴠ...*`)
+    await m.reply(`🕕 *ᴄʀᴇᴀɴᴅᴏ ᴘᴛᴠ...*`)
     
     try {
         await sock.sendMessage(m.chat, {

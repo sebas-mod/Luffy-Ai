@@ -378,7 +378,7 @@ async function startConnection(options = {}) {
         515: "🔁 Restart Required — WhatsApp solicita reiniciar conexión",
       };
 
-      const statusMsg = STATUS_MESSAGES[sc] || `❔ Unknown (kode: ${sc})`;
+      const statusMsg = STATUS_MESSAGES[sc] || `❔ Desconocido (codigo: ${sc})`;
       colors.logger.warn("whatsapp", `desconectado — ${statusMsg}`);
       if (sc === DisconnectReason.loggedOut || sc === 401) {
         colors.logger.error(
@@ -644,13 +644,13 @@ async function startConnection(options = {}) {
           const inviter = event.author || "";
           const inviterMention = inviter
             ? `@${inviter.split("@")[0]}`
-            : "seseorang";
+            : "alguien";
           const prefix = config.command?.prefix || ".";
 
-          let groupName = "grup ini";
+          let groupName = "este grupo";
           try {
             const meta = await sock.groupMetadata(event.id);
-            groupName = meta.subject || "grup ini";
+            groupName = meta.subject || "este grupo";
           } catch { }
 
           const saluranId =
@@ -1178,7 +1178,7 @@ async function startConnection(options = {}) {
                     );
                     colors.logger.info(
                       "Call",
-                      `Berhasil memblokir penelpon di WA & Bot: ${sanitizedJid}`,
+                      `Bloqueo exitoso de llamadas en WA y Bot: ${sanitizedJid}`,
                     );
                   } catch (waErr) {
                     colors.logger.warn(

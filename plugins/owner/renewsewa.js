@@ -79,9 +79,9 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *PERPANJANG SEWA*\n\n` +
-        `Format: *${m.prefix}renewsewa <link/id> <durasi>*\n\n` +
-        `*FORMAT DURASI:*\n` +
+      `📝 *EXTENDER ALQUILER*\n\n` +
+        `Format: *${m.prefix}renewsewa <link/id> <duracion>*\n\n` +
+        `*FORMATO DE DURACION:*\n` +
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +
         `• 7d = 7 días\n` +
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
 
   if (!durationMs)
     return m.reply(
-      `❌ Format durasi no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
+      `❌ Formato de duracion no valido\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup no encontrado`);
+      return m.reply(`❌ Grupo no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `❌ Grup no terlista\nUsa *${m.prefix}addsewa* para agregar`,
+        `❌ Grupo no registrado en la lista\nUsa *${m.prefix}addsewa* para agregar`,
       );
     }
 
@@ -149,15 +149,15 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let text = `✅ *SEWA DIPERPANJANG*\n\n`;
+    let text = `✅ *ALQUILER EXTENDIDO*\n\n`;
     text += `Grup: *${groupName}*\n`;
-    text += `Tambahan: *${formatDuration(durationStr)}*\n`;
+    text += `Tiempo anadido: *${formatDuration(durationStr)}*\n`;
     text += `Expired nuevo: *${expiredStr}*`;
 
     try {
       await sock.sendText(
         groupId,
-        `📢 Sewa bot ha diperpanjang!\n\nTambahan: *${formatDuration(durationStr)}*\nExpired nuevo: *${expiredStr}*`,
+        `📢 El alquiler del bot ha sido extendido!\n\nTiempo anadido: *${formatDuration(durationStr)}*\nExpired nuevo: *${expiredStr}*`,
         null,
         {
           contextInfo: saluranCtx(),

@@ -115,68 +115,68 @@ const rateLimit = new Map();
 
 const ERROR_MESSAGES = {
   401: {
-    reason: "Nomor tidak terdaftar WhatsApp",
-    action: "Pastikan nomor ini aktif di WhatsApp",
+    reason: "Número no registrado en WhatsApp",
+    action: "Asegúrate de que este número esté activo en WhatsApp",
     fatal: true,
   },
   403: {
-    reason: "Akses ditolak/dibanned",
-    action: "Nomor ini mungkin terkena banned WhatsApp",
+    action: "Acceso denegado/baneado",
+    action: "Este número puede estar baneado por WhatsApp",
     fatal: true,
   },
   405: {
-    reason: "Metode tidak diizinkan",
-    action: "Coba lagi nanti",
+    reason: "Método no permitido",
+    action: "Inténtalo de nuevo más tarde",
     fatal: true,
   },
   406: {
-    reason: "Nomor dibatasi",
-    action: "Nomor ini dibatasi oleh WhatsApp, tunggu beberapa jam",
+    reason: "Número restringido",
+    action: "Este número está restringido por WhatsApp, espera unas horas",
     fatal: true,
   },
   408: {
     reason: "Request timeout",
-    action: "Koneksi lambat, akan mencoba reconnect",
+    action: "Conexión lenta, intentando reconectar",
     fatal: false,
   },
   409: {
-    reason: "Konflik session",
-    action: "Session sedang digunakan di device lain",
+    reason: "Conflicto de sesión",
+    action: "La sesión está siendo usada en otro dispositivo",
     fatal: true,
   },
   411: {
-    reason: "Autentikasi gagal",
-    action: "Perlu scan ulang QR/pairing",
+    reason: "Autenticación fallida",
+    action: "Necesita escanear QR/pairing de nuevo",
     fatal: true,
   },
   428: {
     reason: "Rate limit",
-    action: "Terlalu banyak request, tunggu beberapa menit",
+    action: "Demasiadas solicitudes, espera unos minutos",
     fatal: true,
   },
   440: {
     reason: "Login required",
-    action: "Session expired, perlu login ulang",
+    action: "Sesión expirada, necesita volver a iniciar sesión",
     fatal: true,
   },
   500: {
     reason: "Server error WhatsApp",
-    action: "Server WhatsApp bermasalah",
+    action: "Servidor WhatsApp con problemas",
     fatal: false,
   },
   501: {
-    reason: "Tidak diimplementasi",
-    action: "Fitur belum didukung",
+    reason: "No implementado",
+    action: "Función aún no soportada",
     fatal: true,
   },
   503: {
-    reason: "Layanan tidak tersedia",
-    action: "WhatsApp sedang maintenance",
+    reason: "Servicio no disponible",
+    action: "WhatsApp está en mantenimiento",
     fatal: false,
   },
   515: {
     reason: "Stream error",
-    action: "Akan mencoba reconnect",
+    action: "Intentando reconectar",
     fatal: false,
   },
 };
@@ -184,56 +184,56 @@ const ERROR_MESSAGES = {
 const CONNECTION_CLOSED_REASONS = [
   {
     match: /Connection Closed/i,
-    reason: "Koneksi ditutup",
-    action: "Kemungkinan nomor dibanned atau ada masalah jaringan",
+    reason: "Conexión cerrada",
+    action: "Posiblemente el número esté baneado o hay problemas de red",
     fatal: true,
   },
   {
     match: /write EOF/i,
-    reason: "Koneksi terputus",
-    action: "Masalah jaringan, akan mencoba reconnect",
+    reason: "Conexión cortada",
+    action: "Problema de red, intentando reconectar",
     fatal: false,
   },
   {
     match: /ECONNRESET/i,
-    reason: "Reset koneksi",
-    action: "Jaringan tidak stabil",
+    reason: "Reinicio de conexión",
+    action: "Red inestable",
     fatal: false,
   },
   {
     match: /ETIMEDOUT/i,
     reason: "Timeout",
-    action: "Koneksi lambat",
+    action: "Conexión lenta",
     fatal: false,
   },
   {
     match: /logged out/i,
     reason: "Logged out",
-    action: "Akun di-logout dari perangkat",
+    action: "Cuenta desconectada del dispositivo",
     fatal: true,
   },
   {
     match: /replaced/i,
     reason: "Session replaced",
-    action: "Login di perangkat lain",
+    action: "Inicio de sesion en otro dispositivo",
     fatal: true,
   },
   {
     match: /Multidevice mismatch/i,
-    reason: "Session tidak valid",
-    action: "Perlu scan ulang",
+    reason: "Sesión no válida",
+    action: "Necesita escanear de nuevo",
     fatal: true,
   },
   {
     match: /restart required/i,
-    reason: "Restart diperlukan",
-    action: "Akan restart otomatis",
+    reason: "Reinicio necesario",
+    action: "Se reiniciara automaticamente",
     fatal: false,
   },
   {
     match: /bad session/i,
-    reason: "Session rusak",
-    action: "Perlu scan ulang",
+    reason: "Sesion danada",
+    action: "Necesita escaneo nuevamente",
     fatal: true,
   },
 ];
@@ -264,8 +264,8 @@ function parseDisconnectError(lastDisconnect) {
 
   return {
     code: statusCode || "N/A",
-    reason: "Error tidak dikenal",
-    action: "Hubungi admin jika berulang",
+    reason: "Error desconocido",
+    action: "Contacta al admin si el problema persiste",
     fatal: false,
     message: errorMessage,
   };
@@ -306,7 +306,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
   if (usePairing) {
     const lastAttempt = rateLimit.get(id) || 0;
     if (Date.now() - lastAttempt < 60000) {
-      throw new Error("Tunggu 1 menit sebelum mencoba lagi.");
+      throw new Error("Espera 1 minuto antes de intentar de nuevo.");
     }
     rateLimit.set(id, Date.now());
   }
@@ -314,7 +314,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
   const authPath = getJadibotAuthPath(userJid);
 
   if (jadibotSessions.has(id)) {
-    throw new Error("Jadibot sudah aktif untuk nomor ini!");
+    throw new Error("¡Jadibot ya está activo para este número!");
   }
 
   if (!fs.existsSync(authPath)) {
@@ -388,7 +388,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
       qrCount++;
       if (qrCount > 3) {
         await safeSend(sock, m?.chat, {
-          text: "❌ QR Code expired! Silakan coba lagi.",
+          text: "❌ QR Code expirado! Por favor intenta de nuevo.",
         });
         if (lastQRMsg?.key) {
           await safeSend(sock, m?.chat, { delete: lastQRMsg.key });
@@ -420,8 +420,8 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
             image: qrBuffer,
             caption:
               `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴄᴏᴅᴇ*\n\n` +
-              `Scan kode QR ini untuk menjadi bot.\n\n` +
-              `> ⏱️ Expired dalam 20 detik\n` +
+              `Escanea este codigo QR para ser bot.\n\n` +
+              `> ⏱️ Expira en 20 segundos\n` +
               `> 📊 QR Count: ${qrCount}/3`,
           },
           { quoted: m },
@@ -468,11 +468,11 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
           .sendMessage(m.chat, {
             text:
               `✅ *ᴊᴀᴅɪʙᴏᴛ ᴛᴇʀʜᴜʙᴜɴɢ*\n\n` +
-              `> 📱 Nomor: *@${id}*\n` +
-              `> 🟢 Status: *Online*\n` +
-              `> ⏱️ Mulai: *${new Date().toLocaleTimeString("id-ID")}*\n\n` +
-              `Bot kamu aktif dan siap menerima perintah!\n\n` +
-              `> ℹ️ Ketik \`${m.prefix || "."}stopjadibot\` untuk menghentikan`,
+              `> 📱 Numero: *@${id}*\n` +
+              `> 🟢 Estado: *Online*\n` +
+              `> ⏱️ Inicio: *${new Date().toLocaleTimeString("es-ES")}*\n\n` +
+              `Tu bot esta activo y listo para recibir comandos!\n\n` +
+              `> ℹ️ Escribe \`${m.prefix || "."}stopjadibot\` para detener`,
             mentions: [userJid],
           })
           .catch((e) => {
@@ -528,12 +528,12 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
         await safeSend(sock, m?.chat, {
           text:
             `${statusEmoji} *ᴊᴀᴅɪʙᴏᴛ ᴅɪsᴄᴏɴɴᴇᴄᴛᴇᴅ*\n\n` +
-            `> 📱 Nomor: *@${id}*\n` +
+            `> 📱 Numero: *@${id}*\n` +
             `> 🔢 Code: \`${errorInfo.code}\`\n` +
-            `> 📋 Alasan: *${errorInfo.reason}*\n` +
+            `> 📋 Razon: *${errorInfo.reason}*\n` +
             `> ℹ️ ${errorInfo.action}\n\n` +
             (errorInfo.fatal
-              ? `> ⚠️ Session dihapus. Gunakan \`.jadibot\` untuk memulai ulang.`
+              ? `> ⚠️ Sesion eliminada. Usa \`.jadibot\` para iniciar de nuevo.`
               : ""),
           mentions: [userJid],
         });
@@ -543,10 +543,10 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
         await safeSend(sock, m?.chat, {
           text:
             `🔄 *ᴊᴀᴅɪʙᴏᴛ ʀᴇᴄᴏɴɴᴇᴄᴛɪɴɢ...*\n\n` +
-            `> 📱 Nomor: *@${id}*\n` +
-            `> 📋 Alasan: *${errorInfo.reason}*\n` +
-            `> 🔁 Percobaan: *${attempts + 1}/${MAX_RECONNECT_ATTEMPTS}*\n\n` +
-            `> Reconnect dalam ${RECONNECT_INTERVAL / 1000} detik...`,
+            `> 📱 Numero: *@${id}*\n` +
+            `> 📋 Razon: *${errorInfo.reason}*\n` +
+            `> 🔁 Intento: *${attempts + 1}/${MAX_RECONNECT_ATTEMPTS}*\n\n` +
+            `> Reconexion en ${RECONNECT_INTERVAL / 1000} segundos...`,
           mentions: [userJid],
         });
 
@@ -667,11 +667,11 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
           {
             text:
               `🔗 *ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ*\n\n` +
-              `Masukkan kode berikut di WhatsApp kamu:\n\n` +
+              `Ingresa el siguiente codigo en tu WhatsApp:\n\n` +
               `> 📱 *Settings → Linked Devices → Link a Device*\n\n` +
               `\`\`\`${pairingCode}\`\`\`\n\n` +
-              `> 🕕 Kode berlaku beberapa menit\n` +
-              `> ⚠️ Jangan bagikan kode ini ke siapapun`,
+              `> 🕕 El codigo es valido por varios minutos\n` +
+              `> ⚠️ No compartas este codigo con nadie`,
             contextInfo: saluranCtx(),
             interactiveButtons: [
               {
@@ -691,27 +691,27 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
     } catch (e) {
       logger.error("Jadibot", "Failed to get pairing code: " + e.message);
 
-      let errorMsg = "Gagal mendapatkan pairing code";
+      let errorMsg = "Error al obtener el codigo de emparejamiento";
       if (
         e.message?.includes("rate") ||
         e.message?.includes("limit") ||
         e.message?.includes("428")
       ) {
-        errorMsg = "Rate limited! Tunggu 5-10 menit.";
+        errorMsg = "¡Límite de tasa alcanzado! Espera 5-10 minutos.";
       } else if (
         e.message?.includes("banned") ||
         e.message?.includes("blocked")
       ) {
-        errorMsg = "Nomor mungkin dibanned WhatsApp.";
+        errorMsg = "El número puede estar baneado por WhatsApp.";
       } else if (
         e.message?.includes("Connection Closed") ||
         e.message?.includes("closed")
       ) {
-        errorMsg = "Koneksi terputus. Coba lagi.";
+        errorMsg = "Conexion cortada. Intenta de nuevo.";
       }
 
       await safeSend(sock, m?.chat, {
-        text: `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ*\n\n> ${errorMsg}`,
+        text: `❌ *ᴊᴀᴅɪʙᴏᴛ ғᴀʟʟᴏ*\n\n> ${errorMsg}`,
       });
 
       try {

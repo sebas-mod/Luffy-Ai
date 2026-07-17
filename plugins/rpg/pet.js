@@ -65,19 +65,19 @@ function handler(m, { sock }) {
     const maxHunger = 100;
     const hungerStatus = pet.hunger >= 70 ? "😊 Feliz & Lleno" : pet.hunger >= 40 ? "😐 Normal" : "😰 ¡Muy Hambriento!";
 
-    let txt = `🐾 *Buku Identitas Peliharaan* 🐾\n\n`;
-    txt += `*Profil Si ${pet.name}:*\n`;
-    txt += `• Spesies: *${petInfo.name}*\n`;
+    let txt = `🐾 *Libro de Identidad de Mascota* 🐾\n\n`;
+    txt += `*Perfil del/la ${pet.name}:*\n`;
+    txt += `• Especie: *${petInfo.name}*\n`;
     txt += `• Level: *${pet.level || 1}*\n`;
     txt += `• EXP: *${pet.exp || 0} / ${(pet.level || 1) * 100}*\n`;
-    txt += `• Perut: *${pet.hunger}/${maxHunger}* (${hungerStatus})\n\n`;
+    txt += `• Estómago: *${pet.hunger}/${maxHunger}* (${hungerStatus})\n\n`;
 
-    txt += `*Kekuatan Fisik:*\n`;
+    txt += `*Fuerza Física:*\n`;
     txt += `⚔️ Attack: *${pet.stats?.attack || petInfo.baseStats.attack}*\n`;
     txt += `🛡️ Defense: *${pet.stats?.defense || petInfo.baseStats.defense}*\n`;
     txt += `🍀 Luck: *${pet.stats?.luck || petInfo.baseStats.luck}*\n\n`;
 
-    txt += `*Interaksi:*\n`;
+    txt += `*Interacción:*\n`;
     txt += `👉 \`${m.prefix}pet feed <comida>\` - Alimentar\n`;
     txt += `👉 \`${m.prefix}pet train\` - Entrenar para que sea fuerte\n`;
     txt += `👉 \`${m.prefix}pet rename <nuevo_nombre>\` - Cambiar nombre\n`;
@@ -96,7 +96,7 @@ function handler(m, { sock }) {
       txt += `*Lista de Comida en tu Mochila:*\n`;
       for (const [key, food] of Object.entries(FOOD_ITEMS)) {
         const have = user.inventory[key] || 0;
-        txt += `\n*${food.name}* (Punya: ${have}x)\n`;
+        txt += `\n*${food.name}* (Tiene: ${have}x)\n`;
         txt += `🍖 Saciado: +${food.hunger} | ✨ EXP: +${food.exp}\n`;
         txt += `👉 Alimentar: \`.pet feed ${key}\`\n`;
       }
@@ -131,13 +131,13 @@ function handler(m, { sock }) {
       pet.stats.attack += 2;
       pet.stats.defense += 1;
       pet.stats.luck += 1;
-      levelUpMsg = `\n🎉 *WOHOO! Si ${pet.name} LEVEL UP jadi Level ${pet.level}!* 🎉`;
+      levelUpMsg = `\n🎉 *WOHOO! ¡${pet.name} SUBE DE NIVEL al Nivel ${pet.level}!* 🎉`;
     }
 
     db.save();
 
     return m.reply(
-      `Nyam... nyam... nyam! 🤤🍖\n\n` +
+      `Ñam... ñam... ñam! 🤤🍖\n\n` +
         `¡El *${pet.name}* devoró *${food.name}* con avidez!\n` +
         `🍖 Se llenó el estómago *+${food.hunger}* (${pet.hunger}/100)\n` +
         `✨ Obtuvo EXP *+${food.exp}*` +
@@ -163,7 +163,7 @@ function handler(m, { sock }) {
       pet.stats.attack += 2;
       pet.stats.defense += 1;
       pet.stats.luck += 1;
-      levelUpMsg = `\n🎉 *MANTAP! Si ${pet.name} LEVEL UP jadi Level ${pet.level}!* 🎉`;
+      levelUpMsg = `\n🎉 *¡GENIAL! ¡${pet.name} SUBE DE NIVEL al Nivel ${pet.level}!* 🎉`;
     }
 
     db.save();

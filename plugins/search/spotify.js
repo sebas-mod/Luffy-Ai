@@ -62,7 +62,7 @@ async function handler(m, { sock, text }) {
           buttons: [
             {
               buttonId: `.spdl ${firstResult.url}`,
-              buttonText: { displayText: '🎵 Unduh Lagu Pertama' },
+              buttonText: { displayText: '🎵 Descargar Primera Canción' },
               type: 1,
             }
           ],

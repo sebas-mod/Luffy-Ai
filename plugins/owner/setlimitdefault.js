@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     }
     
     if (newLimit < 1 || newLimit > 1000) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El límite debe estar entre 1 - 1000`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> El límite debe estar entre 1 - 1000`)
     }
     
     const db = getDatabase()
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     db.save()
     
     await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n` +
+        `✅ *ᴇxɪᴛᴏ*\n\n` +
         `> El límite predeterminado ha sido cambiado a: \`${newLimit}\`\n` +
         `> Los usuarios nuevos tendrán este límite`
     )

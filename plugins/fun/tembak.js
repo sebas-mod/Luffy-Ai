@@ -137,7 +137,7 @@ async function handler(m, { sock }) {
     `💘 *ALGUIEN ESTÁ PROponiENDO*\n\n` +
       `Eh @${targetJid.split("@")[0]} , ¡te está proponiendo @${m.sender.split("@")[0]}!\n\n` +
       `⏱️ Válido por *1 hora* desde ahora\n` +
-      `Usa: \`${m.prefix}terima\` / \`${m.prefix}tolak\``,
+      `Usa: \`${m.prefix}aceptar\` / \`${m.prefix}rechazar\``,
     { contextInfo: ctx },
   );
 

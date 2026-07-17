@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
 
     if (!isUnlimited && effectiveUnlimited) {
         return m.reply(
-            `⚡ *INFORMASI*\n` +
-            `@${targetJid.split('@')[0]} ya memiliki energi *∞ Unlimited*\n` +
+            `⚡ *INFORMACION*\n` +
+            `@${targetJid.split('@')[0]} ya tiene energía *∞ Unlimited*\n` +
             `No es necesario agregando energía de nuevo`,
             { mentions: [targetJid] }
         )
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ *Energi @${targetJid.split('@')[0]} ahora unlimited / ilimitado*`,
+            `✅ *Energia @${targetJid.split('@')[0]} ahora unlimited / ilimitado*`,
             { mentions: [targetJid] }
         )
     } else {
@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ Energi *@${targetJid.split('@')[0]}* éxito agregado por la cantidad de *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newEnergi)}* energi`,
+            `✅ Energia *@${targetJid.split('@')[0]}* éxito agregado por la cantidad de *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newEnergi)}* energia`,
             { mentions: [targetJid] }
         )
     }

@@ -59,8 +59,8 @@ async function handler(m, { sock }) {
   let invText = `🎒 ¡Este es el contenido de tu Mochila! ✨\n\n`;
 
   invText += `❤️ HP: *${user.rpg?.health || 100}*\n`;
-  invText += `💸 Koin: *${(user.koin || 0).toLocaleString("id-ID")}*\n`;
-  invText += `📈 EXP: *${(user.exp || 0).toLocaleString("id-ID")}*\n\n`;
+  invText += `💸 Monedas: *${(user.belly || 0).toLocaleString("es-ES")}*\n`;
+  invText += `📈 EXP: *${(user.exp || 0).toLocaleString("es-ES")}*\n\n`;
 
   let hasItem = false;
   const categories = {

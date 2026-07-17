@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
     
     if (!mediaSource) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
             `> ¡No se detectó ningún sticker!\n\n` +
             `*Forma de uso:*\n` +
             `> 1. Envía sticker + caption \`${m.prefix}toimg\`\n` +
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.reply(
-                `❌ *ɢᴀɢᴀʟ*\n\n` +
+                `❌ *ꜰᴀʟʟᴏ*\n\n` +
                 `> No se pudo descargar el sticker.\n` +
                 `> Es posible que el sticker ya no esté disponible.`
             )

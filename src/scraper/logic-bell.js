@@ -19,7 +19,7 @@ function buildHistoryText(history = []) {
     return "";
   }
 
-  return `Riwayat percakapan:\n${lines.join("\n")}`;
+  return `Historial de conversación:\n${lines.join("\n")}`;
 }
 
 function buildTextMessage(message, history = [], imageBuffer = null) {
@@ -31,10 +31,10 @@ function buildTextMessage(message, history = [], imageBuffer = null) {
   }
 
   if (imageBuffer) {
-    parts.push("User mengirim gambar. Jika gambar bisa dianalisis, gunakan konteks itu saat menjawab.");
+    parts.push("El usuario envió una imagen. Si la imagen puede analizarse, usa ese contexto al responder.");
   }
 
-  parts.push(`Pesan user saat ini:\n${String(message || "").trim() || "(gambar tanpa teks)"}`);
+  parts.push(`Mensaje actual del usuario:\n${String(message || "").trim() || "(imagen sin texto)"}`);
 
   return parts.filter(Boolean).join("\n\n");
 }
@@ -64,7 +64,7 @@ async function chat({
 
   const apiKey = config.APIkey?.logicBell;
   if (!apiKey) {
-    throw new Error("API key logicBell belum diisi.");
+    throw new Error("API key de logicBell no configurada.");
   }
 
   const aiNames = getAiNames(aiFullName);

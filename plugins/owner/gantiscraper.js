@@ -132,7 +132,7 @@ async function handler(m, { sock }) {
         `Reply code scraper nuevo con caption:\n` +
         `\`${m.prefix}gantiscraper\` - Auto detect de export\n` +
         `\`${m.prefix}gantiscraper nombrefile\` - Custom nombre file\n\n` +
-        `📋 *Lihat lista scraper:*\n` +
+        `📋 *Ver lista de scrapers:*\n` +
         `\`${m.prefix}gantiscraper list\`\n\n` +
         `⚠️ *ADVERTENCIA:*\nEl código antiguo se hará backup antes de ser reemplazado`,
     );
@@ -147,12 +147,12 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nError al descargar el archivo`);
+      return m.reply(`❌ *ERROR*\n\nError al descargar el archivo`);
     }
   }
 
   if (!code || code.length < 30) {
-    return m.reply(`❌ *GAGAL*\n\nEl código es demasiado corto o no válido`);
+    return m.reply(`❌ *ERROR*\n\nEl código es demasiado corto o no válido`);
   }
 
   const hasExport =
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
 
   if (!hasExport) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode no es un formato de scraper válido\nDebe hay export`,
+      `❌ *ERROR*\n\nCode no es un formato de scraper válido\nDebe hay export`,
     );
   }
 
@@ -187,14 +187,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nNo se puede detectar el nombre del scraper\nUsa \`${m.prefix}gantiscraper <nombrefile>\``,
+      `❌ *ERROR*\n\nNo se puede detectar el nombre del scraper\nUsa \`${m.prefix}gantiscraper <nombrefile>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNombre de archivo no válido`);
+    return m.reply(`❌ *ERROR*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -247,7 +247,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
 
     let replyText =
-      `✅ *SCRAPER ${isNewFile ? "DITAMBAH" : "DIGANTI"}*\n\n` +
+      `✅ *SCRAPER ${isNewFile ? "AÑADIDO" : "REEMPLAZADO"}*\n\n` +
       `╭─〔 *DETAIL* 〕───⬡\n` +
       `│ File: \`${fileName}.js\`\n` +
       `│ Folder: \`src/scraper\`\n` +
@@ -269,7 +269,7 @@ async function handler(m, { sock }) {
 
     replyText +=
       `🔄 *Hot Reload:*\n` +
-      `- Scraper: ${scraperReload.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
+      `- Scraper: ${scraperReload.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
       `- Plugins Detectados: ${pluginReloads.length}\n` +
       `- Plugins Éxito Reload: ${reloadSuccess.length}\n` +
       `- Plugins Fallo Reload: ${reloadFailed.length}\n\n`;

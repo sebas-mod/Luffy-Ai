@@ -64,11 +64,11 @@ async function handler(m, { sock }) {
   if (!targetJid) {
     return m.reply(
       "📁 *ᴀʀsɪᴘ ᴄʜᴀᴛ*\n\n" +
-        "> `.arsip 628xxx` — Arsipkan chat\n" +
-        "> `.arsip` (di private chat) — Arsipkan chat esto\n" +
-        "> `.arsip` (reply mensaje) — Arsipkan chat pengirim\n" +
-        "> `.arsip buka 628xxx` — Buka arsip chat\n" +
-        "> `.arsip todos` — Arsipkan todos chat",
+        "> `.arsip 628xxx` — Archivar chat\n" +
+        "> `.arsip` (en chat privado) — Archivar este chat\n" +
+        "> `.arsip` (reply mensaje) — Archivar chat del remitente\n" +
+        "> `.arsip buka 628xxx` — Abrir chat archivado\n" +
+        "> `.arsip todos` — Archivar todos los chats",
     );
   }
 

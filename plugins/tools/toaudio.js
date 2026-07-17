@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
     
     if (!mediaSource) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
             `> ¡No se detectó ningún video/nota de voz!\n\n` +
             `*Cómo usar:*\n` +
             `> 1. Envía video + caption \`${m.prefix}toaudio\`\n` +
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.reply(
-                `❌ *ɢᴀɢᴀʟ*\n\n` +
+                `❌ *ꜰᴀʟʟᴏ*\n\n` +
                 `> No se pudo descargar el medio.\n` +
                 `> Es posible que el medio ya no esté disponible.`
             )
@@ -103,7 +103,7 @@ async function handler(m, { sock }) {
 
         if (!fs.existsSync(outputPath)) {
             await m.reply(
-                `❌ *ᴋᴏɴᴠᴇʀsɪ ɢᴀɢᴀʟ*\n\n` +
+                `❌ *ᴄᴏɴᴠᴇʀsɪóɴ ꜰᴀʟʟᴀᴅᴀ*\n\n` +
                 `> Error al extraer audio del medio.\n` +
                 `> Asegúrate de que ffmpeg esté instalado correctamente.`
             )

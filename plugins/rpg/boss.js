@@ -114,7 +114,7 @@ async function handler(m, { sock }) {
   const boss = availableBosses[Math.floor(Math.random() * availableBosses.length)];
 
   await m.react("⚔️");
-  let introTxt = `⚠️ *PERINGATAN BAHAYA!* ⚠️\n\n`;
+  let introTxt = `⚠️ *ADVERTENCIA PELIGRO!* ⚠️\n\n`;
   introTxt += `Una aura de oscuridad cubre la arena... ¡*${boss.name}* ha aparecido frente a ti!\n\n`;
   introTxt += `❤️ HP del Jefe: *${boss.hp} HP*\n`;
   introTxt += `⚔️ Ataque: *${boss.attack} ATK*\n\n`;
@@ -169,7 +169,7 @@ async function handler(m, { sock }) {
     const expReward = boss.exp + Math.floor(Math.random() * 500);
     const goldReward = boss.gold + Math.floor(Math.random() * 2000);
 
-    user.koin = (user.koin || 0) + goldReward;
+    user.belly = (user.belly || 0) + goldReward;
     await addExpWithLevelCheck(sock, m, db, user, expReward);
 
     const droppedItems = [];
@@ -185,7 +185,7 @@ async function handler(m, { sock }) {
     txt += `¡Genial, lograste tumbar al monstruo gigante *${boss.name}*!\n\n`;
     txt += `*¡¡TESORO DEL JEFE!!*\n`;
     txt += `✨ EXP: *+${expReward.toLocaleString()}*\n`;
-    txt += `💰 Belly: *+Rp ${goldReward.toLocaleString()}*\n`;
+    txt += `💰 Belly: *+Belly ${goldReward.toLocaleString()}*\n`;
     if (droppedItems.length > 0) {
       txt += `📦 Item Loot: *${droppedItems.join(", ")}*\n`;
     }
@@ -193,14 +193,14 @@ async function handler(m, { sock }) {
 
     await m.react("🏆");
   } else {
-    const goldLoss = Math.floor((user.koin || 0) * 0.15);
-    user.koin = Math.max(0, (user.koin || 0) - goldLoss);
+    const goldLoss = Math.floor((user.belly || 0) * 0.15);
+    user.belly = Math.max(0, (user.belly || 0) - goldLoss);
     user.rpg.health = Math.max(1, (user.rpg.health || 100) - 50);
 
     txt = `💀 ¡¡OH NO... ¡HAS SIDO DERROTADO...! 💔\n\n`;
     txt += `La fuerza de *${boss.name}* era demasiado grande para ti!\n\n`;
     txt += `*Penalización por derrota:*\n`;
-    txt += `💸 Belly perdidos: *-Rp ${goldLoss.toLocaleString()}*\n`;
+    txt += `💸 Belly perdidos: *-Belly ${goldLoss.toLocaleString()}*\n`;
     txt += `❤️ HP reducido: *-50 HP*\n\n`;
     txt += `> 💡 _Consejo: ¡Mejora tu nivel y equipo antes de desafiarlo de nuevo!_`;
 

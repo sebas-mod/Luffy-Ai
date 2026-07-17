@@ -293,7 +293,9 @@ try {
       const plugin = await import(`../plugins/game/${file}`);
       const name = file.replace(".js", "");
       if (plugin.answerHandler) cachedGamePlugins.set(name, plugin);
-    } catch { }
+    } catch (e) {
+      console.error(`[GameLoader] Error loading ${file}:`, e.message);
+    }
   }
 } catch { }
 
@@ -871,7 +873,9 @@ async function messageHandler(msg, sock, options = {}) {
           if (!filePath) return;
           try {
             if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-          } catch { }
+} catch (e) {
+  console.error("[CMD VN] Cleanup error:", e.message);
+}
         });
       };
       try {
@@ -1166,7 +1170,7 @@ async function messageHandler(msg, sock, options = {}) {
 
     let gameEvaluated = false;
     if (
-      (hasActiveSession(m.chat) && m.quoted) ||
+      hasActiveSession(m.chat) ||
       hasSuitGame ||
       hasTTTGame ||
       hasUTGame

@@ -6,7 +6,7 @@ async function fbdown(url) {
     if (res.data && res.data.status) {
       return res.data;
     }
-    return { status: false, message: "Gagal mengambil data dari API" };
+    return { status: false, message: "Error al obtener datos de la API" };
   } catch (err) {
     return { status: false, message: err.message };
   }

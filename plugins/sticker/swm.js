@@ -34,13 +34,13 @@ async function handler(m, { sock, config: botConfig }) {
     
     const isSticker = quoted.type === 'stickerMessage' || quoted.isSticker
     if (!isSticker) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Responde a un sticker, no a ${quoted.type?.replace('Message', '') || 'otro medio'}`)
+        return m.reply(`❌ *Falló*\n\n> Responde a un sticker, no a ${quoted.type?.replace('Message', '') || 'otro medio'}`)
     }
     
     const input = m.text?.trim()
     if (!input) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *Falló*\n\n` +
             `> Ingresa el packname\n\n` +
             `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> \`${m.prefix}swm Luffy-AI\`\n` +
@@ -66,7 +66,7 @@ async function handler(m, { sock, config: botConfig }) {
         
         if (!buffer || buffer.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Error al descargar el sticker`)
+            return m.reply(`❌ *Falló*\n\n> Error al descargar el sticker`)
         }
         
         const exifOpts = { packname, author, emojis: ['🤖'] }

@@ -129,7 +129,7 @@ async function handler(m, { sock }) {
     }
 
     let caption = `🎵 *SEARCH THAT SONG* 🎵\n\n`;
-    caption += `*Judul:* ${result.song}\n`;
+    caption += `*Titulo:* ${result.song}\n`;
     if (result.artist) caption += `*Artista:* ${result.artist}\n`;
     if (result.album) caption += `*Album:* ${result.album}\n`;
     if (result.year) caption += `*Año:* ${result.year}\n`;
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
     }
 
     if (result.lyrics) {
-      await sock.sendMessage(m.chat, { text: `*Lirik:*\n\n${result.lyrics}` }, { quoted: m });
+      await sock.sendMessage(m.chat, { text: `*Letra:*\n\n${result.lyrics}` }, { quoted: m });
     }
 
     if (result.previewUrl) {

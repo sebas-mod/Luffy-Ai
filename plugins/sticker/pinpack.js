@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
   if (!query) {
     return m.reply(
       `── .✦ 𝗣𝗜𝗡 𝗣𝗔𝗖𝗞 ✦. ── 𝜗ৎ\n\n` +
-        `Cari gambar Pinterest → jadikan sticker pack!\n\n` +
+        `¡Busca imágenes en Pinterest → conviértelas en sticker pack!\n\n` +
         `╭─〔 Cómo Usar 〕───⬣\n` +
         `│  ✦ ${m.prefix}pinpack <query>\n` +
         `╰──────────────⬣\n\n` +

@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['spamingl', 'nglspam'],
     category: 'tools',
     description: 'Send NGL Spam',
-    usage: '.spamngl <url> | <text> | <jumlah>',
+    usage: '.spamngl <url> | <text> | <cantidad>',
     example: '.spamngl https://ngl.link/xxxx | hai | 10',
     isOwner: false,
     isPremium: false,

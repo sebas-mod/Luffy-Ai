@@ -17,7 +17,7 @@ async function Uguu(buffer, filename) {
     return res.data.files[0].url;
   }
 
-  throw new Error("Upload ke Uguu gagal");
+  throw new Error("Error al subir a Uguu");
 }
 
 async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
@@ -32,7 +32,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
   if (!pollUrl) {
     return {
       status: false,
-      error: start.data?.error || "Gagal memulai proses img2img",
+      error: start.data?.error || "Error al iniciar proceso img2img",
     };
   }
 
@@ -43,7 +43,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
     const poll = await axios.get(pollUrl, { timeout: 30000 });
 
     if (!poll.data?.status) {
-      return { status: false, error: "Polling gagal" };
+      return { status: false, error: "Polling falló" };
     }
 
     if (poll.data.data?.status === "Success") {
@@ -52,14 +52,14 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
     }
 
     if (poll.data.data?.status === "Failed") {
-      return { status: false, error: "Proses img2img gagal" };
+      return { status: false, error: "Proceso img2img falló" };
     }
 
     await new Promise((r) => setTimeout(r, 2000));
   }
 
   if (!result) {
-    return { status: false, error: "Timeout menunggu hasil" };
+    return { status: false, error: "Tiempo de espera agotado esperando resultado" };
   }
 
   return { status: true, prompt, imageUrl, result };

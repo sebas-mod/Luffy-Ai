@@ -145,9 +145,9 @@ async function handler(m, { sock }) {
 
   switch (reward.type) {
     case "balance":
-      db.updateKoin(m.sender, reward.amount);
+      db.updateBelly(m.sender, reward.amount);
       typeEmoji = "💰";
-      rewardText = `+${reward.amount.toLocaleString()} Koin`;
+      rewardText = `+${reward.amount.toLocaleString()} Belly`;
       break;
     case "exp":
       if (!user.rpg) user.rpg = {};
@@ -166,9 +166,9 @@ async function handler(m, { sock }) {
       rewardText = `+${reward.amount} Limit`;
       break;
     case "jackpot":
-      db.updateKoin(m.sender, reward.amount);
+      db.updateBelly(m.sender, reward.amount);
       typeEmoji = "💎";
-      rewardText = `+${reward.amount.toLocaleString()} Koin`;
+      rewardText = `+${reward.amount.toLocaleString()} Belly`;
       break;
   }
 

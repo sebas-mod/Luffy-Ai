@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
       groupMeta = await sock.groupMetadata(groupJid);
     } else {
       return m.reply(
-        `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗚𝗥𝗨𝗣 ✦. ── 𝜗ৎ\n\n` +
+        `── .✦ 𝗩𝗘𝗥𝗜𝗙𝗜𝗖𝗔𝗥 𝗜𝗗 𝗚𝗥𝗨𝗣𝗢 ✦. ── 𝜗ৎ\n\n` +
           `> Usa en grupo o ingresa link del grupo\n\n` +
           `> \`${m.prefix}cekidgc\` — dentro del grupo\n` +
           `> \`${m.prefix}cekidgc https://chat.whatsapp.com/xxx\``,
@@ -124,9 +124,9 @@ async function handler(m, { sock }) {
     const infoText =
       `── .✦ 𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢 ✦. ── 𝜗ৎ\n\n` +
       `╭─〔 ${groupName} 〕───⬣\n` +
-      `│  ✦ ɴᴀᴍᴀ        : *${groupName}*\n` +
+      `│  ✦ Nombre        : *${groupName}*\n` +
       `│  ✦ ɪᴅ             : \`${groupJid}\`\n` +
-      `│  ✦ ᴍᴇᴍʙᴇʀ     : *${memberCount}*\n` +
+      `│  ✦ Miembros     : *${memberCount}*\n` +
       `│  ✦ ᴀᴅᴍɪɴ        : *${adminCount}*\n` +
       `│  ✦ ᴏᴡɴᴇʀ       : @${groupOwner.replace(/@.+/g, "")}\n` +
       `│  ✦ ᴄʀᴇᴀᴅᴏ       : *${createdAt}*\n` +

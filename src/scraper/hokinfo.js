@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 async function scrapeHokCharacter(name) {
-    if (!name) throw new Error("Nama karakter kosong");
+    if (!name) throw new Error("El nombre del personaje está vacío");
 
     const url = `https://honor-of-kings.fandom.com/wiki/${encodeURIComponent(name)}`;
 
@@ -11,7 +11,7 @@ async function scrapeHokCharacter(name) {
     });
 
     if (!res.ok) {
-        throw new Error("Gagal mengambil halaman karakter");
+        throw new Error("Error al obtener la página del personaje");
     }
 
     const html = await res.text();
@@ -21,7 +21,7 @@ async function scrapeHokCharacter(name) {
 
     const title = clean($("#firstHeading").text());
     if (!title) {
-        throw new Error("Karakter tidak ditemukan");
+        throw new Error("Personaje no encontrado");
     }
 
     let image =

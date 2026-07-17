@@ -29,7 +29,7 @@ if (!global.ulartanggaGames) global.ulartanggaGames = {};
 const PLAYER_COLORS = ["🔴", "🟡", "🟢", "🔵"];
 const PLAYER_NAMES = ["Rojo", "Amarillo", "Verde", "Azul"];
 
-const WIN_REWARD = { koin: 2000, exp: 1000, energi: 5 };
+const WIN_REWARD = { belly: 2000, exp: 1000, energi: 5 };
 
 function uniqueMentions(mentions = []) {
   return [...new Set((mentions || []).filter(Boolean))];
@@ -407,7 +407,7 @@ async function handler(m, { sock }) {
       `┃ 🗑️ \`${prefix}ut delete\` - Eliminar sala\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
       `╭┈┈⬡「 🏆 *PREMIO* 」\n` +
-      `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
+      `┃ 💰 +${WIN_REWARD.belly.toLocaleString()} Belly\n` +
       `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
       `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
@@ -505,7 +505,7 @@ async function answerHandler(m, sock) {
   if (newPos === 100) {
     // Give rewards
     try {
-      db.updateKoin(m.sender, WIN_REWARD.koin);
+      db.updateBelly(m.sender, WIN_REWARD.belly);
       db.updateEnergi(m.sender, WIN_REWARD.energi);
       const userData = db.getUser(m.sender) || {};
       userData.exp = (userData.exp || 0) + WIN_REWARD.exp;
@@ -537,7 +537,7 @@ async function answerHandler(m, sock) {
           `🎉 *¡GANADOR!*\n\n` +
           `${color} @${m.sender.split("@")[0]} llego a la casilla 100!\n\n` +
           `╭┈┈⬡「 🎁 *PREMIO* 」\n` +
-          `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
+      `┃ 💰 +${WIN_REWARD.belly.toLocaleString()} Belly\n` +
           `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
           `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
@@ -551,7 +551,7 @@ async function answerHandler(m, sock) {
         `🎉 *¡GANADOR!*\n\n` +
         `${color} @${m.sender.split("@")[0]} llego a la casilla 100!\n\n` +
         `╭┈┈⬡「 🎁 *PREMIO* 」\n` +
-        `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
+        `┃ 💰 +${WIN_REWARD.belly.toLocaleString()} Belly\n` +
         `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
         `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
         `╰┈┈┈┈┈┈┈┈⬡`,

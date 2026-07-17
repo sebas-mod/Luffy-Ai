@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "addplugin",
   alias: ["addpl", "tambahplugin"],
   category: "owner",
-  description: "Añade un plugin nuevo desde código respondido",
+  description: "Agrega un plugin nuevo desde código respondido",
   usage: ".addplugin [nombrefile] [folder]",
   example: ".addplugin bliblidl downloader",
   isOwner: true,
@@ -50,19 +50,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nError al descargar el archivo`);
+      return m.reply(`❌ *FALLÓ*\n\nError al descargar el archivo`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`❌ *GAGAL*\n\nEl código es demasiado corto o no válido`);
+    return m.reply(`❌ *FALLÓ*\n\nEl código es demasiado corto o no válido`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode no es un formato de plugin válido\nDebe hay export y config`,
+      `❌ *FALLÓ*\n\nEl código no es un formato de plugin válido\nDebe haber export y config`,
     );
   }
 
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nNo se puede detectar el nombre del plugin\nUsa \`${m.prefix}addplugin <nombrefile>\``,
+      `❌ *FALLÓ*\n\nNo se puede detectar el nombre del plugin\nUsa \`${m.prefix}addplugin <nombrefile>\``,
     );
   }
 
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
   folderName = folderName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNombre de archivo no válido`);
+    return m.reply(`❌ *FALLÓ*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
     if (fs.existsSync(filePath)) {
       await m.react("❌");
       return m.reply(
-        `❌ *GAGAL*\n\n` +
+        `❌ *FALLÓ*\n\n` +
           `El archivo \`${fileName}.js\` ya existe en la carpeta \`${folderName}\`\n\n` +
           `💡 Usa \`${m.prefix}ganticode ${fileName} ${folderName}\` para reemplazar el código que ya existe`,
       );
@@ -116,12 +116,12 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     return m.reply(
-      `✅ *PLUGIN DITAMBAH*\n\n` +
-        `╭─〔 *DETAIL* 〕───⬣\n` +
-        `│ File: \`${fileName}.js\`\n` +
-        `│ Folder: \`${folderName}\`\n` +
-        `│ Size: \`${code.length} bytes\`\n` +
-        `│ Hot Reload: ${reloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
+      `✅ *PLUGIN AÑADIDO*\n\n` +
+        `╭─〔 *DETALLE* 〕───⬣\n` +
+        `│ Archivo: \`${fileName}.js\`\n` +
+        `│ Carpeta: \`${folderName}\`\n` +
+        `│ Tamaño: \`${code.length} bytes\`\n` +
+        `│ Recarga Rápida: ${reloadResult.success ? "✅ Éxito" : "⚠️ Pendiente"}\n` +
         `╰───────⬣\n\n` +
         `¡El plugin ya está activo y listo para usar!`,
     );

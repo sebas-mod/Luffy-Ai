@@ -113,11 +113,11 @@ async function handler(m, { sock }) {
 
     caption += `╭┈┈⬡「 🛒 *ɪᴛᴇᴍs* 」\n`;
     data.items.forEach((item, i) => {
-      caption += `┃ ${i + 1}. ${item.name} (${item.unit}) - Rp${item.price.toLocaleString("id-ID")}\n`;
+      caption += `┃ ${i + 1}. ${item.name} (${item.unit}) - Rp${item.price.toLocaleString("es-ES")}\n`;
     });
     caption += `╰┈┈⬡\n\n`;
 
-    caption += `> 💰 Total: *Rp${data.total.toLocaleString("id-ID")}*`;
+    caption += `> 💰 Total: *Rp${data.total.toLocaleString("es-ES")}*`;
 
     await sock.sendMessage(
       m.chat,

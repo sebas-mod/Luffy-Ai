@@ -69,7 +69,7 @@ class Database {
         logger.error("database", `gagal migrasi ${file}: ${e.message}`);
       }
     }
-    logger.success("database", "migrasi path selesai");
+    logger.success("database", "migración de ruta completada");
   }
 
   async init() {
@@ -157,7 +157,7 @@ class Database {
       this.ready = true;
       logger.success(
         "database",
-        "Multi-file database siap (debounced write setiap 5s)",
+        "Base de datos multi-archivo lista (escritura con rebote cada 5s)",
       );
       return this;
     } catch (error) {
@@ -361,7 +361,7 @@ class Database {
       isBanned: data.isBanned ?? existing.isBanned ?? false,
       exp: data.exp ?? existing.exp ?? 0,
       level: data.level ?? existing.level ?? 1,
-      koin: data.koin ?? existing.koin ?? existingBalance,
+      belly: data.belly ?? existing.belly ?? existingBalance,
       saldo: data.saldo ?? existing.saldo ?? 0,
       unlockedFeatures:
         data.unlockedFeatures ?? existing.unlockedFeatures ?? [],
@@ -429,14 +429,14 @@ class Database {
     return user.energi;
   }
 
-  updateKoin(jid, amount) {
+  updateBelly(jid, amount) {
     const user = this.getUser(jid) || this.setUser(jid);
     if (!user) return 0;
-    if (user.koin === -1) return -1;
-    const MAX_KOIN = 9000000000000;
-    user.koin = Math.max(0, Math.min(MAX_KOIN, (user.koin ?? 0) + amount));
+    if (user.belly === -1) return -1;
+    const MAX_BELLY = 9000000000000;
+    user.belly = Math.max(0, Math.min(MAX_BELLY, (user.belly ?? 0) + amount));
     this.setUser(jid, user);
-    return user.koin;
+    return user.belly;
   }
 
   updateSaldo(jid, amount) {
@@ -712,7 +712,7 @@ async function initDatabase(dbPath) {
 function getDatabase() {
   if (!dbInstance) {
     throw new Error(
-      "Database belum diinisialisasi. Panggil initDatabase terlebih dahulu.",
+      "Base de datos no inicializada. Llama a initDatabase primero.",
     );
   }
   return dbInstance;

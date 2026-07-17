@@ -35,7 +35,7 @@ async function handler(m, { sock, config }) {
         list += `👤 ${num}: *${name}*\n`;
       });
     } else {
-      list += `\n> Aún no hay nombre custom para owner tambahan`;
+      list += `\n> Aún no hay nombre custom para owner adicional`;
     }
     list += `\n\n*Uso:*\n`;
     list += `\`${m.prefix}ganti-nombreowner <número> <nombre>\`\n`;
@@ -63,7 +63,7 @@ async function handler(m, { sock, config }) {
       fs.writeFileSync(configPath, configContent);
       config.owner.name = newName;
       return m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nombre del owner principal cambiado a: *${newName}*`,
+        `✅ *ᴇxɪᴛᴏ*\n\n> Nombre del owner principal cambiado a: *${newName}*`,
       );
     } catch (error) {
       return m.reply(te(m.prefix, m.command, m.pushName));
@@ -75,7 +75,7 @@ async function handler(m, { sock, config }) {
 
   if (!targetNumber || targetNumber.length < 10) {
     return m.reply(
-      `❌ *ɢᴀɢᴀʟ*\n\n> Número no válido\n\n\`${m.prefix}ganti-nombreowner 628xxx NombreOwner\``,
+      `❌ *ғᴀʟʟᴏ*\n\n> Número no válido\n\n\`${m.prefix}ganti-nombreowner 628xxx NombreOwner\``,
     );
   }
 
@@ -91,7 +91,7 @@ async function handler(m, { sock, config }) {
   db.setting("ownerNames", nameMap);
 
   return m.reply(
-    `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*`,
+    `✅ *ᴇxɪᴛᴏ*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*`,
   );
 }
 

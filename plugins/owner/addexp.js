@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> La cantidad de EXP debe ser mayor a 0`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> La cantidad de EXP debe ser mayor a 0`)
     }
     
     if (amount > MAX_EXP) {

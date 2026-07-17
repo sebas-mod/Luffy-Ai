@@ -42,7 +42,7 @@ async function DaFont(query) {
     });
 
     if (results.length === 0) {
-      return { status: false, error: "Font tidak ditemukan" };
+      return { status: false, error: "Fuente no encontrada" };
     }
 
     return { status: true, query, count: results.length, results };

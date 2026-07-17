@@ -131,7 +131,7 @@ async function getMaatSign() {
   );
 
   if (res.status >= 400 || res.data?.code !== 0) {
-    throw new Error(`get_maat_sign gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`get_maat_sign fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data.data;
@@ -166,7 +166,7 @@ async function getUploadPolicy(sign) {
   );
 
   if (res.status >= 400 || !Array.isArray(res.data) || !res.data[0]?.qiniu) {
-    throw new Error(`upload policy gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`upload policy fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data[0].qiniu;
@@ -198,13 +198,13 @@ async function uploadToQiniu(policy, filePath) {
 
   if (res.status >= 400) {
     throw new Error(
-      `upload qiniu gagal HTTP ${res.status}: ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`,
+      `upload qiniu fallo HTTP ${res.status}: ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`,
     );
   }
 
   if (!res.data?.url && !res.data?.data) {
     throw new Error(
-      `upload qiniu response tidak valid: ${JSON.stringify(res.data)}`,
+      `upload qiniu respuesta no valida: ${JSON.stringify(res.data)}`,
     );
   }
 
@@ -234,7 +234,7 @@ async function getVideoInfo(fileKey) {
   );
 
   if (res.status >= 400 || res.data?.code !== 0) {
-    throw new Error(`video info gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`video info fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data.data;
@@ -258,7 +258,7 @@ async function startTranscode(fileKey) {
   );
 
   if (res.status >= 400 || res.data?.code !== 0 || !res.data?.data?.id) {
-    throw new Error(`transcode start gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`transcode start fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data.data.id;
@@ -278,7 +278,7 @@ async function queryTranscode(id) {
   );
 
   if (res.status >= 400 || res.data?.code !== 0) {
-    throw new Error(`transcode query gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`transcode query fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data.data;
@@ -357,7 +357,7 @@ async function delivery(sourceUrl, videoTranscoded, taskName) {
   });
 
   if (res.status >= 400 || res.data?.code !== 0) {
-    throw new Error(`delivery gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`delivery fallo: ${JSON.stringify(res.data)}`);
   }
 
   const data = res.data.data || {};
@@ -386,7 +386,7 @@ async function queryBatch(msgId) {
   );
 
   if (res.status >= 400 || res.data?.code !== 0) {
-    throw new Error(`query batch gagal: ${JSON.stringify(res.data)}`);
+    throw new Error(`query batch fallo: ${JSON.stringify(res.data)}`);
   }
 
   return res.data.data;
@@ -455,13 +455,13 @@ async function waitResult(firstMsgId, maxTry = 120, delayMs = 5000) {
     }
 
     if (errorCode && errorCode !== 29901 && errorCode !== 0) {
-      throw new Error(`task gagal: ${errorCode} ${errorMsg || ""}`);
+      throw new Error(`task fallo: ${errorCode} ${errorMsg || ""}`);
     }
 
     await sleep(delayMs);
   }
 
-  throw new Error(`result belum selesai: ${JSON.stringify(last)}`);
+  throw new Error(`resultado aun no completado: ${JSON.stringify(last)}`);
 }
 
 async function winkEnhance(video, { filename } = {}) {
@@ -478,7 +478,7 @@ async function winkEnhance(video, { filename } = {}) {
   }
 
   if (!fs.existsSync(filePath)) {
-    throw new Error(`File tidak ditemukan: ${filePath}`);
+    throw new Error(`Archivo no encontrado: ${filePath}`);
   }
 
   try {
@@ -502,7 +502,7 @@ async function winkEnhance(video, { filename } = {}) {
 
     if (!firstMsgId) {
       throw new Error(
-        `delivery tidak mengembalikan msg_id: ${JSON.stringify(task.raw)}`,
+        `delivery no devolvio msg_id: ${JSON.stringify(task.raw)}`,
       );
     }
 

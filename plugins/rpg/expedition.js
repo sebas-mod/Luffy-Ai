@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   const maxExpeditions = Math.min(5, 1 + Math.floor((user.level || 1) / 10));
 
   if (!action || !["start", "claim", "status", "list"].includes(action)) {
-    let txt = `🗺️ *MARKAS EKSPEDISI* 🗺️\n\n`;
+    let txt = `🗺️ *BASE DE EXPEDICIÓN* 🗺️\n\n`;
     txt += `¡Envía una expedición a buscar tesoros mientras descansas!\n\n`;
     txt += `*Lista de Comandos:*\n`;
     txt += `📜 \`${m.prefix}expedition list\` (Ver Zonas)\n`;
@@ -98,10 +98,10 @@ async function handler(m, { sock }) {
     });
     db.save();
 
-    let txt = `🚀 *EKSPEDISI DIBERANGKATKAN!* 🚀\n\n`;
+    let txt = `🚀 *¡EXPEDICIÓN ENVIADA!* 🚀\n\n`;
     txt += `¡Tu grupo de expedición ya partió hacia el destino!\n`;
     txt += `📍 Tujuan: *${exp.name}*\n`;
-    txt += `⏱️ Estimasi Waktu: *${formatTime(exp.duration)}*\n\n`;
+    txt += `⏱️ Tiempo Estimado: *${formatTime(exp.duration)}*\n\n`;
     txt += `> ¡Relájate y cuando termine, reclama tu botín con \`${m.prefix}expedition claim\`!`;
 
     return m.reply(txt);
@@ -112,7 +112,7 @@ async function handler(m, { sock }) {
       return m.reply(`No hay ninguna expedición en curso. ¡Envía una ahora! 🏕️`);
     }
 
-    let txt = `⏳ *RADAR EKSPEDISI* ⏳\n\n`;
+    let txt = `⏳ *RADAR DE EXPEDICIÓN* ⏳\n\n`;
 
     for (let i = 0; i < user.rpg.expeditions.length; i++) {
       const exp = user.rpg.expeditions[i];
@@ -161,9 +161,9 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let txt = `🎉 *EKSPEDISI SELESAI!* 🎉\n\n`;
+    let txt = `🎉 *¡EXPEDICIÓN COMPLETADA!* 🎉\n\n`;
     txt += `¡Los grupos regresaron con botín de *${completedExps.length} expediciones*!\n\n`;
-    txt += `*🎁 HASIL PENCARIAN:*\n`;
+    txt += `*🎁 RESULTADOS DE BÚSQUEDA:*\n`;
     txt += `✨ EXP: *+${totalExp}*\n`;
     if (allRewards.length > 0) {
       txt += `📦 Items:\n`;

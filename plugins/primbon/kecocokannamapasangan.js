@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'acocokannombrepasangan',
     alias: ['cocoknombre', 'matchname'],
     category: 'primbon',
-    description: 'Cek acocokan nombre pasangan',
+    description: 'Verificar compatibilidad de nombres de pareja',
     usage: '.acocokannombrepasangan <nombre1> <nombre2>',
     example: '.acocokannombrepasangan putu ayla',
     isOwner: false,
@@ -31,15 +31,15 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo menganalisa`)
+            return m.reply(`❌ *FALLÓ*\n\n> Fallo al analizar`)
         }
         
         const result = data.data
         const response = `💕 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ ɴᴀᴍᴀ ᴘᴀsᴀɴɢᴀɴ*\n\n` +
             `> 👤 ${result.nama_anda}\n` +
             `> 💑 ${result.nama_pasangan}\n\n` +
-            `✅ *ꜱɪꜱɪ ᴘᴏꜱɪᴛɪꜰ:*\n${result.sisi_positif}\n\n` +
-            `❌ *ꜱɪꜱɪ ɴᴇɢᴀᴛɪꜰ:*\n${result.sisi_negatif}\n\n` +
+            `✅ *ʟᴀᴅᴇ ᴘᴏꜱɪᴛɪᴠᴀ:*\n${result.sisi_positif}\n\n` +
+            `❌ *ʟᴀᴅᴇ ɴᴇɢᴀᴛɪᴠᴀ:*\n${result.sisi_negatif}\n\n` +
             `> _${result.catatan}_`
         
         m.react('✅')

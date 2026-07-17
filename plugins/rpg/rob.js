@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     return m.reply(`¡No se encontró al objetivo en la base de datos! Parece que ya huyó. 🏃💨`);
   }
 
-  if ((victim.koin || 0) < 1000) {
-    return m.reply(`Vaya, ¡tu objetivo está en la pobreza total! Tiene menos de Rp 1.000, ¿cómo vas a robarle? ¡Busca a alguien con más dinero! 😤`);
+  if ((victim.belly || 0) < 1000) {
+    return m.reply(`Vaya, ¡tu objetivo está en la pobreza total! Tiene menos de Belly 1.000, ¿cómo vas a robarle? ¡Busca a alguien con más dinero! 😤`);
   }
 
   if (!robber.rpg) robber.rpg = {};
@@ -56,11 +56,11 @@ async function handler(m, { sock }) {
   const isSuccess = Math.random() < successRate;
 
   if (isSuccess) {
-    const maxSteal = Math.floor((victim.koin || 0) * 0.3);
+    const maxSteal = Math.floor((victim.belly || 0) * 0.3);
     const stolen = Math.floor(Math.random() * maxSteal) + 1000;
 
-    victim.koin = (victim.koin || 0) - stolen;
-    robber.koin = (robber.koin || 0) + stolen;
+    victim.belly = (victim.belly || 0) - stolen;
+    robber.belly = (robber.belly || 0) + stolen;
 
     const expGain = 300;
     await addExpWithLevelCheck(sock, m, db, robber, expGain);
@@ -69,24 +69,24 @@ async function handler(m, { sock }) {
 
     let txt = `¡GENIAL! ¡OBJETIVO ASALTADO CON ÉXITO! 🦹‍♂️💰\n\n`;
     txt += `¡Asustaste a @${target.split("@")[0]} hasta que se hizo pipí encima!\n`;
-    txt += `Dinero robado: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
+    txt += `Dinero robado: *+Belly ${stolen.toLocaleString("es-ES")}*\n`;
     txt += `Bonus EXP del asalto: *+${expGain}*\n\n`;
     txt += `*¡¡¡Corre antes de que llegue la policía!!!* 🚓💨`;
 
     await m.reply(txt, { mentions: [target] });
   } else {
     const fine = Math.floor(Math.random() * 10000) + 5000;
-    const actualFine = Math.min(fine, robber.koin || 0);
+    const actualFine = Math.min(fine, robber.belly || 0);
     const healthLoss = 25;
 
-    robber.koin = Math.max(0, (robber.koin || 0) - actualFine);
+    robber.belly = Math.max(0, (robber.belly || 0) - actualFine);
     robber.rpg.health = Math.max(0, robber.rpg.health - healthLoss);
 
     db.save();
 
     let txt = `¡¡IDIOTA! ¡¡TE PILLARON LOS VECINOS!! 🚨🤬\n\n`;
     txt += `En vez de ganar dinero, ¡te atraparon y te *montonaron a palazos todo el barrio*!\n`;
-    txt += `💸 Tu dinero confiscado: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
+    txt += `💸 Tu dinero confiscado: *-Belly ${actualFine.toLocaleString("es-ES")}*\n`;
     txt += `🤕 Cuerpo apaleado: *-${healthLoss} HP*\n\n`;
     txt += `*¡¡TE LO MERECES, para que no juegues aquí!!* 🤣`;
 

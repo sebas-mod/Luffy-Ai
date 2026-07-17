@@ -54,16 +54,16 @@ async function handler(m, { sock }) {
   const pulls = Math.min(10, Math.max(1, parseInt(args[0]) || 1));
   const totalCost = GACHA_COST * pulls;
 
-  if ((user.koin || 0) < totalCost) {
+  if ((user.belly || 0) < totalCost) {
     return m.reply(
       `💸 ¡¡TE FALTA PLATA PARA GACHA! 💸\n\n` +
-        `Precio Gacha: *Rp ${GACHA_COST.toLocaleString()}/Tirada*\n` +
-        `Total Necesario: *Rp ${totalCost.toLocaleString()} (${pulls}x)*\n\n` +
-        `Tu plata restante: *Rp ${(user.koin || 0).toLocaleString()}*. ¡Mejor ve a trabajar!`
+        `Precio Gacha: *Belly ${GACHA_COST.toLocaleString()}/Tirada*\n` +
+        `Total Necesario: *Belly ${totalCost.toLocaleString()} (${pulls}x)*\n\n` +
+        `Tu plata restante: *Belly ${(user.belly || 0).toLocaleString()}*. ¡Mejor ve a trabajar!`
     );
   }
 
-  user.koin -= totalCost;
+  user.belly -= totalCost;
 
   await m.react("🎰");
   await m.reply(`✨ ¡Las luces de discoteca se encienden... El tubo gacha gira con fuerza... ¡Tirando *${pulls}x* premios! 🎁✨`);
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
   }
 
   let txt = `🎉 ¡¡PAMM!! ¡¡EL TUBO SE ABRIÓ!! 🎉\n\n`;
-  txt += `Tirada *${pulls}x* | Dinero gastado: *Rp ${totalCost.toLocaleString()}*\n\n`;
+  txt += `Tirada *${pulls}x* | Dinero gastado: *Belly ${totalCost.toLocaleString()}*\n\n`;
   txt += `*🎁 TUS RESULTADOS DE GACHA:* \n`;
 
   let hasRare = false;

@@ -5,7 +5,7 @@ const pluginConfig = {
   alias: ["beli", "jual", "toko", "store", "buy", "sell"],
   category: "rpg",
   description: "Comprar y vender objetos RPG",
-  usage: ".shop <buy/sell> <item> <jumlah>",
+  usage: ".shop <buy/sell> <item> <cantidad>",
   example: ".shop buy potion 1",
   isOwner: false,
   isPremium: false,
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     txt += `*🛍️ En Venta (BUY):*\n`;
     for (const [key, item] of Object.entries(ITEMS)) {
       if (item.type === "buyable") {
-        txt += `${item.name}: *Rp ${item.price.toLocaleString("id-ID")}*\n`;
+        txt += `${item.name}: *Belly ${item.price.toLocaleString("es-ES")}*\n`;
       }
     }
     txt += `\n`;
@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
     txt += `*💰 A Compra (SELL):*\n`;
     for (const [key, item] of Object.entries(ITEMS)) {
       if (item.type === "sellable") {
-        txt += `${item.name}: *Rp ${item.price.toLocaleString("id-ID")}*\n`;
+        txt += `${item.name}: *Belly ${item.price.toLocaleString("es-ES")}*\n`;
       }
     }
 
@@ -108,16 +108,16 @@ async function handler(m, { sock }) {
     }
 
     const totalCost = item.price * amount;
-    if ((user.koin || 0) < totalCost) {
-      return m.reply(`¡Vaya, te faltan monedas para comprar *${amount}x ${item.name}*! 😭😭\nTus monedas: *Rp ${(user.koin || 0).toLocaleString("id-ID")}*\nFaltan *Rp ${(totalCost - (user.koin || 0)).toLocaleString("id-ID")}* más. ¡Busca dinero primero! 💸🏃💨`);
+    if ((user.belly || 0) < totalCost) {
+      return m.reply(`¡Vaya, te faltan monedas para comprar *${amount}x ${item.name}*! 😭😭\nTus monedas: *Belly ${(user.belly || 0).toLocaleString("es-ES")}*\nFaltan *Belly ${(totalCost - (user.belly || 0)).toLocaleString("es-ES")}* más. ¡Busca dinero primero! 💸🏃💨`);
     }
 
-    user.koin = (user.koin || 0) - totalCost;
+    user.belly = (user.belly || 0) - totalCost;
     user.inventory = user.inventory || {};
     user.inventory[itemKey] = (user.inventory[itemKey] || 0) + amount;
 
     db.save();
-    return m.reply(`¡¡MUCHAS GRACIAS! 🎉✨\n\nCompraste:\n🛒 Item: *${amount}x ${item.name}*\n💸 Total Pagado: *Rp ${totalCost.toLocaleString("id-ID")}*\n\n¡Esperamos tu próxima visita! 💖🛍️`);
+    return m.reply(`¡¡MUCHAS GRACIAS! 🎉✨\n\nCompraste:\n🛒 Item: *${amount}x ${item.name}*\n💸 Total Pagado: *Belly ${totalCost.toLocaleString("es-ES")}*\n\n¡Esperamos tu próxima visita! 💖🛍️`);
   }
 
   if (action === "sell") {
@@ -136,10 +136,10 @@ async function handler(m, { sock }) {
 
     user.inventory = user.inventory || {};
     user.inventory[itemKey] = userStock - amount;
-    user.koin = (user.koin || 0) + totalProfit;
+    user.belly = (user.belly || 0) + totalProfit;
 
     db.save();
-    return m.reply(`¡CLING! ¡DINERO RECIBIDO! 💰✨\n\nVendiste:\n📦 Item: *${amount}x ${item.name}*\n🤑 Total: *Rp ${totalProfit.toLocaleString("id-ID")}*\n\n¡Gracias por limpiar el almacén aquí! 🎉💖`);
+    return m.reply(`¡CLING! ¡DINERO RECIBIDO! 💰✨\n\nVendiste:\n📦 Item: *${amount}x ${item.name}*\n🤑 Total: *Belly ${totalProfit.toLocaleString("es-ES")}*\n\n¡Gracias por limpiar el almacén aquí! 🎉💖`);
   }
 }
 

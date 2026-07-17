@@ -30,15 +30,15 @@ const BREEDING_RESULTS = {
 };
 
 const PET_NAMES = {
-  cat: "🐱 Kucing",
-  dog: "🐕 Anjing",
-  bird: "🐦 Burung",
-  fish: "🐟 Ikan",
-  rabbit: "🐰 Kelinci",
-  lion: "🦁 Singa",
-  wolf: "🐺 Serigala",
-  phoenix: "🔥 Phoenix",
-  dragon: "🐉 Naga",
+  cat: "🐱 Gato",
+  dog: "🐕 Perro",
+  bird: "🐦 Pájaro",
+  fish: "🐟 Pez",
+  rabbit: "🐰 Conejo",
+  lion: "🦁 León",
+  wolf: "🐺 Lobo",
+  phoenix: "🔥 Fénix",
+  dragon: "🐉 Dragón",
   thunderbunny: "⚡ Thunder Bunny",
 };
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
         `*Requisitos:* \n` +
         `1. Ambos deben tener mascota\n` +
         `2. Ambas mascotas mínimo Nivel 5\n` +
-        `3. Costo de parto: *Rp 3.000*`
+        `3. Costo de parto: *Belly 3.000*`
     );
   }
 
@@ -88,11 +88,11 @@ async function handler(m, { sock }) {
   }
 
   const breedingCost = 3000;
-  if ((user.koin || 0) < breedingCost) {
-    return m.reply(`¡No tienes suficiente dinero para pagar al veterinario! Necesitas Rp ${breedingCost.toLocaleString()}. 😭`);
+  if ((user.belly || 0) < breedingCost) {
+    return m.reply(`¡No tienes suficiente dinero para pagar al veterinario! Necesitas Belly ${breedingCost.toLocaleString()}. 😭`);
   }
 
-  user.koin -= breedingCost;
+  user.belly -= breedingCost;
 
   await m.react("💕");
   await m.reply(`Uy, tu ${PET_NAMES[myPet.type]} y el ${PET_NAMES[partnerPet.type]} de tu amigo están a solas... 💕✨\nEspera un momento, el doctor está revisando el parto!`);
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
   txt += `🐣 Especie: *${PET_NAMES[resultPetType]}*\n\n`;
   
   txt += `EXP obtenida: *+${expReward}*\n`;
-  txt += `Costo de Parto: *Rp -${breedingCost.toLocaleString()}*\n\n`;
+  txt += `Costo de Parto: *Belly -${breedingCost.toLocaleString()}*\n\n`;
   
   txt += `*(Tu bebé fue guardado en la Pet Storage. Total guardados: ${user.rpg.petStorage.length})*`;
 

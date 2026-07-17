@@ -23,7 +23,7 @@ const pluginConfig = {
 const EXP_PER_LEVEL = 10000;
 
 function formatNumber(num) {
-  return num?.toLocaleString("id-ID") || "0";
+  return num?.toLocaleString("es-ES") || "0";
 }
 
 function getLevelBar(current, target) {
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
   const fmtDate = (ts) => {
     if (!ts) return null;
     const d = ts instanceof Date ? ts : new Date(Number(ts) * (String(ts).length <= 10 ? 1000 : 1));
-    return isNaN(d) ? null : d.toLocaleString('id-ID');
+    return isNaN(d) ? null : d.toLocaleString('es-ES');
   };
 
   if (!user.rpg) user.rpg = {};
@@ -129,16 +129,16 @@ async function handler(m, { sock }) {
     }
   }
 
-  let caption = `¡Hola kak @${phone}! 👋\n`;
+  let caption = `¡Hola @${phone}! 👋\n`;
   caption += `Esta es la información completa de tu perfil, estado y todos los activos que posees en el sistema del bot:\n\n`;
   
-  caption += `*〔 👤 INFORMASI PRIBADI 〕*\n`;
-  caption += `- *Nombre real:* ${user.name || m.pushName || "User"}\n`;
+  caption += `*〔 👤 INFORMACIÓN PERSONAL 〕*\n`;
+  caption += `- *Nombre real:* ${user.name || m.pushName || "Usuario"}\n`;
   if (user.isRegistered) {
       caption += `- *Nombre de registro:* ${user.regName} (${user.regAge} años, ${user.regGender})\n`;
   }
   caption += `- *Etiqueta / Mención:* @${target.split("@")[0]}\n`;
-  caption += `- *Estado de cuenta:* ${isOwnerUser ? "👑 Owner" : isPremiumUser ? "💎 Premium" : "🆓 Free User"}\n`;
+  caption += `- *Estado de cuenta:* ${isOwnerUser ? "👑 Propietario" : isPremiumUser ? "💎 Premium" : "🆓 Usuario Gratis"}\n`;
   if (user.isBanned) caption += `- *Baneado:* 🚫 Sí (No puede acceder a las funciones del bot)\n`;
   if (user.registeredAt) {
   caption += `- *Fecha de registro:* ${new Date(user.registeredAt).toLocaleDateString("es-ES")}\n`;
@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
       caption += `- *Pareja (Spouse):* @${user.rpg.spouse.split("@")[0]}\n`;
   }
 
-  caption += `\n*〔 ⚔️ RPG STATS & LEVEL 〕*\n`;
+  caption += `\n*〔 ⚔️ ESTADÍSTICAS RPG Y NIVEL 〕*\n`;
   caption += `- *Rol / Rango:* ${role}\n`;
   caption += `- *Nivel Actual:* ${user.rpg.level}\n`;
   caption += `- *Total Exp:* ${formatNumber(userExp)} XP\n`;
@@ -158,8 +158,8 @@ async function handler(m, { sock }) {
   caption += `- *Progreso al Nivel ${user.rpg.level + 1}:*\n  ${getLevelBar(expInLevel, expNeeded)}\n  _${formatNumber(expInLevel)} / ${formatNumber(expNeeded)} XP_\n`;
 
   caption += `\n*〔 💰 ACTIVOS & FINANZAS 〕*\n`;
-  caption += `- *Belly:* 🪙 ${user.koin?.toLocaleString("id-ID") || 0} _(Usado para funciones RPG)_\n`;
-  caption += `- *Dinero en el banco:* 🏦 Rp ${user.rpg?.bank?.toLocaleString("id-ID") || 0} _(A salvo de robos)_\n`;
+  caption += `- *Belly:* 🪙 ${user.belly?.toLocaleString("es-ES") || 0} _(Usado para funciones RPG)_\n`;
+  caption += `- *Dinero en el banco:* 🏦 Belly ${user.rpg?.bank?.toLocaleString("es-ES") || 0} _(A salvo de robos)_\n`;
   caption += `- *Energía restante:* ⚡ ${isOwnerUser || isPremiumUser ? "∞ Ilimitada" : user.energi} _(Necesaria cada vez que usas un comando)_\n`;
 
   caption += `\n*〔 📱 INFO DE WHATSAPP 〕*\n`;
@@ -171,12 +171,12 @@ async function handler(m, { sock }) {
   caption += `- *Bot WhatsApp:* ${isBot ? 'Sí' : 'No'}\n`;
   caption += `- *Device ID:* ${deviceId || '-'}\n`;
 
-  caption += `\n*〔 ℹ️ BIO & PROFILE 〕*\n`;
+  caption += `\n*〔 ℹ️ BIO Y PERFIL 〕*\n`;
   caption += `- *Avatar:* ${ppUrl ? 'Sí' : 'No'}\n`;
   caption += `- *Bio:* ${status || '-'}\n`;
   caption += `- *Bio Set:* ${fmtDate(statusTs) || '-'}\n`;
 
-  caption += `\n*〔 🏢 BUSINESS INFO 〕*\n`;
+  caption += `\n*〔 🏢 INFO DE NEGOCIOS 〕*\n`;
   caption += `- *Tipo de cuenta:* ${isBiz ? 'WhatsApp Business' : 'WhatsApp Normal'}\n`;
   if (isBiz) {
     caption += `- *Descripción:* ${bizProfile.description || '-'}\n`;
@@ -187,13 +187,13 @@ async function handler(m, { sock }) {
     caption += `- *Verificado:* ${bizProfile.isProfileLinked ? 'Sí' : 'No'}\n`;
     
     if (products > 0 || collectionsCount > 0) {
-      caption += `\n*〔 🛍️ CATALOG 〕*\n`;
+      caption += `\n*〔 🛍️ CATÁLOGO 〕*\n`;
       caption += `- *Total Productos:* ${products}\n`;
       caption += `- *Colecciones:* ${collectionsCount}\n`;
     }
   }
 
-  caption += `\n*〔 🤖 BOT VIEWPOINT 〕*\n`;
+  caption += `\n*〔 🤖 VISIÓN DEL BOT 〕*\n`;
   caption += `- *Bot JID:* ${sock.user?.id || '-'}\n`;
   caption += `- *Bot Platform:* ${sock.authState?.creds?.platform || process.platform || '-'}\n`;
   caption += `- *Runtime:* Node ${process.version}\n`;

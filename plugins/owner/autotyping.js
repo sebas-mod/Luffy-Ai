@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     const current = db.setting("autoTyping") ?? config.features?.autoTyping ?? true;
     return m.reply(
       `⌨️ *Auto Typing*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
+        `> Status: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}autotyping on* — Activar\n` +
         `> *${m.prefix}autotyping off* — Desactivar\n\n` +

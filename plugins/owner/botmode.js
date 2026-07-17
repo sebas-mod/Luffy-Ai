@@ -25,7 +25,7 @@ const MODE_DESCRIPTIONS = {
     store: 'Mode store manual, main + group + sticar + owner + store',
     pushkontak: 'Mode pushcontacto, main + group + sticar + owner + pushcontacto',
     otp: 'Mode OTP service, main + group + sticar + owner + otp',
-    all: 'Mode full, SEMUA fesor de todos mode puede diakses'
+    all: 'Mode full, TODAS las funciones de todos los modos pueden accederse'
 }
 
 async function handler(m, { sock }) {
@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
 
     if (!VALID_MODES.includes(mode)) {
         return m.reply(
-            `❌ *ᴍᴏᴅᴇ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-            `> Mode tersedia: \`${VALID_MODES.join(', ')}\``
+            `❌ *MODO NO VÁLIDO*\n\n` +
+            `> Modos disponibles: \`${VALID_MODES.join(', ')}\``
         )
     }
 

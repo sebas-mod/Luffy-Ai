@@ -57,21 +57,21 @@ async function handler(m, { sock }) {
   let txt = "";
 
   if (outcome.success) {
-    user.koin = (user.koin || 0) + outcome.money;
+    user.belly = (user.belly || 0) + outcome.money;
     await addExpWithLevelCheck(sock, m, db, user, outcome.exp);
 
     txt = `¡¡OPERACIÓN LIMPIA!! 🦹‍♂️✨\n\n`;
     txt += `${outcome.msg}\n\n`;
-    txt += `💰 Belly Haram: *+Rp ${outcome.money.toLocaleString("id-ID")}*\n`;
+    txt += `💰 Belly Haram: *+Belly ${outcome.money.toLocaleString("es-ES")}*\n`;
     txt += `📈 EXP Copet: *+${outcome.exp}*`;
   } else {
-    const actualFine = Math.min(outcome.fine, user.koin || 0);
-    user.koin = Math.max(0, (user.koin || 0) - actualFine);
+    const actualFine = Math.min(outcome.fine, user.belly || 0);
+    user.belly = Math.max(0, (user.belly || 0) - actualFine);
     user.rpg.health = Math.max(0, user.rpg.health - outcome.health);
 
     txt = `¡¡DESASTRE!! 🚨🤬\n\n`;
     txt += `${outcome.msg}\n\n`;
-    if (outcome.fine > 0) txt += `💸 Duit Damai/Rampasan: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
+    if (outcome.fine > 0) txt += `💸 Duit Damai/Rampasan: *-Belly ${actualFine.toLocaleString("es-ES")}*\n`;
     if (outcome.health > 0) txt += `🤕 Darah Bercucuran: *-${outcome.health} HP*`;
 
     if (user.rpg.health <= 0) {

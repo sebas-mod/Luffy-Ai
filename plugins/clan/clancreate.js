@@ -41,7 +41,7 @@ async function handler(m) {
         return m.reply(
             `⚔️ *CREAR CLAN*\n\n` +
             `¡Crea un clan y reúne miembros!\n\n` +
-            `Costo: *Rp ${CLAN_CREATE_COST.toLocaleString('es-ES')}*\n` +
+            `Costo: *Belly ${CLAN_CREATE_COST.toLocaleString('es-ES')}*\n` +
             `Máx. nombre: *${MAX_CLAN_NAME} caracteres*\n\n` +
             `Ejemplo: *.clancreate DragonSlayer*`
         )
@@ -66,11 +66,11 @@ async function handler(m) {
         return m.reply(`❌ El nombre *${clanName}* ya está en uso`)
     }
 
-    if ((user.koin || 0) < CLAN_CREATE_COST) {
+    if ((user.belly || 0) < CLAN_CREATE_COST) {
         return m.reply(
             `❌ Monedas insuficientes\n\n` +
-            `Necesitas: *Rp ${CLAN_CREATE_COST.toLocaleString('es-ES')}*\n` +
-            `Tienes: *Rp ${(user.koin || 0).toLocaleString('es-ES')}*`
+            `Necesitas: *Belly ${CLAN_CREATE_COST.toLocaleString('es-ES')}*\n` +
+            `Tienes: *Belly ${(user.belly || 0).toLocaleString('es-ES')}*`
         )
     }
 
@@ -92,7 +92,7 @@ async function handler(m) {
     }
 
     db.db.data.clans[clanId] = clan
-    db.updateKoin(m.sender, -CLAN_CREATE_COST)
+    db.updateBelly(m.sender, -CLAN_CREATE_COST)
     db.setUser(m.sender, { clanId })
     await db.save()
 
@@ -101,7 +101,7 @@ async function handler(m) {
         `*${clanName}*\n` +
         `Líder: @${m.sender.split('@')[0]}\n` +
         `Estado: Abierto · 1/50 miembros\n\n` +
-        `_-Rp ${CLAN_CREATE_COST.toLocaleString('es-ES')}_\n\n` +
+        `_-Belly ${CLAN_CREATE_COST.toLocaleString('es-ES')}_\n\n` +
         `Invita amigos: *.claninvite @user*\n` +
         `O comparte el ID: *${clanId}*`,
         { mentions: [m.sender] }

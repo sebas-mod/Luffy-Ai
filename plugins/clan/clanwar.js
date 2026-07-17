@@ -16,8 +16,8 @@ const pluginConfig = {
 }
 
 const REWARDS = {
-    koinWin: 30000,
-    koinLose: 6000,
+    bellyWin: 30000,
+    bellyLose: 6000,
     expWin: 15000,
     expLose: 3000,
     energiWin: 15,
@@ -43,8 +43,8 @@ function getScaledRewards(clan) {
     const level = clan.level || 1
     const mult = 1 + (level * 0.1)
     return {
-        koinWin: Math.floor(REWARDS.koinWin * mult),
-        koinLose: Math.floor(REWARDS.koinLose * mult),
+        bellyWin: Math.floor(REWARDS.bellyWin * mult),
+        bellyLose: Math.floor(REWARDS.bellyLose * mult),
         expWin: Math.floor(REWARDS.expWin * mult),
         expLose: Math.floor(REWARDS.expLose * mult),
         energiWin: Math.floor(REWARDS.energiWin * mult),
@@ -109,12 +109,12 @@ async function handler(m) {
         enemyClan.exp = (enemyClan.exp || 0) + REWARDS.clanExpLose
 
         for (const jid of myClan.members) {
-            db.updateKoin(jid, myR.koinWin)
+            db.updateBelly(jid, myR.bellyWin)
             db.updateExp(jid, myR.expWin)
             db.updateEnergi(jid, myR.energiWin)
         }
         for (const jid of enemyClan.members) {
-            db.updateKoin(jid, enemyR.koinLose)
+            db.updateBelly(jid, enemyR.bellyLose)
             db.updateExp(jid, enemyR.expLose)
             db.updateEnergi(jid, enemyR.energiLose)
         }
@@ -125,12 +125,12 @@ async function handler(m) {
         enemyClan.exp = (enemyClan.exp || 0) + REWARDS.clanExpWin
 
         for (const jid of myClan.members) {
-            db.updateKoin(jid, myR.koinLose)
+            db.updateBelly(jid, myR.bellyLose)
             db.updateExp(jid, myR.expLose)
             db.updateEnergi(jid, myR.energiLose)
         }
         for (const jid of enemyClan.members) {
-            db.updateKoin(jid, enemyR.koinWin)
+            db.updateBelly(jid, enemyR.bellyWin)
             db.updateExp(jid, enemyR.expWin)
             db.updateEnergi(jid, enemyR.energiWin)
         }
@@ -154,11 +154,11 @@ async function handler(m) {
 
     if (isWin) {
         txt += `🎁 Recompensa por miembro:\n`
-        txt += `+Rp ${myR.koinWin.toLocaleString('es-ES')} · +${myR.expWin.toLocaleString('es-ES')} EXP · +${myR.energiWin} Energía\n`
+        txt += `+Belly ${myR.bellyWin.toLocaleString('es-ES')} · +${myR.expWin.toLocaleString('es-ES')} EXP · +${myR.energiWin} Energía\n`
         txt += `+${REWARDS.clanExpWin.toLocaleString('es-ES')} Clan EXP`
     } else {
         txt += `😔 Consolación por miembro:\n`
-        txt += `+Rp ${myR.koinLose.toLocaleString('es-ES')} · +${myR.expLose.toLocaleString('es-ES')} EXP · +${myR.energiLose} Energía\n`
+        txt += `+Belly ${myR.bellyLose.toLocaleString('es-ES')} · +${myR.expLose.toLocaleString('es-ES')} EXP · +${myR.energiLose} Energía\n`
         txt += `+${REWARDS.clanExpLose.toLocaleString('es-ES')} Clan EXP`
     }
 

@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     for (const [key, crop] of Object.entries(CROPS)) {
       txt += `\n*${crop.name}*\n`;
       txt += `⏳ Tiempo de Crecimiento: ${formatTime(crop.growTime)}\n`;
-      txt += `💰 Precio de Venta: Rp ${crop.sellPrice} | 🌱 Precio de Semilla: Rp ${crop.seedPrice}\n`;
+      txt += `💰 Precio de Venta: Belly ${crop.sellPrice} | 🌱 Precio de Semilla: Belly ${crop.seedPrice}\n`;
       txt += `👉 Comprar: \`.garden buy ${key}\`\n`;
     }
     return m.reply(txt);
@@ -102,16 +102,16 @@ async function handler(m, { sock }) {
     const qty = Math.max(1, parseInt(args[2]) || 1);
     const totalCost = crop.seedPrice * qty;
 
-    if ((user.koin || 0) < totalCost) {
-      return m.reply(`¡Eh, no tienes suficiente dinero! 😭\nEl total es Rp ${totalCost.toLocaleString()}, pero solo tienes Rp ${(user.koin || 0).toLocaleString()}.`);
+    if ((user.belly || 0) < totalCost) {
+      return m.reply(`¡Eh, no tienes suficiente dinero! 😭\nEl total es Belly ${totalCost.toLocaleString()}, pero solo tienes Belly ${(user.belly || 0).toLocaleString()}.`);
     }
 
-    user.koin -= totalCost;
+    user.belly -= totalCost;
     const seedKey = `${cropName}seed`;
     user.inventory[seedKey] = (user.inventory[seedKey] || 0) + qty;
     db.save();
 
-    return m.reply(`¡Gracias por comprar en la Tienda Agrícola! 🛒🌱\n\nCompraste *${qty}x Semilla de ${crop.name}*\nTotal Pagado: *Rp ${totalCost.toLocaleString()}*\n\n¡No olvides plantarla con \`${m.prefix}garden plant ${cropName}\`!`);
+    return m.reply(`¡Gracias por comprar en la Tienda Agrícola! 🛒🌱\n\nCompraste *${qty}x Semilla de ${crop.name}*\nTotal Pagado: *Belly ${totalCost.toLocaleString()}*\n\n¡No olvides plantarla con \`${m.prefix}garden plant ${cropName}\`!`);
   }
 
   if (action === "plant") {

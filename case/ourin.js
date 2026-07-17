@@ -124,7 +124,7 @@ async function handleCommand(m, sock) {
         } catch (error) {
           console.error("[CPing] Error:", error);
           await m.react("❌");
-          await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${error.message}`);
+          await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ${error.message}`);
         }
         return { handled: true };
       }
@@ -207,7 +207,7 @@ async function handleCommand(m, sock) {
         } catch (error) {
           console.error("[ListAllCase] Error:", error);
           await m.react("❌");
-          await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${error.message}`);
+          await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ${error.message}`);
         }
         return { handled: true };
       }
@@ -232,7 +232,7 @@ async function handleCommand(m, sock) {
           }
 
           if (totalPlugins === 0) {
-            await m.reply("⚠️ *Belum ada plugin yang dimuat*");
+            await m.reply("⚠️ *Aún no hay plugins cargados*");
             return { handled: true };
           }
 
@@ -295,7 +295,7 @@ async function handleCommand(m, sock) {
         } catch (error) {
           console.error("[ListAllPlugin] Error:", error);
           await m.react("❌");
-          await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${error.message}`);
+          await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ${error.message}`);
         }
         return { handled: true };
       }

@@ -42,21 +42,21 @@ async function handler(m, { sock }) {
     return m.reply(`¡MANUSCRITO RECHAZADO POR EL EDITOR! 🚮🥺\n\nRazón: "La historia es demasiado cliché y genérica."\n💵 Regalías: 0\n⚡ Stamina: -${staminaCost}\n\n¡No te rindas, escribe de nuevo mañana! 💪`);
   } else if (gacha > 0.9) {
     const viralRoyalti = Math.floor(Math.random() * 60000) + 30000;
-    user.koin = (user.koin || 0) + viralRoyalti;
+    user.belly = (user.belly || 0) + viralRoyalti;
     const expGain = Math.floor(viralRoyalti / 20);
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     
     await m.react("🌟");
-    return m.reply(`¡¡TU HISTORIA SE VOLVIÓ VIRAL Y ES BEST SELLER!! 🌟📘\n\n¡Muchos lloraron leyendo tu obra, las regalías fluyen a raudales!\n💵 Regalías: *+Rp ${viralRoyalti.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Pronto te contactará un director para la película! 🎬`);
+    return m.reply(`¡¡TU HISTORIA SE VOLVIÓ VIRAL Y ES BEST SELLER!! 🌟📘\n\n¡Muchos lloraron leyendo tu obra, las regalías fluyen a raudales!\n💵 Regalías: *+Belly ${viralRoyalti.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Pronto te contactará un director para la película! 🎬`);
   }
 
   const earning = Math.floor(Math.random() * 15000) + 5000;
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`¡REGALÍAS POR ESCRITURA EN TU CUENTA! 📝✨\n\n💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Sigue creando, poeta! 🎓`);
+  m.reply(`¡REGALÍAS POR ESCRITURA EN TU CUENTA! 📝✨\n\n💵 Ingreso: *+Belly ${earning.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Sigue creando, poeta! 🎓`);
 }
 
 export { pluginConfig as config, handler };

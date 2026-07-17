@@ -28,7 +28,7 @@ async function RedNoteDL(xhsUrl) {
   if (!resData.success) {
     return {
       status: false,
-      error: resData.error || "Gagal mengambil data",
+      error: resData.error || "Error al obtener datos",
     };
   }
 

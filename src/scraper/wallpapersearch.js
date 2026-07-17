@@ -37,7 +37,7 @@ async function wallpaperScraper(query) {
     if (!results.length) {
       return {
         success: false,
-        message: "Tidak ditemukan wallpaper"
+        message: "No se encontraron wallpapers"
       }
     }
 

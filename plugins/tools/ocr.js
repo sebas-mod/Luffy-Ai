@@ -10,7 +10,7 @@ const pluginConfig = {
   alias: ["totext", "imagetotext", "readtext"],
   category: "tools",
   description: "Extraer texto de imagen (Offline/Local)",
-  usage: ".ocr (reply gambar)",
+  usage: ".ocr (responder imagen)",
   example: ".ocr",
   isOwner: false,
   isPremium: false,
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     }
     if (!buffer || buffer.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudo descargar la imagen`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
     }
     const Tesseract = await getTesseract();
     const {
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     if (!extractedText || extractedText.length === 0) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴛᴇᴋs*\n\n> No se detectó texto en la imagen`,
+        `❌ *ɴᴏ ʜᴀʏ ᴛᴇxᴛᴏ*\n\n> No se detectó texto en la imagen`,
       );
     }
     await m.react("✅");
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
         .map((l) => `┃ ${l}`)
         .join("\n")}\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Total: ${extractedText.length} karakter`;
+      `> Total: ${extractedText.length} caracteres`;
     await sendToolsPreview(
       sock,
       m.chat,

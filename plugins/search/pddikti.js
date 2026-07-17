@@ -71,7 +71,7 @@ async function pddikti(input) {
 
     if (!query) {
       return { Status: false, Code: 400, Input: input, Result: null,
-        Error: "Palabra clave de búsqueda obligatoria (nama, NIM, NIDN, etc)." };
+        Error: "Palabra clave de búsqueda obligatoria (nombre, NIM, NIDN, etc)." };
     }
     if (query.length < 3) {
       return { Status: false, Code: 400, Input: input, Result: null,

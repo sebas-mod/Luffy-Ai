@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
   if (!user.rpg) user.rpg = {};
   db.updateExp(m.sender, expReward);
-  user.koin = (user.koin || 0) + moneyReward;
+  user.belly = (user.belly || 0) + moneyReward;
 
   if (!user.inventory) user.inventory = {};
   user.inventory.potion = (user.inventory.potion || 0) + potionReward;
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
 
   const greeting = getTimeGreeting();
 
-  let txt = `🎉 *ᴅᴀɪʟʏ ᴄʟᴀɪᴍ sᴜᴋsᴇs*\n`;
+  let txt = `🎉 *ᴄʟᴀɪᴍ ᴅɪᴀʀɪᴏ ᴇxɪᴛᴏꜱᴏ*\n`;
   txt += `> ${greeting}, @${m.sender.split("@")[0]}\n\n`;
   txt += `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n`;
   txt += `┃ 🚄 Exp: *+${expReward}*\n`;
-  txt += `┃ 💰 Belly: *+${moneyReward.toLocaleString("id-ID")}*\n`;
+  txt += `┃ 💰 Belly: *+${moneyReward.toLocaleString("es-ES")}*\n`;
   txt += `┃ 🥤 Potion: *+${potionReward}*\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   txt += `> ¡No olvides reclamar de nuevo mañana!`;

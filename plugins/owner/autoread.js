@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
     const current = db.setting("autoRead") ?? config.features?.autoRead ?? false;
     return m.reply(
       `📖 *Auto Read*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
+        `> Status: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}autoread on* — Activar\n` +
         `> *${m.prefix}autoread off* — Desactivar\n\n` +

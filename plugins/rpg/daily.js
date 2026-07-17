@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   const energiReward = isPremium ? 10 : 3;
 
   user.rpg.lastDaily = now;
-  user.koin = (user.koin || 0) + moneyReward;
+  user.belly = (user.belly || 0) + moneyReward;
   user.energi = (user.energi || 0) + energiReward;
 
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expReward);
@@ -56,8 +56,8 @@ async function handler(m, { sock }) {
 
   let txt = `¡GENIAL! ¡El sueldo diario ya cayó! 🎉✨\n\n`;
   txt += `Esta es tu ración de hoy:\n`;
-  txt += `💸 Belly: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
-  txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n`;
+  txt += `💸 Belly: *+Belly ${moneyReward.toLocaleString("es-ES")}*\n`;
+  txt += `📈 EXP: *+${expReward.toLocaleString("es-ES")}*\n`;
   txt += `⚡ Energía: *+${energiReward}*\n\n`;
   
   if (isPremium) {

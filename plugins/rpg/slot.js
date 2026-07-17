@@ -25,14 +25,14 @@ async function handler(m, { sock }) {
   let bet = parseInt(args[0]);
 
   if (!bet || bet < 1000) {
-    return m.reply(`¡La apuesta mínima para esta máquina es *Rp 1.000*, bro! 🎰\nEjemplo: \`.slot 5000\``);
+    return m.reply(`¡La apuesta mínima para esta máquina es *Belly 1.000*, bro! 🎰\nEjemplo: \`.slot 5000\``);
   }
 
-  if ((user.koin || 0) < bet) {
-    return m.reply(`¡Tus monedas están secas! 💸\nTu dinero: *Rp ${(user.koin || 0).toLocaleString("id-ID")}*\nNecesitas: *Rp ${bet.toLocaleString("id-ID")}*`);
+  if ((user.belly || 0) < bet) {
+    return m.reply(`¡Tus monedas están secas! 💸\nTu dinero: *Belly ${(user.belly || 0).toLocaleString("es-ES")}*\nNecesitas: *Belly ${bet.toLocaleString("es-ES")}*`);
   }
 
-  user.koin -= bet;
+  user.belly -= bet;
 
   const symbols = ["🍒", "🍋", "🍊", "🍇", "💎", "7️⃣"];
   const weights = [30, 25, 20, 15, 7, 3];
@@ -74,17 +74,17 @@ async function handler(m, { sock }) {
   }
 
   const winnings = Math.floor(bet * multiplier);
-  user.koin = (user.koin || 0) + winnings;
+  user.belly = (user.belly || 0) + winnings;
 
   let txt = `🎰 *RESULTADO DE LA MÁQUINA* 🎰\n\n`;
   txt += `[ ${result[0]} | ${result[1]} | ${result[2]} ]\n\n`;
 
   if (multiplier > 0) {
     txt += `${winText}\n`;
-    txt += `💰 Ganancia: *+Rp ${winnings.toLocaleString("id-ID")}*\n`;
+    txt += `💰 Ganancia: *+Belly ${winnings.toLocaleString("es-ES")}*\n`;
   } else {
     txt += `¡¡TRUENO! ¡La máquina se comió tu dinero! 😭💸\n`;
-    txt += `💸 Dinero Perdido: *-Rp ${bet.toLocaleString("id-ID")}*\n`;
+    txt += `💸 Dinero Perdido: *-Belly ${bet.toLocaleString("es-ES")}*\n`;
   }
 
   db.save();

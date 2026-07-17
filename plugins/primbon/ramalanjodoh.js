@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'ramalanjodoh',
     alias: ['jodoh', 'cekjodoh'],
     category: 'primbon',
-    description: 'Ramalan jodoh berdasarkan primbon Jawa',
+    description: 'Predicción de compatibilidad según primbon Javanés',
     usage: '.ramalanjodoh nombre1 tgl1 bln1 thn1 nombre2 tgl2 bln2 thn2',
     example: '.ramalanjodoh putu 16 11 2007 ayla 1 1 2008',
     isOwner: false,
@@ -31,14 +31,14 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.result) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo meramal`)
+            return m.reply(`❌ *FALLÓ*\n\n> Fallo al predecir`)
         }
         
         const r = data.data.result
         let response = `💑 *ʀᴀᴍᴀʟᴀɴ ᴊᴏᴅᴏʜ*\n\n`
         response += `👤 *${r.orang_pertama.nama}*\n> ${r.orang_pertama.tanggal_lahir}\n\n`
         response += `👤 *${r.orang_kedua.nama}*\n> ${r.orang_kedua.tanggal_lahir}\n\n`
-        response += `📜 *ʜᴀꜱɪʟ ʀᴀᴍᴀʟᴀɴ:*\n`
+        response += `📜 *ʀᴇsᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ᴘʀᴇᴅɪᴄᴄɪóɴ:*\n`
         
         r.hasil_ramalan.forEach((h, i) => {
             response += `${i+1}. ${h}\n\n`

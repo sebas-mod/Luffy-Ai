@@ -16,18 +16,18 @@ async function handler(m, { sock }) {
     const args = text.split('|')
 
     if (args.length < 2) {
-        let txt = `👥 *BUAT GRUP BARU* 👥\n\n`
+        let txt = `👥 *CREAR GRUPO NUEVO* 👥\n\n`
         txt += `¡Hola Owner! ¿Quieres crear un grupo nuevo de forma instantánea?\n\n`
-        txt += `*Cara Pakai:*\n`
+        txt += `*Modo de Uso:*\n`
         txt += `👉 \`${m.prefix}buatgrup Nombre Grup | 628xxx,628yyy | Durasi(minuto)\`\n\n`
         txt += `*Detail:*\n`
         txt += `• Usa \`|\` para separar nombre, participantes y duración\n`
         txt += `• Separa los números de participantes con coma\n`
         txt += `• Si se indica duración, el bot expulsará a todos los miembros y eliminará el grupo cuando el tiempo termine!\n`
         txt += `• El bot será automáticamente admin\n\n`
-        txt += `*Ejemplo Tanpa Durasi:*\n`
+        txt += `*Ejemplo Sin Duracion:*\n`
         txt += `\`${m.prefix}buatgrup Tim Alpha | 628123,628456\`\n\n`
-        txt += `*Ejemplo Con Durasi (Masa Activo 60 Minuto):*\n`
+        txt += `*Ejemplo Con Duracion (Periodo Activo 60 Minutos):*\n`
         txt += `\`${m.prefix}buatgrup Tim Beta | 628123,628456 | 60\``
         return m.reply(txt)
     }
@@ -63,13 +63,13 @@ async function handler(m, { sock }) {
         await m.react('🕕')
         const group = await sock.groupCreate(name, participants)
         
-        let successTxt = `👥 *GRUP BERHASIL DIBUAT* 👥\n\n`
+        let successTxt = `👥 *GRUPO CREADO CON ÉXITO* 👥\n\n`
         successTxt += `✨ *Nombre:* ${name}\n`
         successTxt += `🆔 *ID:* ${group.id}\n`
-        successTxt += `👤 *Peserta:* ${participants.length} persona(s)\n`
+        successTxt += `👤 *Participantes:* ${participants.length} persona(s)\n`
         
         if (durationMs > 0) {
-            successTxt += `⏳ *Masa Activo:* ${durationMins} Minuto\n`
+            successTxt += `⏳ *Periodo Activo:* ${durationMins} Minutos\n`
             successTxt += `\n⚠️ _¡Este grupo será automáticamente eliminado y todos los miembros serán expulsados cuando el tiempo activo termine!_\n`
         }
 
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
                         .filter(id => id !== botJid)
 
                     if (membersToKick.length > 0) {
-                        await sock.sendMessage(group.id, { text: `⏳ *MASA AKTIF GRUP HABIS* ⏳\n\nSegún el comando del Owner, el tiempo de este grupo ha terminado. ¡Adiós a todos! 👋` })
+                        await sock.sendMessage(group.id, { text: `⏳ *TIEMPO ACTIVO DEL GRUPO AGOTADO* ⏳\n\nSegún el comando del Owner, el tiempo de este grupo ha terminado. ¡Adiós a todos! 👋` })
                         await sock.groupParticipantsUpdate(group.id, membersToKick, 'remove')
                     }
                     
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
     } catch (err) {
         await m.react('❌')
-        return m.reply(`❌ Lo siento kak, error al crear grup! 😭\nError: ${err.message}`)
+        return m.reply(`❌ Lo siento, error al crear el grupo! 😭\nError: ${err.message}`)
     }
 }
 

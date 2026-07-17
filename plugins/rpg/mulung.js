@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     }
   }
 
-  user.koin = (user.koin || 0) + moneyEarned;
+  user.belly = (user.belly || 0) + moneyEarned;
 
   const expGain = Math.floor(Math.random() * 200) + 50;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     txt += `• ${r.name}: *+${r.qty}*\n`;
   }
   txt += `\n¡La chatarra se vendió al reciclador!\n`;
-  txt += `💵 Venta: *+Rp ${moneyEarned.toLocaleString("id-ID")}*\n`;
+  txt += `💵 Venta: *+Belly ${moneyEarned.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina usada: *-${staminaCost}*\n\n`;
   txt += `¡Sigue reciclando hasta ser rico! 🔥🚀`;

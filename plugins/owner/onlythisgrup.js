@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
         const isBotAdmin = participants.find(p => p.id === botNumber)?.admin !== null
 
         if (!isBotAdmin) {
-            return m.reply(`❌ *AKSES DITOLAK*\n\nEl bot debe ser admin en este grupo primero para poder obtener el enlace de invitación (link del grupo).`)
+            return m.reply(`❌ *ACCESO DENEGADO*\n\nEl bot debe ser admin en este grupo primero para poder obtener el enlace de invitación (link del grupo).`)
         }
 
         const inviteCode = await sock.groupInviteCode(m.chat).catch(() => null)
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
         db.save()
 
         await m.reply(
-            `🔒 *LOCKED BERHASIL*\n\n` +
+            `🔒 *BLOQUEADO CON EXITO*\n\n` +
             `A partir de ahora, el bot solo puede usarse de forma exclusiva en el grupo:\n` +
             `*${groupName}*\n\n` +
             `Los usuarios en otros grupos serán redirigidos para unirse a través del enlace:\n` +

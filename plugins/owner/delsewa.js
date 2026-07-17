@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   await m.reply(
-    `✅ *SEWA DIHAPUS*\n\nGrup: *${groupName}*\nID: ${groupId.split("@")[0]}`,
+    `✅ *ALQUILER ELIMINADO*\n\nGrup: *${groupName}*\nID: ${groupId.split("@")[0]}`,
   );
 
   if (db.db.data.sewa.enabled) {

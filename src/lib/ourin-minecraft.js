@@ -369,7 +369,7 @@ function doSmelt(mcUser) {
 
 function doCraft(mcUser, recipeKey) {
   const recipe = CRAFT_RECIPES[recipeKey];
-  if (!recipe) return { error: "🛠️ Resep tidak ada!" };
+  if (!recipe) return { error: "🛠️ ¡Receta no encontrada!" };
   if ((mcUser.level || 1) < recipe.requiredLevel)
     return { error: `⬆️ Level kurang! Butuh Lv.${recipe.requiredLevel}` };
 
@@ -561,7 +561,7 @@ function getAvailableMobs(mcUser) {
 
 function healPlayer(mcUser) {
   const cost = Math.floor((mcUser.maxHp - mcUser.hp) * 500);
-  if (mcUser.hp >= mcUser.maxHp) return { error: "❤️ HP sudah penuh!" };
+  if (mcUser.hp >= mcUser.maxHp) return { error: "❤️ ¡HP ya está lleno!" };
   if ((mcUser.money || 0) < cost)
     return { error: `💸 Uang kurang! Butuh ${formatMoney(cost)}` };
   mcUser.money -= cost;

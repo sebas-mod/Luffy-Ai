@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'artinombre',
     alias: ['nombremeaning', 'artinombreku'],
     category: 'primbon',
-    description: 'Cek arti nombre menurut primbon',
+    description: 'Verificar significado de nombre según primbon',
     usage: '.artinombre <nombre>',
     example: '.artinombre putu',
     isOwner: false,
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No puede menganalisa nombre`)
+            return m.reply(`❌ *FALLÓ*\n\n> No se pudo analizar el nombre`)
         }
         
         const result = data.data

@@ -219,22 +219,22 @@ const schedulerRegistry = {
   dailyLimitReset: {
     name: "Daily Limit Reset",
     key: "dailyLimitReset",
-    description: "Reset limit user jam 00:00",
+    description: "Reiniciar límite de usuario a las 00:00",
   },
   groupSchedule: {
     name: "Group Schedule",
     key: "groupSchedule",
-    description: "Auto open/close grup",
+    description: "Apertura/cierre automatico de grupo",
   },
   sewaChecker: {
     name: "Sewa Checker",
     key: "sewaChecker",
-    description: "Cek expired sewa setiap 10 menit",
+    description: "Verificar expiración de alquiler cada 10 minutos",
   },
   scheduledMessages: {
     name: "Schedule Planner",
     key: "scheduledMessages",
-    description: "Reminder dan jadwal bebas owner",
+    description: "Recordatorios y horarios personalizados del owner",
   },
 };
 
@@ -259,7 +259,7 @@ function getFullSchedulerStatus() {
         name: "Daily Limit Reset",
         key: "limitreset",
         running: activeCronJobs.has("dailyLimitReset"),
-        description: "Reset limit user jam 00:00",
+        description: "Reiniciar límite de usuario a las 00:00",
         lastRun: db.setting("lastLimitReset") || "Never",
         stats: { totalResets: db.getStats("dailyResets") || 0 },
       },
@@ -267,7 +267,7 @@ function getFullSchedulerStatus() {
         name: "Group Schedule",
         key: "groupschedule",
         running: activeCronJobs.has("groupSchedule"),
-        description: "Auto open/close grup terjadwal",
+        description: "Apertura/cierre automatico de grupo programado",
         lastRun: "-",
         stats: {},
       },
@@ -275,7 +275,7 @@ function getFullSchedulerStatus() {
         name: "Sewa Checker",
         key: "sewa",
         running: activeCronJobs.has("sewaChecker"),
-        description: "Cek expired sewa setiap 10 menit",
+        description: "Verificar expiración de alquiler cada 10 minutos",
         lastRun: "-",
         stats: {},
       },
@@ -283,7 +283,7 @@ function getFullSchedulerStatus() {
         name: "Schedule Planner",
         key: "messages",
         running: scheduledTasks.size > 0,
-        description: "Reminder dan jadwal custom owner",
+        description: "Recordatorios y horarios personalizados del owner",
         lastRun: "-",
         stats: {
           activeMessages: scheduledTasks.size,
@@ -463,7 +463,7 @@ async function startGroupScheduleChecker(sock) {
                 "not_announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grup dibuka otomatis sesuai jadwal.\n> Waktu: ${currentTime} ART`,
+                text: `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grupo abierto automaticamente segun horario.\n> Hora: ${currentTime} ART`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(
@@ -477,11 +477,11 @@ async function startGroupScheduleChecker(sock) {
               ) {
                 logger.warn(
                   "GroupSchedule",
-                  `Bot bukan admin di ${groupId}, tidak bisa buka grup`,
+                  `El bot no es admin en ${groupId}, no puede abrir el grupo`,
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
-                    text: `⚠️ *ɢᴀɢᴀʟ ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Bot bukan admin, tidak bisa mengubah pengaturan grup.\n> Jadikan bot sebagai admin untuk mengaktifkan fitur ini.`,
+                    text: `⚠️ *ᴇʀʀᴏʀ ᴀʟ ᴀʙʀɪʀ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀᴍᴇɴᴛᴇ*\n\n> El bot no es admin, no puede cambiar la configuracion del grupo.\n> Haz al bot admin para activar esta funcion.`,
                   });
                 } catch { }
               } else {
@@ -501,7 +501,7 @@ async function startGroupScheduleChecker(sock) {
                 "announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔒 *ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Grup ditutup otomatis sesuai jadwal.\n> Waktu: ${currentTime} ART`,
+                text: `🔒 *ᴄᴇʀʀᴀʀ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴏ*\n\n> Grupo cerrado automaticamente segun horario.\n> Hora: ${currentTime} ART`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(
@@ -515,11 +515,11 @@ async function startGroupScheduleChecker(sock) {
               ) {
                 logger.warn(
                   "GroupSchedule",
-                  `Bot bukan admin di ${groupId}, tidak bisa tutup grup`,
+                  `El bot no es admin en ${groupId}, no puede cerrar el grupo`,
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
-                    text: `⚠️ *ɢᴀɢᴀʟ ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Bot bukan admin, tidak bisa mengubah pengaturan grup.\n> Jadikan bot sebagai admin untuk mengaktifkan fitur ini.`,
+                    text: `⚠️ *ᴇʀʀᴏʀ ᴀʟ ᴄᴇʀʀᴀʀ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀᴍᴇɴᴛᴇ*\n\n> El bot no es admin, no puede cambiar la configuracion del grupo.\n> Haz al bot admin para activar esta funcion.`,
                   });
                 } catch { }
               } else {
@@ -588,7 +588,7 @@ async function startSewaChecker(sock) {
           try {
             await sewaSock.sendText(
               groupId,
-              `⏰ *SEWA BERAKHIR*\n\nMasa sewa bot di grup ini sudah habis.\nBot akan meninggalkan grup.\n\nHubungi owner untuk perpanjang sewa.`,
+              `⏰ *SEWA BERAKHIR*\n\nEl tiempo de alquiler del bot en este grupo ha expirado.\nEl bot dejara el grupo.\n\nContacta al owner para extender el alquiler.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -617,7 +617,7 @@ async function startSewaChecker(sock) {
             const minutes = Math.floor(remaining / 60000);
             await sewaSock.sendText(
               groupId,
-              `⚠️ *PERINGATAN SEWA*\n\nSisa waktu sewa tinggal *${minutes} menit*!\nSegera hubungi owner untuk perpanjang.\n\nJika tidak diperpanjang, bot akan otomatis keluar.`,
+              `⚠️ *PERINGATAN SEWA*\n\nTiempo de alquiler restante: *${minutes} minutos*!\nContacta al owner para extender.\n\nSi no se extiende, el bot saldra automaticamente.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -637,7 +637,7 @@ async function startSewaChecker(sock) {
             const hours = Math.floor((remaining % 86400000) / 3600000);
             await sewaSock.sendText(
               groupId,
-              `⚠️ *PERINGATAN SEWA*\n\nSisa sewa tinggal *${days}d ${hours}h*\nSegera hubungi owner untuk perpanjang.\n\nJika tidak diperpanjang, bot akan otomatis keluar.`,
+              `⚠️ *PERINGATAN SEWA*\n\nTiempo de alquiler restante: *${days}d ${hours}h*\nContacta al owner para extender.\n\nSi no se extiende, el bot saldra automaticamente.`,
               null,
               {
                 contextInfo: saluranCtx(),
@@ -693,7 +693,7 @@ function startAutoBioChecker(sock) {
       const status = db.setting("autobio_status");
       if (!status) return;
 
-      const template = db.setting("autobio_text") || "Bot aktif | 🕒 {clock} | ⏳ {runtime}";
+      const template = db.setting("autobio_text") || "Bot activo | 🕒 {clock} | ⏳ {runtime}";
 
       const clock = moment().tz(TZ).format("HH:mm");
       const runtime = formatUptime(process.uptime());

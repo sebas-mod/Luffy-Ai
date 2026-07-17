@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No hay miembros en este grupo`)
+            return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> No hay miembros en este grupo`)
         }
         
         await m.react('🕕')
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
             
             db.setUser(jid, user)
             db.updateExp(jid, 200000)
-            db.updateKoin(jid, 20000)
+            db.updateBelly(jid, 20000)
             addedCount++
         }
         

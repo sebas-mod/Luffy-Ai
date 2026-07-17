@@ -6,7 +6,7 @@ const pluginConfig = {
   category: "search",
   description: "Buscar noticias en Google News",
   usage: ".google <query>",
-  example: ".google gempa hari ini",
+  example: ".google terremoto de hoy",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -39,7 +39,7 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Google Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Google Error*\n\n> ${result.error}`);
     }
 
     const items = result.results.slice(0, 10);
@@ -50,7 +50,7 @@ async function handler(m) {
     }
 
     let txt = `🔍 *Google News*\n\n`;
-    txt += `> Pencarian: *${query}*\n\n`;
+    txt += `> Busqueda: *${query}*\n\n`;
 
     items.forEach((item) => {
       txt += `*${item.index_node}.* ${item.resource_title}\n`;

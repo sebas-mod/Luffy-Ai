@@ -212,7 +212,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.download();
       if (!buffer) {
-        await m.reply(`❌ Fallo mengambil media.`);
+        await m.reply(`❌ Error al obtener el medio.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -318,7 +318,7 @@ async function handler(m, { sock, db }) {
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${prefix}cancelswgcv2`,
           }),
         },

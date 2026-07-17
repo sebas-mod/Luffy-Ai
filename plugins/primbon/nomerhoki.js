@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'nomerhoki',
     alias: ['númerohoki', 'ceknúmero'],
     category: 'primbon',
-    description: 'Cek aberuntungan número HP',
+    description: 'Verificar fortuna del número de celular',
     usage: '.nomerhoki <número>',
     example: '.nomerhoki 6281234567890',
     isOwner: false,
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fallo menganalisa número`)
+            return m.reply(`❌ *FALLÓ*\n\n> Fallo al analizar número`)
         }
         
         const r = data.data
@@ -41,16 +41,16 @@ async function handler(m, { sock }) {
             `> Número: *${r.nomor}*\n\n` +
             `📊 *ᴀɴɢᴋᴀ ʙᴀɢᴜᴀ:* ${r.angka_bagua_shuzi.value}%\n\n` +
             `✅ *ᴇɴᴇʀɢɪ ᴘᴏꜱɪᴛɪꜰ:* ${r.energi_positif.total}%\n` +
-            `├ Akayaan: ${ep.kekayaan}\n` +
-            `├ Asehatan: ${ep.kesehatan}\n` +
-            `├ Cinta: ${ep.cinta}\n` +
-            `└ Astabilan: ${ep.kestabilan}\n\n` +
+            `├ Riqueza: ${ep.kekayaan}\n` +
+            `├ Salud: ${ep.kesehatan}\n` +
+            `├ Amor: ${ep.cinta}\n` +
+            `└ Estabilidad: ${ep.kestabilan}\n\n` +
             `❌ *ᴇɴᴇʀɢɪ ɴᴇɢᴀᴛɪꜰ:* ${r.energi_negatif.total}%\n` +
-            `├ Perselcontenidohan: ${en.perselisihan}\n` +
-            `├ Ahilangan: ${en.kehilangan}\n` +
-            `├ Malapetaka: ${en.malapetaka}\n` +
-            `└ Ahancuran: ${en.kehancuran}\n\n` +
-            `> Status: ${r.analisis.status ? '✅ HOKI' : '❌ TIDAK HOKI'}`
+            `├ Conflictos: ${en.perselisihan}\n` +
+            `├ Pérdidas: ${en.kehilangan}\n` +
+            `├ Desgracias: ${en.malapetaka}\n` +
+            `└ Destrucción: ${en.kehancuran}\n\n` +
+            `> Status: ${r.analisis.status ? '✅ HOKI' : '❌ NO HOKI'}`
         
         m.react('✅')
         await m.reply(response)

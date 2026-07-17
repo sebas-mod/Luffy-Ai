@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         const names = stopped.map(id => `@${id}`).join(', ')
 
         await sock.sendMessage(m.chat, {
-            text: `🛑 *sᴇᴍᴜᴀ ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴇɴᴛɪᴋᴀɴ*\n\n` +
+            text: `🛑 *sᴇᴍᴜᴀ ᴊᴀᴅɪʙᴏᴛ ᴅᴇᴛᴇɴɪᴅᴏ*\n\n` +
                 `> 📊 Total: *${stopped.length}* jadibot\n` +
                 `> 💾 Session: *Tersimpan*\n\n` +
                 `Detenidos: ${names}\n\n` +

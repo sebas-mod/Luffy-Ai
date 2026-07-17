@@ -27,14 +27,14 @@ async function handler(m, { sock, db }) {
     
     return m.reply(
       `📝 *AUTO BIO SETTINGS*\n\n` +
-      `> Status: *${status ? "Aktif ✅" : "Nonaktif ❌"}*\n` +
+      `> Status: *${status ? "Activo ✅" : "Inactivo ❌"}*\n` +
       `> Interval: *${intervalMs / 1000} segundos*\n` +
       `> Texto Bio: ${text}\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}autobio on/off* — Activar/Desactivar función\n` +
       `- *${m.prefix}autobio cambiar_cada <tiempo>* — Configurar el intervalo. Ejemplo: \`.autobio cambiar_cada 30 segundos\` o \`1 hora\`\n` +
       `- *${m.prefix}autobio <texto>* — Configurar el texto de la bio\n\n` +
-      `*PLACEHOLDER TERSEDIA:*\n` +
+      `*PLACEHOLDERS DISPONIBLES:*\n` +
       `- \`{clock}\` — Mostrando la hora actual\n` +
       `- \`{runtime}\` — Mostrando el tiempo que lleva encendido el bot\n` +
       `- \`{botname}\` — Mostrando el nombre del bot de la configuración\n` +

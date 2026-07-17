@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     txt += `📊 Owner DB: *${isInOwnerDb ? 'Sí' : 'No'}*\n`
     if (user) {
         txt += `⚡ Energía: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Belly: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('id-ID')}*\n`
+        txt += `💰 Belly: *${user.belly === -1 ? '∞' : (user.belly ?? 0).toLocaleString('es-ES')}*\n`
         txt += `⭐ Nivel: *${user.level ?? 1}*\n`
     }
 

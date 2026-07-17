@@ -1,30 +1,30 @@
 function cekfemboy(nama) {
     try {
-        if (!nama) throw new Error('Masukkan nama dulu dong!');
+        if (!nama) throw new Error('Ingresa un nombre primero!');
         
         const percent = Math.floor(Math.random() * 101);
         let desc = '';
         let imgUrl = '';
         
         if (percent < 20) {
-            desc = 'Cowok banget! 😎';
+            desc = 'Muy masculino! 😎';
             imgUrl = 'https://cek-seberapa-femboy.vercel.app/img/normal.gif';
         } else if (percent < 40) {
-            desc = 'Ada aura lembutnya dikit~ 🌸';
+            desc = 'Tiene un poco de aura suave~ 🌸';
             imgUrl = 'https://cek-seberapa-femboy.vercel.app/img/dibwh40.gif';
         } else if (percent < 60) {
-            desc = 'Lumayan femboy 😘';
+            desc = 'Bastante femboy 😘';
             imgUrl = 'https://cek-seberapa-femboy.vercel.app/img/dibwh60.gif';
         } else if (percent < 80) {
-            desc = 'Femboy sejati 💅✨';
+            desc = 'Femboy de verdad 💅✨';
             imgUrl = 'https://cek-seberapa-femboy.vercel.app/img/dibwh80.gif';
         } else {
-            desc = 'FEMBOY DEWA 🔥💖';
+            desc = 'FEMBOY DIVINO 🔥💖';
             imgUrl = 'https://cek-seberapa-femboy.vercel.app/img/femboyyyy.gif';
         }
         
         return {
-            hasil: `${nama}, kamu ${percent}% femboy!, ${desc}`,
+            hasil: `${nama}, eres ${percent}% femboy!, ${desc}`,
             gif: imgUrl
         };
     } catch (error) {

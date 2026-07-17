@@ -49,9 +49,9 @@ async function handler(m, { sock }) {
         .map(([m, qty]) => `${qty}x ${m}`)
         .join(", ");
       txt += `\n*${recipe.name}*\n`;
-      txt += `📦 Bahan: ${mats}\n`;
+      txt += `📦 Materiales: ${mats}\n`;
       txt += `📈 EXP: +${recipe.exp}\n`;
-      txt += `👉 Ketik: \`.blacksmith ${key}\`\n`;
+      txt += `👉 Escribe: \`.blacksmith ${key}\`\n`;
     }
     txt += `\n💡 *Consejo:* ¡Los materiales se pueden conseguir con \`.mining\` o \`.hunt\`!`;
 
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
   let txt = `¡FABRICACIÓN EXITOSA! ⚔️🛡️\n\n`;
   txt += `¡Increíble, el resultado quedó perfecto! Aquí está tu nueva creación:\n`;
   txt += `🔨 Item: *${recipe.name}*\n`;
-  txt += `📊 Jumlah: *+${resultQty}*\n`;
+  txt += `📊 Cantidad: *+${resultQty}*\n`;
   txt += `📈 EXP Crafting: *+${recipe.exp}*\n\n`;
   txt += `¡Listo para usarse en batalla! 😎🔥`;
 

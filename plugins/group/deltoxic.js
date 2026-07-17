@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     const index = toxicWords.indexOf(word)
     
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> La palabra \`${word}\` no está en la lista`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> La palabra \`${word}\` no está en la lista`)
     }
     
     toxicWords.splice(index, 1)

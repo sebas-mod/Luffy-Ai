@@ -79,24 +79,24 @@ async function handler(m, { sock }) {
   const progress = getLevelBar(expInLevel, expNeeded);
 
   let txt = `╭━━━━━━━━━━━━━━━━━╮\n`;
-  txt += `┃ 📊 *ʟᴇᴠᴇʟ ɪɴꜰᴏ*\n`;
+  txt += `┃ 📊 *ɪɴꜰᴏ ᴅᴇ ɴɪᴠᴇʟ*\n`;
   txt += `╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
-  txt += `╭┈┈⬡「 👤 *ᴜsᴇʀ* 」\n`;
+  txt += `╭┈┈⬡「 👤 *ᴜꜱᴜᴀʀɪᴏ* 」\n`;
   txt += `┃ 🏷️ Nombre: *${targetName}*\n`;
   txt += `┃ 🆔 Tag: @${targetJid.split("@")[0]}\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
-  txt += `╭┈┈⬡「 📈 *sᴛᴀᴛs* 」\n`;
+  txt += `╭┈┈⬡「 📈 *ᴇꜱᴛᴀᴅíꜱᴛɪᴄᴀꜱ* 」\n`;
   txt += `┃ 📊 Level: *${level}*\n`;
   txt += `┃ ${role}\n`;
-  txt += `┃ 🚄 Exp: *${exp.toLocaleString("id-ID")}*\n`;
-  txt += `┃ 📊 Progress:\n`;
+  txt += `┃ 🚄 Exp: *${exp.toLocaleString("es-ES")}*\n`;
+  txt += `┃ 📊 Progreso:\n`;
   txt += `┃ ${progress}\n`;
-  txt += `┃ ${expInLevel.toLocaleString("id-ID")} / ${expNeeded.toLocaleString("id-ID")}\n`;
+  txt += `┃ ${expInLevel.toLocaleString("es-ES")} / ${expNeeded.toLocaleString("es-ES")}\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
-  txt += `> ¡Siguiente nivel: *${expToNextLevel(exp).toLocaleString("id-ID")} exp* más!`;
+  txt += `> ¡Siguiente nivel: *${expToNextLevel(exp).toLocaleString("es-ES")} exp* más!`;
 
   await m.reply(txt, { mentions: [targetJid] });
 }

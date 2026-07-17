@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
             `┃ ⏱️ ᴅᴜʀᴀsɪ: \`${duration}\`\n` +
             `┃ 📝 ᴀʟᴀsᴀɴ: \`${currentAfk.reason || '-'}\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Bot siap menerima command!`
+            `> ¡Bot listo para recibir comandos!`
         )
     } else {
         const reason = m.args.join(' ') || 'AFK'

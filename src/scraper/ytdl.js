@@ -29,7 +29,7 @@ async function fallbackToMp3Buffer(url) {
 
     const buffer = Buffer.from(data);
     if (!buffer.length) {
-      throw new Error("Audio fallback kosong");
+      throw new Error("El audio de respaldo está vacío");
     }
 
     fs.writeFileSync(inputPath, buffer);
@@ -41,7 +41,7 @@ async function fallbackToMp3Buffer(url) {
 
     const mp3Buffer = fs.readFileSync(outputPath);
     if (!mp3Buffer.length) {
-      throw new Error("Konversi fallback ke MP3 gagal");
+      throw new Error("Error en la conversión de respaldo a MP3");
     }
 
     return mp3Buffer;
@@ -62,7 +62,7 @@ async function ytdl(url, format = "mp3") {
     if (!videoId) {
       return {
         status: false,
-        mess: "Format URL tidak dikenali atau bukan link YouTube yang valid.",
+        mess: "Formato de URL no reconocido o no es un enlace de YouTube válido.",
       };
     }
 
@@ -89,7 +89,7 @@ async function ytdl(url, format = "mp3") {
     if (!init?.convertURL) {
       return {
         status: false,
-        mess: "Gagal menginisialisasi server (Init failed).",
+        mess: "Error al inicializar el servidor (Init failed).",
       };
     }
 
@@ -104,7 +104,7 @@ async function ytdl(url, format = "mp3") {
     if (!convert?.progressURL || !convert?.downloadURL) {
       return {
         status: false,
-        mess: "Gagal mendapatkan data konversi.",
+        mess: "Error al obtener datos de conversión.",
       };
     }
 
@@ -119,7 +119,7 @@ async function ytdl(url, format = "mp3") {
       if ((data?.error || 0) > 0) {
         return {
           status: false,
-          mess: `Error dari server: ${data.error}`,
+          mess: `Error del servidor: ${data.error}`,
         };
       }
 
@@ -135,7 +135,7 @@ async function ytdl(url, format = "mp3") {
     if (attempts >= maxAttempts && progress < 3) {
       return {
         status: false,
-        mess: "Request timeout (proses terlalu lama).",
+        mess: "Tiempo de espera agotado (proceso demasiado lento).",
       };
     }
 
@@ -168,7 +168,7 @@ class Youtube {
     const result = await ytdl(url, outputFormat);
 
     if (!result?.status || !result?.dl) {
-      throw new Error(result?.mess || "Gagal mengunduh konten YouTube");
+      throw new Error(result?.mess || "Error al descargar contenido de YouTube");
     }
 
     return this.wrapResponse({

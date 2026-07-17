@@ -403,8 +403,8 @@ function getVerifiedQuoted(botConfig, m) {
       },
       message: {
         contactMessage: {
-          displayName: `🍂 Yth. ${m.pushName}`,
-          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+          displayName: `🍂 Estimado/a ${m.pushName}`,
+          vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Movil\nEND:VCARD`,
           sendEphemeral: true,
         },
       },
@@ -418,7 +418,7 @@ function getVerifiedQuoted(botConfig, m) {
     message: {
       contactMessage: {
         displayName: `🪸 ${botConfig.bot?.name}`,
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=13135550002:+1 (313) 555-0002\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;ttname,;;;\nFN:ttname\nitem1.TEL;waid=13135550002:+1 (313) 555-0002\nitem1.X-ABLabel:Movil\nEND:VCARD`,
         sendEphemeral: true,
       },
     },
@@ -496,7 +496,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 │ ◈ *Nivel* : *${user.level || 0}*
 │ ◈ *Exp* : *${user.exp || 0}* 
 │ ◈ *Energía* : *${user.energi || 0}*
-│ ◈ *Belly* : *${user.koin || 0}*
+│ ◈ *Belly* : *${user.belly || 0}*
 │ ◈ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
 │ ◈ *Energía* : *${user.energi || 0}*
 ╰┈┈┈┈┈┈┈┈
@@ -597,7 +597,7 @@ Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 > 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Energía*: ${user.energi || 0}
-> 🎏 *Belly*: ${user.koin || 0}
+> 🎏 *Belly*: ${user.belly || 0}
 > 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}
 
 ${readmore}${s}`
@@ -620,7 +620,7 @@ ${readmore}${s}`
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
                         text: `${greeting}`,
-                        url: "Hai",
+                        url: "Hola",
                         copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
@@ -711,7 +711,7 @@ Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 > 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Energía*: ${user.energi || 0}
-> 🎏 *Belly*: ${user.koin || 0}
+> 🎏 *Belly*: ${user.belly || 0}
 > 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
             footerText: '🍔 Selecciona uno de los botones de abajo',
             headerType: 6,
@@ -1107,7 +1107,7 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
                   messageParamsJson: JSON.stringify({
                     limited_time_offer: {
                       text: `${greeting}`,
-                      url: "Hai",
+                      url: "Hola",
                       expiration_time: Date.now() + 10000,
                     },
                     bottom_sheet: {
@@ -1320,7 +1320,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         if (!bannerBuffer) bannerBuffer = imageBuffer;
 
         const catCount = categories.sorted.length;
-        const userBelly = user.koin || 0;
+        const userBelly = user.belly || 0;
         const userExp = user.exp || 0;
         const userLevel = user.level || 0;
         const userEnergi = user.energi || 0;

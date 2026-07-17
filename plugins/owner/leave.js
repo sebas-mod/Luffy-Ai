@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     const inviteCode = await extractInviteCode(input);
 
     if (!inviteCode) {
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Link invite no válido`);
+      return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Link invite no válido`);
     }
 
     try {
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
       groupName = groupInfo.subject || "Unknown";
     } catch (error) {
       return m.reply(
-        `❌ *ɢᴀɢᴀʟ*\n\n> No puede mengambil info grup de link`,
+        `❌ *ERROR*\n\n> No puede obtener info del grupo desde el link`,
       );
     }
   } else {
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
   }
 
   if (!targetGroupJid) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Grup no encontrado`);
+    return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Grup no encontrado`);
   }
 
   await m.react("🕕");
@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
     if (!m.isGroup || targetGroupJid !== m.chat) {
       await m.react("✅");
       await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ*\n\n` + `> Bot ha aluar de: *${groupName}*`,
+        `✅ *ꜱᴀʟɪᴅᴀ ᴇxɪᴛᴏꜱᴀ*\n\n` + `> Bot ha aluar de: *${groupName}*`,
       );
     }
   } catch (error) {

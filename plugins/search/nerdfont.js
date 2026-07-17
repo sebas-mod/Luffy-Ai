@@ -93,7 +93,7 @@ async function handler(m, { sock }) {
               sections: [
                 {
                   title: "Espero que esta fuente te sea de ayuda",
-                  highlight_label: "Font Pilihan",
+                  highlight_label: "Fuente Seleccionada",
                   rows: rows,
                 },
               ],

@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)

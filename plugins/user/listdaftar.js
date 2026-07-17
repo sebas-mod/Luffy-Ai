@@ -30,7 +30,7 @@ function formatDateTime(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "-";
 
-  return date.toLocaleString("id-ID", {
+  return date.toLocaleString("es-ES", {
     day: "2-digit",
     month: "2-digit",
     year: "numeric",
@@ -88,15 +88,15 @@ function parseListOptions(input) {
 
     if (token === "sort" || token === "urut") {
       const nextToken = tokens[i + 1]?.toLowerCase();
-      if (nextToken === "terbaru" || nextToken === "newest") {
-        sort = "terbaru";
+      if (nextToken === "recientes" || nextToken === "newest") {
+        sort = "recientes";
         i += 1;
       }
       continue;
     }
 
-    if (token === "terbaru" || token === "newest") {
-      sort = "terbaru";
+    if (token === "recientes" || token === "newest") {
+      sort = "recientes";
       continue;
     }
 
@@ -114,8 +114,8 @@ const pluginConfig = {
   category: "user",
   description:
     "Ver lista de usuarios registrados con filtro y paginación",
-  usage: ".listdaftar [page <nomor>] [search <nama>] [sort terbaru]",
-  example: ".listdaftar search zann sort terbaru page 2",
+  usage: ".listdaftar [page <número>] [search <nombre>] [sort recientes]",
+  example: ".listdaftar search zann sort recientes page 2",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -144,7 +144,7 @@ async function handler(m, { sock }) {
     );
   }
 
-  if (options.sort === "terbaru") {
+  if (options.sort === "recientes") {
     registeredUsers.sort(
       (a, b) => getRegistrationTime(b) - getRegistrationTime(a),
     );
@@ -164,10 +164,10 @@ async function handler(m, { sock }) {
     startIndex + PAGE_SIZE,
   );
 
-  let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴜsᴇʀ ᴛᴇʀᴅᴀꜰᴛᴀʀ*\n\n`;
+  let text = `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴜꜱᴜᴀʀɪᴏꜱ ʀᴇɢɪꜱᴛʀᴀᴅᴏꜱ*\n\n`;
   text += `> Total de resultados: *${registeredUsers.length}* usuarios\n`;
   text += `> Página: *${page}/${totalPages}*\n`;
-  text += `> Orden: *${options.sort === "terbaru" ? "Más recientes" : "Predeterminado"}*\n`;
+  text += `> Orden: *${options.sort === "recientes" ? "Más recientes" : "Predeterminado"}*\n`;
   if (options.search) {
     text += `> Search: *${options.search}*\n`;
   }
@@ -175,9 +175,9 @@ async function handler(m, { sock }) {
 
   displayUsers.forEach((user, i) => {
     const genderEmoji =
-      user.regGender === "Laki-laki"
+      user.regGender === "Laki-laki" || user.regGender === "Masculino"
         ? "👨"
-        : user.regGender === "Perempuan"
+        : user.regGender === "Perempuan" || user.regGender === "Femenino"
           ? "👩"
           : "👤";
     const listNumber = startIndex + i + 1;

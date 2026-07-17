@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
         }
         
         await m.react('✅')
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Imagen bundle *ourin-large* éxito reemplazada de forma masiva.\n> Incluye: ${targetImages.join(', ')}\n> Reinicia el bot si la imagen no cambia de inmediato.`)
+        m.reply(`✅ *ᴇxɪᴛᴏ*\n\n> Imagen bundle *ourin-large* éxito reemplazada de forma masiva.\n> Incluye: ${targetImages.join(', ')}\n> Reinicia el bot si la imagen no cambia de inmediato.`)
         
     } catch (error) {
         await m.react('☢')

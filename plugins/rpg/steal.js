@@ -61,10 +61,10 @@ async function handler(m, { sock }) {
   const isCaught = Math.random() * 100 < adjustedCatchChance;
 
   if (isCaught) {
-    const goldLoss = Math.floor((user.koin || 0) * 0.1);
+    const goldLoss = Math.floor((user.belly || 0) * 0.1);
     const healthLoss = 10 + target.difficulty * 5;
 
-    user.koin = Math.max(0, (user.koin || 0) - goldLoss);
+    user.belly = Math.max(0, (user.belly || 0) - goldLoss);
     user.rpg.health = Math.max(1, (user.rpg.health || 100) - healthLoss);
 
     db.save();
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
       `¡¡FALLASTE!! ¡TE ESTRELLASTE CON UNA MACETA!! 💥🚨\n\n` +
         `¡El *${target.name}* despierta y te golpea sin piedad!\n\n` +
         `*Pérdidas:* \n` +
-        `💸 Dinero dispersado: *-Rp ${goldLoss.toLocaleString()}*\n` +
+        `💸 Dinero dispersado: *-Belly ${goldLoss.toLocaleString()}*\n` +
         `❤️ Golpeado: *-${healthLoss} HP*\n` +
         `⚡ Stamina para huir: *-${staminaCost}*\n\n` +
         `*Consejo:* ¡Aumenta tu estadística *Suerte* para que tus pasos no hagan ruido!`
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
   const goldStolen = Math.floor(Math.random() * (target.maxGold - target.minGold)) + target.minGold;
   const expReward = 50 + target.difficulty * 30;
 
-  user.koin = (user.koin || 0) + goldStolen;
+  user.belly = (user.belly || 0) + goldStolen;
   await addExpWithLevelCheck(sock, m, db, user, expReward);
 
   const bonusItem = Math.random() > 0.7;
@@ -93,7 +93,7 @@ async function handler(m, { sock }) {
     const items = ["potion", "key", "gem", "ring"];
     const item = items[Math.floor(Math.random() * items.length)];
     user.inventory[item] = (user.inventory[item] || 0) + 1;
-    bonusText = `\n📦 Bonus Jarahan: *${item} x1*`;
+    bonusText = `\n📦 Bonus Botín: *${item} x1*`;
   }
 
   db.save();
@@ -103,7 +103,7 @@ async function handler(m, { sock }) {
     `¡GOLPE NINJA EXITOSO! 🥷✨\n\n` +
       `¡Lograste saquear la casa de *${target.name}* sin ser descubierto!\n\n` +
       `*Botín Obtenido:* \n` +
-      `💵 Barras de Oro: *+Rp ${goldStolen.toLocaleString()}*\n` +
+      `💵 Barras de Oro: *+Belly ${goldStolen.toLocaleString()}*\n` +
       `✨ EXP Infiltración: *+${expReward}*` +
       `${bonusText}\n` +
       `⚡ Stamina: *-${staminaCost}*`

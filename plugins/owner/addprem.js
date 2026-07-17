@@ -30,7 +30,7 @@ const pluginConfig = {
 };
 
 function formatDate(ts) {
-  return new Date(ts).toLocaleDateString("id-ID", {
+  return new Date(ts).toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -222,7 +222,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
     db.setUser(jid, user);
     db.updateExp(jid, 200000);
-    db.updateKoin(jid, 20000);
+    db.updateBelly(jid, 20000);
 
     db.save();
 

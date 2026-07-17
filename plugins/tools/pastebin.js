@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
   const api_dev_key = "h9WMT2Mn9QW-qDhvUSc-KObqAYcjI0he";
   const api_paste_code = text.trim();
-  const api_paste_name = `Pegado de ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
+  const api_paste_name = `Pegado de ${m.pushName || "User"} - ${new Date().toLocaleDateString("es-ES")}`;
 
   const data = new URLSearchParams({
     api_dev_key,
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     const url = res.data;
 
     if (url.startsWith("Bad API request")) {
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${url}`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> ${url}`);
     }
 
     const responseText =

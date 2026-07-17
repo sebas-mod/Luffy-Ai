@@ -46,7 +46,7 @@ async function handler(m) {
     return m.reply(
       `⏱️ *JEDA BROADCAST PRIVATE*\n\n` +
       `Jeda actualmente: *${formatDelay(current)}* (${current}ms)\n\n` +
-      `*CARA PAKAI:*\n` +
+      `*CÓMO USAR:*\n` +
       `> \`${m.prefix}bcpcjeda <angka><satuan>\`\n\n` +
       `*SATUAN:*\n` +
       `• \`s\` — segundos\n• \`m\` — minutos\n• \`h\` — horas\n• \`d\` — días\n\n` +

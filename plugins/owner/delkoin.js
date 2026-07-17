@@ -1,11 +1,11 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
 const pluginConfig = {
-    name: 'delkoin',
-    alias: ['kurangkoin', 'removekoin', 'delcoin', 'delmoney'],
+    name: 'delbelly',
+    alias: ['kurangbelly', 'removebelly', 'delcoin', 'delmoney'],
     category: 'owner',
     description: 'Quita monedas a un usuario',
-    usage: '.delkoin <cantidad> @user',
-    example: '.delkoin 50000 @user',
+    usage: '.delbelly <cantidad> @user',
+    example: '.delbelly 50000 @user',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isEnabled: true
 }
 
-function formatKoin(num) {
+function formatBelly(num) {
     if (num >= 1000000000000) return (num / 1000000000000).toFixed(2) + 'T'
     if (num >= 1000000000) return (num / 1000000000).toFixed(2) + 'B'
     if (num >= 1000000) return (num / 1000000).toFixed(2) + 'M'
@@ -45,23 +45,23 @@ async function handler(m, { sock }) {
     if (!targetJid || amount <= 0) {
         return m.reply(
             `💰 *ᴅᴇʟ ᴋᴏɪɴ*\n\n` +
-            `> \`.delkoin <cantidad>\` - de uno mismo\n` +
-            `> \`.delkoin <cantidad> @user\` - del usuario\n\n` +
-            `\`Ejemplo: ${m.prefix}delkoin 50000\``
+            `> \`.delbelly <cantidad>\` - de uno mismo\n` +
+            `> \`.delbelly <cantidad> @user\` - del usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}delbelly 50000\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> La cantidad debe ser mayor a 0`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> La cantidad debe ser mayor a 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Usuario no encontrado en la base de datos`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Usuario no encontrado en la base de datos`)
     }
     
-    const newKoin = db.updateKoin(targetJid, -amount)
+    const newBelly = db.updateBelly(targetJid, -amount)
     
     await m.react('✅')
     
@@ -69,8 +69,8 @@ async function handler(m, { sock }) {
         `✅ *ᴋᴏɪɴ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
         `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatKoin(amount)}*\n` +
-        `┃ 💰 sɪsᴀ: *${formatKoin(newKoin)}*\n` +
+        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatBelly(amount)}*\n` +
+        `┃ 💰 sɪsᴀ: *${formatBelly(newBelly)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

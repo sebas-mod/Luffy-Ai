@@ -37,7 +37,7 @@ async function handler(m, { sock, config }) {
         
         config.bot.developer = newName
         
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nombre del desarrollador cambiado a: *${newName}*`)
+        m.reply(`✅ *ᴇxɪᴛᴏ*\n\n> Nombre del desarrollador cambiado a: *${newName}*`)
         
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

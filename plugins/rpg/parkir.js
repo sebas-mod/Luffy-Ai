@@ -39,25 +39,25 @@ async function handler(m, { sock }) {
 
   if (gacha < 0.1) {
     const denda = Math.floor(Math.random() * 5000) + 1000;
-    user.koin = Math.max(0, (user.koin || 0) - denda);
+    user.belly = Math.max(0, (user.belly || 0) - denda);
     await m.react("🚨");
-    return m.reply(`¡¡OH NO, REDADA DE LA POLICÍA!! 🚓💨\n\n¡Corriste despavorido y tus monedas cayeron por valor de *Rp ${denda.toLocaleString("id-ID")}*!\n⚡ Stamina: -${staminaCost}\n\n¡Qué mala suerte hoy! 😭`);
+    return m.reply(`¡¡OH NO, REDADA DE LA POLICÍA!! 🚓💨\n\n¡Corriste despavorido y tus monedas cayeron por valor de *Belly ${denda.toLocaleString("es-ES")}*!\n⚡ Stamina: -${staminaCost}\n\n¡Qué mala suerte hoy! 😭`);
   } else if (gacha > 0.9) {
     const jackpot = Math.floor(Math.random() * 50000) + 20000;
-    user.koin = (user.koin || 0) + jackpot;
+    user.belly = (user.belly || 0) + jackpot;
     const expGain = Math.floor(jackpot / 20);
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     await m.react("🤑");
-    return m.reply(`¡JACKPOT! ¡HAY UN AUTO DEPORTIVO DEL SULTÁN! 🏎️✨\n\nAl salir, baja la ventanilla y el sultán te da un billete de 100k!\n💵 Ingreso: *+Rp ${jackpot.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Alabado sea Dios, bendiciones del cielo! 🙏`);
+    return m.reply(`¡JACKPOT! ¡HAY UN AUTO DEPORTIVO DEL SULTÁN! 🏎️✨\n\nAl salir, baja la ventanilla y el sultán te da un billete de 100k!\n💵 Ingreso: *+Belly ${jackpot.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Alabado sea Dios, bendiciones del cielo! 🙏`);
   }
 
   const earning = Math.floor(Math.random() * 8000) + 2000;
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`¡RESULTADO DEL ESTACIONAMIENTO HOY! 🅿️✨\n\n💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nDe moneda en moneda, ¡se forma una montaña! 💪`);
+  m.reply(`¡RESULTADO DEL ESTACIONAMIENTO HOY! 🅿️✨\n\n💵 Ingreso: *+Belly ${earning.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nDe moneda en moneda, ¡se forma una montaña! 💪`);
 }
 
 export { pluginConfig as config, handler };

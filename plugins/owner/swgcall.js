@@ -14,7 +14,7 @@ const pluginConfig = {
   category: "owner",
   description: "Publica un estado de grupo en TODOS los grupos a la vez (borde verde)",
   usage: ".swgcall <texto> o reply media",
-  example: ".swgcall Pengumuman penting!",
+  example: ".swgcall ¡Anuncio importante!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -228,7 +228,7 @@ async function handler(m, { sock, db }) {
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${m.prefix}cancelswgcall`,
           }),
         },

@@ -6,7 +6,7 @@ const pluginConfig = {
   alias: ["cekenergi"],
   category: "info",
   description: "Verificar el consumo de energía de múltiples funciones a la vez",
-  usage: ".howmuchenergy <nama_fitur1> <nama_fitur2> ...",
+  usage: ".howmuchenergy <nombre_función1> <nombre_función2> ...",
   example: ".howmuchenergy hd jpm",
   isOwner: false,
   isPremium: false,

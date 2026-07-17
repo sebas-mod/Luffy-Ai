@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
     if (!dnsData && !whoisData) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se puede procesar el dominio`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se puede procesar el dominio`);
     }
 
     let text = `🔍 *ᴅɴs ʟᴏᴏᴋᴜᴘ*\n\n`;

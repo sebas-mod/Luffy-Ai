@@ -81,8 +81,8 @@ function hitungMBG(uang) {
 }
 
 function formatRupiah(angka) {
-  const formatted = angka.toLocaleString('id-ID');
-  return angka < 1000 ? `${formatted} centavos` : `Rp ${formatted}`;
+  const formatted = angka.toLocaleString('es-ES');
+  return angka < 1000 ? `${formatted} centavos` : `Belly ${formatted}`;
 }
 
 async function handler(m, { args }) {
@@ -110,15 +110,15 @@ async function handler(m, { args }) {
     contentTxt += `⏳ *Durasi MBG:*\n`;
     contentTxt += `${data.durasi.tahun} AÑOS, ${data.durasi.bulan} MESES, ${data.durasi.hari} DÍAS\n`;
     contentTxt += `${data.durasi.jam} HORAS, ${data.durasi.menit} MINUTOS, ${data.durasi.detik} SEGUNDOS\n`;
-    contentTxt += `_(Basado en gasto ~Rp ${(data.pengeluaran / 1000000000).toFixed(1)} Mil millones/día)_\n\n`;
+    contentTxt += `_(Basado en gasto ~Belly ${(data.pengeluaran / 1000000000).toFixed(1)} Mil millones/día)_\n\n`;
     
     contentTxt += `🍱 *Porciones Equivalentes:*\n`;
-    contentTxt += `${data.porsi.toLocaleString('id-ID')} porciones (@ Rp 15.000/porción)\n\n`;
+    contentTxt += `${data.porsi.toLocaleString('es-ES')} porciones (@ Belly 15.000/porción)\n\n`;
 
     contentTxt += `📊 *Comparación de Salario Indonesia:*\n`;
-    contentTxt += `🏢 UMR DKI Jakarta (Rp 5,4 Jt/mes): ${data.gajiIndonesia.dki}\n`;
-    contentTxt += `🏭 UMR Jawa Tengah (Rp 2,04 Jt/mes): ${data.gajiIndonesia.jateng}\n`;
-    contentTxt += `👨‍🏫 Salario Profesor Honorario (Rp 300rb/mes): ${data.gajiIndonesia.guru}\n\n`;
+    contentTxt += `🏢 UMR DKI Jakarta (Belly 5,4 Jt/mes): ${data.gajiIndonesia.dki}\n`;
+    contentTxt += `🏭 UMR Jawa Tengah (Belly 2,04 Jt/mes): ${data.gajiIndonesia.jateng}\n`;
+    contentTxt += `👨‍🏫 Salario Profesor Honorario (Belly 300rb/mes): ${data.gajiIndonesia.guru}\n\n`;
 
     contentTxt += `⚽ *Comparación de Salario de Futbolistas:*\n`;
     for (let p of data.pemain) {
@@ -127,7 +127,7 @@ async function handler(m, { args }) {
       contentTxt += `📈 Porcentaje: ${p.persen}\n\n`;
     }
 
-    let txt = `🍽️ *HASIL HITUNG KALKULATOR MBG* 🍽️\n\n`;
+    let txt = `🍽️ *RESULTADO CALCULADORA MBG* 🍽️\n\n`;
     txt += contentTxt.trim().split("\n").map(line => line.trim() ? `${line}` : ``).join("\n");
 
     await m.reply(txt);

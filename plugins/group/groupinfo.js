@@ -72,7 +72,7 @@ async function handler(m, { sock, db }) {
         text += `Admin: ${admins.length}\n`
         text += `Miembros: ${participants.length - admins.length}\n\n`
 
-        text += `🔧 *FITUR AKTIF*\n`
+        text += `🔧 *FUNCIONES ACTIVAS*\n`
         text += `Welcome: ${featureStatus(group.welcome)}\n`
         text += `Goodbye: ${featureStatus(group.goodbye)}\n`
         text += `Autoreply: ${featureStatus(group.autoreply)}\n`

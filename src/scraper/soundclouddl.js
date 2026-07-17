@@ -17,7 +17,7 @@ async function scdl(url) {
         }), { headers });
 
         const info = responseInfo.data;
-        if (!info.status) throw new Error("Gagal mengambil info lagu");
+        if (!info.status) throw new Error("Error al obtener info de la canción");
 
         const responseDl = await axios.post(endpoint, new URLSearchParams({
             action: 'download',
@@ -27,7 +27,7 @@ async function scdl(url) {
         }), { headers });
 
         const dl = responseDl.data;
-        if (!dl.file_url) throw new Error("Gagal generate link download");
+        if (!dl.file_url) throw new Error("Error al generar enlace de descarga");
 
         const downloadUrl = base + 'soundcloud-downloader/' + dl.file_url.split('/').map(encodeURIComponent).join('/');
 

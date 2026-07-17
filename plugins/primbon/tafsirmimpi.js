@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'tafsirmimpi',
     alias: ['artimimpi', 'mimpi'],
     category: 'primbon',
-    description: 'Cari tafsir mimpi',
+    description: 'Buscar interpretación de sueños',
     usage: '.tafsirmimpi <kata kunci>',
     example: '.tafsirmimpi bertemu',
     isOwner: false,
@@ -30,20 +30,20 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.hasil?.length) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No encontrado tafsir para: ${keyword}`)
+            return m.reply(`❌ *FALLÓ*\n\n> No se encontró interpretación para: ${keyword}`)
         }
         
         const r = data.data
         let response = `🌙 *ᴛᴀꜰsɪʀ ᴍɪᴍᴘɪ*\n\n`
-        response += `> Kata kunci: *${r.keyword}*\n`
-        response += `> Ditemukan: *${r.total} hasil*\n\n`
+        response += `> Palabra clave: *${r.keyword}*\n`
+        response += `> Encontrado: *${r.total} resultados*\n\n`
         
         r.hasil.slice(0, 10).forEach((h, i) => {
             response += `*${i+1}. ${h.mimpi}*\n> ${h.tafsir}\n\n`
         })
         
         if (r.total > 10) {
-            response += `_...y ${r.total - 10} hasil otros_`
+            response += `_...y ${r.total - 10} resultados más_`
         }
         
         m.react('✅')

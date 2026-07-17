@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
                 `╭┈┈⬡「 📊 *ᴅᴇᴛᴀɪʟ* 」\n` +
                 `┃ 📝 ɴᴀᴍᴇ: *${groupInfo.subject}*\n` +
                 `┃ 🆔 ɪᴅ: \`${groupInfo.id}\`\n` +
-                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date(groupInfo.creation * 1000).toLocaleString('id-ID')}\n`
+                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date(groupInfo.creation * 1000).toLocaleString('es-ES')}\n`
 
             if (groupInfo.owner) {
                 teks += `┃ 👑 ᴄʀᴇᴀᴛᴏʀ: @${groupInfo.owner.split('@')[0]}\n`
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
                 `┃ 🆔 ɪᴅ: \`${channelInfo.id}\`\n` +
                 `┃ 📌 sᴛᴀᴛᴇ: ${channelInfo.state?.type || '-'}\n` +
                 `┃ 📝 ɴᴀᴍᴇ: *${channelInfo.thread_metadata?.name?.text || '-'}*\n` +
-                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date((channelInfo.thread_metadata?.creation_time || 0) * 1000).toLocaleString('id-ID')}\n` +
+                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date((channelInfo.thread_metadata?.creation_time || 0) * 1000).toLocaleString('es-ES')}\n` +
                 `┃ 👥 sᴜʙsᴄʀɪʙᴇʀs: ${channelInfo.thread_metadata?.subscribers_count || 0}\n` +
                 `┃ ✅ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ: ${channelInfo.thread_metadata?.verification || '-'}\n` +
                 `╰┈┈⬡\n\n` +

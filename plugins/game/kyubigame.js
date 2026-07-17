@@ -315,7 +315,7 @@ async function kyubigameAnswerHandler(m, sock) {
                     }
                 }
 
-                user.koin = (user.koin || 0) + ryoReward;
+                user.belly = (user.belly || 0) + ryoReward;
                 await addExpWithLevelCheck(sock, m, db, user, expReward);
 
                 reportText += `🎉 *¡MISION COMPLETADA!*\n\n`;
@@ -331,8 +331,8 @@ async function kyubigameAnswerHandler(m, sock) {
 
                 await m.react("🏆");
             } else {
-                const ryoLoss = Math.floor((user.koin || 0) * 0.15);
-                user.koin = Math.max(0, (user.koin || 0) - ryoLoss);
+                const ryoLoss = Math.floor((user.belly || 0) * 0.15);
+                user.belly = Math.max(0, (user.belly || 0) - ryoLoss);
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - 40);
 
                 reportText += `💀 *¡MISION FALLIDA!*\n\n`;

@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
     txt += `*Cómo Proponer:*\n`;
     txt += `👉 \`${m.prefix}marry @user\`\n\n`;
     txt += `*Requisitos:* \n`;
-    txt += `💍 Costo de Boda: *Rp 50.000*\n`;
+    txt += `💍 Costo de Boda: *Belly 50.000*\n`;
     txt += `(¡Asegúrate de que no tenga pareja!)`;
     return m.reply(txt);
   }
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
   }
 
   const marriageCost = 50000;
-  if ((user.koin || 0) < marriageCost) {
-    return m.reply(`Dios mío... ¿pobre pero insistiendo en casarte? 🤦‍♂️\nEl costo de la boda y el catering es *Rp 50.000*, pero solo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\n¡Trabaja duro primero, hermano!`);
+  if ((user.belly || 0) < marriageCost) {
+    return m.reply(`Dios mío... ¿pobre pero insistiendo en casarte? 🤦‍♂️\nEl costo de la boda y el catering es *Belly 50.000*, pero solo tienes *Belly ${(user.belly || 0).toLocaleString("es-ES")}*.\n¡Trabaja duro primero, hermano!`);
   }
 
-  user.koin -= marriageCost;
+  user.belly -= marriageCost;
   user.rpg.spouse = target;
   user.rpg.marriedAt = Date.now();
   partner.rpg.spouse = m.sender;
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
   txt += `           💖 con 💖\n`;
   txt += `👨‍💼/👰 @${target.split("@")[0]}\n\n`;
   txt += `🎉 *¡SON OFICIALMENTE UNA PAREJA!* 🎉\n\n`;
-  txt += `💍 Costo de Recepción: *Rp -${marriageCost.toLocaleString("id-ID")}*\n\n`;
+  txt += `💍 Costo de Recepción: *Belly -${marriageCost.toLocaleString("es-ES")}*\n\n`;
   txt += `> _"¡Que duren hasta el último día de este servidor!" - Sacerdote Bot_ 🥺💕`;
 
   await m.reply(txt, { mentions: [m.sender, target] });

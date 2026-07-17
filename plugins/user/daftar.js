@@ -30,7 +30,7 @@ const pluginConfig = {
 if (!global.registrationSessions) global.registrationSessions = {};
 
 const SESSION_TIMEOUT = 300000;
-const DEFAULT_REWARDS = { koin: 30000, energi: 300, exp: 300000 };
+const DEFAULT_REWARDS = { belly: 30000, energi: 300, exp: 300000 };
 const REGISTRATION_IMAGE_CANDIDATES = [
   "ourin-daftar",
   "ourin",
@@ -182,7 +182,7 @@ function buildRewardPreview(user) {
     return `🎁 *Estado de Bonificación*\n> La bonificación de primer registro ya fue reclamada\n> El registro nuevamente no otorga recompensa`;
   }
 
-  return `🎁 *Bonificación de Primer Registro*\n> 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n> ⚡ +${rewards.energi} Energía\n> ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP`;
+  return `🎁 *Bonificación de Primer Registro*\n> 💰 +${rewards.belly.toLocaleString("es-ES")} Belly\n> ⚡ +${rewards.energi} Energía\n> ⭐ +${rewards.exp.toLocaleString("es-ES")} EXP`;
 }
 
 function buildConfirmationRewardBlock(user) {
@@ -192,7 +192,7 @@ function buildConfirmationRewardBlock(user) {
     return `╭┈┈⬡「 🎁 *ʙᴏɴᴜs* 」\n┃ La bonificación de primer registro ya fue tomada\n┃ El registro nuevamente no otorga recompensa\n╰┈┈┈┈┈┈┈┈⬡`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.belly.toLocaleString("es-ES")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("es-ES")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
 }
 
 function buildSuccessRewardBlock(alreadyClaimedReward) {
@@ -202,7 +202,7 @@ function buildSuccessRewardBlock(alreadyClaimedReward) {
     return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ La bonificación de registro ya fue reclamada\n┃ No hay recompensa adicional esta vez\n╰┈┈┈┈┈┈┈┈⬡`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.belly.toLocaleString("es-ES")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("es-ES")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
 }
 
 function buildUserDataBlock(name, age, gender) {
@@ -243,7 +243,7 @@ function buildWelcomeMessage(user, registrationRequired, prefix) {
 
 function buildConfirmationPrompt(session, user) {
   return (
-    `✅ *ᴘᴇʀᴛᴀɴʏᴀᴀɴ 4/4*\n\n` +
+    `✅ *ᴘᴇɢᴜɴᴛᴀꜱ 4/4*\n\n` +
     `¿Los datos son correctos?\n\n` +
     `${buildUserDataBlock(session.name, session.age, session.gender)}\n\n` +
     `${buildConfirmationRewardBlock(user)}\n\n` +
@@ -302,7 +302,7 @@ async function registrationAnswerHandler(m, sock) {
   const lowText = normalizeSessionText(text);
   const db = getDatabase();
 
-  if (["batal", "cancel", "batalkan"].includes(lowText)) {
+  if (["batal", "cancel", "batalkan", "cancelar", "cancellar"].includes(lowText)) {
     clearRegistrationSession(m.sender);
     await m.reply(
       `❌ Registro cancelado.\n\n> Empezar de nuevo con: \`${m.prefix}daftar\``,
@@ -324,7 +324,7 @@ async function registrationAnswerHandler(m, sock) {
     const sent = await sendRegistrationPrompt(
       sock,
       m,
-      `🎂 *ᴘᴇʀᴛᴀɴʏᴀᴀɴ 2/4*\n\n` +
+      `🎂 *ᴘᴇɢᴜɴᴛᴀꜱ 2/4*\n\n` +
       `Hola *${name}* 👋\n\n` +
       `> ¿Cuál es tu edad?\n\n` +
       `📌 La edad debe ser entre *1 y 100* años\n` +
@@ -352,7 +352,7 @@ async function registrationAnswerHandler(m, sock) {
     const sent = await sendRegistrationPrompt(
       sock,
       m,
-      `💬 *ᴘᴇʀᴛᴀɴʏᴀᴀɴ 3/4*\n\n` +
+      `💬 *ᴘᴇɢᴜɴᴛᴀꜱ 3/4*\n\n` +
       `> ¿Eres hombre o mujer?\n\n` +
       `┃ 👨 *Hombre* / *Masculino* / *M*\n` +
       `┃ 👩 *Mujer* / *Femenino* / *F*\n\n` +
@@ -474,13 +474,13 @@ async function registrationAnswerHandler(m, sock) {
   }
 
   if (session.step === "confirm") {
-    if (["revisi nama", "ubah nama", "edit nama"].includes(lowText)) {
+    if (["revisar nombre", "cambiar nombre", "editar nombre", "revisar nombre", "cambiar nombre", "editar nombre"].includes(lowText)) {
       session.step = "revise_name";
 
       const sent = await sendRegistrationPrompt(
         sock,
         m,
-        `📛 *ʀᴇᴠɪsɪ ɴᴀᴍᴀ*\n\n` +
+        `📛 *ʀᴇᴠɪꜱɪóɴ ᴅᴇ ɴᴏᴍʙʀᴇ*\n\n` +
         `> Envía el nombre correcto.\n\n` +
         `📩 Responde a este mensaje con tu nuevo nombre`,
       );
@@ -490,14 +490,14 @@ async function registrationAnswerHandler(m, sock) {
     }
 
     if (
-      ["revisi umur", "ubah umur", "edit umur", "revisi usia"].includes(lowText)
+      ["revisar edad", "cambiar edad", "editar edad", "revisar edad", "cambiar edad", "editar edad"].includes(lowText)
     ) {
       session.step = "revise_age";
 
       const sent = await sendRegistrationPrompt(
         sock,
         m,
-        `🎂 *ʀᴇᴠɪsɪ ᴜᴍᴜʀ*\n\n` +
+        `🎂 *ʀᴇᴠɪꜱɪóɴ ᴅᴇ ᴇᴅᴀᴅ*\n\n` +
         `> Envía la edad correcta.\n\n` +
         `📌 La edad debe ser entre *1 y 100* años\n` +
         `📩 Responde a este mensaje con tu nueva edad`,
@@ -508,7 +508,7 @@ async function registrationAnswerHandler(m, sock) {
     }
 
     if (
-      ["revisi gender", "ubah gender", "edit gender", "revisi jk"].includes(
+      ["revisi gender", "ubah gender", "edit gender", "revisi jk", "revisar género", "cambiar género", "editar género", "revisar genero", "cambiar genero", "editar genero"].includes(
         lowText,
       )
     ) {
@@ -517,7 +517,7 @@ async function registrationAnswerHandler(m, sock) {
       const sent = await sendRegistrationPrompt(
         sock,
         m,
-        `👤 *ʀᴇᴠɪsɪ ɢᴇɴᴅᴇʀ*\n\n` +
+        `👤 *ʀᴇᴠɪꜱɪóɴ ᴅᴇ ɢéɴᴇʀᴏ*\n\n` +
         `> Elige el género correcto.\n\n` +
         `┃ 👨 *Hombre* / *Masculino* / *M*\n` +
         `┃ 👩 *Mujer* / *Femenino* / *F*\n\n` +
@@ -529,7 +529,7 @@ async function registrationAnswerHandler(m, sock) {
     }
 
     if (
-      ["revisi", "ulang", "reset", "ulangi", "edit", "ubah"].includes(lowText)
+      ["revisi", "ulang", "reset", "ulangi", "edit", "ubah", "revisar", "cambiar", "editar"].includes(lowText)
     ) {
       await m.reply(
         `❌ ¡Revisión no específica!\n\n` +
@@ -538,7 +538,7 @@ async function registrationAnswerHandler(m, sock) {
       return true;
     }
 
-    if (!["ya", "y", "iya", "yes", "lanjut", "confirm"].includes(lowText)) {
+    if (!["ya", "y", "sí", "si", "si", "yes", "lanjut", "confirm"].includes(lowText)) {
       await m.reply(
         `❌ ¡Respuesta no válida!\n\n> Responde: \`sí\`, \`revisar nombre\`, \`revisar edad\`, \`revisar género\`, o \`cancelar\``,
       );
@@ -567,7 +567,7 @@ async function registrationAnswerHandler(m, sock) {
     });
 
     if (!alreadyClaimedReward) {
-      db.updateKoin(m.sender, rewards.koin);
+      db.updateBelly(m.sender, rewards.belly);
       db.updateEnergi(m.sender, rewards.energi);
       db.updateExp(m.sender, rewards.exp);
     }
@@ -579,7 +579,7 @@ async function registrationAnswerHandler(m, sock) {
       m.chat,
       {
         text:
-          `🎉 *ᴘᴇɴᴅᴀꜰᴛᴀʀᴀɴ ᴇxɪᴛᴏsᴏ!*\n\n` +
+          `🎉 *ᴘᴇɢɪꜱᴛʀᴏ ᴇxɪᴛᴏꜱᴏ!*\n\n` +
           `¡Bienvenido, *${finalName}*!\n\n` +
           `${buildUserDataBlock(finalName, finalAge, finalGender)}\n\n` +
           `${buildSuccessRewardBlock(alreadyClaimedReward)}\n\n` +

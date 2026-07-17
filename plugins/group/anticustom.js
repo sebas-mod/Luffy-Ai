@@ -216,7 +216,7 @@ async function handler(m, { sock }) {
     return;
   }
 
-  if (sub === "cancel" || sub === "batal") {
+  if (sub === "cancel" || sub === "cancelar") {
     if (!global.anticustomSessions.has(sessionKey)) {
       await m.reply("⚠️ No hay sesión AntiCustom en curso.");
       return;

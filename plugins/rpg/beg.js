@@ -38,22 +38,22 @@ async function handler(m, { sock }) {
   const result = responses[Math.floor(Math.random() * responses.length)];
 
   if (result.money > 0) {
-    user.koin = (user.koin || 0) + result.money;
+    user.belly = (user.belly || 0) + result.money;
     if (result.exp > 0) {
       await addExpWithLevelCheck(sock, m, db, user, result.exp);
     }
   } else if (result.money < 0) {
-    user.koin = Math.max(0, (user.koin || 0) + result.money);
+    user.belly = Math.max(0, (user.belly || 0) + result.money);
   }
 
   db.save();
 
   let txt = "";
   if (result.success && result.money > 0) {
-    txt = `🙏 *Mendicación Exitosa*\n\n> ${result.msg}\n> 💰 Ganaste: *+Rp ${result.money.toLocaleString("id-ID")}*`;
+    txt = `🙏 *Mendicación Exitosa*\n\n> ${result.msg}\n> 💰 Ganaste: *+Belly ${result.money.toLocaleString("es-ES")}*`;
     if (result.exp > 0) txt += `\n> 🚄 Exp: *+${result.exp}*`;
   } else if (result.money < 0) {
-    txt = `😭 *Mendicación Fallida*\n\n> ${result.msg}\n> 💸 Perdiste: *Rp ${Math.abs(result.money).toLocaleString("id-ID")}*`;
+    txt = `😭 *Mendicación Fallida*\n\n> ${result.msg}\n> 💸 Perdiste: *Belly ${Math.abs(result.money).toLocaleString("es-ES")}*`;
   } else {
     txt = `😢 *Mendicación Fallida*\n\n> ${result.msg}`;
   }

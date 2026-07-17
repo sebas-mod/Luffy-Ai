@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
   if (!user.rpg) user.rpg = {};
   db.updateExp(m.sender, expReward);
-  user.koin = (user.koin || 0) + moneyReward;
+  user.belly = (user.belly || 0) + moneyReward;
 
   if (!user.inventory) user.inventory = {};
   user.inventory.uncommon = (user.inventory.uncommon || 0) + crateReward;
@@ -49,8 +49,8 @@ async function handler(m, { sock }) {
 
   let txt = `¡¡PAM! ¡¡SUELDO SEMANAL CAÍDO!! 🎉🎊🤑\n\n`;
   txt += `¡Genial, tu ración esta semana es enorme:\n`;
-  txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n`;
-  txt += `💰 Belly: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
+  txt += `📈 EXP: *+${expReward.toLocaleString("es-ES")}*\n`;
+  txt += `💰 Belly: *+Belly ${moneyReward.toLocaleString("es-ES")}*\n`;
   txt += `🛍️ Caja Uncommon: *+${crateReward}x*\n\n`;
   txt += `¡No olvides guardar el dinero en el banco (\`.bank\`)! 🏦💖`;
 

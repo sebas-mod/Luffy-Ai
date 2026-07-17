@@ -5,7 +5,7 @@ const pluginConfig = {
   alias: ["judi", "gamble"],
   category: "rpg",
   description: "Jugar en el casino para apostar",
-  usage: ".casino <jumlah>",
+  usage: ".casino <cantidad>",
   example: ".casino 10000",
   isOwner: false,
   isPremium: false,
@@ -35,17 +35,17 @@ async function handler(m, { sock }) {
   }
 
   if (/^all$/i.test(bet)) {
-    bet = user.koin || 0;
+    bet = user.belly || 0;
   } else {
     bet = parseInt(bet);
   }
 
   if (isNaN(bet) || bet < 1000) {
-    return m.reply(`Vaya... ¿apostar con monedas? 💸\n¡La apuesta mínima aquí es *Rp 1.000*, tío!`);
+    return m.reply(`Vaya... ¿apostar con monedas? 💸\n¡La apuesta mínima aquí es *Belly 1.000*, tío!`);
   }
 
-  if (bet > (user.koin || 0)) {
-    return m.reply(`¡No pidas prestado, jefe! 😂\nSolo tienes *Rp ${(user.koin || 0).toLocaleString("id-ID")}* pero pretendes apostar *Rp ${bet.toLocaleString("id-ID")}*.\n¡Ve a trabajar primero!`);
+  if (bet > (user.belly || 0)) {
+    return m.reply(`¡No pidas prestado, jefe! 😂\nSolo tienes *Belly ${(user.belly || 0).toLocaleString("es-ES")}* pero pretendes apostar *Belly ${bet.toLocaleString("es-ES")}*.\n¡Ve a trabajar primero!`);
   }
 
   await m.react("🎰");
@@ -61,13 +61,13 @@ async function handler(m, { sock }) {
     result = "¡GANASTE!";
     emoji = "🎉";
     moneyChange = bet;
-    user.koin = (user.koin || 0) + bet;
+    user.belly = (user.belly || 0) + bet;
     bandarTaunt = `"¡Cih! Solo tuviste suerte esta vez." - *Dealer* 😒`;
   } else if (playerScore < botScore) {
     result = "¡DERROTA ABSOLUTA!";
     emoji = "💸";
     moneyChange = -bet;
-    user.koin = (user.koin || 0) - bet;
+    user.belly = (user.belly || 0) - bet;
     bandarTaunt = `"¡JAJAJA! ¡Eras pobre y ahora más pobre! ¡Lárgate!" - *Dealer* 😈`;
   } else {
     result = "¡EMPATE!";
@@ -86,12 +86,12 @@ async function handler(m, { sock }) {
   txt += `🤖 Puntos del Dealer: *${botScore}*\n\n`;
   txt += `*Resultado: ${emoji} ${result}*\n`;
   if (moneyChange !== 0) {
-    txt += `Dinero del Dealer: *${moneyChange > 0 ? "+" : ""}Rp ${moneyChange.toLocaleString("id-ID")}*\n\n`;
+    txt += `Dinero del Dealer: *${moneyChange > 0 ? "+" : ""}Belly ${moneyChange.toLocaleString("es-ES")}*\n\n`;
   } else {
     txt += `Dinero devuelto (recuperas tu apuesta)\n\n`;
   }
   txt += `${bandarTaunt}\n\n`;
-  txt += `*Tu Saldo:* Rp ${(user.koin || 0).toLocaleString("id-ID")}`;
+  txt += `*Tu Saldo:* Belly ${(user.belly || 0).toLocaleString("es-ES")}`;
 
   m.reply(txt);
 }

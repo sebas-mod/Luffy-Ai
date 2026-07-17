@@ -21,7 +21,7 @@ function buildMessage({ message, history = [], imageBuffer = null }) {
 
   if (imageBuffer) {
     parts.push(
-      "User mengirim gambar. Jika model tidak bisa melihat gambar secara langsung, tetap jawab sebaik mungkin dari konteks teks yang ada.",
+      "El usuario envió una imagen. Si el modelo no puede ver la imagen directamente, responde lo mejor posible basándote en el contexto del texto.",
     );
   }
 

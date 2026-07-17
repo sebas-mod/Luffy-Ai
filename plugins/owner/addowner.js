@@ -140,7 +140,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbOwners = getJadibotOwners(jadibotId);
       if (jbOwners.length === 0) {
         return m.reply(
-          `📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay dueños en la lista.\n> Usa \`${m.prefix}addowner\` para agregar.`,
+          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay dueños en la lista.\n> Usa \`${m.prefix}addowner\` para agregar.`,
         );
       }
       let txt = `📋 *DAFTAR OWNER JADIBOT* — ${jadibotId}\n\n`;
@@ -159,7 +159,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
       if (allOwners.length === 0) {
         return m.reply(
-          `📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Aún no hay dueños de panel en la lista.`,
+          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs ᴘᴀɴᴇʟ*\n\n> Aún no hay dueños de panel en la lista.`,
         );
       }
       let txt = `📋 *DAFTAR OWNER PANEL*\n\n`;
@@ -183,7 +183,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const allOwners = [...new Set([...configOwners, ...dbOwners])];
 
       if (allOwners.length === 0) {
-        return m.reply(`📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ*\n\n> Aún no hay owner terlista.`);
+        return m.reply(`📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴘʀᴏᴘɪᴇᴛᴀʀɪᴏs*\n\n> Aún no hay owner terlista.`);
       }
       let txt = `📋 *DAFTAR OWNER*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
@@ -220,7 +220,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Formato de número no válido`);
+    return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Formato de número no válido`);
   }
 
   if (isJadibot && jadibotId) {

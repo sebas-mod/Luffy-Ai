@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     const expGain = Math.floor(Math.random() * 2000) + 500;
     const moneyGain = Math.floor(Math.random() * 10000) + 2000;
 
-    user.koin = (user.koin || 0) + moneyGain;
+    user.belly = (user.belly || 0) + moneyGain;
     const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
 
     db.save();
@@ -49,8 +49,8 @@ async function handler(m, { sock }) {
     let txt = `🗡️ *¡¡AVENTURA EXITOSA!!* 🗡️\n\n`;
     txt += `📍 Ubicación: *${location}*\n\n`;
     txt += `¡Genial! ¡Lograste derrotar al monstruo guardián y encontraste un cofre del tesoro!\n`;
-    txt += `💰 Belly: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
-    txt += `📈 EXP: *+${expGain.toLocaleString("id-ID")}*\n\n`;
+    txt += `💰 Belly: *+Belly ${moneyGain.toLocaleString("es-ES")}*\n`;
+    txt += `📈 EXP: *+${expGain.toLocaleString("es-ES")}*\n\n`;
     txt += `¡Regresaste a salvo! ¡Sigue aventurándote más tarde! 🚀✨`;
 
     await m.reply(txt);

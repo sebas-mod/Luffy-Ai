@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔇 *Mute GC Aktif*\n\n` +
+    `🔇 *Mute GC Activo*\n\n` +
       `> Grup: *${groupName}*\n` +
       `> Los miembros no pueden usar comandos del bot\n` +
       `> Admin del grupo y owner del bot siguen pudiendo acceder\n\n` +

@@ -46,13 +46,13 @@ const ssyoutube = {
     download: async (videoUrl) => {
         try {
             if (!videoUrl || !videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be')) {
-                return { error: 'URL tidak valid. Harap gunakan URL YouTube.' };
+                return { error: 'URL no valida. Por favor usa una URL de YouTube.' };
             }
 
             const currentTs = Date.now().toString();
             const signature = utils.generateSignature(videoUrl, currentTs);
 
-            if (!signature) return { error: 'Gagal membuat signature keamanan.' };
+            if (!signature) return { error: 'Error al crear la firma de seguridad.' };
 
             const payload = {
                 'sf_url': videoUrl,
@@ -71,7 +71,7 @@ const ssyoutube = {
             const data = response.data;
 
             if (!data || !data.url) {
-                return { error: 'Gagal mengambil data. Server mungkin memblokir request.' };
+                return { error: 'Error al obtener los datos. El servidor podria estar bloqueando la solicitud.' };
             }
 
             const result = {

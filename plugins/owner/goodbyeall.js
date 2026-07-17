@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
                 `✅ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
                 `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
                 `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Goodbye: *AKTIF*\n` +
+                `┃ ✅ Goodbye: *ACTIVO*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> ¡Los miembros que se van recibirán un mensaje de despedida!`
             )
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
                 `❌ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
                 `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
                 `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Goodbye: *NONAKTIF*\n` +
+                `┃ ❌ Goodbye: *INACTIVO*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> La despedida ha sido desactivada en todos los grupos.`
             )

@@ -197,13 +197,13 @@ async function handler(m) {
           )
           .join("\n")
       : "  ▸ (aún no hay persona personalizada)";
-    let txt = `🤖 *ᴅᴀғᴛᴀʀ ᴘᴇʀsᴏɴᴀ*\n\n`;
+    let txt = `🤖 *Lista de Personas*\n\n`;
     txt += `*Predeterminadas:*\n${builtIn}\n\n`;
     txt += `*Personalizadas:*\n${custom}\n\n`;
     txt += `*Global:* ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}\n\n`;
     txt += `> .autoai on --ourinmode=<key>\n`;
-    txt += `> .autoai tambahpersona nama | logic\n`;
-    txt += `> .autoai hapuspersona nama\n`;
+    txt += `> .autoai tambahpersona nombre | logic\n`;
+    txt += `> .autoai hapuspersona nombre\n`;
     txt += `> .autoai global on/off`;
     return m.reply(txt);
   }
@@ -273,7 +273,7 @@ async function handler(m) {
       };
       db.save();
       return m.reply(
-        `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n` +
+        `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ACTIVADO*\n\n` +
           `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
           `┃ 🎭 Personaje: *${characterName}*\n` +
           `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n` +
@@ -379,7 +379,7 @@ async function handler(m) {
       activatedAt: new Date().toISOString(),
     };
     db.save();
-    let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
+    let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ACTIVADO*\n\n`;
     txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
     txt += `┃ 🎭 Personaje: *Custom*\n`;
     txt += `┃ 🧠 Lógica: ${customLogic.substring(0, 100)}${customLogic.length > 100 ? "..." : ""}\n`;
@@ -409,7 +409,7 @@ async function handler(m) {
       activatedAt: new Date().toISOString(),
     };
     db.save();
-    let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
+    let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ACTIVADO*\n\n`;
     txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
     txt += `┃ 🎭 Personaje: *${customPersona.name}* (custom)\n`;
     txt += `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n`;
@@ -448,7 +448,7 @@ async function handler(m) {
   };
   db.save();
 
-  let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅɪᴀᴋᴛɪғᴋᴀɴ*\n\n`;
+  let txt = `🤖 *ᴀᴜᴛᴏ ᴀɪ ACTIVADO*\n\n`;
   txt += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
   txt += `┃ 🎭 Personaje: *${characters[charKey].name}*\n`;
   txt += `┃ 📢 Respuesta: *${responseType === "voice" ? "🎤 Nota de voz" : "💬 Texto"}*\n`;

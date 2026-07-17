@@ -97,23 +97,23 @@ async function handler(m, { sock }) {
     case "mysterybox": {
       user.inventory[itemKey]--;
       const rewards = [
-        { type: "koin", min: 1000, max: 50000, icon: "💰" },
+        { type: "belly", min: 1000, max: 50000, icon: "💰" },
         { type: "exp", min: 500, max: 5000, icon: "✨" },
         { type: "potion", qty: [1, 3], icon: "🥤" },
         { type: "diamond", qty: [1, 2], icon: "💠" },
       ];
       const pick = rewards[Math.floor(Math.random() * rewards.length)];
       let rewardMsg = "";
-      if (pick.type === "koin") {
+      if (pick.type === "belly") {
         const amount =
           Math.floor(Math.random() * (pick.max - pick.min)) + pick.min;
-        user.koin = (user.koin || 0) + amount;
-        rewardMsg = `${pick.icon} Belly: +${amount.toLocaleString("id-ID")}`;
+        user.belly = (user.belly || 0) + amount;
+        rewardMsg = `${pick.icon} Belly: +${amount.toLocaleString("es-ES")}`;
       } else if (pick.type === "exp") {
         const amount =
           Math.floor(Math.random() * (pick.max - pick.min)) + pick.min;
         db.updateExp(m.sender, amount);
-        rewardMsg = `${pick.icon} EXP: +${amount.toLocaleString("id-ID")}`;
+        rewardMsg = `${pick.icon} EXP: +${amount.toLocaleString("es-ES")}`;
       } else {
         const qty =
           Math.floor(Math.random() * (pick.qty[1] - pick.qty[0] + 1)) +
@@ -153,19 +153,19 @@ async function handler(m, { sock }) {
     case "scroll": {
       user.inventory[itemKey]--;
       const scrollRewards = [
-        { type: "koin", min: 2000, max: 10000, icon: "💰" },
+        { type: "belly", min: 2000, max: 10000, icon: "💰" },
         { type: "exp", min: 1000, max: 8000, icon: "✨" },
       ];
       const sPick = scrollRewards[Math.floor(Math.random() * scrollRewards.length)];
       let sRewardMsg = "";
-      if (sPick.type === "koin") {
+      if (sPick.type === "belly") {
         const amount = Math.floor(Math.random() * (sPick.max - sPick.min)) + sPick.min;
-        user.koin = (user.koin || 0) + amount;
-        sRewardMsg = `${sPick.icon} Belly: +${amount.toLocaleString("id-ID")}`;
+        user.belly = (user.belly || 0) + amount;
+        sRewardMsg = `${sPick.icon} Belly: +${amount.toLocaleString("es-ES")}`;
       } else {
         const amount = Math.floor(Math.random() * (sPick.max - sPick.min)) + sPick.min;
         db.updateExp(m.sender, amount);
-        sRewardMsg = `${sPick.icon} EXP Ninja: +${amount.toLocaleString("id-ID")}`;
+        sRewardMsg = `${sPick.icon} EXP Ninja: +${amount.toLocaleString("es-ES")}`;
       }
       msg = `📜 *¡PERGAMINO LEÍDO!*\n\n> Abriste el Pergamino Secreto Ninja...\n> ${sRewardMsg}`;
       break;
@@ -183,13 +183,13 @@ async function handler(m, { sock }) {
         Math.floor(Math.random() * (itemKey === "legendary" ? 5000 : 500)) +
         100;
 
-      user.koin = (user.koin || 0) + rewardMoney;
+      user.belly = (user.belly || 0) + rewardMoney;
       db.updateExp(m.sender, rewardExp);
 
       msg =
         `🎁 *¡CAJA ABIERTA!*\n\n` +
         `> Abriste la *${itemKey} Crate*!\n` +
-        `> 💰 Money: +Rp ${rewardMoney.toLocaleString("id-ID")}\n` +
+        `> 💰 Money: +Belly ${rewardMoney.toLocaleString("es-ES")}\n` +
         `> 🚄 Exp: +${rewardExp}`;
       break;
 

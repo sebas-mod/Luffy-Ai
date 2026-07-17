@@ -262,7 +262,7 @@ async function sendBackupToOwner(backupInfo) {
     const caption =
       `🗂️ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ*\n\n` +
       `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-      `┃ 📅 Waktu: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} ART\n` +
+      `┃ 📅 Fecha: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} ART\n` +
       `┃ 📦 Size: ${sizeInMB} MB\n` +
       `┃ 📁 Files: ${backupInfo.fileCount}\n` +
       `┃ ⏱️ Interval: ${formatInterval(state.intervalMs)}\n` +
@@ -335,7 +335,7 @@ function enableAutoBackup(intervalStr, sock) {
   if (!parsed) {
     return {
       success: false,
-      error: "Format interval tidak valid. Contoh: 5m, 1h, 2d",
+      error: "Formato de intervalo no válido. Ejemplo: 5m, 1h, 2d",
     };
   }
 

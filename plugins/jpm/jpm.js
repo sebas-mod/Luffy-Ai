@@ -84,7 +84,7 @@ function getVerifiedQuoted() {
     message: {
       contactMessage: {
         displayName: `📢 ${botName}`,
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${botName};;;\nFN:${botName}\nitem1.TEL;waid=${botNumber}:${botNumber}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nN:XL;${botName};;;\nFN:${botName}\nitem1.TEL;waid=${botNumber}:${botNumber}\nitem1.X-ABLabel:Movil\nEND:VCARD`,
         sendEphemeral: true,
       },
     },
@@ -786,7 +786,7 @@ async function handleJpmDirect(m, sock, db, text, mode) {
     if (groupIds.length === 0) {
       m.react("❌");
       return m.reply(
-        `❌ *Tidak Ada Grup*\n\n> Bot tidak menemukan grup yang bisa dituju${blacklistedCount > 0 ? ` (${blacklistedCount} grup di-blacklist)` : ""}`,
+        `❌ *No hay Grupos*\n\n> El bot no encontro grupos a los que enviar${blacklistedCount > 0 ? ` (${blacklistedCount} grupos en lista negra)` : ""}`,
       );
     }
 
@@ -965,7 +965,7 @@ async function handleJpmUpdateWithContent(m, sock, db, input) {
     if (groupIds.length === 0) {
       m.react("❌");
       return m.reply(
-        `❌ *Tidak Ada Grup*\n\n> Bot tidak menemukan grup yang bisa dituju${blacklistedCount > 0 ? ` (${blacklistedCount} grup di-blacklist)` : ""}`,
+        `❌ *No hay Grupos*\n\n> El bot no encontro grupos a los que enviar${blacklistedCount > 0 ? ` (${blacklistedCount} grupos en lista negra)` : ""}`,
       );
     }
 

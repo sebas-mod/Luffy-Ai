@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     }
 
     if (config.isOwner(targetNumber)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No puede ban owner`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> No puede ban owner`)
     }
 
     const db = getDatabase()
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Número \`${targetNumber}\` ya baneado`)
+        return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> Número \`${targetNumber}\` ya baneado`)
     }
 
     bannedList.push(targetNumber)

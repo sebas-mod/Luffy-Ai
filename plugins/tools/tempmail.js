@@ -30,7 +30,7 @@ async function handler(m) {
         `> *${m.prefix}tempmail create* — Crear correo nuevo\n` +
         `> *${m.prefix}tempmail inbox* — Revisar bandeja de entrada\n\n` +
         (saved
-          ? `> Email aktif: *${saved}*\n`
+          ? `> Email activo: *${saved}*\n`
           : `> No tienes correo, escribe *${m.prefix}tempmail create* primero\n`) +
         `\n_Este correo es temporal, puede desaparecer en cualquier momento_`
     );

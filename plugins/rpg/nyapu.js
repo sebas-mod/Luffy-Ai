@@ -39,18 +39,18 @@ async function handler(m, { sock }) {
 
   if (gacha < 0.1) {
     const goldFound = Math.floor(Math.random() * 50000) + 15000;
-    user.koin = (user.koin || 0) + goldFound;
+    user.belly = (user.belly || 0) + goldFound;
     await m.react("💍");
-    return m.reply(`¡¡SUERTE INCREÍBLE! ¡ENCONTRASTE UN ANILLO DE ORO! 💍✨\n\nMientras barrías la acera, encontraste un anillo de oro y lo vendiste de inmediato!\n💵 Ingreso Sorpresa: *+Rp ${goldFound.toLocaleString("id-ID")}*\n⚡ Stamina: -${staminaCost}\n\n¡La fortuna llega cuando menos lo esperas! 🥳`);
+    return m.reply(`¡¡SUERTE INCREÍBLE! ¡ENCONTRASTE UN ANILLO DE ORO! 💍✨\n\nMientras barrías la acera, encontraste un anillo de oro y lo vendiste de inmediato!\n💵 Ingreso Sorpresa: *+Belly ${goldFound.toLocaleString("es-ES")}*\n⚡ Stamina: -${staminaCost}\n\n¡La fortuna llega cuando menos lo esperas! 🥳`);
   }
 
   const earning = Math.floor(Math.random() * 8000) + 3000;
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`¡ALABADO SEA DIOS, LIMPIEZA COMPLETADA! 🧹✨\n\n💵 Salario Diario: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡El mundo está más limpio y hermoso! 🌍`);
+  m.reply(`¡ALABADO SEA DIOS, LIMPIEZA COMPLETADA! 🧹✨\n\n💵 Salario Diario: *+Belly ${earning.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡El mundo está más limpio y hermoso! 🌍`);
 }
 
 export { pluginConfig as config, handler };

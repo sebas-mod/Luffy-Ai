@@ -29,7 +29,7 @@ const pluginConfig = {
     "skipadmin_off",
   ],
   category: "pushcontacto",
-  description: "Push mensaje a todos los miembros grup + auto simpan contacto VCF",
+  description: "Push mensaje a todos los miembros grupo + auto guardar contacto VCF",
   usage: ".pushcontacto",
   example: ".pushcontacto",
   isOwner: true,
@@ -145,7 +145,7 @@ function nativeFlowMsg(m, title, buttons) {
             in_thread_buttons_limit: 2,
             divider_indices: [1, 2, 3, 4, 5, 999],
             list_title: "Push Contacto",
-            button_title: "📢 Pilih Fesor",
+            button_title: "📢 Seleccionar Opción",
           },
           tap_target_configuration: {
             title: " X ",
@@ -171,10 +171,10 @@ async function sendVcf(sock, ownerJid, contacts, groupName) {
     fileName: `Contacto_${groupName || "Group"}_${contacts.length}.vcf`,
     mimetype: "text/vcard",
     caption:
-      `💾 *AUTO-SAVE KONTAK*\n\n` +
+      `💾 *AUTO-SAVE CONTACTO*\n\n` +
       `📊 *Total:* ${contacts.length} contacto\n` +
-      `👥 *Grup:* ${groupName || "Unknown"}\n\n` +
-      `📱 _Import file esto a HP para guarydo todos contacto_`,
+      `👥 *Grupo:* ${groupName || "Unknown"}\n\n` +
+      `📱 _Importa este archivo al celular para guardar todos los contactos_`,
   });
   try {
     fs.unlinkSync(vcfPath);
@@ -184,13 +184,13 @@ async function sendVcf(sock, ownerJid, contacts, groupName) {
 async function handleStop(m) {
   if (!global.statuspush) {
     return m.reply(
-      `❌ *GAGAL*\n\n🚫 *No hay push de contactos en ejecución actualmente*`,
+      `❌ *FALLÓ*\n\n🚫 *No hay push de contactos en ejecución actualmente*`,
     );
   }
   global.stoppush = true;
   m.react("⏹️");
   return m.reply(
-    `⏹️ *PUSH DIHENTIKAN*\n\n✅ *El proceso de push de contactos se detendrá pronto*`,
+    `⏹️ *PUSH DETENIDO*\n\n✅ *El proceso de push de contactos se detendrá pronto*`,
   );
 }
 
@@ -226,18 +226,18 @@ async function handleKelola(m, sock) {
               {
                 title: `${s.autoVcf ? "🔴" : "🟢"} Auto VCF: ${s.autoVcf ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.autoVcf ? "autovcf_off" : "autovcf_on"}`,
-                description: "Simpan contacto a VCF automáticamente después de push",
+                description: "Guardar contacto en VCF automáticamente después del push",
               },
             ],
           },
           {
-            title: "🔑 Kode Unik",
+            title: "🔑 Código Único",
             highlight_label: s.kodeUnik ? "ON" : "OFF",
             rows: [
               {
-                title: `${s.kodeUnik ? "🔴" : "🟢"} Kode Unik: ${s.kodeUnik ? "Desactivar" : "Activar"}`,
+                title: `${s.kodeUnik ? "🔴" : "🟢"} Código Único: ${s.kodeUnik ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.kodeUnik ? "kodeunik_off" : "kodeunik_on"}`,
-                description: "Tambah kode random di akhir mensaje",
+                description: "Agregar código aleatorio al final del mensaje",
               },
             ],
           },
@@ -248,12 +248,12 @@ async function handleKelola(m, sock) {
               {
                 title: `${s.vcfTarget === "private" ? "✅" : "⬜"} Envía a Private Chat`,
                 id: `${p}vcftarget_private`,
-                description: "VCF dienvía a chat pribadi owner",
+                description: "VCF enviado al chat privado del owner",
               },
               {
                 title: `${s.vcfTarget === "group" ? "✅" : "⬜"} Envía a Group Chat`,
                 id: `${p}vcftarget_group`,
-                description: "VCF dienvía a group chat",
+                description: "VCF enviado al chat del grupo",
               },
             ],
           },
@@ -264,33 +264,33 @@ async function handleKelola(m, sock) {
               {
                 title: `${s.skipAdmin ? "🔴" : "🟢"} Skip Admin: ${s.skipAdmin ? "Desactivar" : "Activar"}`,
                 id: `${p}${s.skipAdmin ? "skipadmin_off" : "skipadmin_on"}`,
-                description: "Lewati admin grup cuando push",
+                description: "Omitir admins del grupo al hacer push",
               },
             ],
           },
           {
-            title: "⏱️ Jeda Push",
+            title: "⏱️ Pausa Push",
             highlight_label: `${(s.jeda / 1000).toFixed(0)}s`,
             rows: [
               {
                 title: "⚡ 3 Segundo",
                 id: `${p}setjedapush 3000`,
-                description: "Cepat, rcontenidoko ban tinggi",
+                description: "Rápido, riesgo de bloqueo alto",
               },
               {
                 title: "🔄 5 Segundo",
                 id: `${p}setjedapush 5000`,
-                description: "Normal, rekomendasi",
+                description: "Normal, recomendado",
               },
               {
                 title: "🛡️ 10 Segundo",
                 id: `${p}setjedapush 10000`,
-                description: "Aman de ban",
+                description: "Seguro, menos riesgo de bloqueo",
               },
               {
                 title: "🐢 15 Segundo",
                 id: `${p}setjedapush 15000`,
-                description: "Sangat aman",
+                description: "Muy seguro",
               },
             ],
           },
@@ -301,7 +301,7 @@ async function handleKelola(m, sock) {
     {
       name: "quick_reply",
       buttonParamsJson: JSON.stringify({
-        display_text: "📢 Mulai Push",
+        display_text: "📢 Iniciar Push",
         id: `${p}pushcontacto_start`,
       }),
     },
@@ -311,15 +311,15 @@ async function handleKelola(m, sock) {
     m.chat,
     nativeFlowMsg(
       m,
-      `⚙️ *KELOLA PUSH KONTAK*
+      `⚙️ *GESTIONAR PUSH CONTACTO*
 
 ` +
-      `📋 *SETTING SAAT INI*\n\n` +
+      `📋 *CONFIGURACIÓN ACTUAL*\n\n` +
       `💾 Auto VCF: *${s.autoVcf ? "✅ ON" : "❌ OFF"}*\n` +
-      `🔑 Kode Unik: *${s.kodeUnik ? "✅ ON" : "❌ OFF"}*\n` +
+      `🔑 Código Único: *${s.kodeUnik ? "✅ ON" : "❌ OFF"}*\n` +
       `📱 VCF Target: *${s.vcfTarget === "private" ? "Private" : "Group"}*\n` +
       `👑 Skip Admin: *${s.skipAdmin ? "✅ ON" : "❌ OFF"}*\n` +
-      `⏱️ Jeda: *${s.jeda}ms (${(s.jeda / 1000).toFixed(1)}s)*\n\n` +
+      `⏱️ Pausa: *${s.jeda}ms (${(s.jeda / 1000).toFixed(1)}s)*\n\n` +
       `📌 *Selecciona del botón de abajo para cambiar la configuración*`,
       buttons,
     ),
@@ -334,8 +334,7 @@ async function handleSettingToggle(m, settingKey, label, onVal, offVal) {
   db.setting(settingKey, isOn ? onVal : offVal);
   m.react(isOn ? "✅" : "🔴");
   await m.reply(
-    `${isOn ? "✅" : "🔴"} *${label} ${isOn ? "DINYALAKAN" : "DIMATIKAN"}*
-
+    `${isOn ? "✅" : "🔴"} *${label} ${isOn ? "ACTIVADO" : "DESACTIVADO"}*\n
 ` + `⚙️ *${label}:* ${isOn ? "ON" : "OFF"}`,
   );
 }
@@ -354,34 +353,34 @@ async function handleSetJeda(m, sock) {
       {
         name: "single_select",
         buttonParamsJson: JSON.stringify({
-          title: "⏱️ Pilih Jeda",
+          title: "⏱️ Seleccionar Pausa",
           sections: [
             {
-              title: "⏱️ Rekomendasi Jeda Push Contacto",
-              highlight_label: "Rekomendasi",
+              title: "⏱️ Recomendación Pausa Push Contacto",
+              highlight_label: "Recomendado",
               rows: [
                 {
-                  title: "⚡ 3 Segundo (Cepat)",
+                  title: "⚡ 3 Segundo (Rápido)",
                   id: `${m.prefix}setjedapush 3000`,
-                  description: "Rcontenidoko ban más alto",
+                  description: "El más rápido, riesgo más alto",
                 },
                 {
                   title: "🔄 5 Segundo (Normal)",
                   id: `${m.prefix}setjedapush 5000`,
-                  description: "Rekomendasi para peentoncesian umum",
+                  description: "Recomendado para uso general",
                 },
                 {
-                  title: "🛡️ 10 Segundo (Aman)",
+                  title: "🛡️ 10 Segundo (Seguro)",
                   id: `${m.prefix}setjedapush 10000`,
-                  description: "Paling aman de rcontenidoko ban",
+                  description: "El más seguro, menos riesgo de bloqueo",
                 },
                 {
-                  title: "🐢 15 Segundo (Sangat Aman)",
+                  title: "🐢 15 Segundo (Muy Seguro)",
                   id: `${m.prefix}setjedapush 15000`,
-                  description: "Para grup besar 500+ member",
+                  description: "Para grupos grandes de 500+ miembros",
                 },
                 {
-                  title: "🏔️ 30 Segundo (Maksimal)",
+                  title: "🏔️ 30 Segundo (Máximo)",
                   id: `${m.prefix}setjedapush 30000`,
                   description: "Pausa más larga",
                 },
@@ -396,16 +395,16 @@ async function handleSetJeda(m, sock) {
       m.chat,
       nativeFlowMsg(
         m,
-        `⏱️ *SET JEDA PUSH KONTAK*\n\n` +
-        `📋 *Mengatur interval antar pengiriman mensaje*\n\n` +
-        `⏱️ *Jeda actualmente:* ${current}ms (${(current / 1000).toFixed(1)} segundo)\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `📝 *${m.prefix}setjedapush <milisegundo>* — Cambiando jeda push\n\n` +
-        `*PENJELASAN:*\n` +
+        `⏱️ *CONFIGURAR PAUSA PUSH CONTACTO*\n\n` +
+        `📋 *Configurar intervalo entre envío de mensajes*\n\n` +
+        `⏱️ *Pausa actualmente:* ${current}ms (${(current / 1000).toFixed(1)} segundo)\n\n` +
+        `*USO:*\n` +
+        `📝 *${m.prefix}setjedapush <milisegundo>* — Cambiar la pausa del push\n\n` +
+        `*EXPLICACIÓN:*\n` +
         `1. La pausa es el tiempo de espera entre el envío de mensajes a cada miembro\n` +
         `2. Cuanto menor sea la pausa, más rápido termina el push, pero el riesgo de ser bloqueado es mayor\n` +
-        `3. Rekomendasi mestomal *3000ms* (3 segundo) agar aman\n` +
-        `4. Nilai maksimal *30000ms* (30 segundo)\n\n` +
+        `3. Recomendación mínima *3000ms* (3 segundos) para estar seguro\n` +
+        `4. Valor máximo *30000ms* (30 segundos)\n\n` +
         `📌 *Selecciona la pausa del botón de abajo o escribe manual*`,
         buttons,
       ),
@@ -414,14 +413,14 @@ async function handleSetJeda(m, sock) {
   }
 
   if (val < 1000 || val > 30000) {
-    return m.reply(`❌ *GAGAL*\n\n🚫 *Jeda debe antara 1000ms - 30000ms*`);
+    return m.reply(`❌ *FALLÓ*\n\n🚫 *La pausa debe estar entre 1000ms - 30000ms*`);
   }
 
   db.setting("jedaPush", val);
   m.react("✅");
   return m.reply(
-    `✅ *JEDA DIUBAH*\n\n` +
-    `⏱️ *Jeda nuevo:* ${val}ms (${(val / 1000).toFixed(1)} segundo)`,
+    `✅ *PAUSA CAMBIADA*\n\n` +
+    `⏱️ *Pausa nuevo:* ${val}ms (${(val / 1000).toFixed(1)} segundo)`,
   );
 }
 
@@ -434,7 +433,7 @@ async function handlePush(m, sock) {
       {
         name: "quick_reply",
         buttonParamsJson: JSON.stringify({
-          display_text: "🔓 Activokan Mode Pushcontacto",
+          display_text: "🔓 Activar Modo Pushcontacto",
           id: `${m.prefix}botmode pushcontacto`,
         }),
       },
@@ -443,11 +442,11 @@ async function handlePush(m, sock) {
       m.chat,
       nativeFlowMsg(
         m,
-        `❌ *MODE TIDAK SESUAI*\n\n` +
-        `🔒 *Grup esto aún no en mode pushcontacto*\n\n` +
-        `*CARA AKTIVASI:*\n` +
+        `❌ *MODO NO ADECUADO*\n\n` +
+        `🔒 *Este grupo aún no está en modo pushcontacto*\n\n` +
+        `*CÓMO ACTIVAR:*\n` +
         `1. Presiona el botón de abajo para activar el modo pushcontacto\n` +
-        `2. Después de mode berubah, ulangi comando push contacto`,
+        `2. Después de que el modo cambie, repite el comando push contacto`,
         buttons,
       ),
       { quoted: m },
@@ -469,16 +468,16 @@ async function handlePush(m, sock) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "📋 Pilih Fesor",
+        title: "📋 Seleccionar Opción",
         sections: [
           {
-            title: "📢 Aksi",
+            title: "📢 Acción",
             highlight_label: "Push Contacto",
             rows: [
               {
-                title: "📢 Mulai Push (Sesi Input)",
+                title: "📢 Iniciar Push (Sesión de Entrada)",
                 id: `${m.prefix}pushcontacto_start`,
-                description: "Input mensaje lalu push a todos los miembros",
+                description: "Input mensaje y luego push a todos los miembros",
               },
               {
                 title: "⏹️ Stop Push",
@@ -488,18 +487,18 @@ async function handlePush(m, sock) {
             ],
           },
           {
-            title: "⚙️ Alola Cepat",
+            title: "⚙️ Alola Rápido",
             highlight_label: "Setting",
             rows: [
               {
                 title: "⚙️ Alola Push Contacto",
                 id: `${m.prefix}alolapush`,
-                description: `VCF:${s.autoVcf ? "ON" : "OFF"} | Kode:${s.kodeUnik ? "ON" : "OFF"} | Jeda:${(s.jeda / 1000).toFixed(0)}s`,
+                description: `VCF:${s.autoVcf ? "ON" : "OFF"} | Código:${s.kodeUnik ? "ON" : "OFF"} | Pausa:${(s.jeda / 1000).toFixed(0)}s`,
               },
               {
-                title: "⏱️ Set Jeda Push",
+                title: "⏱️ Configurar Pausa Push",
                 id: `${m.prefix}setjedapush`,
-                description: `Jeda actualmente: ${s.jeda}ms`,
+                description: `Pausa actualmente: ${s.jeda}ms`,
               },
             ],
           },
@@ -517,7 +516,7 @@ async function handlePush(m, sock) {
     {
       name: "quick_reply",
       buttonParamsJson: JSON.stringify({
-        display_text: "📢 Mulai Push",
+        display_text: "📢 Iniciar Push",
         id: `${m.prefix}pushcontacto_start`,
       }),
     },
@@ -526,28 +525,28 @@ async function handlePush(m, sock) {
     m.chat,
     nativeFlowMsg(
       m,
-      `📢 *PUSH KONTAK*\n\n` +
-      `📋 *Envía mensaje a todos los miembros grup de forma automáticamente + simpan contacto a file VCF*\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `📝 *${m.prefix}pushcontacto <mensaje>* — Push langsung con mensaje\n` +
-      `📢 *${m.prefix}pushcontacto* — Buka menu interactivo\n` +
+      `📢 *PUSH CONTACTO*\n\n` +
+      `📋 *Envía mensaje a todos los miembros grupo de forma automáticamente + guardar contacto a file VCF*\n\n` +
+      `*USO:*\n` +
+      `📝 *${m.prefix}pushcontacto <mensaje>* — Push directo con mensaje\n` +
+      `📢 *${m.prefix}pushcontacto* — Abrir menú interactivo\n` +
       `⏹️ *${m.prefix}stoppush* — Detener el push que está en ejecución\n` +
-      `⏱️ *${m.prefix}setjedapush <ms>* — Atur jeda antar pengiriman\n\n` +
-      `*PENJELASAN ALUR PENGGUNAAN:*\n` +
-      `1. Pastikan grup en mode pushcontacto: *${m.prefix}botmode pushcontacto*\n` +
-      `2. Escribe *${m.prefix}pushcontacto* lalu pilih "Mulai Push" de menu\n` +
+      `⏱️ *${m.prefix}setjedapush <ms>* — Configurar pausa entre envíos\n\n` +
+      `*EXPLICACIÓN DEL FLUJO DE USO:*\n` +
+      `1. Asegúrate de que el grupo esté en modo pushcontacto: *${m.prefix}botmode pushcontacto*\n` +
+      `2. Escribe *${m.prefix}pushcontacto* luego selecciona "Iniciar Push" del menú\n` +
       `3. El bot te pedirá que ingreses el mensaje que quieres enviar mediante reply\n` +
       `4. Después de confirmar, el bot enviará el mensaje a cada miembro uno por uno\n` +
       `5. A cada mensaje se le agrega un código único para ser detectado diferente por WhatsApp\n` +
       `6. Después de completar, el bot enviará automáticamente un archivo VCF con todos los contactos de los miembros\n\n` +
       `*INFO:*\n` +
-      `📋 *SETTING*\n\n` +
+      `📋 *CONFIGURACIÓN*\n\n` +
       `💾 Auto VCF: *${s.autoVcf ? "✅ ON" : "❌ OFF"}*\n` +
-      `🔑 Kode Unik: *${s.kodeUnik ? "✅ ON" : "❌ OFF"}*\n` +
+      `🔑 Código Único: *${s.kodeUnik ? "✅ ON" : "❌ OFF"}*\n` +
       `📱 VCF Target: *${s.vcfTarget === "private" ? "Private" : "Group"}*\n` +
       `👑 Skip Admin: *${s.skipAdmin ? "✅ ON" : "❌ OFF"}*\n` +
-      `⏱️ Jeda: *${s.jeda}ms (${(s.jeda / 1000).toFixed(1)}s)*\n\n` +
-      `🔑 *Akses:* Owner only`,
+      `⏱️ Pausa: *${s.jeda}ms (${(s.jeda / 1000).toFixed(1)}s)*\n\n` +
+      `🔑 *Acceso:* Owner only`,
       buttons,
     ),
     { quoted: m },
@@ -560,30 +559,30 @@ async function handleStartSession(m, sock) {
 
   if (groupMode !== "pushcontacto" && groupMode !== "all") {
     return m.reply(
-      `❌ *GAGAL*\n\n🔒 *Activa el modo pushcontacto primero*\n\n📝 *${m.prefix}botmode pushcontacto*`,
+      `❌ *FALLÓ*\n\n🔒 *Activa el modo pushcontacto primero*\n\n📝 *${m.prefix}botmode pushcontacto*`,
     );
   }
 
   if (global.statuspush) {
     return m.reply(
-      `❌ *GAGAL*\n\n🔄 *Push de contactos está en ejecución*\n\n⏹️ *Escribe* ${m.prefix}stoppush *para detenerlo*`,
+      `❌ *FALLÓ*\n\n🔄 *Push de contactos está en ejecución*\n\n⏹️ *Escribe* ${m.prefix}stoppush *para detenerlo*`,
     );
   }
 
   if (getSession(m.sender)) {
     return m.reply(
-      `📝 *Sesión de push ya activa*\n\n📩 *Responde al mensaje anterior con el mensaje que quieres enviar*\n\n❌ *O responde* \`batal\` *para cancelar*`,
+      `📝 *Sesión de push ya activa*\n\n📩 *Responde al mensaje anterior con el mensaje que quieres enviar*\n\n❌ *O responde* \`cancelar\` *para cancelar*`,
     );
   }
 
   const session = createSession(m.sender, m.chat);
 
   const sent = await m.reply(
-    `📢 *SESI PUSH KONTAK*\n\n` +
-    `📝 *Langkah 1/2 — Input Mensaje*\n\n` +
+    `📢 *SESIÓN PUSH CONTACTO*\n\n` +
+    `📝 *Paso 1/2 — Entrada de Mensaje*\n\n` +
     `🔤 *Envía el mensaje que quieres enviar a todos los miembros*\n\n` +
     `📩 *Responde a este mensaje con el mensaje que quieres enviar*\n\n` +
-    `❌ *Reply* \`batal\` *para cancelar sesi*`,
+    `❌ *Responde* \`cancelar\` *para cancelar la sesión*`,
   );
 
   session.promptId = sent?.key?.id || null;
@@ -593,7 +592,7 @@ async function handleStartSession(m, sock) {
 async function startPush(m, sock, text) {
   if (global.statuspush) {
     return m.reply(
-      `❌ *GAGAL*\n\n🔄 *Push de contactos está en ejecución*\n\n⏹️ *Escribe* ${m.prefix}stoppush *para detenerlo*`,
+      `❌ *FALLÓ*\n\n🔄 *Push de contactos está en ejecución*\n\n⏹️ *Escribe* ${m.prefix}stoppush *para detenerlo*`,
     );
   }
 
@@ -614,7 +613,7 @@ async function startPush(m, sock, text) {
     if (participants.length === 0) {
       m.react("❌");
       return m.reply(
-        `❌ *GAGAL*\n\n🚫 *No hay miembros a los que se les pueda enviar el mensaje*`,
+        `❌ *ERROR*\n\n🚫 *No hay miembros a los que se les pueda enviar el mensaje*`,
       );
     }
 
@@ -635,13 +634,13 @@ async function startPush(m, sock, text) {
       m.chat,
       nativeFlowMsg(
         m,
-        `📢 *PUSH KONTAK DIMULAI*\n\n` +
+        `📢 *PUSH CONTACTO INICIADO*\n\n` +
         `📝 *Mensaje:* ${text.substring(0, 80)}${text.length > 80 ? "..." : ""}\n` +
         `👥 *Target:* ${participants.length} miembros\n` +
-        `⏱️ *Jeda:* ${jedaPush}ms\n` +
-        `📊 *Estimasi:* ${estimasi} minuto\n` +
-        `💾 *Auto VCF:* ${s.autoVcf ? "ON" : "OFF"} | 🔑 *Kode Unik:* ${s.kodeUnik ? "ON" : "OFF"}\n\n` +
-        `🔄 *Estociando push...*`,
+        `⏱️ *Pausa:* ${jedaPush}ms\n` +
+        `📊 *Estimación:* ${estimasi} minuto\n` +
+        `💾 *Auto VCF:* ${s.autoVcf ? "ON" : "OFF"} | 🔑 *Código Único:* ${s.kodeUnik ? "ON" : "OFF"}\n\n` +
+        `🔄 *Ejecutando push...*`,
         buttons,
       ),
       { quoted: m },
@@ -657,10 +656,10 @@ async function startPush(m, sock, text) {
         delete global.stoppush;
         delete global.statuspush;
         await m.reply(
-          `⏹️ *PUSH DIHENTIKAN*\n\n` +
+          `⏹️ *PUSH DETENIDO*\n\n` +
           `✅ *Éxito:* ${success}\n` +
           `❌ *Fallo:* ${failed}\n` +
-          `⏸️ *Sisa:* ${participants.length - success - failed}`,
+          `⏸️ *Restante:* ${participants.length - success - failed}`,
         );
         if (saved.length > 0 && s.autoVcf) {
           const vcfTarget = s.vcfTarget === "group" ? m.chat : m.sender;
@@ -693,7 +692,7 @@ async function startPush(m, sock, text) {
       {
         name: "quick_reply",
         buttonParamsJson: JSON.stringify({
-          display_text: "📢 Push Ulang",
+          display_text: "📢 Rehacer Push",
           id: `${m.prefix}pushcontacto_start`,
         }),
       },
@@ -703,12 +702,12 @@ async function startPush(m, sock, text) {
       m.chat,
       nativeFlowMsg(
         m,
-        `✅ *PUSH SELESAI*\n\n` +
+        `✅ *PUSH COMPLETADO*\n\n` +
         `✅ *Éxito:* ${success}\n` +
         `❌ *Fallo:* ${failed}\n` +
         `📊 *Total:* ${participants.length}\n` +
-        `💾 *Contacto:* ${saved.length} dcontenidompan\n\n` +
-        `📱 *File VCF ha dienvía a chat pribadi*`,
+        `💾 *Contacto:* ${saved.length} guardados\n\n` +
+        `📱 *El archivo VCF fue enviado al chat privado*`,
         doneButtons,
       ),
       { quoted: m },
@@ -734,7 +733,7 @@ async function pushkontakAnswerHandler(m, sock) {
   if (["batal", "cancel", "batalkan"].includes(lowText)) {
     clearSession(m.sender);
     await m.reply(
-      `❌ *Sesi push contacto dibatalkan*\n\n📢 *Escribe* ${m.prefix}pushcontacto *para estociando de nuevo*`,
+      `❌ *Sesión push contacto cancelada*\n\n📢 *Escribe* ${m.prefix}pushcontacto *para intentar de nuevo*`,
     );
     return true;
   }
@@ -764,15 +763,15 @@ async function pushkontakAnswerHandler(m, sock) {
     const estimasi = Math.ceil((participants.length * jedaPush) / 60000);
 
     const sent = await m.reply(
-      `✅ *LANGKAH 2/2 — KONFIRMASI*\n\n` +
+      `✅ *PASO 2/2 — CONFIRMACIÓN*\n\n` +
       `📝 *Mensaje:* ${text.substring(0, 100)}${text.length > 100 ? "..." : ""}\n` +
       `👥 *Target:* ${participants.length} miembros\n` +
-      `⏱️ *Jeda:* ${jedaPush}ms\n` +
-      `📊 *Estimasi:* ${estimasi} minuto\n\n` +
-      `*Reply mensaje esto con:*\n` +
-      `✅ *ya* — Mulai push ahora\n` +
-      `📝 *ubah* — cambia el mensaje que quieres enviar\n` +
-      `❌ *batal* — Batalkan sesi`,
+      `⏱️ *Pausa:* ${jedaPush}ms\n` +
+      `📊 *Estimación:* ${estimasi} minuto\n\n` +
+      `*Responde a este mensaje con:*\n` +
+      `✅ *ya* — Iniciar push ahora\n` +
+       `📝 *cambiar* — cambia el mensaje que quieres enviar\n` +
+      `❌ *cancelar* — Cancelar sesión`,
     );
 
     session.promptId = sent?.key?.id || session.promptId;
@@ -792,17 +791,17 @@ async function pushkontakAnswerHandler(m, sock) {
     if (["ubah", "edit", "ganti", "revcontenido"].includes(lowText)) {
       session.step = "message";
       const sent = await m.reply(
-        `📝 *UBAH PESAN*\n\n` +
+        `📝 *CAMBIAR MENSAJE*\n\n` +
         `🔤 *Envía el mensaje nuevo que quieres enviar*\n\n` +
-        `📩 *Reply mensaje esto con mensaje nuevo*\n\n` +
-        `❌ *Reply* \`batal\` *para cancelar*`,
+        `📩 *Responde a este mensaje con el mensaje nuevo*\n\n` +
+        `❌ *Responde* \`batal\` *para cancelar*`,
       );
       session.promptId = sent?.key?.id || session.promptId;
       return true;
     }
 
     await m.reply(
-      `❌ *Reply no válido*\n\n📩 *Reply con:* \`ya\`, \`ubah\`, o \`batal\``,
+      `❌ *Respuesta no válida*\n\n📩 *Responde con:* \`ya\`, \`cambiar\`, o \`cancelar\``,
     );
     return true;
   }
@@ -819,7 +818,7 @@ async function handler(m, { sock }) {
   if (cmd === "autovcf_on" || cmd === "autovcf_off")
     return handleSettingToggle(m, "pushAutoVcf", "Auto VCF", true, false);
   if (cmd === "kodeunik_on" || cmd === "kodeunik_off")
-    return handleSettingToggle(m, "pushKodeUnik", "Kode Unik", true, false);
+    return handleSettingToggle(m, "pushKodeUnik", "Código Único", true, false);
   if (cmd === "vcftarget_private")
     return handleSettingToggle(
       m,

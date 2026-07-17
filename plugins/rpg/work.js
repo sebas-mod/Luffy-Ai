@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   await m.reply(`¡Camino al trabajo como *${job.name.substring(3)}*! 🏃💼💨`);
   await new Promise((r) => setTimeout(r, 3000));
 
-  user.koin = (user.koin || 0) + salary;
+  user.belly = (user.belly || 0) + salary;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   db.save();
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
   let txt = `¡MIRA QUIEN ACABA DE TRABAJAR! 💸✨\n\n`;
   txt += `¡Genial, el sueldo es bastante bueno:\n`;
   txt += `💼 Profesión: *${job.name}*\n`;
-  txt += `💵 Sueldo Neto: *+Rp ${salary.toLocaleString("id-ID")}*\n`;
+  txt += `💵 Sueldo Neto: *+Belly ${salary.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
   txt += `¡El trabajo duro da sus frutos! ¡Sigue así! 🐴🔥`;

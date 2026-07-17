@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
     const groqKey = config.APIkey?.groq;
     if (!groqKey) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ғᴀʟʟᴏ*\n\n` +
             `> La API Key de Groq no está configurada\n` +
             `> Configura en config.js → APIkey.groq\n` +
             `> Gratis di https://console.groq.com`

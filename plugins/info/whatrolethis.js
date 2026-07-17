@@ -6,7 +6,7 @@ const pluginConfig = {
   alias: ["whatrole", "cekrole", "cekakses"],
   category: "info",
   description: "Verificar requisitos de acceso de múltiples funciones a la vez",
-  usage: ".whatrolethis <nama_fitur1> <nama_fitur2> ...",
+  usage: ".whatrolethis <nombre_función1> <nombre_función2> ...",
   example: ".whatrolethis hd jpm",
   isOwner: false,
   isPremium: false,

@@ -5,7 +5,7 @@ const termaiKey = 'AIzaBj7z2z3xBjsk'
 const termaiDomain = 'https://c.termai.cc'
 
 async function uploadTo0x0(buffer, opts) {
-  if (!Buffer.isBuffer(buffer)) throw new Error("buffer harus Buffer");
+  if (!Buffer.isBuffer(buffer)) throw new Error("buffer debe ser Buffer");
   
   const filename = opts?.filename || 'image.jpg'
   const form = new FormData();
@@ -20,14 +20,14 @@ async function uploadTo0x0(buffer, opts) {
   })
 
   if (res.status < 200 || res.status >= 300) {
-    throw new Error(`Upload gagal (HTTP ${res.status}): ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`);
+    throw new Error(`Upload fallo (HTTP ${res.status}): ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`);
   }
   
   if (res.data?.status && res.data?.path) {
     return { url: res.data.path, directUrl: res.data.path }
   }
 
-  throw new Error("Response tidak ada data valid dari Termai");
+  throw new Error("Respuesta sin datos válidos de Termai");
 }
 
 // Map everything locally to termai wrapper, keeping exported name identical for compatibility

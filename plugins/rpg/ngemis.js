@@ -50,12 +50,12 @@ async function handler(m, { sock }) {
   }
 
   const earning = Math.floor(Math.random() * 3000) + 500;
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
   const expGain = Math.floor(earning / 10);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`RESULTADO DEL MENDIGO HOY! 🤲✨\n\n💵 Ingreso de monedas: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Agradece por las bendiciones del día, aunque sea moneditas, lo importante es que es lícito! 🙏`);
+  m.reply(`RESULTADO DEL MENDIGO HOY! 🤲✨\n\n💵 Ingreso de monedas: *+Belly ${earning.toLocaleString("es-ES")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\n¡Agradece por las bendiciones del día, aunque sea moneditas, lo importante es que es lícito! 🙏`);
 }
 
 export { pluginConfig as config, handler };

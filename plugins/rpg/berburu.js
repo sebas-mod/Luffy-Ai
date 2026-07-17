@@ -38,12 +38,12 @@ async function handler(m, { sock }) {
   await new Promise((r) => setTimeout(r, 3000));
 
   const animals = [
-    { name: "🐰 Kelinci", item: "daging_kelinci", chance: 80, min: 1, max: 3, exp: 50, money: 500 },
-    { name: "🦌 Rusa", item: "daging_rusa", chance: 50, min: 1, max: 2, exp: 100, money: 1500 },
-    { name: "🐗 Babi Hutan", item: "daging_babi", chance: 40, min: 1, max: 2, exp: 150, money: 2000 },
-    { name: "🦊 Rubah", item: "bulu_rubah", chance: 30, min: 1, max: 1, exp: 200, money: 3000 },
-    { name: "🐻 Beruang", item: "cakar_beruang", chance: 15, min: 1, max: 1, exp: 500, money: 10000 },
-    { name: "🦁 Singa", item: "taring_singa", chance: 5, min: 1, max: 1, exp: 1000, money: 25000 },
+    { name: "🐰 Conejo", item: "daging_kelinci", chance: 80, min: 1, max: 3, exp: 50, money: 500 },
+    { name: "🦌 Ciervo", item: "daging_rusa", chance: 50, min: 1, max: 2, exp: 100, money: 1500 },
+    { name: "🐗 Jabalí", item: "daging_babi", chance: 40, min: 1, max: 2, exp: 150, money: 2000 },
+    { name: "🦊 Zorro", item: "bulu_rubah", chance: 30, min: 1, max: 1, exp: 200, money: 3000 },
+    { name: "🐻 Oso", item: "cakar_beruang", chance: 15, min: 1, max: 1, exp: 500, money: 10000 },
+    { name: "🦁 León", item: "taring_singa", chance: 5, min: 1, max: 1, exp: 1000, money: 25000 },
   ];
 
   const caught = animals.filter((a) => Math.random() * 100 <= a.chance);
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
     results.push({ name: animal.name, qty, money: animal.money * qty });
   }
 
-  user.koin = (user.koin || 0) + totalMoney;
+  user.belly = (user.belly || 0) + totalMoney;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, totalExp);
 
   db.save();
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     txt += `• ${r.name}: *+${r.qty} ekor*\n`;
   }
   txt += `\n¡Las piezas de caza se venden automáticamente! 🎉\n`;
-  txt += `💸 Belly: *+Rp ${totalMoney.toLocaleString("id-ID")}*\n`;
+  txt += `💸 Belly: *+Belly ${totalMoney.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP: *+${totalExp}*\n`;
   txt += `⚡ Estamina usada: *-${staminaCost}*\n\n`;
   txt += `¡Genial, mañana volvemos a cazar! 🔥🥩`;

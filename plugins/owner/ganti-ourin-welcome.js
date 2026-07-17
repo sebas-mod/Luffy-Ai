@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         await m.reply(`⏳ Está subiendo imagen...`)
         try {
             const newUrl = await updateAssetUrl('ourin-welcome', buffer, 'ourin-welcome.jpg')
-            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Imagen ourin-welcome.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
+            m.reply(`✅ *ᴇxɪᴛᴏ*\n\n> Imagen ourin-welcome.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
         } catch (e) {
             m.reply(`❌ Error al subir imagen: ${e.message}`)
         }

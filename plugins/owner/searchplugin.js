@@ -85,9 +85,9 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `🔍 *sᴇᴀʀᴄʜ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Cari y tampilkan info plugin\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+      `🔍 *BUSCAR PLUGIN*\n\n` +
+        `> Busca y muestra información del plugin\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}splugin sticar\`\n` +
         `> \`${m.prefix}splugin menu\``,
     );
@@ -106,16 +106,16 @@ async function handler(m, { sock }) {
     if (!info) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Plugin \`${name}\` no encontrado`,
+        `❌ *NO ENCONTRADO*\n\n> Plugin \`${name}\` no encontrado`,
       );
     }
 
     if (info.error) {
       await m.react("⚠️");
       return m.reply(
-        `⚠️ *ᴘʟᴜɢɪɴ ᴇʀʀᴏʀ*\n\n` +
-          `> File: \`${info.file}\`\n` +
-          `> Folder: \`${info.folder}\`\n` +
+        `⚠️ *ERROR DEL PLUGIN*\n\n` +
+          `> Archivo: \`${info.file}\`\n` +
+          `> Carpeta: \`${info.folder}\`\n` +
           `> Error: \`${info.error}\``,
       );
     }
@@ -131,23 +131,23 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     return m.reply(
-      `📋 *ɪɴꜰᴏ ᴘʟᴜɢɪɴ*\n\n` +
-        `╭┈┈⬡「 📝 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📛 ɴᴀᴍᴀ: \`${info.name || "-"}\`\n` +
-        `┃ 🏷️ ᴀʟɪᴀs: \`${aliases}\`\n` +
-        `┃ 📁 ᴄᴀᴛᴇɢᴏʀʏ: \`${info.category || "-"}\`\n` +
-        `┃ 📄 ᴅᴇsᴄ: ${info.description || "-"}\n` +
-        `┃ 📝 ᴜsᴀɢᴇ: \`${info.usage || "-"}\`\n` +
-        `┃ 📌 ᴇxᴀᴍᴘʟᴇ: \`${info.example || "-"}\`\n` +
+      `📋 *INFORMACIÓN DEL PLUGIN*\n\n` +
+        `╭┈┈⬡「 📝 *DETALLE* 」\n` +
+        `┃ 📛 Nombre: \`${info.name || "-"}\`\n` +
+        `┃ 🏷️ Alias: \`${aliases}\`\n` +
+        `┃ 📁 Categoría: \`${info.category || "-"}\`\n` +
+        `┃ 📄 Descripción: ${info.description || "-"}\n` +
+        `┃ 📝 Uso: \`${info.usage || "-"}\`\n` +
+        `┃ 📌 Ejemplo: \`${info.example || "-"}\`\n` +
         `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *sᴇᴛᴛɪɴɢs* 」\n` +
-        `┃ 🔓 ᴇɴᴀʙʟᴇᴅ: ${isEnabled}\n` +
-        `┃ 👑 ᴏᴡɴᴇʀ ᴏɴʟʏ: ${isOwner}\n` +
-        `┃ 💎 ᴘʀᴇᴍɪᴜᴍ: ${isPremium}\n` +
-        `┃ 👥 ɢʀᴏᴜᴘ ᴏɴʟʏ: ${isGroup}\n` +
-        `┃ 🛡️ ᴀᴅᴍɪɴ ᴏɴʟʏ: ${isAdmin}\n` +
-        `┃ ⏱️ ᴄᴏᴏʟᴅᴏᴡɴ: \`${info.cooldown || 0}s\`\n` +
-        `┃ 🎫 ʟɪᴍɪᴛ: \`${info.limit || 0}\`\n` +
+        `╭┈┈⬡「 ⚙️ *CONFIGURACIÓN* 」\n` +
+        `┃ 🔓 Activado: ${isEnabled}\n` +
+        `┃ 👑 Solo Propietario: ${isOwner}\n` +
+        `┃ 💎 Premium: ${isPremium}\n` +
+        `┃ 👥 Solo Grupos: ${isGroup}\n` +
+        `┃ 🛡️ Solo Admin: ${isAdmin}\n` +
+        `┃ ⏱️ Tiempo de Espera: \`${info.cooldown || 0}s\`\n` +
+        `┃ 🎫 Límite: \`${info.limit || 0}\`\n` +
         `╰┈┈⬡`,
     );
   } catch (error) {

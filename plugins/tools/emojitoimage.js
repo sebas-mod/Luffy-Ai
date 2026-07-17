@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji no encontrado o error de API");
+      return m.reply("❌ *ꜰᴀʟʟᴏ*\n\n> Emoji no encontrado o error de API");
     }
 
     const imgUrl = data.data.url;

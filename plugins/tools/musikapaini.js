@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Canción no reconocida o error de API");
+      return m.reply("❌ *ꜰᴀʟʟᴏ*\n\n> Canción no reconocida o error de API");
     }
 
     const music = data.data;

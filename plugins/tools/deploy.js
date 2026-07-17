@@ -32,7 +32,7 @@ Ejemplo:
 
     if (!m.quoted) {
         return m.reply(
-`❌ *HTML TIDAK DITEMUKAN*
+`❌ *HTML NO ENCONTRADO*
 
 > Responde a un mensaje que contenga HTML
 > o responde a un archivo .html`
@@ -60,7 +60,7 @@ Ejemplo:
         } else {
             m.react('❌')
             return m.reply(
-`❌ *FORMAT TIDAK DIDUKUNG*
+`❌ *FORMATO NO SOPORTADO*
 
 > Responde con texto HTML
 > o archivo .html`
@@ -70,7 +70,7 @@ Ejemplo:
         if (!/<html|<!doctype html|<head|<body/i.test(htmlContent)) {
             m.react('❌')
             return m.reply(
-`❌ *BUKAN HTML VALID*
+`❌ *NO ES HTML VÁLIDO*
 
 > Asegúrate de contener estructura HTML`
             )
@@ -131,10 +131,10 @@ Ejemplo:
         await m.reply(
 `╭──「 *DEPLOY SUCCESS* 」
 │
-│ 🌐 Nama     : ${name}
+│ 🌐 Nombre   : ${name}
 │ ☁️ Platform : Vercel
-│ 📄 Type     : Static HTML
-│ ⚙️ Status   : Building
+│ 📄 Tipo     : HTML Estático
+│ ⚙️ Estado   : Construyendo
 │
 │ 🔗 URL
 │ https://${domain}

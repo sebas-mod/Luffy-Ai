@@ -22,7 +22,7 @@ async function downloadSpotify(spotifyUrl) {
         `Judul  : ${data.post.name}\nArtis  : ${data.post.artist}\nFormat : ${data.post.mime}\nLink   : ${data.downloadLink}`,
       );
     } else {
-      console.log("[!] Gagal mendapatkan link:", data);
+      console.log("[!] Error al obtener enlace:", data);
     }
   } catch (error) {
     console.error(error.response ? error.response.data : error.message);

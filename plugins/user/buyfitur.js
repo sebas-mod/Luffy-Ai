@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['belifitur', 'purchasefeature', 'buyfeature'],
     category: 'user',
     description: 'Comprar función premium (1 función = 3000 monedas)',
-    usage: '.buyfitur [nama_fitur]',
+    usage: '.buyfitur [nombre_función]',
     example: '.buyfitur',
     isOwner: false,
     isPremium: false,
@@ -20,10 +20,10 @@ const PRICE_PER_FEATURE = 3000
 
 const PREMIUM_FEATURES = [
     { id: 'sticker', name: 'Sticker Unlimited', desc: 'Unlimited sticker commands' },
-    { id: 'downloader', name: 'Downloader Pro', desc: 'Download tanpa limit' },
-    { id: 'ai', name: 'AI Access', desc: 'Akses fitur AI premium' },
-    { id: 'tools', name: 'Advanced Tools', desc: 'Tools eksklusif' },
-    { id: 'game', name: 'Game Bonus', desc: '2x rewards game' }
+    { id: 'downloader', name: 'Downloader Pro', desc: 'Descarga sin límite' },
+    { id: 'ai', name: 'AI Access', desc: 'Acceso a funciones AI premium' },
+    { id: 'tools', name: 'Advanced Tools', desc: 'Herramientas exclusivas' },
+    { id: 'game', name: 'Game Bonus', desc: '2x recompensas de juego' }
 ]
 
 function formatNumber(num) {
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
         const unlockedFeatures = user.unlockedFeatures || []
         
         let text = `╭━━━━━━━━━━━━━━━━━╮\n`
-        text += `┃  🛒 *ʙᴜʏ ꜰɪᴛᴜʀ*\n`
+        text += `┃  🛒 *ᴄᴏᴍᴘʀᴀʀ ꜰᴜɴᴄɪóɴ*\n`
         text += `╰━━━━━━━━━━━━━━━━━╯\n\n`
         
         text += `> Precio: *${formatNumber(PRICE_PER_FEATURE)}* Belly/función\n`
-        text += `> Belly: *${formatNumber(user.koin || 0)}*\n\n`
+        text += `> Belly: *${formatNumber(user.belly || 0)}*\n\n`
         
-        text += `╭┈┈⬡「 📋 *ꜰɪᴛᴜʀ* 」\n`
+        text += `╭┈┈⬡「 📋 *ꜰᴜɴᴄɪóɴ* 」\n`
         
         for (const feature of PREMIUM_FEATURES) {
             const isUnlocked = unlockedFeatures.includes(feature.id)
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
     
     if (!feature) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟó*\n\n` +
             `> La función \`${featureName}\` no fue encontrada\n` +
             `> Escribe \`.buyfitur\` para ver la lista`
         )
@@ -85,32 +85,32 @@ async function handler(m, { sock }) {
     const unlockedFeatures = user.unlockedFeatures || []
     
     if (unlockedFeatures.includes(feature.id)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡La función \`${feature.name}\` ya está desbloqueada!`)
+        return m.reply(`❌ *ꜰᴀʟʟó*\n\n> ¡La función \`${feature.name}\` ya está desbloqueada!`)
     }
     
-    if ((user.koin || 0) < PRICE_PER_FEATURE) {
+    if ((user.belly || 0) < PRICE_PER_FEATURE) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
+            `❌ *ꜰᴀʟʟó*\n\n` +
             `> ¡No tienes suficientes Belly!\n` +
             `> Necesitas: *${formatNumber(PRICE_PER_FEATURE)}*\n` +
-            `> Tienes: *${formatNumber(user.koin || 0)}*`
+            `> Tienes: *${formatNumber(user.belly || 0)}*`
         )
     }
     
-    db.updateKoin(m.sender, -PRICE_PER_FEATURE)
+    db.updateBelly(m.sender, -PRICE_PER_FEATURE)
     unlockedFeatures.push(feature.id)
     db.setUser(m.sender, { unlockedFeatures })
     
-    const newKoin = db.getUser(m.sender).koin
+    const newBelly = db.getUser(m.sender).belly
     
     m.react('✅')
     
     await m.reply(
-        `✅ *ꜰɪᴛᴜʀ ᴅɪ-ᴜɴʟᴏᴄᴋ*\n\n` +
+        `✅ *ꜰᴜɴᴄɪóɴ ᴅᴇꜱʙʟᴏǫᴜᴇᴀᴅᴀ*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 🎁 ꜰɪᴛᴜʀ: *${feature.name}*\n` +
+        `┃ 🎁 ꜰᴜɴᴄɪóɴ: *${feature.name}*\n` +
         `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(PRICE_PER_FEATURE)}* Belly\n` +
-        `┃ 💰 sᴀʟᴅᴏ: *${formatNumber(newKoin)}*\n` +
+        `┃ 💰 sᴀʟᴅᴏ: *${formatNumber(newBelly)}*\n` +
         `╰┈┈⬡\n\n` +
         `> _${feature.desc}_\n\n` +
         `> 💡 Consejo: ¡Sé *Premium* para desbloquear TODO!`

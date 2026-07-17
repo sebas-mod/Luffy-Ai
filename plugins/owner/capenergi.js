@@ -22,12 +22,12 @@ async function handler(m, { sock }) {
     return m.reply(
       `⚙️ *SISTEM CAP ENERGI*\n\n` +
       `Sistema para cambiar de forma dinámica la cantidad de energía que se descuenta para muchas funciones a la vez.\n\n` +
-      `*PENGGUNAAN:*\n` +
+      `*USO:*\n` +
       `- *${m.prefix}capenergi <nombre_fesor1> <nombre_fesor2> ... <cantidad>*\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
-      `- *${m.prefix}capenergi hd jpm 5* (Fesor HD & JPM memotong 5 energi)\n` +
-      `- *${m.prefix}capenergi hd 0* (Fesor HD menjadi gratis energi)\n\n` +
-      `*PENJELASAN:*\n` +
+      `*EJEMPLO DE USO:*\n` +
+      `- *${m.prefix}capenergi hd jpm 5* (Fesor HD & JPM descuenta 5 de energía)\n` +
+      `- *${m.prefix}capenergi hd 0* (Fesor HD se convierte en energía gratis)\n\n` +
+      `*EXPLICACIÓN:*\n` +
       `1. Ingresa uno o muchos nombres de funciones que quieres cambiar.\n` +
       `2. Al final (última palabra) debe ser un NÚMERO (cantidad de descuento de energía).`
     );
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   const cost = parseInt(rawCost);
   
   if (isNaN(cost) || cost < 0) {
-    return m.reply(`❌ *GAGAL*\n\nLa cantidad de energía (en el último argumento) debe ser un número 0 o mayor.`);
+    return m.reply(`❌ *ERROR*\n\nLa cantidad de energía (en el último argumento) debe ser un número 0 o mayor.`);
   }
 
   const commands = m.args.slice(0, -1);
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   
-  let msg = `✅ *POTONGAN ENERGI BERHASIL DIUBAH*\n\n`;
+  let msg = `✅ *DESCUENTO DE ENERGÍA CAMBIADO CON ÉXITO*\n\n`;
   if (successList.length > 0) {
     msg += `*Éxito cambiado a ${cost} Energi:*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }

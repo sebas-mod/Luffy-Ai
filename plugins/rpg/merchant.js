@@ -44,21 +44,21 @@ function handler(m) {
   const qty = Math.max(1, parseInt(args[2]) || 1);
 
   if (!action || !["buy", "sell", "list"].includes(action)) {
-    let txt = `🏪 *ᴍᴇʀᴄʜᴀɴᴛ sʜᴏᴘ*\n\n`;
+    let txt = `🏪 *TIENDA DEL COMERCIANTE*\n\n`;
     txt += `> ¡Bienvenido a la tienda!\n\n`;
-    txt += `*📋 *ᴄᴏᴍᴍᴀɴᴅ:*
+    txt += `*📋 *COMANDO:*
 \n`;
     txt += `> ${m.prefix}merchant list\n`;
     txt += `> ${m.prefix}merchant buy <item> <qty>\n`;
     txt += `> ${m.prefix}merchant sell <item> <qty>\n`;
     txt += `\n\n`;
-    txt += `💰 *Balance:* ${(user.koin || 0).toLocaleString()}`;
+    txt += `💰 *Balance:* ${(user.belly || 0).toLocaleString()}`;
     return m.reply(txt);
   }
 
   if (action === "list") {
-    let txt = `🏪 *ᴅᴀꜰᴛᴀʀ ɪᴛᴇᴍ*\n\n`;
-    txt += `*📦 *sʜᴏᴘ:*
+    let txt = `🏪 *LISTA DE ARTÍCULOS*\n\n`;
+    txt += `*📦 *TIENDA:*
 \n`;
 
     for (const [key, item] of Object.entries(SHOP_ITEMS)) {
@@ -85,22 +85,22 @@ function handler(m) {
     }
 
     const totalCost = item.buyPrice * qty;
-    if ((user.koin || 0) < totalCost) {
-      return m.reply(`❌ *ʙᴀʟᴀɴᴄᴇ ɪɴꜰᴜꜰiciente*\n\n` + `> Precio: ${totalCost.toLocaleString()}\n` + `> Balance: ${(user.koin || 0).toLocaleString()}`);
+    if ((user.belly || 0) < totalCost) {
+      return m.reply(`❌ *SALDO INSUFICIENTE*\n\n` + `> Precio: ${totalCost.toLocaleString()}\n` + `> Balance: ${(user.belly || 0).toLocaleString()}`);
     }
 
-    user.koin -= totalCost;
+    user.belly -= totalCost;
     user.inventory[itemKey] = (user.inventory[itemKey] || 0) + qty;
     db.save();
 
     return m.reply(
-      `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
-        `*🛒 *ᴅᴇᴛᴀɪʟ:*
+      `✅ *COMPRA EXITOSA*\n\n` +
+        `*🛒 *DETALLE:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
         `> 📊 Qty: *${qty}*\n` +
         `> 💵 Total: *-${totalCost.toLocaleString()}*\n` +
-        `> 💰 Sisa: *${user.koin.toLocaleString()}*\n` +
+        `> 💰 Restante: *${user.belly.toLocaleString()}*\n` +
         ``,
     );
   }
@@ -117,23 +117,23 @@ function handler(m) {
 
     const have = user.inventory[itemKey] || 0;
     if (have < qty) {
-      return m.reply(`❌ *ɪᴛᴇᴍ ɪɴꜰᴜꜰiciente*\n\n` + `> Tienes: ${have}\n` + `> Quieres vender: ${qty}`);
+      return m.reply(`❌ *ARTÍCULO INSUFICIENTE*\n\n` + `> Tienes: ${have}\n` + `> Quieres vender: ${qty}`);
     }
 
     const totalEarn = item.sellPrice * qty;
-    user.koin = (user.koin || 0) + totalEarn;
+    user.belly = (user.belly || 0) + totalEarn;
     user.inventory[itemKey] -= qty;
     if (user.inventory[itemKey] <= 0) delete user.inventory[itemKey];
     db.save();
 
     return m.reply(
-      `✅ *ᴘᴇɴᴊᴜᴀʟᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
-        `*💰 *ᴅᴇᴛᴀɪʟ:*
+      `✅ *VENTA EXITOSA*\n\n` +
+        `*💰 *DETALLE:*
 \n` +
         `> 📦 Item: *${item.name}*\n` +
         `> 📊 Qty: *${qty}*\n` +
         `> 💵 Total: *+${totalEarn.toLocaleString()}*\n` +
-        `> 💰 Balance: *${user.koin.toLocaleString()}*\n` +
+        `> 💰 Balance: *${user.belly.toLocaleString()}*\n` +
         ``,
     );
   }

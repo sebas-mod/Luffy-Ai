@@ -616,7 +616,7 @@ class OurinApiManager {
    */
   provider(name) {
     if (!this.hasProvider(name)) {
-      throw new Error(`Provider tidak ditemukan: ${name}`);
+      throw new Error(`Proveedor no encontrado: ${name}`);
     }
     return this[name];
   }
@@ -628,7 +628,7 @@ class OurinApiManager {
   getProviderConfig(name) {
     const cfg = this.providers[name];
     if (!cfg) {
-      throw new Error(`Provider tidak ditemukan: ${name}`);
+      throw new Error(`Proveedor no encontrado: ${name}`);
     }
     return cfg;
   }
@@ -1136,7 +1136,7 @@ class OurinApiManager {
       err?.response?.data?.message ||
       err?.response?.data?.msg ||
       err?.message ||
-      "Request gagal";
+      "Solicitud falló";
     const ex = new Error(`[${provider}] ${msg}`);
     ex.provider = provider;
     ex.endpoint = endpoint;

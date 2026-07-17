@@ -27,10 +27,10 @@ async function ambilLivescore(edisi = 'id') {
     const url = edisi === 'id' ? 'https://www.goal.com/id/livescore' : `https://www.goal.com/${edisi}/live-scores`;
     const res = await axios.get(url, { headers: _headerGacor, timeout: 15000 });
     const cocok = res.data.match(/__NEXT_DATA__" type="application\/json">(.*?)<\/script>/s);
-    if (!cocok) throw new Error('Gagal menemukan data skor');
+    if (!cocok) throw new Error('Error al encontrar datos de puntuación');
     const json = JSON.parse(cocok[1]);
     const liveScores = json?.props?.pageProps?.content?.liveScores;
-    if (!liveScores) throw new Error('Data liveScores kosong');
+    if (!liveScores) throw new Error('Datos de liveScores vacíos');
     return liveScores;
   } catch (error) {
     throw new Error(error.message);

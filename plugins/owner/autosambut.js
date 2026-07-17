@@ -75,14 +75,14 @@ async function handler(m, { sock, db }) {
       `Status: *${status}*\n` +
       `Batas Tiempo Idle: *${formatTime(delayMs)}*\n` +
       `Cantidad Mensaje Acak: *${totalPesan} Sapaan*\n\n` +
-      `*PENGGUNAAN UTAMA:*\n` +
+      `*USO PRINCIPAL:*\n` +
       `• *${m.prefix}autosambut on/off* — Activar/desactivar este en el grupo esto\n` +
       `• *${m.prefix}autosambut delay <tiempo>* — Cambiando tiempo límite de inactividad\n\n` +
       `*PENGATURAN PESAN ACAK (LIST):*\n` +
       `• *${m.prefix}autosambut list* — Viendo todos los saludos que están listados\n` +
       `• *${m.prefix}autosambut add <texto>* — Agregar nuevo texto de saludo a la lista\n` +
       `• *${m.prefix}autosambut del <número>* — Eliminar mensaje en una posición específica\n\n` +
-      `*PENJELASAN KHUSUS:*\n` +
+      `*EXPLICACIÓN ESPECIAL:*\n` +
       `1. Usa el formato tiempo: *s* (segundo), *m* (minuto), *h* (hora(s)), *d* (día(s)). Ejemplo: *${m.prefix}autosambut delay 30m*\n` +
       `2. Usa *{name}* para mencionar el nombre del owner, y *{user}* para etiquetar al owner.\n` +
       `3. Si agregas el atributo *--global* al final de cada comando, entonces la configuración en este grupo se copiará a TODOS los grupos que el bot visite!`

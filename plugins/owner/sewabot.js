@@ -30,21 +30,21 @@ async function handler(m, { sock }) {
   if (!args || args === "status") {
     return m.reply(
       `🔧 *SISTEM SEWA BOT*\n\n` +
-        `Status: *${currentStatus ? "✅ AKTIF" : "❌ NONAKTIF"}*\n` +
+        `Status: *${currentStatus ? "✅ ACTIVO" : "❌ INACTIVO"}*\n` +
         `Grupos en lista: *${sewaGroups.length}*\n\n` +
-        `*PERINTAH TERSEDIA:*\n` +
+        `*COMANDOS DISPONIBLES:*\n` +
         `• *${m.prefix}sewabot on* — Activar sistema de alquiler\n` +
         `• *${m.prefix}sewabot off* — Desactivar sistema de alquiler\n` +
         `• *${m.prefix}sewabot leave* — Salir de todos los grupos que no estén en la lista blanca\n\n` +
-        `*KELOLA SEWA:*\n` +
-        `• *${m.prefix}addsewa <link> <durasi>* — Agregar grupo + auto unirse\n` +
+        `*GESTIONAR ALQUILER:*\n` +
+        `• *${m.prefix}addsewa <link> <duracion>* — Agregar grupo + auto unirse\n` +
         `• *${m.prefix}delsewa <link/id>* — Eliminar grupo de la lista blanca\n` +
         `• *${m.prefix}renewsewa <link/id> <durasi>* — Extender el alquiler\n` +
         `• *${m.prefix}listsewa* — Ver todos los grupos en lista\n` +
         `• *${m.prefix}checksewa* — Verificar el tiempo restante de alquiler (en el grupo)\n\n` +
-        `*FORMAT DURASI:*\n` +
+        `*FORMATO DE DURACIÓN:*\n` +
         `30i (minutos) \u2022 12h (horas) \u2022 7d (días) \u2022 1m (mes) \u2022 1y (año) \u2022 lifetime\n\n` +
-        `*CARA KERJA:*\n` +
+        `*CÓMO FUNCIONA:*\n` +
         `1. Agrega el grupo con *${m.prefix}addsewa*\n` +
         `2. Bot automáticamente se une si usa link\n` +
         `3. Activar con *${m.prefix}sewabot on*\n` +
@@ -80,12 +80,12 @@ async function handler(m, { sock }) {
         pendingConfirmations.delete(m.sender);
     }, 60000);
     return m.reply(
-      `⚠️ *KONFIRMASI AKTIVASI SEWA*\n\n` +
+      `⚠️ *CONFIRMACIÓN DE ACTIVACIÓN DE ALQUILER*\n\n` +
         `Si se activa:\n` +
         `• ✅ ${sewaGroups.length} grupos en la lista blanca permanecerán seguros\n` +
         `• ❌ ¡Todos los demás grupos serán abandonados!\n\n` +
         `Escribe *${m.prefix}sewabot confirm* para continuar\nEscribe *${m.prefix}sewabot cancel* para cancelar\n\n` +
-        `💡 Asegúrate de tener en la lista blanca los grupos importantes con:\n*${m.prefix}addsewa <link grup> <durasi>*`,
+        `💡 Asegúrate de tener en la lista blanca los grupos importantes con:\n*${m.prefix}addsewa <link grupo(s)> <duracion>*`,
     );
   }
   if (args === "confirm" || args === "yes" || args === "y") {
@@ -130,10 +130,10 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `✅ *SEWA BOT AKTIF*\n\n` +
-          `Grup whitelist: *${sewaGroups.length}*\n` +
-          `Aluar de: *${leftCount}* grup\n` +
-          `Fallo: *${failedCount}* grup`,
+        `✅ *ALQUILER DEL BOT ACTIVADO*\n\n` +
+          `Grupos en lista blanca: *${sewaGroups.length}*\n` +
+          `Salio de: *${leftCount}* grupo(s)\n` +
+          `Fallido: *${failedCount}* grupo(s)`,
       );
     } catch (e) {
       await m.react("✅");
@@ -160,7 +160,7 @@ async function handler(m, { sock }) {
         return m.reply(`✅ No hay grupos que abandonar`);
       }
       await m.reply(
-        `📊 Total: ${allGroupIds.length} grup\nWhitelist: ${sewaGroups.length}\nVa a salir de: ${unlistedGroups.length} grup`,
+        `📊 Total: ${allGroupIds.length} grupo(s)\nWhitelist: ${sewaGroups.length}\nVa a salir de: ${unlistedGroups.length} grupo(s)`,
       );
       let leftCount = 0;
       let failedCount = 0;
@@ -185,7 +185,7 @@ async function handler(m, { sock }) {
       delete global.sewaLeaving;
       await m.react("✅");
       return m.reply(
-        `✅ Completado\n\nÉxito al salir: *${leftCount}* grup\nFallo: *${failedCount}* grup`,
+        `✅ Completado\n\nÉxito al salir: *${leftCount}* grupo(s)\nFallido: *${failedCount}* grupo(s)`,
       );
     } catch (e) {
       delete global.sewaLeaving;

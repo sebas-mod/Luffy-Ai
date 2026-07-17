@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     if (args[0]?.toLowerCase() === 'max') {
         const newMax = parseInt(args[1])
         if (isNaN(newMax) || newMax < 1 || newMax > 20) {
-            return m.reply(`❌ *GAGAL*\n\nEl límite de referencia de advertencias debe ser un número del 1-20.\nEjemplo: *${m.prefix}warn max 5*`)
+            return m.reply(`❌ *FALLIDO*\n\nEl límite de referencia de advertencias debe ser un número del 1-20.\nEjemplo: *${m.prefix}warn max 5*`)
         }
         groupData.maxWarnings = newMax
         db.setGroup(m.chat, groupData)

@@ -17,7 +17,7 @@ const pluginConfig = {
 }
 
 function formatDate(ts) {
-    return new Date(ts).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+    return new Date(ts).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 async function handler(m) {
@@ -70,7 +70,7 @@ async function handler(m) {
 
     if (user) {
         txt += `⚡ Energía: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Belly: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('es-ES')}*\n`
+        txt += `💰 Belly: *${user.belly === -1 ? '∞' : (user.belly ?? 0).toLocaleString('es-ES')}*\n`
         txt += `⭐ Exp: *${(user.exp ?? 0).toLocaleString('es-ES')}*\n`
         txt += `📊 Nivel: *${user.level ?? 1}*\n`
     }

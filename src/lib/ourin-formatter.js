@@ -247,7 +247,7 @@ function createDashboard(data) {
     createArrowLine("Nama", userName),
     createArrowLine("Status User", userStatus),
     createArrowLine("Mode", mode),
-    createArrowLine("Pengguna", totalUsers.toString()),
+    createArrowLine("Usuarios", totalUsers.toString()),
     createArrowLine("Limit", userLimit.toString()),
     `${CHARS.vertical}`,
     `${CHARS.cornerBottomLeft}${createLine(24)}`,
@@ -273,14 +273,14 @@ function createBotInfo(data) {
   } = data;
 
   const lines = [
-    `${CHARS.horizontal} *Informasi Bot* ${CHARS.horizontal}`,
+    `${CHARS.horizontal} *Información del Bot* ${CHARS.horizontal}`,
     ``,
-    `${CHARS.dot} Nama-Bot : ${botName} 🌿`,
+    `${CHARS.dot} Nombre-Bot : ${botName} 🌿`,
     `${CHARS.dot} Developer : ${developer}`,
     `${CHARS.dot} Mode : ${mode.charAt(0).toUpperCase() + mode.slice(1)}`,
     `${CHARS.dot} Version : ${version}`,
     `${CHARS.dot} Uptime : ${uptime}`,
-    `${CHARS.dot} Total-Fitur : ${totalFeatures}`,
+    `${CHARS.dot} Total-Funciones : ${totalFeatures}`,
     `${CHARS.dot} Platform : ${platform}`,
     ``,
   ];
@@ -311,15 +311,15 @@ function createUserProfile(data) {
 
   const lines = [
     `【 USER PROFILE 】`,
-    `${EMOJIS.name} Nama   : ${name}`,
-    `${EMOJIS.number} Nomor  : ${formatNumber(number)}`,
+    `${EMOJIS.name} Nombre   : ${name}`,
+    `${EMOJIS.number} Número  : ${formatNumber(number)}`,
     `${statusEmoji} Status : ${status}`,
     `${EMOJIS.limit} Limit  : ${limit}`,
     ``,
   ];
 
   if (registeredAt) {
-    lines.splice(5, 0, `${EMOJIS.time} Daftar : ${registeredAt}`);
+    lines.splice(5, 0, `${EMOJIS.time} Registro : ${registeredAt}`);
   }
 
   return lines.join("\n");
@@ -345,8 +345,8 @@ function createBotStatus(data) {
     `${EMOJIS.bot} Bot      : ${botName}`,
     `${EMOJIS.uptime} Uptime   : ${uptime}`,
     `${EMOJIS.mode} Mode     : ${mode}`,
-    `${EMOJIS.commands} Commands : ${totalCommands} fitur`,
-    `${EMOJIS.user} Pengguna : ${totalUsers} users`,
+    `${EMOJIS.commands} Commands : ${totalCommands} funciones`,
+    `${EMOJIS.user} Usuarios : ${totalUsers} users`,
     `${EMOJIS.speed} Speed    : ${speed}`,
     ``,
   ];
@@ -386,7 +386,7 @@ function createCategorySection(data) {
 
   const lines = [
     `${emoji} *${title}*`,
-    `  Ketik: ${prefix}${command}`,
+    `  Escribe: ${prefix}${command}`,
     `  ${CHARS.vertical} ( ${description} )`,
     ``,
   ];
@@ -431,8 +431,8 @@ function createMainMenu(data) {
     );
   }
 
-  parts.push(`${EMOJIS.tip} *Tips:* Jika kamu tidak tahu cara menggunakan Bot`);
-  parts.push(`Kamu bisa tanya ke owner`);
+  parts.push(`${EMOJIS.tip} *Tips:* Si no sabes cómo usar el Bot`);
+  parts.push(`Puedes preguntar al owner`);
   parts.push(`${CHARS.vertical} Mode: ${data.mode || "Public"}`);
 
   return parts.join("\n");
@@ -468,7 +468,7 @@ function createCommandList(categoryName, commands, prefix = ".") {
  * @param {string} [message='Tunggu sebentar...'] - Pesan loading
  * @returns {string} Formatted wait message
  */
-function createWaitMessage(message = "Tunggu sebentar...") {
+function createWaitMessage(message = "Espera un momento...") {
   return `${EMOJIS.loading} *${message}*`;
 }
 
@@ -477,7 +477,7 @@ function createWaitMessage(message = "Tunggu sebentar...") {
  * @param {string} [message='Berhasil!'] - Pesan sukses
  * @returns {string} Formatted success message
  */
-function createSuccessMessage(message = "Berhasil!") {
+function createSuccessMessage(message = "¡Éxito!") {
   return `${EMOJIS.success} *${message}*`;
 }
 
@@ -486,7 +486,7 @@ function createSuccessMessage(message = "Berhasil!") {
  * @param {string} [message='Terjadi kesalahan!'] - Pesan error
  * @returns {string} Formatted error message
  */
-function createErrorMessage(message = "Terjadi kesalahan!") {
+function createErrorMessage(message = "¡Ocurrió un error!") {
   return `${EMOJIS.error} *${message}*`;
 }
 

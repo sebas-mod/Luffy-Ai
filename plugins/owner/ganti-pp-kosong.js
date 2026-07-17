@@ -20,14 +20,14 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
-    if (!isImage) return m.reply(`🖼️ *ɢᴀɴᴛɪ PP-KOSONG.JPG*\n\n> Envía/reply imagen para mengganti\n> File: assets/images/pp-kosong.jpg`)
+    if (!isImage) return m.reply(`🖼️ *ɢᴀɴᴛɪ PP-KOSONG.JPG*\n\n> Envía/reply imagen para cambiar\n> File: assets/images/pp-kosong.jpg`)
     try {
         let buffer = m.quoted && m.quoted.isMedia ? await m.quoted.download() : await m.download()
         if (!buffer) return m.reply('❌ Error al descargar imagen')
         await m.reply(`⏳ Está subiendo imagen...`)
         try {
             const newUrl = await updateAssetUrl('pp-kosong', buffer, 'pp-kosong.jpg')
-            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Imagen pp-kosong.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
+            m.reply(`✅ *ÉXITO*\n\n> Imagen pp-kosong.jpg ha sido cambiado a una nueva URL:\n> ${newUrl}\n> Config ha sido actualizado en tiempo real!`)
         } catch (e) {
             m.reply(`❌ Error al subir imagen: ${e.message}`)
         }

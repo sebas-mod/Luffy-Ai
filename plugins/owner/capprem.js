@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   
-  let msg = `✅ *STATUS BERHASIL DIUBAH*\n\n`;
+  let msg = `✅ *ESTADO CAMBIADO CON ÉXITO*\n\n`;
   if (successList.length > 0) {
     msg += `*Éxito (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }

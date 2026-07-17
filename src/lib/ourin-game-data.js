@@ -220,24 +220,26 @@ function getRemainingTime(chatId) {
 }
 
 function formatRemainingTime(seconds) {
-    if (seconds <= 0) return '0 detik';
-    if (seconds < 60) return `${seconds} detik`;
+    if (seconds <= 0) return '0 segundos';
+    if (seconds < 60) return `${seconds} segundos`;
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}m ${secs}s`;
 }
 
 function isReplyToGame(m, session) {
-    if (!m.quoted || !session || !session.messageKey) return false;
-    if (m.quoted.id === session.messageKey.id) return true;
-    if (m.quoted.stanzaId === session.messageKey.id) return true;
-    if (m.quoted.fromMe || m.quoted.isBaileys) return true;
-    return false;
+    if (!session || !session.messageKey) return false;
+    if (m.quoted) {
+        if (m.quoted.id === session.messageKey.id) return true;
+        if (m.quoted.stanzaId === session.messageKey.id) return true;
+        if (m.quoted.key?.fromMe || m.quoted.isBaileys) return true;
+    }
+    return true;
 }
 
 const GAME_REWARD = {
     limit: 5,
-    balance: 1000,
+    belly: 1000,
     exp: 2000
 };
 
@@ -248,7 +250,7 @@ function randBetween(min, max) {
 function getRandomReward() {
     return {
         limit: randBetween(3, 8),
-        koin: randBetween(500, 2000),
+        belly: randBetween(500, 2000),
         exp: randBetween(1000, 3000)
     };
 }

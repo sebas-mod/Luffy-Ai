@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
   try {
     groupMeta = m.groupMetadata;
   } catch (e) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> ¡No se pudieron obtener los datos del grupo!");
+    return m.reply("❌ *ғᴀʟʟᴏ*\n\n> ¡No se pudieron obtener los datos del grupo!");
   }
 
   const participants = groupMeta.participants || [];
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     .filter((jid) => jid && jid !== botNumber);
 
   if (memberJids.length < 2) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> ¡Se necesitan al menos 2 miembros para emparejar!");
+    return m.reply("❌ *ғᴀʟʟᴏ*\n\n> ¡Se necesitan al menos 2 miembros para emparejar!");
   }
 
   const allUsers = db.getAllUsers();
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
   if (registrationRequired && registeredMembers.length < 2) {
     return m.reply(
-      "❌ *ɢᴀɢᴀʟ*\n\n> ¡Modo de registro obligatorio activo. Se necesitan al menos 2 miembros registrados en este grupo!",
+      "❌ *ғᴀʟʟᴏ*\n\n> ¡Modo de registro obligatorio activo. Se necesitan al menos 2 miembros registrados en este grupo!",
     );
   }
 
@@ -107,11 +107,13 @@ async function handler(m, { sock }) {
   if (registeredInGroup.length >= 2) {
     const males = registeredInGroup.filter((jid) => {
       const cleanJid = jid.replace(/@.+/g, "");
-      return allUsers[cleanJid]?.regGender === "Laki-laki";
+      const g = allUsers[cleanJid]?.regGender;
+      return g === "Laki-laki" || g === "Masculino";
     });
     const females = registeredInGroup.filter((jid) => {
       const cleanJid = jid.replace(/@.+/g, "");
-      return allUsers[cleanJid]?.regGender === "Perempuan";
+      const g = allUsers[cleanJid]?.regGender;
+      return g === "Perempuan" || g === "Femenino";
     });
 
     if (males.length > 0 && females.length > 0) {
@@ -146,12 +148,12 @@ async function handler(m, { sock }) {
   let name1 = `@${person1.split("@")[0]}`;
   let name2 = `@${person2.split("@")[0]}`;
 
-  if (user1Data?.regGender === "Laki-laki") label1 = "👨";
-  else if (user1Data?.regGender === "Perempuan") label1 = "👩";
+  if (user1Data?.regGender === "Laki-laki" || user1Data?.regGender === "Masculino") label1 = "👨";
+  else if (user1Data?.regGender === "Perempuan" || user1Data?.regGender === "Femenino") label1 = "👩";
   else label1 = Math.random() > 0.5 ? "👨" : "👩";
 
-  if (user2Data?.regGender === "Laki-laki") label2 = "👨";
-  else if (user2Data?.regGender === "Perempuan") label2 = "👩";
+  if (user2Data?.regGender === "Laki-laki" || user2Data?.regGender === "Masculino") label2 = "👨";
+  else if (user2Data?.regGender === "Perempuan" || user2Data?.regGender === "Femenino") label2 = "👩";
   else label2 = label1 === "👨" ? "👩" : "👨";
 
   if (user1Data?.regName)

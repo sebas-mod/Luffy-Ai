@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
     
     let text = `*〔 ⭐ EXP INFO 〕*\n\n`
 
-text += `*〔 👤 User 〕* ${targetName}\n`
+text += `*〔 👤 Usuario 〕* ${targetName}\n`
 text += `*〔 ⭐ Exp 〕* ${expDisplay}\n`
 text += `*〔 🏆 Level 〕* ${level}\n`
-text += `*〔 🎖️ Title 〕* ${title}\n`
+text += `*〔 🎖️ Título 〕* ${title}\n`
     
     await m.reply(text)
 }

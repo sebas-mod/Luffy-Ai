@@ -12,7 +12,7 @@ const pluginConfig = {
   alias: ["upload", "catbox", "url"],
   category: "tools",
   description: "Subir media a múltiples hosts y obtener URL",
-  usage: ".tourl (reply/kirim media)",
+  usage: ".tourl (reply/enviar media)",
   example: ".tourl",
   isOwner: false,
   isPremium: false,
@@ -75,7 +75,7 @@ async function uploadToLitterbox(buffer, filename) {
     },
   );
 
-  if (!res.ok) throw new Error("Litterbox gagal");
+  if (!res.ok) throw new Error("Litterbox falló");
   const url = await res.text();
   if (!url.startsWith("http")) throw new Error("Invalid response");
   return { host: "Litterbox", url, expires: "72 horas" };
@@ -648,7 +648,7 @@ async function handler(m, { sock }) {
     return m.reply(`❌ ¡Vaya, todos fallaron al subir!\n\n> Falló en servidor: ${failed.join(", ")}`);
   }
 
-  let text = `🚀 *UPLOAD BERHASIL!* 🚀\n\n`;
+  let text = `🚀 *¡SUBIDA EXITOSA!* 🚀\n\n`;
   text += `¡Yeay! Tu media se ha subido correctamente al servidor. ¡Elige el enlace y cópialo con el botón de abajo! ✨\n\n`;
 
   let contentTxt = "";

@@ -75,9 +75,9 @@ async function handler(m, { sock }) {
   let txt = `¡COSECHA ABUNDANTE! 🚜🌾\n\n`;
   txt += `¡Vaya, tu huerto dio muchísimo hoy:\n`;
   for (const r of results) {
-    txt += `• ${r.name}: *+${r.qty}* (Est. Rp ${r.value.toLocaleString("id-ID")})\n`;
+    txt += `• ${r.name}: *+${r.qty}* (Est. Belly ${r.value.toLocaleString("es-ES")})\n`;
   }
-  txt += `\n💰 Valor Total Estimado: *Rp ${totalValue.toLocaleString("id-ID")}*\n`;
+  txt += `\n💰 Valor Total Estimado: *Belly ${totalValue.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP del Agricultor: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
   txt += `¡Puedes vender esta cosecha en el mercado usando \`${m.prefix}sellall\`! 🧺✨`;

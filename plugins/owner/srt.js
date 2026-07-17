@@ -54,7 +54,7 @@ async function handler(m, { sock, args }) {
         else if (action === 'c' || action === 'capture') {
             global.srtSession[m.chat] = { sender: m.sender, count: 0 };
             const totalImages = countShuffleImages();
-            await m.reply(`📸 *SESI TANGKAPAN GAMBAR DIMULAI*\n\nPor favor envía las imágenes una por una de forma continua en este chat. El bot irá leyendo cada imagen y la guardará automáticamente en el sistema de *base de datos shuffle*.\n\n- Total de imágenes guardadas actualmente: *${totalImages}*\n- Si ya se terminaron de enviar todas las imágenes, detén la sesión con el comando \`${m.prefix}srt d\`.`);
+            await m.reply(`📸 *SESIÓN DE CAPTURA DE IMÁGENES INICIADA*\n\nPor favor envía las imágenes una por una de forma continua en este chat. El bot irá leyendo cada imagen y la guardará automáticamente en el sistema de *base de datos shuffle*.\n\n- Total de imágenes guardadas actualmente: *${totalImages}*\n- Si ya se terminaron de enviar todas las imágenes, detén la sesión con el comando \`${m.prefix}srt d\`.`);
         } 
         else if (action === 'd' || action === 'done') {
             if (!global.srtSession[m.chat] || global.srtSession[m.chat].sender !== m.sender) {
@@ -63,14 +63,14 @@ async function handler(m, { sock, args }) {
             const count = global.srtSession[m.chat].count;
             delete global.srtSession[m.chat];
             const totalImages = countShuffleImages();
-            await m.reply(`✅ *SESI TANGKAPAN GAMBAR SELESAI*\n\nLa sesión ha sido detenida y todas las imágenes han sido procesadas.\n- Total de imágenes nuevas agregadas: *${count}*\n- Total general de imágenes en el sistema: *${totalImages}*`);
+            await m.reply(`✅ *SESIÓN DE CAPTURA DE IMÁGENES FINALIZADA*\n\nLa sesión ha sido detenida y todas las imágenes han sido procesadas.\n- Total de imágenes nuevas agregadas: *${count}*\n- Total general de imágenes en el sistema: *${totalImages}*`);
         } 
         else if (action === 'list') {
             if (!fs.existsSync(SHUFFLE_DIR)) return m.reply('❌ Aún no hay ninguna imagen guardada en el directorio *shuffle*. Por favor realiza la captura de imágenes primero.');
             const files = fs.readdirSync(SHUFFLE_DIR).filter(f => f.endsWith('.jpg') || f.endsWith('.png') || f.endsWith('.jpeg'));
             if (files.length === 0) return m.reply('❌ El directorio *shuffle* está vacío. Por favor usa el comando de captura de imágenes para empezar a agregar.');
             
-            await m.reply(`📂 *DAFTAR GAMBAR SHUFFLE*\n\nEl sistema encontró *${files.length}* imágenes guardadas. Está procesando y ensamblando el álbum para mostrarlo, por favor espera un momento.`);
+            await m.reply(`📂 *LISTA DE IMÁGENES SHUFFLE*\n\nEl sistema encontró *${files.length}* imágenes guardadas. Está procesando y ensamblando el álbum para mostrarlo, por favor espera un momento.`);
             
             try {
                 const opener = generateWAMessageFromContent(
@@ -121,7 +121,7 @@ async function handler(m, { sock, args }) {
         else if (action === 'del' || action === 'delete') {
             const isImage = m.isImage || (m.quoted && m.quoted.isImage);
             if (!isImage) {
-                return m.reply('❌ *CARA MENGHAPUS GAMBAR:*\n\n1. Escribe `.srt list` para mostrar toda la colección de imágenes.\n2. Responde (*reply*) a una de las imágenes que aparecen en el álbum con el comando `.srt del`.');
+                return m.reply('❌ *CÓMO ELIMINAR IMÁGENES:*\n\n1. Escribe `.srt list` para mostrar toda la colección de imágenes.\n2. Responde (*reply*) a una de las imágenes que aparecen en el álbum con el comando `.srt del`.');
             }
             
             await m.react('🕕');
@@ -143,15 +143,15 @@ async function handler(m, { sock, args }) {
 
                 if (fs.existsSync(filepath)) {
                     fs.unlinkSync(filepath);
-                    await m.reply(`✅ *GAMBAR BERHASIL DIHAPUS*\n\nImagen eliminada con éxito de la base de datos shuffle.`);
+                    await m.reply(`✅ *IMAGEN ELIMINADA CON ÉXITO*\n\nImagen eliminada con éxito de la base de datos shuffle.`);
                 } else {
-                    await m.reply('❌ *GAMBAR TIDAK DITEMUKAN*\n\nEsta imagen no coincide con las que hay en la base de datos shuffle (o ya fue eliminada anteriormente).');
+                    await m.reply('❌ *IMAGEN NO ENCONTRADA*\n\nEsta imagen no coincide con las que hay en la base de datos shuffle (o ya fue eliminada anteriormente).');
                 }
             }
             await m.react('✅');
         }
         else {
-            await m.reply(`❌ Comando lanjutan "${action}" no puede ser procesado por el sistema.`);
+            await m.reply(`❌ Comando siguiente "${action}" no puede ser procesado por el sistema.`);
         }
         
     } catch (error) {
@@ -192,7 +192,7 @@ async function srtAnswerHandler(m, sock) {
             } else {
                 fs.writeFileSync(filepath, buffer);
                 session.count++;
-                await m.reply(`✅ *GAMBAR BERHASIL DISIMPAN*\n\nLa imagen ha sido guardada en el almacenamiento local del bot.\n- Total de imágenes agregadas en esta sesión: *${session.count}*`);
+                await m.reply(`✅ *IMAGEN GUARDADA CON ÉXITO*\n\nLa imagen ha sido guardada en el almacenamiento local del bot.\n- Total de imágenes agregadas en esta sesión: *${session.count}*`);
             }
         }
         await m.react('✅');

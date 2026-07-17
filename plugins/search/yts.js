@@ -10,7 +10,7 @@ const pluginConfig = {
   category: "search",
   description: "Buscar video en YouTube por palabra clave y mostrar detalles completos con miniatura.",
   usage: ".yts <query>",
-  example: ".yts lagu pop terbaru",
+  example: ".yts canción pop más reciente",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -62,19 +62,19 @@ async function handler(m, { sock, text }) {
         buttons: [
           {
             buttonId: `.ytmp4 ${firstVideo.url}`,
-            buttonText: { displayText: '🎥 Unduh Video' },
+            buttonText: { displayText: '🎥 Descargar Video' },
             type: 1,
           },
           {
             buttonId: `.ytmp3 ${firstVideo.url}`,
-            buttonText: { displayText: '🎵 Unduh Audio' },
+            buttonText: { displayText: '🎵 Descargar Audio' },
             type: 1,
           },
         ],
         locationMessage: {
           jpegThumbnail: thumbnailBuffer,
           name: firstVideo.title,
-          address: `📺 Channel: ${firstVideo.author.name} | ⏱️ Durasi: ${firstVideo.timestamp}`
+          address: `📺 Channel: ${firstVideo.author.name} | ⏱️ Duracion: ${firstVideo.timestamp}`
         },
         contentText: contentText,
         footerText: config.bot.name,

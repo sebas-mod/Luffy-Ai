@@ -30,7 +30,7 @@ async function handler(m)  {
         const files = fs.readdirSync(sessionsPath)
         
         if (files.length === 0) {
-            return m.reply(`📁 Folder sessions ya kosong!`)
+            return m.reply(`📁 Folder sessions ¡ya está vacía!`)
         }
         
         let deleted = 0
@@ -64,7 +64,7 @@ async function handler(m)  {
 ┃
 ╰┈┈⬡
 
-> _Session files éxito dibersihkan!_
+> _Session files ¡limpiadas!_
 > _Restart bot si necesario._`
         )
         

@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     );
 
     if (!data?.status || !data?.data) {
-      throw new Error("Gagal mengambil detail APK");
+      throw new Error("Error al obtener detalles del APK");
     }
 
     const app = data.data;

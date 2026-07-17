@@ -53,7 +53,7 @@ const initSession = async () => {
         });
         sessionInitialized = true;
     } catch (e) {
-        console.log("⚠️ Gagal init session, mencoba lanjut...");
+        console.log("⚠️ Error al inicializar sesión, intentando continuar...");
     }
 };
 
@@ -100,7 +100,7 @@ const mconverter = {
     convert: async (inputPath, targetFormat) => {
         await initSession();
 
-        if (!fs.existsSync(inputPath)) return { error: 'File tidak ada' };
+        if (!fs.existsSync(inputPath)) return { error: 'Archivo no encontrado' };
 
         const filename = path.basename(inputPath);
         const fileSize = fs.statSync(inputPath).size;
@@ -129,7 +129,7 @@ const mconverter = {
 
             if (resInit.data.error) throw new Error(resInit.data.error.message);
             const token = resInit.data.token;
-            if (!token) throw new Error("Gagal dapet token upload");
+            if (!token) throw new Error("Error al obtener token de carga");
 
             let startByte = 1;
             const CHUNK_SIZE = 10 * 1024 * 1024;
@@ -179,7 +179,7 @@ const mconverter = {
                 }
 
                 if (status === 'finished') {
-                    process.stdout.write('✅ Selesai!\n');
+                    process.stdout.write('✅ Listo!\n');
 
                     const dlParams = new URLSearchParams({
                         token: token,

@@ -25,7 +25,7 @@ function fmtSize(b) {
 
 function fmtDate(ts) {
   if (!ts?._seconds) return "-";
-  return new Date(ts._seconds * 1000).toLocaleDateString("id-ID", {
+  return new Date(ts._seconds * 1000).toLocaleDateString("es-ES", {
     dateStyle: "long",
   });
 }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     if (!res?.status || !info) {
       m.react("❌");
       return m.reply(
-        `📱 *ɢᴀɢᴀʟ ʟᴇᴇʀ ᴅᴀᴛᴏs*\n\n` + `- Asegúrate de que la URL de compartir sea válida`,
+        `📱 *ᴇʀʀᴏʀ ᴀʟ ʟᴇᴇʀ ᴅᴀᴛᴏs*\n\n` + `- Asegúrate de que la URL de compartir sea válida`,
       );
     }
 

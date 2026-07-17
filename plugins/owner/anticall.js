@@ -26,11 +26,11 @@ async function handler(m, { sock }) {
     const current = db.setting("antiCall") ?? config.features?.antiCall ?? true;
     return m.reply(
       `📞 *Anti Call*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticall on* — Activokan\n` +
-        `> *${m.prefix}anticall off* — Nonactivokan\n\n` +
-        `_Bot va a automáticamente menolak panggilan masuk_`
+        `> Status: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}anticall on* — Activar\n` +
+        `> *${m.prefix}anticall off* — Desactivar\n\n` +
+        `_Bot va a automáticamente rechazar llamadas entrantes_`
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     const ctx = saluranCtx();
     return m.reply(
       `📞 *Anti Call Activo*\n\n` +
-        `> Bot va a automáticamente menolak panggilan masuk`,
+        `> Bot va a automáticamente rechazar llamadas entrantes`,
       { contextInfo: ctx }
     );
   }
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     db.setting("antiCall", false);
     return m.reply(
       `📞 *Anti Call Nonactivo*\n\n` +
-        `> Bot no va a menolak panggilan masuk`
+        `> Bot no va a rechazar llamadas entrantes`
     );
   }
 

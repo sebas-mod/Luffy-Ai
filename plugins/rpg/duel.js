@@ -26,11 +26,11 @@ async function handler(m, { sock }) {
   const bet = parseInt(args[1]) || 1000;
 
   if (!target) {
-    let txt = `⚔️ *DUEL TARUHAN* ⚔️\n\n`;
+    let txt = `⚔️ *DUELO DE APUESTAS* ⚔️\n\n`;
     txt += `¡Desafía a tu amigo a un duelo por dinero!\n\n`;
     txt += `*Cómo Desafiar:*\n`;
     txt += `👉 \`.duel @user 5000\`\n`;
-    txt += `_(Significa que lo retas a un duelo con apuesta de Rp 5.000)_`;
+    txt += `_(Significa que lo retas a un duelo con apuesta de Belly 5.000)_`;
     return m.reply(txt);
   }
 
@@ -39,17 +39,17 @@ async function handler(m, { sock }) {
   }
 
   if (bet < 1000) {
-    return m.reply(`¡Vaya, la apuesta es demasiado baja! ¡La mínima es *Rp 1.000*! 💸`);
+    return m.reply(`¡Vaya, la apuesta es demasiado baja! ¡La mínima es *Belly 1.000*! 💸`);
   }
 
   const player1 = db.getUser(m.sender);
   const player2 = db.getUser(target) || db.setUser(target);
 
-  if ((player1.koin || 0) < bet) {
-    return m.reply(`¡Ay, tu saldo no alcanza para esa apuesta!\nTus monedas: *Rp ${(player1.koin || 0).toLocaleString("id-ID")}*`);
+  if ((player1.belly || 0) < bet) {
+    return m.reply(`¡Ay, tu saldo no alcanza para esa apuesta!\nTus monedas: *Belly ${(player1.belly || 0).toLocaleString("es-ES")}*`);
   }
 
-  if ((player2.koin || 0) < bet) {
+  if ((player2.belly || 0) < bet) {
     return m.reply(`Vaya, parece que el oponente no tiene suficiente dinero para la apuesta. ¡Busca otro o reduce la apuesta!`);
   }
 
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     return m.reply(`¡Espera! Tu salud es muy baja (*${player1.rpg.health} HP*). Necesitas mínimo *30 HP* para el duelo. ¡Descansa primero! 💉`);
   }
 
-  await sendRpgPreview(sock, m.chat, `⚔️ *¡¡DUELO COMIENZA!!* ⚔️\n\n@${m.sender.split("@")[0]} desafía valientemente a @${target.split["@")[0]}!\n💰 Total de Apuestas: *Rp ${(bet * 2).toLocaleString("id-ID")}*`, "⚔️ ARENA DE DUELO", "¡A pelear!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, `⚔️ *¡¡DUELO COMIENZA!!* ⚔️\n\n@${m.sender.split("@")[0]} desafía valientemente a @${target.split["@")[0]}!\n💰 Total de Apuestas: *Belly ${(bet * 2).toLocaleString("es-ES")}*`, "⚔️ ARENA DE DUELO", "¡A pelear!", { quoted: m });
 
   await new Promise((r) => setTimeout(r, 2000));
 
@@ -75,8 +75,8 @@ async function handler(m, { sock }) {
   const winnerData = winner === m.sender ? player1 : player2;
   const loserData = winner === m.sender ? player2 : player1;
 
-  winnerData.koin = (winnerData.koin || 0) + bet;
-  loserData.koin = (loserData.koin || 0) - bet;
+  winnerData.belly = (winnerData.belly || 0) + bet;
+  loserData.belly = (loserData.belly || 0) - bet;
   loserData.rpg.health = Math.max(0, (loserData.rpg.health || 100) - 20);
 
   const expGain = 500;
@@ -88,10 +88,10 @@ async function handler(m, { sock }) {
   txt += `🏆 *Ganador:* @${winner.split("@")[0]}\n`;
   txt += `💀 *Perdedor:* @${loser.split["@")[0]} (Retira con heridas graves)\n\n`;
   txt += `🎁 *El Ganador Se Lleva:*\n`;
-  txt += `> 💰 Apuesta del Oponente: *+Rp ${bet.toLocaleString("id-ID")}*\n`;
+  txt += `> 💰 Apuesta del Oponente: *+Belly ${bet.toLocaleString("es-ES")}*\n`;
   txt += `> ✨ Bonus EXP de Batalla: *+${expGain} EXP*`;
 
-  await sendRpgPreview(sock, m.chat, txt, "⚔️ ARENA DUEL", "Hasil Duel!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, txt, "ARENA DE DUELO", "¡Resultado del Duelo!", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

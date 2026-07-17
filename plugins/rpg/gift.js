@@ -4,7 +4,7 @@ const pluginConfig = {
   alias: ["kasih", "hadiah"],
   category: "rpg",
   description: "Dar regalos a tu pareja para aumentar el amor",
-  usage: ".gift <item> <jumlah>",
+  usage: ".gift <item> <cantidad>",
   example: ".gift diamond 1",
   isOwner: false,
   isPremium: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   if (!user.rpg) user.rpg = {};
 
   if (!user.rpg.spouse) {
-    return m.reply(`❌ *ʙᴇʟᴜᴍ ᴇꜱᴛᴀ ᴄᴀꜱᴀᴅᴏ*\n\n` + `> ¡Aún no estás casado!\n` + `> Casate primero con \`.marry @user\``);
+    return m.reply(`❌ *AÚN NO ESTÁS CASADO*\n\n` + `> ¡Aún no estás casado!\n` + `> Casate primero con \`.marry @user\``);
   }
 
   const args = m.args || [];
@@ -31,8 +31,8 @@ async function handler(m, { sock }) {
 
   if (!itemKey) {
     return m.reply(
-      `🎁 *ɢɪꜰᴛ*\n\n` +
-        `*📋 *ᴜsᴀɢᴇ:*
+      `🎁 *REGALO*\n\n` +
+        `*📋 *USO:*
 \n` +
         `> > Elige el objeto para regalar\n` +
         `> > \`.gift diamond 1\`\n` +
@@ -43,14 +43,14 @@ async function handler(m, { sock }) {
   user.inventory = user.inventory || {};
 
   if ((user.inventory[itemKey] || 0) < amount) {
-    return m.reply(`❌ *ᴏʙᴊᴇᴛᴏ ɪɴꜰᴜꜰiciente*\n\n` + `> Tu objeto *${itemKey}*: ${user.inventory[itemKey] || 0}\n` + `> Necesitas: ${amount}`);
+    return m.reply(`❌ *ARTÍCULO INSUFICIENTE*\n\n` + `> Tu objeto *${itemKey}*: ${user.inventory[itemKey] || 0}\n` + `> Necesitas: ${amount}`);
   }
 
   const spouseJid = user.rpg.spouse;
   const partner = db.getUser(spouseJid);
 
   if (!partner) {
-    return m.reply(`❌ *ᴘᴀʀᴇᴊᴀ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> ¡Pareja no encontrada en la base de datos!`);
+    return m.reply(`❌ *PAREJA NO ENCONTRADA*\n\n> ¡Pareja no encontrada en la base de datos!`);
   }
 
   partner.inventory = partner.inventory || {};
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let txt = `🎁 *ɢɪꜰᴛ sᴜᴋsᴇs*\n\n`;
+  let txt = `🎁 *REGALO EXITOSO*\n\n`;
   txt += `> 💝 Regalaste ${amount}x ${itemKey}\n`;
   txt += `> 👤 Para: @${spouseJid.split("@")[0]}\n`;
   txt += `> 💕 Amor: +${amount * 10}\n\n`;

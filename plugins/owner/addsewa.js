@@ -101,9 +101,9 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
       if (isMember) return { joined: true, reason: "Bot ya existe en el grupo" };
     }
     await sock.groupAcceptInvite(inviteCode);
-    return { joined: true, reason: "Bot éxito join grup" };
+    return { joined: true, reason: "Bot se unió al grupo con éxito" };
   } catch (e) {
-    return { joined: false, reason: e.message || "Fallo join grup" };
+    return { joined: false, reason: e.message || "Error al unirse al grupo" };
   }
 }
 
@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
   if (args.length < 2) {
     return m.reply(
       `📝 *AGREGAR ALQUILER*\n\n` +
-        `Format: *${m.prefix}addsewa <link/id> <durasi>*\n\n` +
+        `Formato: *${m.prefix}addsewa <link/id> <duracion>*\n\n` +
         `*FORMATO DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
         `• 12h = 12 horas\n` +
@@ -142,7 +142,7 @@ async function handler(m, { sock }) {
 
   if (!expiredAt)
     return m.reply(
-      `❌ Format durasi no válido\n\nEjemplo: 7d, 1m, 1y, lifetime`,
+      `❌ Formato de duracion no valido\n\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -151,7 +151,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup no encontrado o link no válido`);
+      return m.reply(`❌ Grupo no encontrado o enlace no valido`);
     }
 
     const { id: groupId, name: groupName, inviteCode } = result;
@@ -170,10 +170,10 @@ async function handler(m, { sock }) {
       ? "Permanent"
       : timeHelper.fromTimestamp(expiredAt, "D MMMM YYYY HH:mm");
 
-    let text = `✅ *SEWA BERHASIL DITAMBAHKAN*\n\n`;
+    let text = `✅ *ALQUILER AÑADIDO CON ÉXITO*\n\n`;
     text += `Grup: *${groupName}*\n`;
     text += `ID: ${groupId.split("@")[0]}\n`;
-    text += `Durasi: *${formatDuration(durationStr)}*\n`;
+    text += `Duracion: *${formatDuration(durationStr)}*\n`;
     text += `Expired: *${expiredStr}*\n\n`;
 
     const joinResult = await tryJoinGroup(sock, inviteCode, groupId);
@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
         await new Promise((r) => setTimeout(r, 2000));
         await sock.sendText(
           groupId,
-          `👋 *Halo Todosnya!*, peranalkan, aku ${config.bot?.name}\n\n- Masa sewa: *${formatDuration(durationStr)}*\n- Aku va a aluar en: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para viendo fesor de bot esto.`,
+          `👋 *¡Hola a todos!*, soy ${config.bot?.name}\n\n- Tiempo de alquiler: *${formatDuration(durationStr)}*\n- Va a expirar en: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para ver el menu del bot.`,
           null,
           {
             contextInfo: saluranCtx(),

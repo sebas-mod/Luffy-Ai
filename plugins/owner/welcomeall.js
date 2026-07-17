@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
                 `✅ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
                 `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
                 `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Welcome: *AKTIF*\n` +
+                `┃ ✅ Welcome: *ACTIVO*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> Todos los miembros nuevo va a disambut automáticamente!`
             )
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
                 `❌ *ᴡᴇʟᴄᴏᴍᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
                 `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
                 `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Welcome: *NONAKTIF*\n` +
+                `┃ ❌ Welcome: *INACTIVO*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
                 `> Welcome dinonactivokan di todos los grupos.`
             )

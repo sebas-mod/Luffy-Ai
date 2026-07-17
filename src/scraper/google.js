@@ -61,7 +61,7 @@ class GoogleScraperKernel {
 
   async executeQueryPipeline(searchToken) {
     if (!searchToken || searchToken.trim().length === 0) {
-      return { status: false, error: "Query tidak boleh kosong" };
+      return { status: false, error: "La consulta no puede estar vacía" };
     }
 
     const queryHex = encodeURIComponent(searchToken);

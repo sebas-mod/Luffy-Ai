@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   await m.reply(`¡Encendiendo la moto, acelerando! Buscando pasajeros... 🏍️💨\nHay un pedido de *${order.type}* a *${order.distance}* de distancia, ¡Vamos! 🗺️`);
   await new Promise((r) => setTimeout(r, 3000));
 
-  user.koin = (user.koin || 0) + totalEarning;
+  user.belly = (user.belly || 0) + totalEarning;
 
   const expGain = Math.floor(totalEarning / 20);
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
@@ -62,9 +62,9 @@ async function handler(m, { sock }) {
   let txt = `¡¡ALABADO SEA DIOS, PEDIDO COMPLETADO! 🏍️✨\n\n`;
   txt += `Resumen del trabajo hoy:\n`;
   txt += `📱 Tipo: *${order.type}*\n`;
-  txt += `💵 Tarifa: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  txt += `💵 Tarifa: *+Belly ${earning.toLocaleString("es-ES")}*\n`;
   if (tips > 0) {
-    txt += `🎁 Propina del cliente: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+    txt += `🎁 Propina del cliente: *+Belly ${tips.toLocaleString("es-ES")}*\n`;
   }
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;

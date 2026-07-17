@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
   }
 
   if (shooterJid === m.sender) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡No puedes rechazarte a ti mismo!`);
+    return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡No puedes rechazarte a ti mismo!`);
   }
 
   if (shooterJid === m.botNumber) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El bot no tiene corazón para ser rechazado!`);
+    return m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El bot no tiene corazón para ser rechazado!`);
   }
 
   let shooterData = db.getUser(shooterJid) || {};

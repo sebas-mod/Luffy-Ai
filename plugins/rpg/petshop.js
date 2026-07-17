@@ -42,12 +42,12 @@ function handler(m) {
     txt += `*Lista de Mascotas:*\n`;
     for (const [key, pet] of Object.entries(PETS_FOR_SALE)) {
       txt += `\n*${pet.name}*\n`;
-      txt += `💰 Precio: Rp ${pet.price.toLocaleString()}\n`;
+      txt += `💰 Precio: Belly ${pet.price.toLocaleString()}\n`;
       txt += `📝 Rasgo: ${pet.desc}\n`;
       txt += `👉 Adopsi: \`.petshop buy ${key}\`\n`;
     }
     
-    txt += `\n\n💰 *Tu Dinero:* Rp ${(user.koin || 0).toLocaleString()}`;
+    txt += `\n\n💰 *Tu Dinero:* Belly ${(user.belly || 0).toLocaleString()}`;
     return m.reply(txt);
   }
 
@@ -65,11 +65,11 @@ function handler(m) {
       return m.reply(`Lo siento, ese tipo de mascota no está disponible o no se vende aquí! ❌\nRevisa la lista con \`${m.prefix}petshop\``);
     }
 
-    if ((user.koin || 0) < petToBuy.price) {
-      return m.reply(`¡Ay, no tienes suficiente dinero para la adopción! 😭\nEl costo es Rp ${petToBuy.price.toLocaleString()} pero solo tienes Rp ${(user.koin || 0).toLocaleString()}`);
+    if ((user.belly || 0) < petToBuy.price) {
+      return m.reply(`¡Ay, no tienes suficiente dinero para la adopción! 😭\nEl costo es Belly ${petToBuy.price.toLocaleString()} pero solo tienes Belly ${(user.belly || 0).toLocaleString()}`);
     }
 
-    user.koin -= petToBuy.price;
+    user.belly -= petToBuy.price;
 
     user.rpg.pet = {
       type: petKey,
@@ -85,7 +85,7 @@ function handler(m) {
     return m.reply(
       `¡¡FELICIDADES! 🎉🎉\n\n` +
         `¡Oficialmente adoptaste a *${petToBuy.name}*!\n` +
-        `💰 Costo de Adopción: *Rp -${petToBuy.price.toLocaleString()}*\n\n` +
+        `💰 Costo de Adopción: *Belly -${petToBuy.price.toLocaleString()}*\n\n` +
         `¡No puede esperar para pasear contigo! No olvides darle de comer y revisar su estado con \`${m.prefix}pet\`! 🐾✨`
     );
   }

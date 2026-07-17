@@ -72,10 +72,10 @@ async function handler(m) {
     const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     
     await m.reply(
-        `✅ *ʙɪʀᴛʜᴅᴀʏ ᴅɪsɪᴍᴘᴀɴ!*\n\n` +
+        `✅ *ʙɪʀᴛʜᴅᴀʏ GUARDADO!*\n\n` +
         `╭┈┈⬡「 🎂 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📅 Tanggal: *${day} ${months[month - 1]}*\n` +
-        `┃ 👤 User: @${cleanJid}\n` +
+        `┃ 📅 Fecha: *${day} ${months[month - 1]}*\n` +
+        `┃ 👤 Usuario: @${cleanJid}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `> El bot te felicitará el\n` +
         `> día especial de tu cumpleaños! 🎉`,

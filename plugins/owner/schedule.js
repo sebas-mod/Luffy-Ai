@@ -558,7 +558,7 @@ function parseEditInput(m, args, task) {
   }
 
   if (!state.customText) {
-    throw new Error("❌ Contenido reminder no boleh kosong");
+    throw new Error("❌ Contenido reminder no puede estar vacío");
   }
 
   return state;
@@ -666,7 +666,7 @@ async function handler(m, { sock, args }) {
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`✅ *JADWAL BERHASIL DIBUAT*
+        await m.reply(`✅ *HORARIO CREADO CON ÉXITO*
 
 🆔 ID: \`${id}\`
 🏷️ Kategori: ${parsed.category}
@@ -707,7 +707,7 @@ ${truncateText(parsed.customText, 180)}`);
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`✅ *PRESET JADWAL BERHASIL DIBUAT*
+        await m.reply(`✅ *PRESET DE HORARIO CREADO CON ÉXITO*
 
 🆔 ID: \`${id}\`
 ⚡ Preset: ${parsed.presetKey}
@@ -758,7 +758,7 @@ ${truncateText(parsed.customText, 180)}`);
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`✅ *JADWAL BERHASIL DIUPDATE*
+        await m.reply(`✅ *HORARIO ACTUALIZADO CON ÉXITO*
 
 🆔 ID: \`${task.id}\`
 🏷️ Kategori: ${parsed.category}

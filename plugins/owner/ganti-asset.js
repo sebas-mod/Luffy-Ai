@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
 
         const orderedKeys = [...imageKeys, ...videoKeys, ...audioKeys, ...fontKeys, ...otherKeys];
 
-        let listText = `📂 *PILIH ASSET YANG INGIN DIGANTI*\n\n`;
+        let listText = `📂 *SELECCIONA EL ASSET QUE DESEAS CAMBIAR*\n\n`;
         listText += `_Por favor reply mensaje esto con número (1-${orderedKeys.length})_\n\n`;
 
         let idx = 1;
@@ -189,7 +189,7 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     try {
         const newPath = await updateAssetUrl(selectedKey, session.buffer, filename);
-        await m.reply(`✅ *BERHASIL*\n\n> Asset *${selectedKey}* ha sido cambiado a:\n> ${newPath}\n> Config ha sido actualizado en tiempo real!`);
+        await m.reply(`✅ *ÉXITO*\n\n> Asset *${selectedKey}* ha sido cambiado a:\n> ${newPath}\n> Config ha sido actualizado en tiempo real!`);
         delete global.gantiAssetSessions[m.chat];
         await m.react('✅');
     } catch (e) {

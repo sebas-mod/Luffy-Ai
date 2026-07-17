@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   const inputName = m.text?.trim();
   const nama =
     mentioned === m.sender
-      ? inputName || m.pushName || "Kamu"
+      ? inputName || m.pushName || "Tú"
       : `@${mentioned.split("@")[0]}`;
 
   try {

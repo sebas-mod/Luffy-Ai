@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
     m.react('🕕')
     
     try {
-        const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
+        const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('es-ES')
         const hour = new Date().toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', hour12: false })
         const h = Number(hour)
         let waktu = 'noche'

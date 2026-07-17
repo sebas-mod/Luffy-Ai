@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`❌ *GAGAL*\n\nPlugin \`${name}\` no encontrado`);
+      return m.reply(      `❌ *FALLÓ*\n\nPlugin \`${name}\` no encontrado`);
     }
 
     let unloadResult = { success: false };
@@ -72,13 +72,13 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     return m.reply(
-      `✅ *PLUGIN DIHAPUS*\n\n` +
-        `╭─〔 *DETAIL* 〕───⬣\n` +
-        `│ File: \`${found.file}\`\n` +
-        `│ Folder: \`${found.folder}\`\n` +
-        `│ Unload: ${unloadResult.success ? "✅ Éxito" : "⚠️ Pending"}\n` +
+      `✅ *PLUGIN ELIMINADO*\n\n` +
+        `╭─〔 *DETALLE* 〕───⬣\n` +
+        `│ Archivo: \`${found.file}\`\n` +
+        `│ Carpeta: \`${found.folder}\`\n` +
+        `│ Descarga: ${unloadResult.success ? "✅ Éxito" : "⚠️ Pendiente"}\n` +
         `╰───────⬣\n\n` +
-        `Plugin ya eliminado y no activo!`,
+        `¡Plugin eliminado y ya no está activo!`,
     );
   } catch (error) {
     await m.react("☢");

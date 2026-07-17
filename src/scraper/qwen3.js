@@ -24,7 +24,7 @@ async function Qwen3(prompt, options = {}) {
     {
       id: crypto.randomUUID(),
       role: "system",
-      content: "Ikuti bahasa user dan jawab dengan gaya natural, singkat, dan jelas.",
+      content: "Sigue el idioma del usuario y responde de forma natural, breve y clara.",
     },
   ];
 

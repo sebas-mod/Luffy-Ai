@@ -10,7 +10,7 @@ let serviceCacheTime = {}
 
 function getApiKey() {
     const key = config.jasaotp?.apiKey
-    if (!key) throw new Error('JasaOTP API key belum dikonfigurasi di config.js')
+    if (!key) throw new Error('Clave API de JasaOTP no configurada en config.js')
     return key
 }
 
@@ -32,7 +32,7 @@ async function getBalance() {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal cek saldo')
+    if (!data.success) throw new Error(data.message || 'Error al verificar saldo')
     return data.data.saldo
 }
 
@@ -44,7 +44,7 @@ async function getCountries() {
 
     const { data } = await axios.get(`${BASE_URL}/negara.php`, { timeout: 15000 })
 
-    if (!data.success) throw new Error(data.message || 'Gagal ambil daftar negara')
+    if (!data.success) throw new Error(data.message || 'Error al obtener lista de paises')
 
     countryCache = data.data
     countryCacheTime = now
@@ -67,7 +67,7 @@ async function getServices(countryId) {
     const services = data[cacheKey] || data.data?.[cacheKey] || data[countryId] || {}
 
     if (Object.keys(services).length === 0) {
-        throw new Error('Tidak ada layanan tersedia untuk negara ini')
+        throw new Error('No hay servicios disponibles para este pais')
     }
 
     serviceCache[cacheKey] = services
@@ -81,7 +81,7 @@ async function getOperators(countryId) {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal ambil daftar operator')
+    if (!data.success) throw new Error(data.message || 'Error al obtener lista de operadores')
 
     const operators = data.data?.[String(countryId)] || data.data || []
     return Array.isArray(operators) ? operators : Object.values(operators)
@@ -98,7 +98,7 @@ async function createOrder(countryId, service, operator) {
         timeout: 30000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal membuat pesanan OTP')
+    if (!data.success) throw new Error(data.message || 'Error al crear pedido OTP')
 
     return {
         orderId: data.data.order_id,
@@ -128,7 +128,7 @@ async function cancelOrder(orderId) {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal membatalkan pesanan')
+    if (!data.success) throw new Error(data.message || 'Error al cancelar pedido')
 
     return {
         orderId: data.data?.order_id,
@@ -137,7 +137,7 @@ async function cancelOrder(orderId) {
 }
 
 function formatPrice(num) {
-    return num.toLocaleString('id-ID')
+    return num.toLocaleString('es-ES')
 }
 
 export { isEnabled, getApiKey, getMarkup, getTimeout, getBalance, getCountries, getServices, getOperators, createOrder, checkSms, cancelOrder, formatPrice }

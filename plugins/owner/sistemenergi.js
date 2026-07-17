@@ -45,11 +45,11 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ *STATUS SISTEM ENERGI BERHASIL DIUBAH*\n\n` +
-    `Sistem Energi asto ha éxito di-*${isEnabled ? "ACTIVAR" : "DESACTIVAR"}*.\n\n` +
-    `*Status Terasto:*\n` +
-    `- Mode: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +
-    `_Todos perubahan ya tersimpan y va a segera diterapkan en sistem bot._`
+    `✅ *ESTADO DEL SISTEMA DE ENERGIA CAMBIADO CON EXITO*\n\n` +
+    `El sistema de energia ha sido *${isEnabled ? "ACTIVADO" : "DESACTIVADO"}*.\n\n` +
+    `*Estado Actual:*\n` +
+    `- Modo: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +
+    `_Todos los cambios se han guardado y se aplicaran de inmediato en el sistema del bot._`
   );
 }
 

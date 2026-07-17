@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const currentStatus = db.setting("notiflimit") ?? false;
     db.setting("notiflimit", !currentStatus);
 
-    const newStatus = db.setting("notiflimit") ? "AKTIF ✅" : "MATI ❌";
+    const newStatus = db.setting("notiflimit") ? "ACTIVO ✅" : "APAGADO ❌";
 
     await m.reply(`*NOTIFICACIÓN DE LÍMITE (GLOBAL)*\n\nEstado actual: *${newStatus}*\n\n> Cuando está activo, el bot siempre notificará el límite restante de TODOS LOS USUARIOS cada vez que se haga un corte al usar funciones del bot.`);
 }

@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
       `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
       `┃ 👤 User: @${targetJid.split("@")[0]}\n` +
       `┃ ➖ Kurang: *-${levels} Level*\n` +
-      `┃ 🚄 Exp Removed: *-${expToRemove.toLocaleString("id-ID")}*\n` +
+      `┃ 🚄 Exp Removed: *-${expToRemove.toLocaleString("es-ES")}*\n` +
       `┃ 📊 Level: *${oldLevel} → ${newLevel}*\n` +
       `┃ ${getRole(newLevel)}\n` +
       `╰┈┈┈┈┈┈┈┈⬡`,

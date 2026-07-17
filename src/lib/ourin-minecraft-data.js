@@ -1,7 +1,7 @@
 const biomes = {
   plains: {
     name: "🌿 Plains",
-    desc: "Dataran hijau yang tenang",
+    desc: "Llanuras verdes y tranquilas",
     listOre: [
       { name: "🪨 Cobblestone", rarity: "common", avgValue: 30, minStack: 1, maxStack: 64 },
       { name: "🟫 Dirt", rarity: "common", avgValue: 20, minStack: 1, maxStack: 64 },
@@ -18,7 +18,7 @@ const biomes = {
   },
   desert: {
     name: "🏜️ Desert",
-    desc: "Gurun pasir yang kering",
+    desc: "Desiertos áridos",
     listOre: [
       { name: "🟨 Sand", rarity: "common", avgValue: 120, minStack: 1, maxStack: 64 },
       { name: "🟨 Sandstone", rarity: "common", avgValue: 140, minStack: 1, maxStack: 64 },
@@ -35,7 +35,7 @@ const biomes = {
   },
   jungle: {
     name: "🌴 Jungle",
-    desc: "Hutan tropis yang lebat",
+    desc: "Selva tropical densa",
     listOre: [
       { name: "🪵 Jungle Wood", rarity: "common", avgValue: 100, minStack: 1, maxStack: 64 },
       { name: "🌿 Vines", rarity: "common", avgValue: 70, minStack: 1, maxStack: 32 },
@@ -51,7 +51,7 @@ const biomes = {
   },
   taiga: {
     name: "❄️ Taiga",
-    desc: "Hutan pinus yang dingin",
+    desc: "Bosque de pinos frío",
     listOre: [
       { name: "🪵 Spruce Wood", rarity: "common", avgValue: 110, minStack: 1, maxStack: 64 },
       { name: "🪨 Gravel", rarity: "common", avgValue: 60, minStack: 1, maxStack: 64 },
@@ -68,7 +68,7 @@ const biomes = {
   },
   mountains: {
     name: "🏔️ Mountains",
-    desc: "Pegunungan tinggi kaya mineral",
+    desc: "Montañas altas ricas en minerales",
     listOre: [
       { name: "🪨 Stone", rarity: "common", avgValue: 150, minStack: 1, maxStack: 64 },
       { name: "🟫 Granite", rarity: "common", avgValue: 180, minStack: 1, maxStack: 48 },
@@ -85,7 +85,7 @@ const biomes = {
   },
   ocean: {
     name: "🌊 Ocean",
-    desc: "Lautan dalam yang misterius",
+    desc: "Océano profundo misterioso",
     listOre: [
       { name: "🪨 Gravel", rarity: "common", avgValue: 200, minStack: 1, maxStack: 64 },
       { name: "🌿 Kelp", rarity: "common", avgValue: 150, minStack: 1, maxStack: 48 },
@@ -102,7 +102,7 @@ const biomes = {
   },
   nether: {
     name: "🔥 Nether",
-    desc: "Dimensi neraka penuh bahaya",
+    desc: "Dimensión del inframundo llena de peligro",
     listOre: [
       { name: "🔴 Netherrack", rarity: "common", avgValue: 800, minStack: 1, maxStack: 64 },
       { name: "🟫 Soul Sand", rarity: "common", avgValue: 900, minStack: 1, maxStack: 48 },
@@ -121,7 +121,7 @@ const biomes = {
   },
   theend: {
     name: "🌌 The End",
-    desc: "Dimensi akhir yang suram",
+    desc: "Dimensión final sombría",
     listOre: [
       { name: "🟨 End Stone", rarity: "common", avgValue: 2500, minStack: 1, maxStack: 64 },
       { name: "🍇 Chorus Fruit", rarity: "common", avgValue: 3000, minStack: 1, maxStack: 32 },
@@ -138,7 +138,7 @@ const biomes = {
   },
   deepdark: {
     name: "👁️ Deep Dark",
-    desc: "Kegelapan purba yang menakutkan",
+    desc: "Oscuridad antigua aterradora",
     listOre: [
       { name: "🟣 Sculk", rarity: "common", avgValue: 5000, minStack: 1, maxStack: 48 },
       { name: "📡 Sculk Sensor", rarity: "common", avgValue: 6000, minStack: 1, maxStack: 16 },
@@ -157,7 +157,7 @@ const biomes = {
   },
   ancientcity: {
     name: "🏛️ Ancient City",
-    desc: "Kota kuno yang terkutuk",
+    desc: "Ciudad antigua maldita",
     listOre: [
       { name: "⬛ Deepslate", rarity: "common", avgValue: 8000, minStack: 1, maxStack: 64 },
       { name: "🛡️ Reinforced Deepslate", rarity: "common", avgValue: 12000, minStack: 1, maxStack: 32 },
@@ -192,42 +192,42 @@ const travelRequirements = {
 }
 
 const pickaxes = {
-  woodpick: { name: "🪵 Wooden Pickaxe", luck: 0, speed: 0, comboOre: 1, fortuneBonus: 0, sellMultiplier: 0, price: 0, description: "Pickaxe kayu untuk pemula.", level: 1, maxLevel: 5, exp: 0, expToNextLevel: 80 },
-  stonepick: { name: "🪨 Stone Pickaxe", luck: 0.02, speed: 0.03, comboOre: 1, fortuneBonus: 0.01, sellMultiplier: 0.05, price: 30000, description: "Pickaxe batu, lebih kuat dari kayu.", level: 1, maxLevel: 10, exp: 0, expToNextLevel: 100 },
-  ironpick: { name: "⛏️ Iron Pickaxe", luck: 0.06, speed: 0.07, comboOre: 1, fortuneBonus: 0.03, sellMultiplier: 0.15, price: 300000, description: "Pickaxe besi, andalan penambang.", level: 1, maxLevel: 15, exp: 0, expToNextLevel: 120 },
-  goldpick: { name: "✨ Gold Pickaxe", luck: 0.10, speed: 0.12, comboOre: 2, fortuneBonus: 0.05, sellMultiplier: 0.25, price: 3000000, description: "Pickaxe emas, cepat tapi rapuh.", level: 1, maxLevel: 20, exp: 0, expToNextLevel: 150 },
-  diamondpick: { name: "💎 Diamond Pickaxe", luck: 0.15, speed: 0.15, comboOre: 2, fortuneBonus: 0.08, sellMultiplier: 0.40, price: 30000000, description: "Pickaxe berlian, kuat dan tahan lama.", level: 1, maxLevel: 30, exp: 0, expToNextLevel: 180 },
-  netheritepick: { name: "🔮 Netherite Pickaxe", luck: 0.25, speed: 0.22, comboOre: 3, fortuneBonus: 0.12, sellMultiplier: 0.65, price: 300000000, description: "Pickaxe netherite, kekuatan dari neraka.", level: 1, maxLevel: 40, exp: 0, expToNextLevel: 220 },
-  endpick: { name: "🌌 End Pickaxe", luck: 0.35, speed: 0.30, comboOre: 3, fortuneBonus: 0.18, sellMultiplier: 0.90, price: 3000000000, description: "Pickaxe dari dimensi akhir.", level: 1, maxLevel: 50, exp: 0, expToNextLevel: 280 },
-  voidpick: { name: "🕳️ Void Pickaxe", luck: 0.50, speed: 0.42, comboOre: 4, fortuneBonus: 0.25, sellMultiplier: 1.30, price: 0, description: "Pickaxe kekosongan. (Token Store)", level: 1, maxLevel: 60, exp: 0, expToNextLevel: 350 },
-  cosmicpick: { name: "🌠 Cosmic Pickaxe", luck: 0.65, speed: 0.55, comboOre: 4, fortuneBonus: 0.35, sellMultiplier: 1.80, price: 0, description: "Pickaxe kosmik, kekuatan bintang. (Token Store)", level: 1, maxLevel: 75, exp: 0, expToNextLevel: 420 },
-  prestigepick: { name: "👑 Prestige Pickaxe", luck: 0.80, speed: 0.68, comboOre: 5, fortuneBonus: 0.45, sellMultiplier: 2.30, price: 0, description: "Pickaxe prestige, hadiah para legenda.", level: 1, maxLevel: 99, exp: 0, expToNextLevel: 500 },
-  omegapick: { name: "⚡ Omega Pickaxe", luck: 1.10, speed: 0.85, comboOre: 6, fortuneBonus: 0.60, sellMultiplier: 3.50, price: 0, description: "Pickaxe omega, milik juara abadi.", level: 1, maxLevel: 99, exp: 0, expToNextLevel: 600 },
+  woodpick: { name: "🪵 Wooden Pickaxe", luck: 0, speed: 0, comboOre: 1, fortuneBonus: 0, sellMultiplier: 0, price: 0, description: "Pico de madera para principiantes.", level: 1, maxLevel: 5, exp: 0, expToNextLevel: 80 },
+  stonepick: { name: "🪨 Stone Pickaxe", luck: 0.02, speed: 0.03, comboOre: 1, fortuneBonus: 0.01, sellMultiplier: 0.05, price: 30000, description: "Pico de piedra, más resistente que la madera.", level: 1, maxLevel: 10, exp: 0, expToNextLevel: 100 },
+  ironpick: { name: "⛏️ Iron Pickaxe", luck: 0.06, speed: 0.07, comboOre: 1, fortuneBonus: 0.03, sellMultiplier: 0.15, price: 300000, description: "Pico de hierro, favorito de los mineros.", level: 1, maxLevel: 15, exp: 0, expToNextLevel: 120 },
+  goldpick: { name: "✨ Gold Pickaxe", luck: 0.10, speed: 0.12, comboOre: 2, fortuneBonus: 0.05, sellMultiplier: 0.25, price: 3000000, description: "Pico de oro, rápido pero frágil.", level: 1, maxLevel: 20, exp: 0, expToNextLevel: 150 },
+  diamondpick: { name: "💎 Diamond Pickaxe", luck: 0.15, speed: 0.15, comboOre: 2, fortuneBonus: 0.08, sellMultiplier: 0.40, price: 30000000, description: "Pico de diamante, fuerte y duradero.", level: 1, maxLevel: 30, exp: 0, expToNextLevel: 180 },
+  netheritepick: { name: "🔮 Netherite Pickaxe", luck: 0.25, speed: 0.22, comboOre: 3, fortuneBonus: 0.12, sellMultiplier: 0.65, price: 300000000, description: "Pico de netherite, poder del inframundo.", level: 1, maxLevel: 40, exp: 0, expToNextLevel: 220 },
+  endpick: { name: "🌌 End Pickaxe", luck: 0.35, speed: 0.30, comboOre: 3, fortuneBonus: 0.18, sellMultiplier: 0.90, price: 3000000000, description: "Pico de la dimensión final.", level: 1, maxLevel: 50, exp: 0, expToNextLevel: 280 },
+  voidpick: { name: "🕳️ Void Pickaxe", luck: 0.50, speed: 0.42, comboOre: 4, fortuneBonus: 0.25, sellMultiplier: 1.30, price: 0, description: "Pico del vacío. (Tienda de Tokens)", level: 1, maxLevel: 60, exp: 0, expToNextLevel: 350 },
+  cosmicpick: { name: "🌠 Cosmic Pickaxe", luck: 0.65, speed: 0.55, comboOre: 4, fortuneBonus: 0.35, sellMultiplier: 1.80, price: 0, description: "Pico cósmico, poder de las estrellas. (Tienda de Tokens)", level: 1, maxLevel: 75, exp: 0, expToNextLevel: 420 },
+  prestigepick: { name: "👑 Prestige Pickaxe", luck: 0.80, speed: 0.68, comboOre: 5, fortuneBonus: 0.45, sellMultiplier: 2.30, price: 0, description: "Pico de prestigio, recompensa para leyendas.", level: 1, maxLevel: 99, exp: 0, expToNextLevel: 500 },
+  omegapick: { name: "⚡ Omega Pickaxe", luck: 1.10, speed: 0.85, comboOre: 6, fortuneBonus: 0.60, sellMultiplier: 3.50, price: 0, description: "Pico omega, del campeón eterno.", level: 1, maxLevel: 99, exp: 0, expToNextLevel: 600 },
 }
 
 const pickEnchants = {
-  efficiency1: { name: "⚡ Efficiency I", rarity: "common", effect: { speed: 1.05 }, desc: "Kecepatan tambang +5%" },
-  efficiency2: { name: "⚡ Efficiency II", rarity: "common", effect: { speed: 1.10 }, desc: "Kecepatan tambang +10%" },
-  unbreaking1: { name: "🛡️ Unbreaking I", rarity: "common", effect: { durability: 1.15 }, desc: "Durabilitas +15%" },
+  efficiency1: { name: "⚡ Efficiency I", rarity: "common", effect: { speed: 1.05 }, desc: "Velocidad de mina +5%" },
+  efficiency2: { name: "⚡ Efficiency II", rarity: "common", effect: { speed: 1.10 }, desc: "Velocidad de mina +10%" },
+  unbreaking1: { name: "🛡️ Unbreaking I", rarity: "common", effect: { durability: 1.15 }, desc: "Durabilidad +15%" },
   fortune1: { name: "🍀 Fortune I", rarity: "common", effect: { fortune: 1.10 }, desc: "Fortune +10% drop" },
-  efficiency3: { name: "⚡ Efficiency III", rarity: "rare", effect: { speed: 1.25 }, desc: "Kecepatan tambang +25%" },
+  efficiency3: { name: "⚡ Efficiency III", rarity: "rare", effect: { speed: 1.25 }, desc: "Velocidad de mina +25%" },
   fortune2: { name: "🍀 Fortune II", rarity: "rare", effect: { fortune: 1.25 }, desc: "Fortune +25% drop" },
-  unbreaking2: { name: "🛡️ Unbreaking II", rarity: "rare", effect: { durability: 1.30 }, desc: "Durabilitas +30%" },
-  silktouch: { name: "✨ Silk Touch", rarity: "epic", effect: { luck: 1.3, specialDrop: true }, desc: "Dapat blok utuh +30% luck" },
+  unbreaking2: { name: "🛡️ Unbreaking II", rarity: "rare", effect: { durability: 1.30 }, desc: "Durabilidad +30%" },
+  silktouch: { name: "✨ Silk Touch", rarity: "epic", effect: { luck: 1.3, specialDrop: true }, desc: "Obtén bloques intactos +30% suerte" },
   fortune3: { name: "🍀 Fortune III", rarity: "epic", effect: { fortune: 1.50 }, desc: "Fortune +50% drop" },
-  efficiency5: { name: "⚡ Efficiency V", rarity: "epic", effect: { speed: 1.45 }, desc: "Kecepatan tambang +45%" },
-  mending: { name: "💚 Mending", rarity: "legendary", effect: { luck: 1.5, speed: 1.2, durability: 2.0 }, desc: "Auto repair +50% luck +20% speed" },
-  fortune4: { name: "🍀 Fortune IV", rarity: "legendary", effect: { fortune: 2.0, sellMultiplier: 1.5 }, desc: "Fortune x2 +50% sell" },
-  smite: { name: "⚔️ Smite", rarity: "legendary", effect: { combatBonus: 1.5, luck: 1.4 }, desc: "+50% damage mob +40% luck" },
-  voidtouch: { name: "🕳️ Void Touch", rarity: "mythic", effect: { luck: 2.0, fortune: 1.8, sellMultiplier: 2.5 }, desc: "Kekuatan void, luck & fortune besar" },
-  cosmicfortune: { name: "🌠 Cosmic Fortune", rarity: "mythic", effect: { fortune: 3.0, luck: 1.8 }, desc: "Fortune x3 +80% luck" },
-  dragonvein: { name: "🐉 Dragon Vein", rarity: "mythic", effect: { luck: 2.5, speed: 1.5, sellMultiplier: 3.0 }, desc: "Darah naga, semua stats naik" },
-  netherforged: { name: "🔥 Netherforged", rarity: "godly", effect: { luck: 4.0, fortune: 2.5, sellMultiplier: 5.0 }, desc: "Tempa neraka, kekuatan absolut" },
-  enderessence: { name: "🌌 Ender Essence", rarity: "godly", effect: { luck: 4.5, speed: 2.0, fortune: 2.0 }, desc: "Essensi dimensi akhir" },
-  wardenfury: { name: "👁️ Warden Fury", rarity: "godly", effect: { luck: 5.0, combatBonus: 3.0, sellMultiplier: 6.0 }, desc: "Kemarahan Warden, tak terbendung" },
-  universeforge: { name: "🌀 Universe Forge", rarity: "secret", effect: { luck: 7.0, fortune: 4.0, sellMultiplier: 10.0 }, desc: "Menempa alam semesta" },
-  godslayer: { name: "⚔️ Godslayer", rarity: "secret", effect: { luck: 8.0, speed: 2.5, fortune: 3.5, sellMultiplier: 15.0 }, desc: "Membunuh dewa, mengambil kekuatan" },
-  apocalypse: { name: "💀 Apocalypse", rarity: "secret", effect: { luck: 10.0, fortune: 5.0, sellMultiplier: 20.0, combatBonus: 5.0 }, desc: "Akhir zaman, kekuatan mutlak" },
+  efficiency5: { name: "⚡ Efficiency V", rarity: "epic", effect: { speed: 1.45 }, desc: "Velocidad de mina +45%" },
+  mending: { name: "💚 Mending", rarity: "legendary", effect: { luck: 1.5, speed: 1.2, durability: 2.0 }, desc: "Auto reparación +50% suerte +20% velocidad" },
+  fortune4: { name: "🍀 Fortune IV", rarity: "legendary", effect: { fortune: 2.0, sellMultiplier: 1.5 }, desc: "Fortune x2 +50% venta" },
+  smite: { name: "⚔️ Smite", rarity: "legendary", effect: { combatBonus: 1.5, luck: 1.4 }, desc: "+50% daño mob +40% suerte" },
+  voidtouch: { name: "🕳️ Void Touch", rarity: "mythic", effect: { luck: 2.0, fortune: 1.8, sellMultiplier: 2.5 }, desc: "Poder del vacío, gran suerte y fortuna" },
+  cosmicfortune: { name: "🌠 Cosmic Fortune", rarity: "mythic", effect: { fortune: 3.0, luck: 1.8 }, desc: "Fortune x3 +80% suerte" },
+  dragonvein: { name: "🐉 Dragon Vein", rarity: "mythic", effect: { luck: 2.5, speed: 1.5, sellMultiplier: 3.0 }, desc: "Sangre de dragón, todas las estadísticas suben" },
+  netherforged: { name: "🔥 Netherforged", rarity: "godly", effect: { luck: 4.0, fortune: 2.5, sellMultiplier: 5.0 }, desc: "Forjado en el infierno, poder absoluto" },
+  enderessence: { name: "🌌 Ender Essence", rarity: "godly", effect: { luck: 4.5, speed: 2.0, fortune: 2.0 }, desc: "Esencia de la dimensión final" },
+  wardenfury: { name: "👁️ Warden Fury", rarity: "godly", effect: { luck: 5.0, combatBonus: 3.0, sellMultiplier: 6.0 }, desc: "Furia del Warden, imparable" },
+  universeforge: { name: "🌀 Universe Forge", rarity: "secret", effect: { luck: 7.0, fortune: 4.0, sellMultiplier: 10.0 }, desc: "Forjando el universo" },
+  godslayer: { name: "⚔️ Godslayer", rarity: "secret", effect: { luck: 8.0, speed: 2.5, fortune: 3.5, sellMultiplier: 15.0 }, desc: "Matar dioses, robar su poder" },
+  apocalypse: { name: "💀 Apocalypse", rarity: "secret", effect: { luck: 10.0, fortune: 5.0, sellMultiplier: 20.0, combatBonus: 5.0 }, desc: "Fin de los tiempos, poder absoluto" },
 }
 
 const mobData = {

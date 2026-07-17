@@ -35,11 +35,11 @@ async function handler(m, { sock }) {
   await m.react("🎸");
 
   const locations = [
-    { name: "Perempatan Lampu Merah", min: 3000, max: 10000 },
-    { name: "Warung Kopi", min: 5000, max: 15000 },
-    { name: "Depan Minimarket", min: 4000, max: 12000 },
-    { name: "Kafe Gaul", min: 8000, max: 25000 },
-    { name: "Angkringan", min: 2000, max: 8000 }
+    { name: "Cruce de Semáforos", min: 3000, max: 10000 },
+    { name: "Cafetería", min: 5000, max: 15000 },
+    { name: "Frente al Minimarket", min: 4000, max: 12000 },
+    { name: "Café Moderno", min: 8000, max: 25000 },
+    { name: "Puesto Callejero", min: 2000, max: 8000 }
   ];
 
   const loc = locations[Math.floor(Math.random() * locations.length)];
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   await m.reply(`Comienzas a rasguear la guitarra en *${loc.name}*... 🎶\n¡Espera que hoy te den buenas propinas! 💸`);
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  user.koin = (user.koin || 0) + earning;
+  user.belly = (user.belly || 0) + earning;
 
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   let txt = `¡ALABADO SEA DIOS, RESULTADO DEL CANTO! 🎸✨\n\n`;
   txt += `Ubicación: *${loc.name}*\n`;
-  txt += `💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  txt += `💵 Ingreso: *+Belly ${earning.toLocaleString("es-ES")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
   txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
   txt += `¡Sirve para comprar arroz hoy! 🤤`;

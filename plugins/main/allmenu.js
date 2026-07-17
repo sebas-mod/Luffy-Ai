@@ -140,7 +140,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const devName = botConfig.bot?.developer || "Ell";
   const botVersion = botConfig.bot?.version || "11.0.0";
   const pushName = m.pushName || "User";
-  const timeNow = new Date().toLocaleTimeString('id-ID', { timeZone: 'America/Argentina/Buenos_Aires' }).replace(/\./g, ':');
+  const timeNow = new Date().toLocaleTimeString('es-ES', { timeZone: 'America/Argentina/Buenos_Aires' }).replace(/\./g, ':');
 
   txt += `✦ *Información Usuario*\n`;
   txt += `• Nombre  : ${pushName}\n`;
@@ -274,7 +274,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
                         text: `${greeting}`,
-                        url: "Hai",
+                        url: "Hola",
                         copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
@@ -350,7 +350,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                 },
                 nativeFlowMessage: {
                   messageParamsJson: JSON.stringify({
-                    limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
+                    limited_time_offer: { text: `${greeting}`, url: "Hola", expiration_time: Date.now() + 10000 },
                     bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
                     tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
                   }),

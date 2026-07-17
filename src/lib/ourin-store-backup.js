@@ -128,12 +128,12 @@ async function sendStoreBackup(sock) {
         const caption = 
             `🗃️ *ꜱᴛᴏʀᴇ ʙᴀᴄᴋᴜᴘ*\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-            `┃ 📅 Waktu: ${timeHelper.formatDateTime('DD MMMM YYYY HH:mm:ss')} ART\n` +
+            `┃ 📅 Fecha: ${timeHelper.formatDateTime('DD MMMM YYYY HH:mm:ss')} ART\n` +
             `┃ 📦 Size: ${sizeDisplay}\n` +
             `┃ 📁 Files: ${backupInfo.fileCount}\n` +
             `┃ 🔖 Schema: v${SCHEMA_VERSION}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> Type-safe backup. Kompatibel dengan versi mendatang.\n` +
+            `> Type-safe backup. Compatible con versiones futuras.\n` +
             `> ${config.bot?.name || 'Luffy-AI'} Store Backup System`
         
         await sock.sendMessage(ownerJid, {

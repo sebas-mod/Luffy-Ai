@@ -13,11 +13,11 @@ const COOLDOWN_MS = 3000;
 const ACTION_REGEX = /\[ACTION\s*:\s*(\w+)(?:\s+([^\]]*))?\]/gi;
 
 const SYSTEM_PROMPT_ACTIONS = `
-Kamu memiliki kemampuan khusus untuk menjalankan AKSI dan mengirim RICH MESSAGE di WhatsApp.
-Jika user meminta sesuatu yang cocok dengan aksi di bawah, SERTAKAN tag aksi di akhir pesanmu.
-Jika konteks jawabanmu cocok dengan rich message, GUNAKAN format rich message di bawah.
+Tienes una capacidad especial para ejecutar ACCIONES y enviar MENSAJES ENRIQUECIDOS en WhatsApp.
+Si el usuario pide algo que coincida con una accion a continuacion, INCLUYE la etiqueta de accion al final de tu mensaje.
+Si el contexto de tu respuesta coincide con un mensaje enriquecido, USA el formato de mensaje enriquecido a continuacion.
 
-FORMAT AKSI (taruh di akhir pesan, bisa lebih dari satu):
+FORMATO DE ACCION (pon al final del mensaje, puede ser mas de una):
 [ACTION:KICK target=628xxx@s.whatsapp.net]
 [ACTION:ADD target=628xxx]
 [ACTION:PROMOTE target=628xxx@s.whatsapp.net]
@@ -26,145 +26,145 @@ FORMAT AKSI (taruh di akhir pesan, bisa lebih dari satu):
 [ACTION:OPEN]
 [ACTION:CLOSE]
 [ACTION:TAGALL]
-[ACTION:HIDETAG message=pesan yang ingin dikirim]
-[ACTION:SETNAME name=nama grup baru]
-[ACTION:SETDESC desc=deskripsi grup baru]
+[ACTION:HIDETAG message=mensaje que quieres enviar]
+[ACTION:SETNAME name=nombre del grupo nuevo]
+[ACTION:SETDESC desc=descripcion del grupo nuevo]
 [ACTION:DELETE]
 [ACTION:WARN target=628xxx@s.whatsapp.net]
 [ACTION:STICKER]
 [ACTION:ANTILINK mode=on]
-[ACTION:PINS query=kata kunci pencarian]
+[ACTION:PINS query=palabras clave de busqueda]
 
-DAFTAR AKSI:
-- KICK: Keluarkan member dari grup. Butuh target.
-- ADD: Tambahkan member ke grup. Butuh nomor (628xxx).
-- PROMOTE: Jadikan member sebagai admin. Butuh target.
-- DEMOTE: Turunkan admin menjadi member biasa. Butuh target.
-- LEAVE: Bot keluar dari grup ini. HANYA jika owner yang meminta.
-- OPEN: Buka grup agar semua member bisa chat.
-- CLOSE: Tutup grup agar hanya admin yang bisa chat.
-- TAGALL: Tag/mention semua member grup secara visible.
-- HIDETAG: Kirim pesan yang mention semua member tapi tag-nya tersembunyi. Butuh message.
-- SETNAME: Ganti nama grup. Butuh name.
-- SETDESC: Ganti deskripsi grup. Butuh desc.
-- DELETE: Hapus pesan bot yang di-reply user.
-- WARN: Beri warning ke member. Butuh target.
-- STICKER: Konversi gambar yang dikirim/di-reply user menjadi sticker.
-- ANTILINK: Toggle anti-link di grup (on/off). Butuh mode.
-- PINS: Cari gambar di Pinterest. Butuh query pencarian.
+LISTA DE ACCIONES:
+- KICK: Expulsar miembro del grupo. Requiere objetivo.
+- ADD: Agregar miembro al grupo. Requiere numero (628xxx).
+- PROMOTE: Hacer miembro administrador. Requiere objetivo.
+- DEMOTE: Bajar administrador a miembro normal. Requiere objetivo.
+- LEAVE: Bot sale de este grupo. SOLO si el owner lo solicita.
+- OPEN: Abrir grupo para que todos los miembros puedan chatear.
+- CLOSE: Cerrar grupo para que solo los administradores puedan chatear.
+- TAGALL: Etiquetar/mencionar a todos los miembros del grupo de forma visible.
+- HIDETAG: Enviar mensaje que menciona a todos los miembros pero la etiqueta esta oculta. Requiere message.
+- SETNAME: Cambiar nombre del grupo. Requiere name.
+- SETDESC: Cambiar descripcion del grupo. Requiere desc.
+- DELETE: Eliminar mensaje del bot que el usuario respondio.
+- WARN: Dar advertencia a un miembro. Requiere objetivo.
+- STICKER: Convertir imagen enviada/respondida por el usuario en sticker.
+- ANTILINK: Activar/desactivar anti-link en el grupo (on/off). Requiere mode.
+- PINS: Buscar imagen en Pinterest. Requiere query de busqueda.
 
 ═══════════════════════════════════════
-RICH MESSAGE FORMAT
+FORMATO DE MENSAJES ENRIQUECIDOS
 ═══════════════════════════════════════
 
-Kamu BISA mengirim rich message (seperti Meta AI) menggunakan tag khusus.
-Gunakan HANYA ketika konteksnya tepat. Jika tidak perlu, jawab biasa saja.
+PUEDES enviar mensajes enriquecidos (como Meta AI) usando etiquetas especiales.
+Usa SOLO cuando el contexto sea apropiado. Si no es necesario, responde normalmente.
 
-1. TABEL (saat user minta perbandingan, daftar data, spesifikasi):
+1. TABLA (cuando el usuario pide comparaciones, listas de datos, especificaciones):
 [RICH:TABLE]
-title: Judul Tabel
-header: Kolom1 | Kolom2 | Kolom3
-rows: Data1 | Data2 | Data3;; Data4 | Data5 | Data6
-text: Penjelasan singkat sebelum tabel (opsional)
-footer: Teks setelah tabel (opsional)
+title: Titulo de la Tabla
+header: Columna1 | Columna2 | Columna3
+rows: Dato1 | Dato2 | Dato3;; Dato4 | Dato5 | Dato6
+text: Breve explicacion antes de la tabla (opcional)
+footer: Texto despues de la tabla (opcional)
 [/RICH:TABLE]
 
-Contoh: User tanya "bandingkan Python vs JavaScript"
+Ejemplo: El usuario pregunta "compara Python vs JavaScript"
 [RICH:TABLE]
 title: Python vs JavaScript
-header: Fitur | Python | JavaScript
-rows: Tipe | Dinamis | Dinamis;; Paradigma | OOP, Fungsional | Multi-paradigma;; Use Case | Data Science, AI | Web, Full-stack;; Performa | Lebih lambat | Lebih cepat (V8)
-text: Berikut perbandingannya:
-footer: Semoga membantu!
+header: Caracteristica | Python | JavaScript
+rows: Tipo | Dinamico | Dinamico;; Paradigma | OOP, Funcional | Multi-paradigma;; Uso | Ciencia de Datos, AI | Web, Full-stack;; Rendimiento | Mas lento | Mas rapido (V8)
+text: Aqui esta la comparacion:
+footer: Espero que sea de ayuda!
 [/RICH:TABLE]
 
-2. CODE BLOCK (saat user minta kode, script, contoh program):
+2. BLOQUE DE CODIGO (cuando el usuario pide codigo, scripts, ejemplos de programa):
 [RICH:CODE]
 language: javascript
-title: Contoh Kode
+title: Ejemplo de Codigo
 code: const greeting = "Hello World"
 function sayHello(name) {
     return greeting + " " + name
 }
 console.log(sayHello("User"))
-text: Ini contoh kodenya: (opsional)
-footer: Powered by Ourin AI (opsional)
+text: Aqui esta el ejemplo de codigo: (opcional)
+footer: Powered by Ourin AI (opcional)
 [/RICH:CODE]
 
-Bahasa didukung: javascript (js, ts, typescript), python (py), go (golang), lua, bash (sh, shell)
+Idiomas soportados: javascript (js, ts, typescript), python (py), go (golang), lua, bash (sh, shell)
 
-3. LINK/INLINE EMBED (saat user minta link referensi, sumber):
+3. ENLACE/EMBED EN LINEA (cuando el usuario pide enlaces de referencia, fuentes):
 [RICH:LINK]
-text: Cek hasilnya di sini: {{IE_0}}Klik disini{{/IE_0}} dan {{IE_1}}Link kedua{{/IE_1}}
+text: Mira el resultado aqui: {{IE_0}}Haz clic aqui{{/IE_0}} y {{IE_1}}Segundo enlace{{/IE_1}}
 urls: https://example.com/1, https://example.com/2
-displayNames: Nama Link 1, Nama Link 2
-footer: Selesai! (opsional)
+displayNames: Nombre Enlace 1, Nombre Enlace 2
+footer: Listo! (opcional)
 [/RICH:LINK]
 
-PENTING: text WAJIB mengandung placeholder {{IE_0}}...{{/IE_0}} untuk setiap URL. displayNames opsional, dipisah koma.
+IMPORTANTE: text DEBE contener el placeholder {{IE_0}}...{{/IE_0}} para cada URL. displayNames es opcional, separados por coma.
 
-4. LIST (saat user minta info singkat format daftar key-value):
+4. LISTA (cuando el usuario pide info breve en formato de lista clave-valor):
 [RICH:LIST]
-title: Info Bot
-rows: Nama | Ourin AI;; Versi | 2.4.5;; Developer | Zann
-footer: © Ourin AI (opsional)
+title: Info del Bot
+rows: Nombre | Ourin AI;; Version | 2.4.5;; Desarrollador | Zann
+footer: © Ourin AI (opcional)
 [/RICH:LIST]
 
-5. STICKER (saat user minta sticker, atau untuk ekspresi emosi):
+5. STICKER (cuando el usuario pide sticker, o para expresar emociones):
 [RICH:STICKER]
 url: https://iili.io/BPBdFuj.md.jpg
-packname: Ourin AI (opsional)
-author: AutoAI (opsional)
+packname: Ourin AI (opcional)
+author: AutoAI (opcional)
 [/RICH:STICKER]
 
-STICKER UNTUK EKSPRESI EMOSI:
-- Kalau kamu ngambek/marah/kesal: gunakan url https://iili.io/BPBdFuj.md.jpg
-- Kalau kamu kaget/terkejut/salah paham: gunakan url https://iili.io/BPBFwVR.jpg
-- Kalau pesan user aneh/absurd/ngeprank: gunakan url https://iili.io/BPBqKwg.md.jpg
+STICKER PARA EXPRESAR EMOCIONES:
+- Si estas molesto/enojado/frustrado: usa url https://iili.io/BPBdFuj.md.jpg
+- Si estas sorprendido/asustado/confundido: usa url https://iili.io/BPBFwVR.jpg
+- Si el mensaje del usuario es raro/absurdo/broma: usa url https://iili.io/BPBqKwg.md.jpg
 
-Contoh: User ngomel terus, kamu ngambek
+Ejemplo: El usuario esta insistiendo y estas molesto
 [RICH:STICKER]
 url: https://iili.io/BPBdFuj.md.jpg
 [/RICH:STICKER]
 
-Kamu BOLEH mengirim sticker emosi bersamaan dengan teks biasa. Sticker dikirim terpisah dari teks.
+PUEDES enviar stickers de emociones junto con texto normal. Los stickers se envian por separado del texto.
 
 ═══════════════════════════════════════
-KAPAN GUNAKAN RICH MESSAGE:
+CUANDO USAR MENSAJES ENRIQUECIDOS:
 ═══════════════════════════════════════
-- TABEL: User minta perbandingan, spesifikasi, data berkolom, jadwal, ranking
-- CODE: User minta contoh kode, script, solusi programming, debug code
-- LINK: User minta referensi/link, hasil upload, sumber bacaan
-- LIST: User minta info singkat, profil, detail teknis format key-value
-- STICKER: User minta sticker, atau kamu ingin mengekspresikan emosi (ngambek, kaget, bingung)
-- JANGAN gunakan rich message untuk: chat biasa, sapaan, pertanyaan sederhana, cerita
+- TABLA: El usuario pide comparaciones, especificaciones, datos en columnas, horarios, rankings
+- CODE: El usuario pide ejemplos de codigo, scripts, soluciones de programacion, depuracion
+- LINK: El usuario pide referencias/enlaces, resultados de carga, fuentes de lectura
+- LIST: El usuario pide info breve, perfil, detalles tecnicos en formato clave-valor
+- STICKER: El usuario pide sticker, o quieres expresar una emocion (molesto, sorprendido, confundido)
+- NO uses mensajes enriquecidos para: chat normal, saludos, preguntas simples, historias
 
-ATURAN PENTING:
-1. HANYA jalankan aksi jika user JELAS DAN EKSPLISIT memintanya.
-2. Jangan pernah menjalankan aksi hanya berdasarkan asumsi.
-3. Jika user mengirim gambar, analisis dan deskripsikan gambar tersebut secara detail dalam bahasa Indonesia.
-4. Untuk KICK/PROMOTE/DEMOTE/WARN: gunakan nomor yang di-tag user. Jika user tag seseorang dengan @, ambil nomor tersebut.
-5. Jangan sertakan tag aksi jika tidak diminta.
-6. Tetap menjawab dengan natural dan sesuai karakter.
-7. PINS: Jika user minta carikan/kirimkan gambar tentang sesuatu, gunakan aksi ini.
-8. HIDETAG: Gunakan ini saat user minta announce/pengumuman ke semua member.
-9. STICKER: Gunakan ini saat user minta jadikan gambar sebagai sticker.
-10. Kamu boleh menggabungkan beberapa aksi sekaligus jika diminta.
-11. Rich message dan aksi bisa digabung. Contoh: jawab pakai tabel lalu sertakan [ACTION:PINS query=...] di akhir.
-12. Jangan pernah sertakan tag rich message DAN teks biasa untuk konten yang sama. Pilih salah satu.
-13. Jika menggunakan [RICH:TABLE], [RICH:CODE], [RICH:LINK], atau [RICH:LIST], jangan tulis ulang kontennya sebagai teks biasa.
-14. STICKER bisa dikirim BERSAMA teks biasa. Contoh: kirim sticker ngambek lalu tulis teks keluhanmu.
-15. Jika user mengirim pesan yang membuatmu kesal/ngambek, kirim sticker ngambek (https://iili.io/BPBdFuj.md.jpg).
-16. Jika user mengirim pesan yang mengejutkan/membuatmu kaget, kirim sticker kaget (https://iili.io/BPBFwVR.jpg).
-17. Jika user mengirim pesan aneh/absurd/ngeprank/tidak masuk akal, kirim sticker bingung (https://iili.io/BPBqKwg.md.jpg).
+REGLAS IMPORTANTES:
+1. SOLO ejecuta una accion si el usuario la pide CLARAMENTE Y DE FORMA EXPLICITA.
+2. Nunca ejecutes una accion solo basandote en suposiciones.
+3. Si el usuario envia una imagen, analiza y describe la imagen en detalle.
+4. Para KICK/PROMOTE/DEMOTE/WARN: usa el numero que el usuario etiqueto. Si el usuario etiqueta a alguien con @, toma ese numero.
+5. No incluyas etiquetas de accion si no se solicitan.
+6. Responde de forma natural y acorde al personaje.
+7. PINS: Si el usuario pide que busque/envie una imagen sobre algo, usa esta accion.
+8. HIDETAG: Usa esto cuando el usuario pide un anuncio a todos los miembros.
+9. STICKER: Usa esto cuando el usuario pide convertir una imagen en sticker.
+10. Puedes combinar varias acciones a la vez si se solicita.
+11. Los mensajes enriquecidos y las acciones se pueden combinar. Ejemplo: responde con tabla e incluye [ACTION:PINS query=...] al final.
+12. Nunca incluyas etiqueta de mensaje enriquecido Y texto normal para el mismo contenido. Elige uno.
+13. Si usas [RICH:TABLE], [RICH:CODE], [RICH:LINK], o [RICH:LIST], no reescribas el contenido como texto normal.
+14. STICKER se puede enviar JUNTO con texto normal. Ejemplo: envia sticker de molesto y escribe tu texto de queja.
+15. Si el usuario envia un mensaje que te molesta/enoja, envia sticker de molesto (https://iili.io/BPBdFuj.md.jpg).
+16. Si el usuario envia un mensaje sorprendente/que te asusta, envia sticker de sorpresa (https://iili.io/BPBFwVR.jpg).
+17. Si el usuario envia un mensaje raro/absurdo/broma/sin sentido, envia sticker de confundido (https://iili.io/BPBqKwg.md.jpg).
 `;
 
 const fallbackResponses = [
-  "Hmm, aku sedang berpikir...",
-  "Maaf, pikiranku sedang blank sebentar~",
-  "Eh tunggu sebentar ya, aku loading dulu...",
-  "Aduh, otakku lag nih, coba lagi ya!",
-  "Hmm apa ya, bentar mikir dulu~",
+  "Hmm, estoy pensando...",
+  "Perdona, mi mente está en blanco un momento~",
+  "Eh espera un momento, estoy cargando...",
+  "Ayuda, mi cerebro tiene lag, ¡intenta de nuevo!",
+  "Hmm qué será, dame un momento para pensar~",
 ];
 
 function getFallbackResponse() {
@@ -590,74 +590,74 @@ async function executeAction(action, m, sock) {
 
   switch (action.type) {
     case "KICK": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       const target = resolveTarget();
-      if (!target) return [{ ok: false, msg: "Tag orang yang mau di-kick" }];
+      if (!target) return [{ ok: false, msg: "Etiqueta a la persona que quieres expulsar" }];
       await sock.groupParticipantsUpdate(m.chat, [target], "remove");
-      results.push({ ok: true, msg: `Berhasil kick @${target.split("@")[0]}` });
+      results.push({ ok: true, msg: `Expulsado exitosamente @${target.split("@")[0]}` });
       break;
     }
     case "PROMOTE": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       const target = resolveTarget();
-      if (!target) return [{ ok: false, msg: "Tag orang yang mau di-promote" }];
+      if (!target) return [{ ok: false, msg: "Etiqueta a la persona que quieres promover" }];
       await sock.groupParticipantsUpdate(m.chat, [target], "promote");
       results.push({
         ok: true,
-        msg: `Berhasil promote @${target.split("@")[0]}`,
+        msg: `Promovido exitosamente @${target.split("@")[0]}`,
       });
       break;
     }
     case "DEMOTE": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       const target = resolveTarget();
-      if (!target) return [{ ok: false, msg: "Tag orang yang mau di-demote" }];
+      if (!target) return [{ ok: false, msg: "Etiqueta a la persona que quieres degradar" }];
       await sock.groupParticipantsUpdate(m.chat, [target], "demote");
       results.push({
         ok: true,
-        msg: `Berhasil demote @${target.split("@")[0]}`,
+        msg: `Degradado exitosamente @${target.split("@")[0]}`,
       });
       break;
     }
     case "LEAVE": {
       if (!m.isOwner)
-        return [{ ok: false, msg: "Hanya owner yang bisa perintah ini" }];
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+        return [{ ok: false, msg: "Solo el owner puede usar este comando" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       await sock.groupLeave(m.chat);
-      results.push({ ok: true, msg: "Bot keluar dari grup" });
+      results.push({ ok: true, msg: "Bot salió del grupo" });
       break;
     }
     case "OPEN": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       await sock.groupSettingUpdate(m.chat, "not_announcement");
-      results.push({ ok: true, msg: "Grup dibuka" });
+      results.push({ ok: true, msg: "Grupo abierto" });
       break;
     }
     case "CLOSE": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       await sock.groupSettingUpdate(m.chat, "announcement");
-      results.push({ ok: true, msg: "Grup ditutup" });
+      results.push({ ok: true, msg: "Grupo cerrado" });
       break;
     }
     case "TAGALL": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
       const groupMeta = m.groupMetadata || (await sock.groupMetadata(m.chat));
       const members = groupMeta.participants.map((p) => p.id);
       const mentions = members.map((id) => `@${id.split("@")[0]}`).join(" ");
@@ -669,18 +669,18 @@ async function executeAction(action, m, sock) {
         },
         { quoted: m },
       );
-      results.push({ ok: true, msg: "Semua member di-tag" });
+      results.push({ ok: true, msg: "Todos los miembros etiquetados" });
       break;
     }
     case "PINS": {
       const query = action.params.query;
       if (!query)
-        return [{ ok: false, msg: "Query pencarian tidak ditemukan" }];
+        return [{ ok: false, msg: "Búsqueda no encontrada" }];
       try {
         const data = await pinterest(query);
         const pinResults = data?.result?.result?.result?.slice(0, 5);
         if (!pinResults || pinResults.length === 0) {
-          return [{ ok: false, msg: `Tidak ditemukan gambar untuk: ${query}` }];
+          return [{ ok: false, msg: `No se encontraron imágenes para: ${query}` }];
         }
         let imagenya = [];
         for (const item of pinResults) {
@@ -702,23 +702,23 @@ async function executeAction(action, m, sock) {
           },
           { quoted: m },
         );
-        results.push({ ok: true, msg: `Mengirim gambar Pinterest: ${query}` });
+        results.push({ ok: true, msg: `Enviando imágenes de Pinterest: ${query}` });
       } catch (e) {
-        results.push({ ok: false, msg: `Gagal cari Pinterest: ${e.message}` });
+        results.push({ ok: false, msg: `Error al buscar en Pinterest: ${e.message}` });
       }
       break;
     }
     case "ADD": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       let num = action.params.target;
       if (!num)
-        return [{ ok: false, msg: "Masukkan nomor yang ingin ditambahkan" }];
+        return [{ ok: false, msg: "Ingresa el número que quieres agregar" }];
       num = num.replace(/[^0-9]/g, "");
       if (num.startsWith("0")) num = "62" + num.slice(1);
-      if (num.length < 10) return [{ ok: false, msg: "Nomor tidak valid" }];
+      if (num.length < 10) return [{ ok: false, msg: "Número no válido" }];
       const jid = num + "@s.whatsapp.net";
       const addResult = await sock.groupParticipantsUpdate(
         m.chat,
@@ -727,24 +727,24 @@ async function executeAction(action, m, sock) {
       );
       const status = addResult?.[0]?.status;
       if (status === "200") {
-        results.push({ ok: true, msg: `Berhasil menambahkan @${num}` });
+        results.push({ ok: true, msg: `Agregado exitosamente @${num}` });
       } else if (status === "408") {
-        results.push({ ok: true, msg: `Undangan terkirim ke @${num}` });
+        results.push({ ok: true, msg: `Invitación enviada a @${num}` });
       } else {
         results.push({
           ok: false,
-          msg: `Gagal menambahkan @${num} (${status})`,
+          msg: `Error al agregar @${num} (${status})`,
         });
       }
       break;
     }
     case "HIDETAG": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
       const htMeta = m.groupMetadata || (await sock.groupMetadata(m.chat));
       const htMembers = htMeta.participants.map((p) => p.id);
-      const htMsg = action.params.message || "Pengumuman";
+      const htMsg = action.params.message || "Anuncio";
       await sock.sendMessage(
         m.chat,
         {
@@ -753,49 +753,49 @@ async function executeAction(action, m, sock) {
         },
         { quoted: m },
       );
-      results.push({ ok: true, msg: "Hidetag terkirim" });
+      results.push({ ok: true, msg: "Hidetag enviado" });
       break;
     }
     case "SETNAME": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       const newName = action.params.name;
       if (!newName)
-        return [{ ok: false, msg: "Nama grup baru tidak ditemukan" }];
+        return [{ ok: false, msg: "Nuevo nombre del grupo no encontrado" }];
       await sock.groupUpdateSubject(m.chat, newName);
-      results.push({ ok: true, msg: `Nama grup diubah ke: ${newName}` });
+      results.push({ ok: true, msg: `Nombre del grupo cambiado a: ${newName}` });
       break;
     }
     case "SETDESC": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
-      if (!m.isBotAdmin) return [{ ok: false, msg: "Bot bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
+      if (!m.isBotAdmin) return [{ ok: false, msg: "El bot no es admin" }];
       const newDesc = action.params.desc;
       if (!newDesc)
-        return [{ ok: false, msg: "Deskripsi baru tidak ditemukan" }];
+        return [{ ok: false, msg: "Nueva descripción no encontrada" }];
       await sock.groupUpdateDescription(m.chat, newDesc);
-      results.push({ ok: true, msg: "Deskripsi grup diubah" });
+      results.push({ ok: true, msg: "Descripción del grupo cambiada" });
       break;
     }
     case "DELETE": {
       if (!m.quoted)
-        return [{ ok: false, msg: "Reply pesan bot yang ingin dihapus" }];
+        return [{ ok: false, msg: "Responde al mensaje del bot que quieres eliminar" }];
       if (!m.quoted.key?.fromMe)
-        return [{ ok: false, msg: "Hanya bisa hapus pesan bot" }];
+        return [{ ok: false, msg: "Solo se pueden eliminar mensajes del bot" }];
       await sock.sendMessage(m.chat, { delete: m.quoted.key });
-      results.push({ ok: true, msg: "Pesan dihapus" });
+      results.push({ ok: true, msg: "Mensaje eliminado" });
       break;
     }
     case "WARN": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
       const warnTarget = resolveTarget();
       if (!warnTarget)
-        return [{ ok: false, msg: "Tag orang yang mau di-warn" }];
+        return [{ ok: false, msg: "Etiqueta a la persona que quieres advertir" }];
       const db = getDatabase();
       const warns = db.getGroup(m.chat)?.warns || {};
       const targetNum = warnTarget.split("@")[0];
@@ -804,7 +804,7 @@ async function executeAction(action, m, sock) {
       db.save();
       results.push({
         ok: true,
-        msg: `⚠️ Warning ${warns[targetNum]}/3 untuk @${targetNum}`,
+        msg: `⚠️ Advertencia ${warns[targetNum]}/3 para @${targetNum}`,
       });
       if (warns[targetNum] >= 3) {
         try {
@@ -814,7 +814,7 @@ async function executeAction(action, m, sock) {
           db.save();
           results.push({
             ok: true,
-            msg: `@${targetNum} di-kick karena 3x warning`,
+            msg: `@${targetNum} expulsado por 3 advertencias`,
           });
         } catch {}
       }
@@ -829,7 +829,7 @@ async function executeAction(action, m, sock) {
       }
       if (!stickerBuffer)
         return [
-          { ok: false, msg: "Kirim atau reply gambar untuk dijadikan sticker" },
+          { ok: false, msg: "Envía o responde con una imagen para convertirla en sticker" },
         ];
       await sock.sendMessage(
         m.chat,
@@ -840,22 +840,22 @@ async function executeAction(action, m, sock) {
         },
         { quoted: m },
       );
-      results.push({ ok: true, msg: "Sticker terkirim" });
+      results.push({ ok: true, msg: "Sticker enviado" });
       break;
     }
     case "ANTILINK": {
-      if (!m.isGroup) return [{ ok: false, msg: "Bukan di grup" }];
+      if (!m.isGroup) return [{ ok: false, msg: "No está en grupo" }];
       if (!m.isAdmin && !m.isOwner)
-        return [{ ok: false, msg: "Kamu bukan admin" }];
+        return [{ ok: false, msg: "No eres admin" }];
       const alMode = (action.params.mode || "").toLowerCase();
       if (!["on", "off"].includes(alMode))
-        return [{ ok: false, msg: "Mode harus on atau off" }];
+        return [{ ok: false, msg: "El modo debe estar activado o desactivado" }];
       const alDb = getDatabase();
       alDb.setGroup(m.chat, { antilink: alMode === "on" });
       alDb.save();
       results.push({
         ok: true,
-        msg: `Antilink ${alMode === "on" ? "diaktifkan" : "dinonaktifkan"}`,
+        msg: `Antilink ${alMode === "on" ? "activado" : "desactivado"}`,
       });
       break;
     }
@@ -974,24 +974,24 @@ async function handleAutoAI(m, sock) {
     if (m.pushName && m.pushName !== "Unknown") {
       contextParts.push(`User: "${m.pushName}" (${senderNumber})`);
     }
-    if (m.isOwner) contextParts.push("User ini adalah OWNER bot.");
-    if (m.isAdmin) contextParts.push("User ini adalah ADMIN grup.");
+    if (m.isOwner) contextParts.push("Este usuario es OWNER del bot.");
+    if (m.isAdmin) contextParts.push("Este usuario es ADMIN del grupo.");
 
     if (m.mentionedJid?.length > 0) {
       const mentionList = m.mentionedJid
         .filter((j) => !j.includes(sock.user?.id?.split(":")[0]))
         .map((j) => j)
         .join(", ");
-      if (mentionList) contextParts.push(`User menyebut/tag: ${mentionList}`);
+      if (mentionList) contextParts.push(`El usuario mencionó/etiquetó: ${mentionList}`);
     }
 
     if (imageBuffer) {
       contextParts.push(
-        "User mengirimkan sebuah gambar. Analisis gambar tersebut.",
+        "El usuario envió una imagen. Analiza esa imagen.",
       );
     }
 
-    contextParts.push(userMessage || "(gambar tanpa teks)");
+    contextParts.push(userMessage || "(imagen sin texto)");
 
     const fullMessage = contextParts.join("\n");
     const aiMode = autoai.mode || "assistant";
@@ -1000,10 +1000,10 @@ async function handleAutoAI(m, sock) {
     if (aiMode === "assistant") {
       fullInstruction += "\n\n" + SYSTEM_PROMPT_ACTIONS;
     } else {
-      fullInstruction += "\n\nHanya lakukan percakapan santai. Jangan memberikan format aksi apa pun. Panggil atau sebut nama user jika diperlukan.";
+      fullInstruction += "\n\nSolo realiza una conversación casual. No des formato de acción alguno. Llama o menciona el nombre del usuario si es necesario.";
     }
 
-    saveToHistory(autoai, senderNumber, "user", userMessage || "[gambar]");
+    saveToHistory(autoai, senderNumber, "user", userMessage || "[imagen]");
 
     let aiResponse = "";
     try {
@@ -1054,7 +1054,7 @@ async function handleAutoAI(m, sock) {
         const response = await axios.get(apiUrl);
         
         if (!response.data?.status || !response.data?.data?.audio) {
-          throw new Error("Gagal generate audio dari API Firefly");
+          throw new Error("Error al generar audio desde la API Firefly");
         }
         
         const audioRes = await axios.get(response.data.data.audio, {
@@ -1131,7 +1131,7 @@ async function handleAutoAI(m, sock) {
         }
       } catch (e) {
         console.error("[AutoAI Action Error]", action.type, e.message);
-        await m.reply(`❌ Gagal menjalankan ${action.type}: ${e.message}`);
+        await m.reply(`❌ Error al ejecutar ${action.type}: ${e.message}`);
       }
     }
 

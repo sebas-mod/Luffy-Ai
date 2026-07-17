@@ -6,14 +6,14 @@ const pluginConfig = {
     name: 'leaderboard',
     alias: [
         'lb', 'top', 'leaderboard', 'ranking', 'rank', 'topglobal',
-        'topbalance', 'topbal', 'topkoin', 'topcoin', 'topmoney',
+        'topbalance', 'topbal', 'topbelly', 'topcoin', 'topmoney',
         'toplimit', 'topexp', 'topxp', 'toplevel',
         'topenergi', 'topenergy'
     ],
     category: 'main',
     description: 'Ver leaderboard global (monedas, exp, energía)',
     usage: '.leaderboard',
-    example: '.topkoin',
+    example: '.topbelly',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -40,15 +40,15 @@ async function handler(m, { sock }) {
     
     let type = 'overview'
     
-    if (cmd.includes('koin') || cmd.includes('coin') || cmd.includes('bal') || cmd.includes('money')) {
-        type = 'koin'
+    if (cmd.includes('belly') || cmd.includes('coin') || cmd.includes('bal') || cmd.includes('money')) {
+        type = 'belly'
     } else if (cmd.includes('exp') || cmd.includes('xp') || cmd.includes('level')) {
         type = 'exp'
     } else if (cmd.includes('energi') || cmd.includes('energy')) {
         type = 'energi'
     } else if (args[0]) {
         const argType = args[0].toLowerCase()
-        if (['koin', 'coin', 'bal', 'balance', 'money'].includes(argType)) type = 'koin'
+        if (['belly', 'coin', 'bal', 'balance', 'money'].includes(argType)) type = 'belly'
         else if (['exp', 'xp', 'level'].includes(argType)) type = 'exp'
         else if (['energi', 'energy'].includes(argType)) type = 'energi'
     }
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
         
         users.push({
             jid,
-            koin: userData.koin || 0,
+            belly: userData.belly || 0,
             exp: userData.rpg?.exp || userData.exp || 0,
             energi: userData.energi || 0,
             level: userData.rpg?.level || userData.level || 1,
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     
     if (type === 'overview') {
         const totalUsers = users.length
-        const maxBalUser = users.reduce((a, b) => a.koin > b.koin ? a : b, users[0])
+        const maxBalUser = users.reduce((a, b) => a.belly > b.belly ? a : b, users[0])
         const maxExpUser = users.reduce((a, b) => a.exp > b.exp ? a : b, users[0])
         const maxEnergiUser = users.reduce((a, b) => a.energi > b.energi ? a : b, users[0])
         
@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
                         name: 'quick_reply',
                         buttonParamsJson: JSON.stringify({
                             display_text: '💰 Top Belly',
-                            id: `${m.prefix}topkoin`
+                            id: `${m.prefix}topbelly`
                         })
                     },
                     {
@@ -124,11 +124,11 @@ async function handler(m, { sock }) {
     
     let title, emoji, field, formatValue
     
-    if (type === 'koin') {
+    if (type === 'belly') {
         title = 'TOP GLOBAL BELLY'
         emoji = '💰'
-        field = 'koin'
-        formatValue = (u) => `Rp ${formatNumber(u.koin)}`
+        field = 'belly'
+        formatValue = (u) => `Belly ${formatNumber(u.belly)}`
     } else if (type === 'exp') {
         title = 'TOP GLOBAL LEVEL'
         emoji = '✨'

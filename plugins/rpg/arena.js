@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
 
   const isWin = myHp > oppHp;
 
-  let txt = `⚔️ *HASIL PERTARUNGAN* ⚔️\n\n`;
+  let txt = `⚔️ *RESULTADO DE LA BATALLA* ⚔️\n\n`;
   txt += `*📊 Estado Final:*\n`;
   txt += `🧑 Tú: *${Math.max(0, myHp)}/${myHealth} HP*\n`;
   txt += `👤 Oponente: *${Math.max(0, oppHp)}/${oppHealth} HP*\n`;
@@ -94,26 +94,26 @@ async function handler(m, { sock }) {
 
   if (isWin) {
     const expReward = 300 + (opponent.level || 1) * 50;
-    const goldReward = Math.floor((opponent.koin || 0) * 0.1);
+    const goldReward = Math.floor((opponent.belly || 0) * 0.1);
 
-    user.koin = (user.koin || 0) + goldReward;
-    opponent.koin = Math.max(0, (opponent.koin || 0) - goldReward);
+    user.belly = (user.belly || 0) + goldReward;
+    opponent.belly = Math.max(0, (opponent.belly || 0) - goldReward);
 
     await addExpWithLevelCheck(sock, m, db, user, expReward);
 
     txt += `🏆 *¡¡VICTORIA LOGRADA!!* 🎉\n`;
     txt += `¡Increíble! Aquí están tus recompensas:\n`;
     txt += `✨ EXP: *+${expReward}*\n`;
-    txt += `💰 Belly Jarahan: *+Rp ${goldReward.toLocaleString()}*`;
+    txt += `💰 Belly Botín: *+Belly ${goldReward.toLocaleString()}*`;
 
     await m.react("🏆");
   } else {
-    const goldLoss = Math.floor((user.koin || 0) * 0.2);
-    user.koin = Math.max(0, (user.koin || 0) - goldLoss);
+    const goldLoss = Math.floor((user.belly || 0) * 0.2);
+    user.belly = Math.max(0, (user.belly || 0) - goldLoss);
 
     txt += `💀 *LÁSTIMA, PERDISTE...* 💔\n`;
     txt += `¡No te pongas triste, la próxima vez será!\n`;
-    txt += `💸 Belly Terjatuh: *-Rp ${goldLoss.toLocaleString()}*`;
+    txt += `💸 Belly Perdido: *-Belly ${goldLoss.toLocaleString()}*`;
 
     await m.react("💀");
   }

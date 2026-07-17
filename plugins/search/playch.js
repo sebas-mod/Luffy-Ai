@@ -54,7 +54,7 @@ async function getPlayChAudioDownload(url) {
     return { download: fallback.dl, title: fallback.title, isFallback: true };
   }
 
-  throw new Error(fallback?.mess || "Gagal mendapatkan audio saluran URL");
+  throw new Error(fallback?.mess || "Error al obtener la URL de audio del canal");
 }
 
 async function toOggOpus(mp3Buf) {
@@ -150,9 +150,9 @@ async function handler(m, { sock }) {
           })
         ).data,
       );
-    if (mp3Buf.length < 50000) throw new Error("Audio terlalu kecil");
+    if (mp3Buf.length < 50000) throw new Error("Audio demasiado pequeño");
     const opusBuf = await toOggOpus(mp3Buf);
-    if (opusBuf.length < 10000) throw new Error("Konversi opus gagal");
+    if (opusBuf.length < 10000) throw new Error("Conversión opus falló");
     const title = video.title;
 
     const waveform = generateWaveform(opusBuf);
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
       waveform: Array.from(waveform),
     });
     m.react("✅");
-    m.reply(`✅ *${title}* berhasil dikirim ke saluran`);
+    m.reply(`✅ *${title}* enviado al canal con éxito`);
   } catch (e) {
     console.error("[PlayCh]", e);
     m.react("☢");

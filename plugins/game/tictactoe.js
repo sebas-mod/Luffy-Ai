@@ -256,7 +256,7 @@ async function answerHandler(m, sock) {
 
     // Reward winner
     const winnerData = db.getUser(winner) || {};
-    winnerData.koin = (winnerData.koin || 0) + 500;
+    winnerData.belly = (winnerData.belly || 0) + 500;
     db.setUser(winner, winnerData);
 
     await safeReact(m, "🏳️");
@@ -264,7 +264,7 @@ async function answerHandler(m, sock) {
       m,
       `🏳️ *¡RENDICION!*\n\n` +
         `@${loser.split("@")[0]} se rindio!\n` +
-        `@${winner.split("@")[0]} ¡gano! +Rp 500`,
+        `@${winner.split("@")[0]} ¡gano! +Belly 500`,
       { mentions: [winner, loser] },
     );
 
@@ -306,7 +306,7 @@ async function answerHandler(m, sock) {
 
     // Reward winner
     const winnerData = db.getUser(winner) || {};
-    winnerData.koin = (winnerData.koin || 0) + 1000;
+    winnerData.belly = (winnerData.belly || 0) + 1000;
     db.setUser(winner, winnerData);
 
     await safeReact(m, "🎉");
@@ -314,7 +314,7 @@ async function answerHandler(m, sock) {
       m,
       `🎉 *GAME OVER!*\n\n` +
         `${board}\n\n` +
-        `🏆 @${winner.split("@")[0]} ¡gano! +Rp 1.000`,
+        `🏆 @${winner.split("@")[0]} ¡gano! +Belly 1.000`,
       { mentions: [winner, loser] },
     );
 

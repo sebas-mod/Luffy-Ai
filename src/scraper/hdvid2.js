@@ -122,7 +122,7 @@ async function createUploadUrl(filePath) {
   });
 
   if (result.status >= 400 || result.data?.code !== 100000) {
-    throw new Error(`Gagal ambil upload url: ${JSON.stringify(result.data)}`);
+    throw new Error(`Error al obtener URL de carga: ${JSON.stringify(result.data)}`);
   }
 
   return result.data.result;
@@ -139,7 +139,7 @@ async function createJob(originalVideoUrl) {
   );
 
   if (result.status >= 400 || !result.data?.result?.job_id) {
-    throw new Error(`Gagal create job: ${JSON.stringify(result.data)}`);
+    throw new Error(`Error al crear tarea: ${JSON.stringify(result.data)}`);
   }
 
   return result.data.result;
@@ -172,7 +172,7 @@ async function waitJob(jobId, maxTry = 80, delayMs = 5000) {
     await sleep(delayMs);
   }
 
-  throw new Error(`Job belum selesai: ${JSON.stringify(last)}`);
+  throw new Error(`Tarea aun no completada: ${JSON.stringify(last)}`);
 }
 
 async function videoEnhancer(video, { filename } = {}) {
@@ -189,7 +189,7 @@ async function videoEnhancer(video, { filename } = {}) {
   }
 
   if (!fs.existsSync(filePath)) {
-    throw new Error(`File tidak ditemukan: ${filePath}`);
+    throw new Error(`Archivo no encontrado: ${filePath}`);
   }
 
   try {

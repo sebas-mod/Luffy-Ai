@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `🔌 *ᴅɪsᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
+      `🔌 *DESACTIVAR PLUGIN*\n\n` +
         `> Ingresa el nombre del plugin que quieres desactivar\n\n` +
         `*Ejemplo:*\n` +
         `> \`${m.prefix}disableplugin sticar\`\n` +
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled === false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* ya dinonactivokan!`);
+    return m.reply(`⚠️ Plugin *${pluginName}* ya está desactivado!`);
   }
 
   try {
@@ -84,14 +84,14 @@ async function handler(m, { sock }) {
     fs.writeFileSync(filePath, content);
 
     await m.reply(
-      `✅ *ᴘʟᴜɢɪɴ ᴅɪsᴀʙʟᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `✅ *PLUGIN DESACTIVADO*\n\n` +
+        `╭┈┈⬡「 📋 *DETALLE* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
-        `┃ 📁 Category: *${category}*\n` +
-        `┃ 📄 File: *${file}*\n` +
-        `┃ 🔴 Status: *Disabled*\n` +
+        `┃ 📁 Categoría: *${category}*\n` +
+        `┃ 📄 Archivo: *${file}*\n` +
+        `┃ 🔴 Estado: *Desactivado*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot o usa hot reload para apply.`,
+        `> Reinicia el bot o usa recarga rápida para aplicar.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

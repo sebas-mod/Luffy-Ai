@@ -46,7 +46,7 @@ async function handler(m, { sock, args }) {
         const result = stopSchedulerByName(target);
         
         if (result.stopped) {
-            await m.reply(`🛑 *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪʜᴇɴᴛɪᴋᴀɴ*
+            await m.reply(`🛑 *sᴄʜᴇᴅᴜʟᴇʀ ᴅᴇᴛᴇɴɪᴅᴏ*
 
 > Scheduler: *${result.name}*
 > Status: ❌ Dihentikan

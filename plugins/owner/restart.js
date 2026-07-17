@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
         await sock.sendMessage(m.chat, {
             text: `🔄 *ʀᴇsᴛᴀʀᴛɪɴɢ ʙᴏᴛ...*\n\n` +
                   `╭┈┈⬡「 📊 *ɪɴꜰᴏ* 」\n` +
-                  `┃ ⏰ Time: ${new Date().toLocaleTimeString('id-ID')}\n` +
+                  `┃ ⏰ Time: ${new Date().toLocaleTimeString('es-ES')}\n` +
                   `┃ 🔧 Method: Process Spawn\n` +
                   `┃ 📦 PID: ${process.pid}\n` +
                   `╰┈┈⬡\n\n` +

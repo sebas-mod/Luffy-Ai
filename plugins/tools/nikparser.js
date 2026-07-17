@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
     m.react("✅");
 
     const bDay = new Date(data.birthISO);
-    const bFormatted = bDay.toLocaleDateString("id-ID", {
+    const bFormatted = bDay.toLocaleDateString("es-ES", {
       weekday: "long",
       year: "numeric",
       month: "long",

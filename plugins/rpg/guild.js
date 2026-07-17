@@ -59,7 +59,7 @@ function handler(m, { sock }) {
     for (const g of guildList.slice(0, 10)) {
       txt += `🏰 *${g.name}* (Lv. ${g.level || 1})\n`;
     txt += `👥 Miembros: ${g.members?.length || 0}/50\n`;
-    txt += `💰 Fondos: Rp ${(g.treasury || 0).toLocaleString()}\n`;
+    txt += `💰 Fondos: Belly ${(g.treasury || 0).toLocaleString()}\n`;
       txt += `──────────────\n`;
     }
     return m.reply(txt);
@@ -84,11 +84,11 @@ function handler(m, { sock }) {
     }
 
     const createCost = 10000;
-    if ((user.koin || 0) < createCost) {
-      return m.reply(`¡Eres muy tacaño para ser líder? Necesitas *Rp 10.000* para el registro del Guild!`);
+    if ((user.belly || 0) < createCost) {
+      return m.reply(`¡Eres muy tacaño para ser líder? Necesitas *Belly 10.000* para el registro del Guild!`);
     }
 
-    user.koin -= createCost;
+    user.belly -= createCost;
 
     const guildId = `guild_${Date.now()}`;
     if (!db.db.data.guilds) db.db.data.guilds = {};
@@ -110,7 +110,7 @@ function handler(m, { sock }) {
     txt = `🎉 ¡¡GUILD FORMALMENTE FUNDADO! 🎉\n\n`;
     txt += `El letrero de *${guildName}* ha sido instalado en la nueva sede!\n\n`;
     txt += `👑 Ketua: @${m.sender.split("@")[0]}\n`;
-    txt += `💸 Costo de Construcción: *-Rp ${createCost.toLocaleString()}*\n\n`;
+    txt += `💸 Costo de Construcción: *-Belly ${createCost.toLocaleString()}*\n\n`;
     txt += `> _¡Invita a tus amigos a unirse con \`.guild join ${guildName}\`!_`;
 
     return m.reply(txt, { mentions: [m.sender] });
@@ -186,7 +186,7 @@ function handler(m, { sock }) {
     txt += `👤 Leader: @${myGuild.leader?.split("@")[0]}\n`;
     txt += `📊 Level: *${myGuild.level || 1}*\n`;
     txt += `👥 Miembros: *${myGuild.members?.length || 0}/50*\n`;
-    txt += `💰 Fondos: *Rp ${(myGuild.treasury || 0).toLocaleString()}*\n`;
+    txt += `💰 Fondos: *Belly ${(myGuild.treasury || 0).toLocaleString()}*\n`;
 
     return m.reply(txt, { mentions: [myGuild.leader] });
   }
@@ -223,18 +223,18 @@ function handler(m, { sock }) {
 
     const amount = parseInt(args[1]) || 0;
     if (amount < 100) {
-      return m.reply(`¡Qué tacaño! La donación mínima es *Rp 100*!`);
+      return m.reply(`¡Qué tacaño! La donación mínima es *Belly 100*!`);
     }
 
-    if ((user.koin || 0) < amount) {
+    if ((user.belly || 0) < amount) {
       return m.reply(`¡No tienes suficiente dinero para donar eso!`);
     }
 
-    user.koin -= amount;
+    user.belly -= amount;
     myGuild.treasury = (myGuild.treasury || 0) + amount;
     db.save();
 
-    return m.reply(`✅ ¡¡DONACIÓN EXITOSA!!\n\nAcabas de meter *Rp ${amount.toLocaleString()}* en la caja fuerte del Guild!\nTotal del Fondo: *Rp ${myGuild.treasury.toLocaleString()}* 🏰💰`);
+    return m.reply(`✅ ¡¡DONACIÓN EXITOSA!!\n\nAcabas de meter *Belly ${amount.toLocaleString()}* en la caja fuerte del Guild!\nTotal del Fondo: *Belly ${myGuild.treasury.toLocaleString()}* 🏰💰`);
   }
 }
 

@@ -2,15 +2,15 @@ import { getDatabase } from '../../src/lib/ourin-database.js'
 const DEFAULT_JEDA = 5 * 60 * 1000
 
 function formatTime(ms) {
-    if (ms <= 0) return '0 detik'
+    if (ms <= 0) return '0 segundos'
     
     const seconds = Math.floor(ms / 1000)
     const minutes = Math.floor(seconds / 60)
     const hours = Math.floor(minutes / 60)
     
-    if (hours > 0) return `${hours} jam ${minutes % 60} menit`
-    if (minutes > 0) return `${minutes} menit ${seconds % 60} detik`
-    return `${seconds} detik`
+    if (hours > 0) return `${hours} horas ${minutes % 60} minutos`
+    if (minutes > 0) return `${minutes} minutos ${seconds % 60} segundos`
+    return `${seconds} segundos`
 }
 
 function checkPanelJeda(m) {
@@ -31,9 +31,9 @@ function checkPanelJeda(m) {
             allowed: false,
             remaining: remaining,
             message: `⏱️ *ᴊᴇᴅᴀ ᴀᴋᴛɪꜰ*\n\n` +
-                `> Mohon tunggu *${formatTime(remaining)}* sebelum membuat panel lagi.\n\n` +
-                `> _Jeda ini berlaku untuk semua user._\n` +
-                `> _Gunakan \`.cekjeda\` untuk cek status._`
+                `> Por favor espera *${formatTime(remaining)}* antes de crear otro panel.\n\n` +
+                `> _Este intervalo aplica a todos los usuarios._\n` +
+                `> _Usa \`.cekjeda\` para verificar el estado._`
         }
     }
     

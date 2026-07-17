@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
   const availableChests = Object.entries(CHEST_TYPES).filter(([key]) => (user.inventory[key] || 0) > 0);
 
   if (!chestType) {
-    let txt = `🎁 *GUDANG HARTA KARUN* 🎁\n\n`;
+    let txt = `🎁 *ALMACEN DEL TESORO* 🎁\n\n`;
 
     if (availableChests.length === 0) {
       txt += `¡Oh no, no tienes ningún cofre del tesoro... 😭\n\n`;
@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
       txt += `¡Tienes muchos cofres! ¿Cuál quieres abrir?\n\n`;
       for (const [key, chest] of availableChests) {
         txt += `📦 ${chest.name}: *${user.inventory[key]} pcs*\n`;
-        txt += `   └ Buka: \`${m.prefix}treasure ${key}\`\n\n`;
+        txt += `   └ Abrir: \`${m.prefix}treasure ${key}\`\n\n`;
       }
     }
     return m.reply(txt);
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
   const goldReward = Math.floor(Math.random() * (chest.maxGold - chest.minGold)) + chest.minGold;
   const expReward = Math.floor(Math.random() * (chest.expRange[1] - chest.expRange[0])) + chest.expRange[0];
 
-  user.koin = (user.koin || 0) + goldReward;
+  user.belly = (user.belly || 0) + goldReward;
 
   const droppedItems = [];
   const lootPool = LOOT_TABLE[chest.rarity] || LOOT_TABLE.common;
@@ -128,9 +128,9 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `💥 *CRAAASH!! PETI TERBUKA!!* 💥\n\n`;
+  let txt = `💥 *CRAAASH!! COFRE ABIERTO!!* 💥\n\n`;
   txt += `¡Genial! ¡Obtuviste tesoro de *${chest.name}*:\n\n`;
-  txt += `💰 Emas: *+Rp ${goldReward.toLocaleString()}*\n`;
+  txt += `💰 Oro: *+Belly ${goldReward.toLocaleString()}*\n`;
   txt += `✨ EXP: *+${expReward}*\n`;
   if (droppedItems.length > 0) {
     txt += `🎒 *Loot Tambahan:*\n`;

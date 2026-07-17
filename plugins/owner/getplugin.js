@@ -96,16 +96,16 @@ function getSimilarPlugins(name, pluginsDir) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Owner Only!*");
+    return m.reply("❌ *¡Solo Propietario!*");
   }
 
   const pluginName = m.args?.[0]?.trim();
 
   if (!pluginName) {
     return m.reply(
-      `📦 *ɢᴇᴛ ᴘʟᴜɢɪɴ*\n\n` +
+      `📦 *OBTENER PLUGIN*\n\n` +
       `> Obtener el código fuente del plugin\n\n` +
-      `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n` +
+      `╭┈┈⬡「 📋 *FORMATO* 」\n` +
       `┃ .getplugin <nombre>\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
       `*Ejemplo:*\n` +
@@ -139,11 +139,11 @@ async function handler(m, { sock }) {
 
   if (!pluginInfo) {
     const similar = getSimilarPlugins(pluginName, pluginsDir);
-    let text = `❌ *ᴘʟᴜɢɪɴ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n`;
+    let text = `❌ *PLUGIN NO ENCONTRADO*\n\n`;
     text += `> El plugin \`${pluginName}\` no fue encontrado\n\n`;
 
     if (similar.length > 0) {
-      text += `*Quizás buscas:*\n`;
+      text += `*¿Quizás buscas?:*\n`;
       similar.forEach((s) => {
         text += `> - \`${s}\`\n`;
       });
@@ -159,8 +159,8 @@ async function handler(m, { sock }) {
       document: code.toString("utf-8"),
       fileName: pluginInfo.file,
       fileLength: 999999999,
-      caption: `🦪 Halo Ownerku ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste
-      
+      caption: `🦪 Hola Propietario ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste
+       
 Puedes guardar el documento de arriba, o también puedes copiar el código mediante el botón de abajo
 
 ❓ *¿Por qué por documento?*
@@ -180,7 +180,7 @@ Porque las líneas de código son muy largas, y usar un bloque de código podrí
 
   await new AIRich(sock)
     .addText(
-      `🍿 Hallo Ownerku ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste\n- 🥗 Nombre Plugin : ${pluginInfo.file}\n- ☘ Category : ${pluginInfo.category}\n\n`,
+      `🍿 Hola Propietario ${m.pushName}, lo siguiente es el código fuente del plugin que solicitaste\n- 🥗 Nombre Plugin: ${pluginInfo.file}\n- ☘ Categoría: ${pluginInfo.category}\n\n`,
     )
     .addCode("javascript", code.toString("utf-8"))
     .addText("\n\nNota: copia primero el código de arriba")

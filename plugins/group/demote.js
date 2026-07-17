@@ -41,17 +41,17 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El usuario no fue encontrado en el grupo!`)
+            await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El usuario no fue encontrado en el grupo!`)
             return
         }
 
         if (!participant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡El usuario no es admin!`)
+            await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡El usuario no es admin!`)
             return
         }
 
         if (participant.admin === 'superadmin') {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ¡No se puede degradar al propietario del grupo!`)
+            await m.reply(`❌ *ғᴀʟʟᴏ*\n\n> ¡No se puede degradar al propietario del grupo!`)
             return
         }
 

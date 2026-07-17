@@ -8,7 +8,7 @@ const pluginConfig = {
   alias: ["topactive", "topmember"],
   category: "group",
   description: "Ver los miembros más activos del grupo",
-  usage: ".tam <jumlah>",
+  usage: ".tam <cantidad>",
   example: ".tam 10",
   isOwner: false,
   isPremium: false,
