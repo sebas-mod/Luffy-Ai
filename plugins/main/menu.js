@@ -1331,7 +1331,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
 
         const greetingText = `${greeting} *${m.pushName || "User"}* 🏴‍☠️
 
-Soy *${config.bot?.name || "Luffy-AI"*, tu asistente virtual. Estoy aquí para lo que necesites:
+Soy *${config.bot?.name || "Luffy-AI"}*, tu asistente virtual. Estoy aquí para lo que necesites:
 
 📥 *Descargar* — música, videos, fotos de redes sociales
 🎮 *Jugar* — minijuegos, adivinanzas, RPG, duels
@@ -1361,7 +1361,7 @@ Escribe *.allmenu* para ver todos los comandos`;
 ║ 📛 Nombre : ${config.bot?.name || "Luffy-AI"}
 ║ 👨‍💻 Autor : ${config.bot?.developer || "Owner"}
 ║ ⚙️ Versión : ${config.bot?.version || "1.0"}
-║ 📦 Comandos : *${totalFeatures}*
+║ 📦 Comandos : *${totalCmds}*
 ║ 📂 Categorías : *${catCount}*
 ║ ⏱️ Uptime : ${uptimeFormatted}
 ╚════════════════════╝`;
@@ -1379,7 +1379,7 @@ Escribe *.allmenu* para ver todos los comandos`;
               interactiveMessage: {
                 header: {
                   title: `🏴‍☠️ ${config.bot?.name || "Luffy-AI"}`,
-                  subtitle: `${greeting} — ${totalFeatures} comandos disponibles`,
+                  subtitle: `${greeting} — ${totalCmds} comandos disponibles`,
                   hasMediaAttachment: true,
                   imageMessage: media.imageMessage
                 },
