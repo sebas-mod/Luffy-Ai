@@ -3,10 +3,21 @@ import axios from "axios";
 const API_URL = "https://apiyosoyyo-ofc.onrender.com/api/instagram";
 
 async function instagramDownloader(url) {
-  const { data: json } = await axios.get(API_URL, {
-    params: { url, apiKey: "Sebas-api2026" },
-    timeout: 30000,
-  });
+  let json;
+  try {
+    const res = await axios.get(API_URL, {
+      params: { url, apiKey: "Sebas-api2026" },
+      timeout: 30000,
+    });
+    json = res.data;
+  } catch (err) {
+    if (err.response?.data?.message) {
+      throw new Error(err.response.data.message);
+    }
+    throw new Error(
+      `Error de la API de Instagram (HTTP ${err.response?.status || "desconocido"})`,
+    );
+  }
 
   if (!json.result?.success) {
     throw new Error(json.message || "No se pudo obtener el contenido de Instagram.");
