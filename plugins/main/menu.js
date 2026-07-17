@@ -1312,7 +1312,6 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         break;
       }
       case 10: {
-        const readmore = String.fromCharCode(8206).repeat(4001);
         let bannerBuffer = null;
         try {
           const bannerPath = path.join(process.cwd(), "assets", "banner.jpg");
@@ -1333,7 +1332,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
 
 Soy *${config.bot?.name || "Luffy-AI"}*, tu asistente. Estoy aquí para lo que necesites 🤙
 
-${readmore}👤 *TU INFO*
+👤 *TU INFO*
 > 📛 ${m.pushName || "User"} — ${roleName}
 > 📋 Registrado: ${isReg ? "✅" : "❌"} · RPG: ${isRpg ? "⚔️ Sí" : "❌ No"}
 > ⭐ Nv.${userLevel} · 💫 ${userExp.toLocaleString()} EXP
