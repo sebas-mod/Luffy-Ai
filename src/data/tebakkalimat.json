@@ -1,517 +1,517 @@
 [
   {
     "index": 0,
-    "soal": "El que mucho ___, poco ___.",
-    "jawaban": "apura"
+    "pregunta": "El que mucho ___, poco ___.",
+    "respuesta": "apura"
   },
   {
     "index": 1,
-    "soal": "No por mucho ___ madruga más ___.",
-    "jawaban": "amanecer"
+    "pregunta": "No por mucho ___ madruga más ___.",
+    "respuesta": "amanecer"
   },
   {
     "index": 2,
-    "soal": "A _____ loco todo es _____",
-    "jawaban": "cada"
+    "pregunta": "A _____ loco todo es _____",
+    "respuesta": "cada"
   },
   {
     "index": 3,
-    "soal": "Al _____ malo no hay _____ bueno",
-    "jawaban": "tiempo"
+    "pregunta": "Al _____ malo no hay _____ bueno",
+    "respuesta": "tiempo"
   },
   {
     "index": 4,
-    "soal": "El _____ se hace ___ y el pan se acaba",
-    "jawaban": "tiempo"
+    "pregunta": "El _____ se hace ___ y el pan se acaba",
+    "respuesta": "tiempo"
   },
   {
     "index": 5,
-    "soal": "Más vale _____ que dos ___",
-    "jawaban": "pájaro"
+    "pregunta": "Más vale _____ que dos ___",
+    "respuesta": "pájaro"
   },
   {
     "index": 6,
-    "soal": "No todo lo que _____ es _____",
-    "jawaban": "brilla"
+    "pregunta": "No todo lo que _____ es _____",
+    "respuesta": "brilla"
   },
   {
     "index": 7,
-    "soal": "En _____ oscuras todos los _____ son pardos",
-    "jawaban": "noche"
+    "pregunta": "En _____ oscuras todos los _____ son pardos",
+    "respuesta": "noche"
   },
   {
     "index": 8,
-    "soal": "La _____ es madre del _____",
-    "jawaban": "necesidad"
+    "pregunta": "La _____ es madre del _____",
+    "respuesta": "necesidad"
   },
   {
     "index": 9,
-    "soal": "El _____ no ____ a Dios",
-    "jawaban": "hambre"
+    "pregunta": "El _____ no ____ a Dios",
+    "respuesta": "hambre"
   },
   {
     "index": 10,
-    "soal": "A _____ rey _____ la _____",
-    "jawaban": "cada"
+    "pregunta": "A _____ rey _____ la _____",
+    "respuesta": "cada"
   },
   {
     "index": 11,
-    "soal": "Más _____ que la _____",
-    "jawaban": "mala"
+    "pregunta": "Más _____ que la _____",
+    "respuesta": "mala"
   },
   {
     "index": 12,
-    "soal": "Dime con quién _____ y te diré quién _____",
-    "jawaban": "andas"
+    "pregunta": "Dime con quién _____ y te diré quién _____",
+    "respuesta": "andas"
   },
   {
     "index": 13,
-    "soal": "El que _____ a buen _____ dos males ____",
-    "jawaban": "anda"
+    "pregunta": "El que _____ a buen _____ dos males ____",
+    "respuesta": "anda"
   },
   {
     "index": 14,
-    "soal": "Cuando el _____ está _____ se le _____ todos los _____",
-    "jawaban": "río"
+    "pregunta": "Cuando el _____ está _____ se le _____ todos los _____",
+    "respuesta": "río"
   },
   {
     "index": 15,
-    "soal": "Más _____ que _____",
-    "jawaban": "sano"
+    "pregunta": "Más _____ que _____",
+    "respuesta": "sano"
   },
   {
     "index": 16,
-    "soal": "El que _____ a por _____ que no _____ la _____",
-    "jawaban": "salga"
+    "pregunta": "El que _____ a por _____ que no _____ la _____",
+    "respuesta": "salga"
   },
   {
     "index": 17,
-    "soal": "La _____ de un _____ vale más que la _____ de mil ____",
-    "jawaban": "palabra"
+    "pregunta": "La _____ de un _____ vale más que la _____ de mil ____",
+    "respuesta": "palabra"
   },
   {
     "index": 18,
-    "soal": "No hay _____ que no ____",
-    "jawaban": "mal"
+    "pregunta": "No hay _____ que no ____",
+    "respuesta": "mal"
   },
   {
     "index": 19,
-    "soal": "El _____ es el mejor _____",
-    "jawaban": "tiempo"
+    "pregunta": "El _____ es el mejor _____",
+    "respuesta": "tiempo"
   },
   {
     "index": 20,
-    "soal": "No se puede _____ todo y _____ un _____",
-    "jawaban": "tener"
+    "pregunta": "No se puede _____ todo y _____ un _____",
+    "respuesta": "tener"
   },
   {
     "index": 21,
-    "soal": "La _____ no se puede _____",
-    "jawaban": "sangre"
+    "pregunta": "La _____ no se puede _____",
+    "respuesta": "sangre"
   },
   {
     "index": 22,
-    "soal": "Cada _____ tiene su _____",
-    "jawaban": "cada"
+    "pregunta": "Cada _____ tiene su _____",
+    "respuesta": "cada"
   },
   {
     "index": 23,
-    "soal": "El _____ es el _____ de la vida",
-    "jawaban": "amor"
+    "pregunta": "El _____ es el _____ de la vida",
+    "respuesta": "amor"
   },
   {
     "index": 24,
-    "soal": "La _____ es la _____ de la belleza",
-    "jawaban": "moda"
+    "pregunta": "La _____ es la _____ de la belleza",
+    "respuesta": "moda"
   },
   {
     "index": 25,
-    "soal": "No por dormir ______ es de día",
-    "jawaban": "mucho"
+    "pregunta": "No por dormir ______ es de día",
+    "respuesta": "mucho"
   },
   {
     "index": 26,
-    "soal": "El que ______ seca, ______ bebe",
-    "jawaban": "suda"
+    "pregunta": "El que ______ seca, ______ bebe",
+    "respuesta": "suda"
   },
   {
     "index": 27,
-    "soal": "Más vale ______ que ______",
-    "jawaban": "tarde"
+    "pregunta": "Más vale ______ que ______",
+    "respuesta": "tarde"
   },
   {
     "index": 28,
-    "soal": "El _____ es la _____ de la memoria",
-    "jawaban": "escribir"
+    "pregunta": "El _____ es la _____ de la memoria",
+    "respuesta": "escribir"
   },
   {
     "index": 29,
-    "soal": "Donde hay _____ hay _____",
-    "jawaban": "voluntad"
+    "pregunta": "Donde hay _____ hay _____",
+    "respuesta": "voluntad"
   },
   {
     "index": 30,
-    "soal": "El que ______ mucho ______ poco",
-    "jawaban": "habla"
+    "pregunta": "El que ______ mucho ______ poco",
+    "respuesta": "habla"
   },
   {
     "index": 31,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "constancia"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "constancia"
   },
   {
     "index": 32,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "esfuerzo"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "esfuerzo"
   },
   {
     "index": 33,
-    "soal": "El _____ no _____ por ser _____",
-    "jawaban": "niño"
+    "pregunta": "El _____ no _____ por ser _____",
+    "respuesta": "niño"
   },
   {
     "index": 34,
-    "soal": "La _____ hace al _____",
-    "jawaban": "educación"
+    "pregunta": "La _____ hace al _____",
+    "respuesta": "educación"
   },
   {
     "index": 35,
-    "soal": "A _____ malo no hay _____",
-    "jawaban": "remedio"
+    "pregunta": "A _____ malo no hay _____",
+    "respuesta": "remedio"
   },
   {
     "index": 36,
-    "soal": "El que _____ a _____ tiene que _____",
-    "jawaban": "ama"
+    "pregunta": "El que _____ a _____ tiene que _____",
+    "respuesta": "ama"
   },
   {
     "index": 37,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "salud"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "salud"
   },
   {
     "index": 38,
-    "soal": "No _____ mañana lo que puedes _____ hoy",
-    "jawaban": "dejes"
+    "pregunta": "No _____ mañana lo que puedes _____ hoy",
+    "respuesta": "dejes"
   },
   {
     "index": 39,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "dinero"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "dinero"
   },
   {
     "index": 40,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "perseverancia"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "perseverancia"
   },
   {
     "index": 41,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "paz"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "paz"
   },
   {
     "index": 42,
-    "soal": "El que _____ se _____",
-    "jawaban": "riega"
+    "pregunta": "El que _____ se _____",
+    "respuesta": "riega"
   },
   {
     "index": 43,
-    "soal": "La _____ es la _____ del amor",
-    "jawaban": "paciencia"
+    "pregunta": "La _____ es la _____ del amor",
+    "respuesta": "paciencia"
   },
   {
     "index": 44,
-    "soal": "No por mucho _____ se _____ más rápido",
-    "jawaban": "trabaja"
+    "pregunta": "No por mucho _____ se _____ más rápido",
+    "respuesta": "trabaja"
   },
   {
     "index": 45,
-    "soal": "El _____ es la _____ de la sabiduría",
-    "jawaban": "silencio"
+    "pregunta": "El _____ es la _____ de la sabiduría",
+    "respuesta": "silencio"
   },
   {
     "index": 46,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "fe"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "fe"
   },
   {
     "index": 47,
-    "soal": "No hay _____ que no tenga su _____",
-    "jawaban": "castigo"
+    "pregunta": "No hay _____ que no tenga su _____",
+    "respuesta": "castigo"
   },
   {
     "index": 48,
-    "soal": "El que _____ a _____ nunca se _____",
-    "jawaban": "aprende"
+    "pregunta": "El que _____ a _____ nunca se _____",
+    "respuesta": "aprende"
   },
   {
     "index": 49,
-    "soal": "La _____ hace al _____",
-    "jawaban": "práctica"
+    "pregunta": "La _____ hace al _____",
+    "respuesta": "práctica"
   },
   {
     "index": 50,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "llores"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "llores"
   },
   {
     "index": 51,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "conocimiento"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "conocimiento"
   },
   {
     "index": 52,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "disciplina"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "disciplina"
   },
   {
     "index": 53,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "miedo"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "miedo"
   },
   {
     "index": 54,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "sirve"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "sirve"
   },
   {
     "index": 55,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "felicidad"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "felicidad"
   },
   {
     "index": 56,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "pidas"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "pidas"
   },
   {
     "index": 57,
-    "soal": "El _____ es la _____ del éxito",
-    "jawaban": "trabajo"
+    "pregunta": "El _____ es la _____ del éxito",
+    "respuesta": "trabajo"
   },
   {
     "index": 58,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "esperanza"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "esperanza"
   },
   {
     "index": 59,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "prueba"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "prueba"
   },
   {
     "index": 60,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "cuida"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "cuida"
   },
   {
     "index": 61,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "planificación"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "planificación"
   },
   {
     "index": 62,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "esperes"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "esperes"
   },
   {
     "index": 63,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "respeto"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "respeto"
   },
   {
     "index": 64,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "honestidad"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "honestidad"
   },
   {
     "index": 65,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "experiencia"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "experiencia"
   },
   {
     "index": 66,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "aprende"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "aprende"
   },
   {
     "index": 67,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "dedicación"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "dedicación"
   },
   {
     "index": 68,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "cambies"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "cambies"
   },
   {
     "index": 69,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "amor"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "amor"
   },
   {
     "index": 70,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "verdad"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "verdad"
   },
   {
     "index": 71,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "esfuerzo"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "esfuerzo"
   },
   {
     "index": 72,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "gana"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "gana"
   },
   {
     "index": 73,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "creatividad"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "creatividad"
   },
   {
     "index": 74,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "controlar"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "controlar"
   },
   {
     "index": 75,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "tiempo"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "tiempo"
   },
   {
     "index": 76,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "alegría"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "alegría"
   },
   {
     "index": 77,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "riesgo"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "riesgo"
   },
   {
     "index": 78,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "triunfa"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "triunfa"
   },
   {
     "index": 79,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "innovación"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "innovación"
   },
   {
     "index": 80,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "evitar"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "evitar"
   },
   {
     "index": 81,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "salud"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "salud"
   },
   {
     "index": 82,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "libertad"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "libertad"
   },
   {
     "index": 83,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "cambio"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "cambio"
   },
   {
     "index": 84,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "progresa"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "progresa"
   },
   {
     "index": 85,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "resiliencia"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "resiliencia"
   },
   {
     "index": 86,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "entender"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "entender"
   },
   {
     "index": 87,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "conocimiento"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "conocimiento"
   },
   {
     "index": 88,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "gratitud"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "gratitud"
   },
   {
     "index": 89,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "aprendizaje"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "aprendizaje"
   },
   {
     "index": 90,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "crece"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "crece"
   },
   {
     "index": 91,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "adaptación"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "adaptación"
   },
   {
     "index": 92,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "lograr"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "lograr"
   },
   {
     "index": 93,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "equilibrio"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "equilibrio"
   },
   {
     "index": 94,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "paz"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "paz"
   },
   {
     "index": 95,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "propósito"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "propósito"
   },
   {
     "index": 96,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "inspira"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "inspira"
   },
   {
     "index": 97,
-    "soal": "La _____ es la _____ del éxito",
-    "jawaban": "colaboración"
+    "pregunta": "La _____ es la _____ del éxito",
+    "respuesta": "colaboración"
   },
   {
     "index": 98,
-    "soal": "No _____ por lo que no puedes _____",
-    "jawaban": "imaginar"
+    "pregunta": "No _____ por lo que no puedes _____",
+    "respuesta": "imaginar"
   },
   {
     "index": 99,
-    "soal": "El _____ es la _____ de la vida",
-    "jawaban": "propósito"
+    "pregunta": "El _____ es la _____ de la vida",
+    "respuesta": "propósito"
   },
   {
     "index": 100,
-    "soal": "La _____ es la _____ de la vida",
-    "jawaban": "gratitud"
+    "pregunta": "La _____ es la _____ de la vida",
+    "respuesta": "gratitud"
   },
   {
     "index": 101,
-    "soal": "No hay _____ sin _____",
-    "jawaban": "sacrificio"
+    "pregunta": "No hay _____ sin _____",
+    "respuesta": "sacrificio"
   },
   {
     "index": 102,
-    "soal": "El que _____ a _____ siempre _____",
-    "jawaban": "transforma"
+    "pregunta": "El que _____ a _____ siempre _____",
+    "respuesta": "transforma"
   }
 ]

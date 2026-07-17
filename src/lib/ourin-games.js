@@ -62,8 +62,8 @@ class OurinGames {
   register(gameType, cfg) {
     const defaults = {
       dataFile: `${gameType}.json`,
-      questionField: "soal",
-      answerField: "jawaban",
+      questionField: "pregunta",
+      answerField: "respuesta",
       emoji: "🎮",
       title: gameType.toUpperCase(),
       description: `Game ${gameType}`,

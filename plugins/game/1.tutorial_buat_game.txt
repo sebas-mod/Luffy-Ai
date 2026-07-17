@@ -22,13 +22,13 @@ A. GAME TEKS (Standard)
 [
   {
     "index": 0,
-    "soal": "Kucing yang tidak memiliki bulu disebut?",
-    "jawaban": "Sphynx"
+    "pregunta": "Kucing yang tidak memiliki bulu disebut?",
+    "respuesta": "Sphynx"
   },
   {
     "index": 1,
-    "soal": "Kucing ras terbesar di dunia?",
-    "jawaban": "Maine Coon"
+    "pregunta": "Kucing ras terbesar di dunia?",
+    "respuesta": "Maine Coon"
   }
 ]
 
@@ -37,7 +37,7 @@ B. GAME GAMBAR (Image Based)
   {
     "index": 0,
     "img": "https://domain.com/kucing1.jpg",
-    "jawaban": "Anggora",
+    "respuesta": "Anggora",
     "deskripsi": "Berasal dari Turki" // Opsional, sebagai soal/keterangan tambahan
   }
 ]
@@ -45,7 +45,7 @@ B. GAME GAMBAR (Image Based)
 **Validasi & Syarat JSON:**
 - JSON harus Valid (tidak boleh ada koma berlebih di akhir array/object).
 - Pastikan encoding file adalah UTF-8 (tanpa BOM).
-- Field wajib default: \`soal\` (pertanyaan) dan \`jawaban\`. Jika menggunakan field lain, harus di-setting di konfigurasi (lihat bagian \`questionField\` dan \`answerField\`).
+- Field wajib default: \`pregunta\` (pertanyaan) y \`respuesta\`. Jika menggunakan field lain, harus di-setting di konfigurasi (lihat bagian \`questionField\` y \`answerField\`).
 
 -----------------------------------------------------------
 3. FILE PLUGIN (JAVASCRIPT)
@@ -78,8 +78,8 @@ games.register('tebakkucing', {
 
     // === DATA CONFIGURATION ===
     dataFile: 'tebakkucing.json',         // (String) Nama JSON. Default = <nama_game>.json
-    questionField: 'soal',                // (String) Key JSON untuk soal. Default = 'soal'
-    answerField: 'jawaban',               // (String) Key JSON untuk jawaban. Default = 'jawaban'
+    questionField: 'pregunta',             // (String) Key JSON untuk pregunta. Default = 'pregunta'
+    answerField: 'respuesta',              // (String) Key JSON untuk respuesta. Default = 'respuesta'
     
     // === IMAGE CONFIGURATION (Jika game gambar) ===
     hasImage: false,                      // (Boolean) Apakah ini game tebak gambar? Default: false

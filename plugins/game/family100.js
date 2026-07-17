@@ -38,10 +38,10 @@ async function handler(m, { sock }) {
     if (session && session.gameType === "family100") {
       const remaining = getRemainingTime(chatId);
       const answered = session.answered || [];
-      const total = session.question.jawaban.length;
+      const total = session.question.respuesta.length;
 
       let text = `¡Vaya, la sesion de Family 100 sigue activa! 😱✨\n\n`;
-      text += `*${session.question.soal}*\n\n`;
+      text += `*${session.question.pregunta}*\n\n`;
       text += `Respondido: *${answered.length} de ${total}*\n`;
       answered.forEach((ans, i) => {
         text += `${i + 1}. ✅ ${ans}\n`;
@@ -62,10 +62,10 @@ async function handler(m, { sock }) {
     return;
   }
 
-  const total = question.jawaban.length;
+  const total = question.respuesta.length;
 
   let text = `Es hora de jugar *FAMILY 100*! 🎉✨\n\n`;
-  text += `*Pregunta:* ${question.soal}\n\n`;
+  text += `*Pregunta:* ${question.pregunta}\n\n`;
   text += `Total de Respuestas: *${total}* 📝\n`;
   for (let i = 0; i < total; i++) {
     text += `${i + 1}. ❓ ???\n`;
@@ -89,12 +89,12 @@ async function handler(m, { sock }) {
   setSessionTimer(chatId, async () => {
     const sess = getSession(chatId);
     const answered = sess?.answered || [];
-    const remaining = question.jawaban.filter(
+    const remaining = question.respuesta.filter(
       (j) => !answered.includes(j.toLowerCase()),
     );
 
     let timeoutText = `¡Vaya, el tiempo se agoto! 😭😭⏱️\n\n`;
-    timeoutText += `Lograron adivinar *${answered.length}* de *${question.jawaban.length}* respuestas! ✨\n\n`;
+    timeoutText += `Lograron adivinar *${answered.length}* de *${question.respuesta.length}* respuestas! ✨\n\n`;
     if (remaining.length > 0) {
       timeoutText += `Estas son las respuestas que faltaron:\n`;
       remaining.forEach((ans) => {
@@ -120,12 +120,12 @@ async function family100AnswerHandler(m, sock) {
 
   if (isSurrender(userAnswer)) {
     const answered = session.answered || [];
-    const remaining = session.question.jawaban.filter(
+    const remaining = session.question.respuesta.filter(
       (j) => !answered.includes(j.toLowerCase()),
     );
 
     let text = `¡Oh, todos se rindieron? 🥺🏳️\n\n`;
-    text += `Aunque ya habian adivinado *${answered.length}* de *${session.question.jawaban.length}*! 👏\n\n`;
+    text += `Aunque ya habian adivinado *${answered.length}* de *${session.question.respuesta.length}*! 👏\n\n`;
     if (remaining.length > 0) {
       text += `Aqui estan las respuestas restantes:\n`;
       remaining.forEach((ans) => {
@@ -139,7 +139,7 @@ async function family100AnswerHandler(m, sock) {
     return true;
   }
 
-  const correctAnswers = session.question.jawaban.map((j) => j.toLowerCase());
+  const correctAnswers = session.question.respuesta.map((j) => j.toLowerCase());
   const answered = session.answered || [];
 
   if (answered.includes(userAnswer)) {
@@ -156,7 +156,7 @@ async function family100AnswerHandler(m, sock) {
   });
 
   if (matchIndex !== -1) {
-    const originalAnswer = session.question.jawaban[matchIndex];
+    const originalAnswer = session.question.respuesta[matchIndex];
 
     if (!answered.includes(originalAnswer.toLowerCase())) {
       session.answered.push(originalAnswer.toLowerCase());
@@ -178,8 +178,8 @@ async function family100AnswerHandler(m, sock) {
         const uniqueParticipants = [...new Set(participants)];
 
         let text = `¡WOW, INCREIBLE! ¡Todas las respuestas fueron adivinadas! 🎉🔥✨\n\n`;
-        text += `*Pregunta:* ${session.question.soal}\n\n`;
-        session.question.jawaban.forEach((ans, i) => {
+        text += `*Pregunta:* ${session.question.pregunta}\n\n`;
+        session.question.respuesta.forEach((ans, i) => {
           const who = session.answeredBy[ans.toLowerCase()];
           text += `${i + 1}. ✅ ${ans} - @${who?.split("@")[0] || "?"}\n`;
         });
@@ -189,10 +189,10 @@ async function family100AnswerHandler(m, sock) {
         return true;
       }
 
-      const total = session.question.jawaban.length;
+      const total = session.question.respuesta.length;
       let text = `¡Correcto! ✅🎉\n@${m.sender.split("@")[0]} obtuvo *+${answerReward.exp} EXP* y *+${answerReward.koin} Monedas*! 💸✨\n\n`;
-      text += `*Pregunta:* ${session.question.soal}\n\n`;
-      session.question.jawaban.forEach((ans, i) => {
+      text += `*Pregunta:* ${session.question.pregunta}\n\n`;
+      session.question.respuesta.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());
         if (isAnswered) {
           text += `${i + 1}. ✅ ${ans}\n`;
