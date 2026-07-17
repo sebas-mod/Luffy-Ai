@@ -1,7 +1,7 @@
 import { getDatabase } from "../../src/lib/ourin-database.js";
 import { saluranCtx } from "../../src/lib/ourin-context.js";
 const pluginConfig = {
-  name: "tembak",
+  name: "tirar",
   alias: ["nembak", "propose"],
   category: "fun",
   description: "Proponerle a alguien ser tu pareja",

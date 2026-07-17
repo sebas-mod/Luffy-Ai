@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'bisakah',
+    name: 'puedes',
     alias: ['bisa'],
     category: 'fun',
     description: 'Pregunta al bot si puede hacer algo',

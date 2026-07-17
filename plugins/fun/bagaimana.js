@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'bagaimana',
+    name: 'cómo',
     alias: ['gimana', 'how'],
     category: 'fun',
     description: 'Pregunta al bot cómo hacer algo',

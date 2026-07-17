@@ -5,7 +5,7 @@ import te from '../../src/lib/ourin-error.js'
 const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
 
 const pluginConfig = {
-    name: 'senja',
+    name: 'atardecer',
     alias: ['katacinta', 'romanticquotes'],
     category: 'fun',
     description: 'Frases aleatorias románticas/de atardecer',

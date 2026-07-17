@@ -3,7 +3,7 @@ import config from "../../config.js";
 import path from "path";
 import fs from "fs";
 const pluginConfig = {
-  name: "jodoh",
+  name: "pareja",
   alias: ["match", "shipcouple", "ship"],
   category: "fun",
   description: "Empareja 2 miembros al azar con compatibilidad",

@@ -1,6 +1,6 @@
 import { getDatabase } from '../../src/lib/ourin-database.js'
 const pluginConfig = {
-    name: 'cekpacar',
+    name: 'verificar pareja',
     alias: ['pacar', 'pasangan', 'gebetan'],
     category: 'fun',
     description: 'Verificar estado de relación de alguien',

@@ -1,7 +1,7 @@
 import { getDatabase } from "../../src/lib/ourin-database.js";
 import { saluranCtx } from "../../src/lib/ourin-context.js";
 const pluginConfig = {
-  name: "tolak",
+  name: "rechazar",
   alias: ["reject", "no", "gaktau"],
   category: "fun",
   description: "Rechazar la propuesta de alguien",

@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'mengapa',
+    name: 'por qué',
     alias: ['kenapa', 'why'],
     category: 'fun',
     description: 'Pregunta al bot por qué pasa algo',

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import gtts from 'gtts'
 const pluginConfig = {
-    name: 'cekkhodam',
+    name: 'verificar espíritu',
     alias: ['khodam', 'cekhodam'],
     category: 'fun',
     description: 'Verifica tu khodam o el de otra persona',

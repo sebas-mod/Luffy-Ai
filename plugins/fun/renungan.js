@@ -1,7 +1,7 @@
 import { getRandomItem } from '../../src/lib/ourin-game-data.js'
 import { fetchBuffer } from '../../src/lib/ourin-utils.js'
 const pluginConfig = {
-    name: 'renungan',
+    name: 'reflexión',
     alias: ['motivasi', 'mutiara'],
     category: 'fun',
     description: 'Imagen aleatoria de reflexión/motivación',

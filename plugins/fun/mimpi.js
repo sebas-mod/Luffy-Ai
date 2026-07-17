@@ -4,7 +4,7 @@
  */
 
 const pluginConfig = {
-    name: 'mimpi',
+    name: 'sueño',
     alias: ['dream', 'dreamworld'],
     category: 'fun',
     description: 'Explora el mundo de tus sueños según tu nombre',

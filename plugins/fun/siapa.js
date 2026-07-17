@@ -1,13 +1,13 @@
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: [
-        'bego', 'goblok', 'janda', 'perawan', 'babi', 'tolol', 'pekok', 
-        'jancok', 'pinter', 'pintar', 'asu', 'bodoh', 'gay', 'lesby',
-        'bajingan', 'anjing', 'anjg', 'anjj', 'anj', 'ngentod', 'ngentot',
-        'monyet', 'mastah', 'newbie', 'bangsat', 'bangke', 'sange', 'sangean',
-        'dakjal', 'horny', 'wibu', 'puki', 'puqi', 'peak', 'pantex', 'pantek',
-        'setan', 'iblis', 'cacat', 'yatim', 'piatu', 'ganteng', 'cantik',
-        'jelek', 'keren', 'cupu', 'noob', 'pro', 'sultan', 'miskin', 'kaya', 'siapa'
+        'tonto', 'idiota', 'viuda', 'virgen', 'cerdo', 'estúpido', 'loco', 
+        'malparido', 'listo', 'inteligente', 'perro', 'bruto', 'gay', 'lesbiana',
+        'desgraciado', 'perro', 'perro', 'perro', 'perro', 'jodido', 'jodido',
+        'mono', 'veterano', 'novato', 'hijo de puta', 'hijo de puta', 'caliente', 'caliente',
+        'demonio', 'horny', 'otaku', 'vulva', 'vulva', 'pico', 'perra', 'perra',
+        'demonio', 'demonio', 'discapacitado', 'huérfano', 'huérfano', 'guapo', 'bonito',
+        'feo', 'genial', 'patético', 'noob', 'pro', 'sultán', 'pobre', 'rico', 'quién'
     ],
     alias: ['quien', 'aleatorio'],
     category: 'fun',

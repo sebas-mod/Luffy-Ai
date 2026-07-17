@@ -1,6 +1,6 @@
 import { getRandomItem } from '../../src/lib/ourin-game-data.js'
 const pluginConfig = {
-    name: 'bucin',
+    name: 'enamorado',
     alias: ['gombal', 'love', 'romantis'],
     category: 'fun',
     description: 'Frase romántica/encantadora aleatoria',

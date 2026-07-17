@@ -5,7 +5,7 @@ import te from '../../src/lib/ourin-error.js'
 const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
 
 const pluginConfig = {
-    name: 'puisi',
+    name: 'poesía',
     alias: ['puisiku', 'sajak'],
     category: 'fun',
     description: 'Poema indonesio aleatorio',

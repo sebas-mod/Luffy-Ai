@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'sulap',
+    name: 'magia',
     alias: ['magic', 'magictrick'],
     category: 'fun',
     description: 'Show de magia - expulsar miembro dramáticamente',

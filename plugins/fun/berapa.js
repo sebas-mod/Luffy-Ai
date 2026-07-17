@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'berapa',
+    name: 'cuánto',
     alias: ['howmuch', 'howmany'],
     category: 'fun',
     description: 'Pregunta al bot cuánto es algo',

@@ -2,7 +2,7 @@ import config from "../../config.js";
 import te from "../../src/lib/ourin-error.js";
 
 const pluginConfig = {
-  name: "confess",
+  name: "confesar",
   alias: ["confession", "menfess", "anonim"],
   category: "fun",
   description: "Enviar mensaje anónimo a alguien",

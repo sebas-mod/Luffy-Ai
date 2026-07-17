@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'coba',
+    name: 'intentar',
     alias: ['try'],
     category: 'fun',
     description: 'Intenta preguntar algo al bot',

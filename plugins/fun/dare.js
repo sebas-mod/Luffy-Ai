@@ -1,6 +1,6 @@
 import { getRandomItem } from '../../src/lib/ourin-game-data.js'
 const pluginConfig = {
-    name: 'dare',
+    name: 'desafío',
     alias: ['dareq', 'tantang'],
     category: 'fun',
     description: 'Reto dare aleatorio',

@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'kapan',
+    name: 'cuándo',
     alias: ['when'],
     category: 'fun',
     description: 'Pregunta al bot cuándo algo pasará',

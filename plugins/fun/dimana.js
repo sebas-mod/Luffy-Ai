@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: 'dimana',
+    name: 'dónde',
     alias: ['where', 'mana'],
     category: 'fun',
     description: 'Pregunta al bot dónde está algo',

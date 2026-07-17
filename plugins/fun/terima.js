@@ -2,7 +2,7 @@ import { getDatabase } from "../../src/lib/ourin-database.js";
 import * as timeHelper from "../../src/lib/ourin-time.js";
 import { saluranCtx } from "../../src/lib/ourin-context.js";
 const pluginConfig = {
-  name: "terima",
+  name: "aceptar",
   alias: ["accept", "yes"],
   category: "fun",
   description: "Aceptar un tiro de alguien",
