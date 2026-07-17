@@ -1400,48 +1400,13 @@ Escribe *.allmenu* para ver todos los comandos`;
                   },
                 },
                 nativeFlowMessage: {
-                  messageParamsJson: JSON.stringify({
-                    limited_time_offer: {
-                      text: `${greeting}`,
-                      expiration_time: Date.now() + 1000000,
-                    },
-                    bottom_sheet: {
-                      in_thread_buttons_limit: 2,
-                      divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Categorías disponibles",
-                      button_title: "📦 Ver Categorías",
-                    },
-                  }),
+                  messageParamsJson: JSON.stringify({}),
                   buttons: [
-                    {
-                      name: "single_select",
-                      buttonParamsJson: JSON.stringify({
-                        title: "📦 Categorías",
-                        sections: [
-                          {
-                            title: "Selecciona una categoría",
-                            rows: categories.sorted.map(({ cat, cmds, emoji }) => ({
-                              title: `${emoji} ${cat}`,
-                              description: `${cmds.length} comandos`,
-                              id: `${m.prefix}menucat ${cat}`
-                            }))
-                          }
-                        ],
-                        icon: "DEFAULT"
-                      })
-                    },
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
                         display_text: "📋 All Menu",
                         id: `${m.prefix}allmenu`
-                      })
-                    },
-                    {
-                      name: "cta_url",
-                      buttonParamsJson: JSON.stringify({
-                        display_text: "👑 Owner",
-                        url: `https://wa.me/${botConfig.owner?.number?.[0] || "5491112345678"}`,
                       })
                     }
                   ]
