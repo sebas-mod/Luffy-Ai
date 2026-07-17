@@ -1,58 +1,31 @@
-import axios from "axios";
-
-const API_URL = "https://apiyosoyyo-ofc.onrender.com/api/instagram";
+const API_BASE = "https://apiyosoyyo-ofc.onrender.com";
+const API_KEY = "Sebas-api2026";
 
 async function instagramDownloader(url) {
-  let json;
-  try {
-    const res = await axios.get(API_URL, {
-      params: { url, apiKey: "Sebas-api2026" },
-      timeout: 30000,
-    });
-    json = res.data;
-  } catch (err) {
-    if (err.response?.data?.message) {
-      throw new Error(err.response.data.message);
-    }
-    throw new Error(
-      `Error de la API de Instagram (HTTP ${err.response?.status || "desconocido"})`,
-    );
+  const res = await fetch(
+    `${API_BASE}/api/instagram?url=${encodeURIComponent(url)}&apiKey=${API_KEY}`,
+  );
+  const json = await res.json();
+
+  if (!json.status) {
+    throw new Error("No se encontraron resultados.");
   }
 
-  if (!json.result?.success) {
-    throw new Error(json.message || "No se pudo obtener el contenido de Instagram.");
-  }
-
-  const { data } = json.result;
-
-  const media = [];
-
-  if (data.mediaUrls?.length > 0) {
-    for (const item of data.mediaUrls) {
-      media.push({
-        type: item.type === "video" ? "video" : "image",
-        url: item.url,
-      });
-    }
-  } else if (data.downloadUrl) {
-    const hasVideoType = data.mediaUrls?.some((m) => m.type === "video");
-    media.push({
-      type: hasVideoType ? "video" : "image",
-      url: data.downloadUrl,
-    });
-  }
+  const { result } = json;
+  const media = result.media || [];
 
   if (!media.length) {
     throw new Error("No se encontró URL de descarga.");
   }
 
   return {
-    username: data.author || "-",
-    title: data.title || "-",
-    thumbnail: data.thumbnail || "-",
-    likes: data.likes ?? "-",
-    comment: data.comments ?? "-",
-    media,
+    username: result.username || "-",
+    title: result.title || "-",
+    likes: result.likes || "-",
+    media: media.map((item) => ({
+      type: item.type === "video" ? "video" : "image",
+      url: item.url,
+    })),
   };
 }
 
