@@ -140,7 +140,10 @@ function isSurrender(text) {
     const surrenderWords = [
         'nyerah', 'aku nyerah', 'gw nyerah', 'gue nyerah', 'menyerah',
         'aku menyerah', 'gw menyerah', 'skip', 'lewat', 'ga tau',
-        'gatau', 'gak tau', 'tidak tau', 'nggak tau', 'give up'
+        'gatau', 'gak tau', 'tidak tau', 'nggak tau', 'give up',
+        'rendirse', 'me rindo', 'me rindio', 'rindio', 'me rinden',
+        'no se', 'no puedo', 'ya fue', 'me rinda', 'rendir',
+        'rendirse', 'ya no puedo', 'no lo se'
     ];
     const normalized = text.toLowerCase().trim();
     return surrenderWords.some(word => normalized === word);

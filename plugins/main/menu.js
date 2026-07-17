@@ -496,7 +496,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 │ ◈ *Nivel* : *${user.level || 0}*
 │ ◈ *Exp* : *${user.exp || 0}* 
 │ ◈ *Energía* : *${user.energi || 0}*
-│ ◈ *Monedas* : *${user.koin || 0}*
+│ ◈ *Belly* : *${user.koin || 0}*
 │ ◈ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
 │ ◈ *Energía* : *${user.energi || 0}*
 ╰┈┈┈┈┈┈┈┈
@@ -597,7 +597,7 @@ Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 > 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Energía*: ${user.energi || 0}
-> 🎏 *Monedas*: ${user.koin || 0}
+> 🎏 *Belly*: ${user.koin || 0}
 > 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}
 
 ${readmore}${s}`
@@ -711,7 +711,7 @@ Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 > 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Energía*: ${user.energi || 0}
-> 🎏 *Monedas*: ${user.koin || 0}
+> 🎏 *Belly*: ${user.koin || 0}
 > 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
             footerText: '🍔 Selecciona uno de los botones de abajo',
             headerType: 6,
@@ -1308,6 +1308,148 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
             }
           }
         }, {});
+
+        break;
+      }
+      case 10: {
+        const readmore = String.fromCharCode(8206).repeat(4001);
+        let bannerBuffer = null;
+        try {
+          const bannerPath = path.join(process.cwd(), "assets", "banner.jpg");
+          if (fs.existsSync(bannerPath)) bannerBuffer = fs.readFileSync(bannerPath);
+        } catch {}
+        if (!bannerBuffer) bannerBuffer = imageBuffer;
+
+        const catCount = categories.sorted.length;
+        const userBelly = user.koin || 0;
+        const userExp = user.exp || 0;
+        const userLevel = user.level || 0;
+        const userEnergi = user.energi || 0;
+        const isReg = user.isRegistered;
+        const isRpg = Boolean(user.rpg);
+        const roleName = m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🏴‍☠️ Pirata";
+
+        const greetingText = `${greeting} *${m.pushName || "User"}* 🏴‍☠️
+
+Soy *${config.bot?.name || "Luffy-AI"*, tu asistente virtual. Estoy aquí para lo que necesites:
+
+📥 *Descargar* — música, videos, fotos de redes sociales
+🎮 *Jugar* — minijuegos, adivinanzas, RPG, duels
+🏷️ *Etiquetar* — menciones masivas, stickers personalizados
+🖼️ *Stickers* — crear stickers con texto o imagen
+🤖 *IA* — preguntas, generación de imágenes
+⚔️ *RPG* — aventuras, bosses, duelos entre piratas
+🔍 *Buscar* — información, trending, curiosidades
+🔧 *Herramientas* — conversores, utilidades varias
+
+Escribe *.allmenu* para ver todos los comandos`;
+
+        const userInfoText = `
+╔════════════════════╗
+║   👤 *INFO USUARIO*
+╠════════════════════╣
+║ 📛 *Nombre* : ${m.pushName || "User"}
+║ 🎭 *Rol* : ${roleName}
+║ 📋 *Registrado* : ${isReg ? "✅ Sí" : "❌ No"}
+║ ⚔️ *RPG Activo* : ${isRpg ? "✅ Sí" : "❌ No"}
+║ ⭐ *Nivel* : ${userLevel}
+║ 💫 *EXP* : ${userExp.toLocaleString()}
+║ ⚡ *Energía* : ${userEnergi}
+║ 💰 *Belly* : ${userBelly.toLocaleString()}
+╠════════════════════╣
+║ 🤖 *INFO BOT*
+║ 📛 Nombre : ${config.bot?.name || "Luffy-AI"}
+║ 👨‍💻 Autor : ${config.bot?.developer || "Owner"}
+║ ⚙️ Versión : ${config.bot?.version || "1.0"}
+║ 📦 Comandos : *${totalFeatures}*
+║ 📂 Categorías : *${catCount}*
+║ ⏱️ Uptime : ${uptimeFormatted}
+╚════════════════════╝`;
+
+        const fullText = greetingText + readmore + userInfoText;
+
+        const media = await prepareWAMessageMedia({
+          image: bannerBuffer
+        }, { upload: sock.waUploadToServer });
+
+        await sock.relayMessage(m.chat, {
+          viewOnceMessage: {
+            message: {
+              messageContextInfo: {},
+              interactiveMessage: {
+                header: {
+                  title: `🏴‍☠️ ${config.bot?.name || "Luffy-AI"}`,
+                  subtitle: `${greeting} — ${totalFeatures} comandos disponibles`,
+                  hasMediaAttachment: true,
+                  imageMessage: media.imageMessage
+                },
+                body: {
+                  text: fullText
+                },
+                footer: {
+                  text: "Selecciona una opción 👇"
+                },
+                contextInfo: {
+                  mentionedJid: [m.sender],
+                  isForwarded: true,
+                  forwardingScore: 9,
+                  forwardedNewsletterMessageInfo: {
+                    newsletterJid: saluranId,
+                    newsletterName: saluranName,
+                    serverMessageId: 127,
+                  },
+                },
+                nativeFlowMessage: {
+                  messageParamsJson: JSON.stringify({
+                    limited_time_offer: {
+                      text: `${greeting}`,
+                      expiration_time: Date.now() + 1000000,
+                    },
+                    bottom_sheet: {
+                      in_thread_buttons_limit: 2,
+                      divider_indices: [1, 2, 3, 4, 5, 999],
+                      list_title: "Categorías disponibles",
+                      button_title: "📦 Ver Categorías",
+                    },
+                  }),
+                  buttons: [
+                    {
+                      name: "single_select",
+                      buttonParamsJson: JSON.stringify({
+                        title: "📦 Categorías",
+                        sections: [
+                          {
+                            title: "Selecciona una categoría",
+                            rows: categories.sorted.map(({ cat, cmds, emoji }) => ({
+                              title: `${emoji} ${cat}`,
+                              description: `${cmds.length} comandos`,
+                              id: `${m.prefix}menucat ${cat}`
+                            }))
+                          }
+                        ],
+                        icon: "DEFAULT"
+                      })
+                    },
+                    {
+                      name: "quick_reply",
+                      buttonParamsJson: JSON.stringify({
+                        display_text: "📋 All Menu",
+                        id: `${m.prefix}allmenu`
+                      })
+                    },
+                    {
+                      name: "cta_url",
+                      buttonParamsJson: JSON.stringify({
+                        display_text: "👑 Owner",
+                        url: `https://wa.me/${botConfig.owner?.number?.[0] || "5491112345678"}`,
+                      })
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }, { quoted: m, userJid: sock.user.jid });
 
         break;
       }

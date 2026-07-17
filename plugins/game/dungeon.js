@@ -336,7 +336,7 @@ async function dungeonAnswerHandler(m, sock) {
                 reportText += `Con un ataque letal, lograste derrotar a *${session.monster}*!\n\n`;
                 reportText += `*🎁 RECOMPENSAS OBTENIDAS:*\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;
-                reportText += `> 💰 Monedas: *+${goldReward.toLocaleString()}*\n`;
+                reportText += `> 💰 Belly: *+${goldReward.toLocaleString()}*\n`;
 
                 if (droppedItems.length > 0) {
                     reportText += `\n*📦 BOTIN (LOOT):*\n`;
@@ -353,7 +353,7 @@ async function dungeonAnswerHandler(m, sock) {
                 reportText += `Tu fuerza no es suficiente! *${session.monster}* te golpeo con fuerza.\n`;
                 reportText += `Lograste arrastrarte fuera con el cuerpo lleno de heridas.\n\n`;
                 reportText += `*💔 PERDIDAS:*\n`;
-                reportText += `> 💸 Dinero perdido: *-${goldLoss.toLocaleString()} Monedas*\n`;
+                reportText += `> 💸 Belly perdido: *-${goldLoss.toLocaleString()} Belly*\n`;
                 reportText += `> ❤️ Vida reducida: *-40 HP*\n\n`;
                 reportText += `> 💡 *Consejo:* Sube de nivel, come pociones o fortalece tu arma!`;
 

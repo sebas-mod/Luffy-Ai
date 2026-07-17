@@ -7,8 +7,8 @@ const pluginConfig = {
   alias: ["menuvariant", "menustyle"],
   category: "owner",
   description: "Configura la variante visual del menú",
-  usage: ".setmenu <v1-v16>",
-  example: ".setmenu v8",
+  usage: ".setmenu <v1-v10>",
+  example: ".setmenu v10",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -61,6 +61,12 @@ const VARIANTS = {
     desc: "Location Message con Buttons",
     emoji: "📍",
   },
+  v10: {
+    id: 10,
+    name: "LUFFY",
+    desc: "Banner + Info usuario + Allmenu/Owner buttons",
+    emoji: "🏴‍☠️",
+  },
 };
 
 async function handler(m, { sock, db }) {
@@ -69,7 +75,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* s/d *v7*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* s/d *v10*`);
       return;
     }
     db.setting("menuVariant", selected.id);

@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
         const amount =
           Math.floor(Math.random() * (pick.max - pick.min)) + pick.min;
         user.koin = (user.koin || 0) + amount;
-        rewardMsg = `${pick.icon} Koin: +${amount.toLocaleString("id-ID")}`;
+        rewardMsg = `${pick.icon} Belly: +${amount.toLocaleString("id-ID")}`;
       } else if (pick.type === "exp") {
         const amount =
           Math.floor(Math.random() * (pick.max - pick.min)) + pick.min;
@@ -161,7 +161,7 @@ async function handler(m, { sock }) {
       if (sPick.type === "koin") {
         const amount = Math.floor(Math.random() * (sPick.max - sPick.min)) + sPick.min;
         user.koin = (user.koin || 0) + amount;
-        sRewardMsg = `${sPick.icon} Ryo (Koin): +${amount.toLocaleString("id-ID")}`;
+        sRewardMsg = `${sPick.icon} Belly: +${amount.toLocaleString("id-ID")}`;
       } else {
         const amount = Math.floor(Math.random() * (sPick.max - sPick.min)) + sPick.min;
         db.updateExp(m.sender, amount);

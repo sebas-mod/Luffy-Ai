@@ -407,7 +407,7 @@ async function handler(m, { sock }) {
       `┃ 🗑️ \`${prefix}ut delete\` - Eliminar sala\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
       `╭┈┈⬡「 🏆 *PREMIO* 」\n` +
-      `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Monedas\n` +
+      `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
       `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
       `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
@@ -537,7 +537,7 @@ async function answerHandler(m, sock) {
           `🎉 *¡GANADOR!*\n\n` +
           `${color} @${m.sender.split("@")[0]} llego a la casilla 100!\n\n` +
           `╭┈┈⬡「 🎁 *PREMIO* 」\n` +
-          `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Monedas\n` +
+          `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
           `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
           `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
@@ -551,7 +551,7 @@ async function answerHandler(m, sock) {
         `🎉 *¡GANADOR!*\n\n` +
         `${color} @${m.sender.split("@")[0]} llego a la casilla 100!\n\n` +
         `╭┈┈⬡「 🎁 *PREMIO* 」\n` +
-        `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Monedas\n` +
+        `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
         `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
         `┃ ⚡ +${WIN_REWARD.energi} Energia\n` +
         `╰┈┈┈┈┈┈┈┈⬡`,

@@ -23,7 +23,7 @@ const CHALLENGES = [
   { name: "⛏️ Minar 10 Minerales", type: "mine", target: 10, reward: { gold: 400, exp: 180 } },
   { name: "🌱 Cosechar 5 Cultivos", type: "harvest", target: 5, reward: { gold: 350, exp: 160 } },
   { name: "🧪 Preparar 3 Pociones", type: "craft", target: 3, reward: { gold: 450, exp: 190 } },
-  { name: "💰 Recoger 1000 Monedas", type: "earn", target: 1000, reward: { gold: 500, exp: 250 } },
+  { name: "💰 Recoger 1000 Belly", type: "earn", target: 1000, reward: { gold: 500, exp: 250 } },
   { name: "🗺️ Completar 2 Expediciones", type: "expedition", target: 2, reward: { gold: 600, exp: 300 } },
 ];
 
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `🎉 *TANTANGAN HARIAN SELESAI!!* 🎉\n\n` +
         `¡Buen trabajo! Aquí está tu recompensa del Guild:\n` +
-        `💰 Koin: *+Rp ${challenge.reward.gold.toLocaleString()}*\n` +
+        `💰 Belly: *+Rp ${challenge.reward.gold.toLocaleString()}*\n` +
         `✨ EXP: *+${challenge.reward.exp}*\n` +
         `\n\n` +
         `> _¡Nuevos desafíos se entregarán mañana por la mañana!_`
@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
   txt += `Status: ${isComplete ? "✅ ¡¡LISTO PARA RECLAMAR!!" : "⏳ _En progreso..._"}\n\n`;
 
   txt += `*🎁 Recompensa Extra:*\n`;
-  txt += `💰 Koin: *Rp ${challenge.reward.gold.toLocaleString()}*\n`;
+  txt += `💰 Belly: *Rp ${challenge.reward.gold.toLocaleString()}*\n`;
   txt += `✨ EXP: *${challenge.reward.exp}*\n\n`;
 
   if (isComplete && !challenge.claimed) {

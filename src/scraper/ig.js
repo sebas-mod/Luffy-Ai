@@ -9,21 +9,19 @@ const CONFIG = {
     "Mozilla/5.0 (Linux; Android 10; RMX2185 Build/QP1A.190711.020) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.7559.109 Mobile Safari/537.36",
 };
 
-const CORS_PROXY = "https://cors.yardansh.com/";
-
 async function fastDLDownload(igUrl) {
   const isStory = igUrl.includes("/stories/");
   let cleanUrl = igUrl.split("?")[0];
   if (!cleanUrl.endsWith("/")) cleanUrl += "/";
 
-  const homeRes = await axios.get(CORS_PROXY + "https://fastdl.app/id", {
+  const homeRes = await axios.get("https://fastdl.app/id1", {
     headers: { "User-Agent": CONFIG.userAgent },
   });
   const cookieStr = homeRes.headers["set-cookie"]
     ? homeRes.headers["set-cookie"].map((c) => c.split(";")[0]).join("; ")
     : "";
 
-  const msecRes = await axios.get(CORS_PROXY + "https://fastdl.app/msec", {
+  const msecRes = await axios.get("https://fastdl.app/msec", {
     headers: { "User-Agent": CONFIG.userAgent, Cookie: cookieStr },
   });
   const serverTime = Math.floor(msecRes.data.msec * 1000);
@@ -40,7 +38,7 @@ async function fastDLDownload(igUrl) {
   let response;
   if (isStory) {
     response = await axios.post(
-      CORS_PROXY + "https://api-wh.fastdl.app/api/v1/instagram/story",
+      "https://api-wh.fastdl.app/api/v1/instagram/story",
       {
         url: cleanUrl,
         ts,
@@ -54,7 +52,7 @@ async function fastDLDownload(igUrl) {
           "Content-Type": "application/json",
           "User-Agent": CONFIG.userAgent,
           Origin: "https://fastdl.app",
-          Referer: "https://fastdl.app/id/story-saver",
+          Referer: "https://fastdl.app/id1/story-saver",
           Cookie: cookieStr,
         },
       },
@@ -69,14 +67,14 @@ async function fastDLDownload(igUrl) {
     params.append("_s", signature);
 
     response = await axios.post(
-      CORS_PROXY + "https://api-wh.fastdl.app/api/convert",
+      "https://api-wh.fastdl.app/api/convert",
       params.toString(),
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
           "User-Agent": CONFIG.userAgent,
           Origin: "https://fastdl.app",
-          Referer: "https://fastdl.app/id",
+          Referer: "https://fastdl.app/id1",
           Cookie: cookieStr,
         },
       },

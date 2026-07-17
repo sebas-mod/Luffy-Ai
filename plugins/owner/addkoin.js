@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
 
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `💰 *ᴀᴅᴅ ᴋᴏɪɴ*\n\n` +
+            `💰 *ᴀᴅᴅ ʙᴇʟʟʏ*\n\n` +
             `> \`.addkoin <cantidad>\` - a uno mismo\n` +
             `> \`.addkoin <cantidad> @user\` - a persona más\n` +
             `> Max: 9.000.000.000.000 (9T)\n\n` +
@@ -60,8 +60,8 @@ async function handler(m, { sock }) {
     if (user.koin === -1) {
         return m.reply(
             `💰 *INFORMATION*\n` +
-            `@${targetJid.split('@')[0]} ya memiliki koin *∞ Unlimited*\n` +
-            `No es necesario agregando koin de nuevo`,
+            `@${targetJid.split('@')[0]} ya memiliki belly *∞ Unlimited*\n` +
+            `No es necesario agregando belly de nuevo`,
             { mentions: [targetJid] }
         )
     }
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     await m.reply(
-        `✅ Éxito agregando koin *@${targetJid.split('@')[0]}* por la cantidad de *${formatKoin(amount)}*`,
+        `✅ Éxito agregando belly *@${targetJid.split('@')[0]}* por la cantidad de *${formatKoin(amount)}*`,
         { mentions: [targetJid] }
     )
 }

@@ -141,7 +141,7 @@ class OurinGames {
         }
         caption += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
         caption += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
-        caption += `🎁 Recompensa: *Límite, Monedas, EXP (random)*\n\n`;
+        caption += `🎁 Recompensa: *Límite, Belly, EXP (random)*\n\n`;
         caption += `_Responde directamente o escribe "rendirse"\nCada error, la pista se incrementa_`;
 
         sentMsg = await sock.sendMessage(
@@ -160,7 +160,7 @@ class OurinGames {
         }
         text += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
         text += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
-        text += `🎁 Recompensa: *Límite, Monedas, EXP (random)*\n\n`;
+        text += `🎁 Recompensa: *Límite, Belly, EXP (random)*\n\n`;
         text += `_Responde directamente o escribe "rendirse"\nCada error, la pista se incrementa_`;
 
         sentMsg = await sendGamePreview(
@@ -243,7 +243,7 @@ class OurinGames {
           totalLimit += fastResult.bonus.limit;
           totalBalance += fastResult.bonus.koin;
           totalExp += fastResult.bonus.exp;
-          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} Límite, +${fastResult.bonus.koin} Monedas\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
+          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} Límite, +${fastResult.bonus.koin} Belly\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
         }
 
         if (totalLimit > 0) db.updateEnergi(m.sender, totalLimit);
@@ -263,7 +263,7 @@ class OurinGames {
         if (totalLimit > 0 || totalBalance > 0 || totalExp > 0) {
           let parts = [];
           if (totalLimit > 0) parts.push(`+${totalLimit} Límite`);
-          if (totalBalance > 0) parts.push(`+${totalBalance} Monedas`);
+          if (totalBalance > 0) parts.push(`+${totalBalance} Belly`);
           if (totalExp > 0) parts.push(`+${totalExp} EXP`);
           text += `🎁 ${parts.join(", ")}`;
         }

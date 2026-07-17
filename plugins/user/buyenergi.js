@@ -31,8 +31,8 @@ async function handler(m, { sock }) {
         return m.reply(
             `🛒 *ʙᴜʏ ᴇɴᴇʀɢɪ*\n\n` +
             `╭┈┈⬡「 💰 *ɪɴꜰᴏ* 」\n` +
-            `┃ 💵 ʜᴀʀɢᴀ: *${PRICE_PER_ENERGI}* koin/energi\n` +
-            `┃ 💰 ᴛᴜs ᴍᴏɴᴇᴅᴀs: *${formatNumber(user.koin || 0)}*\n` +
+            `┃ 💵 ʜᴀʀɢᴀ: *${PRICE_PER_ENERGI}* belly/energi\n` +
+            `┃ 💰 ᴛᴜs ʙᴇʟʟʏ: *${formatNumber(user.koin || 0)}*\n` +
             `╰┈┈⬡\n\n` +
             `> Usa: \`.buyenergi <cantidad>\`\n\n` +
             `\`Ejemplo: ${m.prefix}buyenergi 10\``
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
     if ((user.koin || 0) < totalPrice) {
         return m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> ¡No tienes suficientes monedas!\n` +
+            `> ¡No tienes suficientes Belly!\n` +
             `> Necesitas: *${formatNumber(totalPrice)}*\n` +
             `> Tienes: *${formatNumber(user.koin || 0)}*`
         )
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
             `> ¡Pero ya tienes energía ilimitada!\n` +
-            `> Monedas devueltas.`
+            `> Belly devueltas.`
         )
     }
     
@@ -72,11 +72,11 @@ async function handler(m, { sock }) {
         `✅ *ᴘᴇᴍʙᴇʟɪᴀɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
         `┃ ⚡ ᴇɴᴇʀɢɪ: *+${formatNumber(amount)}*\n` +
-        `┃ 💵 ʜᴀʀɢᴀ: *-${formatNumber(totalPrice)}* koin\n` +
+        `┃ 💵 ʜᴀʀɢᴀ: *-${formatNumber(totalPrice)}* Belly\n` +
         `╰┈┈⬡\n\n` +
         `╭┈┈⬡「 💰 *sᴀʟᴅᴏ* 」\n` +
         `┃ ⚡ ᴇɴᴇʀɢɪ: *${formatNumber(newEnergi)}*\n` +
-        `┃ 💰 ᴋᴏɪɴ: *${formatNumber(newKoin)}*\n` +
+        `┃ 💰 ʙᴇʟʟʏ: *${formatNumber(newKoin)}*\n` +
         `╰┈┈⬡`
     )
 }

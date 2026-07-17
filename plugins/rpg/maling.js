@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
 
     txt = `¡¡OPERACIÓN LIMPIA!! 🦹‍♂️✨\n\n`;
     txt += `${outcome.msg}\n\n`;
-    txt += `💰 Koin Haram: *+Rp ${outcome.money.toLocaleString("id-ID")}*\n`;
+    txt += `💰 Belly Haram: *+Rp ${outcome.money.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP Copet: *+${outcome.exp}*`;
   } else {
     const actualFine = Math.min(outcome.fine, user.koin || 0);

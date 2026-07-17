@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
                     {
                         name: 'quick_reply',
                         buttonParamsJson: JSON.stringify({
-                            display_text: '💰 Top Koin',
+                            display_text: '💰 Top Belly',
                             id: `${m.prefix}topkoin`
                         })
                     },
@@ -125,7 +125,7 @@ async function handler(m, { sock }) {
     let title, emoji, field, formatValue
     
     if (type === 'koin') {
-        title = 'TOP GLOBAL KOIN'
+        title = 'TOP GLOBAL BELLY'
         emoji = '💰'
         field = 'koin'
         formatValue = (u) => `Rp ${formatNumber(u.koin)}`

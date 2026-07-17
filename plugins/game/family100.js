@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     text += `${i + 1}. ❓ ???\n`;
   }
   text += `\nSolo tienes *120 segundos*! ⏱️\n`;
-  text += `¿Premios? *EXP* y *Monedas* aleatorias por cada respuesta correcta! 🎁💸\n\n`;
+  text += `¿Premios? *EXP* y *Belly* aleatorias por cada respuesta correcta! 🎁💸\n\n`;
   text += `Como jugar: responde directamente a este mensaje con tu respuesta, o responde con la palabra *rendirse* si ya no puedes mas 🏳️😂`;
 
   const sentMsg = await m.reply(text);
@@ -190,7 +190,7 @@ async function family100AnswerHandler(m, sock) {
       }
 
       const total = session.question.respuesta.length;
-      let text = `¡Correcto! ✅🎉\n@${m.sender.split("@")[0]} obtuvo *+${answerReward.exp} EXP* y *+${answerReward.koin} Monedas*! 💸✨\n\n`;
+      let text = `¡Correcto! ✅🎉\n@${m.sender.split("@")[0]} obtuvo *+${answerReward.exp} EXP* y *+${answerReward.koin} Belly*! 💸✨\n\n`;
       text += `*Pregunta:* ${session.question.pregunta}\n\n`;
       session.question.respuesta.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());

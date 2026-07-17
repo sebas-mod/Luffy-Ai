@@ -1037,7 +1037,7 @@ async function endGame(chatId, sock, db, winner) {
       .join("\n")}\n` +
     `╰┈┈┈┈┈┈┈┈⬡\n\n` +
     `╭┈┈⬡「 🎁 *PREMIO* 」\n` +
-    `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Monedas\n` +
+    `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Belly\n` +
     `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
     `╰┈┈┈┈┈┈┈┈⬡\n\n` +
     `> ¡GG WP! ¿Jugar de nuevo? \`${config.command?.prefix || "."}ww create\``;

@@ -322,7 +322,7 @@ async function kyubigameAnswerHandler(m, sock) {
                 reportText += `Con un jutsu mortal, ¡lograste derrotar a *${session.monster}*!\n\n`;
                 reportText += `*🎁 RECOMPENSA POR COMPLETAR LA MISION:*\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;
-                reportText += `> 💰 Ryo (Monedas): *+${ryoReward.toLocaleString()}*\n`;
+                reportText += `> 💰 Ryo (Belly): *+${ryoReward.toLocaleString()}*\n`;
 
                 if (droppedItems.length > 0) {
                     reportText += `\n*📦 BOTIN SHINOBI CAPTURADO:*\n`;

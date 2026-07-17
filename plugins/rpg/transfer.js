@@ -23,9 +23,9 @@ function handler(m, { sock }) {
   const args = m.args || [];
   if (args.length < 3) {
     let txt = `🏦 *BANK SENTRAL RPG* 🏦\n\n`;
-    txt += `Layanan pengiriman Koin & Barang Antar-Player!\n\n`;
+    txt += `Layanan pengiriman Belly & Barang Antar-Player!\n\n`;
     txt += `*Format Pengiriman:*\n`;
-    txt += `👉 \`.transfer money 10000 @user\` (Untuk Koin)\n`;
+    txt += `👉 \`.transfer money 10000 @user\` (Untuk Belly)\n`;
     txt += `👉 \`.transfer potion 5 @user\` (Untuk Item)\n`;
     return m.reply(txt);
   }

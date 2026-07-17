@@ -802,7 +802,7 @@ async function handler(m, { sock }) {
         for (const rw of pool.rewards) {
           const label =
             {
-        coins: "Monedas",
+        coins: "Belly",
                 energi: "Energia",
                 limit: "Limite",
                 tickets: "Boletos Gacha",

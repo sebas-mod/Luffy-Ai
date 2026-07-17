@@ -182,7 +182,7 @@ function buildRewardPreview(user) {
     return `🎁 *Estado de Bonificación*\n> La bonificación de primer registro ya fue reclamada\n> El registro nuevamente no otorga recompensa`;
   }
 
-  return `🎁 *Bonificación de Primer Registro*\n> 💰 +${rewards.koin.toLocaleString("id-ID")} Monedas\n> ⚡ +${rewards.energi} Energía\n> ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP`;
+  return `🎁 *Bonificación de Primer Registro*\n> 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n> ⚡ +${rewards.energi} Energía\n> ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP`;
 }
 
 function buildConfirmationRewardBlock(user) {
@@ -192,7 +192,7 @@ function buildConfirmationRewardBlock(user) {
     return `╭┈┈⬡「 🎁 *ʙᴏɴᴜs* 」\n┃ La bonificación de primer registro ya fue tomada\n┃ El registro nuevamente no otorga recompensa\n╰┈┈┈┈┈┈┈┈⬡`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Koin\n┃ ⚡ +${rewards.energi} Energi\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
 }
 
 function buildSuccessRewardBlock(alreadyClaimedReward) {
@@ -202,7 +202,7 @@ function buildSuccessRewardBlock(alreadyClaimedReward) {
     return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ La bonificación de registro ya fue reclamada\n┃ No hay recompensa adicional esta vez\n╰┈┈┈┈┈┈┈┈⬡`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Monedas\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.koin.toLocaleString("id-ID")} Belly\n┃ ⚡ +${rewards.energi} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
 }
 
 function buildUserDataBlock(name, age, gender) {
@@ -366,10 +366,10 @@ async function registrationAnswerHandler(m, sock) {
   if (session.step === "gender") {
     let gender = null;
 
-    if (/^(laki[-\s]?laki|cowok?|cowo|l|male|pria)$/i.test(lowText)) {
-      gender = "Laki-laki";
-    } else if (/^(perempuan|cewek?|cewe|p|female|wanita)$/i.test(lowText)) {
-      gender = "Perempuan";
+    if (/^(laki[-\s]?laki|cowok?|cowo|l|male|pria|hombre|masculino|m)$/i.test(lowText)) {
+      gender = "Masculino";
+    } else if (/^(perempuan|cewek?|cewe|p|female|wanita|mujer|femenino|f)$/i.test(lowText)) {
+      gender = "Femenino";
     }
 
     if (!gender) {
@@ -444,10 +444,10 @@ async function registrationAnswerHandler(m, sock) {
   if (session.step === "revise_gender") {
     let gender = null;
 
-    if (/^(laki[-\s]?laki|cowok?|cowo|l|male|pria)$/i.test(lowText)) {
-      gender = "Laki-laki";
-    } else if (/^(perempuan|cewek?|cewe|p|female|wanita)$/i.test(lowText)) {
-      gender = "Perempuan";
+    if (/^(laki[-\s]?laki|cowok?|cowo|l|male|pria|hombre|masculino|m)$/i.test(lowText)) {
+      gender = "Masculino";
+    } else if (/^(perempuan|cewek?|cewe|p|female|wanita|mujer|femenino|f)$/i.test(lowText)) {
+      gender = "Femenino";
     }
 
     if (!gender) {

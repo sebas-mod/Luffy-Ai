@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
     let txt = `🗡️ *¡¡AVENTURA EXITOSA!!* 🗡️\n\n`;
     txt += `📍 Ubicación: *${location}*\n\n`;
     txt += `¡Genial! ¡Lograste derrotar al monstruo guardián y encontraste un cofre del tesoro!\n`;
-    txt += `💰 Monedas: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
+    txt += `💰 Belly: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP: *+${expGain.toLocaleString("id-ID")}*\n\n`;
     txt += `¡Regresaste a salvo! ¡Sigue aventurándote más tarde! 🚀✨`;
 

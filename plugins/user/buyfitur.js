@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
         text += `┃  🛒 *ʙᴜʏ ꜰɪᴛᴜʀ*\n`
         text += `╰━━━━━━━━━━━━━━━━━╯\n\n`
         
-        text += `> Precio: *${formatNumber(PRICE_PER_FEATURE)}* monedas/función\n`
-        text += `> Monedas: *${formatNumber(user.koin || 0)}*\n\n`
+        text += `> Precio: *${formatNumber(PRICE_PER_FEATURE)}* Belly/función\n`
+        text += `> Belly: *${formatNumber(user.koin || 0)}*\n\n`
         
         text += `╭┈┈⬡「 📋 *ꜰɪᴛᴜʀ* 」\n`
         
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
     if ((user.koin || 0) < PRICE_PER_FEATURE) {
         return m.reply(
             `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> ¡No tienes suficientes monedas!\n` +
+            `> ¡No tienes suficientes Belly!\n` +
             `> Necesitas: *${formatNumber(PRICE_PER_FEATURE)}*\n` +
             `> Tienes: *${formatNumber(user.koin || 0)}*`
         )
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
         `✅ *ꜰɪᴛᴜʀ ᴅɪ-ᴜɴʟᴏᴄᴋ*\n\n` +
         `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
         `┃ 🎁 ꜰɪᴛᴜʀ: *${feature.name}*\n` +
-        `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(PRICE_PER_FEATURE)}* monedas\n` +
+        `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(PRICE_PER_FEATURE)}* Belly\n` +
         `┃ 💰 sᴀʟᴅᴏ: *${formatNumber(newKoin)}*\n` +
         `╰┈┈⬡\n\n` +
         `> _${feature.desc}_\n\n` +

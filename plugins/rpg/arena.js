@@ -104,7 +104,7 @@ async function handler(m, { sock }) {
     txt += `🏆 *¡¡VICTORIA LOGRADA!!* 🎉\n`;
     txt += `¡Increíble! Aquí están tus recompensas:\n`;
     txt += `✨ EXP: *+${expReward}*\n`;
-    txt += `💰 Koin Jarahan: *+Rp ${goldReward.toLocaleString()}*`;
+    txt += `💰 Belly Jarahan: *+Rp ${goldReward.toLocaleString()}*`;
 
     await m.react("🏆");
   } else {
@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
 
     txt += `💀 *LÁSTIMA, PERDISTE...* 💔\n`;
     txt += `¡No te pongas triste, la próxima vez será!\n`;
-    txt += `💸 Koin Terjatuh: *-Rp ${goldLoss.toLocaleString()}*`;
+    txt += `💸 Belly Terjatuh: *-Rp ${goldLoss.toLocaleString()}*`;
 
     await m.react("💀");
   }

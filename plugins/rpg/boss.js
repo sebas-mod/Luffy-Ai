@@ -185,7 +185,7 @@ async function handler(m, { sock }) {
     txt += `¡Genial, lograste tumbar al monstruo gigante *${boss.name}*!\n\n`;
     txt += `*¡¡TESORO DEL JEFE!!*\n`;
     txt += `✨ EXP: *+${expReward.toLocaleString()}*\n`;
-    txt += `💰 Koin Emas: *+Rp ${goldReward.toLocaleString()}*\n`;
+    txt += `💰 Belly: *+Rp ${goldReward.toLocaleString()}*\n`;
     if (droppedItems.length > 0) {
       txt += `📦 Item Loot: *${droppedItems.join(", ")}*\n`;
     }
@@ -200,7 +200,7 @@ async function handler(m, { sock }) {
     txt = `💀 ¡¡OH NO... ¡HAS SIDO DERROTADO...! 💔\n\n`;
     txt += `La fuerza de *${boss.name}* era demasiado grande para ti!\n\n`;
     txt += `*Penalización por derrota:*\n`;
-    txt += `💸 Monedas perdidas: *-Rp ${goldLoss.toLocaleString()}*\n`;
+    txt += `💸 Belly perdidos: *-Rp ${goldLoss.toLocaleString()}*\n`;
     txt += `❤️ HP reducido: *-50 HP*\n\n`;
     txt += `> 💡 _Consejo: ¡Mejora tu nivel y equipo antes de desafiarlo de nuevo!_`;
 

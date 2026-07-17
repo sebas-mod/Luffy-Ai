@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
 
   let txt = `¡GENIAL! ¡El sueldo diario ya cayó! 🎉✨\n\n`;
   txt += `Esta es tu ración de hoy:\n`;
-  txt += `💸 Monedas: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
+  txt += `💸 Belly: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n`;
   txt += `⚡ Energía: *+${energiReward}*\n\n`;
   

@@ -4,9 +4,9 @@ const pluginConfig = {
     name: 'koin',
     alias: ['saldo', 'money', 'cash', 'coin', 'coins'],
     category: 'user',
-    description: 'Ver monedas del usuario',
-    usage: '.koin [@user]',
-    example: '.koin',
+    description: 'Ver belly del usuario',
+    usage: '.belly [@user]',
+    example: '.belly',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -43,10 +43,10 @@ async function handler(m, { sock }) {
     
     const isSelf = targetJid === m.sender
     
-    let text = `*〔 💰 KOIN INFO 〕*\n\n`
+    let text = `*〔 💰 BELLY INFO 〕*\n\n`
 
 text += `*〔 👤 User 〕* ${targetName}\n`
-text += `*〔 💰 Koin 〕* ${koinDisplay}\n`
+text += `*〔 💰 Belly 〕* ${koinDisplay}\n`
 const isOwner = config.isOwner(targetJid) ? 'Owner' : ''
 const isPremium = user.isPremium ? 'Premium' : 'Free'
 
@@ -54,9 +54,9 @@ text += `*〔 💎 Status 〕* ${isOwner || isPremium}\n`
 
 if (isSelf) {
   text += `\n*〔 🛒 SHOP 〕*\n`
-  text += `• \`.buyenergi <jml>\` (1 = 100 koin)\n`
-  text += `• \`.buyfitur\` (1 = 3000 koin)\n`
-  text += `\n_🎮 ¡Juega para obtener monedas!_`
+  text += `• \`.buyenergi <jml>\` (1 = 100 belly)\n`
+  text += `• \`.buyfitur\` (1 = 3000 belly)\n`
+  text += `\n_🎮 ¡Juega para obtener belly!_`
 }
     
     await m.reply(text)

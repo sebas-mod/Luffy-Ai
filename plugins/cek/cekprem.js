@@ -70,7 +70,7 @@ async function handler(m) {
 
     if (user) {
         txt += `⚡ Energía: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Monedas: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('es-ES')}*\n`
+        txt += `💰 Belly: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('es-ES')}*\n`
         txt += `⭐ Exp: *${(user.exp ?? 0).toLocaleString('es-ES')}*\n`
         txt += `📊 Nivel: *${user.level ?? 1}*\n`
     }

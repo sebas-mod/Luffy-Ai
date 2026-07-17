@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     txt += `• ${r.name}: *+${r.qty} ekor*\n`;
   }
   txt += `\n¡Las piezas de caza se venden automáticamente! 🎉\n`;
-  txt += `💸 Monedas: *+Rp ${totalMoney.toLocaleString("id-ID")}*\n`;
+  txt += `💸 Belly: *+Rp ${totalMoney.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${totalExp}*\n`;
   txt += `⚡ Estamina usada: *-${staminaCost}*\n\n`;
   txt += `¡Genial, mañana volvemos a cazar! 🔥🥩`;
