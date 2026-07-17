@@ -1384,6 +1384,23 @@ Soy *${config.bot?.name || "Luffy-AI"}*, tu asistente. Estoy aquí para lo que n
                         display_text: "📋 All Menu",
                         id: `${m.prefix}allmenu`
                       })
+                    },
+                    {
+                      name: "single_select",
+                      buttonParamsJson: JSON.stringify({
+                        title: "📦 Categorías",
+                        sections: [
+                          {
+                            title: "Selecciona una categoría",
+                            rows: categories.sorted.map(({ cat, cmds, emoji }) => ({
+                              title: `${emoji} ${cat}`,
+                              description: `${cmds.length} comandos`,
+                              id: `${m.prefix}menucat ${cat}`
+                            }))
+                          }
+                        ],
+                        icon: "DEFAULT"
+                      })
                     }
                   ]
                 }
