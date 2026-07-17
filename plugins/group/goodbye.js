@@ -25,7 +25,7 @@ function resolvePlaceholders(
   groupOwner,
   prefix,
 ) {
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
     Sunday: "Domingo",
     Monday: "Lunes",
@@ -112,7 +112,7 @@ Deséale lo mejor.`,
   const emoji = emojis[Math.floor(Math.random() * emojis.length)];
   const header = headers[Math.floor(Math.random() * headers.length)];
   const username = participant?.split("@")[0] || "User";
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
     Sunday: "Domingo",
     Monday: "Lunes",

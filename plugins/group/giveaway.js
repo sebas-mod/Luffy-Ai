@@ -380,7 +380,7 @@ function startGiveawayChecker(sock, db) {
     },
     null,
     true,
-    "Asia/Jakarta",
+    "America/Argentina/Buenos_Aires",
   );
 }
 

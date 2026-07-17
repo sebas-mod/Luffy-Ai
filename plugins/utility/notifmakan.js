@@ -33,7 +33,7 @@ function handler(m) {
         info += `📌 *Estado:* ${status}\n`
 
         if (existing) {
-            info += `⏰ *Horario:* ${existing.jadwal.map(j => `*${j}* WIB`).join(', ')}\n`
+            info += `⏰ *Horario:* ${existing.jadwal.map(j => `*${j}* ART`).join(', ')}\n`
             if (existing.menu) info += `🍴 *Menu:* _${existing.menu}_\n`
         }
 
@@ -58,12 +58,12 @@ function handler(m) {
 
     if (sub === 'on') {
         if (existing?.enabled && args.length === 1) {
-            return m.reply(`⚠️ *¡El recordatorio de comida ya está activo!*\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} WIB\n\n> Usa \`${m.prefix}notifmakan edit\` para cambiar el horario`)
+            return m.reply(`⚠️ *¡El recordatorio de comida ya está activo!*\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} ART\n\n> Usa \`${m.prefix}notifmakan edit\` para cambiar el horario`)
         }
 
         if (existing && args.length === 1) {
             toggleNotif('makan', sender, chatJid, true)
-            return m.reply(`✅ *¡Recordatorio de comida reactivado!* 🔔\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} WIB`) // ¡Vamos a comer!
+            return m.reply(`✅ *¡Recordatorio de comida reactivado!* 🔔\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} ART`) // ¡Vamos a comer!
         }
 
         const timeInput = args[1]
@@ -83,7 +83,7 @@ function handler(m) {
         reply += `⏰ *Horario:*\n`
         for (const j of jadwal) {
             const label = getMealLabel(j)
-            reply += `> 🕐 *${j}* WIB _(${label})_\n`
+            reply += `> 🕐 *${j}* ART _(${label})_\n`
         }
         if (menu) reply += `\n🍴 *Menú:* _${menu}_`
         reply += `\n\n> 💡 _La notificación se enviará a este chat todos los días_` // ¡Shishishi, que no se te olvide!
@@ -113,7 +113,7 @@ function handler(m) {
         reply += `⏰ *Nuevo horario:*\n`
         for (const j of jadwal) {
             const label = getMealLabel(j)
-            reply += `> 🕐 *${j}* WIB _(${label})_\n`
+            reply += `> 🕐 *${j}* ART _(${label})_\n`
         }
         if (menu) reply += `\n🍴 *Menú:* _${menu}_`
 

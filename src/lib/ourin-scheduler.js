@@ -7,7 +7,7 @@ import config from "../../config.js";
 
 const scheduledTasks = new Map();
 const activeCronJobs = new Map();
-const TZ = "Asia/Jakarta";
+const TZ = "America/Argentina/Buenos_Aires";
 
 function getMsUntilTime(hour, minute = 0) {
   const now = moment.tz(TZ);
@@ -463,7 +463,7 @@ async function startGroupScheduleChecker(sock) {
                 "not_announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grup dibuka otomatis sesuai jadwal.\n> Waktu: ${currentTime} WIB`,
+                text: `🔓 *ᴀᴜᴛᴏ ᴏᴘᴇɴ*\n\n> Grup dibuka otomatis sesuai jadwal.\n> Waktu: ${currentTime} ART`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(
@@ -501,7 +501,7 @@ async function startGroupScheduleChecker(sock) {
                 "announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔒 *ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Grup ditutup otomatis sesuai jadwal.\n> Waktu: ${currentTime} WIB`,
+                text: `🔒 *ᴀᴜᴛᴏ ᴄʟᴏsᴇ*\n\n> Grup ditutup otomatis sesuai jadwal.\n> Waktu: ${currentTime} ART`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(

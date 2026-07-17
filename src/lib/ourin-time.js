@@ -1,5 +1,5 @@
 import moment from 'moment-timezone'
-const TIMEZONE = 'Asia/Jakarta'
+const TIMEZONE = 'America/Argentina/Buenos_Aires'
 
 moment.locale('id')
 

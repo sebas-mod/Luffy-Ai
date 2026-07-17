@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['protect', 'guardian', 'wpr'],
     category: 'game',
     description: 'Acción nocturna del Guardián - Proteger al objetivo',
-    usage: '.wwprotect <nomor>',
+    usage: '.wwprotect <numero>',
     example: '.wwprotect 3',
     isOwner: false,
     isPremium: false,

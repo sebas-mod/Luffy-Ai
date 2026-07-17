@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         return m.reply(`❌ ¡Ya marcaste tu presencia! ¡Shishishi!`)
     }
     absen.peserta.push(m.sender)
-    const now = moment().tz('Asia/Jakarta')
+    const now = moment().tz('America/Argentina/Buenos_Aires')
     const dateStr = now.format('D MMMM YYYY')
     const list = absen.peserta
         .map((jid, i) => `┃ ${i + 1}. @${jid.split('@')[0]}`)

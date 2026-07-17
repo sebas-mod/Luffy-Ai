@@ -1,2138 +1,2138 @@
 [
   {
     "index": 0,
-    "soal": "P-L-A-N-Y-E-A",
-    "tipe": "Profesi",
-    "jawaban": "PELAYAN"
+    "soal": "E-C-H-O-C",
+    "tipe": "Vehículo",
+    "jawaban": "COCHE"
   },
   {
     "index": 1,
-    "soal": "L-I-M-B-O",
-    "tipe": "Benda",
-    "jawaban": "MOBIL"
+    "soal": "A-R-U-A-T-G-I-R",
+    "tipe": "Instrumento",
+    "jawaban": "GUITARRA"
   },
   {
     "index": 2,
-    "soal": "A-K-H-I-M",
-    "tipe": "Profesi",
-    "jawaban": "HAKIM"
+    "soal": "E-S-M-A",
+    "tipe": "Objeto",
+    "jawaban": "MESA"
   },
   {
     "index": 3,
-    "soal": "T-R-A-G-I",
-    "tipe": "Benda",
-    "jawaban": "GITAR"
+    "soal": "P-R-O-E-R",
+    "tipe": "Animal",
+    "jawaban": "PERRO"
   },
   {
     "index": 4,
-    "soal": "A-P-S-U-I",
-    "tipe": "Benda",
-    "jawaban": "PISAU"
+    "soal": "N-M-A-N-Z-A-A",
+    "tipe": "Fruta",
+    "jawaban": "MANZANA"
   },
   {
     "index": 5,
-    "soal": "A-P-I-P",
-    "tipe": "Benda",
-    "jawaban": "PIPA"
+    "soal": "A-T-M-O-T-E",
+    "tipe": "Verdura",
+    "jawaban": "TOMATE"
   },
   {
     "index": 6,
-    "soal": "M-A-Y-A",
-    "tipe": "Hewan",
-    "jawaban": "AYAM"
+    "soal": "T-O-U-L-F-B",
+    "tipe": "Deporte",
+    "jawaban": "FUTBOL"
   },
   {
     "index": 7,
-    "soal": "A-K-P-L-E-A",
-    "tipe": "Benda",
-    "jawaban": "KEPALA"
+    "soal": "C-E-O-T-A-R-R",
+    "tipe": "Profesión",
+    "jawaban": "CARTERO"
   },
   {
     "index": 8,
-    "soal": "E-O-N-K-A-R-Y",
-    "tipe": "Benda",
-    "jawaban": "KERAYON"
+    "soal": "A-Z-L-P-I",
+    "tipe": "Objeto",
+    "jawaban": "LAPIZ"
   },
   {
     "index": 9,
-    "soal": "G-U-N-A",
-    "tipe": "Benda",
-    "jawaban": "UANG"
+    "soal": "T-A-O-G",
+    "tipe": "Animal",
+    "jawaban": "GATO"
   },
   {
     "index": 10,
-    "soal": "D-A-K-U",
-    "tipe": "Hewan",
-    "jawaban": "KUDA"
+    "soal": "P-A-A-O-T-L-N",
+    "tipe": "Fruta",
+    "jawaban": "PLATANO"
   },
   {
     "index": 11,
-    "soal": "A-T-D-O-N",
-    "tipe": "Makanan",
-    "jawaban": "DONAT"
+    "soal": "A-O-N-R-I-H-A-Z-A",
+    "tipe": "Verdura",
+    "jawaban": "ZANAHORIA"
   },
   {
     "index": 12,
-    "soal": "E-P-I-C",
-    "tipe": "Benda",
-    "jawaban": "PECI"
+    "soal": "O-B-L-S-A-B",
+    "tipe": "Deporte",
+    "jawaban": "BASBOL"
   },
   {
     "index": 13,
-    "soal": "G-N-U-L-A-M-P",
-    "tipe": "Kota",
-    "jawaban": "LAMPUNG"
+    "soal": "O-D-C-T-O-R",
+    "tipe": "Profesión",
+    "jawaban": "DOCTOR"
   },
   {
     "index": 14,
-    "soal": "B-U-N-R-A-K-U",
-    "tipe": "Tempat",
-    "jawaban": "KUBURAN"
+    "soal": "L-I-L-A-S",
+    "tipe": "Objeto",
+    "jawaban": "SILLA"
   },
   {
     "index": 15,
-    "soal": "S-A-M-U-K",
-    "tipe": "Benda",
-    "jawaban": "KAMUS"
+    "soal": "L-L-A-C-O-A-B",
+    "tipe": "Animal",
+    "jawaban": "CABALLO"
   },
   {
     "index": 16,
-    "soal": "B-A-R-D-E-E-N",
-    "tipe": "Benda",
-    "jawaban": "BENDERA"
+    "soal": "J-A-A-A-N-R-N",
+    "tipe": "Fruta",
+    "jawaban": "NARANJA"
   },
   {
     "index": 17,
-    "soal": "A-N-I-P-O",
-    "tipe": "Benda",
-    "jawaban": "PIANO"
+    "soal": "C-G-A-E-U-H-L",
+    "tipe": "Verdura",
+    "jawaban": "LECHUGA"
   },
   {
     "index": 18,
-    "soal": "A-B-R-A-N-T-U-M",
-    "tipe": "Buah",
-    "jawaban": "RAMBUTAN"
+    "soal": "E-T-I-N-S",
+    "tipe": "Deporte",
+    "jawaban": "TENIS"
   },
   {
     "index": 19,
-    "soal": "A-N-G-E-R-U-B",
-    "tipe": "Hewan",
-    "jawaban": "BERUANG"
+    "soal": "C-D-E-O-I-M",
+    "tipe": "Profesión",
+    "jawaban": "MEDICO"
   },
   {
     "index": 20,
-    "soal": "J-A-M-E",
-    "tipe": "Benda",
-    "jawaban": "MEJA"
+    "soal": "L-B-I-O-R",
+    "tipe": "Objeto",
+    "jawaban": "LIBRO"
   },
   {
     "index": 21,
-    "soal": "B-U-R-N-G-U",
-    "tipe": "Hewan",
-    "jawaban": "BURUNG"
+    "soal": "R-A-P-A-O-J",
+    "tipe": "Animal",
+    "jawaban": "PAJARO"
   },
   {
     "index": 22,
-    "soal": "B-E-N-G-N-A-T",
-    "tipe": "Hewan",
-    "jawaban": "BANTENG"
+    "soal": "S-R-E-F-A",
+    "tipe": "Fruta",
+    "jawaban": "FRASE"
   },
   {
     "index": 23,
-    "soal": "A-N-S-A-N",
-    "tipe": "Buah",
-    "jawaban": "NANAS"
+    "soal": "T-T-P-A-A-A",
+    "tipe": "Verdura",
+    "jawaban": "PATATA"
   },
   {
     "index": 24,
-    "soal": "A-I-R-D-U-N",
-    "tipe": "Buah",
-    "jawaban": "DURIAN"
+    "soal": "N-N-C-T-I-A-A-O",
+    "tipe": "Deporte",
+    "jawaban": "NATACION"
   },
   {
     "index": 25,
-    "soal": "K-A-I-N",
-    "tipe": "Hewan",
-    "jawaban": "IKAN"
+    "soal": "G-A-O-O-D-B-A",
+    "tipe": "Profesión",
+    "jawaban": "ABOGADO"
   },
   {
     "index": 26,
-    "soal": "I-N-P-U-T",
-    "tipe": "Benda",
-    "jawaban": "PINTU"
+    "soal": "N-E-A-A-N-V-T",
+    "tipe": "Objeto",
+    "jawaban": "VENTANA"
   },
   {
     "index": 27,
-    "soal": "A-N-U-M-K-Y",
-    "tipe": "Hewan",
-    "jawaban": "NYAMUK"
+    "soal": "A-C-V-A",
+    "tipe": "Animal",
+    "jawaban": "VACA"
   },
   {
     "index": 28,
-    "soal": "A-D-L-A-N-S",
-    "tipe": "Benda",
-    "jawaban": "SANDAL"
+    "soal": "R-E-S-A-F",
+    "tipe": "Fruta",
+    "jawaban": "FRESA"
   },
   {
     "index": 29,
-    "soal": "A-K-E-B-U-R",
-    "tipe": "Hewan",
-    "jawaban": "KERBAU"
+    "soal": "C-O-L-A-E-L-B",
+    "tipe": "Verdura",
+    "jawaban": "CEBOLLA"
   },
   {
     "index": 30,
-    "soal": "S-T-R-E-A-K",
-    "tipe": "Benda",
-    "jawaban": "KERTAS"
+    "soal": "A-T-E-S-K-B",
+    "tipe": "Deporte",
+    "jawaban": "BASKET"
   },
   {
     "index": 31,
-    "soal": "G-E-N-P-O-T",
-    "tipe": "Benda",
-    "jawaban": "TOPENG"
+    "soal": "I-E-O-R-E-N-I-N-G",
+    "tipe": "Profesión",
+    "jawaban": "INGENIERO"
   },
   {
     "index": 32,
-    "soal": "A-S-B-U-N",
-    "tipe": "Benda",
-    "jawaban": "SABUN"
+    "soal": "A-M-A-C",
+    "tipe": "Objeto",
+    "jawaban": "CAMA"
   },
   {
     "index": 33,
-    "soal": "A-U-N-T",
-    "tipe": "Hewan",
-    "jawaban": "UNTA"
+    "soal": "N-O-E-L",
+    "tipe": "Animal",
+    "jawaban": "LEON"
   },
   {
     "index": 34,
-    "soal": "I-L-N-I-L",
-    "tipe": "Benda",
-    "jawaban": "LILIN"
+    "soal": "A-U-V",
+    "tipe": "Fruta",
+    "jawaban": "UVA"
   },
   {
     "index": 35,
-    "soal": "M-A-J",
-    "tipe": "Benda",
-    "jawaban": "JAM"
+    "soal": "I-O-P-P-N-E",
+    "tipe": "Verdura",
+    "jawaban": "PEPINO"
   },
   {
     "index": 36,
-    "soal": "A-K-U-P",
-    "tipe": "Benda",
-    "jawaban": "PAKU"
+    "soal": "A-J-Z-E-E-R-D",
+    "tipe": "Deporte",
+    "jawaban": "AJEDREZ"
   },
   {
     "index": 37,
-    "soal": "A-P-I-N-G-S",
-    "tipe": "Buah",
-    "jawaban": "PISANG"
+    "soal": "O-O-P-I-T-L",
+    "tipe": "Profesión",
+    "jawaban": "PILOTO"
   },
   {
     "index": 38,
-    "soal": "A-T-S",
-    "tipe": "Benda",
-    "jawaban": "TAS"
+    "soal": "E-L-J-R-O",
+    "tipe": "Objeto",
+    "jawaban": "RELOJ"
   },
   {
     "index": 39,
-    "soal": "I-R-K-U-S",
-    "tipe": "Benda",
-    "jawaban": "KURSI"
+    "soal": "G-R-E-T-I",
+    "tipe": "Animal",
+    "jawaban": "TIGRE"
   },
   {
     "index": 40,
-    "soal": "I-P-S-A",
-    "tipe": "Hewan",
-    "jawaban": "SAPI"
+    "soal": "E-C-Z-R-E-A",
+    "tipe": "Fruta",
+    "jawaban": "CEREZA"
   },
   {
     "index": 41,
-    "soal": "B-A-N-G-K-I-M",
-    "tipe": "Hewan",
-    "jawaban": "KAMBING"
+    "soal": "J-O-A",
+    "tipe": "Verdura",
+    "jawaban": "AJO"
   },
   {
     "index": 42,
-    "soal": "R-A-U-L",
-    "tipe": "Hewan",
-    "jawaban": "ULAR"
+    "soal": "I-L-C-G-C-Y-N",
+    "tipe": "Deporte",
+    "jawaban": "CYCLING"
   },
   {
     "index": 43,
-    "soal": "A-L-B-T-A-N",
-    "tipe": "Benda",
-    "jawaban": "BANTAL"
+    "soal": "A-M-E-R-C-A-O-R",
+    "tipe": "Profesión",
+    "jawaban": "CAMARERO"
   },
   {
     "index": 44,
-    "soal": "E-L-M-I-R-A",
-    "tipe": "Benda",
-    "jawaban": "LEMARI"
+    "soal": "B-T-L-A-A",
+    "tipe": "Objeto",
+    "jawaban": "TABLA"
   },
   {
     "index": 45,
-    "soal": "S-U-I-T",
-    "tipe": "Benda",
-    "jawaban": "TISU"
+    "soal": "S-O-O",
+    "tipe": "Animal",
+    "jawaban": "OSO"
   },
   {
     "index": 46,
-    "soal": "G-I-N-R-I-P",
-    "tipe": "Benda",
-    "jawaban": "PIRING"
+    "soal": "M-I-N-O-L",
+    "tipe": "Fruta",
+    "jawaban": "LIMON"
   },
   {
     "index": 47,
-    "soal": "A-L-B-I",
-    "tipe": "Tempat",
-    "jawaban": "BALI"
+    "soal": "B-R-L-C-I-O-O",
+    "tipe": "Verdura",
+    "jawaban": "BROCOLI"
   },
   {
     "index": 48,
-    "soal": "S-P-I-N-E-L",
-    "tipe": "Benda",
-    "jawaban": "PENSIL"
+    "soal": "F-L-O-G",
+    "tipe": "Deporte",
+    "jawaban": "GOLF"
   },
   {
     "index": 49,
-    "soal": "T-U-B-A",
-    "tipe": "Benda",
-    "jawaban": "BATU"
+    "soal": "I-R-A-S-T-T-A",
+    "tipe": "Profesión",
+    "jawaban": "ARTISTA"
   },
   {
     "index": 50,
-    "soal": "A-T-A-B",
-    "tipe": "Benda",
-    "jawaban": "BATA"
+    "soal": "H-R-C-A-O-U-C",
+    "tipe": "Objeto",
+    "jawaban": "CUCHARO"
   },
   {
     "index": 51,
-    "soal": "A-P-U-S",
-    "tipe": "Benda",
-    "jawaban": "SAPU"
+    "soal": "R-O-P-U-C-E",
+    "tipe": "Animal",
+    "jawaban": "PUERCO"
   },
   {
     "index": 52,
-    "soal": "B-R-O-G-O",
-    "tipe": "Kota",
-    "jawaban": "BOGOR"
+    "soal": "I-P-A-N",
+    "tipe": "Fruta",
+    "jawaban": "PINA"
   },
   {
     "index": 53,
-    "soal": "A-N-I-S-U-L-K",
-    "tipe": "Benda",
-    "jawaban": "LUKISAN"
+    "soal": "S-N-A-P-E-A-C-I",
+    "tipe": "Verdura",
+    "jawaban": "ESPINACA"
   },
   {
     "index": 54,
-    "soal": "K-U-S-A-L-K",
-    "tipe": "Benda",
-    "jawaban": "KULKAS"
+    "soal": "U-E-H-Q-Y-O",
+    "tipe": "Deporte",
+    "jawaban": "HOQUEY"
   },
   {
     "index": 55,
-    "soal": "A-K-D-A-B",
-    "tipe": "Hewan",
-    "jawaban": "BADAK"
+    "soal": "R-E-N-O-I-C-O-C",
+    "tipe": "Profesión",
+    "jawaban": "COCINERO"
   },
   {
     "index": 56,
-    "soal": "A-H-J-A-G",
-    "tipe": "Hewan",
-    "jawaban": "GAJAH"
+    "soal": "U-A-P-E-T-R",
+    "tipe": "Objeto",
+    "jawaban": "PUERTA"
   },
   {
     "index": 57,
-    "soal": "A-N-Y-P-U-G",
-    "tipe": "Benda",
-    "jawaban": "PAYUNG"
+    "soal": "O-R-A-N-T",
+    "tipe": "Animal",
+    "jawaban": "RATON"
   },
   {
     "index": 58,
-    "soal": "A-D-H-U-N-K",
-    "tipe": "Benda",
-    "jawaban": "HANDUK"
+    "soal": "A-A-P-A-P-Y",
+    "tipe": "Fruta",
+    "jawaban": "PAPAYA"
   },
   {
     "index": 59,
-    "soal": "A-S-M-A-N-G-E",
-    "tipe": "Buah",
-    "jawaban": "SEMANGKA"
+    "soal": "H-O-I-A-C-H-C-R",
+    "tipe": "Verdura",
+    "jawaban": "CHICHARO"
   },
   {
     "index": 60,
-    "soal": "A-S-E-T-U-P",
-    "tipe": "Benda",
-    "jawaban": "SEPATU"
+    "soal": "R-Y-G-U-B",
+    "tipe": "Deporte",
+    "jawaban": "RUGBY"
   },
   {
     "index": 61,
-    "soal": "G-U-R-A-P",
-    "tipe": "Benda",
-    "jawaban": "GARPU"
+    "soal": "E-C-N-C-M-I-O-A",
+    "tipe": "Profesión",
+    "jawaban": "MECANICO"
   },
   {
     "index": 62,
-    "soal": "C-U-K-I-N-G",
-    "tipe": "Hewan",
-    "jawaban": "KUCING"
+    "soal": "P-C-U-O",
+    "tipe": "Objeto",
+    "jawaban": "CUPO"
   },
   {
     "index": 63,
-    "soal": "B-A-M-O-D",
-    "tipe": "Hewan",
-    "jawaban": "DOMBA"
+    "soal": "N-O-O-C-E-J",
+    "tipe": "Animal",
+    "jawaban": "CONEJO"
   },
   {
     "index": 64,
-    "soal": "T-H-O-L-E",
-    "tipe": "Tempat",
-    "jawaban": "HOTEL"
+    "soal": "O-E-N-L-O-M-T-C-O",
+    "tipe": "Fruta",
+    "jawaban": "MELOCOTON"
   },
   {
     "index": 65,
-    "soal": "H-E-A-P-J-A-R",
-    "tipe": "Hewan",
-    "jawaban": "JERAPAH"
+    "soal": "F-L-A-C-A-C-H-O-A",
+    "tipe": "Verdura",
+    "jawaban": "ALCACHOFA"
   },
   {
     "index": 66,
-    "soal": "L-A-T-H-E",
-    "tipe": "Tempat",
-    "jawaban": "HALTE"
+    "soal": "Y-V-E-O-L",
+    "tipe": "Deporte",
+    "jawaban": "VOLEY"
   },
   {
     "index": 67,
-    "soal": "E-R-I-C-M-N",
-    "tipe": "Benda",
-    "jawaban": "CERMIN"
+    "soal": "I-O-R-E-U-Q-C-A-T-T",
+    "tipe": "Profesión",
+    "jawaban": "ARQUITECTO"
   },
   {
     "index": 68,
-    "soal": "M-O-P-E-T-U-R-K",
-    "tipe": "Benda",
-    "jawaban": "KOMPUTER"
+    "soal": "C-T-A-A-R",
+    "tipe": "Objeto",
+    "jawaban": "CARTA"
   },
   {
     "index": 69,
-    "soal": "M-E-T-R-O-S",
-    "tipe": "Benda",
-    "jawaban": "TERMOS"
+    "soal": "L-O-A-B-F-U",
+    "tipe": "Animal",
+    "jawaban": "BUFALO"
   },
   {
     "index": 70,
-    "soal": "A-C-L-E-A-N",
-    "tipe": "Benda",
-    "jawaban": "CELANA"
+    "soal": "A-D-C-I-R",
+    "tipe": "Fruta",
+    "jawaban": "CIDRA"
   },
   {
     "index": 71,
-    "soal": "A-I-R-I-T",
-    "tipe": "Benda",
-    "jawaban": "TIRAI"
+    "soal": "N-I-A-A-A-L-C-C-B",
+    "tipe": "Verdura",
+    "jawaban": "CALABACIN"
   },
   {
     "index": 72,
-    "soal": "A-N-D-R-A-B-A",
-    "tipe": "Tempat",
-    "jawaban": "BANDARA"
+    "soal": "S-A-K-E-T",
+    "tipe": "Deporte",
+    "jawaban": "SKATE"
   },
   {
     "index": 73,
-    "soal": "S-U-U-S",
-    "tipe": "Organ",
-    "jawaban": "USUS"
+    "soal": "F-I-L-C-A-I-O",
+    "tipe": "Profesión",
+    "jawaban": "OFICIAL"
   },
   {
     "index": 74,
-    "soal": "A-G-E-N-T-N-B",
-    "tipe": "Hewan",
-    "jawaban": "BANTENG"
+    "soal": "E-U-T-F-S-A",
+    "tipe": "Objeto",
+    "jawaban": "ESTUFA"
   },
   {
     "index": 75,
-    "soal": "A-K-A-D-B",
-    "tipe": "Hewan",
-    "jawaban": "BADAK"
+    "soal": "C-V-H-I-A",
+    "tipe": "Animal",
+    "jawaban": "CHIVA"
   },
   {
     "index": 76,
-    "soal": "E-M-N-O-L",
-    "tipe": "Buah",
-    "jawaban": "LEMON"
+    "soal": "U-B-A-A-G-A-Y",
+    "tipe": "Fruta",
+    "jawaban": "GUAYABA"
   },
   {
     "index": 77,
-    "soal": "D-A-N-N-A-K-G",
-    "tipe": "Tempat",
-    "jawaban": "KANDANG"
+    "soal": "E-N-J-B-E-N-R-A-E",
+    "tipe": "Verdura",
+    "jawaban": "BERENJENA"
   },
   {
     "index": 78,
-    "soal": "A-P-S-I-N-G",
-    "tipe": "Buah",
-    "jawaban": "PISANG"
+    "soal": "L-S-B-O-O-F-T",
+    "tipe": "Deporte",
+    "jawaban": "SOFTBOL"
   },
   {
     "index": 79,
-    "soal": "L-I-S-E-T-T-A",
-    "tipe": "Benda",
-    "jawaban": "SATELIT"
+    "soal": "R-F-O-T-A-O-G-O-F",
+    "tipe": "Profesión",
+    "jawaban": "FOTOGRAFO"
   },
   {
     "index": 80,
-    "soal": "A-K-E-B-C",
-    "tipe": "Benda",
-    "jawaban": "BECAK"
+    "soal": "A-M-A-R-P-L-A",
+    "tipe": "Objeto",
+    "jawaban": "LAMPARA"
   },
   {
     "index": 81,
-    "soal": "A-N-A-B-U-G",
-    "tipe": "Hewan",
-    "jawaban": "BANGAU"
+    "soal": "A-B-A-C-R",
+    "tipe": "Animal",
+    "jawaban": "CABRA"
   },
   {
     "index": 82,
-    "soal": "A-N-B-U-G",
-    "tipe": "Tumbuhan",
-    "jawaban": "BUNGA"
+    "soal": "G-I-O-H",
+    "tipe": "Fruta",
+    "jawaban": "HIGO"
   },
   {
     "index": 83,
-    "soal": "I-P-T-U-N",
-    "tipe": "Benda",
-    "jawaban": "PINTU"
+    "soal": "B-A-A-N-O-R",
+    "tipe": "Verdura",
+    "jawaban": "RABANO"
   },
   {
     "index": 84,
-    "soal": "I-P-K-O",
-    "tipe": "Benda",
-    "jawaban": "KOPI"
+    "soal": "S-G-U-F-I-N-R",
+    "tipe": "Deporte",
+    "jawaban": "SURFING"
   },
   {
     "index": 85,
-    "soal": "A-K-R-U-B-E",
-    "tipe": "Hewan",
-    "jawaban": "KERBAU"
+    "soal": "M-I-U-O-S-C",
+    "tipe": "Profesión",
+    "jawaban": "MUSICO"
   },
   {
     "index": 86,
-    "soal": "D-I-N-G-U-H",
-    "tipe": "Bagian Tubuh",
-    "jawaban": "HIDUNG"
+    "soal": "A-O-L-T-E-B-L",
+    "tipe": "Objeto",
+    "jawaban": "BOTELLA"
   },
   {
     "index": 87,
-    "soal": "L-I-P-T-O",
-    "tipe": "Pekerjaan",
-    "jawaban": "PILOT"
+    "soal": "C-O-A-L-S",
+    "tipe": "Animal",
+    "jawaban": "COSAL"
   },
   {
     "index": 88,
-    "soal": "A-C-L-E-A-N",
-    "tipe": "Benda",
-    "jawaban": "CELANA"
+    "soal": "A-C-U-S-T-C",
+    "tipe": "Planta",
+    "jawaban": "CACTUS"
   },
   {
     "index": 89,
-    "soal": "H-A-N-A-L-A-M",
-    "tipe": "BENDA",
-    "jawaban": "HALAMAN"
+    "soal": "A-C-E-A-G-L",
+    "tipe": "Verdura",
+    "jawaban": "ACELGA"
   },
   {
     "index": 90,
-    "soal": "G-A-B-W-A-N",
-    "tipe": "Tumbuhan",
-    "jawaban": "BAWANG"
+    "soal": "C-L-E-A-V-S",
+    "tipe": "Deporte",
+    "jawaban": "CLAVES"
   },
   {
     "index": 91,
-    "soal": "U-C-T-A-R",
-    "tipe": "Benda",
-    "jawaban": "CATUR"
+    "soal": "O-P-S-E-R-A-L-N",
+    "tipe": "Profesión",
+    "jawaban": "PERSONAL"
   },
   {
     "index": 92,
-    "soal": "M-R-T-O-O",
-    "tipe": "Benda",
-    "jawaban": "MOTOR"
+    "soal": "A-C-L-S-R-E-E-A",
+    "tipe": "Objeto",
+    "jawaban": "ESCALERA"
   },
   {
     "index": 93,
-    "soal": "L-E-A-K-S",
-    "tipe": "Tempat",
-    "jawaban": "KELAS"
+    "soal": "L-N-E-F-D-I",
+    "tipe": "Animal",
+    "jawaban": "DELFIN"
   },
   {
     "index": 94,
-    "soal": "A-K-E-H-O-L-S",
-    "tipe": "Tempat",
-    "jawaban": "SEKOLAH"
+    "soal": "O-M-N-A-M",
+    "tipe": "Fruta",
+    "jawaban": "MAMON"
   },
   {
     "index": 95,
-    "soal": "J-I-G-N-A-N",
-    "tipe": "Hewan",
-    "jawaban": "ANJING"
+    "soal": "R-I-L-L-C-O-O-F",
+    "tipe": "Verdura",
+    "jawaban": "COLIFLOR"
   },
   {
     "index": 96,
-    "soal": "S-A-B-E-R",
-    "tipe": "Benda",
-    "jawaban": "BERAS"
+    "soal": "P-P-G-I-G-N-O-N",
+    "tipe": "Deporte",
+    "jawaban": "PINGPONG"
   },
   {
     "index": 97,
-    "soal": "M-U-T-E-S",
-    "tipe": "Hewan",
-    "jawaban": "SEMUT"
+    "soal": "O-E-R-R-I-C-S-T",
+    "tipe": "Profesión",
+    "jawaban": "ESCRITOR"
   },
   {
     "index": 98,
-    "soal": "D-A-K-U-H-N",
-    "tipe": "Benda",
-    "jawaban": "HANDUK"
+    "soal": "V-O-A-S",
+    "tipe": "Objeto",
+    "jawaban": "VASO"
   },
   {
     "index": 99,
-    "soal": "A-L-E-N-E-D-J",
-    "tipe": "Benda",
-    "jawaban": "JENDELA"
+    "soal": "A-L-I-G-U-A",
+    "tipe": "Animal",
+    "jawaban": "AGUILA"
   },
   {
     "index": 100,
-    "soal": "A-U-G-I-N-S",
-    "tipe": "Tempat",
-    "jawaban": "SUNGAI"
+    "soal": "W-K-I-I",
+    "tipe": "Fruta",
+    "jawaban": "KIWI"
   },
   {
     "index": 101,
-    "soal": "A-K-P-E-A-L",
-    "tipe": "Buah",
-    "jawaban": "KELAPA"
+    "soal": "E-I-I-V-A-N-D",
+    "tipe": "Verdura",
+    "jawaban": "ENDIVIA"
   },
   {
     "index": 102,
-    "soal": "G-L-U-O-N-N-B",
-    "tipe": "Hewan",
-    "jawaban": "BUNGLON"
+    "soal": "E-B-X-O-O",
+    "tipe": "Deporte",
+    "jawaban": "BOXEO"
   },
   {
     "index": 103,
-    "soal": "A-A-R-C",
-    "tipe": "Makanan",
-    "jawaban": "ACAR"
+    "soal": "P-E-E-R-E-L-P-A-O-R",
+    "tipe": "Profesión",
+    "jawaban": "PAPERELERO"
   },
   {
     "index": 104,
-    "soal": "E-L-H-A-T",
-    "tipe": "Tempst",
-    "jawaban": "HALTE"
+    "soal": "A-A-T-Z",
+    "tipe": "Objeto",
+    "jawaban": "TAZA"
   },
   {
     "index": 105,
-    "soal": "A-H-A-W-S",
-    "tipe": "Tempat",
-    "jawaban": "SAWAH"
+    "soal": "L-M-U-A",
+    "tipe": "Animal",
+    "jawaban": "MULA"
   },
   {
     "index": 106,
-    "soal": "D-A-R-A-B-A-N",
-    "tipe": "Tempat",
-    "jawaban": "BANDARA"
+    "soal": "A-R-D-Z-N-O-U",
+    "tipe": "Fruta",
+    "jawaban": "DURAZNO"
   },
   {
     "index": 107,
-    "soal": "U-H-I",
-    "tipe": "Hewan",
-    "jawaban": "HIU"
+    "soal": "M-P-C-A-N-I-H-Ñ-O",
+    "tipe": "Verdura",
+    "jawaban": "CHAMPIÑON"
   },
   {
     "index": 108,
-    "soal": "L-O-K",
-    "tipe": "Sayuran",
-    "jawaban": "KOL"
+    "soal": "E-A-R-E-R-O-C-R-T",
+    "tipe": "Deporte",
+    "jawaban": "CARRETERO"
   },
   {
     "index": 109,
-    "soal": "N-A-B",
-    "tipe": "Benda",
-    "jawaban": "BAN"
+    "soal": "I-O-A-E-R-E-T-N-I-V-R",
+    "tipe": "Profesión",
+    "jawaban": "VETERINARIO"
   },
   {
     "index": 110,
-    "soal": "B-R-O",
-    "tipe": "Benda",
-    "jawaban": "BOR"
+    "soal": "N-C-J-O-A",
+    "tipe": "Objeto",
+    "jawaban": "CAJON"
   },
   {
     "index": 111,
-    "soal": "E-R-P",
-    "tipe": "Benda",
-    "jawaban": "PER"
+    "soal": "A-A-A-N-C-R",
+    "tipe": "Animal",
+    "jawaban": "ARACNA"
   },
   {
     "index": 112,
-    "soal": "A-U-J-B",
-    "tipe": "Tempat",
-    "jawaban": "BAJU"
+    "soal": "O-N-G-M-A",
+    "tipe": "Fruta",
+    "jawaban": "MANGO"
   },
   {
     "index": 113,
-    "soal": "P-E-A-L",
-    "tipe": "Buah",
-    "jawaban": "APEL"
+    "soal": "E-R-P-L-O-L-O",
+    "tipe": "Verdura",
+    "jawaban": "REPOLLO"
   },
   {
     "index": 114,
-    "soal": "K-U-B-U",
-    "tipe": "Benda",
-    "jawaban": "BUKU"
+    "soal": "I-S-E-U-Q",
+    "tipe": "Deporte",
+    "jawaban": "ESQUI"
   },
   {
     "index": 115,
-    "soal": "B-A-L-O",
-    "tipe": "Benda",
-    "jawaban": "BOLA"
+    "soal": "A-R-E-F-C-M-O-U-T-A-C-I",
+    "tipe": "Profesión",
+    "jawaban": "FARMACEUTICO"
   },
   {
     "index": 116,
-    "soal": "A-C-B-E",
-    "tipe": "Sayuran",
-    "jawaban": "CABE"
+    "soal": "C-M-D-O-A-O",
+    "tipe": "Objeto",
+    "jawaban": "COMODA"
   },
   {
     "index": 117,
-    "soal": "F-I-R-E",
-    "tipe": "Benda",
-    "jawaban": "FERI"
+    "soal": "U-H-B-O",
+    "tipe": "Animal",
+    "jawaban": "BUHO"
   },
   {
     "index": 118,
-    "soal": "R-U-I-N",
-    "tipe": "Hewan",
-    "jawaban": "NURI"
+    "soal": "I-D-C-R-O",
+    "tipe": "Fruta",
+    "jawaban": "CIDRO"
   },
   {
     "index": 119,
-    "soal": "Y-O-O-Y",
-    "tipe": "Benda",
-    "jawaban": "YOYO"
+    "soal": "R-O-A-M-H-C-A-L-E",
+    "tipe": "Verdura",
+    "jawaban": "REMOLACHA"
   },
   {
     "index": 120,
-    "soal": "F-A-S-O",
-    "tipe": "Benda",
-    "jawaban": "SOFA"
+    "soal": "C-O-R-R-R-E",
+    "tipe": "Deporte",
+    "jawaban": "CORRER"
   },
   {
     "index": 121,
-    "soal": "I-L-T-A",
-    "tipe": "Benda",
-    "jawaban": "TALI"
+    "soal": "N-S-E-G-D-R-E-I",
+    "tipe": "Profesión",
+    "jawaban": "DESIGNER"
   },
   {
     "index": 122,
-    "soal": "S-U-R-A",
-    "tipe": "Hewan",
-    "jawaban": "RUSA"
+    "soal": "A-T-P-A-N-L-L-A",
+    "tipe": "Objeto",
+    "jawaban": "PANTALLA"
   },
   {
     "index": 123,
-    "soal": "P-A-U-L",
-    "tipe": "Benda",
-    "jawaban": "PALU"
+    "soal": "O-L-O-B",
+    "tipe": "Animal",
+    "jawaban": "LOBO"
   },
   {
     "index": 124,
-    "soal": "E-L-E-L",
-    "tipe": "Hewan",
-    "jawaban": "LELE"
+    "soal": "T-H-E-E-A-C-U-C-A",
+    "tipe": "Fruta",
+    "jawaban": "CACAHUETE"
   },
   {
     "index": 125,
-    "soal": "P-I-T-O",
-    "tipe": "Benda",
-    "jawaban": "TOPI"
+    "soal": "B-A-O-L-E-T",
+    "tipe": "Verdura",
+    "jawaban": "BOLETA"
   },
   {
     "index": 126,
-    "soal": "A-B-U-L",
-    "tipe": "Sayuran",
-    "jawaban": "LABU"
+    "soal": "A-N-A-R-D",
+    "tipe": "Deporte",
+    "jawaban": "NADAR"
   },
   {
     "index": 127,
-    "soal": "A-Y-U-K",
-    "tipe": "Benda",
-    "jawaban": "KAYU"
+    "soal": "U-S-R-T-A-G-I-U-J",
+    "tipe": "Profesión",
+    "jawaban": "JURGUISTA"
   },
   {
     "index": 128,
-    "soal": "L-I-C-E",
-    "tipe": "Buah",
-    "jawaban": "LECI"
+    "soal": "E-C-L-B-A-R-U",
+    "tipe": "Animal",
+    "jawaban": "CULEBRA"
   },
   {
     "index": 129,
-    "soal": "L-A-J-A",
-    "tipe": "Benda",
-    "jawaban": "JALA"
+    "soal": "O-O-M-N-A-P-J-A-R",
+    "tipe": "Fruta",
+    "jawaban": "POMARANJO"
   },
   {
     "index": 130,
-    "soal": "S-A-U-K",
-    "tipe": "Benda",
-    "jawaban": "KUAS"
+    "soal": "O-R-V-A-L",
+    "tipe": "Verdura",
+    "jawaban": "VALOR"
   },
   {
     "index": 131,
-    "soal": "D-I-A-S",
-    "tipe": "Benda",
-    "jawaban": "DASI"
+    "soal": "O-A-M-G-I-N-S-I",
+    "tipe": "Deporte",
+    "jawaban": "GIMNASIO"
   },
   {
     "index": 132,
-    "soal": "L-A-U-T",
-    "tipe": "Hewan",
-    "jawaban": "ULAT"
+    "soal": "L-U-R-O-E-I-M-A-C-G",
+    "tipe": "Animal",
+    "jawaban": "MURCIELAGO"
   },
   {
     "index": 133,
-    "soal": "G-A-N-T",
-    "tipe": "Benda",
-    "jawaban": "TANG"
+    "soal": "O-N-A-R-A-N-A-D",
+    "tipe": "Fruta",
+    "jawaban": "ARANDANO"
   },
   {
     "index": 134,
-    "soal": "A-P-U-S",
-    "tipe": "Hewan",
-    "jawaban": "PAUS"
+    "soal": "G-O-A-R-A-S-R-E-P",
+    "tipe": "Verdura",
+    "jawaban": "ESPARRAGO"
   },
   {
     "index": 135,
-    "soal": "U-U-Y-Y",
-    "tipe": "Hewan",
-    "jawaban": "YUYU"
+    "soal": "D-A-P-L-D-E",
+    "tipe": "Deporte",
+    "jawaban": "PADDLE"
   },
   {
     "index": 136,
-    "soal": "A-W-I-S",
-    "tipe": "Sayuran",
-    "jawaban": "SAWI"
+    "soal": "E-I-O-R-N-A-M-R",
+    "tipe": "Profesión",
+    "jawaban": "MARINERO"
   },
   {
     "index": 137,
-    "soal": "E-T-G-O",
-    "tipe": "Sayuran",
-    "jawaban": "TOGE"
+    "soal": "T-E-M-O-T-E-M-R-O-R",
+    "tipe": "Objeto",
+    "jawaban": "TERMOMETRO"
   },
   {
     "index": 138,
-    "soal": "A-S-O-W",
-    "tipe": "Buah",
-    "jawaban": "SAWO"
+    "soal": "N-E-L-E-E-F-T-A",
+    "tipe": "Animal",
+    "jawaban": "ELEFANTE"
   },
   {
     "index": 139,
-    "soal": "R-I-C-E",
-    "tipe": "Buah",
-    "jawaban": "CERI"
+    "soal": "A-G-N-U-A-B-N-A-A",
+    "tipe": "Fruta",
+    "jawaban": "GUANABANA"
   },
   {
     "index": 140,
-    "soal": "I-K-A-L",
-    "tipe": "Benda",
-    "jawaban": "KAIL"
+    "soal": "A-N-O-B",
+    "tipe": "Verdura",
+    "jawaban": "NABO"
   },
   {
     "index": 141,
-    "soal": "A-R-E-P",
-    "tipe": "Sayuran",
-    "jawaban": "PARE"
+    "soal": "D-L-P-E-A",
+    "tipe": "Deporte",
+    "jawaban": "PADEL"
   },
   {
     "index": 142,
-    "soal": "D-A-R-O",
-    "tipe": "Benda",
-    "jawaban": "RODA"
+    "soal": "E-A-C-R-O-S",
+    "tipe": "Profesión",
+    "jawaban": "CASERO"
   },
   {
     "index": 143,
-    "soal": "L-E-M-H",
-    "tipe": "Benda",
-    "jawaban": "HELM"
+    "soal": "M-I-L-C-A-H-O",
+    "tipe": "Objeto",
+    "jawaban": "MOCHILA"
   },
   {
     "index": 144,
-    "soal": "P-A-L-E",
-    "tipe": "Buah",
-    "jawaban": "APEL"
+    "soal": "T-U-A-O-G-R-T",
+    "tipe": "Animal",
+    "jawaban": "TORTUGA"
   },
   {
     "index": 145,
-    "soal": "R-U-M-D",
-    "tipe": "Benda",
-    "jawaban": "DRUM"
+    "soal": "O-O-C-C",
+    "tipe": "Fruta",
+    "jawaban": "COCO"
   },
   {
     "index": 146,
-    "soal": "A-R-E-K",
-    "tipe": "Hewan",
-    "jawaban": "KERA"
+    "soal": "R-R-P-E-U-O",
+    "tipe": "Verdura",
+    "jawaban": "PUERRO"
   },
   {
     "index": 147,
-    "soal": "K-A-N-T",
-    "tipe": "Benda",
-    "jawaban": "TANK"
+    "soal": "I-D-A-N-S-A",
+    "tipe": "Fruta",
+    "jawaban": "SANDIA"
   },
   {
     "index": 148,
-    "soal": "U-R-U-G",
-    "tipe": "Pekerjaan",
-    "jawaban": "GURU"
+    "soal": "E-J-O-U-G",
+    "tipe": "Deporte",
+    "jawaban": "JUEGO"
   },
   {
     "index": 149,
-    "soal": "K-O-I-K",
-    "tipe": "Pekerjaan",
-    "jawaban": "KOKI"
+    "soal": "G-A-O-M",
+    "tipe": "Profesión",
+    "jawaban": "MAGO"
   },
   {
     "index": 150,
-    "soal": "A-M-P-U-L",
-    "tipe": "Benda",
-    "jawaban": "LAMPU"
+    "soal": "N-E-O-L-T-O-F-E",
+    "tipe": "Objeto",
+    "jawaban": "TELEFONO"
   },
   {
     "index": 151,
-    "soal": "J-R-U-K-E",
-    "tipe": "Buah",
-    "jawaban": "JERUK"
+    "soal": "F-R-J-A-A-I",
+    "tipe": "Animal",
+    "jawaban": "JIRAFA"
   },
   {
     "index": 152,
-    "soal": "G-A-L-E-N",
-    "tipe": "Hewan",
-    "jawaban": "ELANG"
+    "soal": "I-P-S-T-A-O-N",
+    "tipe": "Verdura",
+    "jawaban": "PATISON"
   },
   {
     "index": 153,
-    "soal": "B-E-R-E-M",
-    "tipe": "Benda",
-    "jawaban": "EMBER"
+    "soal": "D-N-N-B-I-M-T-A-O",
+    "tipe": "Deporte",
+    "jawaban": "BADMINTON"
   },
   {
     "index": 154,
-    "soal": "B-E-G-O-N",
-    "tipe": "Benda",
-    "jawaban": "OBENG"
+    "soal": "O-O-R-E-D-R-D-A-C",
+    "tipe": "Profesión",
+    "jawaban": "DECORADOR"
   },
   {
     "index": 155,
-    "soal": "A-A-L-I-P",
-    "tipe": "Benda",
-    "jawaban": "PIALA"
+    "soal": "C-T-M-R-O-A-O-P-U-A-D",
+    "tipe": "Objeto",
+    "jawaban": "COMPUTADORA"
   },
   {
     "index": 156,
-    "soal": "H-A-R-U-M",
-    "tipe": "Benda",
-    "jawaban": "RUMAH"
+    "soal": "O-E-L-C-C-T-H-O-A",
+    "tipe": "Comida",
+    "jawaban": "CHOCOLATE"
   },
   {
     "index": 157,
-    "soal": "G-A-I-N-S",
-    "tipe": "Hewan",
-    "jawaban": "SINGA"
+    "soal": "A-Z-P-Z-I",
+    "tipe": "Comida",
+    "jawaban": "PIZZA"
   },
   {
     "index": 158,
-    "soal": "K-U-S-I-T",
-    "tipe": "Hewan",
-    "jawaban": "TIKUS"
+    "soal": "S-A-A-B-G-M-R-E-H-U-U",
+    "tipe": "Comida",
+    "jawaban": "HAMBURGUESA"
   },
   {
     "index": 159,
-    "soal": "J-A-W-N-A",
-    "tipe": "Benda",
-    "jawaban": "WAJAN"
+    "soal": "D-C-S-W-N-I-A-H",
+    "tipe": "Comida",
+    "jawaban": "SANDWICH"
   },
   {
     "index": 160,
-    "soal": "B-R-A-Z-E",
-    "tipe": "Hewan",
-    "jawaban": "ZEBRA"
+    "soal": "A-A-S-T-P",
+    "tipe": "Comida",
+    "jawaban": "PASTA"
   },
   {
     "index": 161,
-    "soal": "L-I-T-O-R",
-    "tipe": "Benda",
-    "jawaban": "TROLI"
+    "soal": "U-E-O-H-V",
+    "tipe": "Comida",
+    "jawaban": "HUEVO"
   },
   {
     "index": 162,
-    "soal": "A-C-M-A-N",
-    "tipe": "Hewan",
-    "jawaban": "MACAN"
+    "soal": "Q-U-E-S-O",
+    "tipe": "Comida",
+    "jawaban": "QUESO"
   },
   {
     "index": 163,
-    "soal": "M-I-N-U-T",
-    "tipe": "Sayuran",
-    "jawaban": "TIMUN"
+    "soal": "P-A-N",
+    "tipe": "Comida",
+    "jawaban": "PAN"
   },
   {
     "index": 164,
-    "soal": "B-A-N-O-L",
-    "tipe": "Benda",
-    "jawaban": "BALON"
+    "soal": "Z-O-A-R-R",
+    "tipe": "Comida",
+    "jawaban": "ARROZ"
   },
   {
     "index": 165,
-    "soal": "P-A-N-I-C",
-    "tipe": "Benda",
-    "jawaban": "PANCI"
+    "soal": "O-L-O-P-L",
+    "tipe": "Comida",
+    "jawaban": "POLLO"
   },
   {
     "index": 166,
-    "soal": "C-U-I-N-K",
-    "tipe": "Benda",
-    "jawaban": "KUNCI"
+    "soal": "R-N-A-E-C",
+    "tipe": "Comida",
+    "jawaban": "CARNE"
   },
   {
     "index": 167,
-    "soal": "A-P-A-N-D",
-    "tipe": "Hewan",
-    "jawaban": "PANDA"
+    "soal": "Z-P-E",
+    "tipe": "Comida",
+    "jawaban": "PEZ"
   },
   {
     "index": 168,
-    "soal": "A-D-N-E-T",
-    "tipe": "Benda",
-    "jawaban": "TENDA"
+    "soal": "S-P-A-O",
+    "tipe": "Comida",
+    "jawaban": "SOPA"
   },
   {
     "index": 169,
-    "soal": "N-O-B-I-S",
-    "tipe": "Hewan",
-    "jawaban": "BISON"
+    "soal": "L-S-A",
+    "tipe": "Comida",
+    "jawaban": "SAL"
   },
   {
     "index": 170,
-    "soal": "E-L-M-O-N",
-    "tipe": "Buah",
-    "jawaban": "MELON"
+    "soal": "I-A-C-E-E-T",
+    "tipe": "Comida",
+    "jawaban": "ACEITE"
   },
   {
     "index": 171,
-    "soal": "A-T-R-I-P",
-    "tipe": "Hewan",
-    "jawaban": "TAPIR"
+    "soal": "A-R-E-N-G-I-V",
+    "tipe": "Comida",
+    "jawaban": "VINAGRE"
   },
   {
     "index": 172,
-    "soal": "S-I-R-S-I",
-    "tipe": "Benda",
-    "jawaban": "SISIR"
+    "soal": "I-M-L-E",
+    "tipe": "Comida",
+    "jawaban": "MIEL"
   },
   {
     "index": 173,
-    "soal": "R-U-S-A-K",
-    "tipe": "Benda",
-    "jawaban": "KASUR"
+    "soal": "U-R-A-Z-C-A",
+    "tipe": "Comida",
+    "jawaban": "AZUCAR"
   },
   {
     "index": 174,
-    "soal": "P-O-K-E-R",
-    "tipe": "Benda",
-    "jawaban": "KOPER"
+    "soal": "E-L-H-E-C",
+    "tipe": "Comida",
+    "jawaban": "LECHE"
   },
   {
     "index": 175,
-    "soal": "A-L-E-G-S",
-    "tipe": "Benda",
-    "jawaban": "GELAS"
+    "soal": "A-E-F-C",
+    "tipe": "Comida",
+    "jawaban": "CAFE"
   },
   {
     "index": 176,
-    "soal": "A-D-G-U-N",
-    "tipe": "Hewan",
-    "jawaban": "UDANG"
+    "soal": "T-E",
+    "tipe": "Comida",
+    "jawaban": "TE"
   },
   {
     "index": 177,
-    "soal": "S-P-I-N-O",
-    "tipe": "Benda",
-    "jawaban": "SPION"
+    "soal": "M-U-O-Z",
+    "tipe": "Comida",
+    "jawaban": "ZUMO"
   },
   {
     "index": 178,
-    "soal": "A-T-A-L-L",
-    "tipe": "Hewan",
-    "jawaban": "LALAT"
+    "soal": "I-O-L-H-E",
+    "tipe": "Comida",
+    "jawaban": "HIELO"
   },
   {
     "index": 179,
-    "soal": "J-A-B-M-U",
-    "tipe": "Buah",
-    "jawaban": "JAMBU"
+    "soal": "R-C-S-A-I-S-M-O",
+    "tipe": "Comida",
+    "jawaban": "MARISCOS"
   },
   {
     "index": 180,
-    "soal": "A-P-O-M-P",
-    "tipe": "Benda",
-    "jawaban": "POMPA"
+    "soal": "A-M-E-A-J-L",
+    "tipe": "Comida",
+    "jawaban": "ALMEJA"
   },
   {
     "index": 181,
-    "soal": "A-M-U-J-R",
-    "tipe": "Benda",
-    "jawaban": "JARUM"
+    "soal": "A-O-R-N-M-A-C",
+    "tipe": "Comida",
+    "jawaban": "CAMARON"
   },
   {
     "index": 182,
-    "soal": "S-K-E-E-T",
-    "tipe": "Benda",
-    "jawaban": "KESET"
+    "soal": "N-G-S-A-L-A-O-T",
+    "tipe": "Comida",
+    "jawaban": "LANGOSTA"
   },
   {
     "index": 183,
-    "soal": "A-U-B-A-Y",
-    "tipe": "Hewan",
-    "jawaban": "BUAYA"
+    "soal": "L-M-A-N-O-S",
+    "tipe": "Comida",
+    "jawaban": "SALMON"
   },
   {
     "index": 184,
-    "soal": "I-T-A-S-K",
-    "tipe": "Benda",
-    "jawaban": "SIKAT"
+    "soal": "T-U-N-A",
+    "tipe": "Comida",
+    "jawaban": "TUNA"
   },
   {
     "index": 185,
-    "soal": "M-O-T-A-T",
-    "tipe": "Buah",
-    "jawaban": "TOMAT"
+    "soal": "N-A-H-C-L-E-D-A-I",
+    "tipe": "Comida",
+    "jawaban": "ENCHILADA"
   },
   {
     "index": 186,
-    "soal": "K-E-R-T-O",
-    "tipe": "Benda",
-    "jawaban": "ROKET"
+    "soal": "S-A-C-T-O",
+    "tipe": "Comida",
+    "jawaban": "TACOS"
   },
   {
     "index": 187,
-    "soal": "T-A-K-E-R",
-    "tipe": "Benda",
-    "jawaban": "RAKET"
+    "soal": "L-A-E-U-Q-D-L-I-A-S",
+    "tipe": "Comida",
+    "jawaban": "QUESADILLA"
   },
   {
     "index": 188,
-    "soal": "M-E-T-R-O",
-    "tipe": "Benda",
-    "jawaban": "REMOT"
+    "soal": "A-E-O-A-U-C-L-G-M",
+    "tipe": "Comida",
+    "jawaban": "GUACAMOLE"
   },
   {
     "index": 189,
-    "soal": "B-E-L-A-H",
-    "tipe": "Hewan",
-    "jawaban": "LEBAH"
+    "soal": "C-O-S-U-R-H-R",
+    "tipe": "Comida",
+    "jawaban": "CHURROS"
   },
   {
     "index": 190,
-    "soal": "C-I-A-K-C",
-    "tipe": "Hewan",
-    "jawaban": "CICAK"
+    "soal": "A-E-P-A-D-M-A-N",
+    "tipe": "Comida",
+    "jawaban": "EMPANADA"
   },
   {
     "index": 191,
-    "soal": "A-K-G-A-G",
-    "tipe": "Hewan",
-    "jawaban": "GAGAK"
+    "soal": "U-C-R-Y-R",
+    "tipe": "Comida",
+    "jawaban": "CURRY"
   },
   {
     "index": 192,
-    "soal": "L-A-S-K-A",
-    "tipe": "Buah",
-    "jawaban": "SALAK"
+    "soal": "I-I-A-L-O-V-R",
+    "tipe": "Comida",
+    "jawaban": "RAVIOLI"
   },
   {
     "index": 193,
-    "soal": "B-A-S-K-A",
-    "tipe": "Benda",
-    "jawaban": "ASBAK"
+    "soal": "S-A-L-A-A-N",
+    "tipe": "Comida",
+    "jawaban": "LASANA"
   },
   {
     "index": 194,
-    "soal": "L-O-B-T-O",
-    "tipe": "Benda",
-    "jawaban": "BOTOL"
+    "soal": "H-U-S-S-I",
+    "tipe": "Comida",
+    "jawaban": "SUSHI"
   },
   {
     "index": 195,
-    "soal": "G-A-B-O-N",
-    "tipe": "Hewan",
-    "jawaban": "BANGO"
+    "soal": "L-S-E-F-W-F-A",
+    "tipe": "Comida",
+    "jawaban": "WAFFLES"
   },
   {
     "index": 196,
-    "soal": "C-O-K-E-A",
-    "tipe": "Hewan",
-    "jawaban": "KECOA"
+    "soal": "S-C-A-N-P-K-E-A",
+    "tipe": "Comida",
+    "jawaban": "PANCAKES"
   },
   {
     "index": 197,
-    "soal": "P-U-T-I-A",
-    "tipe": "Hewan",
-    "jawaban": "TUPAI"
+    "soal": "F-F-U-S-M-N-I",
+    "tipe": "Comida",
+    "jawaban": "MUFFINS"
   },
   {
     "index": 198,
-    "soal": "B-A-O-I-L",
-    "tipe": "Benda",
-    "jawaban": "BIOLA"
+    "soal": "T-R-I-S-S-O-S-C-A-N",
+    "tipe": "Comida",
+    "jawaban": "CROISSANTS"
   },
   {
     "index": 199,
-    "soal": "A-K-A-L-O",
-    "tipe": "Hewan",
-    "jawaban": "KOALA"
+    "soal": "N-A-S-D-O",
+    "tipe": "Comida",
+    "jawaban": "DONAS"
   },
   {
     "index": 200,
-    "soal": "S-I-B-U-K",
-    "tipe": "Sayuran",
-    "jawaban": "KUBIS"
+    "soal": "M-A-R-A-C-N-S-O",
+    "tipe": "Comida",
+    "jawaban": "MACARONS"
   },
   {
     "index": 201,
-    "soal": "A-B-A-M-Y",
-    "tipe": "Sayuran",
-    "jawaban": "BAYAM"
+    "soal": "I-I-R-S-A-T-M-U",
+    "tipe": "Comida",
+    "jawaban": "TIRAMISU"
   },
   {
     "index": 202,
-    "soal": "M-U-R-A-J",
-    "tipe": "Sayuran",
-    "jawaban": "JAMUR"
+    "soal": "R-N-O-S-E-I-B-W",
+    "tipe": "Comida",
+    "jawaban": "BROWNIES"
   },
   {
     "index": 203,
-    "soal": "L-I-U-K-A",
-    "tipe": "Benda",
-    "jawaban": "KUALI"
+    "soal": "G-N-A-I-L-A-T-E",
+    "tipe": "Comida",
+    "jawaban": "GELATINA"
   },
   {
     "index": 204,
-    "soal": "S-A-G-A-N",
-    "tipe": "Hewan",
-    "jawaban": "ANGSA"
+    "soal": "O-E-P-S-R-T",
+    "tipe": "Comida",
+    "jawaban": "POSTRE"
   },
   {
     "index": 205,
-    "soal": "N-A-B-O-D",
-    "tipe": "Benda",
-    "jawaban": "BANDO"
+    "soal": "O-O-A-N-D-R-E-H",
+    "tipe": "Comida",
+    "jawaban": "HORNEADO"
   },
   {
     "index": 206,
-    "soal": "S-T-A-K-E",
-    "tipe": "Benda",
-    "jawaban": "KASET"
+    "soal": "F-T-I-O-R-S",
+    "tipe": "Comida",
+    "jawaban": "FRITOS"
   },
   {
     "index": 207,
-    "soal": "G-A-P-A-R",
-    "tipe": "Benda",
-    "jawaban": "PAGAR"
+    "soal": "G-U-T-S-N-G-E",
+    "tipe": "Comida",
+    "jawaban": "NUGGETS"
   },
   {
     "index": 208,
-    "soal": "K-U-R-A-N",
-    "tipe": "Hewan",
-    "jawaban": "RAKUN"
+    "soal": "A-O-S-T-E-T-P",
+    "tipe": "Comida",
+    "jawaban": "POTATES"
   },
   {
     "index": 209,
-    "soal": "B-L-A-K-E",
-    "tipe": "Benda",
-    "jawaban": "KABEL"
+    "soal": "O-O-P-R-C-N-P",
+    "tipe": "Comida",
+    "jawaban": "POPCORN"
   },
   {
     "index": 210,
-    "soal": "B-R-O-T-O",
-    "tipe": "Benda",
-    "jawaban": "ROBOT"
+    "soal": "L-E-T-N-U-A-L",
+    "tipe": "Comida",
+    "jawaban": "NUTELLA"
   },
   {
     "index": 211,
-    "soal": "G-A-E-L-S",
-    "tipe": "Benda",
-    "jawaban": "GELAS"
+    "soal": "T-A-M-E-C-E-L-U-E-R-G",
+    "tipe": "Comida",
+    "jawaban": "MUERTEGLACE"
   },
   {
     "index": 212,
-    "soal": "P-I-S-K-A",
-    "tipe": "Benda",
-    "jawaban": "KIPAS"
+    "soal": "E-D-A-O-H-L",
+    "tipe": "Comida",
+    "jawaban": "HELADO"
   },
   {
     "index": 213,
-    "soal": "K-E-R-O-K",
-    "tipe": "Benda",
-    "jawaban": "KOREK"
+    "soal": "T-R-B-E-E-S-O",
+    "tipe": "Comida",
+    "jawaban": "SORBETE"
   },
   {
     "index": 214,
-    "soal": "A-L-O-N-G",
-    "tipe": "Benda",
-    "jawaban": "GALON"
+    "soal": "D-G-I-P-D-N-U",
+    "tipe": "Comida",
+    "jawaban": "PUDDING"
   },
   {
     "index": 215,
-    "soal": "A-C-I-N-D",
-    "tipe": "Benda",
-    "jawaban": "CANDI"
+    "soal": "A-C-M-A-R-L-E-O",
+    "tipe": "Comida",
+    "jawaban": "CARAMELO"
   },
   {
     "index": 216,
-    "soal": "E-N-Y-U-P",
-    "tipe": "Hewan",
-    "jawaban": "PENYU"
+    "soal": "O-G-I-O-F",
+    "tipe": "Comida",
+    "jawaban": "GOFIO"
   },
   {
     "index": 217,
-    "soal": "A-P-I-O-N",
-    "tipe": "Benda",
-    "jawaban": "PIANO"
+    "soal": "O-T-A-F-E-M-L",
+    "tipe": "Comida",
+    "jawaban": "MOFLETA"
   },
   {
     "index": 218,
-    "soal": "R-U-R-I-K",
-    "tipe": "Pekerjaan",
-    "jawaban": "KURIR"
+    "soal": "C-S-O-I-A-D",
+    "tipe": "Comida",
+    "jawaban": "COSIDA"
   },
   {
     "index": 219,
-    "soal": "P-U-S-R-I",
-    "tipe": "Pekerjaan",
-    "jawaban": "SUPIR"
+    "soal": "R-F-I-L-E-S-O",
+    "tipe": "Comida",
+    "jawaban": "FRIOLES"
   },
   {
     "index": 220,
-    "soal": "A-K-R-I-S",
-    "tipe": "Pekerjaan",
-    "jawaban": "KASIR"
+    "soal": "L-E-A-N-J-S-E-T",
+    "tipe": "Comida",
+    "jawaban": "LENTEJAS"
   },
   {
     "index": 221,
-    "soal": "L-A-T-T-E",
-    "tipe": "Profesi",
-    "jawaban": "ATLET"
+    "soal": "A-G-R-S-B-A-O-N",
+    "tipe": "Comida",
+    "jawaban": "GARBANOS"
   },
   {
     "index": 222,
-    "soal": "P-I-K-E-R",
-    "tipe": "Profesi",
-    "jawaban": "KIPER"
+    "soal": "S-G-N-R-O-A",
+    "tipe": "Comida",
+    "jawaban": "GRANOS"
   },
   {
     "index": 223,
-    "soal": "W-A-I-T-S",
-    "tipe": "Profesi",
-    "jawaban": "WASIT"
+    "soal": "A-B-S-H-A",
+    "tipe": "Comida",
+    "jawaban": "HABAS"
   },
   {
     "index": 224,
-    "soal": "B-I-B-A-T",
-    "tipe": "Pekerjaan",
-    "jawaban": "TABIB"
+    "soal": "L-E-C-H-I-S",
+    "tipe": "Comida",
+    "jawaban": "CHILES"
   },
   {
     "index": 225,
-    "soal": "R-I-K-U-S",
-    "tipe": "Pekerjaan",
-    "jawaban": "KUSIR"
+    "soal": "Z-I-A-M",
+    "tipe": "Comida",
+    "jawaban": "MAIZ"
   },
   {
     "index": 226,
-    "soal": "H-A-N-T-U",
-    "tipe": "Tempat",
-    "jawaban": "HUTAN"
+    "soal": "S-G-A-I-O-A-C-A-M-B",
+    "tipe": "Comida",
+    "jawaban": "CASABAMIGO"
   },
   {
     "index": 227,
-    "soal": "D-R-A-U-P",
-    "tipe": "Tempat",
-    "jawaban": "DAPUR"
+    "soal": "L-G-S-M-A-I-U-A",
+    "tipe": "Comida",
+    "jawaban": "ALMIGUAS"
   },
   {
     "index": 228,
-    "soal": "M-A-N-T-A",
-    "tipe": "Tempat",
-    "jawaban": "TAMAN"
+    "soal": "A-M-S-O-P-A-I-T-L",
+    "tipe": "Comida",
+    "jawaban": "PALOMITAS"
   },
   {
     "index": 229,
-    "soal": "P-A-R-A-S",
-    "tipe": "Tempat",
-    "jawaban": "PASAR"
+    "soal": "G-N-A-T-R-A-A-R-O",
+    "tipe": "Comida",
+    "jawaban": "TARRAGONA"
   },
   {
     "index": 230,
-    "soal": "B-A-K-E-O-N",
-    "tipe": "Benda",
-    "jawaban": "BONEKA"
+    "soal": "L-U-R-G-B-U",
+    "tipe": "Comida",
+    "jawaban": "BULGUR"
   },
   {
     "index": 231,
-    "soal": "J-A-K-E-M-E",
-    "tipe": "Benda",
-    "jawaban": "KEMEJA"
+    "soal": "U-O-O-U-S-C-C",
+    "tipe": "Comida",
+    "jawaban": "COUCOUS"
   },
   {
     "index": 232,
-    "soal": "G-I-A-N-U-A",
-    "tipe": "Hewan",
-    "jawaban": "IGUANA"
+    "soal": "F-I-R-A-A-N",
+    "tipe": "Comida",
+    "jawaban": "FARINA"
   },
   {
     "index": 233,
-    "soal": "H-A-R-E-U-P",
-    "tipe": "Benda",
-    "jawaban": "PERAHU"
+    "soal": "I-H-A-R-A-N",
+    "tipe": "Comida",
+    "jawaban": "HARINA"
   },
   {
     "index": 234,
-    "soal": "A-M-A-K-E-R",
-    "tipe": "Benda",
-    "jawaban": "KAMERA"
+    "soal": "M-S-A-A",
+    "tipe": "Comida",
+    "jawaban": "MASA"
   },
   {
     "index": 235,
-    "soal": "D-A-P-E-S-E",
-    "tipe": "Benda",
-    "jawaban": "SEPEDA"
+    "soal": "Y-G-O-T-R-U",
+    "tipe": "Comida",
+    "jawaban": "YOGURT"
   },
   {
     "index": 236,
-    "soal": "R-E-T-A-K-E",
-    "tipe": "Benda",
-    "jawaban": "KERETA"
+    "soal": "U-S-O-E-Q-S",
+    "tipe": "Comida",
+    "jawaban": "QUESOS"
   },
   {
     "index": 237,
-    "soal": "G-U-I-T-A-R",
-    "tipe": "Hewan",
-    "jawaban": "GURITA"
+    "soal": "L-E-T-M-A-N-U-A-I-Q-L",
+    "tipe": "Comida",
+    "jawaban": "MANTEQUILLA"
   },
   {
     "index": 238,
-    "soal": "A-P-E-P-A-Y",
-    "tipe": "Buah",
-    "jawaban": "PEPAYA"
+    "soal": "D-A-L-E-M-A-R-M-E",
+    "tipe": "Comida",
+    "jawaban": "MERMELADA"
   },
   {
     "index": 239,
-    "soal": "A-K-L-U-N-G",
-    "tipe": "Benda",
-    "jawaban": "KALUNG"
+    "soal": "V-N-O-C-S-R-E-A",
+    "tipe": "Comida",
+    "jawaban": "CONSERVA"
   },
   {
     "index": 240,
-    "soal": "N-A-T-A-N-E",
-    "tipe": "Benda",
-    "jawaban": "ANTENA"
+    "soal": "R-U-E-P",
+    "tipe": "Comida",
+    "jawaban": "PURE"
   },
   {
     "index": 241,
-    "soal": "G-R-A-N-G-U",
-    "tipe": "Buah",
-    "jawaban": "ANGGUR"
+    "soal": "L-A-S-S-A",
+    "tipe": "Comida",
+    "jawaban": "SALSA"
   },
   {
     "index": 242,
-    "soal": "C-R-A-S-K-I",
-    "tipe": "Benda",
-    "jawaban": "KARCIS"
+    "soal": "O-M-J-O",
+    "tipe": "Comida",
+    "jawaban": "MOJO"
   },
   {
     "index": 243,
-    "soal": "P-E-G-S-E-R",
-    "tipe": "Benda",
-    "jawaban": "GESPER"
+    "soal": "C-S-O-I-P",
+    "tipe": "Comida",
+    "jawaban": "PICOS"
   },
   {
     "index": 244,
-    "soal": "A-G-N-A-K-C",
-    "tipe": "Sayuran",
-    "jawaban": "KACANG"
+    "soal": "A-S-R-C-T-N-A-I",
+    "tipe": "Comida",
+    "jawaban": "CARNITAS"
   },
   {
     "index": 245,
-    "soal": "J-I-G-K-A-N",
-    "tipe": "Hewan",
-    "jawaban": "KIJANG"
+    "soal": "A-B-R-A-C-B-O-A",
+    "tipe": "Comida",
+    "jawaban": "BARBACOA"
   },
   {
     "index": 246,
-    "soal": "N-A-G-W-A-G",
-    "tipe": "Benda",
-    "jawaban": "GAWANG"
+    "soal": "B-O-D-A-O",
+    "tipe": "Comida",
+    "jawaban": "ADOBO"
   },
   {
     "index": 247,
-    "soal": "K-O-D-O-M-O",
-    "tipe": "Hewan",
-    "jawaban": "KOMODO"
+    "soal": "L-O-E-M",
+    "tipe": "Comida",
+    "jawaban": "MOLE"
   },
   {
     "index": 248,
-    "soal": "G-L-U-I-N-G",
-    "tipe": "Benda",
-    "jawaban": "GULING"
+    "soal": "S-O-P-O-L-E",
+    "tipe": "Comida",
+    "jawaban": "POSOLE"
   },
   {
     "index": 249,
-    "soal": "A-N-G-Y-G-U",
-    "tipe": "Benda",
-    "jawaban": "GAYUNG"
+    "soal": "O-N-M-D-U-E",
+    "tipe": "Comida",
+    "jawaban": "MENUDO"
   },
   {
     "index": 250,
-    "soal": "G-E-R-N-O-T",
-    "tipe": "Sayuran",
-    "jawaban": "TERONG"
+    "soal": "O-L-D-C-A",
+    "tipe": "Comida",
+    "jawaban": "CALDO"
   },
   {
     "index": 251,
-    "soal": "N-A-T-I-N-G",
-    "tipe": "Benda",
-    "jawaban": "ANTING"
+    "soal": "H-C-A-O-A-G-Z-P",
+    "tipe": "Comida",
+    "jawaban": "GAZPACHO"
   },
   {
     "index": 252,
-    "soal": "K-R-O-O-M-P",
-    "tipe": "Benda",
-    "jawaban": "KOMPOR"
+    "soal": "S-N-A-A-E-L-M-O-L",
+    "tipe": "Enfermedad",
+    "jawaban": "SALMONELA"
   },
   {
     "index": 253,
-    "soal": "M-U-S-P-I-T",
-    "tipe": "Benda",
-    "jawaban": "SUMPIT"
+    "soal": "P-I-A-R-G",
+    "tipe": "Enfermedad",
+    "jawaban": "GRIPA"
   },
   {
     "index": 254,
-    "soal": "D-E-M-O-P-T",
-    "tipe": "Benda",
-    "jawaban": "DOMPET"
+    "soal": "L-M-A-R-A-A-I",
+    "tipe": "Enfermedad",
+    "jawaban": "MALARIA"
   },
   {
     "index": 255,
-    "soal": "A-G-N-I-C-C",
-    "tipe": "Hewan",
-    "jawaban": "CACING"
+    "soal": "S-L-E-I-R-S-C-U-U-O-T-B",
+    "tipe": "Enfermedad",
+    "jawaban": "TUBERCULOSIS"
   },
   {
     "index": 256,
-    "soal": "C-U-P-A-N-G",
-    "tipe": "Hewan",
-    "jawaban": "CAPUNG"
+    "soal": "D-E-B-I-T-E-S-A",
+    "tipe": "Enfermedad",
+    "jawaban": "DIABETES"
   },
   {
     "index": 257,
-    "soal": "G-M-K-O-B-E",
-    "tipe": "Benda",
-    "jawaban": "GEMBOK"
+    "soal": "A-S-A-M",
+    "tipe": "Enfermedad",
+    "jawaban": "ASMA"
   },
   {
     "index": 258,
-    "soal": "G-A-N-B-U-K",
-    "tipe": "Benda",
-    "jawaban": "BANGKU"
+    "soal": "R-G-A-I-A-M-N",
+    "tipe": "Enfermedad",
+    "jawaban": "MIGRANA"
   },
   {
     "index": 259,
-    "soal": "C-C-I-I-N-N",
-    "tipe": "Benda",
-    "jawaban": "CINCIN"
+    "soal": "A-L-A-E-R-I-G",
+    "tipe": "Enfermedad",
+    "jawaban": "ALERGIA"
   },
   {
     "index": 260,
-    "soal": "D-O-S-K-E-N",
-    "tipe": "Benda",
-    "jawaban": "SENDOK"
+    "soal": "I-I-S-T-C-P-I-D-E-N-A-P",
+    "tipe": "Enfermedad",
+    "jawaban": "APPENDICITIS"
   },
   {
     "index": 261,
-    "soal": "G-R-O-L-O-B",
-    "tipe": "Benda",
-    "jawaban": "BORGOL"
+    "soal": "A-E-A-C-I-L-R-V",
+    "tipe": "Enfermedad",
+    "jawaban": "VARICELA"
   },
   {
     "index": 262,
-    "soal": "C-A-L-K-I-N",
-    "tipe": "Hewan",
-    "jawaban": "KANCIL"
+    "soal": "L-E-S-E-S-A-M",
+    "tipe": "Enfermedad",
+    "jawaban": "MEASLES"
   },
   {
     "index": 263,
-    "soal": "L-O-W-E-R-T",
-    "tipe": "Sayuran",
-    "jawaban": "WORTEL"
+    "soal": "R-C-A-O-E-L",
+    "tipe": "Enfermedad",
+    "jawaban": "COLERA"
   },
   {
     "index": 264,
-    "soal": "E-T-O-N-M-Y",
-    "tipe": "Hewan",
-    "jawaban": "MONYET"
+    "soal": "E-E-P-T-S",
+    "tipe": "Enfermedad",
+    "jawaban": "PESTE"
   },
   {
     "index": 265,
-    "soal": "A-N-I-T-R-A",
-    "tipe": "Benda",
-    "jawaban": "RANTAI"
+    "soal": "C-R-I-E-S-A",
+    "tipe": "Enfermedad",
+    "jawaban": "CARIES"
   },
   {
     "index": 266,
-    "soal": "J-U-G-N-A-G",
-    "tipe": "Sayuran",
-    "jawaban": "JAGUNG"
+    "soal": "E-I-A-M-N-A",
+    "tipe": "Enfermedad",
+    "jawaban": "ANEMIA"
   },
   {
     "index": 267,
-    "soal": "A-R-I-P-K-T",
-    "tipe": "Hewan",
-    "jawaban": "PARKIT"
+    "soal": "M-E-I-U-L-E-A-C",
+    "tipe": "Enfermedad",
+    "jawaban": "LEUCEMIA"
   },
   {
     "index": 268,
-    "soal": "G-U-S-M-A-N",
-    "tipe": "Hewan",
-    "jawaban": "MUSANG"
+    "soal": "T-S-H-I-P-T-A-E-I",
+    "tipe": "Enfermedad",
+    "jawaban": "HEPATITIS"
   },
   {
     "index": 269,
-    "soal": "A-N-D-A-K-L",
-    "tipe": "Hewan",
-    "jawaban": "LANDAK"
+    "soal": "O-N-U-I-E-A-M-N",
+    "tipe": "Enfermedad",
+    "jawaban": "NEUMONIA"
   },
   {
     "index": 270,
-    "soal": "B-I-C-N-U-S",
-    "tipe": "Sayuran",
-    "jawaban": "BUNCIS"
+    "soal": "O-B-S-R-I-Q-I-T-U-N",
+    "tipe": "Enfermedad",
+    "jawaban": "BRONQUITIS"
   },
   {
     "index": 271,
-    "soal": "M-E-D-I-A-L",
-    "tipe": "Buah",
-    "jawaban": "DELIMA"
+    "soal": "A-T-I-G-S-R-T-S-I",
+    "tipe": "Enfermedad",
+    "jawaban": "GASTRITIS"
   },
   {
     "index": 272,
-    "soal": "M-A-R-C-I-E",
-    "tipe": "Buah",
-    "jawaban": "CERMAI"
+    "soal": "R-S-I-S-R-O-C-I",
+    "tipe": "Enfermedad",
+    "jawaban": "CIRROSIS"
   },
   {
     "index": 273,
-    "soal": "G-A-N-G-M-A",
-    "tipe": "Buah",
-    "jawaban": "MANGGA"
+    "soal": "I-S-E-E-A-P-P-I-L",
+    "tipe": "Enfermedad",
+    "jawaban": "EPILEPSIA"
   },
   {
     "index": 274,
-    "soal": "A-K-B-A-W-I",
-    "tipe": "Hewan",
-    "jawaban": "BIAWAK"
+    "soal": "N-K-A-I-R-O-N-S-P",
+    "tipe": "Enfermedad",
+    "jawaban": "PARKINSON"
   },
   {
     "index": 275,
-    "soal": "C-A-K-E-P-I",
-    "tipe": "Benda",
-    "jawaban": "KECAPI"
+    "soal": "Z-E-L-I-E-R-H-M-A",
+    "tipe": "Enfermedad",
+    "jawaban": "ALZHEIMER"
   },
   {
     "index": 276,
-    "soal": "E-L-G-A-N-G",
-    "tipe": "Benda",
-    "jawaban": "GELANG"
+    "soal": "C-A-C-E-N-R",
+    "tipe": "Enfermedad",
+    "jawaban": "CANCER"
   },
   {
     "index": 277,
-    "soal": "A-N-N-A-K-G",
-    "tipe": "Buah",
-    "jawaban": "NANGKA"
+    "soal": "D-A-S-I",
+    "tipe": "Enfermedad",
+    "jawaban": "SIDA"
   },
   {
     "index": 278,
-    "soal": "S-K-A-S-R-I",
-    "tipe": "Buah",
-    "jawaban": "SIRSAK"
+    "soal": "D-C-I-O-V",
+    "tipe": "Enfermedad",
+    "jawaban": "COVID"
   },
   {
     "index": 279,
-    "soal": "R-E-S-E-N-T",
-    "tipe": "Benda",
-    "jawaban": "SENTER"
+    "soal": "E-I-L-Z-A-U-N-F-N",
+    "tipe": "Enfermedad",
+    "jawaban": "INFLUENZA"
   },
   {
     "index": 280,
-    "soal": "P-A-N-G-E-D",
-    "tipe": "Benda",
-    "jawaban": "PEDANG"
+    "soal": "E-E-R-F-B",
+    "tipe": "Enfermedad",
+    "jawaban": "FEBRE"
   },
   {
     "index": 281,
-    "soal": "G-A-T-A-N-G",
-    "tipe": "Benda",
-    "jawaban": "TANGGA"
+    "soal": "S-T-O",
+    "tipe": "Enfermedad",
+    "jawaban": "TOS"
   },
   {
     "index": 282,
-    "soal": "H-E-A-R-U-P",
-    "tipe": "Benda",
-    "jawaban": "PERAHU"
+    "soal": "E-A-I-D-R-R-A",
+    "tipe": "Enfermedad",
+    "jawaban": "DIARREA"
   },
   {
     "index": 283,
-    "soal": "A-K-A-K-P-M",
-    "tipe": "Benda",
-    "jawaban": "KAMPAK"
+    "soal": "S-V-O-I-O-T-M",
+    "tipe": "Enfermedad",
+    "jawaban": "VOMITOS"
   },
   {
     "index": 284,
-    "soal": "I-S-P-O-I-L",
-    "tipe": "Profesi",
-    "jawaban": "POLISI"
+    "soal": "F-C-E-I-N-I-O-C-N",
+    "tipe": "Enfermedad",
+    "jawaban": "INFECCION"
   },
   {
     "index": 285,
-    "soal": "L-E-T-A-P-U",
-    "tipe": "Profesi",
-    "jawaban": "PELAUT"
+    "soal": "S-L-F-B-E-I-T-I",
+    "tipe": "Enfermedad",
+    "jawaban": "FLEBITIS"
   },
   {
     "index": 286,
-    "soal": "A-W-L-P-O-N",
-    "tipe": "Profesi",
-    "jawaban": "POLWAN"
+    "soal": "C-A-A-I-M-O-A-T-P-I-I-R-O-D",
+    "tipe": "Enfermedad",
+    "jawaban": "CARDIOMIOPATIA"
   },
   {
     "index": 287,
-    "soal": "R-U-S-S-E-T",
-    "tipe": "Profesi",
-    "jawaban": "SUSTER"
+    "soal": "I-T-I-S-A-R-R-T",
+    "tipe": "Enfermedad",
+    "jawaban": "ARTRITIS"
   },
   {
     "index": 288,
-    "soal": "I-L-K-I-N-K",
-    "tipe": "Tempat",
-    "jawaban": "KLINIK"
+    "soal": "P-E-I-O-S-R-S-O-T-O-S-O",
+    "tipe": "Enfermedad",
+    "jawaban": "OSTEOPOROSIS"
   },
   {
     "index": 289,
-    "soal": "T-O-P-E-K-A",
-    "tipe": "Tempat",
-    "jawaban": "APOTEK"
+    "soal": "T-A-G-O",
+    "tipe": "Enfermedad",
+    "jawaban": "GOTA"
   },
   {
     "index": 290,
-    "soal": "K-A-R-T-O-N",
-    "tipe": "Tempat",
-    "jawaban": "KANTOR"
+    "soal": "L-D-I-O-G-B-H-O-H",
+    "tipe": "Enfermedad",
+    "jawaban": "HIGHBLOOD"
   },
   {
     "index": 291,
-    "soal": "G-U-N-W-A-R",
-    "tipe": "Tempat",
-    "jawaban": "WARUNG"
+    "soal": "O-O-B-E-C-A-N-N-R-M-I-O-N-U",
+    "tipe": "Enfermedad",
+    "jawaban": "BRONCONEUMONIA"
   },
   {
     "index": 292,
-    "soal": "G-U-N-G-U-N",
-    "tipe": "Tempat",
-    "jawaban": "GUNUNG"
+    "soal": "I-I-N-A-T-O-D-S",
+    "tipe": "Enfermedad",
+    "jawaban": "DISTONIA"
   },
   {
     "index": 293,
-    "soal": "B-A-R-K-I-P",
-    "tipe": "Tempat",
-    "jawaban": "PABRIK"
+    "soal": "T-C-I-S-Y-C",
+    "tipe": "Enfermedad",
+    "jawaban": "CYSTIC"
   },
   {
     "index": 294,
-    "soal": "I-C-E-L-I-N-K",
-    "tipe": "Hewan",
-    "jawaban": "KELINCI"
+    "soal": "S-T-I-I-U-N-S-I-S",
+    "tipe": "Enfermedad",
+    "jawaban": "SINUSITIS"
   },
   {
     "index": 295,
-    "soal": "K-I-R-A-S-E-T",
-    "tipe": "Benda",
-    "jawaban": "SETRIKA"
+    "soal": "I-T-T-O-I-S",
+    "tipe": "Enfermedad",
+    "jawaban": "OTITIS"
   },
   {
     "index": 296,
-    "soal": "G-A-N-T-K-E-N",
-    "tipe": "Sayuran",
-    "jawaban": "KENTANG"
+    "soal": "N-S-I-V-I-U-J-T-I-N-T-O-C",
+    "tipe": "Enfermedad",
+    "jawaban": "CONJUNTIVITIS"
   },
   {
     "index": 297,
-    "soal": "G-I-N-G-U-T-N",
-    "tipe": "Benda",
-    "jawaban": "GUNTING"
+    "soal": "I-D-E-M-T-T-A-S-I-R",
+    "tipe": "Enfermedad",
+    "jawaban": "DERMATITIS"
   },
   {
     "index": 298,
-    "soal": "G-A-N-G-N-E-D",
-    "tipe": "Benda",
-    "jawaban": "GENDANG"
+    "soal": "Z-A-E-C-M-E",
+    "tipe": "Enfermedad",
+    "jawaban": "ECZEMA"
   },
   {
     "index": 299,
-    "soal": "A-H-A-W-S",
-    "tipe": "Tempat",
-    "jawaban": "SAWAH"
+    "soal": "S-P-O-S-I-I-R-S-A",
+    "tipe": "Enfermedad",
+    "jawaban": "PSORIASIS"
   },
   {
     "index": 300,
-    "soal": "B-U-N-G-K-A-M",
-    "tipe": "Hewan",
-    "jawaban": "KUMBANG"
+    "soal": "R-E-A-H-O-D-M-S-O-I-R",
+    "tipe": "Enfermedad",
+    "jawaban": "HEMORROIDAS"
   },
   {
     "index": 301,
-    "soal": "C-A-N-K-I-N-G",
-    "tipe": "Benda",
-    "jawaban": "KANCING"
+    "soal": "V-O-I-A-S-R-S-C-I",
+    "tipe": "Enfermedad",
+    "jawaban": "VARICOSIS"
   },
   {
     "index": 302,
-    "soal": "G-A-S-M-I-N-G",
-    "tipe": "Buah",
-    "jawaban": "MANGGIS"
+    "soal": "S-S-I-O-I-R-O-E-T-N-E-D-M",
+    "tipe": "Enfermedad",
+    "jawaban": "ENDOMETRIOSIS"
   },
   {
     "index": 303,
-    "soal": "R-A-C-K-I-N-G",
-    "tipe": "Benda",
-    "jawaban": "CANGKIR"
+    "soal": "M-I-O-I-L-I-T-O-E-L-I-S-P",
+    "tipe": "Enfermedad",
+    "jawaban": "POLIOMIELITIS"
   },
   {
     "index": 304,
-    "soal": "G-L-E-N-N-C-O",
-    "tipe": "Benda",
-    "jawaban": "LONCENG"
+    "soal": "I-G-N-M-E-I-N-T-I-S",
+    "tipe": "Enfermedad",
+    "jawaban": "MENINGITIS"
   },
   {
     "index": 305,
-    "soal": "A-S-A-W-E-P-T",
-    "tipe": "Benda",
-    "jawaban": "PESAWAT"
+    "soal": "E-S-C-L-T-I-E-A-N-I-F",
+    "tipe": "Enfermedad",
+    "jawaban": "ENCEFALITIS"
   },
   {
     "index": 306,
-    "soal": "B-R-O-K-A-G-E",
-    "tipe": "Benda",
-    "jawaban": "GEROBAK"
+    "soal": "R-A-I-B-A",
+    "tipe": "Enfermedad",
+    "jawaban": "RABIA"
   },
   {
     "index": 307,
-    "soal": "L-U-C-K-N-A-G",
-    "tipe": "Benda",
-    "jawaban": "CANGKUL"
+    "soal": "T-S-A-N-T-E-O",
+    "tipe": "Enfermedad",
+    "jawaban": "TETANOS"
   },
   {
     "index": 308,
-    "soal": "D-E-I-A-L-E-K",
-    "tipe": "Hewan",
-    "jawaban": "KELEDAI"
+    "soal": "R-D-F-T-A-I-E-I",
+    "tipe": "Enfermedad",
+    "jawaban": "DIFTERIA"
   },
   {
     "index": 309,
-    "soal": "A-L-P-O-M-I-N",
-    "tipe": "Benda",
-    "jawaban": "LAMPION"
+    "soal": "R-S-A-A-S",
+    "tipe": "Enfermedad",
+    "jawaban": "SARAS"
   },
   {
     "index": 310,
-    "soal": "K-A-R-A-P-I-P",
-    "tipe": "Sayuran",
-    "jawaban": "PAPRIKA"
+    "soal": "P-M-U-M-S",
+    "tipe": "Enfermedad",
+    "jawaban": "MUMPS"
   },
   {
     "index": 311,
-    "soal": "K-O-L-O-R-I-B",
-    "tipe": "Sayuran",
-    "jawaban": "BROKOLI"
+    "soal": "R-L-B-O-E-U-A",
+    "tipe": "Enfermedad",
+    "jawaban": "RUBEOLA"
   },
   {
     "index": 312,
-    "soal": "A-I-A-R-H-U-M",
-    "tipe": "Hewan",
-    "jawaban": "HARIMAU"
+    "soal": "E-R-S-L-E-I-S-A-Y-P",
+    "tipe": "Enfermedad",
+    "jawaban": "ERYSIPELAS"
   },
   {
     "index": 313,
-    "soal": "J-O-I-N-M-E-L",
-    "tipe": "Sayuran",
-    "jawaban": "MELINJO"
+    "soal": "A-G-E-A-C-N-N-R",
+    "tipe": "Enfermedad",
+    "jawaban": "CANGRENA"
   },
   {
     "index": 314,
-    "soal": "M-A-R-I-S-K-A",
-    "tipe": "Buah",
-    "jawaban": "MARKISA"
+    "soal": "R-N-A-G-E-G-N-A",
+    "tipe": "Enfermedad",
+    "jawaban": "GANGRENA"
   },
   {
     "index": 315,
-    "soal": "J-A-G-K-N-A-R",
-    "tipe": "Benda",
-    "jawaban": "JANGKAR"
+    "soal": "I-S-E-S-S-P",
+    "tipe": "Enfermedad",
+    "jawaban": "SEPSIS"
   },
   {
     "index": 316,
-    "soal": "E-K-E-K-M-S-E",
-    "tipe": "Buah",
-    "jawaban": "KESEMEK"
+    "soal": "B-O-S-S-O-T-R-I-M",
+    "tipe": "Enfermedad",
+    "jawaban": "TROMBOSIS"
   },
   {
     "index": 317,
-    "soal": "R-I-S-A-Y-A-K",
-    "tipe": "Buah",
-    "jawaban": "SRIKAYA"
+    "soal": "I-L-O-B-A-E-M",
+    "tipe": "Enfermedad",
+    "jawaban": "EMBOLIA"
   },
   {
     "index": 318,
-    "soal": "N-O-M-I-T-O-R",
-    "tipe": "Benda",
-    "jawaban": "MONITOR"
+    "soal": "A-O-N-R-F-I-T",
+    "tipe": "Enfermedad",
+    "jawaban": "INFARTO"
   },
   {
     "index": 319,
-    "soal": "G-A-N-K-M-U-K",
-    "tipe": "Benda",
-    "jawaban": "MANGKUK"
+    "soal": "D-A-U-A-G",
+    "tipe": "Enfermedad",
+    "jawaban": "AGUDA"
   },
   {
     "index": 320,
-    "soal": "T-A-N-A-G-E-R",
-    "tipe": "Benda",
-    "jawaban": "GERANAT"
+    "soal": "A-N-O-I-C-R-C",
+    "tipe": "Enfermedad",
+    "jawaban": "CRONICA"
   },
   {
     "index": 321,
-    "soal": "A-J-I-G-G-E-R",
-    "tipe": "Benda",
-    "jawaban": "GERGAJI"
+    "soal": "R-I-T-A-E-E-N-E-V-G-D-A",
+    "tipe": "Enfermedad",
+    "jawaban": "DEGENERATIVA"
   },
   {
     "index": 322,
-    "soal": "L-E-A-N-A-N-Y",
-    "tipe": "Profesi",
-    "jawaban": "NELAYAN"
+    "soal": "N-A-I-E-T-U-U-M-N-O",
+    "tipe": "Enfermedad",
+    "jawaban": "AUTOINMUNE"
   },
   {
     "index": 323,
-    "soal": "L-U-K-E-P-I-S",
-    "tipe": "Profesi",
-    "jawaban": "PELUKIS"
+    "soal": "I-T-H-I-D-E-A-R-R-A-E",
+    "tipe": "Enfermedad",
+    "jawaban": "HEREDITARIA"
   },
   {
     "index": 324,
-    "soal": "S-I-M-I-A-N-S",
-    "tipe": "Profesi",
-    "jawaban": "MASINIS"
+    "soal": "O-C-N-I-A-F-E-I-S",
+    "tipe": "Enfermedad",
+    "jawaban": "INFECIOSA"
   },
   {
     "index": 325,
-    "soal": "I-N-K-I-E-S-T",
-    "tipe": "Profesi",
-    "jawaban": "TEKNISI"
+    "soal": "I-D-L-N-T-A-I-E-T-B-E",
+    "tipe": "Enfermedad",
+    "jawaban": "DEBILITANTE"
   },
   {
     "index": 326,
-    "soal": "E-T-A-T-R-A-N",
-    "tipe": "Profesi",
-    "jawaban": "TENTARA"
+    "soal": "M-R-A-O-L-T",
+    "tipe": "Enfermedad",
+    "jawaban": "MORTAL"
   },
   {
     "index": 327,
-    "soal": "P-E-T-A-W-A-R",
-    "tipe": "Profesi",
-    "jawaban": "PERAWAT"
+    "soal": "A-L-E-T-L",
+    "tipe": "Enfermedad",
+    "jawaban": "LETAL"
   },
   {
     "index": 328,
-    "soal": "A-L-A-N-Y-E-P",
-    "tipe": "Pekerjaan",
-    "jawaban": "PELAYAN"
+    "soal": "A-T-L-F-A",
+    "tipe": "Enfermedad",
+    "jawaban": "FATAL"
   },
   {
     "index": 329,
-    "soal": "A-D-A-H-K-O-N",
-    "tipe": "Pekerjaan",
-    "jawaban": "NAHKODA"
+    "soal": "G-E-V-A-R",
+    "tipe": "Enfermedad",
+    "jawaban": "GRAVE"
   },
   {
     "index": 330,
-    "soal": "J-E-N-I-P-U-T",
-    "tipe": "Profesi",
-    "jawaban": "PETINJU"
+    "soal": "G-R-E-L-A-I",
+    "tipe": "Enfermedad",
+    "jawaban": "LIGERA"
   },
   {
     "index": 331,
-    "soal": "A-D-I-T-N-O-S",
-    "tipe": "Tempat",
-    "jawaban": "STADION"
+    "soal": "E-E-L-V",
+    "tipe": "Enfermedad",
+    "jawaban": "LEVE"
   },
   {
     "index": 332,
-    "soal": "A-K-A-K-A-T-K-U",
-    "tipe": "Hewan",
-    "jawaban": "KAKAKTUA"
+    "soal": "F-N-V-O-S-N-I-A-I-E",
+    "tipe": "Enfermedad",
+    "jawaban": "INOFENSIVA"
   },
   {
     "index": 333,
-    "soal": "O-R-B-I-T-E-R-S",
-    "tipe": "Buah",
-    "jawaban": "STROBERI"
+    "soal": "I-E-N-A-B-N-G",
+    "tipe": "Enfermedad",
+    "jawaban": "BENIGNA"
   },
   {
     "index": 334,
-    "soal": "A-C-T-A-K-A-M-A",
-    "tipe": "Benda",
-    "jawaban": "KACAMATA"
+    "soal": "G-I-A-A-N-L-M",
+    "tipe": "Enfermedad",
+    "jawaban": "MALIGNA"
   },
   {
     "index": 335,
-    "soal": "L-E-V-I-T-I-E-S",
-    "tipe": "Benda",
-    "jawaban": "TELEVISI"
+    "soal": "D-E-T-O-L-N-E",
+    "tipe": "Enfermedad",
+    "jawaban": "DOLENTE"
   },
   {
     "index": 336,
-    "soal": "G-U-N-K-K-N-A-G",
-    "tipe": "SayuraN",
-    "jawaban": "KANGKUNG"
+    "soal": "A-D-I-N-O-R-O-O-S-L",
+    "tipe": "Enfermedad",
+    "jawaban": "INDOLOROSA"
   },
   {
     "index": 337,
-    "soal": "L-A-B-E-L-N-A-G",
-    "tipe": "Hewan",
-    "jawaban": "BELALANG"
+    "soal": "A-T-L-L-R-O-E-B-E",
+    "tipe": "Enfermedad",
+    "jawaban": "TOLERABLE"
   },
   {
     "index": 338,
-    "soal": "A-J-A-W-L-I-A-R",
-    "tipe": "Hewan",
-    "jawaban": "RAJAWALI"
+    "soal": "S-U-R-I-I-N-I-B-L-E-F",
+    "tipe": "Enfermedad",
+    "jawaban": "INSUFIRIBLE"
   },
   {
     "index": 339,
-    "soal": "G-I-T-I-N-P-E-K",
-    "tipe": "Hewan",
-    "jawaban": "KEPITING"
+    "soal": "A-L-E-M-S-T-O",
+    "tipe": "Enfermedad",
+    "jawaban": "MOLESTA"
   },
   {
     "index": 340,
-    "soal": "G-R-U-S-L-I-N-E",
-    "tipe": "Benda",
-    "jawaban": "SERULING"
+    "soal": "A-G-P-O-A-D-A-R",
+    "tipe": "Enfermedad",
+    "jawaban": "PAGADORA"
   },
   {
     "index": 341,
-    "soal": "N-A-B-T-A-K-E-N",
-    "tipe": "Hewan",
-    "jawaban": "BEKANTAN"
+    "soal": "I-E-P-V-R-E-E-N-B-L",
+    "tipe": "Enfermedad",
+    "jawaban": "PREVENIBLE"
   },
   {
     "index": 342,
-    "soal": "C-O-N-G-M-E-E-K",
-    "tipe": "Benda",
-    "jawaban": "KEMOCENG"
+    "soal": "A-C-U-E-L-R-B",
+    "tipe": "Enfermedad",
+    "jawaban": "CURABLE"
   },
   {
     "index": 343,
-    "soal": "M-E-T-P-E-R-O-T",
-    "tipe": "Benda",
-    "jawaban": "TEROMPET"
+    "soal": "C-U-N-I-E-B-A-R-L",
+    "tipe": "Enfermedad",
+    "jawaban": "INCURABLE"
   },
   {
     "index": 344,
-    "soal": "G-U-N-K-L-A-N-G",
-    "tipe": "Benda",
-    "jawaban": "ANGKLUNG"
+    "soal": "T-L-R-A-E-B-T-A",
+    "tipe": "Enfermedad",
+    "jawaban": "TRATABLE"
   },
   {
     "index": 345,
-    "soal": "A-N-N-Y-Y-I-P-E",
-    "tipe": "Profesi",
-    "jawaban": "PENYANYI"
+    "soal": "V-E-B-E-S-R-I-R-L-I-E-R",
+    "tipe": "Enfermedad",
+    "jawaban": "IRREVERSIBLE"
   },
   {
     "index": 346,
-    "soal": "D-A-N-G-P-A-G-E",
-    "tipe": "Pekerjaan",
-    "jawaban": "PEDAGANG"
+    "soal": "O-S-I-A-N-C-O-G-T-A",
+    "tipe": "Enfermedad",
+    "jawaban": "CONTAGIOSA"
   },
   {
     "index": 347,
-    "soal": "D-R-U-K-I-T-E-R",
-    "tipe": "Profesi",
-    "jawaban": "DIREKTUR"
+    "soal": "A-I-E-A-D-M-N-P",
+    "tipe": "Enfermedad",
+    "jawaban": "PANDEMIA"
   },
   {
     "index": 348,
-    "soal": "D-E-N-E-P-R-I-S",
-    "tipe": "Profesi",
-    "jawaban": "PRESIDEN"
+    "soal": "E-E-A-D-I-M-P-I",
+    "tipe": "Enfermedad",
+    "jawaban": "EPIDEMIA"
   },
   {
     "index": 349,
-    "soal": "S-I-N-N-Y-U-R-I",
-    "tipe": "Profesi",
-    "jawaban": "INSINYUR"
+    "soal": "I-E-E-C-M-A-N-D",
+    "tipe": "Enfermedad",
+    "jawaban": "ENDEMICA"
   },
   {
     "index": 350,
-    "soal": "A-R-E-L-M-I-N-T",
-    "tipe": "Tempat",
-    "jawaban": "TERMINAL"
+    "soal": "H-E-E-G-I-N-I",
+    "tipe": "Salud",
+    "jawaban": "HIGIENE"
   },
   {
     "index": 351,
-    "soal": "A-R-N-I-P-A-R-K",
-    "tipe": "Tempat",
-    "jawaban": "PARKIRAN"
+    "soal": "U-S-L-A-D",
+    "tipe": "Salud",
+    "jawaban": "SALUD"
   },
   {
     "index": 352,
-    "soal": "A-N-T-R-O-R-S-E",
-    "tipe": "Tempat",
-    "jawaban": "RESTORAN"
+    "soal": "V-A-I-D",
+    "tipe": "Salud",
+    "jawaban": "VIDA"
   },
   {
     "index": 353,
-    "soal": "R-B-A",
-    "tipe": "Tempat",
-    "jawaban": "BAR"
+    "soal": "R-U-E-T-M-E",
+    "tipe": "Salud",
+    "jawaban": "MUERTE"
   },
   {
     "index": 354,
-    "soal": "G-D-Z-I-L-L-A-O",
-    "tipe": "Monster",
-    "jawaban": "GODZILLA"
+    "soal": "S-R-E-Z-A-A-P-E-N",
+    "tipe": "Salud",
+    "jawaban": "ESPERANZA"
   },
   {
     "index": 355,
-    "soal": "O-D-T-R-E-K",
-    "tipe": "Profesi",
-    "jawaban": "DOKTER"
+    "soal": "L-I-D-E-I-D-C-F-A",
+    "tipe": "Emoción",
+    "jawaban": "FELICIDAD"
   }
 ]

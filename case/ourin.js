@@ -62,7 +62,6 @@ const CATEGORY_EMOJIS = {
   game: "🎯",
   media: "🎬",
   info: "ℹ️",
-  religi: "☪️",
   panel: "🖥️",
   user: "📊",
   linode: "☁️",

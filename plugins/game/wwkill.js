@@ -5,7 +5,7 @@ const pluginConfig = {
     alias: ['wolfkill', 'wk'],
     category: 'game',
     description: 'Acción nocturna del Hombre Lobo - Matar al objetivo',
-    usage: '.wwkill <nomor>',
+    usage: '.wwkill <numero>',
     example: '.wwkill 2',
     isOwner: false,
     isPremium: false,

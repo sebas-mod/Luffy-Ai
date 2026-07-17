@@ -72,7 +72,7 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
         heap: `${formatBytes(memUsed.heapUsed)} / ${formatBytes(memUsed.heapTotal)}`,
       },
       updated: new Date().toLocaleTimeString("id-ID", {
-        timeZone: "Asia/Jakarta",
+        timeZone: "America/Argentina/Buenos_Aires",
       }),
     };
 

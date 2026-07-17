@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         `┃ ◦ \`{count}\` - Miembros restantes\n` +
         `┃ ◦ \`{owner}\` - Nombre del dueño del grupo\n` +
         `┃ ◦ \`{date}\` - Fecha (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm ART)\n` +
         `┃ ◦ \`{day}\` - Día (Lunes, Martes, etc)\n` +
         `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefijo del bot\n` +

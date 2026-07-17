@@ -618,7 +618,7 @@ function buildListText(tasks, header = null) {
     text += `• *${getTaskTitle(task)}*\n`;
     text += `  🆔 ${task.id}\n`;
     text += `  🏷️ ${getTaskCategory(task)}\n`;
-    text += `  ⏰ ${formatClock(task.hour, task.minute)} WIB\n`;
+    text += `  ⏰ ${formatClock(task.hour, task.minute)} ART\n`;
     text += `  📍 ${getTaskTargetLabel(task)}\n`;
     text += `  🔄 ${task.repeat ? "Diario" : "Una vez"}\n`;
     text += `  🕕 ${formatTimeRemaining(msUntil)} de nuevo\n`;
@@ -635,7 +635,7 @@ function buildDetailText(task) {
 🆔 ID: \`${task.id}\`
 🏷️ Kategori: ${getTaskCategory(task)}
 📝 Título: ${getTaskTitle(task)}
-⏰ Tiempo: ${formatClock(task.hour, task.minute)} WIB
+⏰ Tiempo: ${formatClock(task.hour, task.minute)} ART
 📍 Target: ${getTaskTargetLabel(task)}
 🔄 Mode: ${task.repeat ? "Diario" : "Una vez"}
 🕕 Next run: ${formatTimeRemaining(msUntil)} de nuevo
@@ -671,7 +671,7 @@ async function handler(m, { sock, args }) {
 🆔 ID: \`${id}\`
 🏷️ Kategori: ${parsed.category}
 📝 Título: ${parsed.title}
-⏰ Tiempo: ${parsed.label} WIB
+⏰ Tiempo: ${parsed.label} ART
 📍 Target: ${parsed.target.label}
 🔄 Mode: ${parsed.repeat ? "Diario" : "Una vez"}
 🕕 Next run: ${formatTimeRemaining(msUntil)} de nuevo
@@ -713,7 +713,7 @@ ${truncateText(parsed.customText, 180)}`);
 ⚡ Preset: ${parsed.presetKey}
 🏷️ Kategori: ${parsed.category}
 📝 Título: ${parsed.title}
-⏰ Tiempo: ${parsed.label} WIB
+⏰ Tiempo: ${parsed.label} ART
 📍 Target: ${parsed.target.label}
 🔄 Mode: ${parsed.repeat ? "Diario" : "Una vez"}
 🕕 Next run: ${formatTimeRemaining(msUntil)} de nuevo
@@ -763,7 +763,7 @@ ${truncateText(parsed.customText, 180)}`);
 🆔 ID: \`${task.id}\`
 🏷️ Kategori: ${parsed.category}
 📝 Título: ${parsed.title}
-⏰ Tiempo: ${parsed.label} WIB
+⏰ Tiempo: ${parsed.label} ART
 📍 Target: ${parsed.target.label}
 🔄 Mode: ${parsed.repeat ? "Diario" : "Una vez"}
 🕕 Next run: ${formatTimeRemaining(msUntil)} de nuevo

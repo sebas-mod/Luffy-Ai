@@ -1526,7 +1526,6 @@ async function messageHandler(msg, sock, options = {}) {
         utility: "md",
         tools: "md",
         ephoto: "md",
-        religi: "md",
         info: "md",
         panel: "cpanel",
         pushkontak: "pushkontak",

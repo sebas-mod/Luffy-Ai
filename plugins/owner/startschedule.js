@@ -1,6 +1,4 @@
 import { startSchedulerByName, getFullSchedulerStatus } from '../../src/lib/ourin-scheduler.js'
-import { initSholatScheduler } from '../../src/lib/ourin-sholat-scheduler.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'startschedule',
@@ -8,7 +6,7 @@ const pluginConfig = {
     category: 'owner',
     description: 'Reestocia uno o todos los planificadores',
     usage: '.startschedule <nombre|all>',
-    example: '.startschedule sholat',
+    example: '.startschedule limitreset',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -33,43 +31,17 @@ async function handler(m, { sock, args }) {
 • \`groupschedule\` - Group Schedule
 • \`sewa\` - Sewa Checar
 • \`messages\` - Scheduled Messages
-• \`sholat\` - Sholat Scheduler
 • \`all\` - Todos scheduler
 
 *Example:*
-\`.startschedule sholat\`
+\`.startschedule limitreset\`
 \`.startschedule all\``;
             
             await m.reply(helpText);
             return;
         }
         
-        if (target === 'sholat') {
-            const db = getDatabase();
-            const wasEnabled = db.setting('autoSholat');
-            
-            if (wasEnabled) {
-                await m.reply(`ℹ️ El Sholat Scheduler ya está activo`);
-                return;
-            }
-            
-            initSholatScheduler(sock);
-            db.setting('autoSholat', true);
-            
-            await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
-
-> Scheduler: *Sholat Scheduler*
-> Status: ✅ Activo
-
-_Las notificaciones de tiempo de oración se enviarán al grupo que active esto_`);
-            return;
-        }
-        
         if (target === 'all') {
-            initSholatScheduler(sock);
-            const db = getDatabase();
-            db.setting('autoSholat', true);
-        }
         
         const result = startSchedulerByName(target, sock);
         

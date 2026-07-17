@@ -228,7 +228,7 @@ async function dungeonAnswerHandler(m, sock) {
     const text = m.body.trim().toLowerCase();
     const userLevel = user.level || 1;
 
-    if (text === "batal" || text === "cancel" || text === "keluar") {
+    if (text === "batal" || text === "cancel" || text === "keluar" || text === "cancelar" || text === "salir") {
         delete user.rpg.dungeon_session;
         db.save();
         await m.reply(`🚪 Has salido de la Sala del Calabozo con exito.`);

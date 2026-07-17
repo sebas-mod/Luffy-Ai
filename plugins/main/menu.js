@@ -53,8 +53,6 @@ const CATEGORY_EMOJIS = {
   media: "🎬",
   ai: "🤖",
   group: "👥",
-  religi: "☪️",
-  islamic: "🕌",
   info: "ℹ️",
   cek: "📁",
   user: "📊",
@@ -163,7 +161,6 @@ function getSortedCategories(m, botMode) {
     "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",
@@ -267,7 +264,7 @@ async function buildMenuText(
   txt += `┆   • Estado : ${userRole}\n`;
   txt += `┆   • Modo : ${(botConfig.mode || "public").toUpperCase()}\n`;
   txt += `┆   • Número : ${m.sender.split("@")[0]}\n`;
-  txt += `┆   • Hora : ${timeStr} WIB\n`;
+  txt += `┆   • Hora : ${timeStr} ART\n`;
   txt += `╰➤------------------------------\n`;
 
   txt += `    ᯓ INFO BOT\n`;
@@ -290,7 +287,6 @@ async function buildMenuText(
     "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",

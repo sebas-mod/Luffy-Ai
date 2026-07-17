@@ -27,9 +27,9 @@ async function handler(m, { sock }) {
     );
   }
   const absen = global.absensi[chatId];
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dateStr = now.format("D MMMM YYYY");
-  const createdDate = moment(absen.createdAt).tz("Asia/Jakarta");
+  const createdDate = moment(absen.createdAt).tz("America/Argentina/Buenos_Aires");
   const timeStr = createdDate.format("HH:mm");
   let list = "┃ _Aún no hay asistencia_";
   if (absen.peserta.length > 0) {

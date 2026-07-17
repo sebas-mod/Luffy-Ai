@@ -33,7 +33,7 @@ function handler(m) {
         info += `📌 *Estado:* ${status}\n`
 
         if (existing) {
-            info += `⏰ *Jadwal:* ${existing.jadwal.map(j => `*${j}* WIB`).join(', ')}\n`
+            info += `⏰ *Jadwal:* ${existing.jadwal.map(j => `*${j}* ART`).join(', ')}\n`
         }
 
         info += `\n*📋 Cómo Usar:*\n`
@@ -57,12 +57,12 @@ function handler(m) {
 
     if (sub === 'on') {
         if (existing?.enabled && args.length === 1) {
-            return m.reply(`⚠️ *¡El recordatorio de sueño ya está activo!*\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} WIB\n\n> Usa \`${m.prefix}notiftidur edit\` para cambiar el horario`) // ¡Zzz...
+            return m.reply(`⚠️ *¡El recordatorio de sueño ya está activo!*\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} ART\n\n> Usa \`${m.prefix}notiftidur edit\` para cambiar el horario`) // ¡Zzz...
         }
 
         if (existing && args.length === 1) {
             toggleNotif('tidur', sender, chatJid, true)
-            return m.reply(`✅ *¡Recordatorio de sueño reactivado!* 🔔\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} WIB`) // ¡A descansar!
+            return m.reply(`✅ *¡Recordatorio de sueño reactivado!* 🔔\n\n⏰ Horario: ${existing.jadwal.map(j => `*${j}*`).join(', ')} ART`) // ¡A descansar!
         }
 
         const timeInput = args[1]
@@ -80,7 +80,7 @@ function handler(m) {
         let reply = `✅ *¡Recordatorio de sueño activado!* 🔔\n\n`
         reply += `⏰ *Horario:*\n`
         for (const j of jadwal) {
-            reply += `> 🕐 *${j}* WIB\n`
+            reply += `> 🕐 *${j}* ART\n`
         }
         reply += `\n> 💡 _La notificación se enviará a este chat todos los días_` // ¡Que descanses bien!
 
@@ -107,7 +107,7 @@ function handler(m) {
         let reply = `✅ *¡Horario de sueño actualizado!* ✏️\n\n`
         reply += `⏰ *Nuevo horario:*\n`
         for (const j of jadwal) {
-            reply += `> 🕐 *${j}* WIB\n`
+            reply += `> 🕐 *${j}* ART\n`
         }
 
         return m.reply(reply)

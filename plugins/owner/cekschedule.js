@@ -1,7 +1,4 @@
 import { getFullSchedulerStatus, formatTimeRemaining, getMsUntilTime } from '../../src/lib/ourin-scheduler.js'
-import { initSholatScheduler, stopSholatScheduler } from '../../src/lib/ourin-sholat-scheduler.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { getTodaySchedule, extractPrayerTimes } from '../../src/lib/ourin-sholat-api.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'cekschedule',
@@ -22,8 +19,6 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     try {
         const status = getFullSchedulerStatus();
-        const db = getDatabase();
-        const sholatEnabled = db.setting('autoSholat') || false;
 
         let text = `📊 *sᴄʜᴇᴅᴜʟᴇʀ sᴛᴀᴛᴜs*\n\n`;
 
@@ -48,47 +43,10 @@ async function handler(m, { sock }) {
             text += `\n`;
         }
 
-        const sholatIcon = sholatEnabled ? '✅' : '❌';
-        text += `${sholatIcon} *Sholat Scheduler*\n`;
-        text += `   └ Ay: \`sholat\`\n`;
-        text += `   └ Notifikasi tiempo sholat (real-time)\n`;
-
-        if (sholatEnabled) {
-            const kotaSetting = db.setting('autoSholatKota') || { id: '1301', nama: 'KOTA JAKARTA' };
-            text += `   └ Lokasi: ${kotaSetting.nama}\n`;
-
-            try {
-                const { schedule } = await getTodaySchedule(kotaSetting.id);
-                const times = extractPrayerTimes(schedule);
-                const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }));
-                const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
-                let nextSholat = null;
-                let nextTime = null;
-
-                for (const [name, time] of Object.entries(times)) {
-                    if (time > currentTime && time !== '-') {
-                        nextSholat = name.charAt(0).toUpperCase() + name.slice(1);
-                        nextTime = time;
-                        break;
-                    }
-                }
-
-                if (!nextSholat) {
-                    nextSholat = 'Imsak';
-                    nextTime = times.imsak;
-                }
-
-                text += `   └ Next: ${nextSholat} (${nextTime} WIB)\n`;
-            } catch {
-                text += `   └ _Fallo memuat jadwal_\n`;
-            }
-        }
-
         text += `\n`;
         text += `━━━━━━━━━━━━━━━━━━━\n`;
-        text += `✅ Activo: ${status.summary.totalActive + (sholatEnabled ? 1 : 0)}\n`;
-        text += `❌ Nonactivo: ${status.summary.totalInactive + (!sholatEnabled ? 1 : 0)}\n\n`;
+        text += `✅ Activo: ${status.summary.totalActive}\n`;
+        text += `❌ Nonactivo: ${status.summary.totalInactive}\n\n`;
 
         text += `> Usa \`.stopschedule <ay>\` para stop\n`;
         text += `> Usa \`.startschedule <ay>\` para start`;

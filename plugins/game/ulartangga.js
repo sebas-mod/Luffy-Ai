@@ -432,7 +432,7 @@ async function answerHandler(m, sock) {
   if (!m.body) return false;
 
   const text = m.body.trim().toLowerCase();
-  if (text !== "kocok") return false;
+  if (text !== "tirar" && text !== "kocok" && text !== "roll" && text !== "dado") return false;
 
   const ut = global.ulartanggaGames;
   if (!ut[m.chat]) return false;

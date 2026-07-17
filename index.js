@@ -18,7 +18,6 @@ import {
   startSewaChecker,
 } from "./src/lib/ourin-scheduler.js";
 import { handleAntiTagSW } from "./src/lib/ourin-group-protection.js";
-import { initSholatScheduler } from "./src/lib/ourin-sholat-scheduler.js";
 import { initNotifScheduler } from "./src/lib/ourin-notif-scheduler.js";
 import { initAutoJpmScheduler } from "./src/lib/ourin-auto-jpm.js";
 import { startMemoryMonitor } from "./src/lib/ourin-memory-monitor.js";
@@ -360,13 +359,7 @@ async function main() {
         startSewaChecker(sock);
         initScheduler(config, sock);
         initAutoJpmScheduler(sock);
-        initSholatScheduler(sock);
         initNotifScheduler(sock);
-        try {
-          const { initSahurCron } =
-            await import("./plugins/religi/autosahur.js");
-          initSahurCron(sock);
-        } catch { }
         try {
           startOrderPoller(sock);
         } catch { }

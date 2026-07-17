@@ -19,7 +19,7 @@ function resolvePlaceholders(
   groupOwner,
   prefix,
 ) {
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
     Sunday: "Domingo",
     Monday: "Lunes",
@@ -106,7 +106,7 @@ Que comience la aventura~`,
   const emoji = emojis[Math.floor(Math.random() * emojis.length)];
   const header = headers[Math.floor(Math.random() * headers.length)];
   const username = participant?.split("@")[0] || "User";
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
     Sunday: "Domingo",
     Monday: "Lunes",
@@ -134,7 +134,7 @@ Que comience la aventura~`,
   msg += `📌 *INFO DEL GRUPO*\n`;
   msg += `> 🏠 *Nombre* : ${groupName}\n`;
   msg += `> 👥 *Miembros* : ${memberCount}\n`;
-  msg += `> 📅 *Fecha* : ${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\n`;
+  msg += `> 📅 *Fecha* : ${moment().tz("America/Argentina/Buenos_Aires").format("DD/MM/YYYY")}\n`;
 
   if (groupDesc) {
     msg += `\n📝 *Descripción*\n> ❝ ${groupDesc.slice(0, 120)}${groupDesc.length > 120 ? "..." : ""} ❞\n`;

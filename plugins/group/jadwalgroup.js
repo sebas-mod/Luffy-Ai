@@ -156,12 +156,12 @@ async function handler(m, { sock, db }) {
 
 ╭┈┈⬡「 ⏰ *ᴄᴏɴꜰɪɢ* 」
 ┃ ㊗ ${emoji} ᴀᴄᴄɪóɴ: *${actionText}*
-┃ ㊗ ⏱️ ʜᴏʀᴀ: *${formattedTime} WIB*
+┃ ㊗ ⏱️ ʜᴏʀᴀ: *${formattedTime} ART*
 ┃ ㊗ 📡 ᴇsᴛᴀᴅᴏ: *🟢 Activo*
 ╰┈┈⬡
 
 > _El grupo se ${action === 'open' ? 'abrirá' : 'cerrará'}_
-> _automáticamente a las *${formattedTime}* WIB._
+> _automáticamente a las *${formattedTime}* ART._
 > _¡Shishishi! ¡A la aventura, uno a uno!_`;
     
     await m.reply(successMsg);

@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
             `💤 *ʙᴏᴛ ᴀꜰᴋ ᴀᴋᴛɪꜰ*\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ 📝 ᴀʟᴀsᴀɴ: \`${reason}\`\n` +
-            `┃ ⏰ sᴇᴊᴀᴋ: \`${moment().tz('Asia/Jakarta').format('HH:mm:ss')}\`\n` +
+            `┃ ⏰ sᴇᴊᴀᴋ: \`${moment().tz('America/Argentina/Buenos_Aires').format('HH:mm:ss')}\`\n` +
             `╰┈┈⬡\n\n` +
             `╭┈┈⬡「 🔒 *ᴀᴋsᴇs* 」\n` +
             `┃ ✅ Owner bot\n` +

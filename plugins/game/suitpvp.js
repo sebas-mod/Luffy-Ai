@@ -125,7 +125,7 @@ async function answerHandler(m, sock) {
     if (!room) return false
     
     if (room.status === 'waiting' && m.sender === room.p2 && m.chat === room.chat) {
-        if (/^(acc(ept)?|terima|gas|oke?|ok|iya|yoi)$/i.test(text)) {
+        if (/^(acc(ept)?|terima|gas|oke?|ok|iya|yoi|aceptar)$/i.test(text)) {
             clearTimeout(room.timeout)
             room.status = 'playing'
             
@@ -182,7 +182,7 @@ async function answerHandler(m, sock) {
             return true
         }
         
-        if (/^(tolak|gamau|nanti|ga(k.)?bisa|no|tidak)$/i.test(text)) {
+        if (/^(tolak|gamau|nanti|ga(k.)?bisa|no|tidak|rechazar)$/i.test(text)) {
             clearTimeout(room.timeout)
             
             await sock.sendMessage(room.chat, {
@@ -196,7 +196,7 @@ async function answerHandler(m, sock) {
     }
     
     if (room.status === 'playing' && !m.isGroup) {
-        const choices = /^(batu|gunting|kertas)$/i
+        const choices = /^(batu|gunting|kertas|piedra|tijera|papel|rock|scissors|paper)$/i
         
         if (!choices.test(text)) return false
         

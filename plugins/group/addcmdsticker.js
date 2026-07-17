@@ -14,7 +14,7 @@ const pluginConfig = {
     isAdmin: false,
     cooldown: 10,
     energi: 0,
-    isEnabled: true
+    isEnabled: false
 }
 
 async function handler(m, { sock }) {

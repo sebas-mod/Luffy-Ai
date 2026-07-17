@@ -1,6 +1,4 @@
 import { stopSchedulerByName, getFullSchedulerStatus } from '../../src/lib/ourin-scheduler.js'
-import { stopSholatScheduler } from '../../src/lib/ourin-sholat-scheduler.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
 import te from '../../src/lib/ourin-error.js'
 const pluginConfig = {
     name: 'stopschedule',
@@ -8,7 +6,7 @@ const pluginConfig = {
     category: 'owner',
     description: 'Detiene uno o todos los planificadores',
     usage: '.stopschedule <nombre|all>',
-    example: '.stopschedule sholat',
+    example: '.stopschedule limitreset',
     isOwner: true,
     isPremium: false,
     isGroup: false,
@@ -33,43 +31,17 @@ async function handler(m, { sock, args }) {
 • \`groupschedule\` - Group Schedule
 • \`sewa\` - Sewa Checar
 • \`messages\` - Scheduled Messages
-• \`sholat\` - Sholat Scheduler
 • \`all\` - Todos scheduler
 
 *Example:*
-\`.stopschedule sholat\`
+\`.stopschedule limitreset\`
 \`.stopschedule all\``;
             
             await m.reply(helpText);
             return;
         }
         
-        if (target === 'sholat') {
-            const db = getDatabase();
-            const wasEnabled = db.setting('autoSholat');
-            
-            if (!wasEnabled) {
-                await m.reply(`ℹ️ Sholat Scheduler ya en ahayan nonactivo`);
-                return;
-            }
-            
-            stopSholatScheduler();
-            db.setting('autoSholat', false);
-            
-            await m.reply(`🛑 *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪʜᴇɴᴛɪᴋᴀɴ*
-
-> Scheduler: *Sholat Scheduler*
-> Status: ❌ Dihentikan
-
-_Usa \`.startschedule sholat\` para activando ambali_`);
-            return;
-        }
-        
         if (target === 'all') {
-            stopSholatScheduler();
-            const db = getDatabase();
-            db.setting('autoSholat', false);
-        }
         
         const result = stopSchedulerByName(target);
         

@@ -262,7 +262,7 @@ async function sendBackupToOwner(backupInfo) {
     const caption =
       `🗂️ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ*\n\n` +
       `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-      `┃ 📅 Waktu: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} WIB\n` +
+      `┃ 📅 Waktu: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} ART\n` +
       `┃ 📦 Size: ${sizeInMB} MB\n` +
       `┃ 📁 Files: ${backupInfo.fileCount}\n` +
       `┃ ⏱️ Interval: ${formatInterval(state.intervalMs)}\n` +
@@ -315,7 +315,7 @@ function startAutoBackup(sock) {
   stopAutoBackup();
 
   const cronExp = intervalToCron(state.intervalMs);
-  activeCronJob = new CronJob(cronExp, doBackup, null, true, "Asia/Jakarta");
+  activeCronJob = new CronJob(cronExp, doBackup, null, true, "America/Argentina/Buenos_Aires");
   logger.info(
     "AutoBackup",
     `Started with interval: ${formatInterval(state.intervalMs)} (cron: ${cronExp})`,

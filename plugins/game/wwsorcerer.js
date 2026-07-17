@@ -4,7 +4,7 @@ const pluginConfig = {
     alias: ['sorcerer', 'wws'],
     category: 'game',
     description: 'Acción nocturna del Hechicero - Verificar si el objetivo es el Vidente',
-    usage: '.wwsorcerer <nomor>',
+    usage: '.wwsorcerer <numero>',
     example: '.wwsorcerer 3',
     isOwner: false,
     isPremium: false,
