@@ -1,0 +1,11 @@
+// Izin yak bang hehe :b
+
+export const NL = [
+  "120363186130999681",
+  "120363411038637363",
+  "120363388739599619"
+];
+
+export const GI = [
+  "K7bM2faYOqc34Li2Vilsm0", "De7vC4mX7Dk4PyIDwKvvOp"
+];
