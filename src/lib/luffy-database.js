@@ -157,7 +157,7 @@ class Database {
       this.ready = true;
       logger.success(
         "database",
-        "Database siap dipakai (autosave 5s)",
+        "Base de datos lista para usar (autoguardado 5s)",
       );
       return this;
     } catch (error) {

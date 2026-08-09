@@ -126,7 +126,7 @@ async function typeLine(text, options = {}) {
   console.log(`${makeTag("OK", true)} ${cWhite(clean)}`);
 }
 
-async function runLoader(text = "memuat", options = {}) {
+async function runLoader(text = "cargando", options = {}) {
   console.log(`${makeTag("OK", true)} ${cWhite(text)}`);
 }
 
@@ -144,7 +144,7 @@ async function playBootSequence(info = {}) {
   console.log(`         ${chalk.magenta.bold("►")} ${chalk.white("Luffy-Ai MULTI-DEVICE BOT")} ${chalk.gray(`v${version}`)}`);
   console.log(`         ${chalk.magenta("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")}`);
   console.log("");
-  console.log(`${makeTag("BOOT", true)} ${cWhite(`Memulai Sistem Utama...`)}`);
+  console.log(`${makeTag("BOOT", true)} ${cWhite(`Iniciando el sistema principal...`)}`);
   console.log(`${makeTag("INFO")} ${cWhite(`Mode: ${chalk.cyan(mode)}`)}`);
 }
 
@@ -205,7 +205,7 @@ function logMessage(info) {
   const senderName = pushName || num;
 
   console.log("");
-  console.log(`  ${cWhite("╭─")} ${chalk.bgWhiteBright("Hey, ada pesan masuk nih :3")} ${cGray("•")} ${chatType === "private" ? chalk.yellow("Private") : chalk.whiteBright("Dari Grup") + " " + chalk.bgCyanBright(location)}`);
+  console.log(`  ${cWhite("╭─")} ${chalk.bgWhiteBright("¡Oye, hay un mensaje entrante :3")} ${cGray("•")} ${chatType === "private" ? chalk.yellow("Privado") : chalk.whiteBright("Del grupo") + " " + chalk.bgCyanBright(location)}`);
   console.log(`  ${cWhite("│")}  👤 ${chalk.greenBright(senderName)} ${cGray(`(${num})`)}`);
   console.log(`  ${cWhite("│")}  📱 ${chalk.yellowBright(info.device || "Unknown")} ${chalk.red(`• ${time} • ${typeTag}`)}`);
   const maxWidth = 55;
