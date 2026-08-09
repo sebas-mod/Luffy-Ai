@@ -1636,7 +1636,7 @@ async function messageHandler(msg, sock, options = {}) {
       }
     }
 
-    const permission = checkPermission(m, plugin.config);
+    const permission = await checkPermission(m, plugin.config, sock);
     if (!permission.allowed) {
       await m.reply(permission.reason);
       return;

@@ -1,5 +1,6 @@
 import { getDatabase } from '../../src/lib/luffy-database.js'
 import te from '../../src/lib/luffy-error.js'
+import { findParticipantByNumber } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'onlythisgrup',
@@ -28,15 +29,23 @@ async function handler(m, { sock }) {
             return m.reply(`🔓 *DESBLOQUEADO*\n\nEl bot vuelve a estar activo en todos los grupos de forma pública.`)
         }
 
-        const botNumber = sock.user.id.split(':')[0] + '@s.whatsapp.net'
+        const botNum = sock.user?.id?.split(':')[0] || ''
+        const botLid = sock.user?.lid ? String(sock.user.lid).replace(/@.+/g, '') : null
+        const botJid = botNum ? botNum + '@s.whatsapp.net' : ''
         const groupMetadata = await sock.groupMetadata(m.chat).catch(() => null)
         
         if (!groupMetadata) {
             return m.reply(`❌ Error al obtener los datos del grupo.`)
         }
 
-        const participants = groupMetadata.participants
-        const isBotAdmin = participants.find(p => p.id === botNumber)?.admin !== null
+        const participants = groupMetadata.participants || []
+        let botParticipant = botJid ? findParticipantByNumber(participants, botJid) : null
+        if (!botParticipant && botLid) {
+            botParticipant = participants.find(
+                (p) => String(p.lid || p.id || '').replace(/@.+/g, '') === botLid,
+            ) || null
+        }
+        const isBotAdmin = botParticipant ? botParticipant.admin !== null : false
 
         if (!isBotAdmin) {
             return m.reply(`❌ *ACCESO DENEGADO*\n\nEl bot debe ser admin en este grupo para poder tomar el enlace de invitación.`)

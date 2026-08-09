@@ -601,6 +601,83 @@ async function resolveFromSock(jid, sock) {
   return jid;
 }
 
+/**
+ * Resolver la LID de un PN haciendo lookup en vivo (USync / lidMapping)
+ * Adaptado a ourin-baileys: no existe sock.getLidFromJid, se usa
+ * sock.signalRepository.lidMapping.getLIDForPN.
+ * @param {Object} sock - Socket de conexión
+ * @param {string} pnJid - JID con número de teléfono
+ * @returns {Promise<string|null>} LID normalizada (sin sufijo de dispositivo) o null
+ */
+async function resolveUsyncLid(sock, pnJid) {
+  if (!sock || !pnJid) return null;
+  try {
+    let lid = null;
+    if (typeof sock.getLidFromJid === "function") {
+      lid = await sock.getLidFromJid(pnJid);
+    } else {
+      const repo = sock.signalRepository || sock.repository;
+      lid = await repo?.lidMapping?.getLIDForPN?.(pnJid);
+    }
+    if (lid && String(lid).endsWith("@lid")) {
+      const normalized = String(lid).replace(/:\d+@/, "@");
+      const pn = String(pnJid).split(":")[0];
+      cacheLidJid(normalized, pn);
+      return normalized;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Construir candidatos de JID/número a partir de un JID (LID o PN)
+ * para compararlos contra un participant de group metadata.
+ * @param {string} jid - JID base (LID o PN)
+ * @returns {string[]} Candidatos: jid, jid sin dispositivo, @lid, número puro
+ */
+function buildJidCandidates(jid) {
+  if (!jid) return [];
+  const s = String(jid);
+  const base = s.includes("@") ? s : s + "@s.whatsapp.net";
+  const noDev = base.replace(/:\d+@/, "@");
+  const lid = noDev.endsWith("@lid")
+    ? noDev
+    : noDev.replace("@s.whatsapp.net", "@lid");
+  const sw = lid.replace("@lid", "@s.whatsapp.net");
+  const num = noDev.split("@")[0];
+  const cands = new Set();
+  cands.add(base);
+  cands.add(noDev);
+  cands.add(sw);
+  cands.add(lid);
+  cands.add(num);
+  return [...cands].filter(Boolean);
+}
+
+/**
+ * Verificar si un participant de group metadata coincide con un JID
+ * (por id, jid, lid o phoneNumber, con y sin sufijo de dispositivo).
+ * @param {Object} p - Participant de groupMetadata.participants
+ * @param {string} jid - JID objetivo
+ * @returns {boolean} True si coincide
+ */
+function isParticipantMatch(p, jid) {
+  if (!p || !jid) return false;
+  const target = String(jid).replace(/:\d+@/, "@");
+  const targetNum = target.replace(/[^0-9]/g, "");
+  if (!targetNum) return false;
+  for (const f of [p.id, p.jid, p.lid, p.phoneNumber]) {
+    if (!f) continue;
+    const raw = String(f).replace(/:\d+@/, "@");
+    if (raw === target) return true;
+    const n = raw.replace(/[^0-9]/g, "");
+    if (n.length >= 8 && n === targetNum) return true;
+  }
+  return false;
+}
+
 function getLidCacheSize() {
   return lidCache.size;
 }
@@ -624,6 +701,9 @@ export {
   normalizeToPhoneNumber,
   cacheLidJid,
   resolveFromSock,
+  resolveUsyncLid,
+  buildJidCandidates,
+  isParticipantMatch,
   getLidCacheSize,
   savePersistentCache,
 };

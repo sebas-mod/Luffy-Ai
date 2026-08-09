@@ -508,6 +508,12 @@ async function serialize(sock, msg, store = {}) {
     ? decodeAndNormalize(msg.key.participantAlt)
     : null;
 
+  const rawSenderLid = msg.key?.participant?.endsWith("@lid")
+    ? msg.key.participant
+    : msg.key?.participantAlt?.endsWith("@lid")
+      ? msg.key.participantAlt
+      : null;
+
   if (
     !m.isGroup &&
     !m.isNewsletter &&
@@ -669,41 +675,55 @@ async function serialize(sock, msg, store = {}) {
 
       const senderNum = m.sender?.replace(/[^0-9]/g, "") || "";
       const botNum = decodeJid(sock.user.id)?.replace(/[^0-9]/g, "") || "";
+      const senderNums = senderNum ? [senderNum] : [];
+      const botNums = botNum ? [botNum] : [];
 
-      m.isAdmin = m.groupMembers.some((p) => {
-        if (!p.admin) return false;
-        const pJid = p.jid || p.id || "";
-        const pLid = p.lid || "";
-        let pNum = pJid.replace(/[^0-9]/g, "");
-        const pLidNum = pLid.replace(/[^0-9]/g, "");
-        if (isLid(pJid) || isLidConverted(pJid)) {
-          const resolved = getCachedJid(pJid) || getCachedJid(pLid);
-          if (resolved) pNum = resolved.replace(/[^0-9]/g, "");
+      const adminResolvedNums = new Map();
+      const participantNumberCandidates = async (p) => {
+        const nums = [];
+        const addNum = (j) => {
+          if (!j) return;
+          const n = String(j).replace(/[^0-9]/g, "");
+          if (n.length >= 8) nums.push(n);
+        };
+        for (const f of [p.jid, p.id, p.lid, p.phoneNumber]) addNum(f);
+        const lidCands = [p.lid, p.jid, p.id]
+          .filter((x) => x && String(x).endsWith("@lid"))
+          .map((x) => String(x).replace(/:\d+@/, "@"));
+        for (const l of [...new Set(lidCands)]) {
+          try {
+            const pn = await resolveFromSock(l, sock);
+            if (pn && !isLid(pn) && !isLidConverted(pn)) addNum(pn);
+          } catch {}
         }
-        return (
-          pNum === senderNum ||
-          pLidNum === senderNum ||
-          (pNum.length >= 8 &&
-            senderNum.length >= 8 &&
-            (pNum.endsWith(senderNum) || senderNum.endsWith(pNum)))
-        );
-      });
+        return [...new Set(nums)];
+      };
 
-      m.isBotAdmin = m.groupMembers.some((p) => {
-        if (!p.admin) return false;
-        const pJid = p.jid || p.id || "";
-        let pNum = pJid.replace(/[^0-9]/g, "");
-        if (isLid(pJid) || isLidConverted(pJid)) {
-          const resolved = getCachedJid(pJid) || getCachedJid(p.lid || "");
-          if (resolved) pNum = resolved.replace(/[^0-9]/g, "");
-        }
-        return (
-          pNum === botNum ||
-          (pNum.length >= 8 &&
-            botNum.length >= 8 &&
-            (pNum.endsWith(botNum) || botNum.endsWith(pNum)))
+      if (m.groupMembers.some((p) => p.admin)) {
+        await Promise.all(
+          m.groupMembers
+            .filter((p) => p.admin)
+            .map(async (p) =>
+              adminResolvedNums.set(p, await participantNumberCandidates(p)),
+            ),
         );
-      });
+      }
+
+      const matchNums = (pNums, compareNums) =>
+        pNums.some((num) =>
+          compareNums.some(
+            (cn) =>
+              num === cn ||
+              (num.length >= 8 && (num.endsWith(cn) || cn.endsWith(num))),
+          ),
+        );
+
+      m.isAdmin = m.groupMembers.some(
+        (p) => p.admin && matchNums(adminResolvedNums.get(p) || [], senderNums),
+      );
+      m.isBotAdmin = m.groupMembers.some(
+        (p) => p.admin && matchNums(adminResolvedNums.get(p) || [], botNums),
+      );
 
       cacheParticipantLids(m.groupMembers);
 
@@ -721,11 +741,6 @@ async function serialize(sock, msg, store = {}) {
         delete m._pendingQuotedMessage;
       }
 
-      if (isLid(m.sender) || isLidConverted(m.sender)) {
-        m.sender = resolveAnyLidToJid(m.sender, m.groupMembers);
-        m.senderNumber = m.sender ? m.sender.replace(/@.+/g, "") : "";
-      }
-
       if (m.mentionedJid && m.mentionedJid.length > 0) {
         m.mentionedJid = convertLidArray(m.mentionedJid, m.groupMembers);
       }
@@ -740,7 +755,26 @@ async function serialize(sock, msg, store = {}) {
           : "";
         m.quoted.key.participant = m.quoted.sender;
       }
-    } catch (error) { }
+
+      m.lidDebug = {
+        rawSenderLid,
+        participantAlt,
+        sender: m.sender,
+        senderNumber: m.senderNumber,
+        adminNums: [...adminResolvedNums.values()].map((v) => v.slice(0, 4)),
+      };
+    } catch (error) {
+      if (m.isGroup) {
+        console.error(
+          "[SERIALIZE-GROUP-ERR]",
+          m.chat,
+          "sender=" + (m.sender || ""),
+          "lid=" + (rawSenderLid || ""),
+          "alt=" + (participantAlt || ""),
+          error?.message || error,
+        );
+      }
+    }
   }
 
   if (m._pendingQuotedMessage) {

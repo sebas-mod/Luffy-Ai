@@ -1,3 +1,5 @@
+import { findParticipantByNumber } from "../../src/lib/luffy-lid.js";
+
 const pluginConfig = {
     name: ['buatgrup', 'creategroup', 'newgroup'],
     alias: [],
@@ -80,11 +82,17 @@ async function handler(m, { sock }) {
             setTimeout(async () => {
                 try {
                     const groupMeta = await sock.groupMetadata(group.id)
-                    const botJid = sock.user.id.split(':')[0] + '@s.whatsapp.net'
+                    const botNum = sock.user?.id?.split(":")[0] || ""
+                    const botLid = sock.user?.lid ? String(sock.user.lid).replace(/@.+/g, "") : null
+                    const botJid = botNum ? botNum + "@s.whatsapp.net" : ""
+                    const botParticipant = botJid
+                        ? findParticipantByNumber(groupMeta.participants || [], botJid)
+                        : null
+                    const botId = botParticipant?.id || botJid
                     
                     const membersToKick = groupMeta.participants
                         .map(p => p.id)
-                        .filter(id => id !== botJid)
+                        .filter(id => id !== botId && (!botLid || !String(id).includes(botLid)))
 
                     if (membersToKick.length > 0) {
                         await sock.sendMessage(group.id, { text: `⏳ *EL PERIODO ACTIVO DEL GRUPO EXPIRÓ* ⏳\n\nPor orden del Owner, el tiempo de este grupo ha terminado. ¡Adiós a todos! 👋` })

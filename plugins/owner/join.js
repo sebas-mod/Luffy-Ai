@@ -1,6 +1,7 @@
 import config from "../../config.js";
 import { saluranCtx } from "../../src/lib/luffy-context.js";
 import te from "../../src/lib/luffy-error.js";
+import { findParticipantByNumber } from "../../src/lib/luffy-lid.js";
 
 const pluginConfig = {
   name: "join",
@@ -47,10 +48,19 @@ async function joinGroup(sock, inviteCode) {
     const groupInfo = await sock.groupGetInviteInfo(inviteCode);
     if (!groupInfo) return { success: false, error: "No se pudo obtener la info del grupo" };
 
-    const botJid = sock.user?.id?.replace(/:.*@/, "@") || "";
-    const isMember = groupInfo.participants?.some(
-      (p) => p.id === botJid || p.id?.includes(sock.user?.id?.split(":")[0]),
-    );
+    const botNum = sock.user?.id?.split(":")[0] || "";
+    const botLid = sock.user?.lid ? String(sock.user.lid).replace(/@.+/g, "") : null;
+    const botJid = botNum ? botNum + "@s.whatsapp.net" : "";
+    const isMember =
+      (botJid
+        ? findParticipantByNumber(groupInfo.participants || [], botJid) !== null
+        : false) ||
+      (botLid
+        ? (groupInfo.participants || []).some((p) => {
+            const pLidNum = String(p.lid || p.id || "").replace(/@.+/g, "");
+            return pLidNum === botLid;
+          })
+        : false);
 
     if (isMember) {
       return {

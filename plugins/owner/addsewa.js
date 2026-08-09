@@ -4,6 +4,7 @@ import * as timeHelper from "../../src/lib/luffy-time.js";
 import fs from "fs";
 import te from "../../src/lib/luffy-error.js";
 import { saluranCtx } from "../../src/lib/luffy-context.js";
+import { findParticipantByNumber } from "../../src/lib/luffy-lid.js";
 const pluginConfig = {
   name: "addsewa",
   alias: ["sewaadd", "tambahsewa"],
@@ -91,13 +92,21 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
       reason: "No hay código de invitación, añade el bot manualmente",
     };
   try {
-    const botJid = sock.user?.id?.split(":")[0] + "@s.whatsapp.net";
+    const botNum = sock.user?.id?.split(":")[0] || "";
+    const botLid = sock.user?.lid ? String(sock.user.lid).replace(/@.+/g, "") : null;
+    const botJid = botNum ? botNum + "@s.whatsapp.net" : "";
     const metadata = await sock.groupMetadata(groupId).catch(() => null);
     if (metadata) {
-      const isMember = metadata.participants?.some((p) => {
-        const pJid = p.id?.split(":")[0] + "@s.whatsapp.net";
-        return pJid === botJid || p.id === botJid;
-      });
+      const isMember =
+        (botJid
+          ? findParticipantByNumber(metadata.participants || [], botJid) !== null
+          : false) ||
+        (botLid
+          ? (metadata.participants || []).some((p) => {
+              const pLidNum = String(p.lid || p.id || "").replace(/@.+/g, "");
+              return pLidNum === botLid;
+            })
+          : false);
       if (isMember) return { joined: true, reason: "El bot ya está en el grupo" };
     }
     await sock.groupAcceptInvite(inviteCode);

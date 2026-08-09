@@ -1,5 +1,11 @@
 import config from "../../config.js";
 import { getDatabase } from "./luffy-database.js";
+import {
+  buildJidCandidates,
+  cacheLidJid,
+  isParticipantMatch,
+  resolveUsyncLid,
+} from "./luffy-lid.js";
 function levenshtein(a, b) {
   if (a.length === 0) return b.length;
   if (b.length === 0) return a.length;
@@ -31,7 +37,28 @@ function formatAfkDuration(ms) {
   return `${seconds} detik`;
 }
 
-function checkPermission(m, pluginConfig) {
+async function healAdminLid(m, sock) {
+  if (!m?.isGroup || !m?.sender || !sock) return false;
+  const pn = m.sender.includes("@") ? m.sender : m.sender + "@s.whatsapp.net";
+  const lid = await resolveUsyncLid(sock, pn);
+  if (!lid) return false;
+  cacheLidJid(lid, pn);
+  const extra = buildJidCandidates(lid);
+  const members = m.groupMembers || [];
+  const isAdminNow = members.some(
+    (p) => p.admin && extra.some((j) => isParticipantMatch(p, j)),
+  );
+  if (isAdminNow) {
+    m.isAdmin = true;
+    if (!m.groupAdmins?.includes(pn) && !m.groupAdmins?.includes(lid)) {
+      m.groupAdmins?.push(lid);
+    }
+    return true;
+  }
+  return false;
+}
+
+async function checkPermission(m, pluginConfig, sock) {
   const db = getDatabase();
   const user = db.getUser(m.sender) || {};
   let hasAccess = false;
@@ -99,6 +126,26 @@ function checkPermission(m, pluginConfig) {
     !m.isOwner &&
     !hasAccess
   ) {
+    if (sock) {
+      const healed = await healAdminLid(m, sock);
+      if (healed) {
+        return { allowed: true };
+      }
+    }
+    console.error(
+      "[ADMIN-REJECT]",
+      JSON.stringify({
+        chat: m.chat,
+        command: m.command,
+        sender: m.sender,
+        senderNumber: m.senderNumber,
+        isOwner: m.isOwner,
+        memberCount: m.groupMembers?.length,
+        adminCount: m.groupAdmins?.length,
+        admins: (m.groupAdmins || []).slice(0, 6),
+        lidDebug: m.lidDebug || null,
+      }),
+    );
     return {
       allowed: false,
       reason: config.messages?.adminOnly || "👮 Admin grup only!",

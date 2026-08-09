@@ -1,5 +1,9 @@
 import { getDatabase } from "../../src/lib/luffy-database.js";
-import { decodeAndNormalize } from "../../src/lib/luffy-lid.js";
+import {
+  decodeAndNormalize,
+  isLidConverted,
+  resolveAnyLidToJid,
+} from "../../src/lib/luffy-lid.js";
 import config from "../../config.js";
 
 const pluginConfig = {
@@ -78,38 +82,36 @@ async function handler(m, { sock }) {
 
     const privateJids = new Set();
     const botNum = sock.user?.id?.split(":")[0] || "";
+    const botLid = sock.user?.lid
+      ? String(sock.user.lid).replace(/@.+/g, "")
+      : null;
+    const addJidIfNotBot = (jid) => {
+      const decoded = decodeAndNormalize(jid);
+      if (decoded && decoded.endsWith("@s.whatsapp.net")) {
+        const resolved = isLidConverted(decoded)
+          ? resolveAnyLidToJid(decoded, [])
+          : decoded;
+        if (isLidConverted(resolved)) return;
+        const num = resolved.split("@")[0];
+        if (num !== botNum && (!botLid || !resolved.includes(botLid))) {
+          privateJids.add(resolved);
+        }
+      }
+    };
 
     const chatsMap = sock.store?.chats;
     if (chatsMap) {
-      for (const [jid] of chatsMap.entries()) {
-        const decoded = decodeAndNormalize(jid);
-        if (decoded && decoded.endsWith("@s.whatsapp.net")) {
-          const num = decoded.split("@")[0];
-          if (num !== botNum) privateJids.add(decoded);
-        }
-      }
+      for (const [jid] of chatsMap.entries()) addJidIfNotBot(jid);
     }
 
     const messagesMap = sock.store?.messages;
     if (messagesMap) {
-      for (const [jid] of messagesMap.entries()) {
-        const decoded = decodeAndNormalize(jid);
-        if (decoded && decoded.endsWith("@s.whatsapp.net")) {
-          const num = decoded.split("@")[0];
-          if (num !== botNum) privateJids.add(decoded);
-        }
-      }
+      for (const [jid] of messagesMap.entries()) addJidIfNotBot(jid);
     }
 
     const contactsObj = sock.store?.contacts;
     if (contactsObj) {
-      for (const jid of Object.keys(contactsObj)) {
-        const decoded = decodeAndNormalize(jid);
-        if (decoded && decoded.endsWith("@s.whatsapp.net")) {
-          const num = decoded.split("@")[0];
-          if (num !== botNum) privateJids.add(decoded);
-        }
-      }
+      for (const jid of Object.keys(contactsObj)) addJidIfNotBot(jid);
     }
 
     if (privateJids.size === 0) {

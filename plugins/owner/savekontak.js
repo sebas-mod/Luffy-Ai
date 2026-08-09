@@ -1,3 +1,5 @@
+import { findParticipantByNumber } from "../../src/lib/luffy-lid.js";
+
 const pluginConfig = {
     name: "savekontak",
     alias: ["sv", "svkontak"],
@@ -40,14 +42,22 @@ async function handler(m, { sock, args }) {
         let vcards = "";
         let count = 0;
         let index = 1;
-        const botId = sock.user.id.split(":")[0] + "@s.whatsapp.net";
+        const botNum = sock.user?.id?.split(":")[0] || "";
+        const botLid = sock.user?.lid ? String(sock.user.lid).replace(/@.+/g, "") : null;
+        const botJid = botNum ? botNum + "@s.whatsapp.net" : "";
         const contactArray = [];
 
         for (const group of groups) {
             for (const participant of group.participants) {
-                if (participant.id === botId) continue;
+                const isBot =
+                    (botJid
+                        ? findParticipantByNumber([participant], botJid) !== null
+                        : false) ||
+                    (botLid && String(participant.lid || participant.id || "").includes(botLid));
+                if (isBot) continue;
 
-                const number = participant.id.split("@")[0];
+                const number = (participant.jid || participant.phoneNumber || participant.id)
+                    .split("@")[0];
                 const name = `${baseName} ${index}`;
                 const singleVcard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL;type=CELL;type=VOICE;waid=${number}:+${number}\nEND:VCARD`;
 
