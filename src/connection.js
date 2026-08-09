@@ -253,7 +253,7 @@ async function startConnection(options = {}) {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, logger),
     },
-    browser: ["Luffy Ai", "Chrome", "14.4.1"],
+    browser: ["Ubuntu", "Chrome", "20.0.04"],
     syncFullHistory: false,
     markOnlineOnConnect: false,
     generateHighQualityLinkPreview: false,
