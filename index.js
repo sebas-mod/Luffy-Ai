@@ -92,7 +92,7 @@ const fileStatCache = new Map();
 function startDevWatcher(pluginsPath) {
   if (pluginWatcher) pluginWatcher.close();
 
-  logger.system("dev", "Hot-Reload watcher active for plugins");
+  logger.system("dev", "Vigilante de hot-reload activo para plugins");
 
   pluginWatcher = fs.watch(
     pluginsPath,
@@ -112,7 +112,7 @@ function startDevWatcher(pluginsPath) {
           const pluginName = path.basename(filename, ".js");
           const { unloadPlugin } = await import("./src/lib/luffy-plugins.js");
           const result = unloadPlugin(pluginName);
-          if (result.success) logger.warn("plugin", `removed ${filename}`);
+          if (result.success) logger.warn("plugin", `plugin eliminado: ${filename}`);
           return;
         }
 
@@ -136,13 +136,13 @@ function startDevWatcher(pluginsPath) {
           if (!result.success) {
             logger.error(
               "plugin",
-              `reload failed: ${filename}: ${result.error}`,
+              `recarga fallida: ${filename}: ${result.error}`,
             );
           }
         } catch (error) {
           logger.error(
             "plugin",
-            `reload failed: ${filename}: ${error.message}`,
+            `recarga fallida: ${filename}: ${error.message}`,
           );
         }
       }, 500);
@@ -151,7 +151,7 @@ function startDevWatcher(pluginsPath) {
     },
   );
 
-  logger.debug("dev", `Monitoring directory: ${pluginsPath}`);
+  logger.debug("dev", `Monitoreando directorio: ${pluginsPath}`);
 }
 
 let srcWatcher = null;
@@ -171,16 +171,16 @@ function startSrcWatcher(srcPath) {
       reloadDebounce.delete("src_" + filename);
       const fullPath = path.join(srcPath, filename);
       if (!fs.existsSync(fullPath)) {
-        logger.warn("dev", `src file removed: ${filename}`);
+        logger.warn("dev", `archivo src eliminado: ${filename}`);
         return;
       }
-      logger.success("dev", `src changed: ${filename}`);
+      logger.success("dev", `archivo src modificado: ${filename}`);
     }, 500);
 
     reloadDebounce.set("src_" + filename, timeout);
   });
 
-  logger.debug("dev", `Monitoring directory: ${srcPath}`);
+  logger.debug("dev", `Monitoreando directorio: ${srcPath}`);
 }
 
 function setupAntiCrash() {
@@ -199,15 +199,15 @@ function setupAntiCrash() {
     );
     if (isIgnored) return;
 
-    logErrorBox("uncaught exception", error.message);
+    logErrorBox("excepción no capturada", error.message);
     console.error(c.gray(error.stack));
-    logger.system("system", "Engine is still running");
+    logger.system("system", "El motor sigue funcionando");
   });
 
   process.on("unhandledRejection", (reason, promise) => {
-    logErrorBox("unhandled rejection", String(reason));
-    console.error(c.gray("Promise:"), promise);
-    logger.system("system", "Engine is still running");
+    logErrorBox("rechazo no controlado", String(reason));
+    console.error(c.gray("Promesa:"), promise);
+    logger.system("system", "El motor sigue funcionando");
   });
 
   process.on("warning", (warning) => {
@@ -216,22 +216,22 @@ function setupAntiCrash() {
 
   process.on("SIGINT", async () => {
     console.log("");
-    logger.system("system", "Received STOP signal (SIGINT)");
-    logger.info("database", "Saving data to local storage...");
+    logger.system("system", "Señal de detención recibida (SIGINT)");
+    logger.info("database", "Guardando datos en el almacenamiento local...");
     try {
       const db = getDatabase();
       db.save();
-      logger.success("database", "All data successfully saved");
+      logger.success("database", "Todos los datos guardados correctamente");
     } catch (error) {
-      logger.warn("database", `save failed: ${error.message}`);
+      logger.warn("database", `fallo al guardar: ${error.message}`);
     }
-    logger.info("system", "Engine stopped safely");
+    logger.info("system", "Motor detenido de forma segura");
     process.exit(0);
   });
 
   process.on("SIGTERM", () => {
     console.log("");
-    logger.system("system", "Received TERMINATE signal (SIGTERM)");
+    logger.system("system", "Señal de terminación recibida (SIGTERM)");
     process.exit(0);
   });
 
@@ -274,7 +274,7 @@ async function main() {
 
   const pluginsPath = path.join(process.cwd(), "plugins");
   const pluginCount = await loadPlugins(pluginsPath);
-  logger.success("plugin", `Sukses muat ${pluginCount} plugin!`);
+  logger.success("plugin", `¡Se cargaron ${pluginCount} plugins!`);
 
   if (config.dev?.enabled && config.dev?.watchPlugins)
     startDevWatcher(pluginsPath);
@@ -288,7 +288,7 @@ async function main() {
   const bootTime = Date.now() - startTime;
   logger.success("boot", `Bot listo en ${bootTime}ms 🚀`);
   divider();
-  await spinText("network", "Opening WhatsApp connection tunnel...", {
+  await spinText("network", "Abriendo túnel de conexión con WhatsApp...", {
     duration: 900,
     tone: "accent",
   });
@@ -374,7 +374,7 @@ async function main() {
             await import("./src/lib/luffy-jadibot-manager.js");
           const sessions = getAllJadibotSessions();
           if (sessions.length > 0) {
-            logger.info("JADIBOT", `Restoring ${sessions.length} session(s)`);
+            logger.info("JADIBOT", `Restaurando ${sessions.length} sesión(es)`);
             for (const session of sessions) {
               try {
                 await restartJadibotSession(sock, session.id);
