@@ -361,7 +361,6 @@ async function main() {
         initAutoJpmScheduler(sock);
         initNotifScheduler(sock);
         try {
-        try {
           startOrderPoller(sock);
         } catch { }
         try {
