@@ -253,7 +253,7 @@ async function startConnection(options = {}) {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, logger),
     },
-    browser: ["Mac OS", "Chrome", "14.4.1"],
+    browser: ["Luffy Ai", "Chrome", "14.4.1"],
     syncFullHistory: false,
     markOnlineOnConnect: false,
     generateHighQualityLinkPreview: false,
@@ -305,7 +305,7 @@ async function startConnection(options = {}) {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const code = await sock.requestPairingCode(phoneNumber, "LuffyAii");
+      const code = await sock.requestPairingCode(phoneNumber, "SEBASMDD");
       console.log("");
       console.log(
         colors.createBanner(
