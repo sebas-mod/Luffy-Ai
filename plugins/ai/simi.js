@@ -1,19 +1,19 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "simi",
   alias: ["simisimi"],
   category: "ai",
-  description: "Ngobrol santai bareng SimiSimi",
-  usage: ".simi <pesan>",
-  example: ".simi Halo Simi!",
+  description: "Chatear casualmente con SimiSimi",
+  usage: ".simi <mensaje>",
+  example: ".simi ¡Hola Simi!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ Mau ngobrol apa sama Simi?\n\nContoh: `.simi Halo Simi!`");
+    return m.reply("❌ ¿Sobre qué quieres hablar con Simi?\n\nEjemplo: `.simi ¡Hola Simi!`");
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Simi lagi ngambek, nggak mau balas.");
+      return m.reply("⚠️ Simi está de mal humor y no quiere responder.");
     }
 
     await m.reply(data.result);
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SimiSimi]", error.message);
     await m.react("☢");
-    m.reply("😔 Simi gagal membalas pesanmu.");
+    m.reply("😔 Simi no pudo responder tu mensaje.");
   }
 }
 

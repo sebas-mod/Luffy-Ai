@@ -2,7 +2,7 @@ import { createCanvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import fs from "fs";
 import path from "path";
 import fetch from "node-fetch";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 import axios from "axios";
 
@@ -10,15 +10,15 @@ const pluginConfig = {
   name: "bratextra",
   alias: ["bratanime", "bratbahlil", "brathd", "bratpatrick", "bratsquidward", "bratwhite", "bratchika", "bratkobato", "bratmenhera", "bratnezuko", "bratqiqi", "bratruromiya", "bratumaru"],
   category: "sticker",
-  description: "Bikin brat versi custom",
-  usage: ".bratanime <teks>",
+  description: "Crea brat versión personalizada",
+  usage: ".bratanime <texto>",
   example: ".bratanime Halo",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -188,7 +188,7 @@ async function fetchBuffer(url) {
 async function handler(m, { sock }) {
   const text = m.text;
   if (!text) {
-    return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+    return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
   }
 
   await m.react("🕕");

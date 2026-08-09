@@ -1,5 +1,5 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'addpartner',
     alias: ['delpartner', 'listpartner'],
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -36,10 +36,10 @@ async function handler(m, { sock }) {
         if (!target) {
             return m.reply(
                 `🤝 *ᴀᴅᴅ ᴘᴀʀᴛɴᴇʀ*\n\n` +
-                `> Cara pakai:\n` +
-                `> \`${m.prefix}addpartner @tag [hari]\`\n` +
+                `> Cómo usar:\n` +
+                `> \`${m.prefix}addpartner @tag [días]\`\n` +
                 `> \`${m.prefix}addpartner 6281xxx 30\`\n\n` +
-                `> Default: 30 hari`
+                `> Predeterminado: 30 días`
             )
         }
         let targetNumber = target.replace(/@.+/g, '')
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
             targetNumber = '62' + targetNumber.slice(1)
         }
         if (config.isOwner(targetNumber)) {
-            return m.reply(`⚠️ @${targetNumber} sudah menjadi owner!`, { mentions: [target] })
+            return m.reply(`⚠️ @${targetNumber} ya es owner!`, { mentions: [target] })
         }
         const existingIndex = db.data.partner.findIndex(p => p.id === targetNumber)
         const days = parseInt(m.args?.find(a => /^\d+$/.test(a) && a.length <= 4)) || 30
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
             
             db.data.partner[existingIndex].expired = newExpired
             db.data.partner[existingIndex].name = pushName
-            message = `Partner diperpanjang`
+            message = `Partner renovado`
         } else {
             newExpired = now + (days * 24 * 60 * 60 * 1000)
             db.data.partner.push({
@@ -71,15 +71,15 @@ async function handler(m, { sock }) {
                 name: pushName,
                 addedAt: now
             })
-            message = `Berhasil ditambahkan`
+            message = `Añadido exitosamente`
         }
 
         db.save()
 
-        const expDate = new Date(newExpired).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+        const expDate = new Date(newExpired).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 
         await m.reply(
-            `✅ Berhasil ${existingIndex !== -1 ? 'memperpanjang' : 'menambahkan'} partner @${targetNumber} selama *${days} hari*\nExpired: *${expDate}*`,
+            `✅ Exitoso, se ${existingIndex !== -1 ? 'renovó' : 'añadió'} el partner @${targetNumber} por *${days} días*\nCaduca: *${expDate}*`,
             { mentions: [target] }
         )
         return
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
     if (cmd === 'delpartner') {
         const target = await extractNumber(m)
         if (!target) {
-            return m.reply(`⚠️ Tag atau reply user yang ingin dihapus dari partner.`)
+            return m.reply(`⚠️ Etiqueta o responde al usuario que quieres eliminar de partner.`)
         }
         let targetNumber = target.replace(/@.+/g, '')
         if (targetNumber.startsWith('08')) {
@@ -100,9 +100,9 @@ async function handler(m, { sock }) {
         
         if (db.data.partner.length < initialLength) {
             db.save()
-            await m.reply(`✅ Berhasil menghapus @${targetNumber} dari partner`, { mentions: [target] })
+            await m.reply(`✅ Exitoso, se eliminó a @${targetNumber} de partner`, { mentions: [target] })
         } else {
-            return m.reply(`⚠️ User tersebut bukan partner.`)
+            return m.reply(`⚠️ Ese usuario no es partner.`)
         }
         return
     }
@@ -110,19 +110,19 @@ async function handler(m, { sock }) {
     if (cmd === 'listpartner') {
         const partners = db.data.partner
         if (!partners.length) {
-            return m.reply(`🤝 *ᴅᴀꜰᴛᴀʀ ᴘᴀʀᴛɴᴇʀ*\n\n> Belum ada partner.`)
+            return m.reply(`🤝 *ʟɪꜱᴛᴀ ᴅᴇ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay partners.`)
         }
 
-        let txt = `🤝 *DAFTAR PARTNER*\n\n`
+        let txt = `🤝 *LISTA DE PARTNERS*\n\n`
         const mentions = []
         partners.forEach((p, i) => {
             const num = p.id
-            const expDate = new Date(p.expired).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
+            const expDate = new Date(p.expired).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
             const remaining = Math.ceil((p.expired - Date.now()) / (1000 * 60 * 60 * 24))
-            txt += `${i + 1}. @${num} — ${expDate} (${remaining > 0 ? remaining + 'd' : 'Expired'})\n`
+            txt += `${i + 1}. @${num} — ${expDate} (${remaining > 0 ? remaining + 'd' : 'Caducado'})\n`
             mentions.push(`${num}@s.whatsapp.net`)
         })
-        txt += `\nTotal: *${partners.length}* partner`
+        txt += `\nTotal: *${partners.length}* partners`
         await m.reply(txt, { mentions })
         return
     }

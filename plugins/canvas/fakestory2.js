@@ -1,24 +1,24 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js";
 import fs from 'fs'
 import * as _canvas from '@napi-rs/canvas'
 
 
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "fakestory2",
   alias: ["fstory2", "igstory2"],
   category: "canvas",
-  description: "Fake Instagram story dengan 1 gambar full",
-  usage: ".fakestory2 <nama>",
-  example: ".fakestory2 Misaki (reply gambar)",
+  description: "Fake Instagram story con 1 imagen completa",
+  usage: ".fakestory2 <nombre>",
+  example: ".fakestory2 Misaki (responde imagen)",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 const canvasConfig = {
@@ -182,9 +182,9 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 2*\n\n` +
-          `> Reply gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory2 <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory2 Misaki\``,
+          `> ¡Responde una imagen!\n\n` +
+          `> Formato: \`${m.prefix}fakestory2 <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory2 Misaki\``,
       );
     }
     let imageBuffer;
@@ -195,7 +195,7 @@ async function handler(m, { sock }) {
     }
     if (!imageBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
     }
     const resultBuffer = await createFakeStory(
       username,

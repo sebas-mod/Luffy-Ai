@@ -7,7 +7,7 @@ const pluginConfig = {
   example: ".buatsaluran Info Bot|Update terbaru bot kami",
   isOwner: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -26,12 +26,12 @@ async function handler(m, { sock }) {
 
   if (!name || name.length < 2) {
     return m.reply(
-      "📢 *ʙᴜᴀᴛ sᴀʟᴜʀᴀɴ*\n\n" +
-        "> `.buatsaluran Nama Saluran`\n" +
-        "> `.buatsaluran Nama|Deskripsi`\n\n" +
-        "📝 Contoh:\n" +
+      "📢 *ᴄʀᴇᴀʀ sᴀʟᴜʀᴀɴ*\n\n" +
+        "> `.buatsaluran Nombre del Saluran`\n" +
+        "> `.buatsaluran Nombre|Descripción`\n\n" +
+        "📝 Ejemplo:\n" +
         "> `.buatsaluran Info Bot`\n" +
-        "> `.buatsaluran Info Bot|Update terbaru bot kami`",
+        "> `.buatsaluran Info Bot|Últimas novedades de nuestro bot`",
     );
   }
 
@@ -41,15 +41,15 @@ async function handler(m, { sock }) {
     const saluranName = result?.name || name;
     await m.react("✅");
     return m.reply(
-      `📢 *sᴀʟᴜʀᴀɴ ᴅɪʙᴜᴀᴛ*\n\n` +
-        `> Nama: ${saluranName}\n` +
-        (description ? `> Deskripsi: ${description}\n` : "") +
+      `📢 *sᴀʟᴜʀᴀɴ ᴄʀᴇᴀᴅᴏ*\n\n` +
+        `> Nombre: ${saluranName}\n` +
+        (description ? `> Descripción: ${description}\n` : "") +
         `> ID: ${saluranId}\n` +
-        `> Subscribers: ${result?.subscribers || 0}\n\n` +
-        `_Saluran ini bisa dikonfigurasi di config.saluran.id_`,
+        `> Suscriptores: ${result?.subscribers || 0}\n\n` +
+        `_Este saluran se puede configurar en config.saluran.id_`,
     );
   } catch (err) {
-    return m.reply(`❌ Gagal membuat saluran: ${err.message}`);
+    return m.reply(`❌ Falló la creación del saluran: ${err.message}`);
   }
 }
 

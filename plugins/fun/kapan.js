@@ -2,46 +2,46 @@ const pluginConfig = {
     name: 'kapan',
     alias: ['when'],
     category: 'fun',
-    description: 'Tanya bot kapan sesuatu',
-    usage: '.kapan <pertanyaan>',
-    example: '.kapan aku nikah?',
+    description: 'Pregunta al bot cuándo sucederá algo',
+    usage: '.kapan <pregunta>',
+    example: '.kapan me casaré?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
 const answers = [
-    'Besok mungkin?',
-    'Tahun depan kayaknya.',
-    '3 hari lagi!',
-    'Hmm, masih lama sih.',
-    'Sebentar lagi kok!',
-    'Kalau sudah waktunya, pasti terjadi.',
-    'Bulan depan!',
-    'Entah kapan, yang penting sabar.',
-    'Dalam waktu dekat!',
-    '10 tahun lagi mungkin?',
-    'Nggak lama lagi!',
-    'Kalau jodoh, pasti ketemu.',
-    'Hmm, susah diprediksi.',
-    'Minggu depan!',
-    'Kalau usahanya lebih keras, lebih cepat!',
-    'Pas waktunya tepat.',
-    'Secepatnya, tenang aja.',
-    'Ntar kalo udah siap.',
-    'Dalam hitungan hari!',
-    'Saat kamu sudah siap menerimanya.'
+    '¿Quizás mañana?',
+    'Creo que el año que viene.',
+    '¡En 3 días!',
+    'Hmm, todavía falta mucho.',
+    '¡Dentro de poco!',
+    'Cuando llegue el momento, sucederá.',
+    '¡El próximo mes!',
+    'No sé cuándo, lo importante es tener paciencia.',
+    '¡Muy pronto!',
+    '¿Quizás en 10 años?',
+    '¡No falta mucho!',
+    'Si es el destino, seguro se encuentran.',
+    'Hmm, difícil de predecir.',
+    '¡La próxima semana!',
+    '¡Si te esfuerzas más, será más rápido!',
+    'En el momento exacto.',
+    'Muy pronto, tranquilo.',
+    'Cuando estés listo.',
+    '¡En cuestión de días!',
+    'Cuando estés listo para recibirlo.'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`⏰ *ᴋᴀᴘᴀɴ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .kapan aku nikah?`);
+        return m.reply(`⏰ *ᴋᴀᴘᴀɴ*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .kapan me casaré?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

@@ -7,15 +7,15 @@ const pluginConfig = {
     name: 'buatquotes',
     alias: ['bq', 'quoteanime', 'animequote'],
     category: 'canvas',
-    description: 'Membuat gambar quote bertema anime secara custom.',
-    usage: '.buatquotes [id background] | <teks> | [nama pembuat]',
-    example: '.buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman',
+    description: 'Crea una imagen de quote con temática anime de forma personalizada.',
+    usage: '.buatquotes [id fondo] | <texto> | [nombre del creador]',
+    example: '.buatquotes 2 | Sigue viviendo aunque seas inútil | Maman',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 };
 
@@ -265,13 +265,13 @@ async function drawScene(bgId, quoteText, usernameStr, outFile) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `🎨 *FITUR BUAT QUOTES ANIME*\n\n` +
-            `Fitur ini akan membantumu merangkai kata-kata mutiara dengan latar belakang karakter anime favorit yang sangat keren!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- \`${m.prefix}buatquotes <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks>\`\n` +
-            `- \`${m.prefix}buatquotes <id_background> | <teks> | <namamu>\`\n\n` +
-            `*DAFTAR BACKGROUND PENDUKUNG (ID 1-8):*\n` +
+            `🎨 *FUNCIÓN CREAR QUOTES DE ANIME*\n\n` +
+            `Esta función te ayudará a componer palabras de sabiduría con el fondo de tu personaje de anime favorito, ¡quedan muy geniales!\n\n` +
+            `*CÓMO USARLO:*\n` +
+            `- \`${m.prefix}buatquotes <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_fondo> | <texto>\`\n` +
+            `- \`${m.prefix}buatquotes <id_fondo> | <texto> | <tu nombre>\`\n\n` +
+            `*LISTA DE FONDOS DISPONIBLES (ID 1-8):*\n` +
             `- 1: L (Death Note)\n` +
             `- 2: Gojo Satoru\n` +
             `- 3: Yuji Itadori\n` +
@@ -280,7 +280,7 @@ async function handler(m, { sock, text }) {
             `- 6: Naruto\n` +
             `- 7: Light Yagami\n` +
             `- 8: Higuruma\n\n` +
-            `_Contoh: ${m.prefix}buatquotes 2 | Tetaplah hidup walaupun tidak berguna | Maman_`
+            `_Ejemplo: ${m.prefix}buatquotes 2 | Sigue viviendo aunque seas inútil | Maman_`
         );
     }
 
@@ -334,7 +334,7 @@ async function handler(m, { sock, text }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\nMaaf, sistem mengalami gangguan saat mencoba membuat gambar quote. Silakan coba lagi nanti.`);
+        m.reply(`❌ *NO SE PUDO CREAR EL QUOTE*\n\nLo sentimos, el sistema tuvo un problema al intentar crear la imagen de quote. Por favor, inténtalo de nuevo más tarde.`);
     }
 }
 

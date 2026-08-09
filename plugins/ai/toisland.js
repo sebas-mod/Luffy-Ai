@@ -1,19 +1,19 @@
 import { live3d } from '../../src/scraper/seaart.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'toisland',
     alias: ['island', 'tropical'],
     category: 'ai',
-    description: 'Ubah foto menjadi suasana pulau tropis',
-    usage: '.toisland (reply/kirim gambar)',
+    description: 'Convertir la foto a ambiente de isla tropical',
+    usage: '.toisland (responde/envía imagen)',
     example: '.toisland',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🏝️ *ᴛᴏ ɪsʟᴀɴᴅ*\n\n` +
-            `> Kirim/reply gambar untuk suasana pulau\n\n` +
+            `> Envía/responde una imagen para ambiente de isla\n\n` +
             `\`${m.prefix}toisland\``
         )
     }
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

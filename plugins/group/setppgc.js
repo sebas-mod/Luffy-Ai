@@ -2,8 +2,8 @@ const pluginConfig = {
     name: 'setppgc',
     alias: ['setprofilegc', 'setppgroup', 'setppgrup'],
     category: 'group',
-    description: 'Mengubah foto profil grup',
-    usage: '.setppgc (reply gambar)',
+    description: 'Cambiar la foto de perfil del grupo',
+    usage: '.setppgc (responde una imagen)',
     example: '.setppgc',
     isOwner: false,
     isPremium: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -22,33 +22,33 @@ async function handler(m, { sock }) {
         try {
             buffer = await m.quoted.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ Error al tomar la imagen.`)
             return
         }
     } else if (m.isImage) {
         try {
             buffer = await m.download()
         } catch (e) {
-            await m.reply(`❌ Gagal mengambil gambar.`)
+            await m.reply(`❌ Error al tomar la imagen.`)
             return
         }
     }
     if (!buffer) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Reply gambar + \`${m.prefix}setppgc\`\n` +
-            `> Kirim gambar + caption \`${m.prefix}setppgc\``
+            `⚠️ *ᴄóᴍᴏ ᴜsᴀʀʟᴏ*\n\n` +
+            `> Responde una imagen + \`${m.prefix}setppgc\`\n` +
+            `> Envía una imagen con el caption \`${m.prefix}setppgc\``
         )
         return
     }
     try {
         await sock.updateProfilePicture(m.chat, buffer)
         await m.reply(
-            `✅ Foto profil grup berhasil diperbarui!`
+            `✅ La foto de perfil del grupo se actualizó correctamente!`
         )
     } catch (error) {
         await m.reply(
-            `❌ Gagal mengubah foto grup.\n` +
+            `❌ No se pudo cambiar la foto del grupo.\n` +
             `> _${error.message}_`
         )
     }

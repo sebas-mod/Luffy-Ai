@@ -1,5 +1,5 @@
 import { createCanvas, GlobalFonts } from "@napi-rs/canvas";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import axios from "axios";
 import config from "../../config.js";
 
@@ -7,15 +7,15 @@ const pluginConfig = {
   name: "sroast",
   alias: ["stickerroast", "sroast"],
   category: "canvas",
-  description: "Buat stiker roast",
-  usage: ".sroast <teks1> | <teks2> | <teks3>",
-  example: ".sroast kamu | JELEK | banget",
+  description: "Crea sticker de roast",
+  usage: ".sroast <texto1> | <texto2> | <texto3>",
+  example: ".sroast tú | FEO | muchísimo",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
   const input = m.text?.trim();
 
   if (!input) {
-    return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} aku | JELEK | banget\``);
+    return m.reply(`⚠️ ¡Ingresa un texto!\nEjemplo: \`${m.prefix}${m.command} yo | FEO | muchísimo\``);
   }
 
   const parts = input.split('|').map(v => v.trim());

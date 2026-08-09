@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "nyapu",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,30 +27,30 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Tangan pegel megang sapu terus! 😖\n\nNyapu butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Istirahat di bawah pohon dulu! 🌳`);
+    return m.reply(`¡Manos cansadas de agarrar la escoba! 😖\n\nBarrer necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Descansa bajo un árbol! 🌳`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("🧹");
-  await m.reply(`Srak sruk srak sruk... 🧹\nMembersihkan sampah-sampah masyarakat... 🗑️`);
+  await m.reply(`Srak sruk srak sruk... 🧹\nLimpiando la basura de la gente... 🗑️`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
 
   if (gacha < 0.1) {
     const goldFound = Math.floor(Math.random() * 50000) + 15000;
-    user.koin = (user.koin || 0) + goldFound;
+    user.berry = (user.berry || 0) + goldFound;
     await m.react("💍");
-    return m.reply(`HOKI PARAH! NEMU CINCIN EMAS JATUH! 💍✨\n\nPas lagi nyapu pinggir trotoar, kamu nemu cincin emas dan langsung dijual!\n💵 Pendapatan Kaget: *+Rp ${goldFound.toLocaleString("id-ID")}*\n⚡ Stamina: -${staminaCost}\n\nRejeki nomplok emang nggak kemana! 🥳`);
+    return m.reply(`¡QUÉ SUERTAZO! ¡ENCONTRASTE UN ANILLO DE ORO PERDIDO! 💍✨\n\nBarriendo la acera, encontraste un anillo de oro y lo vendiste al instante!\n💵 Ingreso Sorpresa: *+Rp ${goldFound.toLocaleString("id-ID")}*\n⚡ Resistencia: -${staminaCost}\n\n¡La buena suerte no se va a ningún lado! 🥳`);
   }
 
   const earning = Math.floor(Math.random() * 8000) + 3000;
-  user.koin = (user.koin || 0) + earning;
+  user.berry = (user.berry || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`ALHAMDULILLAH SELESAI BERES-BERES! 🧹✨\n\n💵 Gaji Harian: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBumi makin bersih dan asri! 🌍`);
+  m.reply(`¡TERMINASTE DE LIMPIAR! 🧹✨\n\n💵 Salario Diario: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Resistencia: -${staminaCost}\n\n¡El mundo cada vez más limpio y verde! 🌍`);
 }
 
 export { pluginConfig as config, handler };

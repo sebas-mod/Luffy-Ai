@@ -1,19 +1,19 @@
 import fs from "fs";
 import path from "path";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "enableplugin",
   alias: ["eplugin", "pluginenable", "onplugin"],
   category: "owner",
-  description: "Mengaktifkan kembali plugin yang dinonaktifkan",
-  usage: ".enableplugin <nama_plugin>",
+  description: "Reactivar un plugin que fue desactivado",
+  usage: ".enableplugin <nombre_plugin>",
   example: ".enableplugin sticker",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -56,9 +56,9 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `🔌 *ᴇɴᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Masukkan nama plugin yang ingin diaktifkan\n\n` +
-        `*Contoh:*\n` +
+      `🔌 *ʜᴀʙɪʟɪᴛᴀʀ ᴘʟᴜɢɪɴ*\n\n` +
+        `> Introduce el nombre del plugin que quieres activar\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}enableplugin sticker\`\n` +
         `> \`${m.prefix}enableplugin tiktok\``,
     );
@@ -67,13 +67,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`❌ Plugin *${pluginName}* tidak ditemukan!`);
+    return m.reply(`❌ ¡Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled !== false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* sudah aktif!`);
+    return m.reply(`⚠️ ¡El plugin *${pluginName}* ya está activo!`);
   }
 
   try {
@@ -84,14 +84,14 @@ async function handler(m, { sock }) {
     fs.writeFileSync(filePath, content);
 
     await m.reply(
-      `✅ *ᴘʟᴜɢɪɴ ᴇɴᴀʙʟᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `✅ *ᴘʟᴜɢɪɴ ʜᴀʙɪʟɪᴛᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
-        `┃ 📁 Category: *${category}*\n` +
-        `┃ 📄 File: *${file}*\n` +
-        `┃ 🟢 Status: *Enabled*\n` +
+        `┃ 📁 Categoría: *${category}*\n` +
+        `┃ 📄 Archivo: *${file}*\n` +
+        `┃ 🟢 Estado: *Activado*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot atau gunakan hot reload untuk apply.`,
+        `> Reinicia el bot o usa hot reload para aplicar.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

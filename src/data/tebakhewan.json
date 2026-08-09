@@ -1,32 +1,122 @@
 [
-  {"soal": "Hewan mamalia terbesar di dunia yang hidup di lautan", "jawaban": "Paus Biru"},
-  {"soal": "Hewan berkantung asal Australia yang terkenal suka melompat", "jawaban": "Kanguru"},
-  {"soal": "Hewan reptil terbesar yang hidup di sungai dan rawa", "jawaban": "Buaya"},
-  {"soal": "Burung yang tidak bisa terbang tapi bisa berlari sangat cepat", "jawaban": "Burung Unta"},
-  {"soal": "Hewan laut bertentakel 8 yang bisa berubah warna", "jawaban": "Gurita"},
-  {"soal": "Kucing besar bertotol hitam yang berasal dari Afrika", "jawaban": "Cheetah"},
-  {"soal": "Hewan malam yang bisa terbang dan menggunakan sonar", "jawaban": "Kelelawar"},
-  {"soal": "Hewan bertubuh lunak yang membawa rumahnya di punggung", "jawaban": "Siput"},
-  {"soal": "Primata cerdas yang memiliki DNA 98% mirip manusia", "jawaban": "Simpanse"},
-  {"soal": "Hewan bersayap indah yang bermetamorfosis dari ulat", "jawaban": "Kupu-kupu"},
-  {"soal": "Hewan bertanduk satu yang terancam punah di Indonesia", "jawaban": "Badak Jawa"},
-  {"soal": "Burung cantik yang bisa meniru suara manusia", "jawaban": "Beo"},
-  {"soal": "Hewan laut berduri yang bergerak sangat lambat", "jawaban": "Bintang Laut"},
-  {"soal": "Hewan berkaki empat yang dikenal setia pada pemiliknya", "jawaban": "Anjing"},
-  {"soal": "Hewan air tawar yang bisa menghasilkan listrik hingga 860 volt", "jawaban": "Belut Listrik"},
-  {"soal": "Serangga yang membuat sarang dari lilin dan menghasilkan madu", "jawaban": "Lebah"},
-  {"soal": "Hewan laut lucu yang jantan yang mengandung anaknya", "jawaban": "Kuda Laut"},
-  {"soal": "Hewan yang terkenal lambat dan suka menempel di pohon", "jawaban": "Kukang"},
-  {"soal": "Burung dengan leher panjang yang sering berdiri satu kaki", "jawaban": "Flamingo"},
-  {"soal": "Hewan pengerat kecil yang suka mengumpulkan makanan di pipinya", "jawaban": "Hamster"},
-  {"soal": "Hewan buas raja hutan yang memiliki surai lebat", "jawaban": "Singa"},
-  {"soal": "Reptil kecil yang bisa memutuskan ekornya saat terancam", "jawaban": "Cicak"},
-  {"soal": "Hewan laut yang memiliki 3 jantung dan darah biru", "jawaban": "Gurita"},
-  {"soal": "Mamalia terbang satu-satunya yang aktif di malam hari", "jawaban": "Kelelawar"},
-  {"soal": "Hewan herbivora besar dengan leher sangat panjang", "jawaban": "Jerapah"},
-  {"soal": "Hewan amfibi beracun berwarna cerah dari Amerika Selatan", "jawaban": "Katak Panah"},
-  {"soal": "Ikan air tawar predator ganas dari sungai Amazon", "jawaban": "Piranha"},
-  {"soal": "Hewan berkantung yang suka memanjat pohon eucalyptus", "jawaban": "Koala"},
-  {"soal": "Serangga sosial yang bisa mengangkat 50x berat tubuhnya", "jawaban": "Semut"},
-  {"soal": "Hewan laut berbentuk payung yang bisa menyengat", "jawaban": "Ubur-ubur"}
+  {
+    "soal": "El mamífero más grande del mundo que vive en el océano.",
+    "jawaban": "ballena azul"
+  },
+  {
+    "soal": "Un animal marsupial de Australia famoso por saltar.",
+    "jawaban": "canguro"
+  },
+  {
+    "soal": "El reptil más grande que vive en ríos y pantanos.",
+    "jawaban": "cocodrilo"
+  },
+  {
+    "soal": "Aves que no pueden volar pero pueden correr muy rápido.",
+    "jawaban": "avestruz"
+  },
+  {
+    "soal": "Un animal marino con 8 tentáculos que puede cambiar de color.",
+    "jawaban": "pulpo"
+  },
+  {
+    "soal": "Gran gato moteado negro originario de África",
+    "jawaban": "guepardos"
+  },
+  {
+    "soal": "Animales nocturnos que pueden volar y utilizar sonar.",
+    "jawaban": "murciélago"
+  },
+  {
+    "soal": "Un animal de cuerpo blando que lleva su hogar en el lomo.",
+    "jawaban": "caracol"
+  },
+  {
+    "soal": "Un primate inteligente que tiene un ADN 98% similar al de los humanos",
+    "jawaban": "chimpancé"
+  },
+  {
+    "soal": "Un hermoso animal alado que se transformó de una oruga",
+    "jawaban": "mariposa"
+  },
+  {
+    "soal": "Animal de un solo cuerno que está en peligro de extinción en Indonesia",
+    "jawaban": "Rinoceronte de Java"
+  },
+  {
+    "soal": "Un hermoso pájaro que puede imitar las voces humanas.",
+    "jawaban": "loros"
+  },
+  {
+    "soal": "Animales marinos espinosos que se mueven muy lentamente.",
+    "jawaban": "estrella de mar"
+  },
+  {
+    "soal": "Se sabe que los animales de cuatro patas son leales a sus dueños",
+    "jawaban": "perro"
+  },
+  {
+    "soal": "Animales de agua dulce que pueden producir electricidad hasta 860 voltios.",
+    "jawaban": "Anguila eléctrica"
+  },
+  {
+    "soal": "Insectos que hacen nidos con cera y producen miel.",
+    "jawaban": "abeja"
+  },
+  {
+    "soal": "Un lindo animal marino macho que está embarazada de su hijo.",
+    "jawaban": "caballito de mar"
+  },
+  {
+    "soal": "Animales que son conocidos por ser lentos y les gusta pegarse a los árboles.",
+    "jawaban": "loris lentos"
+  },
+  {
+    "soal": "Un pájaro con un cuello largo que a menudo se apoya en una pata.",
+    "jawaban": "flamencos"
+  },
+  {
+    "soal": "Un pequeño roedor al que le gusta recoger comida en sus mejillas.",
+    "jawaban": "Hámsters"
+  },
+  {
+    "soal": "El rey salvaje del bosque tiene una espesa melena.",
+    "jawaban": "león"
+  },
+  {
+    "soal": "Un pequeño reptil que puede cortarse la cola cuando se ve amenazado",
+    "jawaban": "lagarto"
+  },
+  {
+    "soal": "Un animal marino que tiene 3 corazones y sangre azul.",
+    "jawaban": "pulpo"
+  },
+  {
+    "soal": "El único mamífero volador que está activo durante la noche.",
+    "jawaban": "murciélago"
+  },
+  {
+    "soal": "Animal herbívoro de gran tamaño y cuello muy largo.",
+    "jawaban": "Jirafa"
+  },
+  {
+    "soal": "Anfibio venenoso de colores brillantes de América del Sur",
+    "jawaban": "rana flecha"
+  },
+  {
+    "soal": "Feroces peces depredadores de agua dulce del río Amazonas",
+    "jawaban": "pirañas"
+  },
+  {
+    "soal": "Un marsupial al que le gusta trepar a los eucaliptos.",
+    "jawaban": "koalas"
+  },
+  {
+    "soal": "Un insecto social que puede levantar 50 veces su peso corporal",
+    "jawaban": "hormiga"
+  },
+  {
+    "soal": "Un animal marino con forma de paraguas que puede picar",
+    "jawaban": "medusas"
+  }
 ]

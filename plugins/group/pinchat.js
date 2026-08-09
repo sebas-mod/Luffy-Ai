@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'pinchat',
     alias: ['pinmsg', 'pinpesan'],
     category: 'group',
-    description: 'Pin pesan penting di grup',
-    usage: '.pinchat (reply pesan)',
+    description: 'Fijar mensajes importantes en el grupo',
+    usage: '.pinchat (responde un mensaje)',
     example: '.pinchat',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -19,11 +19,11 @@ const pluginConfig = {
 async function handler(m, { sock, args }) {
     if (!m.quoted || !m.quoted.key || !m.quoted.key.id) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-            `> Reply pesan yang ingin di-pin!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> Reply pesan → ketik \`.pinchat\`\n` +
-            `> Optional: \`.pinchat 24\` (pin 24 jam)`
+            `⚠️ *ᴠᴀʟɪᴅᴀᴄɪóɴ ғᴀʟʟɪᴅᴀ*\n\n` +
+            `> Responde el mensaje que quieres fijar!\n\n` +
+            `*Cómo usar:*\n` +
+            `> Responde un mensaje → escribe \`.pinchat\`\n` +
+            `> Opcional: \`.pinchat 24\` (fijar 24 horas)`
         );
         return;
     }
@@ -51,16 +51,16 @@ async function handler(m, { sock, args }) {
         });
         
         const durationText = duration >= 86400 
-            ? `${Math.floor(duration / 86400)} hari` 
-            : `${Math.floor(duration / 3600)} jam`;
+            ? `${Math.floor(duration / 86400)} días` 
+            : `${Math.floor(duration / 3600)} horas`;
         
-        const successMsg = `✅ Success pin pesan ini`;
+        const successMsg = `✅ Mensaje fijado con éxito`;
         await m.reply(successMsg, { mentions: [m.sender] })
         
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal mem-pin pesan.\n` +
+            `> No se pudo fijar el mensaje.\n` +
             `> _${error.message}_`
         );
     }

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import axios from 'axios'
 import os from 'os'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 import util from 'util'
 const pluginConfig = {
@@ -17,7 +17,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     noPrefix: ['=>'],
     customTrigger: (body) => body?.startsWith('=>')
@@ -33,8 +33,8 @@ async function handler(m, { sock, store }) {
     if (!code) {
         return m.reply(
             `⚙️ *ᴇᴠᴀʟ*\n\n` +
-            `> Masukkan kode JavaScript!\n\n` +
-            `*Contoh:*\n` +
+            `> ¡Introduce código JavaScript!\n\n` +
+            `*Ejemplo:*\n` +
             `> .$ 1 + 1\n` +
             `> .$ m.chat\n` +
             `> .$ db.getUser(m.sender)`
@@ -76,10 +76,10 @@ async function handler(m, { sock, store }) {
     const type = isError ? result?.name || 'Error' : typeof result
 
     await m.reply(
-        `⚙️ *ᴇᴠᴀʟ ʀᴇsᴜʟᴛ*\n\n` +
+        `⚙️ *ʀᴇsᴜʟᴛᴀᴅᴏ ᴇᴠᴀʟ*\n\n` +
         `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
         `┃ ${status}\n` +
-        `┃ Type: ${type}\n` +
+        `┃ Tipo: ${type}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `\`\`\`${output}\`\`\``
     )

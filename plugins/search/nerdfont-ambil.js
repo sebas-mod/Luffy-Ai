@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 function getSharp() {
   return _sharp;
 }
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 async function nerdfonts() {
   try {
     const { data } = await axios.get(
@@ -50,7 +50,7 @@ const pluginConfig = {
   name: "nerdfont-ambil",
   alias: ["dafont-ambil", "fontambil"],
   category: "search",
-  description: "Cari font di DaFont",
+  description: "Buscar fuentes en DaFont",
   usage: ".nerdfont-ambil <query>",
   example: ".nerdfont-ambil Coolvetica",
   isOwner: false,
@@ -58,7 +58,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 function formatNumber(num) {
@@ -72,7 +72,7 @@ function formatNumber(num) {
 async function handler(m, { sock }) {
   const query = m.text?.trim()?.toLowerCase();
   if (!query)
-    return m.reply(`*NERD FONT*\n\n> Masukan nama font yang ingin didownload`);
+    return m.reply(`*FUENTE NERD*\n\n> Ingresa el nombre de la fuente que quieres descargar`);
   try {
     const res = await nerdfonts();
     const data = res.find(
@@ -91,8 +91,8 @@ async function handler(m, { sock }) {
       )
         .resize(50, 50)
         .toBuffer(),
-      caption: `*Done*
-Jika kamu ingin mendownload lagi, ketik ${m.prefix}nerdfont lagi`,
+      caption: `*Listo*
+Si quieres descargar de nuevo, escribe ${m.prefix}nerdfont de nuevo`,
     });
   } catch (err) {
     return m.reply(te(m.prefix, m.command, m.pushName));

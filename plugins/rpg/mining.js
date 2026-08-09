@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "mining",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 60,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -28,22 +28,22 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Aduh kak, badan kamu udah remuk duluan! 🥵\n\nNambang batu tuh berat, butuh *${staminaCost} Stamina*. Stamina kamu sisa *${user.rpg.stamina}* doang. Istirahat gih! 🛌💤`);
+    return m.reply(`Uy bro, ¡tu cuerpo ya está destrozado! 🥵\n\nMinar piedra es pesado, necesitas *${staminaCost} de Resistencia*. Solo te quedan *${user.rpg.stamina}*. ¡Descansa! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("⛏️");
-  await m.reply("Trangg! Tranggg! ⛏️💎\nMemecah batu keras di kedalaman gua...");
+  await m.reply("¡Traang! ¡Traangg! ⛏️💎\nPartiendo rocas duras en las profundidades de la cueva...");
   await new Promise((r) => setTimeout(r, 3000));
 
   const drops = [
-    { item: "rock", chance: 80, name: "🪨 Batu", min: 2, max: 5 },
-    { item: "coal", chance: 50, name: "⚫ Batubara", min: 1, max: 3 },
-    { item: "iron", chance: 30, name: "⛓️ Besi", min: 1, max: 2 },
-    { item: "gold", chance: 15, name: "🥇 Emas", min: 1, max: 1 },
-    { item: "diamond", chance: 5, name: "💠 Berlian", min: 1, max: 1 },
-    { item: "emerald", chance: 2, name: "💚 Emerald", min: 1, max: 1 },
+    { item: "rock", chance: 80, name: "🪨 Piedra", min: 2, max: 5 },
+    { item: "coal", chance: 50, name: "⚫ Carbón", min: 1, max: 3 },
+    { item: "iron", chance: 30, name: "⛓️ Hierro", min: 1, max: 2 },
+    { item: "gold", chance: 15, name: "🥇 Oro", min: 1, max: 1 },
+    { item: "diamond", chance: 5, name: "💠 Diamante", min: 1, max: 1 },
+    { item: "emerald", chance: 2, name: "💚 Esmeralda", min: 1, max: 1 },
   ];
 
   let results = [];
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   if (results.length === 0) {
     user.inventory["rock"] = (user.inventory["rock"] || 0) + 1;
-    results.push({ name: "🪨 Batu", qty: 1 });
+    results.push({ name: "🪨 Piedra", qty: 1 });
   }
 
   const expGain = Math.floor(Math.random() * 500) + 100;
@@ -67,14 +67,14 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `CROOT! BATUNYA PECAH KAK! ⛏️✨\n\n`;
-  txt += `Kamu berhasil dapetin material ini:\n`;
+  let txt = `¡CROOT! ¡LA ROCA SE PARTIÓ BRO! ⛏️✨\n\n`;
+  txt += `Lograste conseguir estos materiales:\n`;
   for (const r of results) {
     txt += `• ${r.name}: *+${r.qty}*\n`;
   }
   txt += `\n📈 EXP: *+${expGain}*\n`;
-  txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Simpen baik-baik ya kak, nanti bisa dicraft atau dijual! 💎💰`;
+  txt += `⚡ Resistencia: *-${staminaCost}*\n\n`;
+  txt += `Guárdalos bien bro, luego podrás usarlos para crear o vender! 💎💰`;
 
   await m.reply(txt);
 }

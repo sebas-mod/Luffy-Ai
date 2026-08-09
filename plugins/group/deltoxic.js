@@ -1,18 +1,18 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'deltoxic',
     alias: ['hapustoxic', 'remtoxic', 'removetoxic'],
     category: 'group',
-    description: 'Hapus kata toxic dari daftar',
-    usage: '.deltoxic <kata>',
-    example: '.deltoxic kata_kasar',
+    description: 'Eliminar una palabra tóxica de la lista',
+    usage: '.deltoxic <palabra>',
+    example: '.deltoxic grosería',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     isAdmin: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,8 +23,8 @@ async function handler(m, { sock }) {
     if (!word) {
         return m.reply(
             `🗑️ *ᴅᴇʟ ᴛᴏxɪᴄ*\n\n` +
-            `> Gunakan: \`.deltoxic <kata>\`\n\n` +
-            `\`Contoh: ${m.prefix}deltoxic katakasar\``
+            `> Uso: \`.deltoxic <palabra>\`\n\n` +
+            `\`Ejemplo: ${m.prefix}deltoxic grosería\``
         )
     }
     
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     const index = toxicWords.indexOf(word)
     
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Kata \`${word}\` tidak ada di daftar`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> La palabra \`${word}\` no está en la lista`)
     }
     
     toxicWords.splice(index, 1)
@@ -43,10 +43,10 @@ async function handler(m, { sock }) {
     m.react('✅')
     
     await m.reply(
-        `✅ *ᴋᴀᴛᴀ ᴛᴏxɪᴄ ᴅɪʜᴀᴘᴜs*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📝 ᴋᴀᴛᴀ: \`${word}\`\n` +
-        `┃ 📊 sɪsᴀ: \`${toxicWords.length}\` kata\n` +
+        `✅ *ᴘᴀʟᴀʙʀᴀ ᴛᴏxɪᴄᴀ ᴇʟɪᴍɪɴᴀᴅᴀ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 📝 ᴘᴀʟᴀʙʀᴀ: \`${word}\`\n` +
+        `┃ 📊 ʀᴇsᴛᴀɴᴛᴇs: \`${toxicWords.length}\` palabras\n` +
         `╰┈┈⬡`
     )
 }

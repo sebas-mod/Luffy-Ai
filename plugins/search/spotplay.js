@@ -1,22 +1,22 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "spotplay",
   alias: ["splay", "sp"],
   category: "search",
-  description: "Putar musik dari Spotify",
+  description: "Reproduce música de Spotify",
   usage: ".spotplay <query>",
   example: ".spotplay neffex grateful",
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n> \`${m.prefix}spotplay <query>\``);
+    return m.reply(`⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n> \`${m.prefix}spotplay <query>\``);
 
   await m.react("🕕");
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
 
     if (!searchData?.status || !searchData?.result || searchData.result.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Lagu Spotify tidak ditemukan.");
+      return m.reply("❌ Canción de Spotify no encontrada.");
     }
 
     const firstTrack = searchData.result[0];
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!dlData?.status || !dlData?.result?.download_url) {
       await m.react("❌");
-      return m.reply("❌ Gagal mengambil link download lagu Spotify.");
+      return m.reply("❌ Error al obtener el enlace de descarga de la canción de Spotify.");
     }
 
     const result = dlData.result;

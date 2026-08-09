@@ -1,17 +1,17 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'setrules',
     alias: ['setbotrules', 'setaturanbot'],
     category: 'owner',
-    description: 'Set rules/aturan bot custom',
-    usage: '.setrules <text>',
-    example: '.setrules 1. Jangan spam\n2. Hormati sesama',
+    description: 'Establecer reglas/atribuciones personalizadas del bot',
+    usage: '.setrules <texto>',
+    example: '.setrules 1. No spamear\n2. Respetar a los demás',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,19 +21,19 @@ function handler(m) {
     
     if (!text) {
         return m.reply(
-            `📝 *sᴇᴛ ʙᴏᴛ ʀᴜʟᴇs*\n\n` +
-            `> Masukkan teks rules yang baru\n\n` +
-            `\`Contoh:\`\n` +
-            `\`${m.prefix}setrules 1. Jangan spam\\n2. Hormati sesama\``
+            `📝 *ᴇsᴛᴀʙʟᴇᴄᴇʀ ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ*\n\n` +
+            `> Escribe el nuevo texto de las reglas\n\n` +
+            `\`Ejemplo:\`\n` +
+            `\`${m.prefix}setrules 1. No spamear\\n2. Respetar a los demás\``
         )
     }
     
     db.setting('botRules', text)
     
     m.reply(
-        `✅ *ʙᴏᴛ ʀᴜʟᴇs ᴅɪᴜᴘᴅᴀᴛᴇ*\n\n` +
-        `> Rules bot berhasil diubah!\n` +
-        `> Ketik \`${m.prefix}rules\` untuk melihat.`
+        `✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀs*\n\n` +
+        `> ¡Las reglas del bot se cambiaron con éxito!\n` +
+        `> Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

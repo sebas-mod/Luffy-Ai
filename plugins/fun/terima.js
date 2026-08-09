@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import * as timeHelper from "../../src/lib/ourin-time.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import * as timeHelper from "../../src/lib/luffy-time.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "terima",
   alias: ["accept", "yes"],
   category: "fun",
-  description: "Menerima tembakan dari seseorang",
+  description: "Acepta el disparo de alguien",
   usage: ".terima @tag",
   example: ".terima @628xxx",
   isOwner: false,
@@ -13,18 +13,18 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 const celebrationQuotes = [
-  "Semoga langgeng sampai ke pelaminan! 💍",
-  "Dari teman jadi cinta, indahnya! 💕",
+  "¡Que dure hasta el altar! 💍",
+  "¡De amigos a amantes, qué bonito! 💕",
   "Love is in the air! 💖",
   "Couple goals detected! 💑",
-  "Jangan lupa undang pas nikah ya! 💒",
-  "Selamat menempuh hidup berduaan! 🥰",
-  "Chemistry-nya kuat banget! 🔥",
+  "¡No olviden invitarme a la boda! 💒",
+  "¡Que disfruten la vida en pareja! 🥰",
+  "¡La química es muy fuerte! 🔥",
   "Match made in heaven! ✨",
 ];
 
@@ -52,18 +52,18 @@ async function handler(m, { sock }) {
 
   if (!shooterJid) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> Reply pesan tembakan + \`${m.prefix}terima\`\n` +
-        `> Atau \`${m.prefix}terima @tag\``,
+      `⚠️ *ᴄᴏ́ᴍᴏ ᴜsᴀʀ*\n\n` +
+        `> Responde al mensaje de disparo + \`${m.prefix}terima\`\n` +
+        `> O \`${m.prefix}terima @tag\``,
     );
   }
 
   if (shooterJid === m.sender) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa menerima diri sendiri!`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡No puedes aceptarte a ti mismo!`);
   }
 
   if (shooterJid === m.botNumber) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak bisa pacaran!`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El bot no puede tener pareja!`);
   }
 
   let shooterData = db.getUser(shooterJid) || {};
@@ -77,8 +77,8 @@ async function handler(m, { sock }) {
     shooterData.fun.tembakTarget !== m.sender
   ) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴍᴇɴᴇᴍʙᴀᴋ*\n\n` +
-        `> @${shooterJid.split("@")[0]} tidak sedang menembakmu`,
+      `❌ *ɴᴏ ᴛᴇ ᴅɪsᴘᴀʀᴀ*\n\n` +
+        `> @${shooterJid.split("@")[0]} no te está disparando`,
       { mentions: [shooterJid] },
     );
   }
@@ -109,9 +109,9 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `💕 *WIDIHHHH, CIE CIE DITERIMA* @${shooterJid.split("@")[0]}\n\n` +
-      `@${m.sender.split("@")[0]} dan @${shooterJid.split("@")[0]} resmi pacaran\n\n` +
-      `Semoga langgeng dan bahagia 💍`,
+    `💕 *¡OOH LA LA, ACEPTADO!* @${shooterJid.split("@")[0]}\n\n` +
+      `@${m.sender.split("@")[0]} y @${shooterJid.split("@")[0]} oficialmente son pareja\n\n` +
+      `¡Que dure y sean felices! 💍`,
     { contextInfo: ctx },
   );
 }

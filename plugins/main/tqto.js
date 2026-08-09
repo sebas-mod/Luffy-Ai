@@ -1,7 +1,7 @@
 import config from '../../config.js'
 import path from 'path'
 import fs from 'fs'
-import { AIRich } from '../../src/lib/ourin-builder.js'
+import { AIRich } from '../../src/lib/luffy-builder.js'
 const pluginConfig = {
     name: 'tqto',
     alias: ['thanksto', 'credits', 'kredit'],
@@ -14,21 +14,21 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
-    const botName = config.bot?.name || 'Ourin-AI'
+    const botName = config.bot?.name || 'Luffy-Ai'
     const version = config.bot?.version || '1.0.0'
     const developer = config.bot?.developer || 'Lucky Archz'
 
     const credits = [
         { name: 'hyuuOkkotsuX', role: 'Lead Staff', icon: '👨‍💻' },
-        { name: 'Zann', role: 'Creator Ourin MD dan APK Stardem Ourin', icon: '👨‍💻' },
+        { name: 'Zann', role: 'Creator Luffy MD dan APK Stardem Luffy', icon: '👨‍💻' },
         { name: 'SenzOkkotsu', role: 'Developer', icon: '👨‍💻' },
         { name: 'Ell', role: 'Developer', icon: '👨‍💻' },
-        { name: 'Aqell', role: 'Developer SC BUG Ourin Glitch', icon: '👨‍💻' },
+        { name: 'Aqell', role: 'Developer SC BUG Luffy Glitch', icon: '👨‍💻' },
         { name: 'Mobbc', role: 'Staff', icon: '👨‍💻' },
         { name: 'Raka', role: 'Staff', icon: '👨‍💻' },
         { name: 'Sanxz', role: 'Tangan Kanan', icon: '👨‍💻' },
@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
     const headers = ['No', 'Nama', 'Role / Tier']
     const rows = credits.map((c, i) => [i + 1, c.name, c.role])
 
-    await m.reply(`🍟 *Berikut ini adalah orang orang yang sudah berkontribusi di bot ${config.bot.name}*
+    await m.reply(`🍟 *Estas son las personas que han contribuido al bot ${config.bot.name}*
         
 ${credits.map((c, i) => `*${i + 1}*. *${c.name}* [ ${c.icon} ${c.role} ]`).join('\n')}}`)
 }

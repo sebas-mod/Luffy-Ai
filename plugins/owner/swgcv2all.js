@@ -1,8 +1,8 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import { fileTypeFromBuffer } from "file-type";
 import { config } from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import { generateWAMessage } from "ourin";
 
 const botConfig = config;
@@ -29,15 +29,15 @@ const pluginConfig = {
   name: "swgcv2all",
   alias: ["statusgrupv2all"],
   category: "owner",
-  description: "Post Group Status V2 ke SEMUA grup",
-  usage: ".swgcv2all <teks> atau reply media",
-  example: ".swgcv2all Halo semua grup!",
+  description: "Publicar Group Status V2 en TODOS los grupos",
+  usage: ".swgcv2all <texto> o responde a un medio",
+  example: ".swgcv2all ¡Hola a todos los grupos!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
 
     if (!buffer) {
-      return m.reply("❌ Gagal mengunduh media. Silakan coba lagi.");
+      return m.reply("❌ Error al descargar el media. Inténtalo de nuevo.");
     }
 
     const fileType = await fileTypeFromBuffer(buffer);
@@ -72,17 +72,17 @@ async function handler(m, { sock }) {
         ptt: m.quoted?.ptt || m.ptt || false,
       };
     } else {
-      return m.reply("❌ Format media tidak didukung untuk SW GC.");
+      return m.reply("❌ Formato de media no soportado para SW GC.");
     }
   } else if (text) {
     rawContent = { text: text };
   } else {
     return m.reply(
       `👋 *sᴡɢᴄᴠ2 ᴀʟʟ ɢʟᴏʙᴀʟ*\n\n` +
-      `> Kirim pesan *Status Grup V2* ke SEMUA grup sekaligus.\n\n` +
-      `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-      `┃ ${m.prefix}swgcv2all Halo semua!\n` +
-      `┃ atau reply gambar/video dengan caption ${m.prefix}swgcv2all\n` +
+      `> Envía un mensaje de *Estado de Grupo V2* a TODOS los grupos a la vez.\n\n` +
+      `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
+      `┃ ${m.prefix}swgcv2all ¡Hola a todos!\n` +
+      `┃ o responde una imagen/video con caption ${m.prefix}swgcv2all\n` +
       `╰┈┈┈┈┈┈┈┈⬡`
     );
   }
@@ -95,10 +95,10 @@ async function handler(m, { sock }) {
 
     if (groupIds.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Bot tidak berada di grup manapun.");
+      return m.reply("❌ El bot no está en ningún grupo.");
     }
 
-    await m.reply(`⏳ *Memulai Broadcast Status Grup V2 ke ${groupIds.length} Grup...*\n\n> Proses ini mungkin memakan waktu beberapa saat.`);
+    await m.reply(`⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.`);
 
     let successCount = 0;
     let failCount = 0;
@@ -170,13 +170,13 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     await m.reply(
-      `✅ *sᴡɢᴄᴠ2 ᴀʟʟ sᴇʟᴇsᴀɪ*\n\n` +
-      `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-      `┃ 🌐 Total Grup: *${groupIds.length}*\n` +
-      `┃ ✅ Sukses: *${successCount}*\n` +
-      `┃ ❌ Gagal: *${failCount}*\n` +
+      `✅ *sᴡɢᴄᴠ2 ᴀʟʟ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
+      `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+      `┃ 🌐 Total de Grupos: *${groupIds.length}*\n` +
+      `┃ ✅ Exitosos: *${successCount}*\n` +
+      `┃ ❌ Errores: *${failCount}*\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Broadcast Status Grup V2 (Ring Pink) berhasil dikirim ke semua grup!`
+      `> ¡El broadcast del Estado de Grupo V2 (Ring Pink) se envió con éxito a todos los grupos!`
     );
 
   } catch (error) {

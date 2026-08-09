@@ -13,7 +13,7 @@ const pluginConfig = {
     isBotAdmin: false,
     isAdmin: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 };
 

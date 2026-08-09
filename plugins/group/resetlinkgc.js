@@ -1,9 +1,9 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'resetlinkgc',
     alias: ['resetlink', 'revokelink', 'newlink'],
     category: 'group',
-    description: 'Reset link invite grup',
+    description: 'Restablecer el enlace de invitación del grupo',
     usage: '.resetlinkgc',
     example: '.resetlinkgc',
     isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 60,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
         await sock.groupRevokeInvite(m.chat)
         
         m.react('✅')
-        m.reply(`✅ *ʟɪɴᴋ ɢʀᴜᴘ ᴅɪʀᴇsᴇᴛ*\nLink grup lama sudah tidak berlaku.\nGunakan \`${m.prefix}linkgc\` untuk mendapatkan link baru.`)
+        m.reply(`✅ *ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴏ*\nEl enlace anterior del grupo ya no es válido.\nUsa \`${m.prefix}linkgc\` para obtener el nuevo enlace.`)
         
     } catch (err) {
         m.react('☢')

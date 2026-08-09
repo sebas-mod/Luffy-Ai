@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import { calculateLevel, getRole } from "../user/level.js";
 
 const EXP_PER_LEVEL = 10000;
@@ -15,7 +15,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
 
   if (!targetJid || levels <= 0) {
     return m.reply(
-      `📊 *ᴅᴇʟ ʟᴇᴠᴇʟ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴜsᴀɢᴇ* 」\n` +
-        `┃ > \`.dellevel <jumlah>\` - ke diri sendiri\n` +
-        `┃ > \`.dellevel <jumlah> @user\` - ke orang lain\n` +
+      `📊 *ʀᴇsᴛᴀʀ ɴɪᴠᴇʟ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴜsᴏ*\n` +
+        `┃ > \`.dellevel <cantidad>\` - a ti mismo\n` +
+        `┃ > \`.dellevel <cantidad> @user\` - a otra persona\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Contoh: \`${m.prefix}dellevel 5\``,
+        `> Ejemplo: \`${m.prefix}dellevel 5\``,
     );
   }
 
@@ -60,12 +60,12 @@ async function handler(m, { sock }) {
   await m.react("✅");
 
   await m.reply(
-    `✅ *ʟᴇᴠᴇʟ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-      `┃ 👤 User: @${targetJid.split("@")[0]}\n` +
-      `┃ ➖ Kurang: *-${levels} Level*\n` +
-      `┃ 🚄 Exp Removed: *-${expToRemove.toLocaleString("id-ID")}*\n` +
-      `┃ 📊 Level: *${oldLevel} → ${newLevel}*\n` +
+    `✅ *ɴɪᴠᴇʟ ʀᴇsᴛᴀᴅᴏ*\n\n` +
+      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+      `┃ 👤 ᴜsᴜᴀʀɪᴏ: @${targetJid.split("@")[0]}\n` +
+      `┃ ➖ ʀᴇsᴛᴀᴅᴏ: *-${levels} Nivel*\n` +
+      `┃ 🚄 ᴇxᴘ ʀᴇᴛɪʀᴀᴅᴏ: *-${expToRemove.toLocaleString("id-ID")}*\n` +
+      `┃ 📊 ɴɪᴠᴇʟ: *${oldLevel} → ${newLevel}*\n` +
       `┃ ${getRole(newLevel)}\n` +
       `╰┈┈┈┈┈┈┈┈⬡`,
     { mentions: [targetJid] },

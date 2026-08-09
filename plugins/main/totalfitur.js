@@ -1,6 +1,6 @@
-import { getAllPlugins } from '../../src/lib/ourin-plugins.js'
+import { getAllPlugins } from '../../src/lib/luffy-plugins.js'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'totalfitur',
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,9 +23,9 @@ const ICONS = {
     ai: '🤖', media: '📷', game: '🎮', rpg: '⚔️', maker: '🖼️', fun: '🎭',
     group: '👥', owner: '👑', premium: '💎', info: '📊', search: '🔍',
     canvas: '🎨', anime: '🌸', nsfw: '🔞', utility: '🛠️', economy: '💰',
-    stalker: '🔎', random: '🎲', religi: '🕌', islamic: '☪️', cek: '✅',
-    store: '🛒', panel: '🖥️', convert: '🔄', primbon: '🔮', tts: '🗣️',
-    otp: '🔑', vps: '☁️', pushkontak: '📱', jpm: '🎰', ephoto: '📸',
+    stalker: '🔎', random: '🎲', islamic: '☪️', cek: '✅',
+    store: '🛒', convert: '🔄', primbon: '🔮', tts: '🗣️',
+    otp: '🔑', vps: '☁️', jpm: '🎰', ephoto: '📸',
     other: '📦'
 }
 

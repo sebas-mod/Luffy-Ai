@@ -1,19 +1,19 @@
 import mql from "@microlink/mql"
-import te from "../../src/lib/ourin-error.js"
+import te from "../../src/lib/luffy-error.js"
 
 const pluginConfig = {
     name: "carbon",
     alias: ["carbonify", "carboncode"],
     category: "tools",
-    description: "Membuat gambar kode dengan tampilan carbon style",
-    usage: ".carbon <kode>",
+    description: "Convierte código en una imagen con estilo Carbon",
+    usage: ".carbon <código>",
     example: '.carbon console.log("Hello World")',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -63,12 +63,12 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🖥️ *CARBON CODE*\n\n` +
-            `Fitur ini mengubah teks kode program kamu menjadi gambar cantik ala Carbon\n\n` +
-            `*Cara pakai:*\n` +
-            `> \`${m.prefix}carbon <kode>\`\n` +
-            `> Atau kamu bisa reply pesan yang berisi kode\n\n` +
-            `*Contoh:*\n` +
-            `> \`${m.prefix}carbon console.log("Halo")\``
+            `Esta función convierte el texto de código en una imagen bonita estilo Carbon\n\n` +
+            `*Cómo usar:*\n` +
+            `> \`${m.prefix}carbon <código>\`\n` +
+            `> O puedes responder a un mensaje que contenga código\n\n` +
+            `*Ejemplo:*\n` +
+            `> \`${m.prefix}carbon console.log("Hola")\``
         )
     }
 
@@ -105,7 +105,7 @@ async function handler(m, { sock }) {
 
         const imageUrl = res.data?.screenshot?.url || null
 
-        if (!imageUrl) throw new Error("Gagal generate carbon gambar")
+        if (!imageUrl) throw new Error("Error al generar la imagen de carbon")
 
         await sock.sendMedia(m.chat, imageUrl, null, m, {
             type: "image"

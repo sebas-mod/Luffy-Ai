@@ -1,19 +1,19 @@
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { sendToolsPreview } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { sendToolsPreview } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "lookup",
   alias: ["dnslookup", "dns", "whois"],
   category: "tools",
-  description: "DNS Lookup untuk domain",
-  usage: ".lookup <domain>",
+  description: "DNS Lookup para un dominio",
+  usage: ".lookup <dominio>",
   example: ".lookup google.com",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -22,9 +22,9 @@ async function handler(m, { sock }) {
 
   if (!domain) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}lookup <domain>\`\n\n` +
-        `> Contoh:\n` +
+      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+        `> \`${m.prefix}lookup <dominio>\`\n\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}lookup google.com\``,
     );
   }
@@ -34,11 +34,11 @@ async function handler(m, { sock }) {
   if (
     !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]?(\.[a-zA-Z]{2,})+$/.test(domain)
   ) {
-    return m.reply(`❌ *ғᴏʀᴍᴀᴛ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n> Contoh: \`google.com\``);
+    return m.reply(`❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`google.com\``);
   }
 
   await m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇɴᴄᴀʀɪ ɪɴꜰᴏ ᴅᴏᴍᴀɪɴ...*`);
+  await m.reply(`🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇʟ ᴅᴏᴍɪɴɪᴏ...*`);
 
   try {
     const [dnsRes, whoisRes] = await Promise.allSettled([
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
     if (!dnsData && !whoisData) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat memproses domain`);
+      return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se pudo procesar el dominio`);
     }
 
     let text = `🔍 *ᴅɴs ʟᴏᴏᴋᴜᴘ*\n\n`;

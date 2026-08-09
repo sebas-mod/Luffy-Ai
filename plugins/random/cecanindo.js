@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'cecanindo',
     alias: ['cewekindo', 'cewekindonesia'],
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 

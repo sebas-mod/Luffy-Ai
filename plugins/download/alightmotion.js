@@ -1,12 +1,12 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "alightmotiondl",
     alias: ["alightmotion", "amdl"],
     category: "downloader",
-    description: "Download project/preset Alight Motion",
+    description: "Descarga proyectos/presets de Alight Motion",
     usage: ".amdl <link>",
     example: ".amdl https://alight.link/...",
     isOwner: false,
@@ -14,17 +14,17 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        let help = `📥 *ALIGHT MOTION DOWNLOADER*\n\n`
-        help += `Fitur ini membantumu mengunduh project atau preset dari Alight Motion dengan mudah!\n\n`
-        help += `*Cara Penggunaan:*\n`
-        help += `- Ketik *${m.prefix}amdl <link_alight_motion>*\n\n`
-        help += `*Contoh:* ${m.prefix}amdl https://alight.link/xxxxx`
+        let help = `📥 *DESCARGADOR DE ALIGHT MOTION*\n\n`
+        help += `¡Esta función te ayuda a descargar proyectos o presets de Alight Motion fácilmente!\n\n`
+        help += `*Cómo Usar:*\n`
+        help += `- Escribe *${m.prefix}amdl <link_alight_motion>*\n\n`
+        help += `*Ejemplo:* ${m.prefix}amdl https://alight.link/xxxxx`
         return m.reply(help);
     }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data || !data.data.url) {
             await m.react("❌");
-            return m.reply(`Maaf, link Alight Motion tersebut tidak valid atau project sudah dihapus.`);
+            return m.reply(`Lo siento, ese enlace de Alight Motion no es válido o el proyecto fue eliminado.`);
         }
 
         const downloadUrl = data.data.url;
@@ -57,7 +57,7 @@ async function handler(m, { sock, text }) {
             document: { url: downloadUrl },
             mimetype: "application/zip",
             fileName: `AlightMotion_${config.bot.name}.zip`,
-            caption: `✅ Berhasil mengunduh preset Alight Motion!`
+            caption: `✅ Preset de Alight Motion descargado con éxito!`
         }, { quoted: m });
 
         await m.react("✅");

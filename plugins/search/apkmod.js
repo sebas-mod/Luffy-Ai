@@ -1,13 +1,13 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import axios from "axios";
 import config from "../../config.js";
 import fs from "fs";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "apkmod",
   alias: ["modapk2", "apkpremium"],
   category: "search",
-  description: "Cari dan download APK MOD Premium",
+  description: "Busca y descarga APK MOD Premium",
   usage: ".apkmod <query>",
   example: ".apkmod vpn",
   isOwner: false,
@@ -15,20 +15,20 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text) {
     return m.reply(
-      `📱 *ᴀᴘᴋ ᴍᴏᴅ sᴇᴀʀᴄʜ*\n\n` +
-        `> Cari APK MOD Premium\n\n` +
-        `> Contoh:\n` +
+      `📱 *ʙᴜsǫᴜᴇᴅᴀ ᴀᴘᴋ ᴍᴏᴅ*\n\n` +
+        `> Buscar APK MOD Premium\n\n` +
+        `> Ejemplo:\n` +
         `\`${m.prefix}apkmod vpn\``,
     );
   }
@@ -45,15 +45,15 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: \`${text}\``);
+      return m.reply(`❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 15);
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `📱 *Hasil pencarian dari ${text}*\n\n`;
+    let caption = `📱 *Resultados de la búsqueda de ${text}*\n\n`;
 
     apps.forEach((app, i) => {
       caption += `*${i + 1}.* ${app.name}\n`;
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
 
     await sock.sendButton(
       m.chat,
-      getAssetBuffer("ourin"),
+      getAssetBuffer("luffy"),
       caption,
       m,
       {
@@ -86,17 +86,17 @@ async function handler(m, { sock }) {
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: "📱 Pilih APK MOD",
+              title: "📱 Elegir APK MOD",
               sections: [
                 {
-                  title: `Hasil untuk "${text}"`,
+                  title: `Resultados para "${text}"`,
                   rows: buttons,
                 },
               ],
             }),
           },
         ],
-        footer: "Pilihlah",
+        footer: "Elige uno",
       },
     );
   } catch (err) {

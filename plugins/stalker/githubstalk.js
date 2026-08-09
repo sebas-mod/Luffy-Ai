@@ -1,12 +1,12 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import config from '../../config.js'
 
 const pluginConfig = {
     name: 'githubstalk',
     alias: ['ghstalk', 'stalkgh'],
     category: 'stalker',
-    description: 'Stalk akun GitHub',
+    description: 'Buscar perfil de GitHub',
     usage: '.githubstalk <username>',
     example: '.githubstalk torvalds',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`🐙 *ɢɪᴛʜᴜʙ sᴛᴀʟᴋ*\n\n> Masukkan username GitHub\n\n\`Contoh: ${m.prefix}githubstalk torvalds\``)
+        return m.reply(`🐙 *ɢɪᴛʜᴜʙ sᴛᴀʟᴋ*\n\n> Ingresa el username de GitHub\n\n\`Ejemplo: ${m.prefix}githubstalk torvalds\``)
     }
     
     m.react('🔍')
@@ -34,14 +34,14 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Username *${username}* tidak ditemukan`)
+            return m.reply(`❌ Username *${username}* no fue encontrado`)
         }
         
         const d = res.data.data
         
         const caption = `🐙 *ɢɪᴛʜᴜʙ sᴛᴀʟᴋ*\n\n` +
             `👤 *Username:* ${d.username}\n` +
-            `📛 *Nama:* ${d.name || '-'}\n` +
+            `📛 *Nombre:* ${d.name || '-'}\n` +
             `🏢 *Company:* ${d.company || '-'}\n` +
             `📍 *Location:* ${d.location || '-'}\n\n` +
             `📦 *Public Repos:* ${d.public_repos}\n` +

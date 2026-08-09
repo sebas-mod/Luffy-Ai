@@ -5,14 +5,14 @@ const pluginConfig = {
   name: "applemusic-canvas",
   alias: ["applemusic", "applecanvas"],
   category: "canvas",
-  description: "Buat gambar pemutar Apple Music dari foto",
-  usage: ".applemusic-canvas judul | artis (reply gambar)",
+  description: "Crea una imagen de reproductor Apple Music desde una foto",
+  usage: ".applemusic-canvas título | artista (responde imagen)",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -39,11 +39,11 @@ async function handler(m, { sock, text }) {
   
   if (!isImage || !text || !text.includes("|")) {
     let help = `🎵 *APPLE MUSIC CANVAS*\n\n`
-    help += `Fitur ini digunakan untuk membuat desain pemutar lagu Apple Music yang keren dari gambarmu!\n\n`
-    help += `*Cara Penggunaan:*\n`
-    help += `- Kirim gambar dengan caption *${m.prefix}applemusic-canvas Judul Lagu | Nama Artis*\n`
-    help += `- Atau balas (reply) gambar dengan pesan *${m.prefix}applemusic-canvas Judul Lagu | Nama Artis*\n\n`
-    help += `*Contoh:* ${m.prefix}applemusic-canvas Glimpse of Us | Joji`
+    help += `Esta función se usa para crear un diseño genial de reproductor de canciones de Apple Music con tu imagen!\n\n`
+    help += `*Cómo Usarlo:*\n`
+    help += `- Envía una imagen con caption *${m.prefix}applemusic-canvas Título de la Canción | Nombre del Artista*\n`
+    help += `- O responde una imagen con el mensaje *${m.prefix}applemusic-canvas Título de la Canción | Nombre del Artista*\n\n`
+    help += `*Ejemplo:* ${m.prefix}applemusic-canvas Glimpse of Us | Joji`
     return m.reply(help);
   }
   
@@ -61,7 +61,7 @@ async function handler(m, { sock, text }) {
     
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`Maaf, sistem gagal mengunduh gambar cover yang kamu berikan.`);
+      return m.reply(`Lo siento, el sistema no pudo descargar la imagen de portada que enviaste.`);
     }
 
     const coverUrl = await uploadImage(buffer);
@@ -76,7 +76,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error("[APPLEMUSIC Plugin Error]", error);
     await m.react("❌");
-    m.reply(`Maaf, gagal membuat canvas Apple Music. Coba lagi beberapa saat.`);
+    m.reply(`Lo siento, no se pudo crear el canvas de Apple Music. Inténtalo de nuevo en unos momentos.`);
   }
 }
 

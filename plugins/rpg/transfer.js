@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "transfer",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -22,11 +22,11 @@ function handler(m, { sock }) {
 
   const args = m.args || [];
   if (args.length < 3) {
-    let txt = `🏦 *BANK SENTRAL RPG* 🏦\n\n`;
-    txt += `Layanan pengiriman Koin & Barang Antar-Player!\n\n`;
-    txt += `*Format Pengiriman:*\n`;
-    txt += `👉 \`.transfer money 10000 @user\` (Untuk Koin)\n`;
-    txt += `👉 \`.transfer potion 5 @user\` (Untuk Item)\n`;
+    let txt = `🏦 *BANCO CENTRAL RPG* 🏦\n\n`;
+    txt += `Servicio de envío de Berry y Objetos entre Jugadores!\n\n`;
+    txt += `*Formato de Envío:*\n`;
+    txt += `👉 \`.transfer money 10000 @user\` (Para Berry)\n`;
+    txt += `👉 \`.transfer potion 5 @user\` (Para Ítems)\n`;
     return m.reply(txt);
   }
 
@@ -35,36 +35,36 @@ function handler(m, { sock }) {
   const target = m.mentionedJid?.[0] || m.quoted?.sender;
 
   if (!target) {
-    return m.reply(`Alamat paket nggak jelas bos! Tag dulu user yang mau dikirimin! 📦🔍`);
+    return m.reply(`¡La dirección del paquete no está clara jefe! ¡Etiqueta al usuario que quiere recibirlo! 📦🔍`);
   }
 
   if (target === m.sender) {
-    return m.reply(`Ngapain transfer ke kantong sendiri? Kurang kerjaan lu ya! 😂❌`);
+    return m.reply(`¿Transferir a tu propio bolsillo? ¿No tienes nada mejor que hacer? 😂❌`);
   }
 
   if (!amount || amount <= 0) {
-    return m.reply(`Woy bos! Mau kirim angin doang? Jumlahnya harus lebih dari *0*! 🌬️`);
+    return m.reply(`¡Oye jefe! ¿Vas a enviar puro aire? El monto debe ser mayor que *0*! 🌬️`);
   }
 
   const recipient = db.getUser(target) || db.setUser(target);
 
-  if (type === "money" || type === "balance" || type === "koin") {
-    if ((sender.koin || 0) < amount) {
-      return m.reply(`Transaksi DITOLAK! ❌\nSaldo ATM lu nggak cukup. Saldo: *Rp ${(sender.koin || 0).toLocaleString("id-ID")}* | Mau TF: *Rp ${amount.toLocaleString("id-ID")}* 💸`);
+  if (type === "money" || type === "balance" || type === "berry") {
+    if ((sender.berry || 0) < amount) {
+      return m.reply(`¡Transacción RECHAZADA! ❌\nTu saldo no alcanza. Saldo: *Rp ${(sender.berry || 0).toLocaleString("id-ID")}* | Quieres transferir: *Rp ${amount.toLocaleString("id-ID")}* 💸`);
     }
 
-    sender.koin -= amount;
-    recipient.koin = (recipient.koin || 0) + amount;
+    sender.berry -= amount;
+    recipient.berry = (recipient.berry || 0) + amount;
 
     db.setUser(m.sender, sender);
     db.setUser(target, recipient);
     db.save();
     
-    let txt = `💸 *TRANSFER BERHASIL!* 💸\n\n`;
-    txt += `Bank Sentral telah mengirim dana:\n`;
-    txt += `💳 Nominal: *Rp ${amount.toLocaleString("id-ID")}*\n`;
-    txt += `👤 Penerima: @${target.split("@")[0]}\n\n`;
-    txt += `> _"Terima kasih telah menggunakan layanan Bank Bot!"_ 🏦✨`;
+    let txt = `💸 *¡TRANSFERENCIA EXITOSA!* 💸\n\n`;
+    txt += `El Banco Central ha enviado los fondos:\n`;
+    txt += `💳 Monto: *Rp ${amount.toLocaleString("id-ID")}*\n`;
+    txt += `👤 Destinatario: @${target.split("@")[0]}\n\n`;
+    txt += `> _"¡Gracias por usar los servicios del Banco Bot!"_ 🏦✨`;
 
     return m.reply(txt, { mentions: [target] });
   } else {
@@ -72,7 +72,7 @@ function handler(m, { sock }) {
     recipient.inventory = recipient.inventory || {};
 
     if ((sender.inventory[type] || 0) < amount) {
-      return m.reply(`Paket gagal diproses! ❌\nBarang *${type}* di gudang lu cuma ada *${sender.inventory[type] || 0}* pcs. Lu mau ngirim *${amount}* darimana? 📦`);
+      return m.reply(`¡El paquete no pudo procesarse! ❌\nEl ítem *${type}* en tu almacén solo tiene *${sender.inventory[type] || 0}* pcs. ¿De dónde vas a sacar los *${amount}*? 📦`);
     }
 
     sender.inventory[type] -= amount;
@@ -82,11 +82,11 @@ function handler(m, { sock }) {
     db.setUser(target, recipient);
     db.save();
 
-    let txt = `📦 *PAKET TELAH SAMPAI!* 📦\n\n`;
-    txt += `Kurir berhasil mengantarkan barang:\n`;
-    txt += `🎁 Isi Paket: *${type}* (x${amount})\n`;
-    txt += `👤 Penerima: @${target.split("@")[0]}\n\n`;
-    txt += `> _"Paket Pakeeetttt!!" - Kurir Bot_ 🛵💨`;
+    let txt = `📦 *¡PAQUETE ENTREGADO!* 📦\n\n`;
+    txt += `El mensajero logró entregar el artículo:\n`;
+    txt += `🎁 Contenido: *${type}* (x${amount})\n`;
+    txt += `👤 Destinatario: @${target.split("@")[0]}\n\n`;
+    txt += `> _"¡Paqueeeeete!!" - El Mensajero Bot_ 🛵💨`;
 
     return m.reply(txt, { mentions: [target] });
   }

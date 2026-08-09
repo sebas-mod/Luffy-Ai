@@ -1,10 +1,10 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { getTimeGreeting } from "../../src/lib/ourin-formatter.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { getTimeGreeting } from "../../src/lib/luffy-formatter.js";
 const pluginConfig = {
   name: "daily",
   alias: ["claim", "harian", "bonus"],
   category: "user",
-  description: "Claim hadiah harian (Exp, Money, Potion)",
+  description: "Reclama tu recompensa diaria (Exp, Money, Potion)",
   usage: ".daily",
   example: ".daily",
   isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 0,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const hours = Math.floor(remaining / (1000 * 60 * 60));
     const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
     return m.reply(
-      `🕕 *ᴄᴏᴏʟᴅᴏᴡɴ*\n\n> Kamu sudah klaim hari ini.\n> Tunggu: *${hours} jam ${minutes} menit* lagi.`,
+      `🕕 *ᴄᴏᴏʟᴅᴏᴡɴ*\n\n> Ya reclamaste hoy.\n> Espera: *${hours} horas ${minutes} minutos* más.`,
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
   if (!user.rpg) user.rpg = {};
   db.updateExp(m.sender, expReward);
-  user.koin = (user.koin || 0) + moneyReward;
+  user.berry = (user.berry || 0) + moneyReward;
 
   if (!user.inventory) user.inventory = {};
   user.inventory.potion = (user.inventory.potion || 0) + potionReward;
@@ -51,14 +51,14 @@ async function handler(m, { sock }) {
 
   const greeting = getTimeGreeting();
 
-  let txt = `🎉 *ᴅᴀɪʟʏ ᴄʟᴀɪᴍ sᴜᴋsᴇs*\n`;
+  let txt = `🎉 *ʀᴇᴄʟᴀᴍᴏ ᴅɪᴀʀɪᴏ ᴇxɪᴛᴏsᴏ*\n`;
   txt += `> ${greeting}, @${m.sender.split("@")[0]}\n\n`;
   txt += `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n`;
   txt += `┃ 🚄 Exp: *+${expReward}*\n`;
-  txt += `┃ 💰 Koin: *+${moneyReward.toLocaleString("id-ID")}*\n`;
+  txt += `┃ 💰 Berry: *+${moneyReward.toLocaleString("id-ID")}*\n`;
   txt += `┃ 🥤 Potion: *+${potionReward}*\n`;
   txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  txt += `> Jangan lupa claim lagi besok!`;
+  txt += `> ¡No olvides reclamar de nuevo mañana!`;
 
   await m.reply(txt, { mentions: [m.sender] });
 }

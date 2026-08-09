@@ -1,6 +1,6 @@
 import axios from "axios";
 import he from "he";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const BASE_URL = "https://workers-playground-cool-wood-c008.accoutydusra.workers.dev";
 
@@ -46,11 +46,11 @@ const pluginConfig = {
   name: "threaddl",
   alias: ["tdl", "threads", "threadsdl"],
   category: "download",
-  description: "Download foto dan video dari postingan Threads tanpa repot!",
+  description: "Descarga fotos y videos de publicaciones de Threads sin complicaciones!",
   usage: ".tdl <url>",
   example: ".tdl https://www.threads.net/@xxx/post/xxx",
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true
 };
 
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
   const url = m.text?.trim();
   
   if (!url || !/threads/i.test(url)) {
-    return m.reply("❌ *Waduh, Link Threads-nya mana nih?*\n\nKamu harus memasukkan tautan (link) dari postingan Threads yang ingin diunduh. Pastikan linknya benar ya! \n\nContoh: `.tdl https://www.threads.net/@zuck/post/xxx`");
+    return m.reply("❌ *Vaya, ¿dónde está el enlace de Threads?!*\n\nDebes ingresar el enlace de la publicación de Threads que quieres descargar. Asegúrate de que el enlace sea correcto! \n\nEjemplo: `.tdl https://www.threads.net/@zuck/post/xxx`");
   }
 
   await m.react("🕕");
@@ -91,18 +91,18 @@ async function handler(m, { sock }) {
 
     if (res.status >= 300 || data.success !== true || result.length === 0) {
       await m.react("❌");
-      return m.reply(`⚠️ *Aduh, gagal mengambil data dari Threads!*\n\nMungkin postingan ini bersifat privat, sudah dihapus, atau link yang kamu berikan kurang tepat.\n\nAlasan sistem: ${data.message || data.error || "Tidak diketahui"}`);
+      return m.reply(`⚠️ *Vaya, error al obtener los datos de Threads!*\n\nQuizás esta publicación es privada, fue eliminada, o el enlace que diste no es correcto.\n\nMotivo del sistema: ${data.message || data.error || "Desconocido"}`);
     }
 
-    const captionText = `✨ *THREADS DOWNLOADER* ✨
+    const captionText = `✨ *DESCARGADOR DE THREADS* ✨
 
-Halo! Ini hasil unduhan Threads yang kamu minta:
+¡Hola! Aquí está el resultado de la descarga de Threads que pediste:
 
-👤 *Pembuat*: ${info.author || "Unknown"}
-📝 *Teks Postingan*: ${cleanText(info.title) || cleanText(info.description) || "Tidak ada deskripsi."}
-📊 *Jumlah File Media*: ${result.length} file
+👤 *Autor*: ${info.author || "Unknown"}
+📝 *Texto de la Publicación*: ${cleanText(info.title) || cleanText(info.description) || "No hay descripción."}
+📊 *Número de Archivos de Media*: ${result.length} archivos
 
-*Semoga bermanfaat ya!* Jangan lupa mampir lagi kalau mau download yang lain. 🚀`;
+*¡Espero que te sea útil!* No olvides volver si quieres descargar más. 🚀`;
 
     const mediaList = [];
     for (const item of result) {
@@ -127,7 +127,7 @@ Halo! Ini hasil unduhan Threads yang kamu minta:
   } catch (err) {
     console.error("[ThreadsDL]", err.message);
     await m.react("☢");
-    m.reply("😔 *Sepertinya ada gangguan di sistemku.* \n\nTerjadi kesalahan fatal saat mencoba memproses link Threads tersebut. Silakan coba lagi nanti ya!");
+    m.reply("😔 *Parece que hay una falla en mi sistema.* \n\nOcurrió un error fatal al intentar procesar ese enlace de Threads. ¡Intenta de nuevo más tarde!");
   }
 }
 

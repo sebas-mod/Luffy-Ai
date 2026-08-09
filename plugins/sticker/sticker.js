@@ -3,14 +3,14 @@ import path from 'path'
 import { exec } from 'child_process'
 import { promisify } from 'util'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const execAsync = promisify(exec)
 
 const pluginConfig = {
     name: 'sticker',
     alias: ['s', 'stiker', 'stickergif'],
     category: 'sticker',
-    description: 'Membuat sticker dari gambar/video dengan opsi crop/resize',
+    description: 'Crea sticker a partir de imagen/video con opciones crop/resize',
     usage: '.s [--crop] [--resize WxH] [--circle] [--rounded]',
     example: '.s --crop\n.s --resize 256x256\n.s --circle\n.s --rounded',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -119,14 +119,14 @@ async function handler(m, { sock, config: botConfig }) {
     if (!isImage && !isVideo) {
         await m.reply(
             `🖼️ *sᴛɪᴄᴋᴇʀ ᴍᴀᴋᴇʀ*\n\n` +
-            `Kirim/reply gambar atau video dengan caption:\n` +
+            `Envía/responde una imagen o video con caption:\n` +
             `\`${m.prefix}s\`\n\n` +
-            `*ᴏᴘsɪ:*\n` +
-            `> \`--crop\` - Crop jadi kotak\n` +
-            `> \`--resize WxH\` - Resize ke ukuran\n` +
-            `> \`--circle\` - Bentuk lingkaran\n` +
-            `> \`--rounded\` - Sudut melengkung\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
+            `*ᴏᴘᴄɪᴏɴᴇꜱ:*\n` +
+            `> \`--crop\` - Recorta a cuadrado\n` +
+            `> \`--resize WxH\` - Cambia el tamaño\n` +
+            `> \`--circle\` - Forma circular\n` +
+            `> \`--rounded\` - Esquinas redondeadas\n\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> \`${m.prefix}s --crop\`\n` +
             `> \`${m.prefix}s --resize 256x256\`\n` +
             `> \`${m.prefix}s --circle\`\n` +
@@ -148,7 +148,7 @@ async function handler(m, { sock, config: botConfig }) {
         }
         
         if (!buffer) {
-            await m.reply('❌ Gagal mendownload media!')
+            await m.reply('❌ No se pudo descargar el medio!')
             await m.react('❌')
             return
         }
@@ -167,7 +167,7 @@ async function handler(m, { sock, config: botConfig }) {
                 const duration = parseFloat(stdout.trim())
                 
                 if (duration > 10) {
-                    await m.reply(`❌ Video terlalu panjang!\n\n> Durasi: ${duration.toFixed(1)} detik\n> Maksimal: 10 detik`)
+                    await m.reply(`❌ Video demasiado largo!\n\n> Duración: ${duration.toFixed(1)} segundos\n> Máximo: 10 segundos`)
                     await m.react('☢')
                     if (fs.existsSync(tempVideo)) fs.unlinkSync(tempVideo)
                     return
@@ -177,7 +177,7 @@ async function handler(m, { sock, config: botConfig }) {
             if (fs.existsSync(tempVideo)) fs.unlinkSync(tempVideo)
         }
         
-        const packname = options.packname || botConfig.sticker?.packname || botConfig.bot?.name || 'Ourin-AI'
+        const packname = options.packname || botConfig.sticker?.packname || botConfig.bot?.name || 'Luffy-Ai'
         const author = options.author || botConfig.sticker?.author || botConfig.owner?.name || 'Bot'
         
         const hasProcessing = options.crop || options.resize || options.circle || options.rounded

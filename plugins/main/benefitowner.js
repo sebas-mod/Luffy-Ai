@@ -1,4 +1,4 @@
-import { getAllPlugins } from '../../src/lib/ourin-plugins.js'
+import { getAllPlugins } from '../../src/lib/luffy-plugins.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'benefitowner',
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         `Owner adalah *pemilik bot* yang memiliki akses penuh ke semua fitur dan kontrol sistem.\n\n` +
         `╭┈┈⬡「 🔐 *ᴋᴇɪꜱᴛɪᴍᴇᴡᴀᴀɴ ᴏᴡɴᴇʀ* 」\n` +
         `┃ ✦ \`\`\`Akses semua command tanpa batasan\`\`\`\n` +
-        `┃ ✦ \`\`\`Limit tidak terbatas (-1)\`\`\`\n` +
+        `┃ ✦ \`\`\`Limit ilimitado (-1)\`\`\`\n` +
         `┃ ✦ \`\`\`Bypass semua cooldown\`\`\`\n` +
         `┃ ✦ \`\`\`Kontrol penuh sistem bot\`\`\`\n` +
         `┃ ✦ \`\`\`Manajemen user & group\`\`\`\n` +

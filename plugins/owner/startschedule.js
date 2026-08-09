@@ -1,20 +1,19 @@
-import { startSchedulerByName, getFullSchedulerStatus } from '../../src/lib/ourin-scheduler.js'
-import { initSholatScheduler } from '../../src/lib/ourin-sholat-scheduler.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { startSchedulerByName, getFullSchedulerStatus } from '../../src/lib/luffy-scheduler.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'startschedule',
     alias: ['startscheduler', 'schedstart', 'resumeschedule'],
     category: 'owner',
-    description: 'Memulai ulang scheduler tertentu atau semua',
-    usage: '.startschedule <nama|all>',
-    example: '.startschedule sholat',
+    description: 'Reiniciar un programador específico o todos',
+    usage: '.startschedule <nombre|all>',
+    example: '.startschedule all',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
@@ -23,67 +22,42 @@ async function handler(m, { sock, args }) {
         const target = args[0]?.toLowerCase();
         
         if (!target) {
-            const helpText = `▶️ *sᴛᴀʀᴛ sᴄʜᴇᴅᴜʟᴇʀ*
+            const helpText = `▶️ *ɪɴɪᴄɪᴀʀ ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ*
+            
+*Uso:*
+\`.startschedule <nombre>\`
 
-*Usage:*
-\`.startschedule <nama>\`
+*Programadores disponibles:*
+• \`limitreset\` - Reinicio diario del límite
+• \`groupschedule\` - Programación de grupos
+• \`sewa\` - Verificador de sewa
+• \`messages\` - Mensajes programados
+• \`all\` - Todos los programadores
 
-*Available schedulers:*
-• \`limitreset\` - Daily Limit Reset
-• \`groupschedule\` - Group Schedule
-• \`sewa\` - Sewa Checker
-• \`messages\` - Scheduled Messages
-• \`sholat\` - Sholat Scheduler
-• \`all\` - Semua scheduler
-
-*Example:*
-\`.startschedule sholat\`
+*Ejemplo:*
 \`.startschedule all\``;
             
             await m.reply(helpText);
             return;
         }
         
-        if (target === 'sholat') {
-            const db = getDatabase();
-            const wasEnabled = db.setting('autoSholat');
-            
-            if (wasEnabled) {
-                await m.reply(`ℹ️ Sholat Scheduler sudah dalam keadaan aktif`);
-                return;
-            }
-            
-            initSholatScheduler(sock);
-            db.setting('autoSholat', true);
-            
-            await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
-
-> Scheduler: *Sholat Scheduler*
-> Status: ✅ Aktif
-
-_Notifikasi waktu sholat akan dikirim ke grup yang mengaktifkan fitur ini_`);
-            return;
-        }
-        
         if (target === 'all') {
-            initSholatScheduler(sock);
             const db = getDatabase();
-            db.setting('autoSholat', true);
         }
         
         const result = startSchedulerByName(target, sock);
         
         if (result.started) {
-            await m.reply(`▶️ *sᴄʜᴇᴅᴜʟᴇʀ ᴅɪᴍᴜʟᴀɪ*
+            await m.reply(`▶️ *ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ ɪɴɪᴄɪᴀᴅᴏ*
 
-> Scheduler: *${result.name}*
-> Status: ✅ Aktif
+> Programador: *${result.name}*
+> Estado: ✅ Activo
 
-_Scheduler telah dimulai kembali_`);
+_El programador se ha reiniciado_`);
         } else {
-            await m.reply(`❌ Scheduler tidak ditemukan atau sudah aktif
+            await m.reply(`❌ Programador no encontrado o ya está activo
 
-Gunakan \`.startschedule\` untuk melihat daftar scheduler`);
+Usa \`.startschedule\` para ver la lista de programadores`);
         }
     } catch (error) {
         console.error('[StartSchedule Error]', error);

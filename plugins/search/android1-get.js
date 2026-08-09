@@ -1,11 +1,11 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "android1-get",
   alias: ["an1get", "an1dl"],
   category: "search",
-  description: "Download APK dari Android1",
+  description: "Descargar APK de Android1",
   usage: ".android1-get <url>",
   example: ".android1-get https://an1.com/xxx",
   isOwner: false,
@@ -13,17 +13,17 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 async function handler(m, { sock }) {
   const url = m.text?.trim();
 
   if (!url || !url.includes("an1.com")) {
-    return m.reply(`❌ URL tidak valid! Harus URL dari an1.com`);
+    return m.reply(`❌ ¡URL no válida! Debe ser una URL de an1.com`);
   }
 
   m.react("🕕");
@@ -37,12 +37,12 @@ async function handler(m, { sock }) {
     );
 
     if (!data?.status || !data?.data) {
-      throw new Error("Gagal mengambil detail APK");
+      throw new Error("Error al obtener los detalles del APK");
     }
 
     const app = data.data;
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     if (app.url) {
       await sock.sendMessage(
         m.chat,
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
 
       m.react("✅");
     } else {
-      let caption = `> ⚠️ Download URL tidak tersedia`;
+      let caption = `> ⚠️ URL de descarga no disponible`;
 
       await sock.sendMessage(
         m.chat,
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
             {
               name: "cta_url",
               buttonParamsJson: JSON.stringify({
-                display_text: "🌐 Buka di Browser",
+                display_text: "🌐 Abrir en el Navegador",
                 url: url,
               }),
             },

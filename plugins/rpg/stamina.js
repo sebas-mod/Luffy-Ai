@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { sendRpgPreview } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { sendRpgPreview } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "stamina",
   alias: ["energy", "cekstamina"],
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -37,14 +37,14 @@ async function handler(m, { sock }) {
     const potionCost = 5000;
 
     if (user.rpg.stamina >= user.rpg.maxStamina) {
-      return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴘᴇɴᴜʜ*\n\n> Stamina kamu sudah penuh!`);
+      return m.reply(`⚡ *ʀᴇꜱɪꜱᴛᴇɴᴄɪᴀ ʟʟᴇɴᴀ*\n\n> ¡Tu resistencia ya está llena!`);
     }
 
-    if ((user.koin || 0) < potionCost) {
-      return m.reply(`❌ *sᴀʟᴅᴏ ᴛɪᴅᴀᴋ ᴄᴜᴋᴜᴘ*\n\n` + `> Biaya: Rp ${potionCost.toLocaleString("id-ID")}\n` + `> Saldo: Rp ${(user.koin || 0).toLocaleString("id-ID")}`);
+    if ((user.berry || 0) < potionCost) {
+      return m.reply(`❌ *ꜱᴀʟᴅᴏ ɪɴꜱᴜꜰɪᴄɪᴇɴᴛᴇ*\n\n` + `> Costo: Rp ${potionCost.toLocaleString("id-ID")}\n` + `> Saldo: Rp ${(user.berry || 0).toLocaleString("id-ID")}`);
     }
 
-    user.koin -= potionCost;
+    user.berry -= potionCost;
     const restored = user.rpg.maxStamina - user.rpg.stamina;
     user.rpg.stamina = user.rpg.maxStamina;
 
@@ -54,31 +54,31 @@ async function handler(m, { sock }) {
     return sendRpgPreview(
       sock,
       m.chat,
-      `⚡ *sᴛᴀᴍɪɴᴀ ᴅɪɪsɪ*\n\n` +
-        `*💊 *ʀᴇsᴛᴏʀᴇ:*
+      `⚡ *ʀᴇꜱɪꜱᴛᴇɴᴄɪᴀ ʀᴇꜱᴛᴀᴜʀᴀᴅᴀ*\n\n` +
+        `*💊 *ʀᴇꜱᴛᴀᴜʀᴀʀ:*
 \n` +
-        `> ⚡ Stamina: *+${restored}*\n` +
-        `> 💵 Biaya: *-Rp ${potionCost.toLocaleString("id-ID")}*\n` +
-        `> 📊 Sekarang: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n` +
+        `> ⚡ Resistencia: *+${restored}*\n` +
+        `> 💵 Costo: *-Rp ${potionCost.toLocaleString("id-ID")}*\n` +
+        `> 📊 Ahora: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n` +
         ``,
-      "⚡ STAMINA",
-      "Restore",
+      "⚡ RESISTENCIA",
+      "Restaurar",
       { quoted: m },
     );
   }
 
   const staminaBar = createStaminaBar(user.rpg.stamina, user.rpg.maxStamina);
 
-  let txt = `⚡ *sᴛᴀᴍɪɴᴀ sᴛᴀᴛᴜs*\n\n`;
+  let txt = `⚡ *ᴇꜱᴛᴀᴅᴏ ᴅᴇ ʀᴇꜱɪꜱᴛᴇɴᴄɪᴀ*\n\n`;
   txt += `*📊 *ɪɴꜰᴏ:*
 \n`;
-  txt += `> ⚡ Stamina: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n`;
+  txt += `> ⚡ Resistencia: *${user.rpg.stamina}/${user.rpg.maxStamina}*\n`;
   txt += `> 📊 [${staminaBar}]\n`;
   txt += `\n\n`;
-  txt += `> Isi stamina: \`${m.prefix}stamina isi\` (Rp 5.000)\n`;
-  txt += `> Stamina pulih otomatis setiap jam`;
+  txt += `> Llenar resistencia: \`${m.prefix}stamina isi\` (Rp 5.000)\n`;
+  txt += `> La resistencia se recupera sola cada hora`;
 
-  await sendRpgPreview(sock, m.chat, txt, "⚡ STAMINA", "Status", {
+  await sendRpgPreview(sock, m.chat, txt, "⚡ RESISTENCIA", "Estado", {
     quoted: m,
   });
 }

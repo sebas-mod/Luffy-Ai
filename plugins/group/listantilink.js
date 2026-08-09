@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'listantilink',
     alias: ['antilinklist', 'cekantilink'],
     category: 'group',
-    description: 'Melihat daftar link yang diblokir',
+    description: 'Ver la lista de enlaces bloqueados',
     usage: '.listantilink',
     example: '.listantilink',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -31,9 +31,9 @@ function handler(m) {
     const groupData = db.getGroup(m.chat) || {}
     const customList = groupData.antilinkList || []
     
-    let txt = `🔗 *ᴅᴀꜰᴛᴀʀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
+    let txt = `🔗 *ʟɪsᴛᴀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
     
-    txt += `╭┈┈⬡「 📌 *ᴅᴇꜰᴀᴜʟᴛ* 」\n`
+    txt += `╭┈┈⬡「 📌 *ᴘʀᴇᴅᴇᴛᴇʀᴍɪɴᴀᴅᴏs* 」\n`
     DEFAULT_BLOCKED_LINKS.forEach((l, i) => {
         txt += `┃ ${i + 1}. \`${l}\`\n`
     })
@@ -47,10 +47,10 @@ function handler(m) {
         txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     }
     
-    txt += `> Default: *${DEFAULT_BLOCKED_LINKS.length}* link\n`
-    txt += `> Custom: *${customList.length}* link\n\n`
-    txt += `\`${m.prefix}addantilink <link>\` untuk tambah\n`
-    txt += `\`${m.prefix}delantilink <link>\` untuk hapus`
+    txt += `> Predeterminados: *${DEFAULT_BLOCKED_LINKS.length}* enlaces\n`
+    txt += `> Custom: *${customList.length}* enlaces\n\n`
+    txt += `\`${m.prefix}addantilink <enlace>\` para agregar\n`
+    txt += `\`${m.prefix}delantilink <enlace>\` para eliminar`
     
     m.reply(txt)
 }

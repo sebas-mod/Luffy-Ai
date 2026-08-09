@@ -1,12 +1,12 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
 const pluginConfig = {
   name: "bingimage",
   alias: ["imagesearch", "carigambar", "bingimg"],
   category: "search",
-  description: "Cari artwork di Pixiv",
+  description: "Buscar imágenes por keyword",
   usage: ".carigambar <query>",
   example: ".carigambar rem",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -24,13 +24,13 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `❌ *Masukkan kata kunci pencarian!*\n\n> Contoh: ${m.prefix}carigambar rem`,
+        `❌ *¡Ingresa una palabra clave de búsqueda!*\n\n> Ejemplo: ${m.prefix}carigambar rem`,
       );
     }
 
     await m.react("🔍");
 
-    const apikey = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+    const apikey = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
     const data = await ourinApi.apiFaa.get(
       "/faa/google-image",
       {
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
     if (!data.status) {
       await m.react("❌");
-      return m.reply(`❌ *Tidak ditemukan hasil untuk:* ${query}`);
+      return m.reply(`❌ *No se encontraron resultados para:* ${query}`);
     }
     const results = data.result;
     const album = await Promise.all(

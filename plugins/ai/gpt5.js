@@ -1,20 +1,20 @@
 import { GPT5 } from "../../src/scraper/gpt5.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-import te from "../../src/lib/ourin-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "gpt5",
   alias: ["gpt5nano", "gpt41"],
   category: "ai",
-  description: "Chat dengan GPT-4.1 Nano via OverChat",
-  usage: ".gpt5 <pertanyaan>",
-  example: ".gpt5 Apa itu quantum computing?",
+  description: "Chat con GPT-4.1 Nano vía OverChat",
+  usage: ".gpt5 <pregunta>",
+  example: ".gpt5 ¿Qué es la computación cuántica?",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🤖 *GPT-4.1 Nano*\n\n` +
-        `Tanya apa aja ke AI, nanti dijawab pakai model GPT-4.1 Nano.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}gpt5 <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}gpt5 Apa itu quantum computing?*\n` +
-        `> *${m.prefix}gpt5 Buat puisi tentang Indonesia*\n\n` +
-        `_Jawaban bisa agak lama, sabar ya_`,
+        `Pregúntale lo que sea a la IA, será respondido con el modelo GPT-4.1 Nano.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}gpt5 <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}gpt5 ¿Qué es la computación cuántica?*\n` +
+        `> *${m.prefix}gpt5 Crea un poema sobre Indonesia*\n\n` +
+        `_La respuesta puede tardar un poco, ten paciencia_`,
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *GPT-5 Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`,
+        `❌ *Error de GPT-5*\n\n> ${result.error || "No se pudo obtener una respuesta"}`,
       );
     }
 

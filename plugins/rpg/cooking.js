@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "cooking",
@@ -13,21 +13,21 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 60,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const RECIPES = {
-  bread: { name: "🍞 Roti", materials: { wheat: 2 }, effect: { stamina: 10, health: 5 }, exp: 30 },
-  friedrice: { name: "🍚 Nasi Goreng", materials: { rice: 2, egg: 1 }, effect: { stamina: 25, health: 15 }, exp: 60 },
-  steak: { name: "🥩 Steak", materials: { meat: 2, herb: 1 }, effect: { stamina: 40, health: 30 }, exp: 100 },
-  soup: { name: "🍲 Sup", materials: { carrot: 2, potato: 2, meat: 1 }, effect: { stamina: 35, health: 40 }, exp: 90 },
+  bread: { name: "🍞 Pan", materials: { wheat: 2 }, effect: { stamina: 10, health: 5 }, exp: 30 },
+  friedrice: { name: "🍚 Arroz Frito", materials: { rice: 2, egg: 1 }, effect: { stamina: 25, health: 15 }, exp: 60 },
+  steak: { name: "🥩 Bistec", materials: { meat: 2, herb: 1 }, effect: { stamina: 40, health: 30 }, exp: 100 },
+  soup: { name: "🍲 Sopa", materials: { carrot: 2, potato: 2, meat: 1 }, effect: { stamina: 35, health: 40 }, exp: 90 },
   sushi: { name: "🍣 Sushi", materials: { fish: 3, rice: 2 }, effect: { stamina: 30, health: 25 }, exp: 80 },
-  cake: { name: "🍰 Kue", materials: { wheat: 3, egg: 2, strawberry: 2 }, effect: { stamina: 50, health: 20 }, exp: 120 },
+  cake: { name: "🍰 Pastel", materials: { wheat: 3, egg: 2, strawberry: 2 }, effect: { stamina: 50, health: 20 }, exp: 120 },
   ramen: { name: "🍜 Ramen", materials: { wheat: 2, egg: 1, meat: 1, herb: 1 }, effect: { stamina: 45, health: 35 }, exp: 110 },
   pizza: { name: "🍕 Pizza", materials: { wheat: 3, tomato: 2, meat: 2 }, effect: { stamina: 60, health: 30 }, exp: 140 },
-  smoothie: { name: "🥤 Smoothie", materials: { strawberry: 3, watermelon: 1 }, effect: { stamina: 30, mana: 20 }, exp: 70 },
-  elixir_food: { name: "✨ Elixir Food", materials: { herb: 5, diamond: 1, gold: 2 }, effect: { stamina: 100, health: 100, mana: 50 }, exp: 300 },
+  smoothie: { name: "🥤 Batido", materials: { strawberry: 3, watermelon: 1 }, effect: { stamina: 30, mana: 20 }, exp: 70 },
+  elixir_food: { name: "✨ Elixir Alimenticio", materials: { herb: 5, diamond: 1, gold: 2 }, effect: { stamina: 100, health: 100, mana: 50 }, exp: 300 },
 };
 
 async function handler(m, { sock }) {
@@ -41,8 +41,8 @@ async function handler(m, { sock }) {
   const recipeName = args[0]?.toLowerCase();
 
   if (!recipeName) {
-    let txt = `Halo Master Chef! Mau masak resep yang mana nih? 👨‍🍳🍳\n\n`;
-    txt += `*Daftar Resep Rahasia:*\n`;
+    let txt = `¡Hola Master Chef! ¿Qué receta quieres cocinar hoy? 👨‍🍳🍳\n\n`;
+    txt += `*Lista de Recetas Secretas:*\n`;
 
     for (const [key, recipe] of Object.entries(RECIPES)) {
       const mats = Object.entries(recipe.materials)
@@ -52,9 +52,9 @@ async function handler(m, { sock }) {
         .map(([e, v]) => `+${v} ${e}`)
         .join(", ");
       txt += `\n*${recipe.name}*\n`;
-      txt += `📦 Bahan: ${mats}\n`;
-      txt += `💫 Efek: ${effects}\n`;
-      txt += `👉 Ketik: \`.cooking ${key}\`\n`;
+      txt += `📦 Ingredientes: ${mats}\n`;
+      txt += `💫 Efecto: ${effects}\n`;
+      txt += `👉 Escribe: \`.cooking ${key}\`\n`;
     }
 
     return m.reply(txt);
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
 
   const recipe = RECIPES[recipeName];
   if (!recipe) {
-    return m.reply(`Hayo, resep apaan tuh? Nggak ada di buku menu kak! 😂\nCek daftar resepnya pake \`.cooking\` ya!`);
+    return m.reply(`Oye, ¿qué receta es esa? ¡No está en el libro de menús bro! 😂\nRevisa la lista de recetas con \`.cooking\`!`);
   }
 
   const missingMaterials = [];
@@ -74,11 +74,11 @@ async function handler(m, { sock }) {
   }
 
   if (missingMaterials.length > 0) {
-    return m.reply(`Eits, bahan kamu belum lengkap buat masak *${recipe.name}*! 😭\n\nYang kurang:\n${missingMaterials.join("\n")}\n\nCari bahannya dulu gih! 🛒🏃`);
+    return m.reply(`¡Ey, tus ingredientes no alcanzan para cocinar *${recipe.name}*! 😭\n\nTe falta:\n${missingMaterials.join("\n")}\n\n¡Busca los ingredientes primero! 🛒🏃`);
   }
 
   await m.react("👨‍🍳");
-  await m.reply(`Srengg... Srenggg... 🔥🍳\nLagi masak *${recipe.name}* nih, wanginya nyebar sekampung! 🤤`);
+  await m.reply(`¡Srengg... Srenggg...! 🔥🍳\nCocinando *${recipe.name}*, ¡el olor se esparce por todo el pueblo! 🤤`);
   await new Promise((r) => setTimeout(r, 3000));
 
   for (const [material, needed] of Object.entries(recipe.materials)) {
@@ -111,12 +111,12 @@ async function handler(m, { sock }) {
     .join("\n");
 
   return m.reply(
-    `TADAA! MASAKAN MATANG! 🍽️✨\n\n` +
-      `Kamu langsung melahap *${recipe.name}* yang enak banget!\n` +
-      `Efek yang kamu dapet:\n` +
+    `¡TADAA! ¡LA COMIDA ESTÁ LISTA! 🍽️✨\n\n` +
+      `¡Te devoraste el delicioso *${recipe.name}*!\n` +
+      `Efectos que obtuviste:\n` +
       `${effectTexts}\n\n` +
-      `📈 Bonus EXP Masak: *+${recipe.exp}*\n\n` +
-      `Kenyang banget rasanya, siap tempur lagi! 🔥`
+      `📈 Bonus EXP de Cocina: *+${recipe.exp}*\n\n` +
+      `¡Qué satisfecho te sientes, listo para la batalla! 🔥`
   );
 }
 

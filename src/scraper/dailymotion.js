@@ -25,7 +25,7 @@ async function DailymotionDL(url) {
   if (!data.medias || data.medias.length === 0) {
     return {
       status: false,
-      error: "Tidak ada media yang tersedia",
+      error: "No hay medios disponibles",
     };
   }
 

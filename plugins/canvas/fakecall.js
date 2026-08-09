@@ -1,20 +1,20 @@
 import axios from 'axios'
 import FormData from 'form-data'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: ['fakecall', 'fakecall-android', 'fakecall-ios'],
     alias: ['fakecallwa'],
     category: 'canvas',
-    description: 'Membuat gambar fake call WhatsApp (Tersedia versi Android dan iOS)',
-    usage: '.fakecall nama | durasi',
+    description: 'Crea una imagen de fake call de WhatsApp (Disponible en versión Android y iOS)',
+    usage: '.fakecall nombre | duración',
     example: '.fakecall Zann | 19:00',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -23,18 +23,18 @@ async function handler(m, { sock }) {
     const text = m.text
 
     if (!text || !text.includes('|')) {
-        let helpText = `Halo! Sepertinya format yang kamu masukkan kurang tepat.\n\n`
-        helpText += `Fitur ini digunakan untuk membuat gambar panggilan palsu (Fake Call) seolah-olah seseorang sedang meneleponmu secara langsung.\n\n`
-        helpText += `*Daftar Perintah yang Tersedia:*\n`
-        helpText += `- *${m.prefix}fakecall* (Untuk tampilan panggilan Android)\n`
-        helpText += `- *${m.prefix}fakecall-ios* (Untuk tampilan panggilan iPhone atau iOS)\n\n`
-        helpText += `*Cara Penggunaan:*\n`
-        helpText += `Ketik perintah diikuti dengan *Nama* dan *Durasi* yang dipisahkan oleh tanda pipa (|).\n\n`
-        helpText += `*Contoh Penggunaan:*\n`
+        let helpText = `¡Hola! Parece que el formato que ingresaste no es el correcto.\n\n`
+        helpText += `Esta función se usa para crear una imagen de llamada falsa (Fake Call), como si alguien te estuviera llamando directamente.\n\n`
+        helpText += `*Lista de Comandos Disponibles:*\n`
+        helpText += `- *${m.prefix}fakecall* (Para la pantalla de llamada de Android)\n`
+        helpText += `- *${m.prefix}fakecall-ios* (Para la pantalla de llamada de iPhone o iOS)\n\n`
+        helpText += `*Cómo Usarlo:*\n`
+        helpText += `Escribe el comando seguido del *Nombre* y la *Duración*, separados por el signo de barra vertical (|).\n\n`
+        helpText += `*Ejemplos de Uso:*\n`
         helpText += `- *${m.prefix}fakecall Zann | 03:33:33*\n`
-        helpText += `- *${m.prefix}fakecall-ios Sayangku | 12:00:00*\n\n`
-        helpText += `*Tips Tambahan:*\n`
-        helpText += `Kamu bisa me-reply (membalas) sebuah gambar jika ingin menggunakan foto tersebut sebagai avatar profil sang penelepon!`
+        helpText += `- *${m.prefix}fakecall-ios Mi amor | 12:00:00*\n\n`
+        helpText += `*Consejo Adicional:*\n`
+        helpText += `Puedes responder a una imagen si quieres usar esa foto como foto de perfil de la persona que llama!`
         
         return m.reply(helpText)
     }
@@ -42,11 +42,11 @@ async function handler(m, { sock }) {
     const [nama, durasi] = text.split('|').map(s => s.trim())
 
     if (!nama) {
-        return m.reply(`Maaf, nama penelepon tidak boleh dikosongkan. Silakan isi namanya terlebih dahulu!`)
+        return m.reply(`Lo siento, el nombre de la persona que llama no puede estar vacío. ¡Completa el nombre primero!`)
     }
 
     if (!durasi) {
-        return m.reply(`Maaf, durasi panggilan tidak boleh dikosongkan. Silakan isi durasinya terlebih dahulu!`)
+        return m.reply(`Lo siento, la duración de la llamada no puede estar vacía. ¡Completa la duración primero!`)
     }
 
     await m.react('🕕')

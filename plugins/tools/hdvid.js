@@ -10,15 +10,15 @@ const pluginConfig = {
   name: "hdvid",
   alias: ["hdvideo", "enhancevid", "hdv"],
   category: "tools",
-  description: "Meningkatkan kualitas video menjadi HD dengan pure FFMPEG",
-  usage: ".hdvid (reply video)",
+  description: "Mejora la calidad del video a HD con FFMPEG puro",
+  usage: ".hdvid (responde un video)",
   example: ".hdvid",
   isOwner: false,
   isPremium: true,
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 3,
+  carne: 3,
   isEnabled: true,
 };
 
@@ -27,12 +27,12 @@ async function handler(m, { sock }) {
   let isDocumentMessage = (m.type === "documentMessage" && m.message?.documentMessage?.mimetype?.startsWith("video")) || (m.quoted && m.quoted.type === "documentMessage" && m.quoted.message?.documentMessage?.mimetype?.startsWith("video"));
 
   if (!isVideoMessage && !isDocumentMessage) {
-    let txt = `📹 *HD VIDEO ENHANCER* 📹\n\n`;
-    txt += `Halo kak! Punya video yang buram? Aku bisa bantu bikin jadi HD lho!\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 Kirim video (atau document video) dengan caption \`${m.prefix}hdvid\`\n`;
-    txt += `👉 Atau reply video (atau document video) dengan \`${m.prefix}hdvid\`\n\n`;
-    txt += `⚠️ _Fitur Premium, proses bisa memakan waktu tergantung ukuran ya kak!_`;
+    let txt = `📹 *MEJORADOR DE VIDEO HD* 📹\n\n`;
+    txt += `¡Hola! ¿Tienes un video borroso? Puedo ayudarte a que se vea en HD!\n\n`;
+    txt += `*Cómo Usar:*\n`;
+    txt += `👉 Envía un video (o video como documento) con el caption \`${m.prefix}hdvid\`\n`;
+    txt += `👉 O responde un video (o video como documento) con \`${m.prefix}hdvid\`\n\n`;
+    txt += `⚠️ _Función Premium, el proceso puede tardar según el tamaño del video._`;
     return m.reply(txt);
   }
 
@@ -43,15 +43,15 @@ async function handler(m, { sock }) {
 
     if (!videoBuffer || videoBuffer.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *GAGAL*\n\nAduh kak, videonya gagal diunduh! Coba kirim ulang ya.`);
+      return m.reply(`❌ *ERROR*\n\n¡Vaya, no se pudo descargar el video! Intenta enviarlo de nuevo.`);
     }
 
     if (videoBuffer.length > 50 * 1024 * 1024) {
       await m.react("❌");
-      return m.reply(`❌ *FILE TERLALU BESAR*\n\nMaaf kak, maksimal ukuran video cuma 50MB ya!`);
+      return m.reply(`❌ *ARCHIVO DEMASIADO GRANDE*\n\nLo siento, el tamaño máximo del video es de solo 50MB.`);
     }
 
-    await m.reply(`🎞️ *PROSES ENHANCE DIMULAI* 🎞️\n\nVideo kakak sedang diproses agar menjadi HD! ✨\nEstimasi waktu tergantung ukuran video, mohon bersabar ya kak!`);
+    await m.reply(`🎞️ *PROCESO DE MEJORA INICIADO* 🎞️\n\nEl video se está procesando para verse en HD! ✨\nEl tiempo estimado depende del tamaño del video, ¡ten paciencia!`);
 
     const tempDir = os.tmpdir();
     const inputPath = path.join(tempDir, `input-hd-${Date.now()}.mp4`);
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
 
     const resultBuffer = fs.readFileSync(outputPath);
 
-    await sock.sendMedia(m.chat, resultBuffer, `✨ *PROSES SELESAI* ✨\n\nIni dia hasil videonya kak, udah jauh lebih mulus dan HD kan? 😍`, m, {
+    await sock.sendMedia(m.chat, resultBuffer, `✨ *PROCESO TERMINADO* ✨\n\nAquí está el resultado del video, mucho más suave y en HD, ¿no? 😍`, m, {
       type: "video",
       mimetype: "video/mp4",
       fileName: `HDVID-${Date.now()}.mp4`,
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     } catch (e) {}
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Maaf kak, proses enhance videonya gagal! 😭\n\nDetail: ${err.message}`);
+    await m.reply(`❌ Lo siento, el proceso de mejora del video falló! 😭\n\nDetalles: ${err.message}`);
   }
 }
 

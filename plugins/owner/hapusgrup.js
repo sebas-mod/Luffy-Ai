@@ -7,7 +7,7 @@ const pluginConfig = {
     example: '.hapusgrup',
     isOwner: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,10 +23,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid || !targetJid.endsWith('@g.us')) {
         return m.reply(
-            '🗑️ *ʜᴀᴘᴜs ɢʀᴜᴘ*\n\n' +
-            '> `.hapusgrup` (di dalam grup) — Keluar dari grup ini\n' +
-            '> `.hapusgrup <id_grup>` — Keluar dari grup tertentu\n\n' +
-            '⚠️ Bot akan keluar dari grup, bukan menghapus grup secara permanen'
+            '🗑️ *ʙᴏʀʀᴀʀ ɢʀᴜᴘᴏ*\n\n' +
+            '> `.hapusgrup` (dentro del grupo) — Salir de este grupo\n' +
+            '> `.hapusgrup <id_grupo>` — Salir de un grupo específico\n\n' +
+            '⚠️ El bot saldrá del grupo, no elimina el grupo permanentemente'
         )
     }
 
@@ -37,12 +37,12 @@ async function handler(m, { sock }) {
         await sock.groupLeave(targetJid)
         await m.react('✅')
         return m.reply(
-            `🗑️ *ʙᴏᴛ ᴋᴇʟᴜᴀʀ ᴅᴀʀɪ ɢʀᴜᴘ*\n\n` +
-            `> Grup: ${groupName}\n` +
+            `🗑️ *ʙᴏᴛ sᴀʟɪó ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
+            `> Grupo: ${groupName}\n` +
             `> ID: ${targetJid}`
         )
     } catch (err) {
-        return m.reply(`❌ Gagal keluar dari grup: ${err.message}`)
+        return m.reply(`❌ Error al salir del grupo: ${err.message}`)
     }
 }
 

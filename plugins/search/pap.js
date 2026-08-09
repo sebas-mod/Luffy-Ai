@@ -3,14 +3,14 @@ import {
   generateWAMessageFromContent,
   prepareWAMessageMedia,
 } from "ourin";
-import te from "../../src/lib/ourin-error.js";
-import { f } from "../../src/lib/ourin-http.js";
+import te from "../../src/lib/luffy-error.js";
+import { f } from "../../src/lib/luffy-http.js";
 
 const pluginConfig = {
   name: "pap",
   alias: ["papcewe", "papcowo", "papfemboy"],
   category: "search",
-  description: "Minta pap cewe, cowo, atau femboy dari Pinterest",
+  description: "Pide fotos de chica, chico o femboy desde Pinterest",
   usage: ".pap <cewe/cowo/femboy>",
   example: ".pap cewe",
   isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   const validTypes = ["cewe", "cowo", "femboy"];
 
   if (!arg || !validTypes.includes(arg)) {
-    return m.reply("❌ Pilih salah satu tipe pap yang tersedia: `cewe`, `cowo`, atau `femboy`.\n\nContoh: `.pap cewe`");
+    return m.reply("❌ Elige uno de los tipos de pap disponibles: `cewe`, `cowo` o `femboy`.\n\nEjemplo: `.pap cewe`");
   }
 
   await m.react("🕕");
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ Waduh, pap ${query} lagi kosong nih. Coba lagi nanti.`);
+      return m.reply(`❌ Vaya, no hay fotos de pap ${query} por ahora. Inténtalo de nuevo más tarde.`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("⚠️ Gambar tidak tersedia.");
+      return m.reply("⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
               imageMessage: mediaMessage.imageMessage
             },
             footer: {
-              text: "Pilih menu pap lainnya di bawah ini 👇"
+              text: "Elige otro menú de pap a continuación 👇"
             },
             body: {
               text: `📸 *PAP ${arg.toUpperCase()}*`
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PAP Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Gagal memuat PAP. Server Pinterest mungkin sedang bermasalah.");
+    m.reply("😔 Error al cargar el PAP. El servidor de Pinterest puede estar teniendo problemas.");
   }
 }
 

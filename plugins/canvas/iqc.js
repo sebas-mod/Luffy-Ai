@@ -1,18 +1,18 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: "iqc",
     alias: ["qc2"],
     category: "canvas",
-    description: "Membuat Fake Quote iOS style secara instan.",
+    description: "Crea Fake Quote estilo iOS al instante.",
     usage: ".iqc [text/reply]",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
@@ -21,12 +21,12 @@ async function handler(m, { sock, text }) {
         const targetText = text || (m.quoted && m.quoted.text ? m.quoted.text : "");
         
         if (!targetText) {
-            let help = `💬 *FITUR FAKE QUOTE iOS*\n\n`
-            help += `Fitur ini digunakan untuk membuat gambar quote elegan bergaya iOS dengan sangat cepat.\n\n`
-            help += `*Cara Penggunaan:*\n`
-            help += `- Ketik *${m.prefix}iqc <teks kamu>*\n`
-            help += `- Atau kamu bisa membalas (reply) pesan teks orang lain dengan perintah *${m.prefix}iqc*\n\n`
-            help += `_Pesan tersebut akan secara otomatis diubah menjadi quote keren!_`
+            let help = `💬 *FUNCIÓN FAKE QUOTE iOS*\n\n`
+            help += `Esta función se usa para crear una imagen de quote elegante estilo iOS muy rápidamente.\n\n`
+            help += `*Cómo Usarlo:*\n`
+            help += `- Escribe *${m.prefix}iqc <tu texto>*\n`
+            help += `- O puedes responder al mensaje de texto de otra persona con el comando *${m.prefix}iqc*\n\n`
+            help += `_¡Ese mensaje se convertirá automáticamente en un quote genial!_`
             return m.reply(help)
         }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock, text }) {
     } catch (error) {
         console.error("[IQC Plugin Error]", error)
         await m.react('❌')
-        m.reply(`Maaf, terjadi kesalahan saat mencoba membuat gambar quote. Silakan coba lagi beberapa saat.`)
+        m.reply(`Lo siento, ocurrió un error al intentar crear la imagen de quote. Inténtalo de nuevo en unos momentos.`)
     }
 }
 

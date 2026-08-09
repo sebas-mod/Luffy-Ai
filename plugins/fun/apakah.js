@@ -2,46 +2,46 @@ const pluginConfig = {
     name: 'apakah',
     alias: ['apa'],
     category: 'fun',
-    description: 'Tanya bot apakah sesuatu',
-    usage: '.apakah <pertanyaan>',
-    example: '.apakah aku bisa kaya?',
+    description: 'Pregunta al bot si algo es así',
+    usage: '.apakah <pregunta>',
+    example: '.apakah puedo hacerme rico?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
 const answers = [
-    'Ya, tentu saja!',
-    'Tidak, sepertinya tidak.',
-    'Mungkin saja, coba lagi nanti.',
-    'Hmm... aku rasa iya.',
-    'Aku ragu, tapi bisa jadi.',
-    'Pasti! 100%!',
-    'Tidak mungkin.',
-    'Bisa jadi, siapa yang tau?',
-    'Menurutku sih iya.',
-    'Wah, kayaknya nggak deh.',
-    'Tentu, kenapa tidak?',
-    'Aku nggak tau, coba tanya yang lain.',
-    'Ya ampun, pasti lah!',
-    'Hmm... sepertinya tidak.',
-    'Aku yakin iya!',
-    'Nggak mungkin banget.',
-    'Mungkin, tapi jangan berharap terlalu tinggi.',
-    'Iya dong!',
-    'Nggak, maaf ya.',
-    'Bisa! Semangat!'
+    '¡Sí, por supuesto!',
+    'No, parece que no.',
+    'Quizás, intenta de nuevo luego.',
+    'Hmm... creo que sí.',
+    'Lo dudo, pero podría ser.',
+    '¡Seguro! ¡100%!',
+    'Imposible.',
+    'Podría ser, ¿quién sabe?',
+    'Yo creo que sí.',
+    'Vaya, creo que no.',
+    'Claro, ¿por qué no?',
+    'No lo sé, pregúntale a otro.',
+    '¡Dios mío, claro que sí!',
+    'Hmm... parece que no.',
+    '¡Estoy seguro de que sí!',
+    'Muy poco probable.',
+    'Quizás, pero no te hagas demasiadas ilusiones.',
+    '¡Sí claro!',
+    'No, lo siento.',
+    '¡Puedes! ¡Ánimo!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> Masukkan pertanyaan!\n\n*Contoh:*\n> .apakah aku bisa jadi kaya?`);
+        return m.reply(`❓ *ᴀᴘᴀᴋᴀʜ*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .apakah puedo hacerme rico?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

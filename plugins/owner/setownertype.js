@@ -1,12 +1,12 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import fs from 'fs'
 import path from 'path'
 const pluginConfig = {
     name: 'setownertype',
     alias: ['ownertype', 'ownervariant', 'ownerstyle'],
     category: 'owner',
-    description: 'Mengatur variant tampilan owner message',
+    description: 'Configurar la variante de visualización del mensaje del owner',
     usage: '.setownertype',
     example: '.setownertype',
     isOwner: true,
@@ -14,13 +14,13 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 const VARIANTS = {
-    1: { name: 'Current Design', desc: 'Tampilan default saat ini' },
-    2: { name: 'Multiple Contact', desc: 'Kirim contact card semua owner' }
+    1: { name: 'Current Design', desc: 'Visualización predeterminada actual' },
+    2: { name: 'Multiple Contact', desc: 'Enviar tarjeta de contacto de todos los owners' }
 }
 
 async function handler(m, { sock, db }) {
@@ -34,7 +34,7 @@ async function handler(m, { sock, db }) {
         await db.save()
 
         await m.reply(
-            `✅ Owner type diubah ke *V${id}*\n\n` +
+            `✅ Tipo de owner cambiado a *V${id}*\n\n` +
             `> *${VARIANTS[id].name}*\n` +
             `> _${VARIANTS[id].desc}_`
         )
@@ -54,8 +54,8 @@ async function handler(m, { sock, db }) {
     }
 
     await sock.sendMessage(m.chat, {
-        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Type saat ini: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Pilih variant owner:`,
-        footer: config.bot?.name || 'Ourin-AI',
+        text: `🎨 *sᴇᴛ ᴏᴡɴᴇʀ ᴛʏᴘᴇ*\n\n> Tipo actual: *V${current}*\n> _${VARIANTS[current].name}_\n\n> Elige la variante del owner:`,
+        footer: config.bot?.name || 'Luffy-Ai',
         contextInfo: {
             mentionedJid: [m.sender],
             isForwarded: true,

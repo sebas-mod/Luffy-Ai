@@ -2,8 +2,8 @@ import axios from "axios";
 import { spawn } from "child_process";
 import fs from "fs";
 import path from "path";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "ttselon",
   alias: ["elontts", "ttselonmusk"],
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
   if (!text)
     return m.reply(
-      `🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n> Gunakan: \`${m.prefix}ttselon <text>\``,
+      `🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n> Usa: \`${m.prefix}ttselon <text>\``,
     );
 
   m.react("🚀");

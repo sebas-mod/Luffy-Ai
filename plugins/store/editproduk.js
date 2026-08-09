@@ -1,4 +1,4 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
@@ -6,15 +6,15 @@ const pluginConfig = {
     name: 'editproduk',
     alias: ['editproduct'],
     category: 'store',
-    description: '✏️ Edit produk toko (hanya di private chat)',
-    usage: '.editproduk <nomor> <field> <nilai>',
+    description: '✏️ Editar producto de la tienda (solo en chat privado)',
+    usage: '.editproduk <numero> <campo> <valor>',
     example: '.editproduk 1 harga 30000',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -36,9 +36,9 @@ async function uploadToCatbox(buffer, filename = 'file.jpg') {
 async function handler(m, { sock }) {
     if (m.isGroup) {
         return m.reply(
-            `🚫 *Akses Ditolak*\n\n` +
-            `Untuk menjaga privasi 🛡️, pengeditan produk hanya dapat dilakukan di *private chat*.\n\n` +
-            `Silakan chat bot secara langsung 📱`
+            `🚫 *Acceso Denegado*\n\n` +
+            `Para proteger la privacidad 🛡️, la edición de productos solo se puede hacer en el *chat privado*.\n\n` +
+            `Contacta al bot directamente 📱`
         )
     }
 
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     const products = db.setting('storeProducts') || []
 
     if (products.length === 0) {
-        return m.reply(`📭 *Belum ada produk.*\n\nTambahkan produk terlebih dahulu: \`${m.prefix}addproduk\` ➕`)
+        return m.reply(`📭 *Aún no hay productos.*\n\nAgrega primero un producto: \`${m.prefix}addproduk\` ➕`)
     }
 
     const text = m.text?.trim() || ''
@@ -54,26 +54,26 @@ async function handler(m, { sock }) {
 
     if (!match) {
         return m.reply(
-            `✏️ *EDIT PRODUK*\n\n` +
-            `📋 Format: \`${m.prefix}editproduk <nomor> <field> <nilai>\`\n\n` +
-            `📌 *Field yang bisa diedit:*\n` +
-            `• *nama* 🏷️ — Nama produk\n` +
-            `• *harga* 💰 — Harga jual (angka)\n` +
-            `• *diskon* 🏷️ — Harga asli/coret (angka, 0 untuk hapus)\n` +
-            `• *stok* 📊 — Jumlah stok atau \`unlimited\`\n` +
-            `• *tipe* 🔑📦 — \`digital\` atau \`fisik\`\n` +
-            `• *deskripsi* 📝 — Deskripsi produk\n` +
-            `• *detail* 🔒 — Info rahasia (dikirim setelah beli)\n` +
-            `• *gambar* 🖼️ — Upload gambar baru (reply gambar)\n` +
-            `• *video* 🎬 — Upload video baru (reply video)\n\n` +
-            `📝 *Contoh:*\n` +
+            `✏️ *EDITAR PRODUCTO*\n\n` +
+            `📋 Formato: \`${m.prefix}editproduk <numero> <campo> <valor>\`\n\n` +
+            `📌 *Campos editables:*\n` +
+            `• *nama* 🏷️ — Nombre del producto\n` +
+            `• *harga* 💰 — Precio de venta (número)\n` +
+            `• *diskon* 🏷️ — Precio original/tachado (número, 0 para quitar)\n` +
+            `• *stok* 📊 — Cantidad de stock o \`unlimited\`\n` +
+            `• *tipe* 🔑📦 — \`digital\` o \`fisik\`\n` +
+            `• *deskripsi* 📝 — Descripción del producto\n` +
+            `• *detail* 🔒 — Información secreta (se envía tras la compra)\n` +
+            `• *gambar* 🖼️ — Subir nueva imagen (responde una imagen)\n` +
+            `• *video* 🎬 — Subir nuevo video (responde un video)\n\n` +
+            `📝 *Ejemplos:*\n` +
             `\`${m.prefix}editproduk 1 harga 30000\`\n` +
             `\`${m.prefix}editproduk 1 diskon 40000\`\n` +
             `\`${m.prefix}editproduk 1 tipe fisik\`\n` +
             `\`${m.prefix}editproduk 1 nama Netflix Premium\`\n` +
-            `\`${m.prefix}editproduk 1 deskripsi Akun sharing 1 bulan\`\n` +
-            `\`${m.prefix}editproduk 1 gambar\` (reply gambar 🖼️)\n\n` +
-            `🏷️ _Harga diskon akan ditampilkan sebagai ~~harga asli~~ di katalog_`
+            `\`${m.prefix}editproduk 1 deskripsi Cuenta compartida 1 mes\`\n` +
+            `\`${m.prefix}editproduk 1 gambar\` (responde una imagen 🖼️)\n\n` +
+            `🏷️ _El precio de descuento se mostrará como ~~precio original~~ en el catálogo_`
         )
     }
 
@@ -82,20 +82,20 @@ async function handler(m, { sock }) {
     let value = match[3]?.trim() || ''
 
     if (idx < 0 || idx >= products.length) {
-        return m.reply(`❌ *Nomor produk tidak valid.*\n\nRentang: 1-${products.length} 📋`)
+        return m.reply(`❌ *Número de producto no válido.*\n\nRango: 1-${products.length} 📋`)
     }
 
     const product = products[idx]
 
     switch (field) {
         case 'nama': {
-            if (!value || value.length < 2) return m.reply(`❌ *Nama terlalu pendek.* Minimal 2 karakter 🏷️`)
+            if (!value || value.length < 2) return m.reply(`❌ *Nombre demasiado corto.* Mínimo 2 caracteres 🏷️`)
             product.name = value
             break
         }
         case 'harga': {
             const price = parseInt(value)
-            if (isNaN(price) || price < 1000) return m.reply(`❌ *Harga tidak valid.* Minimal Rp 1.000 💰`)
+            if (isNaN(price) || price < 1000) return m.reply(`❌ *Precio no válido.* Mínimo Rp 1.000 💰`)
             product.price = price
             break
         }
@@ -104,27 +104,27 @@ async function handler(m, { sock }) {
             if (isNaN(origPrice) || origPrice === 0) {
                 product.originalPrice = null
             } else {
-                if (origPrice <= product.price) return m.reply(`❌ *Harga diskon harus lebih besar dari harga jual.*\n\nHarga jual saat ini: Rp ${product.price.toLocaleString('id-ID')} 💰`)
+                if (origPrice <= product.price) return m.reply(`❌ *El precio de descuento debe ser mayor que el precio de venta.*\n\nPrecio de venta actual: Rp ${product.price.toLocaleString('id-ID')} 💰`)
                 product.originalPrice = origPrice
             }
             break
         }
         case 'stok': {
             product.stock = value.toLowerCase() === 'unlimited' ? -1 : parseInt(value)
-            if (isNaN(product.stock)) return m.reply(`❌ *Stok tidak valid.* Gunakan angka atau \`unlimited\` 📊`)
+            if (isNaN(product.stock)) return m.reply(`❌ *Stock no válido.* Usa un número o \`unlimited\` 📊`)
             break
         }
         case 'tipe': {
             const newType = value.toLowerCase()
             if (newType !== 'digital' && newType !== 'fisik') {
-                return m.reply(`❌ *Tipe tidak valid.* Gunakan \`digital\` 🔑 atau \`fisik\` 📦`)
+                return m.reply(`❌ *Tipo no válido.* Usa \`digital\` 🔑 o \`fisik\` 📦`)
             }
             if (newType === 'fisik' && product.type === 'digital' && product.stockItems?.length > 0) {
                 return m.reply(
-                    `⚠️ *Tidak bisa mengubah ke Fisik*\n\n` +
-                    `Produk ini memiliki *${product.stockItems.length}* data akun 🔑\n` +
-                    `Hapus semua stock items terlebih dahulu sebelum mengubah tipe ke Fisik.\n\n` +
-                    `🗑️ Hapus semua: \`${m.prefix}editproduk ${idx + 1} stok 0\``
+                    `⚠️ *No se puede cambiar a Físico*\n\n` +
+                    `Este producto tiene *${product.stockItems.length}* datos de cuentas 🔑\n` +
+                    `Elimina todos los artículos de stock antes de cambiar el tipo a Físico.\n\n` +
+                    `🗑️ Eliminar todos: \`${m.prefix}editproduk ${idx + 1} stok 0\``
                 )
             }
             product.type = newType
@@ -142,57 +142,57 @@ async function handler(m, { sock }) {
         case 'gambar': {
             const hasMedia = m.quoted?.isMedia && (m.quoted?.isImage || m.quoted?.type === 'imageMessage')
             const isDirectImage = m.isImage
-            if (!hasMedia && !isDirectImage) return m.reply(`🖼️ *Reply atau kirim gambar baru.*\n\nKirim gambar lalu reply dengan command ini.`)
-            await m.reply(`⏳ _Mengunggah gambar..._`)
+            if (!hasMedia && !isDirectImage) return m.reply(`🖼️ *Responde o envía una imagen nueva.*\n\nEnvía la imagen y respóndela con este comando.`)
+            await m.reply(`⏳ _Subiendo imagen..._`)
             try {
                 const buffer = hasMedia ? await m.quoted.download() : await m.download()
                 if (buffer) {
                     const url = await uploadToCatbox(buffer, 'image.jpg')
                     if (url) product.image = url
-                    else return m.reply(`❌ *Gagal mengunggah gambar.* Coba lagi nanti 🖼️`)
+                    else return m.reply(`❌ *Error al subir la imagen.* Inténtalo de nuevo más tarde 🖼️`)
                 }
             } catch {
-                return m.reply(`❌ *Gagal mengunggah gambar.* Coba lagi nanti 🖼️`)
+                return m.reply(`❌ *Error al subir la imagen.* Inténtalo de nuevo más tarde 🖼️`)
             }
             break
         }
         case 'video': {
             const hasMedia = m.quoted?.isMedia && (m.quoted?.isVideo || m.quoted?.type === 'videoMessage')
             const isDirectVideo = m.isVideo
-            if (!hasMedia && !isDirectVideo) return m.reply(`🎬 *Reply atau kirim video baru.*\n\nKirim video lalu reply dengan command ini.`)
-            await m.reply(`⏳ _Mengunggah video..._`)
+            if (!hasMedia && !isDirectVideo) return m.reply(`🎬 *Responde o envía un video nuevo.*\n\nEnvía el video y respóndelo con este comando.`)
+            await m.reply(`⏳ _Subiendo video..._`)
             try {
                 const buffer = hasMedia ? await m.quoted.download() : await m.download()
                 if (buffer) {
                     const url = await uploadToCatbox(buffer, 'video.mp4')
                     if (url) product.video = url
-                    else return m.reply(`❌ *Gagal mengunggah video.* Coba lagi nanti 🎬`)
+                    else return m.reply(`❌ *Error al subir el video.* Inténtalo de nuevo más tarde 🎬`)
                 }
             } catch {
-                return m.reply(`❌ *Gagal mengunggah video.* Coba lagi nanti 🎬`)
+                return m.reply(`❌ *Error al subir el video.* Inténtalo de nuevo más tarde 🎬`)
             }
             break
         }
         default:
-            return m.reply(`❌ *Field tidak dikenali.*\n\nGunakan: nama, harga, diskon, stok, tipe, deskripsi, detail, gambar, video 📋`)
+            return m.reply(`❌ *Campo no reconocido.*\n\nUsa: nama, harga, diskon, stok, tipe, deskripsi, detail, gambar, video 📋`)
     }
 
     db.setting('storeProducts', products)
     await m.react('✅')
 
     const typeIcon = product.type === 'fisik' ? '📦' : '🔑'
-    const typeLabel = product.type === 'fisik' ? 'Fisik' : 'Digital'
+    const typeLabel = product.type === 'fisik' ? 'Físico' : 'Digital'
 
-    let reply = `✅ *PRODUK DIPERBARUI*\n\n`
-    reply += `🏷️ Nama: *${product.name}*\n`
-    reply += `💰 Harga: *Rp ${product.price.toLocaleString('id-ID')}*`
+    let reply = `✅ *PRODUCTO ACTUALIZADO*\n\n`
+    reply += `🏷️ Nombre: *${product.name}*\n`
+    reply += `💰 Precio: *Rp ${product.price.toLocaleString('id-ID')}*`
     if (product.originalPrice) reply += ` ~~Rp ${product.originalPrice.toLocaleString('id-ID')}~~`
     reply += `\n`
-    reply += `${typeIcon} Tipe: *${typeLabel}*\n`
-    reply += `📊 Stok: *${product.stock === -1 ? '♾️ Unlimited' : product.stock}*\n`
-    if (field === 'gambar') reply += `🖼️ Gambar: ✅\n`
+    reply += `${typeIcon} Tipo: *${typeLabel}*\n`
+    reply += `📊 Stock: *${product.stock === -1 ? '♾️ Unlimited' : product.stock}*\n`
+    if (field === 'gambar') reply += `🖼️ Imagen: ✅\n`
     if (field === 'video') reply += `🎬 Video: ✅\n`
-    reply += `\n👀 _Lihat perubahan: \`${m.prefix}listproduk\`_`
+    reply += `\n👀 _Ver los cambios: \`${m.prefix}listproduk\`_`
 
     return m.reply(reply)
 }

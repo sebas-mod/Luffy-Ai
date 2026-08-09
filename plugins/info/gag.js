@@ -1,11 +1,11 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "gag",
   alias: ["growagarden", "gaginfo"],
   category: "info",
-  description: "Menampilkan informasi stok Grow a Garden",
+  description: "Muestra información del stock de Grow a Garden",
   usage: ".gag",
   example: ".gag",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Gagal mengambil informasi Grow a Garden saat ini.");
+      return m.reply("⚠️ Error al obtener la información de Grow a Garden.");
     }
 
     const r = data.result;
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
       return txt + "\n";
     };
 
-    let caption = `🌱 *GROW A GARDEN INFO* 🌱\n\n`;
+    let caption = `🌱 *INFORMACIÓN DE GROW A GARDEN* 🌱\n\n`;
 
     caption += formatStock(r.gearStock, "⚙️ Gear Stock");
     caption += formatStock(r.eggStock, "🥚 Egg Stock");
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[GAG Info]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mengambil data GAG.");
+    m.reply("😔 Ocurrió un error al obtener los datos de GAG.");
   }
 }
 

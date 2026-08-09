@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'goodbyeall',
     alias: ['gball', 'globalgoodbye', 'leaveall'],
     category: 'owner',
-    description: 'Aktifkan/nonaktifkan goodbye di semua grup',
+    description: 'Activar/desactivar el goodbye en todos los grupos',
     usage: '.goodbyeall <on/off>',
     example: '.goodbyeall on',
     isOwner: true,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,9 +23,9 @@ async function handler(m, { sock }) {
     
     if (!action || !['on', 'off'].includes(action)) {
         return m.reply(
-            `👋 *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ*\n\n` +
-            `> Aktifkan/nonaktifkan goodbye di SEMUA grup sekaligus\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
+            `👋 *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ*\n\n` +
+            `> Activa/desactiva la despedida en TODOS los grupos a la vez\n\n` +
+            `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
             `┃ ${m.prefix}goodbyeall on\n` +
             `┃ ${m.prefix}goodbyeall off\n` +
             `╰┈┈┈┈┈┈┈┈⬡`
@@ -49,21 +49,21 @@ async function handler(m, { sock }) {
         
         if (status) {
             return m.reply(
-                `✅ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ✅ Goodbye: *AKTIF*\n` +
+                `✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
+                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+                `┃ 🌐 Total Grupos: *${count}*\n` +
+                `┃ ✅ Despedida: *ACTIVA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Member yang keluar akan dikirim pesan perpisahan!`
+                `> A los miembros que salgan se les enviará un mensaje de despedida!`
             )
         } else {
             return m.reply(
-                `❌ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
-                `┃ 🌐 Total Grup: *${count}*\n` +
-                `┃ ❌ Goodbye: *NONAKTIF*\n` +
+                `❌ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
+                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+                `┃ 🌐 Total Grupos: *${count}*\n` +
+                `┃ ❌ Despedida: *DESACTIVADA*\n` +
                 `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-                `> Goodbye dinonaktifkan di semua grup.`
+                `> La despedida se desactivó en todos los grupos.`
             )
         }
     } catch (error) {

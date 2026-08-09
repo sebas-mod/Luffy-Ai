@@ -2,25 +2,25 @@ const pluginConfig = {
     name: ['star', 'bintang'],
     alias: [],
     category: 'owner',
-    description: 'Beri/hapus bintang pada pesan',
-    usage: '.star (reply pesan) atau .star hapus (reply pesan)',
+    description: 'Agregar/eliminar estrella a un mensaje',
+    usage: '.star (responder mensaje) o .star eliminar (responder mensaje)',
     example: '.star',
     isOwner: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     if (!m.quoted) {
         return m.reply(
-            '⭐ *sᴛᴀʀ ᴍᴇssᴀɢᴇ*\n\n' +
-            '> `.star` (reply pesan) — Beri bintang\n' +
-            '> `.star hapus` (reply pesan) — Hapus bintang'
+            '⭐ *ᴇsᴛʀᴇʟʟᴀ ᴇɴ ᴇʟ ᴍᴇɴsᴀᴊᴇ*\n\n' +
+            '> `.star` (responder mensaje) — Agregar estrella\n' +
+            '> `.star eliminar` (responder mensaje) — Quitar estrella'
         )
     }
 
-    const unstar = m.args[0]?.toLowerCase() === 'hapus' || m.args[0]?.toLowerCase() === 'unstar'
+    const unstar = m.args[0]?.toLowerCase() === 'eliminar' || m.args[0]?.toLowerCase() === 'unstar'
     const key = m.quoted.key
 
     try {
@@ -34,11 +34,11 @@ async function handler(m, { sock }) {
         await m.react('⭐')
         return m.reply(
             unstar
-                ? '❌ *Bintang dihapus dari pesan*'
-                : '⭐ *Pesan ditandai bintang*'
+                ? '❌ *Estrella eliminada del mensaje*'
+                : '⭐ *Mensaje marcado con estrella*'
         )
     } catch (err) {
-        return m.reply(`❌ Gagal: ${err.message}`)
+        return m.reply(`❌ Fallo: ${err.message}`)
     }
 }
 

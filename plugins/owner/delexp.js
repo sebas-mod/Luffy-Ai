@@ -1,4 +1,4 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'delexp',
     alias: ['kurangexp', 'removeexp', 'delxp'],
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -43,21 +43,21 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⭐ *ᴅᴇʟ ᴇxᴘ*\n\n` +
-            `> \`.delexp <jumlah>\` - dari diri sendiri\n` +
-            `> \`.delexp <jumlah> @user\` - dari user\n\n` +
-            `\`Contoh: ${m.prefix}delexp 5000\``
+            `⭐ *ʀᴇsᴛᴀʀ ᴇxᴘ*\n\n` +
+            `> \`.delexp <cantidad>\` - de ti mismo\n` +
+            `> \`.delexp <cantidad> @user\` - de un usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}delexp 5000\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Jumlah harus lebih dari 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di database`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El usuario no existe en la base de datos`)
     }
     
     const newExp = db.updateExp(targetJid, -amount)
@@ -65,11 +65,11 @@ async function handler(m, { sock }) {
     await m.react('✅')
     
     await m.reply(
-        `✅ *ᴇxᴘ ᴅɪᴋᴜʀᴀɴɢɪ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 👤 ᴜsᴇʀ: @${targetJid.split('@')[0]}\n` +
-        `┃ ➖ ᴋᴜʀᴀɴɢ: *-${formatNumber(amount)}*\n` +
-        `┃ ⭐ sɪsᴀ: *${formatNumber(newExp)}*\n` +
+        `✅ *ᴇxᴘ ʀᴇsᴛᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 👤 ᴜsᴜᴀʀɪᴏ: @${targetJid.split('@')[0]}\n` +
+        `┃ ➖ ʀᴇsᴛᴀᴅᴏ: *-${formatNumber(amount)}*\n` +
+        `┃ ⭐ ʀᴇsᴛᴀɴᴛᴇ: *${formatNumber(newExp)}*\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

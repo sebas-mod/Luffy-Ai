@@ -5,14 +5,14 @@ const pluginConfig = {
   name: "tiktokchat",
   alias: ["tiktok-chat", "ttchat"],
   category: "canvas",
-  description: "Membuat fake chat TikTok dari avatar kamu",
-  usage: ".tiktokchat username | pesan (reply gambar)",
+  description: "Crea un fake chat de TikTok con tu avatar",
+  usage: ".tiktokchat usuario | mensaje (responde imagen)",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -21,11 +21,11 @@ async function handler(m, { sock, text }) {
 
   if (!isImage || !text || !text.includes("|")) {
     let help = `💬 *TIKTOK CHAT CANVAS*\n\n`
-    help += `Fitur ini digunakan untuk membuat desain chat palsu bergaya TikTok yang estetis!\n\n`
-    help += `*Cara Penggunaan:*\n`
-    help += `- Kirim foto profil (avatar) dengan caption *${m.prefix}tiktokchat username | pesan kamu*\n`
-    help += `- Atau balas (reply) foto profil dengan pesan *${m.prefix}tiktokchat username | pesan kamu*\n\n`
-    help += `*Contoh:* ${m.prefix}tiktokchat Zann | Halo, hari ini cerah ya!`
+    help += `Esta función se usa para crear un diseño de chat falso estilo TikTok, ¡muy estético!\n\n`
+    help += `*Cómo Usarlo:*\n`
+    help += `- Envía una foto de perfil (avatar) con caption *${m.prefix}tiktokchat usuario | tu mensaje*\n`
+    help += `- O responde a la foto de perfil con el mensaje *${m.prefix}tiktokchat usuario | tu mensaje*\n\n`
+    help += `*Ejemplo:* ${m.prefix}tiktokchat Zann | Hola, hoy está soleado!`
     return m.reply(help);
   }
 
@@ -45,7 +45,7 @@ async function handler(m, { sock, text }) {
 
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`Maaf, sistem gagal mengunduh gambar avatar yang kamu berikan.`);
+      return m.reply(`Lo siento, el sistema no pudo descargar la imagen de avatar que enviaste.`);
     }
 
     const form = new FormData();
@@ -65,7 +65,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error("[TIKTOKCHAT Plugin Error]", error);
     await m.react("❌");
-    m.reply(`Maaf, gagal membuat canvas TikTok Chat kali ini. Coba lagi beberapa saat.`);
+    m.reply(`Lo siento, no se pudo crear el canvas de TikTok Chat esta vez. Inténtalo de nuevo en unos momentos.`);
   }
 }
 

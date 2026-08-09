@@ -1,11 +1,11 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import mediafire from "../../src/scraper/mediafire.js";
 
 const pluginConfig = {
   name: "mediafiredl",
   alias: ["mfdl", "mediafire", "mf"],
   category: "download",
-  description: "Download file dari MediaFire",
+  description: "Descarga archivos de MediaFire",
   usage: ".mfdl <url>",
   example: ".mfdl https://www.mediafire.com/file/xxx",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -35,13 +35,13 @@ async function handler(m, { sock }) {
     return m.reply(
       `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
         `> \`${m.prefix}mfdl <url>\`\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}mfdl https://www.mediafire.com/file/xxx\``,
     );
   }
 
   if (!url.match(/mediafire\.com/i)) {
-    return m.reply(`❌ *URL tidak valid. Gunakan link MediaFire.*`);
+    return m.reply(`❌ *URL no válida. Usa un enlace de MediaFire.*`);
   }
   await m.react("🕕");
 

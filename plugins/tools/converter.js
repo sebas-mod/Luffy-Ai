@@ -3,20 +3,20 @@ import path from "path";
 import { mconverter } from "../../src/scraper/mconverter.js";
 import { downloadContentFromMessage } from "ourin";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "converter",
   alias: ["convert", "konversi"],
   category: "tools",
-  description: "Convert file ke format lain",
-  usage: ".converter <format> (reply file)",
+  description: "Convierte archivos a otro formato",
+  usage: ".converter <formato> (responde archivo)",
   example: ".converter mp3",
   isOwner: false,
   isPremium: true,
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 3,
+  carne: 3,
   isEnabled: true,
 };
 
@@ -26,22 +26,22 @@ async function handler(m, { sock }) {
   if (!m.quoted && !m.isMedia) {
     return m.reply(
       `🔄 *ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n` +
-        `> Reply file dengan format tujuan\n\n` +
-        `*Format:*\n` +
-        `> \`${m.prefix}converter <format>\`\n\n` +
-        `*Contoh:*\n` +
+        `> Responde un archivo con el formato deseado\n\n` +
+        `*Formato:*\n` +
+        `> \`${m.prefix}converter <formato>\`\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}converter mp3\`\n` +
         `> \`${m.prefix}converter mp4\`\n` +
         `> \`${m.prefix}converter png\`\n\n` +
-        `*Cara pakai:*\n` +
-        `> 1. Reply file yang mau diconvert\n` +
-        `> 2. Ketik \`${m.prefix}converter <format>\``,
+        `*Cómo usar:*\n` +
+        `> 1. Responde el archivo que quieres convertir\n` +
+        `> 2. Escribe \`${m.prefix}converter <formato>\``,
     );
   }
 
   if (!targetFormat) {
     return m.reply(
-      `❌ Masukkan format tujuan!\n\n> Contoh: \`${m.prefix}converter mp3\``,
+      `❌ ¡Ingresa el formato deseado!\n\n> Ejemplo: \`${m.prefix}converter mp3\``,
     );
   }
 
@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
   }
 
   if (!mediaMessage) {
-    return m.reply(`❌ Reply file yang mau diconvert!`);
+    return m.reply(`❌ ¡Responde el archivo que quieres convertir!`);
   }
 
   m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇɴɢᴜɴᴅᴜʜ ғɪʟᴇ...*`);
+  await m.reply(`🕕 *ᴅᴇsᴄᴀʀɢᴀɴᴅᴏ ᴀʀᴄʜɪᴠᴏ...*`);
 
   try {
     const stream = await downloadContentFromMessage(
@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
     const tempFile = path.join(tempDir, `convert_${Date.now()}.${ext}`);
     fs.writeFileSync(tempFile, buffer);
 
-    await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪɴɢ...*\n\n> ${ext} → ${targetFormat}`);
+    await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪᴇɴᴅᴏ...*\n\n> ${ext} → ${targetFormat}`);
 
     const result = await mconverter.convert(tempFile, targetFormat);
 
@@ -95,11 +95,11 @@ async function handler(m, { sock }) {
 
     if (result.error) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ ᴄᴏɴᴠᴇʀᴛ*\n\n> ${result.error}`);
+      return m.reply(`❌ *ᴇʀʀᴏʀ ᴅᴇ ᴄᴏɴᴠᴇʀsɪᴏɴ*\n\n> ${result.error}`);
     }
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     await sock.sendMessage(
       m.chat,

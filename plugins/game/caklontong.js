@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('caklontong', {
     alias: ['cak', 'lontong'],
     emoji: '🤔',
     title: 'CAK LONTONG',
-    description: 'Game cak lontong - jawaban receh'
+    description: 'Juego de cak lontong - respuestas divertidas'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('caklontong')

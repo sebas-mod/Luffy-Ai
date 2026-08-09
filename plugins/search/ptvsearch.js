@@ -1,11 +1,11 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import { tiktokSearchVideo } from "../../src/scraper/tiktoksearch.js";
 
 const pluginConfig = {
   name: "ptvsearch",
   alias: ["ptvs"],
   category: "search",
-  description: "Cari video TikTok",
+  description: "Busca videos de TikTok",
   usage: ".ptvsearch <query>",
   example: ".ptvsearch jj epep",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -22,13 +22,13 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ sᴇᴀʀᴄʜ* 」
+      `╭┈┈⬡「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
 ┃
-┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}ptvsearch <query>\`
+┃ ㊗ ᴜsᴏ: \`${m.prefix}ptvsearch <query>\`
 ┃
 ╰┈┈⬡
 
-> \`Contoh: ${m.prefix}ptvsearch anime\``,
+> \`Ejemplo: ${m.prefix}ptvsearch anime\``,
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];

@@ -71,8 +71,8 @@ games.register('tebakkucing', {
     // Opsional: Jika tidak diisi, otomatis pakai random reward.
     // Jika diisi false (rewards: false), maka tidak ada hadiah sama sekali.
     rewards: {
-        energi: 5,                        // Atau bisa pakai key 'limit'
-        koin: 1000,                       // Atau bisa pakai key 'balance'
+        carne: 5,                        // Atau bisa pakai key 'limit'
+        berry: 1000,                       // Atau bisa pakai key 'balance'
         exp: 2000
     },
 
@@ -100,7 +100,7 @@ export { pluginConfig as config, handler, answerHandler }
 1. Saat Load: \`ourin-plugins.js\` memuat \`tebakkucing.js\`.
 2. Registrasi: Fungsi \`games.register\` menyimpan parameter config-mu ke dalam memori Registry sentral.
 3. Hooking: \`src/handler.js\` mendeteksi adanya eksport \`answerHandler\` lalu mencegat semua pesan text masuk untuk memvalidasi apakah user sedang dalam sesi 'tebakkucing' dan menjawab benar (menggunakan Levenshtein distance >= 85%).
-4. Reward: Diberikan secara otomatis menggunakan kalkulasi random dari \`getRandomReward()\` (EXP, Koin, Limit) + Level Up detector.
+4. Reward: Diberikan secara otomatis menggunakan kalkulasi random dari \`getRandomReward()\` (EXP, Berry, Limit) + Level Up detector.
 
 Tiga baris export di bawah sangat krusial, dilarang dihapus:
 **\`export { pluginConfig as config, handler, answerHandler }\`**

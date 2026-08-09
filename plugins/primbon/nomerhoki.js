@@ -1,5 +1,5 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'nomerhoki',
     alias: ['nomorhoki', 'ceknomor'],
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -34,18 +34,18 @@ async function handler(m, { sock }) {
         }
         
         const r = data.data
-        const ep = r.energi_positif.details
-        const en = r.energi_negatif.details
+        const ep = r.carne_positif.details
+        const en = r.carne_negatif.details
         
         const response = `🍀 *ɴᴏᴍᴏʀ ʜᴏᴋɪ*\n\n` +
             `> Nomor: *${r.nomor}*\n\n` +
             `📊 *ᴀɴɢᴋᴀ ʙᴀɢᴜᴀ:* ${r.angka_bagua_shuzi.value}%\n\n` +
-            `✅ *ᴇɴᴇʀɢɪ ᴘᴏꜱɪᴛɪꜰ:* ${r.energi_positif.total}%\n` +
+            `✅ *ᴇɴᴇʀɢɪ ᴘᴏꜱɪᴛɪꜰ:* ${r.carne_positif.total}%\n` +
             `├ Kekayaan: ${ep.kekayaan}\n` +
             `├ Kesehatan: ${ep.kesehatan}\n` +
             `├ Cinta: ${ep.cinta}\n` +
             `└ Kestabilan: ${ep.kestabilan}\n\n` +
-            `❌ *ᴇɴᴇʀɢɪ ɴᴇɢᴀᴛɪꜰ:* ${r.energi_negatif.total}%\n` +
+            `❌ *ᴇɴᴇʀɢɪ ɴᴇɢᴀᴛɪꜰ:* ${r.carne_negatif.total}%\n` +
             `├ Perselisihan: ${en.perselisihan}\n` +
             `├ Kehilangan: ${en.kehilangan}\n` +
             `├ Malapetaka: ${en.malapetaka}\n` +

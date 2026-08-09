@@ -1,32 +1,122 @@
 [
-  {"soal": "Film animasi tentang mainan yang hidup saat pemiliknya pergi", "jawaban": "Toy Story"},
-  {"soal": "Film tentang kapal mewah yang menabrak gunung es di Atlantik", "jawaban": "Titanic"},
-  {"soal": "Film superhero dengan pria berkostum laba-laba yang bisa memanjat gedung", "jawaban": "Spider-Man"},
-  {"soal": "Film animasi tentang ikan badut yang mencari anaknya di lautan", "jawaban": "Finding Nemo"},
-  {"soal": "Film horor tentang boneka Annabelle yang dirasuki iblis", "jawaban": "Annabelle"},
-  {"soal": "Film tentang bajak laut Karibia dengan kapten Jack Sparrow", "jawaban": "Pirates of the Caribbean"},
-  {"soal": "Film animasi Jepang tentang gadis yang tersesat di dunia roh", "jawaban": "Spirited Away"},
-  {"soal": "Film tentang dinosaurus yang dihidupkan kembali di sebuah taman", "jawaban": "Jurassic Park"},
-  {"soal": "Film horor tentang badut menakutkan bernama Pennywise", "jawaban": "IT"},
-  {"soal": "Film tentang cincin ajaib yang harus dihancurkan di gunung api", "jawaban": "Lord of the Rings"},
-  {"soal": "Film animasi tentang robot pembersih sampah yang jatuh cinta", "jawaban": "WALL-E"},
-  {"soal": "Film tentang penyihir muda yang bersekolah di Hogwarts", "jawaban": "Harry Potter"},
-  {"soal": "Film tentang boxer miskin yang mendapat kesempatan bertanding juara", "jawaban": "Rocky"},
-  {"soal": "Film animasi tentang putri berambut panjang yang terkurung di menara", "jawaban": "Tangled"},
-  {"soal": "Film tentang hacker yang menemukan bahwa dunia ini simulasi komputer", "jawaban": "The Matrix"},
-  {"soal": "Film tentang seorang pria yang terdampar sendirian di pulau terpencil", "jawaban": "Cast Away"},
-  {"soal": "Film animasi Disney tentang putri es yang bisa membekukan segalanya", "jawaban": "Frozen"},
-  {"soal": "Film tentang alien yang ingin menelepon rumahnya", "jawaban": "ET"},
-  {"soal": "Film tentang gladiator yang membalas dendam pada kaisar Roma", "jawaban": "Gladiator"},
-  {"soal": "Film animasi tentang keluarga superhero yang menyembunyikan kekuatan", "jawaban": "The Incredibles"},
-  {"soal": "Film tentang kapal selam nuklir dan perburuan bawah laut", "jawaban": "The Hunt for Red October"},
-  {"soal": "Film tentang agen rahasia Inggris dengan kode 007", "jawaban": "James Bond"},
-  {"soal": "Film horor tentang keluarga yang pindah ke hotel terpencil di musim dingin", "jawaban": "The Shining"},
-  {"soal": "Film animasi tentang tikus yang bermimpi jadi chef di Paris", "jawaban": "Ratatouille"},
-  {"soal": "Film tentang mimpi di dalam mimpi dengan totem berputar", "jawaban": "Inception"},
-  {"soal": "Film tentang panda gemuk yang menjadi Dragon Warrior", "jawaban": "Kung Fu Panda"},
-  {"soal": "Film tentang detektif dan sidekicknya yang memecahkan kasus di London", "jawaban": "Sherlock Holmes"},
-  {"soal": "Film tentang manusia serigala dan vampir yang berperang", "jawaban": "Underworld"},
-  {"soal": "Film animasi tentang ogre hijau yang tinggal di rawa", "jawaban": "Shrek"},
-  {"soal": "Film tentang balap mobil ilegal di jalanan kota", "jawaban": "Fast and Furious"}
+  {
+    "soal": "Película animada sobre juguetes que cobran vida cuando su dueño no está",
+    "jawaban": "historia del juguete"
+  },
+  {
+    "soal": "Una película sobre un transatlántico de lujo que choca contra un iceberg en el Atlántico",
+    "jawaban": "titánico"
+  },
+  {
+    "soal": "Película de superhéroes con un hombre disfrazado de araña que puede trepar edificios",
+    "jawaban": "hombre araña"
+  },
+  {
+    "soal": "Película de animación sobre un pez payaso que busca a sus crías en el océano",
+    "jawaban": "Buscando a Nemo"
+  },
+  {
+    "soal": "Película de terror sobre la muñeca Annabelle poseída por el diablo.",
+    "jawaban": "annabelle"
+  },
+  {
+    "soal": "Película sobre piratas del Caribe con el capitán Jack Sparrow.",
+    "jawaban": "piratas del caribe"
+  },
+  {
+    "soal": "Película animada japonesa sobre una niña perdida en el mundo de los espíritus.",
+    "jawaban": "El viaje de Chihiro"
+  },
+  {
+    "soal": "Una película sobre los dinosaurios que cobran vida en un parque",
+    "jawaban": "Parque Jurásico"
+  },
+  {
+    "soal": "Película de terror sobre un payaso aterrador llamado Pennywise",
+    "jawaban": "TI"
+  },
+  {
+    "soal": "Una película sobre un anillo mágico que debe ser destruido en un volcán.",
+    "jawaban": "El señor de los anillos"
+  },
+  {
+    "soal": "Película animada sobre un robot limpiador de basura que se enamora",
+    "jawaban": "WALL-E"
+  },
+  {
+    "soal": "Una película sobre un joven mago que asiste a Hogwarts.",
+    "jawaban": "harry potter"
+  },
+  {
+    "soal": "Película sobre un boxeador pobre que tiene la oportunidad de competir como campeón.",
+    "jawaban": "rocoso"
+  },
+  {
+    "soal": "Película animada sobre una princesa de pelo largo atrapada en una torre.",
+    "jawaban": "enredado"
+  },
+  {
+    "soal": "Una película sobre un hacker que descubre que el mundo es una simulación por ordenador",
+    "jawaban": "La matriz"
+  },
+  {
+    "soal": "Una película sobre un hombre abandonado en una isla desierta",
+    "jawaban": "Desechar"
+  },
+  {
+    "soal": "Película animada de Disney sobre una princesa de hielo que puede congelarlo todo",
+    "jawaban": "Congelado"
+  },
+  {
+    "soal": "Una película sobre extraterrestres que quieren llamar hogar.",
+    "jawaban": "hora del este"
+  },
+  {
+    "soal": "Una película sobre gladiadores que buscan venganza contra el emperador romano.",
+    "jawaban": "gladiador"
+  },
+  {
+    "soal": "Película animada sobre una familia de superhéroes que ocultan sus poderes",
+    "jawaban": "Los Increíbles"
+  },
+  {
+    "soal": "Películas sobre submarinos nucleares y caza submarina.",
+    "jawaban": "La caza del Octubre Rojo"
+  },
+  {
+    "soal": "Película sobre el agente secreto británico código 007.",
+    "jawaban": "James Bond"
+  },
+  {
+    "soal": "Película de terror sobre una familia que se muda a un hotel remoto en invierno",
+    "jawaban": "el resplandor"
+  },
+  {
+    "soal": "Película de animación sobre un ratón que sueña con ser chef en París",
+    "jawaban": "Ratatouille"
+  },
+  {
+    "soal": "Una película sobre un sueño dentro de un sueño con tótems giratorios",
+    "jawaban": "Inicio"
+  },
+  {
+    "soal": "Una película sobre un panda gordo que se convierte en guerrero dragón.",
+    "jawaban": "kung-fu-panda"
+  },
+  {
+    "soal": "Una película sobre un detective y su compañero que resuelven casos en Londres.",
+    "jawaban": "Sherlock Holmes"
+  },
+  {
+    "soal": "Una película sobre un hombre lobo y un vampiro en guerra.",
+    "jawaban": "Inframundo"
+  },
+  {
+    "soal": "Película animada sobre un ogro verde que vive en un pantano.",
+    "jawaban": "shrek"
+  },
+  {
+    "soal": "Película sobre carreras de coches ilegales en las calles de la ciudad.",
+    "jawaban": "Rápido y Furioso"
+  }
 ]

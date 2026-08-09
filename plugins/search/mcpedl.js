@@ -1,12 +1,12 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'mcpedl',
     alias: ['mcpe', 'mcpesearch', 'searchmcpe'],
     category: 'search',
-    description: 'Cari map dan addon Minecraft PE dari MCPEDL',
+    description: 'Buscar mapas y addons de Minecraft PE en MCPEDL',
     usage: '.mcpe <query>',
     example: '.mcpe survival',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 8,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -37,7 +37,7 @@ async function fetchMcpe(query) {
     })
 
     if (!data?.status || !Array.isArray(data?.data?.results)) {
-        throw new Error(data?.message || 'Hasil MCPEDL tidak ditemukan')
+        throw new Error(data?.message || 'Resultados de MCPEDL no encontrados')
     }
 
     return data.data
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`🧱 *MCPEDL SEARCH*\n\n> Contoh:\n\`${m.prefix}mcpe survival\``)
+        return m.reply(`🧱 *BÚSQUEDA DE MCPEDL*\n\n> Ejemplo:\n\`${m.prefix}mcpe survival\``)
     }
 
     m.react('🔍')
@@ -58,17 +58,17 @@ async function handler(m, { sock }) {
 
         if (items.length === 0) {
             m.react('❌')
-            return m.reply(`❌ Tidak ditemukan hasil MCPEDL untuk: ${query}`)
+            return m.reply(`❌ No se encontraron resultados de MCPEDL para: ${query}`)
         }
 
-        let caption = '🧱 *MCPEDL SEARCH*\n\n'
+        let caption = '🧱 *BÚSQUEDA DE MCPEDL*\n\n'
         caption += `🔎 *Query:* ${result.query || query}\n`
         caption += `📦 *Total:* ${result.total || items.length}\n`
         caption += `🌐 *Source:* ${result.source || 'mcpedl.org'}\n\n`
 
         items.forEach((item, index) => {
             caption += `*${index + 1}.* ${trimText(item.title)}\n`
-            caption += `   ├ ⭐ Rating: ${item.rating || '-'}\n`
+            caption += `   ├ ⭐ Calificación: ${item.rating || '-'}\n`
             caption += `   ├ ${item.link}\n\n`
         })
 

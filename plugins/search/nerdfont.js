@@ -5,7 +5,7 @@ import * as cheerio from "cheerio";
 function getSharp() {
   return _sharp;
 }
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 async function nerdfonts() {
   try {
     const { data } = await axios.get(
@@ -50,7 +50,7 @@ const pluginConfig = {
   name: "dafont",
   alias: ["nerdfont", "font"],
   category: "search",
-  description: "Cari font di DaFont",
+  description: "Buscar fuentes en DaFont",
   usage: ".dafont <query>",
   example: ".dafont Coolvetica",
   isOwner: false,
@@ -58,7 +58,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 function formatNumber(num) {
@@ -84,17 +84,17 @@ async function handler(m, { sock }) {
     await sock.sendMessage(
       m.chat,
       {
-        text: "Silahkan pilih font yang ingin kamu download",
-        footer: "Click tombol di bawah ini",
+        text: "Por favor elige la fuente que quieres descargar",
+        footer: "Haz clic en el botón de abajo",
         interactiveButtons: [
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: `Pilih Font Disini`,
+              title: `Elegir Fuente Aquí`,
               sections: [
                 {
-                  title: "Aku harap, font ini dapat membantu kamu",
-                  highlight_label: "Font Pilihan",
+                  title: "Espero que esta fuente te sea útil",
+                  highlight_label: "Fuente Elegida",
                   rows: rows,
                 },
               ],

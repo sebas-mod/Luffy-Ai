@@ -8,20 +8,20 @@ function getSharp() {
 import fs from "fs";
 import path from "path";
 import { config } from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "smeme",
   alias: ["memesticker", "memes"],
   category: "sticker",
-  description: "Membuat sticker meme dari gambar",
-  usage: ".smeme <top>|<bottom>",
-  example: ".smeme Ketika|Kamu Lupa",
+  description: "Crea sticker meme a partir de una imagen",
+  usage: ".smeme <superior>|<inferior>",
+  example: ".smeme Cuando|Lo Olvidas",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 async function handler(m, { sock }) {
@@ -31,13 +31,13 @@ async function handler(m, { sock }) {
     (m.quoted && (m.quoted.isSticker || m.quoted.type === "stickerMessage"));
   if (!isImage && !isSticker) {
     return m.reply(
-      `😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Reply atau kirim gambar/sticker dengan caption\n\n\`Contoh: ${m.prefix}smeme Top|Bottom\``,
+      `😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Responde o envía una imagen/sticker con el caption\n\n\`Ejemplo: ${m.prefix}smeme Arriba|Abajo\``,
     );
   }
   const input = m.args.join(" ");
   if (!input || !input.includes("|")) {
     return m.reply(
-      `😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Format: top|bottom\n\n\`Contoh: ${m.prefix}smeme Ketika|Kamu Lupa\``,
+      `😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Formato: superior|inferior\n\n\`Ejemplo: ${m.prefix}smeme Cuando|Lo Olvidas\``,
     );
   }
   const [top, bottom] = input.split("|").map((s) => s.trim());
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     }
     if (!mediaBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mengunduh media`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el medio`);
     }
     let imageBuffer;
     try {
@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
     }
     if (!imageUrl) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal upload gambar, coba lagi nanti`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo subir la imagen, inténtalo de nuevo más tarde`);
     }
     console.log("[SMEME] Image uploaded:", imageUrl);
     const encodeText = (text) => {
@@ -136,7 +136,7 @@ async function handler(m, { sock }) {
     });
     const buffer = Buffer.from(response.data);
     await sock.sendImageAsSticker(m.chat, buffer, m, {
-      packname: config.sticker?.packname || "Ourin-AI",
+      packname: config.sticker?.packname || "Luffy-Ai",
       author: config.sticker?.author || "Bot",
     });
     m.react("✅");

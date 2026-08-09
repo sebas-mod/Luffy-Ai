@@ -1,13 +1,13 @@
 import { aiodl } from "../../src/scraper/aio.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "aio",
   alias: ["allinone", "download", "dl"],
   category: "downloader",
   description:
-    "All in one downloader (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, dll)",
+    "Descargador todo en uno (IG, TikTok, FB, Twitter, YouTube, Pinterest, CapCut, etc.)",
   usage: ".aio <url>",
   example: ".aio https://instagram.com/p/xxx",
   isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   if (!url) {
     return m.reply(
       `📥 *ᴀʟʟ ɪɴ ᴏɴᴇ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-        `> Download dari berbagai platform!\n\n` +
+        `> ¡Descarga desde varias plataformas!\n\n` +
         `╭┈┈⬡「 🌐 *ᴘʟᴀᴛꜰᴏʀᴍ* 」\n` +
         `┃ • Instagram\n` +
         `┃ • TikTok\n` +
@@ -36,12 +36,12 @@ async function handler(m, { sock }) {
         `┃ • CapCut\n` +
         `┃ • Threads / Reddit\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> *Contoh:* ${m.prefix}aio https://instagram.com/p/xxx`,
+        `> *Ejemplo:* ${m.prefix}aio https://instagram.com/p/xxx`,
     );
   }
 
   if (!url.startsWith("http")) {
-    return m.reply(`❌ URL tidak valid! Harus dimulai dengan http/https`);
+    return m.reply(`❌ URL no válida! Debe empezar con http/https`);
   }
 
   await m.react("🕕");
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Pastikan URL valid.`);
+      return m.reply(`❌ Error al obtener el contenido. Asegúrate de que la URL sea válida.`);
     }
 
     const ctxInfo = saluranCtx();

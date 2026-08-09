@@ -1,22 +1,22 @@
 import fs from "fs";
 import path from "path";
 import { pathToFileURL } from "url";
-import { hotReloadPlugin } from "../../src/lib/ourin-plugins.js";
-import te from "../../src/lib/ourin-error.js";
+import { hotReloadPlugin } from "../../src/lib/luffy-plugins.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "gantiscraper",
   alias: ["replacescraper", "updatescraper", "gantiscrape"],
   category: "owner",
-  description: "Ganti code scraper yang sudah ada di src/scraper",
-  usage: ".gantiscraper [namafile]",
+  description: "Cambiar el código de un scraper ya existente en src/scraper",
+  usage: ".gantiscraper [nombrearchivo]",
   example: ".gantiscraper ig",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -108,10 +108,10 @@ async function handler(m, { sock }) {
   if (args[0]?.toLowerCase() === "list") {
     const scrapers = listScrapers();
     if (!scrapers.length) {
-      return m.reply(`📂 Folder src/scraper kosong`);
+      return m.reply(`📂 La carpeta src/scraper está vacía`);
     }
 
-    let text = `📂 *DAFTAR SCRAPER*\n\n` + `╭─〔 *src/scraper* 〕───⬣\n`;
+    let text = `📂 *LISTA DE SCRAPERS*\n\n` + `╭─〔 *src/scraper* 〕───⬣\n`;
 
     scrapers.forEach((s, i) => {
       const stat = fs.statSync(path.join(SCRAPER_DIR, `${s}.js`));
@@ -120,21 +120,21 @@ async function handler(m, { sock }) {
 
     text +=
       `╰───────⬡\n\n` +
-      `Total: ${scrapers.length} scraper\n\n` +
-      `> Gunakan \`${m.prefix}gantiscraper <nama>\` dengan reply code`;
+      `Total: ${scrapers.length} scrapers\n\n` +
+      `> Usa \`${m.prefix}gantiscraper <nombre>\` con el código respondido`;
 
     return m.reply(text);
   }
 
   if (!quoted) {
     return m.reply(
-      `🔄 *GANTI SCRAPER*\n\n` +
-        `Reply code scraper baru dengan caption:\n` +
-        `\`${m.prefix}gantiscraper\` - Auto detect dari export\n` +
-        `\`${m.prefix}gantiscraper namafile\` - Custom nama file\n\n` +
-        `📋 *Lihat daftar scraper:*\n` +
+      `🔄 *CAMBIAR SCRAPER*\n\n` +
+        `Responde el nuevo código del scraper con el pie:\n` +
+        `\`${m.prefix}gantiscraper\` - Detección automática desde el export\n` +
+        `\`${m.prefix}gantiscraper nombrearchivo\` - Nombre de archivo personalizado\n\n` +
+        `📋 *Ver la lista de scrapers:*\n` +
         `\`${m.prefix}gantiscraper list\`\n\n` +
-        `⚠️ *PERINGATAN:*\nCode lama akan di-backup sebelum diganti`,
+        `⚠️ *ADVERTENCIA:*\nEl código antiguo se respaldará antes de ser reemplazado`,
     );
   }
 
@@ -147,12 +147,12 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`❌ *GAGAL*\n\nGagal download file`);
+      return m.reply(`❌ *FALLIDO*\n\nError al descargar el archivo`);
     }
   }
 
   if (!code || code.length < 30) {
-    return m.reply(`❌ *GAGAL*\n\nCode terlalu pendek atau tidak valid`);
+    return m.reply(`❌ *FALLIDO*\n\nEl código es demasiado corto o no es válido`);
   }
 
   const hasExport =
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
 
   if (!hasExport) {
     return m.reply(
-      `❌ *GAGAL*\n\nCode bukan format scraper yang valid\nHarus ada export`,
+      `❌ *FALLIDO*\n\nEl código no es un formato de scraper válido\nDebe tener export`,
     );
   }
 
@@ -187,14 +187,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `❌ *GAGAL*\n\nTidak bisa mendeteksi nama scraper\nGunakan \`${m.prefix}gantiscraper <namafile>\``,
+      `❌ *FALLIDO*\n\nNo se pudo detectar el nombre del scraper\nUsa \`${m.prefix}gantiscraper <nombrearchivo>\``,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`❌ *GAGAL*\n\nNama file tidak valid`);
+    return m.reply(`❌ *FALLIDO*\n\nNombre de archivo no válido`);
   }
 
   await m.react("🕕");
@@ -247,14 +247,14 @@ async function handler(m, { sock }) {
     await m.react("✅");
 
     let replyText =
-      `✅ *SCRAPER ${isNewFile ? "DITAMBAH" : "DIGANTI"}*\n\n` +
-      `╭─〔 *DETAIL* 〕───⬡\n` +
-      `│ File: \`${fileName}.js\`\n` +
-      `│ Folder: \`src/scraper\`\n` +
-      `│ Size: \`${code.length} bytes\`\n`;
+      `✅ *SCRAPER ${isNewFile ? "AGREGADO" : "REEMPLAZADO"}*\n\n` +
+      `╭─〔 *DETALLE* 〕───⬡\n` +
+      `│ Archivo: \`${fileName}.js\`\n` +
+      `│ Carpeta: \`src/scraper\`\n` +
+      `│ Tamaño: \`${code.length} bytes\`\n`;
 
     if (!isNewFile) {
-      replyText += `│ Old Size: \`${oldSize} bytes\`\n`;
+      replyText += `│ Tamaño anterior: \`${oldSize} bytes\`\n`;
     }
 
     replyText += `╰───────⬡\n\n`;
@@ -269,13 +269,13 @@ async function handler(m, { sock }) {
 
     replyText +=
       `🔄 *Hot Reload:*\n` +
-      `- Scraper: ${scraperReload.success ? "✅ Sukses" : "⚠️ Pending"}\n` +
-      `- Plugin Terdeteksi: ${pluginReloads.length}\n` +
-      `- Plugin Berhasil Reload: ${reloadSuccess.length}\n` +
-      `- Plugin Gagal Reload: ${reloadFailed.length}\n\n`;
+      `- Scraper: ${scraperReload.success ? "✅ Exitoso" : "⚠️ Pendiente"}\n` +
+      `- Plugins detectados: ${pluginReloads.length}\n` +
+      `- Plugins recargados con éxito: ${reloadSuccess.length}\n` +
+      `- Plugins con fallo de recarga: ${reloadFailed.length}\n\n`;
 
     if (reloadSuccess.length) {
-      replyText += `✅ *Plugin Reloaded:*\n`;
+      replyText += `✅ *Plugins recargados:*\n`;
       replyText += reloadSuccess
         .slice(0, 10)
         .map((item) => `- \`${item.file}\``)
@@ -284,7 +284,7 @@ async function handler(m, { sock }) {
     }
 
     if (reloadFailed.length) {
-      replyText += `⚠️ *Plugin Gagal Reload:*\n`;
+      replyText += `⚠️ *Plugins con fallo de recarga:*\n`;
       replyText += reloadFailed
         .slice(0, 10)
         .map(
@@ -295,13 +295,13 @@ async function handler(m, { sock }) {
     }
 
     if (!pluginReloads.length) {
-      replyText += `ℹ️ Tidak ada plugin yang langsung mengimpor scraper ini.\n\n`;
+      replyText += `ℹ️ No hay plugins que importen directamente este scraper.\n\n`;
     }
 
     if (reloadFailed.length > 0) {
-      replyText += `⚠️ Sebagian reload gagal, restart bot mungkin diperlukan`;
+      replyText += `⚠️ Algunas recargas fallaron, puede ser necesario reiniciar el bot`;
     } else {
-      replyText += `Scraper sudah aktif dan siap digunakan!`;
+      replyText += `¡El scraper ya está activo y listo para usarse!`;
     }
 
     return m.reply(replyText);

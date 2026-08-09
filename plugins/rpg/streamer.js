@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "streamer",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 180,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,12 +27,12 @@ async function handler(m, { sock, plugin }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Mata sepet kebanyakan natap layar! 😵\n\nStreaming butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Tidur dulu woi! 🛏️`);
+    return m.reply(`¡Ojos hinchados de tanto mirar la pantalla! 😵\n\nStreaming necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Ve a dormir! 🛏️`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("🎥");
-  await m.reply(`Halo guys, welcome back to my live stream! 🎮\nMari kita unjuk skill main game cacing... 😎`);
+  await m.reply(`¡Hola chicos, bienvenidos a mi live stream! 🎮\nVamos a demostrar nuestra habilidad jugando... 😎`);
   await new Promise(r => setTimeout(r, 3500));
 
   const gacha = Math.random();
@@ -42,7 +42,7 @@ async function handler(m, { sock, plugin }) {
     db.db.data.users[m.sender.split("@")[0]].lastStreamer = Date.now() + (extraCooldown * 1000);
     
     await m.react("🚫");
-    return m.reply(`AKUN STREAMING KAMU DI-BANNED! 🚫😱\n\nAda viewers iseng yang ngereport akun kamu gara-gara afk terlalu lama!\nKamu tidak dapet donasi apa-apa dan **terkena penalti larangan streaming selama 5 menit ekstra**!\n\n⚡ Stamina tetap berkurang: -${staminaCost}\n\nSabar ya bang, coba ajuin banding... 😔`);
+    return m.reply(`¡TU CUENTA DE STREAMING FUE BANEADA! 🚫😱\n\n¡Algún viewer travieso te reportó por estar AFK demasiado tiempo!\nNo recibiste ninguna donación y **sufriste una penalización de 5 minutos extra sin poder streamear**!\n\n⚡ La resistencia igual se gasta: -${staminaCost}\n\nTen paciencia jefe, intenta apelar... 😔`);
   }
 
   const earning = Math.floor(Math.random() * 30000) + 10000;
@@ -53,14 +53,14 @@ async function handler(m, { sock, plugin }) {
   }
 
   const totalEarning = earning + saweranPaus;
-  user.koin = (user.koin || 0) + totalEarning;
+  user.berry = (user.berry || 0) + totalEarning;
   const expGain = Math.floor(totalEarning / 30);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `LIVE STREAMING SELESAI! 🎥✨\n\n💵 Pendapatan Iklan: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (saweranPaus > 0) txt += `🐳 SAWERAN SULTAN: *+Rp ${saweranPaus.toLocaleString("id-ID")}*\nWah, ada penonton sultan nyawer paus! 🐋🔥\n`;
-  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nMakasih yang udah nyawer! Lopyu pull! 💖`;
+  let txt = `¡LIVE STREAMING TERMINADO! 🎥✨\n\n💵 Ingreso por Anuncios: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  if (saweranPaus > 0) txt += `🐳 ¡DONACIÓN DE RICACHÓN: *+Rp ${saweranPaus.toLocaleString("id-ID")}*\nVaya, ¡un espectador millonario donó a lo grande! 🐋🔥\n`;
+  txt += `📈 EXP: *+${expGain}*\n⚡ Resistencia: -${staminaCost}\n\n¡Gracias a los que donaron! Los quiero mucho! 💖`;
   
   m.reply(txt);
 }

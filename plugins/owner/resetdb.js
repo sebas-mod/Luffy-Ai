@@ -1,13 +1,13 @@
 import fs from 'fs'
 import path from 'path'
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'resetdb',
     alias: ['cleardb', 'wipedb'],
     category: 'owner',
-    description: 'Reset semua data database',
+    description: 'Reiniciar todos los datos de la base de datos',
     usage: '.resetdb [confirm]',
     example: '.resetdb confirm',
     isOwner: true,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,7 +23,7 @@ if (!global.resetDbPending) global.resetDbPending = {}
 
 async function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *Solo Owner!*')
     }
     
     const confirm = m.args?.[0]?.toLowerCase()
@@ -32,24 +32,24 @@ async function handler(m, { sock }) {
         global.resetDbPending[m.sender] = Date.now()
         
         return m.reply(
-            `⚠️ *ᴘᴇʀɪɴɢᴀᴛᴀɴ!*\n\n` +
-            `> Ini akan menghapus SEMUA data:\n` +
-            `> • Data user\n` +
-            `> • Data group\n` +
-            `> • Data clan\n` +
-            `> • Semua statistik\n\n` +
-            `╭┈┈⬡「 ⚠️ *ᴋᴏɴғɪʀᴍᴀsɪ* 」\n` +
-            `┃ Ketik: *.resetdb confirm*\n` +
-            `┃ dalam 60 detik\n` +
+            `⚠️ *ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀ!*\n\n` +
+            `> Esto eliminará TODOS los datos:\n` +
+            `> • Datos de usuarios\n` +
+            `> • Datos de grupos\n` +
+            `> • Datos de clanes\n` +
+            `> • Todas las estadísticas\n\n` +
+            `╭┈┈⬡「 ⚠️ *ᴄᴏɴғɪʀᴍᴀᴄɪᴏ́ɴ* 」\n` +
+            `┃ Escribe: *.resetdb confirm*\n` +
+            `┃ en 60 segundos\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> ❌ Aksi ini TIDAK BISA dibatalkan!`
+            `> ❌ ¡Esta acción NO se puede deshacer!`
         )
     }
     
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`❌ Timeout! Ketik *.resetdb* ulang untuk memulai.`)
+        return m.reply(`❌ ¡Tiempo agotado! Escribe *.resetdb* de nuevo para iniciar.`)
     }
     
     delete global.resetDbPending[m.sender]
@@ -86,13 +86,13 @@ async function handler(m, { sock }) {
         await db.save()
         
         await m.reply(
-            `✅ *ᴅᴀᴛᴀʙᴀsᴇ ᴅɪʀᴇsᴇᴛ!*\n\n` +
-            `╭┈┈⬡「 📊 *ᴅᴀᴛᴀ ᴅɪʜᴀᴘᴜs* 」\n` +
-            `┃ 👤 Users: ${userCount}\n` +
-            `┃ 👥 Groups: ${groupCount}\n` +
-            `┃ ⚔️ Clans: ${clanCount}\n` +
+            `✅ *ʙᴀsᴇ ᴅᴇ ᴅᴀᴛᴏs ʀᴇɪɴɪᴄɪᴀᴅᴀ!*\n\n` +
+            `╭┈┈⬡「 📊 *ᴅᴀᴛᴏs ᴇʟɪᴍɪɴᴀᴅᴏs* 」\n` +
+            `┃ 👤 Usuarios: ${userCount}\n` +
+            `┃ 👥 Grupos: ${groupCount}\n` +
+            `┃ ⚔️ Clanes: ${clanCount}\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> Backup disimpan di:\n` +
+            `> Backup guardado en:\n` +
             `> \`${path.basename(backupPath)}\``
         )
         

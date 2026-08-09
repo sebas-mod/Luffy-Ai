@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import config from "../../config.js";
 
 const pluginConfig = {
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,12 +25,12 @@ async function handler(m, { sock }) {
   if (!option) {
     const current = db.setting("autoTyping") ?? config.features?.autoTyping ?? true;
     return m.reply(
-      `⌨️ *Auto Typing*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}autotyping on* — Aktifkan\n` +
-        `> *${m.prefix}autotyping off* — Nonaktifkan\n\n` +
-        `_Bot akan menampilkan indikator typing saat menerima pesan_`
+      `⌨️ *Auto Escritura*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}autotyping on* — Activar\n` +
+        `> *${m.prefix}autotyping off* — Desactivar\n\n` +
+        `_El bot mostrará el indicador de escritura al recibir mensajes_`
     );
   }
 
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     db.setting("autoTyping", true);
     const ctx = saluranCtx();
     return m.reply(
-      `⌨️ *Auto Typing Aktif*\n\n` +
-        `> Bot akan menampilkan indikator typing`,
+      `⌨️ *Auto Escritura Activo*\n\n` +
+        `> El bot mostrará el indicador de escritura`,
       { contextInfo: ctx }
     );
   }
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("autoTyping", false);
     return m.reply(
-      `⌨️ *Auto Typing Nonaktif*\n\n` +
-        `> Bot tidak akan menampilkan indikator typing`
+      `⌨️ *Auto Escritura Inactivo*\n\n` +
+        `> El bot ya no mostrará el indicador de escritura`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}autotyping on* atau *${m.prefix}autotyping off*`
+    `❌ *Opción No Válida*\n\n> Usa *${m.prefix}autotyping on* o *${m.prefix}autotyping off*`
   );
 }
 

@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebakkimia', {
     alias: ['kimia', 'chemistry', 'unsur'],
     emoji: '🧪',
-    title: 'TEBAK KIMIA',
-    description: 'Tebak unsur kimia',
+    title: 'ADIVINA LA QUÍMICA',
+    description: 'Adivina el elemento químico',
     questionField: 'unsur',
     answerField: 'lambang'
 })

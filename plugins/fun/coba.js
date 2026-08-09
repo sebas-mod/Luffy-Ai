@@ -2,46 +2,46 @@ const pluginConfig = {
     name: 'coba',
     alias: ['try'],
     category: 'fun',
-    description: 'Coba tanyakan sesuatu ke bot',
-    usage: '.coba <pertanyaan>',
-    example: '.coba tebak apa yang aku pikirkan',
+    description: 'Prueba a preguntar algo al bot',
+    usage: '.coba <pregunta>',
+    example: '.coba adivina lo que estoy pensando',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
 const answers = [
-    'Hmm, aku coba ya... Kamu lagi mikirin makanan!',
-    'Aku tebak... Kamu lagi gabut!',
-    'Coba ya... Kayaknya kamu lagi seneng!',
-    'Hmm, aku rasa kamu lagi bingung.',
-    'Aku coba nebak... Kamu lagi kangen seseorang?',
-    'Kayaknya kamu lagi santai deh.',
-    'Aku tebak kamu lagi scroll HP terus.',
-    'Hmm, pasti lagi bosan ya?',
-    'Coba ditebak... Kamu lagi pengen jalan-jalan!',
-    'Aku rasa kamu lagi butuh hiburan.',
-    'Hmm, kayaknya kamu lagi happy!',
-    'Aku coba... Kamu pasti lagi penasaran!',
-    'Tebakan aku: kamu lagi rebahan.',
-    'Hmm, kamu mungkin lagi mikirin seseorang spesial.',
-    'Aku coba: kamu lagi mau curhat?',
-    'Kayaknya kamu lagi pengen main game!',
-    'Hmm, aku tebak kamu lagi dengerin musik.',
-    'Coba aku tebak... Kamu lagi di kamar!',
-    'Aku rasa kamu lagi waiting for something.',
-    'Hmm, tebakan aku: kamu butuh temen ngobrol!'
+    'Hmm, déjame intentarlo... ¡Estás pensando en comida!',
+    'Adivino... ¡Estás aburrido!',
+    'A ver... ¡Parece que estás feliz!',
+    'Hmm, creo que estás confundido.',
+    'Déjame adivinar... ¿Extrañas a alguien?',
+    'Creo que estás relajado.',
+    'Adivino que estás desplazándote por el celular.',
+    'Hmm, seguro estás aburrido, ¿no?',
+    'Déjame adivinar... ¡Quieres salir de paseo!',
+    'Creo que necesitas entretenimiento.',
+    'Hmm, ¡parece que estás feliz!',
+    'Déjame ver... ¡Seguro tienes curiosidad!',
+    'Mi suposición: estás acostado.',
+    'Hmm, quizás estés pensando en alguien especial.',
+    'Déjame ver: ¿quieres desahogarte?',
+    '¡Parece que quieres jugar un juego!',
+    'Hmm, adivino que estás escuchando música.',
+    'Déjame adivinar... ¡Estás en tu habitación!',
+    'Creo que estás esperando algo.',
+    'Hmm, mi suposición: ¡necesitas alguien con quien hablar!'
 ];
 
 async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`🎯 *ᴄᴏʙᴀ*\n\n> Masukkan sesuatu!\n\n*Contoh:*\n> .coba tebak apa yang aku pikirkan`);
+        return m.reply(`🎯 *ᴄᴏʙᴀ*\n\n> ¡Ingresa algo!\n\n*Ejemplo:*\n> .coba adivina lo que estoy pensando`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

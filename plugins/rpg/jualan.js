@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "jualan",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 180,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,37 +27,37 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Kaki lemes kebanyakan keliling! 🥵\n\nJualan butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Ngiyup bentar! 🏖️`);
+    return m.reply(`¡Piernas cansadas de tanto pasear! 🥵\n\nVender necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Descansa un rato! 🏖️`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("🛒");
-  await m.reply(`Cangcimen cangcimen! Kacang kuaci permen! 🍬\nNawarin dagangan ke orang lewat... 🗣️`);
+  await m.reply(`¡Dulces y antojos! ¡Dulces y antojos! 🍬\nOfreciendo mercancía a los transeúntes... 🗣️`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
 
   if (gacha < 0.2) {
     const rugi = Math.floor(Math.random() * 10000) + 5000;
-    user.koin = Math.max(0, (user.koin || 0) - rugi);
+    user.berry = Math.max(0, (user.berry || 0) - rugi);
     await m.react("🌧️");
-    return m.reply(`HUJAN DERAS! DAGANGAN SEPI! 🌧️🥶\n\nNggak ada yang beli dan dagangan kerupukmu melempem semua.\nKerugian Modal: *Rp ${rugi.toLocaleString("id-ID")}*\n⚡ Stamina: -${staminaCost}\n\nBesok harus liat prakiraan cuaca nih! ☂️`);
+    return m.reply(`¡LLUVIA TORRENCIAL! ¡SIN CLIENTES! 🌧️🥶\n\nNo compró nadie y tus galletas quedaron empapadas.\nPérdida de Capital: *Rp ${rugi.toLocaleString("id-ID")}*\n⚡ Resistencia: -${staminaCost}\n\n¡La próxima revisa el pronóstico del tiempo! ☂️`);
   } else if (gacha > 0.85) {
     const lakuKeras = Math.floor(Math.random() * 80000) + 40000;
-    user.koin = (user.koin || 0) + lakuKeras;
+    user.berry = (user.berry || 0) + lakuKeras;
     const expGain = Math.floor(lakuKeras / 20);
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     await m.react("🤑");
-    return m.reply(`ADA BROMTON LEWAT DIBORONG SEMUA! 🚴‍♂️✨\n\nRombongan sepeda elit mampir dan ngeborong semua isotonik sama cangcimen!\n💵 Omzet Mendadak: *+Rp ${lakuKeras.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBisa langsung pulang gasik ini mah! 🎉`);
+    return m.reply(`¡PASÓ UN GRUPO Y LO COMPRÓ TODO! 🚴‍♂️✨\n\nUna caravana de ciclistas se detuvo y se llevó todas tus bebidas y dulces!\n💵 Venta Súbita: *+Rp ${lakuKeras.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Resistencia: -${staminaCost}\n\n¡Hoy puedes irte a casa temprano! 🎉`);
   }
 
   const earning = Math.floor(Math.random() * 25000) + 10000;
-  user.koin = (user.koin || 0) + earning;
+  user.berry = (user.berry || 0) + earning;
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  m.reply(`DAGANGAN LAKU STANDAR! 🛒✨\n\n💵 Omzet: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBesok kulakan lagi ah! 🛍️`);
+  m.reply(`¡VENTA NORMAL! 🛒✨\n\n💵 Venta: *+Rp ${earning.toLocaleString("id-ID")}*\n📈 EXP: *+${expGain}*\n⚡ Resistencia: -${staminaCost}\n\n¡Mañana a reabastecer otra vez! 🛍️`);
 }
 
 export { pluginConfig as config, handler };

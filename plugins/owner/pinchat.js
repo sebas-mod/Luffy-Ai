@@ -2,12 +2,12 @@ const pluginConfig = {
     name: ['pinchat', 'pin'],
     alias: [],
     category: 'owner',
-    description: 'Pin/unpin chat',
-    usage: '.pinchat <nomor/reply> atau .pinchat buka <nomor>',
+    description: 'Fijar/quitar fijado del chat',
+    usage: '.pinchat <número/reply> o .pinchat buka <número>',
     example: '.pinchat 628xxx',
     isOwner: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -37,10 +37,10 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '📌 *ᴘɪɴ ᴄʜᴀᴛ*\n\n' +
-            '> `.pinchat 628xxx` — Pin chat\n' +
-            '> `.pinchat` (di private chat) — Pin chat ini\n' +
-            '> `.pinchat buka 628xxx` — Unpin chat'
+            '📌 *ꜰɪᴊᴀʀ ᴄʜᴀᴛ*\n\n' +
+            '> `.pinchat 628xxx` — Fijar chat\n' +
+            '> `.pinchat` (en chat privado) — Fijar este chat\n' +
+            '> `.pinchat buka 628xxx` — Quitar fijado'
         )
     }
 
@@ -50,11 +50,11 @@ async function handler(m, { sock }) {
         const target = targetJid.split('@')[0]
         return m.reply(
             pin
-                ? `📌 *ᴄʜᴀᴛ ᴅɪᴘɪɴ*\n\n> Target: ${target}`
-                : `📍 *ᴘɪɴ ᴅɪʜᴀᴘᴜs*\n\n> Target: ${target}`
+                ? `📌 *ᴄʜᴀᴛ ꜰɪᴊᴀᴅᴏ*\n\n> Target: ${target}`
+                : `📍 *ꜰɪᴊᴀᴅᴏ ᴇʟɪᴍɪɴᴀᴅᴏ*\n\n> Target: ${target}`
         )
     } catch (err) {
-        return m.reply(`❌ Gagal: ${err.message}`)
+        return m.reply(`❌ Error: ${err.message}`)
     }
 }
 

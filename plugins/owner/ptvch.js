@@ -1,18 +1,18 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'ptvch',
     alias: ['ptvchanel', 'ptvstory'],
     category: 'owner',
-    description: 'Kirim video sebagai PTV ke channel',
-    usage: '.ptvch (reply video)',
+    description: 'Enviar video como PTV al canal',
+    usage: '.ptvch (responder video)',
     example: '.ptvch',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,27 +23,27 @@ async function handler(m, { sock }) {
         try {
             video = await m.quoted.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video dari quoted.`)
+            return m.reply(`❌ Fallo al descargar el video citado.`)
         }
     } else if (m.isVideo) {
         try {
             video = await m.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video.`)
+            return m.reply(`❌ Fallo al descargar el video.`)
         }
     }
     
     if (!video) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Kirim *video* atau *balas video* lalu ketik:\n` +
+            `⚠️ *ᴄᴏ́ᴍᴏ ᴜsᴀʀʟᴏ*\n\n` +
+            `> Envía un *video* o *responde a un video* y escribe:\n` +
             `> \`${m.prefix}ptvch\``
         )
     }
     
     const channelId = config.saluran?.id || '120363404849776664@newsletter'
     
-    await m.reply(`🕕 *ᴍᴇɴɢɪʀɪᴍ ᴘᴛᴠ ᴋᴇ ᴄʜᴀɴɴᴇʟ...*`)
+    await m.reply(`🕕 *ᴇɴᴠɪᴀɴᴅᴏ ᴘᴛᴠ ᴀʟ ᴄᴀɴᴀʟ...*`)
     
     try {
         await sock.sendMessage(channelId, {
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
         })
         
         await m.react('✅')
-        return m.reply(`✅ *sᴜᴋsᴇs*\n\n> Video berhasil dikirim ke channel sebagai PTV.`)
+        return m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> Video enviado al canal como PTV.`)
         
     } catch (err) {
         return m.reply(te(m.prefix, m.command, m.pushName))

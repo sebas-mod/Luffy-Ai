@@ -1,21 +1,21 @@
 import fs from "fs";
 import path from "path";
-import { unloadPlugin } from "../../src/lib/ourin-plugins.js";
-import te from "../../src/lib/ourin-error.js";
+import { unloadPlugin } from "../../src/lib/luffy-plugins.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "delplugin",
   alias: ["delpl", "hapusplugin", "removeplugin"],
   category: "owner",
-  description: "Hapus plugin berdasarkan nama",
-  usage: ".delplugin <nama>",
+  description: "Eliminar un plugin por su nombre",
+  usage: ".delplugin <nombre>",
   example: ".delplugin bliblidl",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `Halo *${m.pushName}*, sepertinya kamu lupa memasukkan nama plugin yang ingin dihapus.\n\n` +
-      `Silakan gunakan format perintah berikut:\n` +
-      `- .delplugin <nama plugin>\n\n` +
-      `Contoh penggunaan:\n` +
+      `Hola *${m.pushName}*, parece que olvidaste poner el nombre del plugin que quieres eliminar.\n\n` +
+      `Por favor usa el siguiente formato de comando:\n` +
+      `- .delplugin <nombre del plugin>\n\n` +
+      `Ejemplo de uso:\n` +
       `- .delplugin bliblidl`
     );
   }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`Maaf *${m.pushName}*, plugin dengan nama ${name} tidak dapat ditemukan.`);
+      return m.reply(`Lo siento *${m.pushName}*, no se encontró el plugin con el nombre ${name}.`);
     }
 
     let unloadResult = { success: false };
@@ -73,11 +73,11 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     let replyText =
-      `Proses selesai! Plugin berhasil dihapus dari sistem.\n\n` +
-      `- File: ${found.file}\n` +
-      `- Folder: ${found.folder}\n` +
-      `- Status Unload: ${unloadResult.success ? "Berhasil" : "Pending"}\n\n` +
-      `Plugin tersebut sudah dihapus dan tidak aktif lagi.`;
+      `¡Proceso completado! El plugin se eliminó correctamente del sistema.\n\n` +
+      `- Archivo: ${found.file}\n` +
+      `- Carpeta: ${found.folder}\n` +
+      `- Estado de descarga: ${unloadResult.success ? "Exitoso" : "Pendiente"}\n\n` +
+      `El plugin ya fue eliminado y ya no está activo.`;
 
     return m.reply(replyText);
   } catch (error) {

@@ -147,7 +147,7 @@ async function Txt2Img2(prompt) {
     const check = await checkPrompt(prompt);
 
     if (check.flagged) {
-      return { status: false, code: 400, prompt, error: "Prompt terdeteksi tidak aman" };
+      return { status: false, code: 400, prompt, error: "Prompt detectado como no seguro" };
     }
 
     if (check.rateLimited) {
@@ -178,7 +178,7 @@ async function Txt2Img2(prompt) {
     const eventId = joinRes.data?.event_id;
 
     if (!eventId) {
-      return { status: false, code: 500, prompt, error: "event_id tidak ditemukan" };
+      return { status: false, code: 500, prompt, error: "event_id no encontrado" };
     }
 
     const url = await getResult(sessionHash, eventId);

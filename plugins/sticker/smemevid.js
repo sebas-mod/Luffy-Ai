@@ -12,27 +12,27 @@ const pluginConfig = {
     name: 'smemevid',
     alias: ['smemevideo', 'memevid'],
     category: 'sticker',
-    description: 'Membuat sticker meme dari video',
-    usage: '.smemevid <top>|<bottom>',
+    description: 'Crea sticker meme a partir de un video',
+    usage: '.smemevid <superior>|<inferior>',
     example: '.smemevid WIDTH OR HEIGHT|WHY NOT BOTH?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 15,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const isVideo = m.isVideo || (m.quoted && m.quoted.isVideo) || (m.quoted && m.quoted.type === 'videoMessage')
     if (!isVideo) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Reply atau kirim video dengan caption\n\n\`Contoh: ${m.prefix}smemevid Top|Bottom\``)
+        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Responde o envía un video con el caption\n\n\`Ejemplo: ${m.prefix}smemevid Arriba|Abajo\``)
     }
 
     const input = m.args.join(' ')
     if (!input || !input.includes('|')) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Format: top|bottom\n\n\`Contoh: ${m.prefix}smemevid WIDTH OR HEIGHT|WHY NOT BOTH?\``)
+        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Formato: superior|inferior\n\n\`Ejemplo: ${m.prefix}smemevid WIDTH OR HEIGHT|WHY NOT BOTH?\``)
     }
 
     const [top, bottom] = input.split('|').map(s => s.trim().toUpperCase())
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
         if (!mediaBuffer) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mengunduh video`)
+            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el video`)
         }
 
         const tempId = Date.now()
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
                 .on('error', (err) => reject(err))
         })
 
-        const stickerConfig = config.sticker || { packname: 'Ourin-AI', author: 'Bot' }
+        const stickerConfig = config.sticker || { packname: 'Luffy-Ai', author: 'Bot' }
 
         await sock.sendVideoAsSticker(m.chat, outputVideo, m, {
             packname: stickerConfig.packname,
@@ -143,7 +143,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         m.react('☢')
-        m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Terjadi kesalahan saat memproses video`)
+        m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> Ocurrió un error al procesar el video`)
     }
 }
 

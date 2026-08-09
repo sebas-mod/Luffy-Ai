@@ -1,19 +1,19 @@
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
 import config from "../../config.js";
 const pluginConfig = {
   name: "gpt4o",
   alias: ["gpt4"],
   category: "ai",
-  description: "Chat dengan GPT-4o",
-  usage: ".gpt4o <pertanyaan>",
-  example: ".gpt4o Hai apa kabar?",
+  description: "Chat con GPT-4o",
+  usage: ".gpt4o <pregunta>",
+  example: ".gpt4o Hola, ¿cómo estás?",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `🧠 *ɢᴘᴛ-4ᴏ*\n\n> Masukkan pertanyaan\n\n\`Contoh: ${m.prefix}gpt4o Hai apa kabar?\``,
+      `🧠 *ɢᴘᴛ-4ᴏ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}gpt4o Hola, ¿cómo estás?\``,
     );
   }
 
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const data = `https://api.nexray.eu.cc/ai/gpt-3.5-turbo?text=${encodeURIComponent(text)}`
     const res = await fetch(data)
     const json = await res.json()
-    if (!json.status || !json.result) throw new Error("Gagal mendapatkan response")
+    if (!json.status || !json.result) throw new Error("No se pudo obtener la respuesta")
     m.react("✅");
     await m.reply(`${json.result}`);
   } catch (error) {

@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'stop',
     alias: ['shutdown', 'kill'],
     category: 'owner',
-    description: 'Stop bot process',
+    description: 'Detener el proceso del bot',
     usage: '.stop',
     example: '.stop',
     isOwner: true,
@@ -10,17 +10,17 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
-    await m.reply('🛑 *Stopping Bot...*\n\n> Bot dimatikan. Harus dinyalakan manual dari terminal.')
+    await m.reply('🛑 *Deteniendo el Bot...*\n\n> El bot se apagó. Debe encenderse manualmente desde la terminal.')
     console.log('Stopping via command...')
     
-    // Allow message to send before exit
+    // Permitir que el mensaje se envíe antes de salir
     setTimeout(() => {
-        process.exit(1) // Exit code 1 usually stops auto-restart in simple loops
+        process.exit(1) // El código de salida 1 detiene el auto-restart en bucles simples
     }, 1000)
 }
 

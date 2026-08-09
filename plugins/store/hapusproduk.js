@@ -1,18 +1,18 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "hapusproduk",
   alias: ["delproduk", "delproduct", "deleteproduk"],
   category: "store",
-  description: "🗑️ Hapus produk dari toko",
-  usage: ".hapusproduk <nomor>",
+  description: "🗑️ Eliminar producto de la tienda",
+  usage: ".hapusproduk <numero>",
   example: ".hapusproduk 1",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -22,14 +22,14 @@ async function handler(m, { sock }) {
 
   if (products.length === 0) {
     return m.reply(
-      `📭 *Belum ada produk.*\n\nTambahkan produk terlebih dahulu dengan \`${m.prefix}addproduk\` ➕`,
+      `📭 *Aún no hay productos.*\n\nAgrega primero un producto con \`${m.prefix}addproduk\` ➕`,
     );
   }
 
   const idx = parseInt(m.text?.trim()) - 1;
 
   if (isNaN(idx) || idx < 0 || idx >= products.length) {
-    let txt = `🗑️ *Pilih Produk yang Dihapus*\n\nKetik \`${m.prefix}hapusproduk <nomor>\`\n\n`;
+    let txt = `🗑️ *Elige el Producto a Eliminar*\n\nEscribe \`${m.prefix}hapusproduk <numero>\`\n\n`;
     for (let i = 0; i < products.length; i++) {
       const p = products[i];
       const typeIcon = p.type === "fisik" ? "📦" : "🔑";
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
           ? p.stock === -1
             ? "♾️"
             : `${p.stock} pcs`
-          : `${p.stockItems?.length || 0} akun`;
+          : `${p.stockItems?.length || 0} cuentas`;
       txt += `${typeIcon} *${i + 1}.* ${p.name} — Rp ${p.price.toLocaleString("id-ID")} (${stockDisplay})\n`;
     }
     return m.reply(txt);
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `🗑️ *PRODUK DIHAPUS*\n\n` +
-      `${typeIcon} Nama: *${deleted.name}*\n` +
-      `💰 Harga: *Rp ${deleted.price.toLocaleString("id-ID")}*\n` +
-      `📊 Stok terhapus: *${deleted.type === "fisik" ? deleted.stock + " pcs" : (deleted.stockItems?.length || 0) + " akun"}*\n\n` +
-      `⚠️ _Produk telah dihapus secara permanen dan tidak dapat dikembalikan._`,
+    `🗑️ *PRODUCTO ELIMINADO*\n\n` +
+      `${typeIcon} Nombre: *${deleted.name}*\n` +
+      `💰 Precio: *Rp ${deleted.price.toLocaleString("id-ID")}*\n` +
+      `📊 Stock eliminado: *${deleted.type === "fisik" ? deleted.stock + " pcs" : (deleted.stockItems?.length || 0) + " cuentas"}*\n\n` +
+      `⚠️ _El producto fue eliminado permanentemente y no se puede recuperar._`,
   );
 }
 

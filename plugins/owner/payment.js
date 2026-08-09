@@ -1,5 +1,5 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
   name: 'payment',
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true
 }
 
@@ -26,10 +26,10 @@ function buildPaymentText(paymentCfg, customText, botName, ownerName) {
       .replace(/\{owner\}/gi, ownerName)
       .replace(/\{methods\}/gi, methods.map(m => `• *${m.name}*: ${m.number} (${m.holder || m.name})`).join('\n'))
       .replace(/\{banks\}/gi, banks.map(b => `• *${b.name}*: ${b.number} (${b.holder || b.name})`).join('\n'))
-      .replace(/\{qris\}/gi, paymentCfg.qrisUrl ? '✅ Tersedia' : '❌ Belum diatur')
+      .replace(/\{qris\}/gi, paymentCfg.qrisUrl ? '✅ Disponible' : '❌ No configurado')
   }
 
-  let text = `💳 *P A Y M E N T*\n`
+  let text = `💳 *P A G O*\n`
   text += `━━━━━━━━━━━━━━━━━━\n\n`
 
   if (methods.length > 0) {
@@ -43,7 +43,7 @@ function buildPaymentText(paymentCfg, customText, botName, ownerName) {
   }
 
   if (banks.length > 0) {
-    text += `🏦 *Bank Transfer:*\n`
+    text += `🏦 *Transferencia Bancaria:*\n`
     for (const b of banks) {
       text += `├─ • *${b.name}*\n`
       text += `│  \`${b.number}\`\n`
@@ -53,7 +53,7 @@ function buildPaymentText(paymentCfg, customText, botName, ownerName) {
   }
 
   if (paymentCfg.qrisUrl) {
-    text += `📸 *QRIS:* Tersedia (lihat gambar)\n\n`
+    text += `📸 *QRIS:* Disponible (ver imagen)\n\n`
   }
 
   text += `━━━━━━━━━━━━━━━━━━\n`

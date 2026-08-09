@@ -1,12 +1,12 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import config from '../../config.js'
 
 const pluginConfig = {
     name: 'tiktokstalk',
     alias: ['ttstalk', 'stalktt'],
     category: 'stalker',
-    description: 'Stalk akun TikTok',
+    description: 'Buscar perfil de TikTok',
     usage: '.tiktokstalk <username>',
     example: '.tiktokstalk mrbeast',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]?.replace('@', '')
     
     if (!username) {
-        return m.reply(`🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Masukkan username TikTok\n\n\`Contoh: ${m.prefix}tiktokstalk mrbeast\``)
+        return m.reply(`🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Ingresa el username de TikTok\n\n\`Ejemplo: ${m.prefix}tiktokstalk mrbeast\``)
     }
     
     m.react('🔍')
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Username *@${username}* tidak ditemukan`)
+            return m.reply(`❌ Username *@${username}* no fue encontrado`)
         }
         
         const d = res.data.data
@@ -51,12 +51,12 @@ async function handler(m, { sock }) {
         
         const caption = `🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n` +
             `👤 *Username:* @${d.username}\n` +
-            `📛 *Nama:* ${d.nickname}\n` +
-            `✅ *Verified:* ${d.verified ? 'Ya' : 'Tidak'}\n` +
-            `🔒 *Private:* ${d.private ? 'Ya' : 'Tidak'}\n\n` +
-            `👥 *Followers:* ${shortNum(s.followers)}\n` +
-            `👤 *Following:* ${shortNum(s.following)}\n` +
-            `❤️ *Likes:* ${shortNum(s.hearts)}\n` +
+            `📛 *Nombre:* ${d.nickname}\n` +
+            `✅ *Verificado:* ${d.verified ? 'Sí' : 'No'}\n` +
+            `🔒 *Privado:* ${d.private ? 'Sí' : 'No'}\n\n` +
+            `👥 *Seguidores:* ${shortNum(s.followers)}\n` +
+            `👤 *Siguiendo:* ${shortNum(s.following)}\n` +
+            `❤️ *Me gusta:* ${shortNum(s.hearts)}\n` +
             `🎬 *Videos:* ${shortNum(s.videos)}\n\n` +
             `📝 *Bio:*\n${d.signature || '-'}\n\n` +
             `🔗 https://tiktok.com/@${d.username}`

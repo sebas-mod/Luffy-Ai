@@ -1,17 +1,17 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'setintro',
     alias: ['setperkenalan', 'introset'],
     category: 'group',
-    description: 'Set pesan intro grup (admin only)',
-    usage: '.setintro <pesan>',
-    example: '.setintro Selamat datang @user di @group!',
+    description: 'Configurar el mensaje de intro del grupo (admin only)',
+    usage: '.setintro <mensaje>',
+    example: '.setintro Bienvenido @user a @group!',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true
 }
@@ -22,18 +22,18 @@ async function handler(m) {
     
     if (!introText) {
         return m.reply(
-            `📝 *sᴇᴛ ɪɴᴛʀᴏ*\n\n` +
-            `> Masukkan pesan intro!\n\n` +
-            `*Placeholder yang tersedia:*\n` +
-            `> @user - Nama pengguna\n` +
-            `> @group - Nama grup\n` +
-            `> @count - Jumlah member\n` +
-            `> @date - Tanggal hari ini\n` +
-            `> @time - Waktu sekarang\n` +
-            `> @desc - Deskripsi grup\n` +
-            `> @botname - Nama bot\n\n` +
-            `*Contoh:*\n` +
-            `> .setintro Selamat datang @user di grup @group! 👋`
+            `📝 *ᴄᴏɴꜰɪɢᴜʀᴀʀ ɪɴᴛʀᴏ*\n\n` +
+            `> Ingresa el mensaje de intro!\n\n` +
+            `*Placeholders disponibles:*\n` +
+            `> @user - Nombre del usuario\n` +
+            `> @group - Nombre del grupo\n` +
+            `> @count - Cantidad de miembros\n` +
+            `> @date - Fecha de hoy\n` +
+            `> @time - Hora actual\n` +
+            `> @desc - Descripción del grupo\n` +
+            `> @botname - Nombre del bot\n\n` +
+            `*Ejemplo:*\n` +
+            `> .setintro Bienvenido @user al grupo @group! 👋`
         )
     }
     
@@ -43,9 +43,9 @@ async function handler(m) {
     db.save()
     
     await m.reply(
-        `✅ *ɪɴᴛʀᴏ ᴅɪsᴀᴠᴇ!*\n` +
-        `Pesan intro grup berhasil diubah.\n` +
-        `Ketik *${m.prefix}intro* untuk melihat hasilnya.`
+        `✅ *ɪɴᴛʀᴏ ɢᴜᴀʀᴅᴀᴅᴏ!*\n` +
+        `El mensaje de intro del grupo se cambió correctamente.\n` +
+        `Escribe *${m.prefix}intro* para ver el resultado.`
     )
 }
 

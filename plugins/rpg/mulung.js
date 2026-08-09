@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "mulung",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 300,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -28,21 +28,21 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Yaela kak, mulung aja butuh tenaga kali! 🥵🗑️\n\nStamina kamu sisa *${user.rpg.stamina}*, padahal butuh *${staminaCost}*. Istirahat gih! 🛌💤`);
+    return m.reply(`Vaya bro, ¡hasta para recolectar basura necesitas energía! 🥵🗑️\n\nSolo te quedan *${user.rpg.stamina}*, pero necesitas *${staminaCost}*. ¡Descansa! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("🗑️");
-  await m.reply(`Mengorek tempat sampah dengan penuh harapan... 🗑️👀\nSemoga hari ini dapet barang bagus! ✨`);
+  await m.reply(`Rebuscando en la basura con mucha esperanza... 🗑️👀\n¡Ojalá hoy encuentres algo bueno! ✨`);
   await new Promise((r) => setTimeout(r, 3000));
 
   const drops = [
-    { item: "botol", name: "🍶 Botol", min: 1, max: 10 },
-    { item: "kaleng", name: "🥫 Kaleng", min: 1, max: 8 },
-    { item: "kardus", name: "📦 Kardus", min: 1, max: 5 },
-    { item: "sampah", name: "🗑️ Sampah", min: 1, max: 15 },
-    { item: "koran", name: "📰 Koran", min: 0, max: 3 },
+    { item: "botol", name: "🍶 Botella", min: 1, max: 10 },
+    { item: "kaleng", name: "🥫 Lata", min: 1, max: 8 },
+    { item: "kardus", name: "📦 Cartón", min: 1, max: 5 },
+    { item: "sampah", name: "🗑️ Basura", min: 1, max: 15 },
+    { item: "koran", name: "📰 Periódico", min: 0, max: 3 },
   ];
 
   let results = [];
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     }
   }
 
-  user.koin = (user.koin || 0) + moneyEarned;
+  user.berry = (user.berry || 0) + moneyEarned;
 
   const expGain = Math.floor(Math.random() * 200) + 50;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
@@ -66,16 +66,16 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `ASIK DAPET RONGSOKAN! 🗑️💸\n\n`;
-  txt += `Kamu berhasil ngumpulin barang rongsokan nih kak:\n`;
+  let txt = `¡GENIAL, ENCONTRASTE CHATARRA! 🗑️💸\n\n`;
+  txt += `Lograste juntar estos objetos bro:\n`;
   for (const r of results) {
     txt += `• ${r.name}: *+${r.qty}*\n`;
   }
-  txt += `\nRongsokannya langsung dijual ke pengepul ya!\n`;
-  txt += `💵 Hasil Jual: *+Rp ${moneyEarned.toLocaleString("id-ID")}*\n`;
+  txt += `\n¡La chatarra se vende directo al reciclador!\n`;
+  txt += `💵 Ganancia de la Venta: *+Rp ${moneyEarned.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
-  txt += `⚡ Stamina terpakai: *-${staminaCost}*\n\n`;
-  txt += `Teruslah memulung sampai kaya raya! 🔥🚀`;
+  txt += `⚡ Resistencia usada: *-${staminaCost}*\n\n`;
+  txt += `¡Sigue recolectando hasta volverte rico! 🔥🚀`;
 
   m.reply(txt);
 }

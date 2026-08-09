@@ -4,13 +4,13 @@ import {
   generateWAMessageFromContent,
   jidNormalizedUser,
 } from "ourin";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import { tiktokSearchVideo } from "../../src/scraper/tiktoksearch.js";
 const pluginConfig = {
   name: "ttsearch",
   alias: ["tiktoksearch", "tts", "searchtiktok"],
   category: "search",
-  description: "Cari video TikTok",
+  description: "Busca videos de TikTok",
   usage: ".ttsearch <query>",
   example: ".ttsearch jj epep",
   isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -27,13 +27,13 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ sᴇᴀʀᴄʜ* 」
+      `╭┈┈⬡「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
 ┃
-㊗ ᴜsᴀɢᴇ: \`${m.prefix}ttsearch <query>\`
+㊗ ᴜsᴏ: \`${m.prefix}ttsearch <query>\`
 ┃
 ╰┈┈⬡
 
-> \`Contoh: ${m.prefix}ttsearch anime\``,
+> \`Ejemplo: ${m.prefix}ttsearch anime\``,
     );
   }
 
@@ -44,19 +44,19 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const maxShow = Math.min(videos.length, 5);
     const mediaList = videos.slice(0, maxShow).map((video) => ({
       video: { url: video.link },
       mimetype: "video/mp4",
-      caption: `🎵 *TIKTOK SEARCH*
+      caption: `🎵 *BÚSQUEDA TIKTOK*
 
 📌 ${video.title || "-"}
 👤 ${video.author?.nickname || "-"}
-👀 ${video.stats?.plays || 0} views
-❤️ ${video.stats?.likes || 0} likes`,
+👀 ${video.stats?.plays || 0} vistas
+❤️ ${video.stats?.likes || 0} me gusta`,
       contextInfo: {
         forwardingScore: 99,
         isForwarded: true,

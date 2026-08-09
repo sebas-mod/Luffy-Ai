@@ -1,18 +1,18 @@
 import { nightActionHandler } from './werewolf.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'wwprotect',
     alias: ['protect', 'guardian', 'wpr'],
     category: 'game',
     description: 'Guardian night action - Protect target',
-    usage: '.wwprotect <nomor>',
+    usage: '.wwprotect <número>',
     example: '.wwprotect 3',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 

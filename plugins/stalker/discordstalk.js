@@ -1,14 +1,14 @@
 import axios from 'axios'
 import config from '../../config.js'
-import * as timeHelper from '../../src/lib/ourin-time.js'
-import te from '../../src/lib/ourin-error.js'
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+import * as timeHelper from '../../src/lib/luffy-time.js'
+import te from '../../src/lib/luffy-error.js'
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "discordstalk",
   alias: ["dcstalk", "dsstalk", "stalkdc", "stalkdiscord"],
   category: "stalker",
-  description: "Stalk akun Discord berdasarkan User ID",
+  description: "Buscar perfil de Discord por User ID",
   usage: ".discordstalk <userid>",
   example: ".discordstalk 297574907510784000",
   isOwner: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -26,13 +26,13 @@ async function handler(m, { sock }) {
   if (!userId) {
     return m.reply(
       `🎮 *ᴅɪsᴄᴏʀᴅ sᴛᴀʟᴋ*\n\n` +
-        `> Masukkan Discord User ID\n\n` +
-        `\`Contoh: ${m.prefix}discordstalk 297574907510784000\``,
+        `> Ingresa el User ID de Discord\n\n` +
+        `\`Ejemplo: ${m.prefix}discordstalk 297574907510784000\``,
     );
   }
 
   if (!/^\d+$/.test(userId)) {
-    return m.reply(`❌ User ID harus berupa angka. Contoh: 297574907510784000`);
+    return m.reply(`❌ El User ID debe ser un número. Ejemplo: 297574907510784000`);
   }
 
   m.react("🔍");
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
     if (!res.data?.status || !res.data?.data) {
       m.react("❌");
-      return m.reply(`❌ User ID *${userId}* tidak ditemukan`);
+      return m.reply(`❌ User ID *${userId}* no fue encontrado`);
     }
 
     const d = res.data.data;
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
       `📛 *Display Name:* ${d.global_name || "-"}\n` +
       `🔢 *Discriminator:* #${d.discriminator || "0"}\n` +
       `🆔 *User ID:* ${d.id}\n\n` +
-      `📅 *Dibuat:* ${createdDate}\n\n` +
+      `📅 *Creado:* ${createdDate}\n\n` +
       `> _Discord User Lookup_`;
 
     m.react("✅");

@@ -6,7 +6,7 @@ import os from "os";
 import { execFile } from "child_process";
 import { promisify } from "util";
 import fetch from "node-fetch";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 
 const execFileAsync = promisify(execFile);
@@ -15,15 +15,15 @@ const pluginConfig = {
   name: "bratlocal",
   alias: ["bratgojo", "bratgojovid", "bratvermeil", "bratvermeilvid"],
   category: "canvas",
-  description: "Bikin brat versi lokal (Gojo & Vermeil)",
-  usage: ".bratgojo <teks>",
+  description: "Crea brat versión local (Gojo & Vermeil)",
+  usage: ".bratgojo <texto>",
   example: ".bratgojo Halo",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -386,7 +386,7 @@ async function createBratVideo(text, template) {
 async function handler(m, { sock }) {
   const text = m.text;
   if (!text) {
-    return m.reply(`⚠️ Harap masukkan teksnya!\nContoh: \`${m.prefix}${m.command} Halo semuanya\``);
+    return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
   }
 
   await m.react("🕕");

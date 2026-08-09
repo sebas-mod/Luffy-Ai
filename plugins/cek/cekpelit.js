@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekpelit',
     alias: ['pelit', 'kikir'],
     category: 'cek',
-    description: 'Cek seberapa pelit kamu',
-    usage: '.cekpelit <nama>',
+    description: 'Comprueba cuán tacaño eres',
+    usage: '.cekpelit <nombre>',
     example: '.cekpelit Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'SUPER PELIT! Duit dijaga mati-matian! 💸'
+        desc = '¡SUPER TACAÑO! ¡Cuida el dinero como su vida! 💸'
     } else if (percent >= 70) {
-        desc = 'Pelit banget! 🙊'
+        desc = '¡Muy tacaño! 🙊'
     } else if (percent >= 50) {
-        desc = 'Lumayan pelit 😅'
+        desc = 'Bastante tacaño 😅'
     } else if (percent >= 30) {
-        desc: 'Sedikit hemat 😊'
+        desc: 'Un poco ahorrador 😊'
     } else {
-        desc = 'Dermawan banget! 🎁'
+        desc = '¡Muy generoso! 🎁'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kepelitan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kepelitan @${mentioned.split('@')[0]} yak? 
+Tu nivel de tacañería es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de tacañería de @${mentioned.split('@')[0]}? 
     
-Tingkat kepelitan dia sebesar *${percent}%*
+Su nivel de tacañería es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

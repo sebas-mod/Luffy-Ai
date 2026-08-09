@@ -1,14 +1,14 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import axios from "axios";
 import config from "../../config.js";
 import fs from "fs";
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import te from "../../src/lib/ourin-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "android1",
   alias: ["an1"],
   category: "search",
-  description: "Cari dan download APK MOD dari Android1",
+  description: "Busca y descarga APK MOD de Android1",
   usage: ".android1 <query>",
   example: ".android1 Subway Surfer",
   isOwner: false,
@@ -16,11 +16,11 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 async function handler(m, { sock }) {
   const db = getDatabase();
@@ -30,10 +30,10 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📱 *ᴀɴᴅʀᴏɪᴅ1 sᴇᴀʀᴄʜ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-        `┃ 🔍 \`${m.prefix}android1 <query>\` - Cari APK\n` +
+        `╭┈┈⬡「 📋 *ᴄᴏᴍᴏ ᴜsᴀʀ* 」\n` +
+        `┃ 🔍 \`${m.prefix}android1 <query>\` - Buscar APK\n` +
         `╰┈┈⬡\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `\`${m.prefix}android1 Subway Surfer\``,
     );
   }
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: \`${text}\``);
+      return m.reply(`❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 10);
@@ -65,10 +65,10 @@ async function handler(m, { sock }) {
     db.save();
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `📱 Hasil dari pencarian apk mod *${text}*\n`;
-    caption += `*${apps.length}* aplikasi ditemukan\n\n`;
+    let caption = `📱 Resultados de la búsqueda de apk mod *${text}*\n`;
+    caption += `*${apps.length}* aplicaciones encontradas\n\n`;
 
     apps.forEach((app, i) => {
       caption += `*${i + 1}.* ${app.name}\n`;
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
       caption += `   └ ⭐ ${app.rating}/5\n\n`;
     });
 
-    caption += `> Pilih angka untuk download langsung`;
+    caption += `> Elige un número para descargar directamente`;
 
     const buttons = apps.slice(0, 10).map((app, i) => ({
       title: `${i + 1}. ${app.name.substring(0, 20)}`,
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendButton(
       m.chat,
-      getAssetBuffer("ourin"),
+      getAssetBuffer("luffy"),
       caption,
       m,
       {
@@ -95,10 +95,10 @@ async function handler(m, { sock }) {
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: "Pilih APK",
+              title: "Elegir APK",
               sections: [
                 {
-                  title: "APK nya",
+                  title: "Los APK",
                   rows: buttons,
                 },
               ],

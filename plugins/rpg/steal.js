@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "steal",
@@ -13,17 +13,17 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 300,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
 const TARGETS = [
-  { name: "👨‍🌾 Petani Lengah", difficulty: 1, minGold: 50, maxGold: 150, catchChance: 10 },
-  { name: "👨‍💼 Pedagang Keliling", difficulty: 2, minGold: 100, maxGold: 300, catchChance: 20 },
-  { name: "🧙‍♂️ Penyihir Tua", difficulty: 3, minGold: 200, maxGold: 500, catchChance: 30 },
-  { name: "⚔️ Ksatria Kerajaan", difficulty: 4, minGold: 300, maxGold: 800, catchChance: 40 },
-  { name: "👑 Bangsawan Sombong", difficulty: 5, minGold: 500, maxGold: 1500, catchChance: 50 },
-  { name: "🏰 Raja Tiran", difficulty: 6, minGold: 1000, maxGold: 3000, catchChance: 60 },
+  { name: "👨‍🌾 Campesino Distraído", difficulty: 1, minGold: 50, maxGold: 150, catchChance: 10 },
+  { name: "👨‍💼 Vendedor Ambulante", difficulty: 2, minGold: 100, maxGold: 300, catchChance: 20 },
+  { name: "🧙‍♂️ Viejo Hechicero", difficulty: 3, minGold: 200, maxGold: 500, catchChance: 30 },
+  { name: "⚔️ Caballero del Reino", difficulty: 4, minGold: 300, maxGold: 800, catchChance: 40 },
+  { name: "👑 Noble Arrogante", difficulty: 5, minGold: 500, maxGold: 1500, catchChance: 50 },
+  { name: "🏰 Rey Tirano", difficulty: 6, minGold: 1000, maxGold: 3000, catchChance: 60 },
 ];
 
 async function handler(m, { sock }) {
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Hadeh... mau jadi pencuri kok loyo? 😴\nButuh *${staminaCost} Stamina* buat nyusup, lu cuma punya *${user.rpg.stamina}*. Istirahat gih!`);
+    return m.reply(`Vaya... ¿ladrón y tan cansado? 😴\nNecesitas *${staminaCost} de Resistencia* para colarte, solo tienes *${user.rpg.stamina}*. ¡Descansa!`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
 
   if (availableTargets.length === 0) {
     db.save();
-    return m.reply(`Level lu masih bocil (Level ${userLevel}). Target paling rendahan aja minimal butuh *Level 3* biar lu nggak mati konyol! 😂`);
+    return m.reply(`Tu nivel es muy bajo (Nivel ${userLevel}). Hasta el objetivo más fácil necesita *Nivel 3* para que no mueras de forma ridícula! 😂`);
   }
 
   const target = availableTargets[Math.floor(Math.random() * availableTargets.length)];
 
   await m.react("🥷");
-  await m.reply(`*Ngendap-ngendap...* Memanjat tembok rumah *${target.name}*... 🥷⚔️`);
+  await m.reply(`*Escabulléndose...* Escalando la pared de la casa de *${target.name}*... 🥷⚔️`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const luckBonus = (user.rpg.luck || 5) * 2;
@@ -61,30 +61,30 @@ async function handler(m, { sock }) {
   const isCaught = Math.random() * 100 < adjustedCatchChance;
 
   if (isCaught) {
-    const goldLoss = Math.floor((user.koin || 0) * 0.1);
+    const goldLoss = Math.floor((user.berry || 0) * 0.1);
     const healthLoss = 10 + target.difficulty * 5;
 
-    user.koin = Math.max(0, (user.koin || 0) - goldLoss);
+    user.berry = Math.max(0, (user.berry || 0) - goldLoss);
     user.rpg.health = Math.max(1, (user.rpg.health || 100) - healthLoss);
 
     db.save();
 
     await m.react("💀");
     return m.reply(
-      `SIAAALLLL!! KESANDUNG POT BUNGA!! 💥🚨\n\n` +
-        `Si *${target.name}* langsung kebangun dan mukulin lu abis-abisan!\n\n` +
-        `*Kerugian:* \n` +
-        `💸 Duit berceceran: *-Rp ${goldLoss.toLocaleString()}*\n` +
-        `❤️ Kena Pukul: *-${healthLoss} HP*\n` +
-        `⚡ Stamina Buat Kabur: *-${staminaCost}*\n\n` +
-        `*Tips:* Banyakin stat *Luck* biar langkah kaki lu nggak bersuara bro!`
+      `¡¡MALDITOOO!! ¡TROPECÉ CON UNA MACETA!! 💥🚨\n\n` +
+        `¡*${target.name}* se despertó al instante y te golpeó sin piedad!\n\n` +
+        `*Pérdidas:* \n` +
+        `💸 Dinero regado: *-Rp ${goldLoss.toLocaleString()}*\n` +
+        `❤️ Golpes Recibidos: *-${healthLoss} HP*\n` +
+        `⚡ Resistencia para huir: *-${staminaCost}*\n\n` +
+        `*Consejo:* ¡Sube la estadística de *Suerte* para que tus pasos no suenen bro!`
     );
   }
 
   const goldStolen = Math.floor(Math.random() * (target.maxGold - target.minGold)) + target.minGold;
   const expReward = 50 + target.difficulty * 30;
 
-  user.koin = (user.koin || 0) + goldStolen;
+  user.berry = (user.berry || 0) + goldStolen;
   await addExpWithLevelCheck(sock, m, db, user, expReward);
 
   const bonusItem = Math.random() > 0.7;
@@ -93,20 +93,20 @@ async function handler(m, { sock }) {
     const items = ["potion", "key", "gem", "ring"];
     const item = items[Math.floor(Math.random() * items.length)];
     user.inventory[item] = (user.inventory[item] || 0) + 1;
-    bonusText = `\n📦 Bonus Jarahan: *${item} x1*`;
+    bonusText = `\n📦 Botín Extra: *${item} x1*`;
   }
 
   db.save();
 
   await m.react("💰");
   return m.reply(
-    `NINJA STRIKE BERHASIL! 🥷✨\n\n` +
-      `Lu berhasil ngejarah rumah *${target.name}* tanpa ketahuan sama sekali!\n\n` +
-      `*Hasil Jarahan:* \n` +
-      `💵 Emas Batangan: *+Rp ${goldStolen.toLocaleString()}*\n` +
-      `✨ EXP Menyusup: *+${expReward}*` +
+    `¡ATAQUE NINJA EXITOSO! 🥷✨\n\n` +
+      `¡Lograste saquear la casa de *${target.name}* sin que nadie se diera cuenta!\n\n` +
+      `*Botín Robado:* \n` +
+      `💵 Lingotes de Oro: *+Rp ${goldStolen.toLocaleString()}*\n` +
+      `✨ EXP por Colarte: *+${expReward}*` +
       `${bonusText}\n` +
-      `⚡ Stamina: *-${staminaCost}*`
+      `⚡ Resistencia: *-${staminaCost}*`
   );
 }
 

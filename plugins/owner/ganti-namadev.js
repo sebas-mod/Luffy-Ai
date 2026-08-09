@@ -1,19 +1,19 @@
 import fs from 'fs'
 import path from 'path'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'ganti-namadev',
     alias: ['setnamadev', 'setnamedev', 'gantideveloper'],
     category: 'owner',
-    description: 'Ganti nama developer di config.js',
-    usage: '.ganti-namadev <nama baru>',
+    description: 'Cambiar el nombre del developer en config.js',
+    usage: '.ganti-namadev <nombre nuevo>',
     example: '.ganti-namadev Lucky Archz',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,7 +21,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
     
     if (!newName) {
-        return m.reply(`👨‍💻 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ᴅᴇᴠᴇʟᴏᴘᴇʀ*\n\n> Nama saat ini: *${config.bot?.developer || '-'}*\n\n*Penggunaan:*\n\`${m.prefix}ganti-namadev <nama baru>\``)
+        return m.reply(`👨‍💻 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴅᴇᴠᴇʟᴏᴘᴇʀ*\n\n> Nombre actual: *${config.bot?.developer || '-'}*\n\n*Uso:*\n\`${m.prefix}ganti-namadev <nombre nuevo>\``)
     }
     
     try {
@@ -37,7 +37,7 @@ async function handler(m, { sock, config }) {
         
         config.bot.developer = newName
         
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama developer diganti ke: *${newName}*`)
+        m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del developer cambiado a: *${newName}*`)
         
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

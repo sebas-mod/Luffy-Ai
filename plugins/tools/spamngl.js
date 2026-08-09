@@ -1,28 +1,28 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'spamngl',
     alias: [],
     category: 'tools',
-    description: 'Send NGL Spam',
-    usage: '.spamngl <url> | <text> | <jumlah>',
-    example: '.spamngl https://ngl.link/xxxx | hai | 10',
+    description: 'Enviar Spam de NGL',
+    usage: '.spamngl <url> | <texto> | <cantidad>',
+    example: '.spamngl https://ngl.link/xxxx | hola | 10',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const text = m.text?.split('|')
     const [ link, kata, jumlah ] = text
-    if(!link) return m.reply(`*LINK NGL NYA MANA ??*\nContoh: \`${m?.prefix}spamngl https://ngl.link/xxxx | hai | 10`)
-    if(!kata) return m.reply(`*KATA KATA NYA MANA ??*\n\nContoh: \`${m?.prefix}spamngl https://ngl.link/xxxx | hai | 10`)
-    if(!jumlah) return m.reply(`*JUMLAH NYA MANA ??*\n\nContoh: \`${m?.prefix}spamngl https://ngl.link/xxxx | hai | 10`)
-    if(isNaN(jumlah)) return m.reply(`*JUMLAH NYA HARUS ANGKA*\n\nContoh: \`${m?.prefix}spamngl https://ngl.link/xxxx | hai | 10`)
+    if(!link) return m.reply(`*¿DÓNDE ESTÁ EL ENLACE NGL??*\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(!kata) return m.reply(`*¿Y EL MENSAJE??*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(!jumlah) return m.reply(`*¿Y LA CANTIDAD??*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(isNaN(jumlah)) return m.reply(`*LA CANTIDAD DEBE SER UN NÚMERO*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
     m.react('🎴')
     
     try {
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
         }
         await m.react('✅')
         await sock.sendMessage(m.chat, {
-            text: `✅ *DONE*\n\nBerhasil mengirim spam NGL Message!\nTarget: ${link}\nPesan: ${kata} (${jumlah}x)`
+            text: `✅ *HECHO*\n\nSe envió el spam de mensajes NGL correctamente!\nDestino: ${link}\nMensaje: ${kata} (${jumlah}x)`
         }, { quoted: m })
         
     } catch (error) {

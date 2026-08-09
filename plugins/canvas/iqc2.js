@@ -1,18 +1,18 @@
 import axios from 'axios';
-import te from '../../src/lib/ourin-error.js';
+import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
     name: "iqc2",
     alias: ["qc3"],
     category: "canvas",
-    description: "Membuat Fake Quote iOS style dengan informasi baterai dan provider.",
+    description: "Crea Fake Quote estilo iOS con información de batería y proveedor.",
     usage: ".iqc2 [text/reply]",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
@@ -22,10 +22,10 @@ async function handler(m, { sock, text }) {
         
         if (!targetText) {
             return m.reply(
-                `Halo *${m.pushName}*, sepertinya kamu belum memasukkan teksnya.\n\n` +
-                `Silakan gunakan perintah dengan format:\n` +
-                `- .iqc2 <teks kamu>\n` +
-                `- Atau balas (reply) pesan orang lain dengan .iqc2`
+                `Hola *${m.pushName}*, parece que aún no has ingresado el texto.\n\n` +
+                `Por favor, usa el comando con el formato:\n` +
+                `- .iqc2 <tu texto>\n` +
+                `- O responde al mensaje de otra persona con .iqc2`
             );
         }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock, text }) {
     } catch (error) {
         console.error("[IQC2 Plugin Error]", error);
         await m.react('❌');
-        m.reply(`Maaf *${m.pushName}*, terjadi kesalahan saat mencoba membuat gambar quote. Silakan coba lagi beberapa saat.`);
+        m.reply(`Lo siento *${m.pushName}*, ocurrió un error al intentar crear la imagen de quote. Inténtalo de nuevo en unos momentos.`);
     }
 }
 

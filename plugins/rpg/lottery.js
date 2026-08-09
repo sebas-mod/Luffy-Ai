@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "lottery",
@@ -13,23 +13,23 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const GACHA_POOL = [
-  { item: "trash", name: "🗑️ Sampah Busuk", chance: 30, rarity: "common" },
-  { item: "wood", name: "🪵 Kayu Bakar", chance: 20, qty: [3, 8], rarity: "common" },
-  { item: "iron", name: "🔩 Besi Bekas", chance: 15, qty: [2, 5], rarity: "common" },
-  { item: "gold", name: "🪙 Emas Batangan", chance: 10, qty: [1, 3], rarity: "uncommon" },
-  { item: "potion", name: "🧪 Ramuan Sakti", chance: 8, qty: [1, 3], rarity: "uncommon" },
-  { item: "diamond", name: "💎 Berlian Murni", chance: 5, qty: [1, 2], rarity: "rare" },
-  { item: "goldchest", name: "🎁 Peti Emas", chance: 3, qty: [1, 1], rarity: "rare" },
-  { item: "diamondchest", name: "💎 Peti Berlian", chance: 1.5, qty: [1, 1], rarity: "epic" },
-  { item: "mysterybox", name: "🎲 Kotak Misteri", chance: 0.8, qty: [1, 1], rarity: "epic" },
-  { item: "goldsword", name: "🗡️ Pedang Excalibur Emas", chance: 0.3, qty: [1, 1], rarity: "legendary" },
-  { item: "diamondarmor", name: "🛡️ Zirah Berlian Abadi", chance: 0.2, qty: [1, 1], rarity: "legendary" },
-  { item: "divinecore", name: "⚡ Inti Dewa (Divine Core)", chance: 0.1, qty: [1, 1], rarity: "mythic" },
+  { item: "trash", name: "🗑️ Basura Podrida", chance: 30, rarity: "common" },
+  { item: "wood", name: "🪵 Leña", chance: 20, qty: [3, 8], rarity: "common" },
+  { item: "iron", name: "🔩 Hierro Usado", chance: 15, qty: [2, 5], rarity: "common" },
+  { item: "gold", name: "🪙 Lingote de Oro", chance: 10, qty: [1, 3], rarity: "uncommon" },
+  { item: "potion", name: "🧪 Poción Mágica", chance: 8, qty: [1, 3], rarity: "uncommon" },
+  { item: "diamond", name: "💎 Diamante Puro", chance: 5, qty: [1, 2], rarity: "rare" },
+  { item: "goldchest", name: "🎁 Cofre de Oro", chance: 3, qty: [1, 1], rarity: "rare" },
+  { item: "diamondchest", name: "💎 Cofre de Diamante", chance: 1.5, qty: [1, 1], rarity: "epic" },
+  { item: "mysterybox", name: "🎲 Caja Misteriosa", chance: 0.8, qty: [1, 1], rarity: "epic" },
+  { item: "goldsword", name: "🗡️ Espada Excalibur Dorada", chance: 0.3, qty: [1, 1], rarity: "legendary" },
+  { item: "diamondarmor", name: "🛡️ Armadura de Diamante Eterna", chance: 0.2, qty: [1, 1], rarity: "legendary" },
+  { item: "divinecore", name: "⚡ Núcleo Divino (Divine Core)", chance: 0.1, qty: [1, 1], rarity: "mythic" },
 ];
 
 const RARITY_COLORS = {
@@ -54,19 +54,19 @@ async function handler(m, { sock }) {
   const pulls = Math.min(10, Math.max(1, parseInt(args[0]) || 1));
   const totalCost = GACHA_COST * pulls;
 
-  if ((user.koin || 0) < totalCost) {
+  if ((user.berry || 0) < totalCost) {
     return m.reply(
-      `💸 *UANG LU KURANG BUAT GACHA!* 💸\n\n` +
-        `Harga Gacha: *Rp ${GACHA_COST.toLocaleString()}/Tarikan*\n` +
-        `Total Kebutuhan: *Rp ${totalCost.toLocaleString()} (${pulls}x)*\n\n` +
-        `Sisa Duit Lu Cuma: *Rp ${(user.koin || 0).toLocaleString()}*. Kerja dulu mendingan!`
+      `💸 *¡TE FALTA DINERO PARA GACHA!* 💸\n\n` +
+        `Precio de Gacha: *Rp ${GACHA_COST.toLocaleString()}/Tirada*\n` +
+        `Total Necesario: *Rp ${totalCost.toLocaleString()} (${pulls}x)*\n\n` +
+        `Solo te queda: *Rp ${(user.berry || 0).toLocaleString()}*. ¡Mejor trabaja primero!`
     );
   }
 
-  user.koin -= totalCost;
+  user.berry -= totalCost;
 
   await m.react("🎰");
-  await m.reply(`✨ Lampu Disko menyala... Tabung Gacha berputar hebat... Menarik *${pulls}x* hadiah! 🎁✨`);
+  await m.reply(`✨ Luces de discoteca encendidas... El bote gacha gira a toda velocidad... ¡Sacando *${pulls}x* premios! 🎁✨`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const results = [];
@@ -109,9 +109,9 @@ async function handler(m, { sock }) {
     grouped[r.item].totalQty += r.finalQty;
   }
 
-  let txt = `🎉 *BAMMM!!! TABUNG TERBUKA!!* 🎉\n\n`;
-  txt += `Tarik *${pulls}x* | Keluarin Duit: *Rp ${totalCost.toLocaleString()}*\n\n`;
-  txt += `*🎁 HASIL GACHA LU:* \n`;
+  let txt = `🎉 *¡¡¡BAMMM!!! ¡BOTE ABIERTO!!* 🎉\n\n`;
+  txt += `Tiradas *${pulls}x* | Dinero gastado: *Rp ${totalCost.toLocaleString()}*\n\n`;
+  txt += `*🎁 TUS RESULTADOS DE GACHA:* \n`;
 
   let hasRare = false;
   let hasLegendary = false;
@@ -119,7 +119,7 @@ async function handler(m, { sock }) {
   for (const [key, item] of Object.entries(grouped)) {
     const rarityIcon = RARITY_COLORS[item.rarity] || "⚪";
     if (item.item === "trash") {
-      txt += `> ${rarityIcon} ${item.name} *(Ampas x${item.count})*\n`;
+      txt += `> ${rarityIcon} ${item.name} *(Basura x${item.count})*\n`;
     } else {
       txt += `> ${rarityIcon} ${item.name} *x${item.totalQty}*\n`;
     }
@@ -128,14 +128,14 @@ async function handler(m, { sock }) {
     if (["legendary", "mythic"].includes(item.rarity)) hasLegendary = true;
   }
 
-  txt += `\n📈 *Bonus EXP:* +${totalExp} ✨\n`;
+  txt += `\n📈 *EXP Bonus:* +${totalExp} ✨\n`;
 
   if (hasLegendary) {
-    txt += `\n🌟🌟 *WOOOYYY!!! LU DAPET ITEM LEGENDARY!! HOKI SEUMUR HIDUP KEPAKE!!* 🌟🌟`;
+    txt += `\n🌟🌟 *¡¡¡WOOOYYY!!! ¡CONSEGUISTE UN ÍTEM LEGENDARIO!! ¡SE TE ACABÓ LA SUERTE DE TU VIDA!!* 🌟🌟`;
   } else if (hasRare) {
-    txt += `\n✨ *Wihh mayan dapet barang langka bro!*`;
+    txt += `\n✨ *¡Oye, nada mal conseguir algo raro bro!*`;
   } else {
-    txt += `\n🥲 *Ampas... Kebanyakan dapet barang rongsok.*`;
+    txt += `\n🥲 *Basura... Conseguiste puros objetos chatarra.*`;
   }
 
   await m.react(hasLegendary ? "🌟" : hasRare ? "🎉" : "✅");

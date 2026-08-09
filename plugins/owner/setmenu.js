@@ -1,12 +1,12 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import fs from "fs";
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "setmenu",
   alias: ["menuvariant", "menustyle"],
   category: "owner",
-  description: "Mengatur variant tampilan menu",
+  description: "Configurar la variante de visualización del menú",
   usage: ".setmenu <v1-v16>",
   example: ".setmenu v8",
   isOwner: true,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -52,19 +52,19 @@ const VARIANTS = {
   v6: {
     id: 6,
     name: "LOCATION",
-    desc: "Location Message dengan Buttons",
+    desc: "Mensaje de ubicación con botones",
     emoji: "📍",
   },
   v7: {
     id: 7,
     name: "RA NGERTI",
-    desc: "Location Message dengan Buttons",
+    desc: "Mensaje de ubicación con botones",
     emoji: "📍",
   },
   v8: {
     id: 8,
     name: "THUMBNAIL",
-    desc: "Thumbnail Image",
+    desc: "Imagen miniatura",
     emoji: "📍",
   },
 };
@@ -75,13 +75,13 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1* s/d *v7*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* hasta *v7*`);
       return;
     }
     db.setting("menuVariant", selected.id);
     await db.save();
     await m.reply(
-      `✅ *MENU VARIANT DIUBAH*\n\n` +
+      `✅ *VARIANTE DE MENÚ CAMBIADA*\n\n` +
       `${selected.emoji} *V${selected.id} — ${selected.name}*\n` +
       `_${selected.desc}_`,
     );
@@ -103,21 +103,21 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "🎨 Pilih Variant Menu",
-        sections: [{ title: "Daftar Variant Menu", rows }],
+        title: "🎨 Elegir Variante de Menú",
+        sections: [{ title: "Lista de Variantes de Menú", rows }],
       }),
     },
   ];
 
   const bodyText =
-    `🎨🖼️ *MENU VARIANT*\n\n` +
-    `Atur tampilan menu utama bot ketika user mengetik perintah menu 📋✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `> Pilih variant menu dari tombol di bawah 👇`;
+    `🎨🖼️ *VARIANTE DE MENÚ*\n\n` +
+    `Configura la visualización del menú principal del bot cuando el usuario escribe el comando menu 📋✨\n` +
+    `Variante activa actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Desconocida"}* 🎯\n\n` +
+    `> Elige la variante del menú con el botón de abajo 👇`;
 
   await sock.sendButton(
     m.chat,
-    getAssetBuffer("ourin"),
+    getAssetBuffer("luffy"),
     bodyText,
     m,
     { buttons },

@@ -1,9 +1,9 @@
 import _sharp from 'sharp'
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { f } from "../../src/lib/ourin-http.js";
-import { addExifToWebp } from "../../src/lib/ourin-exif.js";
+import te from "../../src/lib/luffy-error.js";
+import { f } from "../../src/lib/luffy-http.js";
+import { addExifToWebp } from "../../src/lib/luffy-exif.js";
 
 function getSharp() {
   return _sharp;
@@ -35,7 +35,7 @@ const pluginConfig = {
   name: "pinpack",
   alias: ["ppack", "pinsticker", "pinsearchpack"],
   category: "sticker",
-  description: "Cari gambar Pinterest lalu jadikan sticker pack",
+  description: "Busca imágenes de Pinterest y conviértelas en sticker pack",
   usage: ".pinpack <query>",
   example: ".pinpack cat",
   isOwner: false,
@@ -43,7 +43,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 20,
-  energi: 3,
+  carne: 3,
   isEnabled: true,
 };
 
@@ -53,8 +53,8 @@ async function handler(m, { sock }) {
   if (!query) {
     return m.reply(
       `── .✦ 𝗣𝗜𝗡 𝗣𝗔𝗖𝗞 ✦. ── 𝜗ৎ\n\n` +
-        `Cari gambar Pinterest → jadikan sticker pack!\n\n` +
-        `╭─〔 Cara Pakai 〕───⬣\n` +
+        `¡Busca imágenes de Pinterest → conviértelas en sticker pack!\n\n` +
+        `╭─〔 Cómo Usarlo 〕───⬣\n` +
         `│  ✦ ${m.prefix}pinpack <query>\n` +
         `╰──────────────⬣\n\n` +
         `*${m.prefix}pinpack anime cat*\n` +
@@ -71,11 +71,11 @@ async function handler(m, { sock }) {
 
     if (!results || results.length === 0) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Tidak ditemukan hasil untuk: *${query}* .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> No se encontraron resultados para: *${query}* .☘︎ ݁˖`);
     }
 
     await m.reply(
-      `── .✦ ──\n\n> Mengunduh *${results.length}* gambar dari Pinterest\n> Lalu dikonversi ke sticker pack... .☘︎ ݁˖`,
+      `── .✦ ──\n\n> Descargando *${results.length}* imágenes de Pinterest\n> Y convirtiendo a sticker pack... .☘︎ ݁˖`,
     );
 
     const stickerBuffers = [];
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
     if (!stickerBuffers.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Gagal mendownload gambar .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> No se pudo descargar la imagen .☘︎ ݁˖`);
     }
 
     const packname = `Pinterest: ${query}`;
@@ -108,14 +108,14 @@ async function handler(m, { sock }) {
         packname,
         publisher: author,
         author,
-        description: `Sticker pack dari Pinterest: ${query}`,
+        description: `Sticker pack de Pinterest: ${query}`,
         emojis: ["❤"],
       });
       await m.react("✓");
     } catch (packErr) {
       console.error("[PinPack] Pack send failed:", packErr.message);
       await m.reply(
-        `── .✦ ──\n\n> Pack gagal, mengirim satu per satu... .☘︎ ݁˖`,
+        `── .✦ ──\n\n> El pack falló, enviando uno por uno... .☘︎ ݁˖`,
       );
 
       let sent = 0;
@@ -147,11 +147,11 @@ async function handler(m, { sock }) {
       if (sent > 0) {
         await m.react("✓");
         await m.reply(
-          `── .✦ ──\n\n> Berhasil kirim *${sent}* sticker dari *${packname}* .☘︎ ݁˖`,
+          `── .✦ ──\n\n> Se enviaron *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
         );
       } else {
         await m.react("✘");
-        await m.reply(`── .✦ ──\n\n> Gagal mengirim sticker .☘︎ ݁˖`);
+        await m.reply(`── .✦ ──\n\n> No se pudo enviar el sticker .☘︎ ݁˖`);
       }
     }
   } catch (error) {

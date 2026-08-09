@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "bataldaftar",
   alias: ["cancelreg", "canceldaftar", "regcancel"],
   category: "user",
-  description: "Batalkan sesi pendaftaran yang sedang aktif",
+  description: "Cancelar la sesión de registro activa",
   usage: ".bataldaftar",
   example: ".bataldaftar",
   isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
   skipRegistration: true,
 };
@@ -21,12 +21,12 @@ async function handler(m) {
   const canceled = clearRegistrationSession(m.sender);
 
   if (!canceled) {
-    return m.reply(`❌ Kamu tidak punya sesi pendaftaran aktif.`);
+    return m.reply(`❌ No tienes una sesión de registro activa.`);
   }
 
   return m.reply(
-    `✅ Sesi pendaftaran berhasil dibatalkan.\n\n` +
-      `> Mulai lagi dengan: \`${m.prefix}daftar\``,
+    `✅ Sesión de registro cancelada correctamente.\n\n` +
+      `> Vuelve a empezar con: \`${m.prefix}daftar\``,
   );
 }
 

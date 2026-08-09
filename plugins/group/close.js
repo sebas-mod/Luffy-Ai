@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'close',
     alias: ['tutup', 'closegroup', 'tutupgroup'],
     category: 'group',
-    description: 'Menutup grup agar hanya admin yang bisa chat',
+    description: 'Cerrar el grupo para que solo los admins puedan escribir',
     usage: '.close',
     example: '.close',
     isOwner: false,
@@ -10,7 +10,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -22,9 +22,9 @@ async function handler(m, { sock }) {
         
         if (groupMeta.announce) {
             await m.reply(
-                `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Grup sudah dalam keadaan \`tertutup\`.\n` +
-                `> Hanya admin yang bisa mengirim pesan.`
+                `⚠️ *ᴠᴀʟɪᴅᴀᴄɪóɴ ғᴀʟʟɪᴅᴀ*\n\n` +
+                `> El grupo ya está en estado \`cerrado\`.\n` +
+                `> Solo los admins pueden enviar mensajes.`
             );
             return;
         }
@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
         
         const senderNum = m.sender.split('@')[0];
         
-        const successMsg = `✅ @${senderNum} telah menutup grup ini`;
+        const successMsg = `✅ @${senderNum} cerró este grupo`;
         
         await m.reply(successMsg, {mentions: [m.sender]})
         
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal menutup grup.\n` +
+            `> No se pudo cerrar el grupo.\n` +
             `> _${error.message}_`
         );
     }

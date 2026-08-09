@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('susunkata', {
     alias: ['susun', 'scramble'],
     emoji: '🔠',
-    title: 'SUSUN KATA',
-    description: 'Susun kata dari huruf'
+    title: 'ORGANIZAR PALABRAS',
+    description: 'Forma palabras con las letras'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('susunkata')

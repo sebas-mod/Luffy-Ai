@@ -1,12 +1,12 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { isLid, lidToJid, resolveAnyLidToJid } from '../../src/lib/ourin-lid.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import { isLid, lidToJid, resolveAnyLidToJid } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'ban',
     alias: ['addban', 'block'],
     category: 'owner',
-    description: 'Memblokir user dari menggunakan bot',
+    description: 'Bloquear al usuario para que no use el bot',
     usage: '.ban <nomor/@tag>',
     example: '.ban 6281234567890',
     isOwner: true,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -44,14 +44,14 @@ async function handler(m, { sock }) {
 
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
-            `🚫 *ʙᴀɴ ᴜsᴇʀ*\n\n` +
-            `> Masukkan nomor atau tag user\n\n` +
-            `\`Contoh: ${m.prefix}ban 6281234567890\``
+            `🚫 *ʙᴀɴ ᴅᴇ ᴜsᴜᴀʀɪᴏ*\n\n` +
+            `> Introduce el número o etiqueta al usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}ban 6281234567890\``
         )
     }
 
     if (config.isOwner(targetNumber)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat ban owner`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se puede banear al owner`)
     }
 
     const db = getDatabase()
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Nomor \`${targetNumber}\` sudah dibanned`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El número \`${targetNumber}\` ya está baneado`)
     }
 
     bannedList.push(targetNumber)
@@ -73,11 +73,11 @@ async function handler(m, { sock }) {
     await m.react('🚫')
 
     await m.reply(
-        `🚫 *ᴜsᴇʀ ᴅɪʙᴀɴɴᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📱 ɴᴏᴍᴏʀ: \`${targetNumber}\`\n` +
-        `┃ 🚫 sᴛᴀᴛᴜs: \`Banned\`\n` +
-        `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴇʀ\n` +
+        `🚫 *ᴜsᴜᴀʀɪᴏ ʙᴀɴᴇᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 📱 ɴúᴍᴇʀᴏ: \`${targetNumber}\`\n` +
+        `┃ 🚫 ᴇsᴛᴀᴅᴏ: \`Baneado\`\n` +
+        `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴜᴀʀɪᴏs\n` +
         `╰┈┈⬡`
     )
 }

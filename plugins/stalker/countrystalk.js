@@ -1,24 +1,24 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
     name: "countrystalk",
     alias: ["stalknegara", "infonegara"],
     category: "stalker  ",
-    description: "Mencari informasi detail tentang suatu negara",
-    usage: ".country <nama negara>",
+    description: "Buscar información detallada sobre un país",
+    usage: ".country <nombre del país>",
     example: ".country indonesia",
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true,
 };
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        return m.reply(`🌍 Harap masukkan nama negara!\nContoh: \`${m.prefix}${m.command} indonesia\``);
+        return m.reply(`🌍 ¡Por favor, ingresa el nombre de un país!\nEjemplo: \`${m.prefix}${m.command} indonesia\``);
     }
 
     await m.react("🕕");
@@ -31,7 +31,7 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data) {
             await m.react("❌");
-            return m.reply(`Maaf, data negara untuk "${text}" tidak ditemukan.`);
+            return m.reply(`Lo siento, no se encontraron datos del país "${text}".`);
         }
 
         const c = data.data;
@@ -44,18 +44,18 @@ async function handler(m, { sock, text }) {
         const languages = c.languages && c.languages.length > 0 ? c.languages.map(l => l.name).join(", ") : "-";
         const timezones = c.timezones && c.timezones.length > 0 ? c.timezones.join(", ") : "-";
 
-        let txt = `🌍 *INFORMASI NEGARA: ${name.toUpperCase()}* 🌍\n\n`;
-        txt += `🏢 *Ibukota:* ${capitals}\n`;
-        txt += `📜 *Nama Resmi:* ${officialName}\n`;
-        txt += `🗺️ *Wilayah:* ${c.region || "-"} (${c.subregion || "-"})\n`;
-        txt += `🗣️ *Bahasa Resmi:* ${languages}\n`;
-        txt += `👥 *Populasi:* ${population} jiwa\n`;
-        txt += `💰 *Mata Uang:* ${currencies}\n`;
-        txt += `🕰️ *Zona Waktu:* ${timezones}\n`;
-        txt += `🚗 *Posisi Mengemudi:* ${c.cars?.driving_side || "-"}\n`;
+        let txt = `🌍 *INFORMACIÓN DEL PAÍS: ${name.toUpperCase()}* 🌍\n\n`;
+        txt += `🏢 *Capital:* ${capitals}\n`;
+        txt += `📜 *Nombre Oficial:* ${officialName}\n`;
+        txt += `🗺️ *Región:* ${c.region || "-"} (${c.subregion || "-"})\n`;
+        txt += `🗣️ *Idiomas Oficiales:* ${languages}\n`;
+        txt += `👥 *Población:* ${population} habitantes\n`;
+        txt += `💰 *Moneda:* ${currencies}\n`;
+        txt += `🕰️ *Zona Horaria:* ${timezones}\n`;
+        txt += `🚗 *Lado de Conducción:* ${c.cars?.driving_side || "-"}\n`;
 
         if (c.flag?.emoji) {
-            txt += `\n*Bendera:* ${c.flag.emoji}`;
+            txt += `\n*Bandera:* ${c.flag.emoji}`;
         }
 
         await m.react("✅");

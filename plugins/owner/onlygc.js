@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "onlygc",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -24,11 +24,11 @@ async function handler(m, { sock }) {
     const current = db.setting("onlyGc") || false;
     return m.reply(
       `🏘️ *Only Group*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}onlygc on* — Bot hanya bisa diakses di grup\n` +
-        `> *${m.prefix}onlygc off* — Bot bisa diakses di mana saja\n\n` +
-        `_Jika aktif, mode Only Private akan otomatis nonaktif_`
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}onlygc on* — El bot solo se puede usar en grupos\n` +
+        `> *${m.prefix}onlygc off* — El bot se puede usar en cualquier lugar\n\n` +
+        `_Si está activo, el modo Solo Privado se desactivará automáticamente_`
     );
   }
 
@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
     db.setting("onlyPc", false);
     await m.react("✅");
     return m.reply(
-      `🏘️ *Only Group Aktif*\n\n` +
-        `> Bot hanya bisa diakses di grup\n` +
-        `> Mode Only Private dinonaktifkan`
+      `🏘️ *Only Group Activo*\n\n` +
+        `> El bot solo se puede usar en grupos\n` +
+        `> El modo Solo Privado se desactivó`
     );
   }
 
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
     db.setting("onlyGc", false);
     await m.react("❌");
     return m.reply(
-      `🏘️ *Only Group Nonaktif*\n\n` +
-        `> Bot bisa diakses di mana saja`
+      `🏘️ *Only Group Inactivo*\n\n` +
+        `> El bot se puede usar en cualquier lugar`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}onlygc on* atau *${m.prefix}onlygc off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}onlygc on* o *${m.prefix}onlygc off*`
   );
 }
 

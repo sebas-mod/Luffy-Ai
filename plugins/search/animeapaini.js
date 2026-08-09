@@ -1,13 +1,13 @@
 import axios from "axios";
 import FormData from "form-data";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "animeapaini",
     alias: ["whatanime", "animesearch", "sauceanime", "searchanime", "anime-checker", "animechecker"],
     category: "search",
-    description: "Identifikasi judul anime dari gambar/screenshot",
+    description: "Identifica el título del anime desde imagen/captura",
     usage: ".animeapaini (reply gambar)",
     example: ".animeapaini",
     isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 15,
-    energi: 1,
+    carne: 1,
     isEnabled: true,
 };
 
@@ -23,12 +23,12 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
 
     if (!isImage) {
-        let help = `🔍 *ANIME APA INI?*\n\n`
-        help += `Fitur cerdas untuk mengetahui judul anime hanya dari sebuah screenshot atau potongan gambar!\n\n`
-        help += `*Cara Penggunaan:*\n`
-        help += `- Kirim gambar adegan anime dengan caption *${m.prefix}animeapaini*\n`
-        help += `- Atau balas (reply) gambar adegan anime dengan perintah *${m.prefix}animeapaini*\n\n`
-        help += `⚠️ *Catatan:* Video tidak didukung, hanya gambar/screenshot saja ya!`
+        let help = `🔍 *¿QUÉ ANIME ES ESTE?*\n\n`
+        help += `Función inteligente para saber el título de un anime solo con una captura o recorte de imagen!\n\n`
+        help += `*Cómo usar:*\n`
+        help += `- Envía una imagen de la escena del anime con el caption *${m.prefix}animeapaini*\n`
+        help += `- O responde (reply) la imagen de la escena del anime con el comando *${m.prefix}animeapaini*\n\n`
+        help += `⚠️ *Nota:* Los videos no son compatibles, solo imágenes/capturas.`
         return m.reply(help);
     }
 
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
         if (!buffer) {
             await m.react("❌");
-            return m.reply(`Maaf, sistem gagal mengunduh gambar yang kamu berikan. Silakan coba kirim ulang gambarnya!`);
+            return m.reply(`Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Intenta enviarla de nuevo!`);
         }
 
         const form = new FormData();
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
         const data = response.data;
         if (!data || !data.status || !data.result || !data.result.full_matches) {
             await m.react("❌");
-            return m.reply(`Maaf, judul anime tidak ditemukan. Coba dengan screenshot adegan yang lebih jelas atau karakter yang lebih spesifik.`);
+            return m.reply(`Lo siento, el título del anime no fue encontrado. Intenta con una captura de la escena más clara o un personaje más específico.`);
         }
 
         await m.react("✅");
@@ -69,13 +69,13 @@ async function handler(m, { sock }) {
         const similarityRaw = resObj.similarity ? parseFloat(resObj.similarity) : (match.similarity * 100);
         const similarity = isNaN(similarityRaw) ? resObj.similarity : similarityRaw.toFixed(2);
 
-        let txt = `🔍 *ANIME DITEMUKAN!*\n\n`;
-        txt += `🎬 *Judul Romaji:* ${resObj.title_romaji || match.anilist.title.romaji}\n`;
-        txt += `🇯🇵 *Judul Asli:* ${resObj.title_native || match.anilist.title.native}\n`;
-        txt += `📺 *Episode:* ${resObj.episode || match.episode}\n`;
-        txt += `📊 *Kemiripan:* ${similarity}%\n`;
-        txt += `🔞 *Dewasa (18+):* ${resObj.is_adult ? 'Ya' : 'Tidak'}\n\n`;
-        txt += `🔗 *Detail Anilist:*\n${match.anilist.siteUrl || `https://anilist.co/anime/${match.anilist.id}`}`;
+        let txt = `🔍 *¡ANIME ENCONTRADO!*\n\n`;
+        txt += `🎬 *Título Romaji:* ${resObj.title_romaji || match.anilist.title.romaji}\n`;
+        txt += `🇯🇵 *Título Original:* ${resObj.title_native || match.anilist.title.native}\n`;
+        txt += `📺 *Episodio:* ${resObj.episode || match.episode}\n`;
+        txt += `📊 *Similitud:* ${similarity}%\n`;
+        txt += `🔞 *Adulto (18+):* ${resObj.is_adult ? 'Sí' : 'No'}\n\n`;
+        txt += `🔗 *Detalle Anilist:*\n${match.anilist.siteUrl || `https://anilist.co/anime/${match.anilist.id}`}`;
 
         if (resObj.image_preview || match.image) {
             await sock.sendMessage(m.chat, { image: { url: resObj.image_preview || match.image }, caption: txt }, { quoted: m });

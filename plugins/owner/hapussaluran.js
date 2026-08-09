@@ -2,12 +2,12 @@ const pluginConfig = {
     name: ['hapussaluran', 'deletesaluran', 'deletenewsletter'],
     alias: [],
     category: 'owner',
-    description: 'Hapus saluran/newsletter',
-    usage: '.hapussaluran <id_saluran>',
+    description: 'Eliminar un canal/newsletter',
+    usage: '.hapussaluran <id_del_canal>',
     example: '.hapussaluran 120363xxx@newsletter',
     isOwner: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -17,11 +17,11 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '🗑️ *ʜᴀᴘᴜs sᴀʟᴜʀᴀɴ*\n\n' +
-            '> `.hapussaluran <id_saluran>` — Hapus saluran\n\n' +
-            '📝 Contoh:\n' +
+            '🗑️ *ʙᴏʀʀᴀʀ sᴀʟᴜʀᴀɴ*\n\n' +
+            '> `.hapussaluran <id_del_canal>` — Eliminar canal\n\n' +
+            '📝 Ejemplo:\n' +
             '> `.hapussaluran 120363xxx@newsletter`\n\n' +
-            '⚠️ Saluran akan dihapus secara permanen'
+            '⚠️ El canal se eliminará permanentemente'
         )
     }
 
@@ -32,9 +32,9 @@ async function handler(m, { sock }) {
     try {
         await sock.newsletterDelete(targetJid)
         await m.react('✅')
-        return m.reply(`🗑️ *Saluran dihapus*\n\n> ID: ${targetJid}`)
+        return m.reply(`🗑️ *Canal eliminado*\n\n> ID: ${targetJid}`)
     } catch (err) {
-        return m.reply(`❌ Gagal menghapus saluran: ${err.message}`)
+        return m.reply(`❌ Error al eliminar el canal: ${err.message}`)
     }
 }
 

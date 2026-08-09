@@ -1,30 +1,30 @@
 import gemini from '../../src/scraper/gemini.js';
-import { AIRich } from '../../src/lib/ourin-builder.js';
-import te from '../../src/lib/ourin-error.js';
+import { AIRich } from '../../src/lib/luffy-builder.js';
+import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
     name: 'ai',
     alias: ['ai4chat', 'gemini'],
     category: 'ai',
-    description: 'Chat cerdas dengan AI (mendukung tabel, kode, dll via AIRich)',
-    usage: '.ai <pertanyaan>',
-    example: '.ai buatkan tabel perbandingan vue dan react',
+    description: 'Chat inteligente con IA (soporta tablas, código, etc. vía AIRich)',
+    usage: '.ai <pregunta>',
+    example: '.ai crea una tabla comparativa de vue y react',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 };
 
 const sessions = {};
 
-const systemPrompt = `Kamu adalah asisten AI yang cerdas dan canggih (Ourin AI).
-Gunakan format markdown secara ketat:
-1. Jika membuat daftar perbandingan atau sekumpulan data, SELALU gunakan format tabel markdown (diawali dan diakhiri dengan '|').
+const systemPrompt = `Kamu adalah asisten AI yang cerdas dan canggih (Luffy AI).
+Usa el formato markdown estrictamente:
+1. Si haces una lista comparativa o un conjunto de datos, usa SIEMPRE el formato de tabla markdown (inicia y termina con '|').
 2. Jika memberikan kode pemrograman, SELALU bungkus dengan markdown code block (\`\`\`bahasa ... \`\`\`).
-3. Gunakan formatting teks tebal (*teks*) untuk menekankan sesuatu, atau hashtag (#) untuk judul / penjelas besar.
+3. Usa formato de texto en negrita (*texto*) para enfatizar algo, o hashtag (#) para títulos / explicaciones grandes.
 Pastikan semua respon terstruktur dengan baik agar sistem AIRich dapat merendernya dengan cantik.`;
 
 async function handler(m, { sock }) {
@@ -33,11 +33,11 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🤖 *AI*\n\n` +
-            `> Halo! Aku asisten cerdas\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> \`${m.prefix}ai <pertanyaan>\`\n\n` +
-            `*Contoh:*\n` +
-            `> \`${m.prefix}ai buatkan tabel jadwal piket\``
+            `> ¡Hola! Soy un asistente inteligente\n\n` +
+            `*Cómo usarlo:*\n` +
+            `> \`${m.prefix}ai <pregunta>\`\n\n` +
+            `*Ejemplo:*\n` +
+            `> \`${m.prefix}ai crea una tabla de horario de turnos\``
         );
     }
 

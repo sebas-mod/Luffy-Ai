@@ -2,13 +2,13 @@ import axios from 'axios'
 import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from 'ourin'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'tiktokfoto',
     alias: ['ttfoto', 'ttphotosearch', 'searchtiktokfoto'],
     category: 'search',
-    description: 'Cari foto TikTok dan kirim album gambar',
+    description: 'Busca fotos de TikTok y envía un álbum de imágenes',
     usage: '.tiktokfoto <query>',
     example: '.tiktokfoto cosplay',
     isOwner: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -46,7 +46,7 @@ async function fetchTiktokFoto(query) {
     })
 
     if (!data?.success || !data?.data?.results?.length) {
-        throw new Error(data?.message || 'Foto TikTok tidak ditemukan')
+        throw new Error(data?.message || 'Foto de TikTok no encontrada')
     }
 
     return data.data
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`📸 *TIKTOK FOTO SEARCH*\n\n> Contoh:\n\`${m.prefix}tiktokfoto cosplay\``)
+        return m.reply(`📸 *BÚSQUEDA DE FOTOS TIKTOK*\n\n> Ejemplo:\n\`${m.prefix}tiktokfoto cosplay\``)
     }
 
     m.react('🔍')
@@ -68,15 +68,15 @@ async function handler(m, { sock }) {
 
         if (!post || images.length === 0) {
             m.react('❌')
-            return m.reply(`❌ Tidak ditemukan foto TikTok untuk: ${query}`)
+            return m.reply(`❌ No se encontraron fotos de TikTok para: ${query}`)
         }
 
-        let caption = '📸 *TIKTOK FOTO SEARCH*\n\n'
-        caption += `🔎 *Query:* ${result.query || query}\n`
-        caption += `📌 *Judul:* ${trimText(post.title || post.description)}\n`
-        caption += `👤 *Author:* ${post.author?.nickname || '-'}\n`
-        caption += `🌍 *Region:* ${post.region || '-'}\n`
-        caption += `🖼️ *Foto:* ${post.image_count || images.length}\n`
+        let caption = '📸 *BÚSQUEDA DE FOTOS TIKTOK*\n\n'
+        caption += `🔎 *Consulta:* ${result.query || query}\n`
+        caption += `📌 *Título:* ${trimText(post.title || post.description)}\n`
+        caption += `👤 *Autor:* ${post.author?.nickname || '-'}\n`
+        caption += `🌍 *Región:* ${post.region || '-'}\n`
+        caption += `🖼️ *Fotos:* ${post.image_count || images.length}\n`
         caption += `❤️ *Like:* ${formatNumber(post.stats?.like)}\n`
         caption += `💬 *Comment:* ${formatNumber(post.stats?.comment)}\n`
         caption += `🔁 *Share:* ${formatNumber(post.stats?.share)}\n`
@@ -104,7 +104,7 @@ async function handler(m, { sock }) {
 
         if (mediaList.length === 0) {
             m.react('❌')
-            return m.reply('❌ Gagal memuat foto TikTok')
+            return m.reply('❌ Error al cargar la foto de TikTok')
         }
 
         try {

@@ -1,19 +1,19 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import config from '../../config.js'
 
 const pluginConfig = {
     name: 'esmtocjs',
     alias: ['esm2cjs', 'esmconvert'],
     category: 'tools',
-    description: 'Convert ESM (ES Modules) ke CommonJS',
-    usage: '.esmtocjs <reply kode>',
+    description: 'Convierte ESM (ES Modules) a CommonJS',
+    usage: '.esmtocjs <responde código>',
     example: '.esmtocjs',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -126,11 +126,11 @@ async function handler(m, { sock }) {
 
     if (!code) {
         return m.reply(
-            `🔄 *ᴇsᴍ ᴛᴏ ᴄᴊs ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n` +
-            `> Convert ES Modules ke CommonJS\n\n` +
-            `> *Cara pakai:*\n` +
-            `> Reply kode ESM dengan ${m.prefix}esmtocjs\n\n` +
-            `> *Contoh ESM:*\n` +
+            `🔄 *ᴄᴏɴᴠᴇʀsᴏʀ ᴇsᴍ ᴀ ᴄᴊs*\n\n` +
+            `> Convierte ES Modules a CommonJS\n\n` +
+            `> *Cómo usar:*\n` +
+            `> Responde el código ESM con ${m.prefix}esmtocjs\n\n` +
+            `> *Ejemplo ESM:*\n` +
             `> \`import axios from 'axios'\`\n` +
             `> \`export default function() {}\``
         )

@@ -1,4 +1,4 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 import fs from 'fs'
 import path from 'path'
@@ -6,20 +6,20 @@ const pluginConfig = {
     name: 'leaderboard',
     alias: [
         'lb', 'top', 'leaderboard', 'ranking', 'rank', 'topglobal',
-        'topbalance', 'topbal', 'topkoin', 'topcoin', 'topmoney',
+        'topbalance', 'topbal', 'topberry', 'topcoin', 'topmoney',
         'toplimit', 'topexp', 'topxp', 'toplevel',
-        'topenergi', 'topenergy'
+        'topcarne', 'topenergy'
     ],
     category: 'main',
-    description: 'Lihat leaderboard global (koin, exp, energi)',
+    description: 'Lihat leaderboard global (berry, exp, carne)',
     usage: '.leaderboard',
-    example: '.topkoin',
+    example: '.topberry',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -40,17 +40,17 @@ async function handler(m, { sock }) {
     
     let type = 'overview'
     
-    if (cmd.includes('koin') || cmd.includes('coin') || cmd.includes('bal') || cmd.includes('money')) {
-        type = 'koin'
+    if (cmd.includes('berry') || cmd.includes('bal') || cmd.includes('money')) {
+        type = 'berry'
     } else if (cmd.includes('exp') || cmd.includes('xp') || cmd.includes('level')) {
         type = 'exp'
-    } else if (cmd.includes('energi') || cmd.includes('energy')) {
-        type = 'energi'
+    } else if (cmd.includes('carne')) {
+        type = 'carne'
     } else if (args[0]) {
         const argType = args[0].toLowerCase()
-        if (['koin', 'coin', 'bal', 'balance', 'money'].includes(argType)) type = 'koin'
+        if (['berry', 'bal', 'balance', 'money'].includes(argType)) type = 'berry'
         else if (['exp', 'xp', 'level'].includes(argType)) type = 'exp'
-        else if (['energi', 'energy'].includes(argType)) type = 'energi'
+        else if (['carne'].includes(argType)) type = 'carne'
     }
     
     const dbData = db.data?.users || db.getAllUsers?.() || {}
@@ -62,9 +62,9 @@ async function handler(m, { sock }) {
         
         users.push({
             jid,
-            koin: userData.koin || 0,
+            berry: userData.berry || 0,
             exp: userData.rpg?.exp || userData.exp || 0,
-            energi: userData.energi || 0,
+            carne: userData.carne || 0,
             level: userData.rpg?.level || userData.level || 1,
             name: userData.name || jid.split('@')[0]
         })
@@ -78,26 +78,26 @@ async function handler(m, { sock }) {
     
     if (type === 'overview') {
         const totalUsers = users.length
-        const maxBalUser = users.reduce((a, b) => a.koin > b.koin ? a : b, users[0])
+        const maxBalUser = users.reduce((a, b) => a.berry > b.berry ? a : b, users[0])
         const maxExpUser = users.reduce((a, b) => a.exp > b.exp ? a : b, users[0])
-        const maxEnergiUser = users.reduce((a, b) => a.energi > b.energi ? a : b, users[0])
+        const maxCarneUser = users.reduce((a, b) => a.carne > b.carne ? a : b, users[0])
         
         const mentions = [
             maxBalUser.jid.includes('@') ? maxBalUser.jid : maxBalUser.jid + "@s.whatsapp.net",
             maxExpUser.jid.includes('@') ? maxExpUser.jid : maxExpUser.jid + "@s.whatsapp.net",
-            maxEnergiUser.jid.includes('@') ? maxEnergiUser.jid : maxEnergiUser.jid + "@s.whatsapp.net"
+            maxCarneUser.jid.includes('@') ? maxCarneUser.jid : maxCarneUser.jid + "@s.whatsapp.net"
         ]
         
         const overviewText = `🏆 *LEADERBOARD OVERVIEW* 🏆\n\n` +
             `_Pilih tombol di bawah untuk melihat ranking!_`
             try {
-                await sock.sendButton(m.chat, fs.readFileSync(path.join(process.cwd(), 'assets', 'images', 'ourin.jpg')), overviewText, m, {
+                await sock.sendButton(m.chat, fs.readFileSync(path.join(process.cwd(), 'assets', 'images', 'luffy.jpg')), overviewText, m, {
                     buttons: [
                     {
                         name: 'quick_reply',
                         buttonParamsJson: JSON.stringify({
-                            display_text: '💰 Top Koin',
-                            id: `${m.prefix}topkoin`
+                            display_text: '💰 Top Berry',
+                            id: `${m.prefix}topberry`
                         })
                     },
                     {
@@ -110,8 +110,8 @@ async function handler(m, { sock }) {
                     {
                         name: 'quick_reply',
                         buttonParamsJson: JSON.stringify({
-                            display_text: '⚡ Top Energi',
-                            id: `${m.prefix}topenergi`
+                            display_text: '⚡ Top Carne',
+                            id: `${m.prefix}topcarne`
                         })
                     }
                 ],
@@ -124,21 +124,21 @@ async function handler(m, { sock }) {
     
     let title, emoji, field, formatValue
     
-    if (type === 'koin') {
-        title = 'TOP GLOBAL KOIN'
+    if (type === 'berry') {
+        title = 'TOP GLOBAL BERRY'
         emoji = '💰'
-        field = 'koin'
-        formatValue = (u) => `Rp ${formatNumber(u.koin)}`
+        field = 'berry'
+        formatValue = (u) => `Rp ${formatNumber(u.berry)}`
     } else if (type === 'exp') {
         title = 'TOP GLOBAL LEVEL'
         emoji = '✨'
         field = 'exp'
         formatValue = (u) => `Lv. ${u.level} (${formatNumber(u.exp)} XP)`
-    } else if (type === 'energi') {
-        title = 'TOP GLOBAL ENERGI'
+    } else if (type === 'carne') {
+        title = 'TOP GLOBAL CARNE'
         emoji = '⚡'
-        field = 'energi'
-        formatValue = (u) => `${formatNumber(u.energi)} Energi`
+        field = 'carne'
+        formatValue = (u) => `${formatNumber(u.carne)} Carne`
     }
     
     users.sort((a, b) => b[field] - a[field])
@@ -168,9 +168,9 @@ async function handler(m, { sock }) {
     
     const myRankIndex = users.findIndex(u => u.jid === senderJid)
     if (myRankIndex !== -1) {
-        text += `> Posisi kamu: *#${myRankIndex + 1}* dari *${formatNumber(users.length)}* user.`
+        text += `> Tu posición: *#${myRankIndex + 1}* de *${formatNumber(users.length)}* usuarios.`
     } else {
-        text += `> Kamu belum terdaftar di database.`
+        text += `> Aún no estás registrado en la base de datos.`
     }
     
     await m.reply(text, { mentions })

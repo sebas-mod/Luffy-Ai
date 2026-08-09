@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "gift",
   alias: ["kasih", "hadiah"],
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   if (!user.rpg) user.rpg = {};
 
   if (!user.rpg.spouse) {
-    return m.reply(`❌ *ʙᴇʟᴜᴍ ᴍᴇɴɪᴋᴀʜ*\n\n` + `> Kamu belum menikah!\n` + `> Nikah dulu dengan \`.marry @user\``);
+    return m.reply(`❌ *ɴᴏ ᴄᴀꜱᴀᴅᴏ*\n\n` + `> ¡Aún no estás casado!\n` + `> Cásate primero con \`.marry @user\``);
   }
 
   const args = m.args || [];
@@ -32,9 +32,9 @@ async function handler(m, { sock }) {
   if (!itemKey) {
     return m.reply(
       `🎁 *ɢɪꜰᴛ*\n\n` +
-        `*📋 *ᴜsᴀɢᴇ:*
+        `*📋 *ᴜsᴏ:*
 \n` +
-        `> > Pilih item untuk diberikan\n` +
+        `> > Elige el ítem para regalar\n` +
         `> > \`.gift diamond 1\`\n` +
         ``,
     );
@@ -43,14 +43,14 @@ async function handler(m, { sock }) {
   user.inventory = user.inventory || {};
 
   if ((user.inventory[itemKey] || 0) < amount) {
-    return m.reply(`❌ *ɪᴛᴇᴍ ᴛɪᴅᴀᴋ ᴄᴜᴋᴜᴘ*\n\n` + `> Item *${itemKey}* kamu: ${user.inventory[itemKey] || 0}\n` + `> Butuh: ${amount}`);
+    return m.reply(`❌ *ɪᴛᴇᴍ ɪɴꜱᴜꜰɪᴄɪᴇɴᴛᴇ*\n\n` + `> Tu ítem *${itemKey}*: ${user.inventory[itemKey] || 0}\n` + `> Se necesita: ${amount}`);
   }
 
   const spouseJid = user.rpg.spouse;
   const partner = db.getUser(spouseJid);
 
   if (!partner) {
-    return m.reply(`❌ *ᴘᴀsᴀɴɢᴀɴ ɴᴏᴛ ꜰᴏᴜɴᴅ*\n\n> Pasangan tidak ditemukan di database!`);
+    return m.reply(`❌ *ᴘᴀʀᴇᴊᴀ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> ¡La pareja no fue encontrada en la base de datos!`);
   }
 
   partner.inventory = partner.inventory || {};
@@ -63,11 +63,11 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let txt = `🎁 *ɢɪꜰᴛ sᴜᴋsᴇs*\n\n`;
-  txt += `> 💝 Kamu memberikan ${amount}x ${itemKey}\n`;
-  txt += `> 👤 Untuk: @${spouseJid.split("@")[0]}\n`;
-  txt += `> 💕 Love: +${amount * 10}\n\n`;
-  txt += `> _So sweet! 💖_`;
+  let txt = `🎁 *ʀᴇɢᴀʟᴏ ᴇxɪᴛᴏꜱᴏ*\n\n`;
+  txt += `> 💝 Regalaste ${amount}x ${itemKey}\n`;
+  txt += `> 👤 Para: @${spouseJid.split("@")[0]}\n`;
+  txt += `> 💕 Amor: +${amount * 10}\n\n`;
+  txt += `> _¡Tan dulce! 💖_`;
 
   await m.reply(txt, { mentions: [spouseJid] });
 }

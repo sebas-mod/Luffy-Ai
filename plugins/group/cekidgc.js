@@ -2,13 +2,13 @@ import sharp from "sharp";
 import config from "../../config.js";
 import axios from "axios";
 import { generateWAMessageFromContent, proto } from "ourin";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "cekidgc",
   alias: ["idgc", "idgrup", "groupid", "infogc", "groupinfo"],
   category: "group",
-  description: "Cek ID dan info lengkap grup",
+  description: "Ver el ID e información completa del grupo",
   usage: ".cekidgc [link grup]",
   example: ".cekidgc https://chat.whatsapp.com/xxxxx",
   isOwner: false,
@@ -17,7 +17,7 @@ const pluginConfig = {
   isPrivate: false,
   isAdmin: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
       if (!inviteCode) {
         m.react("✘");
-        return m.reply(`── .✦ ──\n\n> Link grup tidak valid .☘︎ ݁˖`);
+        return m.reply(`── .✦ ──\n\n> Enlace de grupo no válido .☘︎ ݁˖`);
       }
 
       try {
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> Link grup tidak valid atau sudah expired .☘︎ ݁˖`,
+          `── .✦ ──\n\n> Enlace de grupo no válido o ya expiró .☘︎ ݁˖`,
         );
       }
     } else if (input && input.endsWith("@g.us")) {
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> Tidak bisa mengakses grup tersebut .☘︎ ݁˖`,
+          `── .✦ ──\n\n> No se pudo acceder a ese grupo .☘︎ ݁˖`,
         );
       }
     } else if (m.isGroup) {
@@ -74,16 +74,16 @@ async function handler(m, { sock }) {
       groupMeta = await sock.groupMetadata(groupJid);
     } else {
       return m.reply(
-        `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗚𝗥𝗨𝗣 ✦. ── 𝜗ৎ\n\n` +
-          `> Gunakan di grup atau masukkan link grup\n\n` +
-          `> \`${m.prefix}cekidgc\` — di dalam grup\n` +
+        `── .✦ 𝗖𝗘𝗞 𝗜𝗗 𝗚𝗥𝗨𝗣𝗢 ✦. ── 𝜗ৎ\n\n` +
+          `> Úsalo en un grupo o ingresa el enlace del grupo\n\n` +
+          `> \`${m.prefix}cekidgc\` — dentro del grupo\n` +
           `> \`${m.prefix}cekidgc https://chat.whatsapp.com/xxx\``,
       );
     }
 
     if (!groupMeta || !groupJid) {
       m.react("✘");
-      return m.reply(`── .✦ ──\n\n> Tidak dapat menemukan info grup .☘︎ ݁˖`);
+      return m.reply(`── .✦ ──\n\n> No se pudo encontrar la información del grupo .☘︎ ݁˖`);
     }
 
     const groupName = groupMeta.subject || "Unknown";
@@ -98,10 +98,10 @@ async function handler(m, { sock }) {
     const groupDesc = groupMeta.desc || "—";
     const descPreview =
       groupDesc.length > 120 ? groupDesc.slice(0, 120) + "..." : groupDesc;
-    const isRestrict = groupMeta.restrict ? "Admin Only" : "Semua Member";
-    const isAnnounce = groupMeta.announce ? "Aktif" : "Nonaktif";
-    const isCommunity = groupMeta.isCommunity ? "✓ Ya" : "✘ Tidak";
-    const joinMode = groupMeta.joinApprovalMode ? "Perlu Approval" : "Bebas";
+    const isRestrict = groupMeta.restrict ? "Solo Admins" : "Todos los Miembros";
+    const isAnnounce = groupMeta.announce ? "Activo" : "Inactivo";
+    const isCommunity = groupMeta.isCommunity ? "✓ Sí" : "✘ No";
+    const joinMode = groupMeta.joinApprovalMode ? "Requiere Aprobación" : "Libre";
 
     let ppBuffer = null;
     try {
@@ -119,30 +119,30 @@ async function handler(m, { sock }) {
     } catch {}
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     const infoText =
       `── .✦ 𝗚𝗥𝗢𝗨𝗣 𝗜𝗡𝗙𝗢 ✦. ── 𝜗ৎ\n\n` +
       `╭─〔 ${groupName} 〕───⬣\n` +
-      `│  ✦ ɴᴀᴍᴀ        : *${groupName}*\n` +
+      `│  ✦ ɴᴀᴍʙʀᴇ      : *${groupName}*\n` +
       `│  ✦ ɪᴅ             : \`${groupJid}\`\n` +
-      `│  ✦ ᴍᴇᴍʙᴇʀ     : *${memberCount}*\n` +
-      `│  ✦ ᴀᴅᴍɪɴ        : *${adminCount}*\n` +
+      `│  ✦ ᴍɪᴇᴍʙʀᴏs    : *${memberCount}*\n` +
+      `│  ✦ ᴀᴅᴍɪɴs       : *${adminCount}*\n` +
       `│  ✦ ᴏᴡɴᴇʀ       : @${groupOwner.replace(/@.+/g, "")}\n` +
-      `│  ✦ ᴅɪʙᴜᴀᴛ       : *${createdAt}*\n` +
-      `│  ✦ ᴋᴏᴍᴜɴɪᴛᴀs : *${isCommunity}*\n` +
-      `│  ✦ ᴇᴅɪᴛ ɪɴꜰᴏ   : *${isRestrict}*\n` +
-      `│  ✦ ᴀɴɴᴏᴜɴᴄᴇ : *${isAnnounce}*\n` +
-      `│  ✦ ᴊᴏɪɴ ᴍᴏᴅᴇ  : *${joinMode}*\n` +
-      `│  ✦ ᴅᴇsᴋʀɪᴘsɪ  : ${descPreview}\n` +
+      `│  ✦ ᴄʀᴇᴀᴅᴏ       : *${createdAt}*\n` +
+      `│  ✦ ᴄᴏᴍᴜɴɪᴅᴀᴅ : *${isCommunity}*\n` +
+      `│  ✦ ᴇᴅɪᴛᴀʀ ɪɴꜰᴏ  : *${isRestrict}*\n` +
+      `│  ✦ ᴀɴᴜɴᴄɪᴏ     : *${isAnnounce}*\n` +
+      `│  ✦ ᴍᴏᴅᴏ ᴜɴɪʀsᴇ : *${joinMode}*\n` +
+      `│  ✦ ᴅᴇsᴄʀɪᴘᴄɪóɴ : ${descPreview}\n` +
       `╰──────────────⬣\n\n` +
-      `.☘︎ ݁˖ © ${config.bot?.name || "Ourin-AI"}`;
+      `.☘︎ ݁˖ © ${config.bot?.name || "Luffy-Ai"}`;
 
     const buttons = [
       {
         name: "cta_copy",
         buttonParamsJson: JSON.stringify({
-          display_text: "✦ Copy ID Grup",
+          display_text: "✦ Copiar ID del Grupo",
           copy_code: groupJid,
         }),
       },
@@ -175,7 +175,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Ourin-AI"}`,
+                  text: `© ${config.bot?.name || "Luffy-Ai"}`,
                 }),
                 header: proto.Message.InteractiveMessage.Header.fromObject({
                   hasMediaAttachment: !!headerMedia,
@@ -218,7 +218,7 @@ async function handler(m, { sock }) {
                   text: infoText,
                 }),
                 footer: proto.Message.InteractiveMessage.Footer.fromObject({
-                  text: `© ${config.bot?.name || "Ourin-AI"}`,
+                  text: `© ${config.bot?.name || "Luffy-Ai"}`,
                 }),
                 nativeFlowMessage:
                   proto.Message.InteractiveMessage.NativeFlowMessage.fromObject(

@@ -1,11 +1,11 @@
 import util from 'util'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'q',
     alias: ['quoted', 'inspect'],
     category: 'tools',
-    description: 'Ambil JSON message dari pesan yang direply',
-    usage: '.q (reply pesan)',
+    description: 'Obtener el JSON del mensaje citado',
+    usage: '.q (responder mensaje)',
     isOwner: true,
     cooldown: 3,
     isEnabled: true
@@ -13,7 +13,7 @@ const pluginConfig = {
 
 async function handler(m) {
     if (!m.quoted) {
-        return m.reply('❌ *Reply pesan yang ingin di-inspect*')
+        return m.reply('❌ *Responde al mensaje que quieres inspeccionar*')
     }
 
     try {

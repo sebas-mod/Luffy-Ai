@@ -6,11 +6,11 @@ const pluginConfig = {
   name: "playvid",
   alias: ["playvideo", "playmp4"],
   category: "search",
-  description: "Cari dan putar video dari YouTube",
+  description: "Busca y reproduce videos de YouTube",
   usage: ".playvid <query>",
   example: ".playvid windah basudara",
   cooldown: 15,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -45,29 +45,29 @@ async function getVideoDownloadUrl(url) {
     return fallback.dl;
   }
 
-  throw new Error(fallback?.mess || "Gagal mendapatkan video download URL");
+  throw new Error(fallback?.mess || "Error al obtener la URL de descarga del video");
 }
 
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query) {
-    return m.reply(`Halo *${m.pushName}* 👋\n\nUntuk mencari dan memutar video dari YouTube, silakan gunakan format:\n- \`${m.prefix}playvid <judul video>\`\n\nContoh:\n- \`${m.prefix}playvid windah basudara\``);
+    return m.reply(`Hola *${m.pushName}* 👋\n\nPara buscar y reproducir videos de YouTube, por favor usa el formato:\n- \`${m.prefix}playvid <título del video>\`\n\nEjemplo:\n- \`${m.prefix}playvid windah basudara\``);
   }
 
   m.react("🕕");
 
   try {
     const search = await yts(query);
-    if (!search.videos.length) throw new Error("Video tidak ditemukan");
+    if (!search.videos.length) throw new Error("Video no encontrado");
     const video = search.videos[0];
 
-    let info = `Halo *${m.pushName}*, ini video yang kamu cari:\n\n`;
-    info += `📌 *Judul:* ${video.title}\n`;
-    info += `👤 *Channel:* ${video.author.name}\n`;
-    info += `⏱️ *Durasi:* ${video.duration.timestamp}\n`;
-    info += `👀 *Views:* ${formatViews(video.views)}\n`;
-    info += `📅 *Upload:* ${video.ago}\n\n`;
-    info += `_⏳ Sedang mengunduh video, harap tunggu sebentar ya..._`;
+    let info = `Hola *${m.pushName}*, este es el video que buscas:\n\n`;
+    info += `📌 *Título:* ${video.title}\n`;
+    info += `👤 *Canal:* ${video.author.name}\n`;
+    info += `⏱️ *Duración:* ${video.duration.timestamp}\n`;
+    info += `👀 *Vistas:* ${formatViews(video.views)}\n`;
+    info += `📅 *Subido:* ${video.ago}\n\n`;
+    info += `_⏳ Descargando el video, por favor espera un momento..._`;
 
     await sock.sendPreview(
       m.chat,
@@ -75,7 +75,7 @@ async function handler(m, { sock, text }) {
         caption: video.url + "\n" + info,
         url: video.url,
         title: video.title,
-        description: "YouTube Video",
+        description: "Video de YouTube",
         image: video.thumbnail,
         previewType: 1,
       },
@@ -95,7 +95,7 @@ async function handler(m, { sock, text }) {
     console.error("[PlayVid]", err);
     m.react("❌");
     m.reply(
-      `Maaf *${m.pushName}*, fitur putar videonya sedang ada kendala atau video tersebut terlalu besar. Silakan coba lagi nanti ya!`,
+      `Lo siento *${m.pushName}*, la función de reproducir video está teniendo problemas o el video es demasiado grande. ¡Intenta de nuevo más tarde!`,
     );
   }
 }

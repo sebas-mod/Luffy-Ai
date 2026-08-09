@@ -1,28 +1,28 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
-import { uploadImage } from "../../src/lib/ourin-uploader.js";
+import te from "../../src/lib/luffy-error.js";
+import { uploadImage } from "../../src/lib/luffy-uploader.js";
 import { downloadMediaMessage } from "ourin";
 
 const pluginConfig = {
     name: "profileig",
     alias: ["profileig", "igprofile"],
     category: "canvas",
-    description: "Membuat canvas profile instagram",
-    usage: ".profileig <pengikut>|<mengikuti>|<postingan>|<username>|<bio>|<verif(true/false)>",
-    example: ".profileig 10M|1|150|jokowi|Presiden RI|true",
+    description: "Crea canvas de perfil de Instagram",
+    usage: ".profileig <seguidores>|<siguiendo>|<publicaciones>|<usuario>|<bio>|<verif(true/false)>",
+    example: ".profileig 10M|1|150|jokowi|Presidente de RI|true",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`Format salah!\n\n> Contoh: .profileig 10M|1|150|jokowi|Presiden RI|true\n> \n> _Catatan: Reply gambar untuk dijadikan foto profil._`);
+    if (!text) return m.reply(`Formato incorrecto!\n\n> Ejemplo: .profileig 10M|1|150|jokowi|Presidente de RI|true\n> \n> _Nota: Responde una imagen para usarla como foto de perfil._`);
     const [pengikut, mengikuti, postingan, username, bio, verif] = text.split("|").map(v => v.trim());
-    if (!pengikut || !mengikuti || !postingan || !username || !bio || !verif) return m.reply(`Pastikan semua argumen diisi dengan benar, dipisah dengan tanda |.`);
+    if (!pengikut || !mengikuti || !postingan || !username || !bio || !verif) return m.reply(`Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
 
     let imgUrl = "";
     const isImage = m.type === "imageMessage" || (m.quoted && m.quoted.type === "imageMessage");
@@ -52,7 +52,7 @@ async function handler(m, { sock, text }) {
             }
         });
 
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Berhasil membuat profile IG" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Perfil IG creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[ProfileIG Error]", e);

@@ -1,18 +1,18 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'cekowner',
     alias: ['ownerinfo'],
     category: 'cek',
-    description: 'Cek apakah user adalah owner bot',
-    usage: '.cekowner @user',
+    description: 'Comprueba si el usuario es el capitán del bot',
+    usage: '.cekowner @usuario',
     example: '.cekowner',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -43,21 +43,21 @@ async function handler(m, { sock }) {
     const user = db.getUser(targetJid)
 
     const roles = []
-    if (isOwnerUser) roles.push('👑 Owner')
+    if (isOwnerUser) roles.push('👑 Capitán')
     if (isPartnerUser) roles.push('🤝 Partner')
     if (isPremiumUser) roles.push('💎 Premium')
-    if (roles.length === 0) roles.push('👤 Free User')
+    if (roles.length === 0) roles.push('👤 Usuario Gratis')
 
     const ownerList = db.data.owner || []
     const isInOwnerDb = ownerList.includes(targetNumber)
 
-    let txt = `📋 *CEK USER INFO*\n\n`
-    txt += `👤 User: @${targetNumber}\n`
-    txt += `🏷️ Role: *${roles.join(' • ')}*\n`
-    txt += `📊 Owner DB: *${isInOwnerDb ? 'Ya' : 'Tidak'}*\n`
+    let txt = `📋 *INFO DEL USUARIO*\n\n`
+    txt += `👤 Usuario: @${targetNumber}\n`
+    txt += `🏷️ Rol: *${roles.join(' • ')}*\n`
+    txt += `📊 BD Capitán: *${isInOwnerDb ? 'Sí' : 'No'}*\n`
     if (user) {
-        txt += `⚡ Energi: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Koin: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('id-ID')}*\n`
+        txt += `⚡ Carne: *${user.carne === -1 ? '∞' : (user.carne ?? 0)}*\n`
+        txt += `💰 Berry: *${user.berry === -1 ? '∞' : (user.berry ?? 0).toLocaleString('id-ID')}*\n`
         txt += `⭐ Level: *${user.level ?? 1}*\n`
     }
 

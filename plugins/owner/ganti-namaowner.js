@@ -1,21 +1,21 @@
 import fs from "fs";
 import path from "path";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import { getOwnerName } from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "ganti-namaowner",
   alias: ["setnamaowner", "setnameowner", "setownername"],
   category: "owner",
-  description: "Ganti nama owner (utama atau tambahan)",
-  usage: ".ganti-namaowner <nomor> <nama baru>",
+  description: "Cambiar el nombre del owner (principal o adicional)",
+  usage: ".ganti-namaowner <número> <nombre nuevo>",
   example: ".ganti-namaowner 628xxx Fauzan",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,19 +27,19 @@ async function handler(m, { sock, config }) {
     const nameMap = db.setting("ownerNames") || {};
     const mainOwnerNum = config.owner?.number?.[0] || "";
     const mainName = config.owner?.name || "Owner";
-    let list = `👤 *ᴏᴡɴᴇʀ ɴᴀᴍᴇ ʟɪsᴛ*\n\n`;
-    list += `👑 Main: *${mainName}* (${mainOwnerNum})\n`;
+    let list = `👤 *ʟɪsᴛᴀ ᴅᴇ ɴᴏᴍʙʀᴇs ᴅᴇʟ ᴏᴡɴᴇʀ*\n\n`;
+    list += `👑 Principal: *${mainName}* (${mainOwnerNum})\n`;
     const entries = Object.entries(nameMap);
     if (entries.length > 0) {
       entries.forEach(([num, name]) => {
         list += `👤 ${num}: *${name}*\n`;
       });
     } else {
-      list += `\n> Belum ada nama custom untuk owner tambahan`;
+      list += `\n> Aún no hay nombres personalizados para owners adicionales`;
     }
-    list += `\n\n*Penggunaan:*\n`;
-    list += `\`${m.prefix}ganti-namaowner <nomor> <nama>\`\n`;
-    list += `\`${m.prefix}ganti-namaowner main <nama>\` — ganti nama owner utama`;
+    list += `\n\n*Uso:*\n`;
+    list += `\`${m.prefix}ganti-namaowner <número> <nombre>\`\n`;
+    list += `\`${m.prefix}ganti-namaowner main <nombre>\` — cambia el nombre del owner principal`;
     return m.reply(list);
   }
 
@@ -47,7 +47,7 @@ async function handler(m, { sock, config }) {
     const newName = input.slice(1).join(" ").trim();
     if (!newName) {
       return m.reply(
-        `👤 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ᴏᴡɴᴇʀ ᴜᴛᴀᴍᴀ*\n\n> Nama saat ini: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner main <nama baru>\``,
+        `👤 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ ᴘʀɪɴᴄɪᴘᴀʟ*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}ganti-namaowner main <nombre nuevo>\``,
       );
     }
     try {
@@ -63,7 +63,7 @@ async function handler(m, { sock, config }) {
       fs.writeFileSync(configPath, configContent);
       config.owner.name = newName;
       return m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama owner utama diganti ke: *${newName}*`,
+        `✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner principal cambiado a: *${newName}*`,
       );
     } catch (error) {
       return m.reply(te(m.prefix, m.command, m.pushName));
@@ -75,14 +75,14 @@ async function handler(m, { sock, config }) {
 
   if (!targetNumber || targetNumber.length < 10) {
     return m.reply(
-      `❌ *ɢᴀɢᴀʟ*\n\n> Nomor tidak valid\n\n\`${m.prefix}ganti-namaowner 628xxx NamaOwner\``,
+      `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Número no válido\n\n\`${m.prefix}ganti-namaowner 628xxx NombreOwner\``,
     );
   }
 
   if (!newName) {
     const currentName = getOwnerName(targetNumber);
     return m.reply(
-      `👤 *ɴᴀᴍᴀ ᴏᴡɴᴇʀ*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}ganti-namaowner ${targetNumber} <nama baru>\``,
+      `👤 *ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}ganti-namaowner ${targetNumber} <nombre nuevo>\``,
     );
   }
 
@@ -91,7 +91,7 @@ async function handler(m, { sock, config }) {
   db.setting("ownerNames", nameMap);
 
   return m.reply(
-    `✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama owner *${targetNumber}* diganti ke: *${newName}*`,
+    `✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*`,
   );
 }
 

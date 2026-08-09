@@ -1,22 +1,22 @@
-import { addExifToWebp } from '../../src/lib/ourin-exif.js'
+import { addExifToWebp } from '../../src/lib/luffy-exif.js'
 import axios from 'axios'
 import config from '../../config.js'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
-const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
+const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 const pluginConfig = {
     name: 'attp',
     alias: ['attp2', 'attp3'],
     category: 'sticker',
-    description: 'Membuat sticker animated text',
-    usage: '.attp <teks>',
+    description: 'Crea sticker de texto animado',
+    usage: '.attp <texto>',
     example: '.attp Hello World',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 function getRandomColor() {
@@ -31,12 +31,12 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🎨 *ᴀɴɪᴍᴀᴛᴇᴅ ᴛᴇxᴛ sᴛɪᴄᴋᴇʀ*\n\n` +
-            `> Masukkan teks untuk sticker\n\n` +
-            `> Contoh: \`${m.prefix}attp Hello World\``
+            `> Ingresa el texto para el sticker\n\n` +
+            `> Ejemplo: \`${m.prefix}attp Hello World\``
         )
     }
     if (text.length > 100) {
-        return m.reply(`❌ Teks terlalu panjang! Maksimal 100 karakter.`)
+        return m.reply(`❌ ¡El texto es demasiado largo! Máximo 100 caracteres.`)
     }
     m.react('🕕')
     try {

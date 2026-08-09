@@ -1,24 +1,24 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js";
 import fs from 'fs'
 import * as _canvas from '@napi-rs/canvas'
 
 
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "fakestory3",
   alias: ["fstory3", "igstory3", "quotestory"],
   category: "canvas",
-  description: "Fake Instagram story dengan text overlay",
-  usage: ".fakestory3 <nama>|<text1>|<text2>",
-  example: ".fakestory3 Misaki|Tersenyumlah|untuk menutupi kesedihan",
+  description: "Fake Instagram story con texto superpuesto",
+  usage: ".fakestory3 <nombre>|<texto1>|<texto2>",
+  example: ".fakestory3 Misaki|Sonríe|para ocultar la tristeza",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 const canvasConfig = {
@@ -247,10 +247,10 @@ async function handler(m, { sock }) {
   if (!input || !input.includes("|")) {
     return m.reply(
       `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 3*\n\n` +
-        `> Reply gambar dengan format:\n` +
-        `> \`${m.prefix}fakestory3 nama|text1|text2\`\n\n` +
-        `> Contoh:\n` +
-        `> \`${m.prefix}fakestory3 Misaki|Tersenyumlah|untuk menutupi kesedihan\``,
+        `> Responde una imagen con el formato:\n` +
+        `> \`${m.prefix}fakestory3 nombre|texto1|texto2\`\n\n` +
+        `> Ejemplo:\n` +
+        `> \`${m.prefix}fakestory3 Misaki|Sonríe|para ocultar la tristeza\``,
     );
   }
   const parts = input.split("|").map((s) => s.trim());
@@ -263,7 +263,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.isImage);
     if (!isImage) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply gambar untuk membuat fake story!`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> ¡Responde una imagen para crear el fake story!`);
     }
     let imageBuffer;
     if (m.isImage && m.download) {
@@ -273,7 +273,7 @@ async function handler(m, { sock }) {
     }
     if (!imageBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa download gambar`);
+      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
     }
     const resultBuffer = await createFakeStory(
       username,
@@ -287,7 +287,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: resultBuffer,
-        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜꜱᴜᴀʀɪᴏ: \`${username}\``,
       },
       { quoted: m },
     );

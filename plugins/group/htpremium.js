@@ -1,17 +1,17 @@
-import { getParticipantJids } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { getParticipantJids } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['htpremium', 'hidetagpremium', 'htprem'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
-    usage: '.htprem [pesan] atau reply pesan',
-    example: '.htprem atau reply pesan lalu .htprem',
+    description: 'Hidetag premium con soporte de reply de mensajes (texto/media)',
+    usage: '.htprem [mensaje] o responde un mensaje',
+    example: '.htprem o responde un mensaje y escribe .htprem',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: false
@@ -106,7 +106,7 @@ async function handler(m, { sock }) {
             const finalText = text || quotedText
 
             if (!finalText) {
-                return m.reply('❌ *Pesan kosong*')
+                return m.reply('❌ *Mensaje vacío*')
             }
 
             return sock.sendMessage(m.chat, {
@@ -117,10 +117,10 @@ async function handler(m, { sock }) {
         if (!text) {
             return m.reply(
                 `📢 *HIDETAG PREMIUM*\n\n` +
-                `• Reply pesan lalu ketik \`${m.prefix}ht\`\n` +
-                `• Atau ketik \`${m.prefix}ht <custom tag> | <pesan>\`\n\n` +
-                `• Contoh: \`${m.prefix}ht everyone | hai semua\`\n\n` +
-                `Support: teks, gambar, video, sticker, audio, dokumen`
+                `• Responde un mensaje y escribe \`${m.prefix}ht\`\n` +
+                `• O escribe \`${m.prefix}ht <tag personalizado> | <mensaje>\`\n\n` +
+                `• Ejemplo: \`${m.prefix}ht everyone | hola a todos\`\n\n` +
+                `Soporta: texto, imagen, video, sticker, audio, documentos`
             )
         }
 

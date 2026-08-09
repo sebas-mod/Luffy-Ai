@@ -1,18 +1,18 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'tofigure3',
     alias: ['figurine3', 'tofigure3', 'bandai3', 'actionfigure3'],
     category: 'ai',
-    description: 'Ubah foto menjadi action figure/figurine koleksi',
-    usage: '.tofigure3 (reply/kirim gambar)',
+    description: 'Convertir la foto a action figure/figurine de colección',
+    usage: '.tofigure3 (responde/envía imagen)',
     example: '.tofigure3',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🎭 *ᴛᴏ ꜰɪɢᴜʀ 3*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke figurine/action figure\n\n` +
+            `> Envía/responde una imagen para convertirla a figurine/action figure\n\n` +
             `\`${m.prefix}tofigure3\``
         )
     }
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         

@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import { f } from './../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { f } from './../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'emojimix',
     alias: ['mixemoji', 'emix'],
     category: 'sticker',
-    description: 'Gabungkan 2 emoji menjadi 1',
+    description: 'Combina 2 emojis en 1',
     usage: '.emojimix <emoji1><emoji2>',
     example: '.emojimix 😂🔥',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -23,8 +23,8 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🎭 *ᴇᴍᴏᴊɪ ᴍɪx*\n\n` +
-            `> Gabungkan 2 emoji menjadi 1\n\n` +
-            `> Contoh: \`${m.prefix}emojimix 😂🔥\``
+            `> Combina 2 emojis en 1\n\n` +
+            `> Ejemplo: \`${m.prefix}emojimix 😂🔥\``
         )
     }
 
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     const emojis = text.match(emojiRegex)
 
     if (!emojis || emojis.length < 2) {
-        return m.reply(`❌ Masukkan minimal 2 emoji!\n\nContoh: ${m.prefix}emojimix 😂🔥`)
+        return m.reply(`❌ ¡Ingresa al menos 2 emojis!\n\nEjemplo: ${m.prefix}emojimix 😂🔥`)
     }
 
     const emoji1 = emojis[0]
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         const data = await f(apiUrl)
 
         if (!data.status || !data.data?.url) {
-            return m.reply(`❌ Kombinasi emoji tidak ditemukan!\n\nCoba emoji lain.`)
+            return m.reply(`❌ ¡No se encontró la combinación de emojis!\n\nPrueba con otros emojis.`)
         }
 
         const imageUrl = data.data.url

@@ -2,14 +2,14 @@ import ttdown from "../../src/scraper/tiktok.js";
 import axios from "axios";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
 const pluginConfig = {
   name: ["ttmp3"],
   alias: ["ttmusic", "tiktokmusic"],
   category: "download",
-  description: "Download audio TikTok",
+  description: "Descarga audio de TikTok",
   usage: ".ttmp3 <url>",
   example: ".ttmp3 https://vt.tiktok.com/xxx",
   isOwner: false,
@@ -17,7 +17,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -56,7 +56,7 @@ async function extractAudioFromVideo(videoUrl) {
   });
 
   if (!fs.existsSync(outputFile) || fs.statSync(outputFile).size <= 0) {
-    throw new Error("Gagal mengekstrak audio TikTok");
+    throw new Error("Error al extraer el audio de TikTok");
   }
 
   return {
@@ -81,16 +81,16 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ᴛɪᴋᴛᴏᴋ ᴅᴏᴡɴʟᴏᴀᴅ* 」
-┃ ㊗ ᴜsᴀɢᴇ: \`${m.prefix}ttmp3 <url>\`
+      `╭┈┈⬡「 🎵 *ᴅᴇsᴄᴀʀɢᴀ ᴛɪᴋᴛᴏᴋ* 」
+┃ ㊗ ᴜsᴏ: \`${m.prefix}ttmp3 <url>\`
 ╰┈┈⬡
 
-> Contoh: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
+> Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
     );
   }
 
   if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-    return m.reply("❌ URL tidak valid. Gunakan link TikTok.");
+    return m.reply("❌ URL no válida. Usa un enlace de TikTok.");
   }
 
   m.react("🕕");
@@ -106,7 +106,7 @@ async function handler(m, { sock }) {
         result.downloads.find((d) => d.type === "nowatermark");
 
       if (!videoDownload?.url) {
-        throw new Error("Audio TikTok tidak ditemukan.");
+        throw new Error("Audio de TikTok no encontrado.");
       }
 
       const extractedAudio = await extractAudioFromVideo(videoDownload.url);
@@ -128,7 +128,7 @@ async function handler(m, { sock }) {
     cleanupTempFiles();
     console.error("[TikTokDL] Error:", err);
     m.react("❌");
-    m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+    m.reply(`❌ *ꜰᴀʟʟó ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n> ${err.message}`);
   }
 }
 

@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'delppgc',
     alias: ['delprofilegc', 'delppgroup', 'hapusppgc'],
     category: 'group',
-    description: 'Menghapus foto profil grup',
+    description: 'Eliminar la foto de perfil del grupo',
     usage: '.delppgc',
     example: '.delppgc',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,12 +21,12 @@ async function handler(m, { sock }) {
         await sock.removeProfilePicture(m.chat)
         
         await m.reply(
-            `✅ PP Grup sekarang sudah botak`
+            `✅ La foto de perfil del grupo ahora está pelona`
         )
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat menghapus foto grup.\n` +
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> No se pudo eliminar la foto del grupo.\n` +
             `> _${error.message}_`
         )
     }

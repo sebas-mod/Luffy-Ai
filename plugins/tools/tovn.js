@@ -1,19 +1,19 @@
-import { queueFFmpeg } from '../../src/lib/ourin-ffmpeg.js'
+import { queueFFmpeg } from '../../src/lib/luffy-ffmpeg.js'
 import fs from 'fs'
 import path from 'path'
 const pluginConfig = {
     name: 'tovn',
     alias: ['tovoicenote', 'toptt', 'audiotovn'],
     category: 'tools',
-    description: 'Mengubah audio/video menjadi voice note',
-    usage: '.tovn (reply/caption audio/video)',
+    description: 'Convierte audio/video en nota de voz',
+    usage: '.tovn (responde/envía audio/video)',
     example: '.tovn',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -56,11 +56,11 @@ async function handler(m, { sock }) {
     
     if (!mediaSource) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak ada audio/video yang terdeteksi!\n\n` +
-            `*Cara penggunaan:*\n` +
-            `> 1. Kirim audio/video + caption \`${m.prefix}tovn\`\n` +
-            `> 2. Reply audio/video dengan \`${m.prefix}tovn\``
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> No se detectó ningún audio/video!\n\n` +
+            `*Cómo usar:*\n` +
+            `> 1. Envía audio/video + caption \`${m.prefix}tovn\`\n` +
+            `> 2. Responde audio/video con \`${m.prefix}tovn\``
         )
         return
     }
@@ -81,9 +81,9 @@ async function handler(m, { sock }) {
         if (!buffer || buffer.length === 0) {
             await m.react('❌')
             await m.reply(
-                `❌ *ɢᴀɢᴀʟ*\n\n` +
-                `> Tidak dapat mengunduh media.\n` +
-                `> Media mungkin sudah tidak tersedia.`
+                `❌ *ᴇʀʀᴏʀ*\n\n` +
+                `> No se pudo descargar el media.\n` +
+                `> Es posible que el media ya no esté disponible.`
             )
             return
         }
@@ -107,9 +107,9 @@ async function handler(m, { sock }) {
         if (!fs.existsSync(outputPath)) {
             await m.react('❌')
             await m.reply(
-                `❌ *ᴋᴏɴᴠᴇʀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Gagal mengkonversi ke voice note.\n` +
-                `> Pastikan ffmpeg terinstall dengan benar.`
+                `❌ *ᴄᴏɴᴠᴇʀsɪᴏɴ ᴇʀʀᴏʀᴇᴀᴅᴀ*\n\n` +
+                `> No se pudo convertir a nota de voz.\n` +
+                `> Asegúrate de que ffmpeg esté instalado correctamente.`
             )
             return
         }
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
         await m.react('❌')
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Terjadi kesalahan saat memproses.\n` +
+            `> Se produjo un error durante el procesamiento.\n` +
             `> _${error.message}_`
         )
     } finally {

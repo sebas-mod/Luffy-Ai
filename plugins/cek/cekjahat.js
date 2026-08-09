@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekjahat',
     alias: ['jahat', 'evil'],
     category: 'cek',
-    description: 'Cek seberapa jahat kamu',
-    usage: '.cekjahat <nama>',
+    description: 'Comprueba cuán malvado eres',
+    usage: '.cekjahat <nombre>',
     example: '.cekjahat Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'VILLAIN LEVEL! 😈👿'
+        desc = '¡NIVEL VILLANO! 😈👿'
     } else if (percent >= 70) {
-        desc = 'Jahat banget! 💀'
+        desc = '¡Muy malvado! 💀'
     } else if (percent >= 50) {
-        desc = 'Lumayan jahat 😏'
+        desc = 'Bastante malvado 😏'
     } else if (percent >= 30) {
-        desc = 'Sedikit nakal 😊'
+        desc = 'Un poco travieso 😊'
     } else {
-        desc = 'Baik kok, gak jahat! 😇'
+        desc = '¡Es bueno, nada malvado! 😇'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kejahatan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kejahatan @${mentioned.split('@')[0]} yak? 
+Tu nivel de maldad es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de maldad de @${mentioned.split('@')[0]}? 
     
-Tingkat kejahatan dia sebesar *${percent}%*
+Su nivel de maldad es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

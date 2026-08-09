@@ -1,5 +1,5 @@
-import { getPlugin } from "../../src/lib/ourin-plugins.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getPlugin } from "../../src/lib/luffy-plugins.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const config = {
   name: "capfree",
@@ -13,21 +13,21 @@ const config = {
   isGroup: false,
   isPrivate: false,
   cooldown: 0,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
-      `🆓 *SISTEM CAP FREE*\n\n` +
-      `Sistem untuk mengembalikan status akses banyak fitur sekaligus menjadi gratis secara publik.\n\n` +
-      `*PENGGUNAAN:*\n` +
-      `- *${m.prefix}capfree <nama_fitur1> <nama_fitur2> ...* — Bisa banyak sekaligus\n\n` +
-      `*CONTOH PENGGUNAAN:*\n` +
+      `🆓 *SISTEMA CAP FREE*\n\n` +
+      `Sistema para devolver el estado de acceso de varias funciones a la vez y dejarlas gratis para el público.\n\n` +
+      `*USO:*\n` +
+      `- *${m.prefix}capfree <nombre_función1> <nombre_función2> ...* — Pueden ser varias a la vez\n\n` +
+      `*EJEMPLO DE USO:*\n` +
       `- *${m.prefix}capfree hd jpm warn*\n\n` +
-      `*PENJELASAN:*\n` +
-      `Masukkan satu atau lebih nama fitur yang ingin digratiskan. Pisahkan dengan spasi.`
+      `*EXPLICACIÓN:*\n` +
+      `Introduce uno o más nombres de funciones que quieras dejar gratis. Sepáralos con espacios.`
     );
   }
 
@@ -55,15 +55,15 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   
-  let msg = `✅ *STATUS BERHASIL DIUBAH*\n\n`;
+  let msg = `✅ *ESTADO CAMBIADO CON ÉXITO*\n\n`;
   if (successList.length > 0) {
-    msg += `*Berhasil (FREE 🆓):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Exitosos (FREE 🆓):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   if (failedList.length > 0) {
-    msg += `*Gagal (Tidak ditemukan):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
+    msg += `*Fallidos (No encontrados):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   
-  msg += `_Fitur di atas (yang berhasil) sekarang sudah bebas diakses semua member._`;
+  msg += `_Las funciones de arriba (las exitosas) ahora son de libre acceso para todos los miembros._`;
   
   return m.reply(msg.trim());
 }

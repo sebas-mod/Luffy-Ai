@@ -1,10 +1,10 @@
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import {
   addJadibotPremium,
   removeJadibotPremium,
   getJadibotPremiums,
-} from "../../src/lib/ourin-jadibot-database.js";
+} from "../../src/lib/luffy-jadibot-database.js";
 const pluginConfig = {
   name: "addprem",
   alias: [
@@ -25,12 +25,12 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 function formatDate(ts) {
-  return new Date(ts).toLocaleDateString("id-ID", {
+  return new Date(ts).toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -65,10 +65,10 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbPremiums = getJadibotPremiums(jadibotId);
       if (jbPremiums.length === 0) {
         return m.reply(
-          `💎 Belum ada premium di jadibot ini\nGunakan \`${m.prefix}addprem\` untuk menambah`,
+          `💎 Aún no hay premium en este jadibot\nUsa \`${m.prefix}addprem\` para añadir`,
         );
       }
-      let txt = `💎 *DAFTAR PREMIUM JADIBOT* — ${jadibotId}\n\n`;
+      let txt = `💎 *LISTA DE PREMIUM JADIBOT* — ${jadibotId}\n\n`;
       const mentions = jbPremiums
         .map((p) => (typeof p === "string" ? p : p.jid))
         .map(toMentionJid)
@@ -83,9 +83,9 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     }
 
     if (db.data.premium.length === 0) {
-      return m.reply(`💎 Belum ada premium terdaftar`);
+      return m.reply(`💎 Aún no hay premium registrados`);
     }
-    let txt = `💎 *DAFTAR PREMIUM*\n\n`;
+    let txt = `💎 *LISTA DE PREMIUM*\n\n`;
     const now = Date.now();
     const mentions = db.data.premium
       .map((p) => (typeof p === "string" ? p : p.id))
@@ -99,10 +99,10 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
           : null;
       const status =
         remaining === null
-          ? "Permanent"
+          ? "Permanente"
           : remaining > 0
             ? remaining + "d"
-            : "Expired";
+            : "Caducado";
       const number = String(num || "").replace(/[^0-9]/g, "");
       txt += `${i + 1}. @${number} — ${status}\n`;
     });
@@ -114,7 +114,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
   if (!targetNumber) {
     return m.reply(
-      `💎 *${isAdd ? "ADD" : "DEL"} PREMIUM*\n\nMasukkan nomor atau tag user\n\`Contoh: ${m.prefix}${cmd} 6281234567890\``,
+      `💎 *${isAdd ? "AGREGAR" : "ELIMINAR"} PREMIUM*\n\nIntroduce el número o etiqueta al usuario\n\`Ejemplo: ${m.prefix}${cmd} 6281234567890\``,
     );
   }
 
@@ -123,7 +123,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`❌ Format nomor tidak valid`);
+    return m.reply(`❌ Formato de número no válido`);
   }
 
   if (isJadibot && jadibotId) {
@@ -131,19 +131,19 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (addJadibotPremium(jadibotId, targetNumber)) {
         await m.react("💎");
         return m.reply(
-          `✅ Berhasil menambahkan *${targetNumber}* sebagai premium jadibot`,
+          `✅ Exitoso, se añadió *${targetNumber}* como premium de jadibot`,
         );
       } else {
-        return m.reply(`❌ \`${targetNumber}\` sudah premium di Jadibot ini`);
+        return m.reply(`❌ \`${targetNumber}\` ya es premium en este Jadibot`);
       }
     } else if (isDel) {
       if (removeJadibotPremium(jadibotId, targetNumber)) {
         await m.react("✅");
         return m.reply(
-          `✅ Berhasil menghapus *${targetNumber}* dari premium jadibot`,
+          `✅ Exitoso, se eliminó *${targetNumber}* de los premium de jadibot`,
         );
       } else {
-        return m.reply(`❌ \`${targetNumber}\` bukan premium di Jadibot ini`);
+        return m.reply(`❌ \`${targetNumber}\` no es premium en este Jadibot`);
       }
     }
     return;
@@ -155,7 +155,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     );
 
     let durationMs = 30 * 24 * 60 * 60 * 1000;
-    let durationLabel = "30 hari";
+    let durationLabel = "30 días";
     
     const timeArg = m.args?.find((a) => /^\d+(h|hari|j|jam|m|menit|d|detik)?$/i.test(a));
     if (timeArg) {
@@ -165,16 +165,16 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
         const unit = match[2] || "h";
         if (unit === "d" || unit === "detik") {
           durationMs = val * 1000;
-          durationLabel = `${val} detik`;
+          durationLabel = `${val} segundos`;
         } else if (unit === "m" || unit === "menit") {
           durationMs = val * 60 * 1000;
-          durationLabel = `${val} menit`;
+          durationLabel = `${val} minutos`;
         } else if (unit === "j" || unit === "jam") {
           durationMs = val * 60 * 60 * 1000;
-          durationLabel = `${val} jam`;
+          durationLabel = `${val} horas`;
         } else {
           durationMs = val * 24 * 60 * 60 * 1000;
-          durationLabel = `${val} hari`;
+          durationLabel = `${val} días`;
         }
       }
     }
@@ -215,20 +215,20 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     const jid = targetNumber + "@s.whatsapp.net";
     const user = db.getUser(jid) || db.setUser(jid);
 
-    if (user.energi !== -1) {
-      user.energi = config.energi?.premium || 999999;
+    if (user.carne !== -1) {
+      user.carne = config.carne?.premium || 999999;
     }
     user.isPremium = true;
 
     db.setUser(jid, user);
     db.updateExp(jid, 200000);
-    db.updateKoin(jid, 20000);
+    db.updateBerry(jid, 20000);
 
     db.save();
 
     await m.react("💎");
     return m.reply(
-      `✅ Berhasil ${existingIndex !== -1 ? "memperpanjang" : "menambahkan"} premium *${targetNumber}* selama *${durationLabel}*\nExpired: *${formatDate(newExpired)}*`,
+      `✅ Exitoso, se ${existingIndex !== -1 ? "renovó" : "añadió"} premium *${targetNumber}* por *${durationLabel}*\nCaduca: *${formatDate(newExpired)}*`,
     );
   } else if (isDel) {
     const index = db.data.premium.findIndex((p) =>
@@ -236,7 +236,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     );
 
     if (index === -1) {
-      return m.reply(`❌ *${targetNumber}* bukan premium`);
+      return m.reply(`❌ *${targetNumber}* no es premium`);
     }
 
     db.data.premium.splice(index, 1);
@@ -250,7 +250,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
     db.save();
     await m.react("✅");
-    return m.reply(`✅ Berhasil menghapus *${targetNumber}* dari premium`);
+    return m.reply(`✅ Exitoso, se eliminó *${targetNumber}* de los premium`);
   }
 }
 

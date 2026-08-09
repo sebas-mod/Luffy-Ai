@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "divorce",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 60,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -23,18 +23,18 @@ async function handler(m, { sock }) {
   if (!user.rpg) user.rpg = {};
 
   if (!user.rpg.spouse) {
-    return m.reply(`Halu tingkat tinggi... Nikah aja belum masa udah mau cerai? 😂💔\nCari pasangan dulu gih pake \`.marry @user\``);
+    return m.reply(`¿Delirando mucho...? Ni siquiera estás casado y ya quieres divorciarte? 😂💔\n¡Busca pareja primero con \`.marry @user\``);
   }
 
   const spouseJid = user.rpg.spouse;
   const partner = db.getUser(spouseJid);
 
   const divorceCost = 25000;
-  if ((user.koin || 0) < divorceCost) {
-    return m.reply(`Aduh, biaya pengacara buat cerai mahal bos! 😭\nButuh *Rp 25.000* buat tanda tangan surat cerai, duit lu cuma *Rp ${(user.koin || 0).toLocaleString("id-ID")}*.\nTahan dulu aja berantemnya!`);
+  if ((user.berry || 0) < divorceCost) {
+    return m.reply(`Uy, los honorarios del abogado para divorciarse son caros jefe! 😭\nNecesitas *Rp 25.000* para firmar el acta de divorcio, solo tienes *Rp ${(user.berry || 0).toLocaleString("id-ID")}*.\n¡Aguanta la pelea un poco más!`);
   }
 
-  user.koin -= divorceCost;
+  user.berry -= divorceCost;
   user.rpg.spouse = null;
   user.rpg.marriedAt = null;
 
@@ -47,14 +47,14 @@ async function handler(m, { sock }) {
 
   await m.react("💔");
 
-  let txt = `⛈️ *SIDANG PERCERAIAN SELESAI* ⛈️\n\n`;
-  txt += `Palu telah diketuk. Dengan berat hati, hubungan antara:\n`;
+  let txt = `⛈️ *JUICIO DE DIVORCIO CONCLUIDO* ⛈️\n\n`;
+  txt += `El martillo ha golpeado. Con pesar, la relación entre:\n`;
   txt += `💔 @${m.sender.split("@")[0]}\n`;
-  txt += `         -- PUTUS DENGAN --\n`;
+  txt += `         -- SE ROMPE CON --\n`;
   txt += `💔 @${spouseJid.split("@")[0]}\n\n`;
-  txt += `😭 *RESMI BERAKHIR! KINI KALIAN KEMBALI JOMBLO!* 😭\n\n`;
-  txt += `💸 Biaya Pengacara/Sidang: *Rp -${divorceCost.toLocaleString("id-ID")}*\n\n`;
-  txt += `> _"Sudah sudah... nangisnya di pojokan aja. Life must go on..." - Hakim Bot_ 🥀🚬`;
+  txt += `😭 *¡OFICIALMENTE TERMINADO! ¡AHORA ESTÁN SOLTEROS OTRA VEZ!* 😭\n\n`;
+  txt += `💸 Honorarios del Abogado/Juicio: *Rp -${divorceCost.toLocaleString("id-ID")}*\n\n`;
+  txt += `> _"Ya ya... lloren en un rincón. La vida sigue..." - Juez Bot_ 🥀🚬`;
 
   await m.reply(txt, { mentions: [m.sender, spouseJid] });
 }

@@ -1,12 +1,12 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "setmenucat",
   alias: ["menucatvariant", "menucatstyle"],
   category: "owner",
-  description: "Mengatur variant tampilan menucat",
+  description: "Configurar la variante de visualización de menucat",
   usage: ".setmenucat <v1-v2, v5>",
   example: ".setmenucat v2",
   isOwner: true,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -22,25 +22,25 @@ const VARIANTS = {
   v1: {
     id: 1,
     name: "Plain Text",
-    desc: "Tampilan teks biasa tanpa media, cocok untuk koneksi lambat atau device yang tidak support interactive message",
+    desc: "Visualización de texto simple sin medios, ideal para conexiones lentas o dispositivos que no soportan mensajes interactivos",
     emoji: "📝",
   },
   v2: {
     id: 2,
     name: "Interactive + Image Header",
-    desc: "Tampilan premium dengan gambar header, limited time offer, dan tombol navigasi interaktif",
+    desc: "Visualización premium con imagen de cabecera, limited time offer y botones de navegación interactivos",
     emoji: "🖼️",
   },
   v5: {
     id: 5,
     name: "MENUCAT NATIVEFLOW",
-    desc: "Tampilan native flow premium dengan video & cuaca",
+    desc: "Visualización nativa flow premium con video y clima",
     emoji: "✨",
   },
   v6: {
     id: 6,
     name: "MENUCAT LOCATION",
-    desc: "Tampilan location message tanpa tombol interaktif",
+    desc: "Visualización con mensaje de ubicación sin botones interactivos",
     emoji: "📍",
   },
 };
@@ -52,7 +52,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1*, *v2*, *v5*, atau *v6*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5* o *v6*`);
       return;
     }
 
@@ -60,7 +60,7 @@ async function handler(m, { sock, db }) {
     await db.save();
 
     await m.reply(
-      `✅ *MENUCAT VARIANT DIUBAH*\n\n` +
+      `✅ *VARIANTE DE MENUCAT CAMBIADA*\n\n` +
         `${selected.emoji} *V${selected.id} — ${selected.name}*\n` +
         `${selected.desc}`,
     );
@@ -84,21 +84,21 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "📂 Pilih Variant Menucat",
-        sections: [{ title: "Daftar Variant Menucat", rows }],
+        title: "📂 Elegir Variante de Menucat",
+        sections: [{ title: "Lista de Variantes de Menucat", rows }],
       }),
     },
   ];
 
   const bodyText =
-    `📂🗂️ *MENUCAT VARIANT*\n\n` +
-    `Atur tampilan menu per kategori ketika user memilih kategori dari menu utama 📋✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `> Pilih variant menucat dari tombol di bawah 👇`;
+    `📂🗂️ *VARIANTE DE MENUCAT*\n\n` +
+    `Configura el menú por categorías cuando el usuario elige una categoría del menú principal 📋✨\n` +
+    `Variante activa actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Desconocida"}* 🎯\n\n` +
+    `> Elige la variante de menucat con el botón de abajo 👇`;
 
   await sock.sendButton(
     m.chat,
-    getAssetBuffer("ourin"),
+    getAssetBuffer("luffy"),
     bodyText,
     m,
     { buttons },

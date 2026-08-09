@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "expedition",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -48,47 +48,47 @@ async function handler(m, { sock }) {
   const maxExpeditions = Math.min(5, 1 + Math.floor((user.level || 1) / 10));
 
   if (!action || !["start", "claim", "status", "list"].includes(action)) {
-    let txt = `🗺️ *MARKAS EKSPEDISI* 🗺️\n\n`;
-    txt += `Kirim rombongan ekspedisi buat nyari barang-barang langka selagi kamu istirahat kak!\n\n`;
-    txt += `*Daftar Perintah:*\n`;
-    txt += `📜 \`${m.prefix}expedition list\` (Cek Area)\n`;
-    txt += `🚀 \`${m.prefix}expedition start <area>\` (Mulai Ekspedisi)\n`;
-    txt += `⏳ \`${m.prefix}expedition status\` (Cek Timer)\n`;
-    txt += `💰 \`${m.prefix}expedition claim\` (Tarik Hasil)\n\n`;
-    txt += `📊 Kapasitas Ekspedisi Kamu: *${user.rpg.expeditions.length}/${maxExpeditions} Rombongan*`;
+    let txt = `🗺️ *CUARTEL DE EXPEDICIONES* 🗺️\n\n`;
+    txt += `¡Envía grupos de expedición a buscar objetos raros mientras descansas bro!\n\n`;
+    txt += `*Lista de Comandos:*\n`;
+    txt += `📜 \`${m.prefix}expedition list\` (Ver Áreas)\n`;
+    txt += `🚀 \`${m.prefix}expedition start <area>\` (Iniciar Expedición)\n`;
+    txt += `⏳ \`${m.prefix}expedition status\` (Ver Temporizador)\n`;
+    txt += `💰 \`${m.prefix}expedition claim\` (Recoger Resultados)\n\n`;
+    txt += `📊 Tu Capacidad de Expediciones: *${user.rpg.expeditions.length}/${maxExpeditions} Grupos*`;
     return m.reply(txt);
   }
 
   if (action === "list") {
-    let txt = `📜 *PETA EKSPLORASI DUNIA* 📜\n\n`;
+    let txt = `📜 *MAPA DE EXPLORACIÓN MUNDIAL* 📜\n\n`;
 
     for (const [key, exp] of Object.entries(EXPEDITIONS)) {
       const canGo = (user.level || 1) >= exp.minLevel;
       txt += `📍 ${exp.name} ${canGo ? "🔓" : "🔒"}\n`;
-      txt += `   ├ ⏳ Waktu: ${formatTime(exp.duration)}\n`;
-      txt += `   ├ 🎁 Potensi Loot: ${exp.rewards.join(", ")}\n`;
-      txt += `   ├ 📈 EXP: ${exp.exp} (Min Lv. ${exp.minLevel})\n`;
-      txt += `   └ 🚀 Kode Area: \`${key}\`\n\n`;
+      txt += `   ├ ⏳ Tiempo: ${formatTime(exp.duration)}\n`;
+      txt += `   ├ 🎁 Loot Potencial: ${exp.rewards.join(", ")}\n`;
+      txt += `   ├ 📈 EXP: ${exp.exp} (Nv. mín. ${exp.minLevel})\n`;
+      txt += `   └ 🚀 Código de Área: \`${key}\`\n\n`;
     }
     return m.reply(txt);
   }
 
   if (action === "start") {
     if (user.rpg.expeditions.length >= maxExpeditions) {
-      return m.reply(`Duh kak, kapasitas ekspedisi kamu udah full! (${user.rpg.expeditions.length}/${maxExpeditions})\nTunggu rombongan yang lain balik dulu ya!`);
+      return m.reply(`Uy bro, tu capacidad de expediciones está llena! (${user.rpg.expeditions.length}/${maxExpeditions})\n¡Espera a que otro grupo regrese!`);
     }
 
     if (!expType) {
-      return m.reply(`Pilih area tujuan ekspedisinya kak!\nContoh: \`${m.prefix}expedition start forest\``);
+      return m.reply(`¡Elige el área de destino de la expedición bro!\nEjemplo: \`${m.prefix}expedition start forest\``);
     }
 
     const exp = EXPEDITIONS[expType];
     if (!exp) {
-      return m.reply(`Maaf kak, area *${expType}* nggak ada di peta!`);
+      return m.reply(`Lo siento bro, el área *${expType}* no está en el mapa!`);
     }
 
     if ((user.level || 1) < exp.minLevel) {
-      return m.reply(`Aduh kak, level kamu masih kurang nih. Butuh *Level ${exp.minLevel}* buat ekspedisi ke sana!`);
+      return m.reply(`Uy bro, tu nivel aún es insuficiente. Necesitas *Nivel ${exp.minLevel}* para expedicionar ahí!`);
     }
 
     user.rpg.expeditions.push({
@@ -98,21 +98,21 @@ async function handler(m, { sock }) {
     });
     db.save();
 
-    let txt = `🚀 *EKSPEDISI DIBERANGKATKAN!* 🚀\n\n`;
-    txt += `Rombongan ekspedisi kamu sudah berangkat menuju tujuan!\n`;
-    txt += `📍 Tujuan: *${exp.name}*\n`;
-    txt += `⏱️ Estimasi Waktu: *${formatTime(exp.duration)}*\n\n`;
-    txt += `> Silakan santai dulu kak, nanti ambil hasilnya pakai perintah \`${m.prefix}expedition claim\`!`;
+    let txt = `🚀 *¡EXPEDICIÓN DESPLEGADA!* 🚀\n\n`;
+    txt += `¡Tu grupo de expedición ya partió hacia su destino!\n`;
+    txt += `📍 Destino: *${exp.name}*\n`;
+    txt += `⏱️ Tiempo Estimado: *${formatTime(exp.duration)}*\n\n`;
+    txt += `> Relájate bro, luego recoge los resultados con el comando \`${m.prefix}expedition claim\`!`;
 
     return m.reply(txt);
   }
 
   if (action === "status") {
     if (user.rpg.expeditions.length === 0) {
-      return m.reply(`Belum ada ekspedisi yang jalan nih kak. Kirim sekarang yuk! 🏕️`);
+      return m.reply(`No hay expediciones en curso bro. ¡Envía una ahora! 🏕️`);
     }
 
-    let txt = `⏳ *RADAR EKSPEDISI* ⏳\n\n`;
+    let txt = `⏳ *RADAR DE EXPEDICIONES* ⏳\n\n`;
 
     for (let i = 0; i < user.rpg.expeditions.length; i++) {
       const exp = user.rpg.expeditions[i];
@@ -121,8 +121,8 @@ async function handler(m, { sock }) {
       const remaining = Math.max(0, exp.duration - elapsed);
       const done = remaining <= 0;
 
-      txt += `🗺️ *Rombongan ${i + 1}* -> ${expInfo.name}\n`;
-      txt += `   └ Status: ${done ? "✅ SELESAI! (Siap Claim)" : `🕒 Sisa ${formatTime(remaining)}`}\n\n`;
+      txt += `🗺️ *Grupo ${i + 1}* -> ${expInfo.name}\n`;
+      txt += `   └ Estado: ${done ? "✅ ¡TERMINADA! (Lista para Reclamar)" : `🕒 Quedan ${formatTime(remaining)}`}\n\n`;
     }
     return m.reply(txt);
   }
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
     });
 
     if (completedExps.length === 0) {
-      return m.reply(`Belum ada ekspedisi yang selesai kak! Cek dulu pakai \`${m.prefix}expedition status\` ya!`);
+      return m.reply(`No hay expediciones terminadas bro! Revisa primero con \`${m.prefix}expedition status\`!`);
     }
 
     let totalExp = 0;
@@ -161,9 +161,9 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let txt = `🎉 *EKSPEDISI SELESAI!* 🎉\n\n`;
-    txt += `Rombongan kembali dan membawa hasil dari *${completedExps.length} ekspedisi*!\n\n`;
-    txt += `*🎁 HASIL PENCARIAN:*\n`;
+    let txt = `🎉 *¡EXPEDICIÓN TERMINADA!* 🎉\n\n`;
+    txt += `El grupo regresó y trajo resultados de *${completedExps.length} expediciones*!\n\n`;
+    txt += `*🎁 RESULTADOS DE LA BÚSQUEDA:*\n`;
     txt += `✨ EXP: *+${totalExp}*\n`;
     if (allRewards.length > 0) {
       txt += `📦 Items:\n`;
@@ -171,7 +171,7 @@ async function handler(m, { sock }) {
         txt += `  • ${r}\n`;
       }
     } else {
-      txt += `📦 Items: *Aduh sayang sekali, kali ini nggak dapet apa-apa...* 😭\n`;
+      txt += `📦 Items: *Uy qué pena, esta vez no obtuviste nada...* 😭\n`;
     }
 
     return m.reply(txt);

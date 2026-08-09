@@ -1,18 +1,18 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'txt2qr',
     alias: ['texttoqr', 'qrcode', 'qrcreate'],
     category: 'tools',
-    description: 'Generate QR code dari teks',
-    usage: '.txt2qr <text>',
+    description: 'Genera un código QR a partir de un texto',
+    usage: '.txt2qr <texto>',
     example: '.txt2qr https://google.com',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
     
     if (!text) {
-        return m.reply(`📱 *ᴛᴇxᴛ ᴛᴏ Qʀ*\n\n> Masukkan teks/URL\n\n\`Contoh: ${m.prefix}txt2qr https://google.com\``)
+        return m.reply(`📱 *ᴛᴇxᴛᴏ ᴀ Qʀ*\n\n> Ingresa el texto/URL\n\n\`Ejemplo: ${m.prefix}txt2qr https://google.com\``)
     }
     
     m.react('📱')

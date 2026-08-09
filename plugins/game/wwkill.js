@@ -1,18 +1,18 @@
 import { nightActionHandler } from './werewolf.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'wwkill',
     alias: ['wolfkill', 'wk'],
     category: 'game',
     description: 'Werewolf night action - Kill target',
-    usage: '.wwkill <nomor>',
+    usage: '.wwkill <número>',
     example: '.wwkill 2',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 

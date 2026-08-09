@@ -1,19 +1,19 @@
 import { UnlimitedAI } from "../../src/scraper/unlimitedai.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "waguri-ai",
   alias: ["waguriai", "waguri"],
   category: "ai",
-  description: "Chat dengan Waguri-san — Gadis pemalu yang lupa kacamata",
-  usage: ".waguri-ai <pertanyaan>",
-  example: ".waguri-ai Waguri-san, halo!",
+  description: "Chat con Waguri-san — La chica tímida que olvidó sus gafas",
+  usage: ".waguri-ai <pregunta>",
+  example: ".waguri-ai ¡Waguri-san, hola!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `👓 *Waguri-san*\n\n` +
-        `> Gadis pemalu dari "The Girl I Like Forgot Her Glasses"\n> Manis, perhatian, dan sering salah tingkah~\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}waguri-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}waguri-ai Waguri-san, halo!*`
+        `> La chica tímida de "The Girl I Like Forgot Her Glasses"\n> Dulce, atenta y a menudo se pone nerviosa~\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}waguri-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}waguri-ai ¡Waguri-san, hola!*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Waguri AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Error de Waguri AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

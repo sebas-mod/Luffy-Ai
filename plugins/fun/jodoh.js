@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 import path from "path";
 import fs from "fs";
@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "jodoh",
   alias: ["match", "shipcouple", "ship"],
   category: "fun",
-  description: "Jodohkan 2 member random dengan kecocokan",
+  description: "Empareja a 2 miembros al azar con compatibilidad",
   usage: ".jodoh",
   example: ".jodoh",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -24,18 +24,18 @@ try {
     process.cwd(),
     "assets",
     "images",
-    "ourin-games.jpg",
+    "luffy-games.jpg",
   );
   if (fs.existsSync(thumbPath)) thumbFun = fs.readFileSync(thumbPath);
 } catch (e) {}
 
 const loveQuotes = [
-  "Cinta sejati tidak pernah mengenal jarak 💕",
-  "Dua hati yang bersatu takkan terpisahkan 💗",
-  "Kalian seperti puzzle yang sempurna 🧩",
+  "El amor verdadero no conoce la distancia 💕",
+  "Dos corazones unidos nunca se separan 💗",
+  "Son como un rompecabezas perfecto 🧩",
   "Match made in heaven! ✨",
-  "Chemistry-nya kuat banget! 🔥",
-  "Couple goals banget sih kalian 💑",
+  "¡La química es muy fuerte! 🔥",
+  "Son totalmente couple goals 💑",
   "Destiny brought you together 🌟",
   "Perfect match detected! 💘",
 ];
@@ -49,11 +49,11 @@ const compatibilityEmoji = (percent) => {
 };
 
 const compatibilityText = (percent) => {
-  if (percent >= 90) return "JODOH SEJATI! 💍";
-  if (percent >= 70) return "Sangat Cocok! 💖";
-  if (percent >= 50) return "Lumayan Cocok 💗";
-  if (percent >= 30) return "Bisa Dicoba 💓";
-  return "Butuh Usaha Lebih 💔";
+  if (percent >= 90) return "¡ALMAS GEMELAS! 💍";
+  if (percent >= 70) return "¡Muy Compatibles! 💖";
+  if (percent >= 50) return "Bastante Compatibles 💗";
+  if (percent >= 30) return "Se Puede Intentar 💓";
+  return "Requiere Más Esfuerzo 💔";
 };
 
 const isRegistrationRequired = (db) => {
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
   try {
     groupMeta = m.groupMetadata;
   } catch (e) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa mengambil data grup!");
+    return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> ¡No se pudieron obtener los datos del grupo!");
   }
 
   const participants = groupMeta.participants || [];
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     .filter((jid) => jid && jid !== botNumber);
 
   if (memberJids.length < 2) {
-    return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Minimal ada 2 member untuk dijodohkan!");
+    return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> ¡Se necesitan al menos 2 miembros para emparejar!");
   }
 
   const allUsers = db.getAllUsers();
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
   if (registrationRequired && registeredMembers.length < 2) {
     return m.reply(
-      "❌ *ɢᴀɢᴀʟ*\n\n> Mode wajib daftar aktif. Minimal harus ada 2 member yang sudah terdaftar di grup ini!",
+      "❌ *ᴇʀʀᴏʀ*\n\n> ¡El modo de registro obligatorio está activo. Debe haber al menos 2 miembros registrados en este grupo!",
     );
   }
 
@@ -165,22 +165,22 @@ async function handler(m, { sock }) {
     return "█".repeat(filled) + "░".repeat(empty);
   })();
 
-  let text = `💘 *ᴊᴏᴅᴏʜ ʀᴀɴᴅᴏᴍ*\n\n`;
-  text += `╭┈┈⬡「 💑 *ᴘᴀsᴀɴɢᴀɴ* 」\n`;
+  let text = `💘 *ᴇᴍᴘᴀʀᴇᴊᴀ ᴀʟ ᴀᴢᴀʀ*\n\n`;
+  text += `╭┈┈⬡「 💑 *ᴘᴀʀᴇᴊᴀ* 」\n`;
   text += `┃ ${label1} ${name1}\n`;
   text += `┃ ❤️\n`;
   text += `┃ ${label2} ${name2}\n`;
   text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  text += `╭┈┈⬡「 📊 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ* 」\n`;
-  text += `┃ ${progressBar} *${compatibility}%*\n`;
+  text += `╭┈┈⬡「 📊 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ* 」\n`;
+  text += `┃ ${progressBar} *${compatibility}%\n`;
   text += `┃ ${compatibilityEmoji(compatibility)}\n`;
   text += `┃ Status: *${compatibilityText(compatibility)}*\n`;
   text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   if (usedRegistration) {
-    text += `> ✨ _Dijodohkan berdasarkan data registrasi_\n`;
+    text += `> ✨ _Emparejados según los datos de registro_\n`;
   }
   if (registrationRequired) {
-    text += `> 🔒 _Mode wajib daftar aktif, hanya member terdaftar yang dipilih_\n`;
+    text += `> 🔒 _Modo de registro obligatorio activo, solo se eligen miembros registrados_\n`;
   }
   text += `> _"${quote}"_`;
 

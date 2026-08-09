@@ -2,7 +2,7 @@ import { createCanvas } from "@napi-rs/canvas"
 import { performance } from "perf_hooks"
 import os from "os"
 import config from "../../config.js"
-import te from "../../src/lib/ourin-error.js"
+import te from "../../src/lib/luffy-error.js"
 
 const pluginConfig = {
   name: "ping",
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 }
 
@@ -187,7 +187,7 @@ async function createEpicPingCanvas(data) {
     
     ctx.fillStyle = '#cbd5e1';
     ctx.font = 'bold 24px Courier New';
-    ctx.fillText(`STATUS: ONLINE | TERMINAL: OURIN MD`, 50, 110);
+    ctx.fillText(`STATUS: ONLINE | TERMINAL: Luffy-Ai MD`, 50, 110);
     
     ctx.beginPath();
     ctx.moveTo(50, 130);

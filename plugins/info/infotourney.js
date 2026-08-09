@@ -2,12 +2,12 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 import moment from "moment-timezone";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "infotourney",
   alias: ["tourney", "turnamen", "mltourney"],
   category: "info",
-  description: "Info turnamen Mobile Legends terbaru",
+  description: "Información del último torneo de Mobile Legends",
   usage: ".infotourney",
   example: ".infotourney",
   isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -73,14 +73,14 @@ async function handler(m, { sock }) {
 
     if (!tournaments || tournaments.length === 0) {
       await m.react("❌");
-      return m.reply("❌ Tidak ada turnamen yang ditemukan");
+      return m.reply("❌ No se encontró ningún torneo");
     }
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let text = `🏆 *ɪɴꜰᴏ ᴛᴜʀɴᴀᴍᴇɴ ᴍᴏʙɪʟᴇ ʟᴇɢᴇɴᴅs*\n\n`;
-    text += `> 5 Turnamen Terbaru\n\n`;
+    let text = `🏆 *ɪɴꜰᴏ ᴅᴇ ᴛᴏʀɴᴇᴏ ᴍᴏʙɪʟᴇ ʟᴇɢᴇɴᴅs*\n\n`;
+    text += `> 5 Torneos Más Recientes\n\n`;
 
     for (let i = 0; i < tournaments.length; i++) {
       const t = tournaments[i];

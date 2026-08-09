@@ -1,18 +1,18 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'cekprem',
     alias: ['cekpremium', 'preminfo'],
     category: 'cek',
-    description: 'Cek detail status premium user',
-    usage: '.cekprem @user',
+    description: 'Comprueba los detalles del estado premium del usuario',
+    usage: '.cekprem @usuario',
     example: '.cekprem',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -45,32 +45,32 @@ async function handler(m) {
     const isConfigOwner = config.isOwner(targetNumber)
 
     if (!premData && !isConfigPrem && !isConfigOwner) {
-        return m.reply(`❌ @${targetNumber} bukan premium`, { mentions: [jid] })
+        return m.reply(`❌ @${targetNumber} no es premium`, { mentions: [jid] })
     }
 
     const user = db.getUser(jid)
     const now = Date.now()
 
-    let txt = `💎 *DETAIL PREMIUM*\n\n`
-    txt += `👤 User: @${targetNumber}\n`
+    let txt = `💎 *DETALLES DEL PREMIUM*\n\n`
+    txt += `👤 Usuario: @${targetNumber}\n`
 
     if (isConfigOwner) {
-        txt += `🏷️ Role: *👑 Owner (Permanent)*\n`
+        txt += `🏷️ Rol: *👑 Capitán (Permanente)*\n`
     } else if (typeof premData === 'string' || !premData?.expired) {
-        txt += `🏷️ Role: *💎 Premium (Permanent)*\n`
+        txt += `🏷️ Rol: *💎 Premium (Permanente)*\n`
     } else {
         const remaining = Math.ceil((premData.expired - now) / (1000 * 60 * 60 * 24))
         const totalDays = premData.addedAt ? Math.ceil((premData.expired - premData.addedAt) / (1000 * 60 * 60 * 24)) : '?'
-        txt += `📛 Nama: *${premData.name || 'Unknown'}*\n`
-        txt += `📅 Mulai: *${premData.addedAt ? formatDate(premData.addedAt) : 'Unknown'}*\n`
-        txt += `⏳ Expired: *${formatDate(premData.expired)}*\n`
-        txt += `🗓️ Durasi: *${totalDays} hari*\n`
-        txt += `📊 Sisa: *${remaining > 0 ? remaining + ' hari' : '⚠️ Expired'}*\n`
+        txt += `📛 Nombre: *${premData.name || 'Desconocido'}*\n`
+        txt += `📅 Inicio: *${premData.addedAt ? formatDate(premData.addedAt) : 'Desconocido'}*\n`
+        txt += `⏳ Expira: *${formatDate(premData.expired)}*\n`
+        txt += `🗓️ Duración: *${totalDays} días*\n`
+        txt += `📊 Restante: *${remaining > 0 ? remaining + ' días' : '⚠️ Expirado'}*\n`
     }
 
     if (user) {
-        txt += `⚡ Energi: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Koin: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('id-ID')}*\n`
+        txt += `⚡ Carne: *${user.carne === -1 ? '∞' : (user.carne ?? 0)}*\n`
+        txt += `💰 Berry: *${user.berry === -1 ? '∞' : (user.berry ?? 0).toLocaleString('id-ID')}*\n`
         txt += `⭐ Exp: *${(user.exp ?? 0).toLocaleString('id-ID')}*\n`
         txt += `📊 Level: *${user.level ?? 1}*\n`
     }

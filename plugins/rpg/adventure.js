@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "adventure",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -25,14 +25,14 @@ async function handler(m, { sock }) {
   user.rpg.health = user.rpg.health || 100;
 
   if (user.rpg.health < 30) {
-    return m.reply(`Aduh kak, HP kamu sekarat nih! 😭💔\n\nMinimal butuh *30 HP* buat berpetualang biar nggak mati di jalan.\nSekarang HP kamu cuma sisa *${user.rpg.health} HP*. Yuk nge-heal dulu! 💉✨`);
+    return m.reply(`Uy bro, ¡tu HP está casi muerto! 😭💔\n\nNecesitas al menos *30 HP* para aventurarte y no morir en el camino.\nAhora solo te quedan *${user.rpg.health} HP*. ¡Ve a curarte primero! 💉✨`);
   }
 
-  const locations = ["🌲 Hutan Gelap", "🏔️ Gunung Es Abadi", "🏜️ Padang Pasir Kematian", "🌋 Gunung Berapi", "🏰 Kastil Tua Berhantu", "🌊 Pantai Misterius"];
+  const locations = ["🌲 Bosque Oscuro", "🏔️ Montaña del Hielo Eterno", "🏜️ Desierto de la Muerte", "🌋 Volcán", "🏰 Castillo Antiguo Embrujado", "🌊 Playa Misteriosa"];
   const location = locations[Math.floor(Math.random() * locations.length)];
 
   await m.react("🗺️");
-  await m.reply(`Mengepak ransel dan menyalakan obor... Memasuki *${location}*... ⚔️🗺️\nHati-hati ya kak, auranya lumayan mencekam!`);
+  await m.reply(`Empacando la mochila y encendiendo la antorcha... Entrando a *${location}*... ⚔️🗺️\nTen cuidado bro, el aura es bastante escalofriante!`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const isWin = Math.random() < 0.6;
@@ -41,34 +41,34 @@ async function handler(m, { sock }) {
     const expGain = Math.floor(Math.random() * 2000) + 500;
     const moneyGain = Math.floor(Math.random() * 10000) + 2000;
 
-    user.koin = (user.koin || 0) + moneyGain;
+    user.berry = (user.berry || 0) + moneyGain;
     const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
 
     db.save();
 
-    let txt = `🗡️ *PETUALANGAN BERHASIL!!* 🗡️\n\n`;
-    txt += `📍 Lokasi: *${location}*\n\n`;
-    txt += `Wah hebat kak! Kamu berhasil ngalahin monster penjaga dan nemuin peti harta karun!\n`;
-    txt += `💰 Koin: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
+    let txt = `🗡️ *¡¡AVENTURA EXITOSA!!* 🗡️\n\n`;
+    txt += `📍 Ubicación: *${location}*\n\n`;
+    txt += `¡Increíble bro! Lograste vencer al monstruo guardián y encontraste un cofre del tesoro!\n`;
+    txt += `💰 Berry: *+Rp ${moneyGain.toLocaleString("id-ID")}*\n`;
     txt += `📈 EXP: *+${expGain.toLocaleString("id-ID")}*\n\n`;
-    txt += `Kembali dengan selamat! Lanjut petualang lagi nanti ya kak! 🚀✨`;
+    txt += `¡Volviste sano y salvo! Sigue aventurándote más tarde bro! 🚀✨`;
 
     await m.reply(txt);
   } else {
     const healthLoss = Math.floor(Math.random() * 30) + 10;
     user.rpg.health = Math.max(0, user.rpg.health - healthLoss);
 
-    let msg = `☠️ *DISERGAP MONSTER!!* ☠️\n\n`;
-    msg += `📍 Lokasi: *${location}*\n\n`;
-    msg += `Aduh kak! Langkah kamu ketahuan, sekelompok monster nyerang bertubi-tubi!\n`;
-    msg += `❤️ HP Berkurang: *-${healthLoss} HP* (Sisa: ${user.rpg.health})\n\n`;
+    let msg = `☠️ *¡EMBOSCADA DE MONSTRUOS!!* ☠️\n\n`;
+    msg += `📍 Ubicación: *${location}*\n\n`;
+    msg += `Uy bro! Tus pasos fueron detectados, ¡un grupo de monstruos atacó sin piedad!\n`;
+    msg += `❤️ HP Reducido: *-${healthLoss} HP* (Restante: ${user.rpg.health})\n\n`;
 
     if (user.rpg.health <= 0) {
       user.rpg.health = 0;
       user.exp = Math.floor((user.exp || 0) / 2);
-      msg += `💀 *KAMU MATI!*\nYaampun kak... Kamu tewas di tempat. EXP kamu kena penalti 50% nih. 💔🥀`;
+      msg += `💀 *¡MORISTE!*\nAy no bro... Caíste en el lugar. Tu EXP sufrió una penalización del 50%. 💔🥀`;
     } else {
-      msg += `Untung kamu masih sempet kabur kak! Mending istirahat dulu buat ngeheal ya! 🏃💨`;
+      msg += `Menos mal lograste escapar bro! Mejor descansa y curate! 🏃💨`;
     }
 
     db.save();

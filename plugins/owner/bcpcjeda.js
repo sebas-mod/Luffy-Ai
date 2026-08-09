@@ -1,17 +1,17 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
   name: 'bcpcjeda',
   alias: ['delaybcpc', 'jedabcpc', 'setjedabcpc'],
   category: 'owner',
   description: 'Atur jeda broadcast private chat',
-  usage: '.bcpcjeda <waktu> (contoh: 5s, 2m, 1h)',
+  usage: '.bcpcjeda <tiempo> (ejemplo: 5s, 2m, 1h)',
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true
 }
 
@@ -31,10 +31,10 @@ function parseDelay(input) {
 }
 
 function formatDelay(ms) {
-  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} hari`
-  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} jam`
-  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} menit`
-  return `${(ms / 1000).toFixed(0)} detik`
+  if (ms >= 86400000) return `${(ms / 86400000).toFixed(0)} días`
+  if (ms >= 3600000) return `${(ms / 3600000).toFixed(0)} horas`
+  if (ms >= 60000) return `${(ms / 60000).toFixed(0)} minutos`
+  return `${(ms / 1000).toFixed(0)} segundos`
 }
 
 async function handler(m) {
@@ -44,31 +44,31 @@ async function handler(m) {
 
   if (!input) {
     return m.reply(
-      `⏱️ *JEDA BROADCAST PRIVATE*\n\n` +
-      `Jeda saat ini: *${formatDelay(current)}* (${current}ms)\n\n` +
-      `*CARA PAKAI:*\n` +
-      `> \`${m.prefix}bcpcjeda <angka><satuan>\`\n\n` +
-      `*SATUAN:*\n` +
-      `• \`s\` — detik\n• \`m\` — menit\n• \`h\` — jam\n• \`d\` — hari\n\n` +
-      `*CONTOH:*\n` +
-      `> \`${m.prefix}bcpcjeda 5s\` → 5 detik\n` +
-      `> \`${m.prefix}bcpcjeda 2m\` → 2 menit\n` +
-      `> \`${m.prefix}bcpcjeda 1h\` → 1 jam`
+      `⏱️ *PAUSA DE BROADCAST PRIVADO*\n\n` +
+      `Pausa actual: *${formatDelay(current)}* (${current}ms)\n\n` +
+      `*CÓMO USAR:*\n` +
+      `> \`${m.prefix}bcpcjeda <número><unidad>\`\n\n` +
+      `*UNIDADES:*\n` +
+      `• \`s\` — segundos\n• \`m\` — minutos\n• \`h\` — horas\n• \`d\` — días\n\n` +
+      `*EJEMPLO:*\n` +
+      `> \`${m.prefix}bcpcjeda 5s\` → 5 segundos\n` +
+      `> \`${m.prefix}bcpcjeda 2m\` → 2 minutos\n` +
+      `> \`${m.prefix}bcpcjeda 1h\` → 1 hora`
     )
   }
 
   const ms = parseDelay(input)
   if (!ms || ms < 1000) {
-    return m.reply('❌ Format salah. Contoh: `5s`, `2m`, `1h`, `1d`')
+    return m.reply('❌ Formato incorrecto. Ejemplo: `5s`, `2m`, `1h`, `1d`')
   }
 
   const prev = current
   db.setting('jedaBcpc', ms)
 
   return m.reply(
-    `✅ *Jeda broadcast private diubah*\n\n` +
-    `Sebelumnya: *${formatDelay(prev)}*\n` +
-    `Sekarang: *${formatDelay(ms)}*`
+    `✅ *Pausa del broadcast privado cambiada*\n\n` +
+    `Antes: *${formatDelay(prev)}*\n` +
+    `Ahora: *${formatDelay(ms)}*`
   )
 }
 

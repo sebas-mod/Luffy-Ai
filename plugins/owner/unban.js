@@ -1,20 +1,20 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { isLid, lidToJid } from '../../src/lib/ourin-lid.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import { isLid, lidToJid } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'unban',
     alias: ['delban', 'unblock'],
     category: 'owner',
-    description: 'Menghapus user dari daftar banned',
-    usage: '.unban <nomor/@tag>',
+    description: 'Eliminar un usuario de la lista de baneados',
+    usage: '.unban <número/@tag>',
     example: '.unban 6281234567890',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -44,9 +44,9 @@ async function handler(m, { sock }) {
 
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
-            `✅ *ᴜɴʙᴀɴ ᴜsᴇʀ*\n\n` +
-            `> Masukkan nomor atau tag user\n\n` +
-            `\`Contoh: ${m.prefix}unban 6281234567890\``
+            `✅ *ᴜɴʙᴀɴ ᴅᴇ ᴜsᴜᴀʀɪᴏ*\n\n` +
+            `> Introduce el número o etiqueta al usuario\n\n` +
+            `\`Ejemplo: ${m.prefix}unban 6281234567890\``
         )
     }
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Nomor \`${targetNumber}\` tidak dalam daftar banned`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El número \`${targetNumber}\` no está en la lista de baneados`)
     }
 
     bannedList.splice(index, 1)
@@ -69,11 +69,11 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     await m.reply(
-        `✅ *ᴜsᴇʀ ᴅɪᴜɴʙᴀɴ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📱 ɴᴏᴍᴏʀ: \`${targetNumber}\`\n` +
-        `┃ ✅ sᴛᴀᴛᴜs: \`Unbanned\`\n` +
-        `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴇʀ\n` +
+        `✅ *ᴜsᴜᴀʀɪᴏ ᴅᴇsʙᴀɴᴇᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 📱 ɴúᴍᴇʀᴏ: \`${targetNumber}\`\n` +
+        `┃ ✅ ᴇsᴛᴀᴅᴏ: \`Desbaneado\`\n` +
+        `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴜᴀʀɪᴏs\n` +
         `╰┈┈⬡`
     )
 }

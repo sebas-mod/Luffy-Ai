@@ -4,12 +4,12 @@ const pluginConfig = {
   name: ["sprem", "stickerpremium", "premiumsticker"],
   alias: [],
   category: "owner",
-  description: "Kirim ulang sticker sebagai premium (Lottie/AI)",
-  usage: ".sprem (reply sticker)",
+  description: "Reenviar un sticker como premium (Lottie/AI)",
+  usage: ".sprem (responder sticker)",
   example: ".sprem",
   isOwner: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -17,8 +17,8 @@ async function handler(m, { sock }) {
   if (!m.quoted) {
     return m.reply(
       "⭐ *sᴛɪᴄᴋᴇʀ ᴘʀᴇᴍɪᴜᴍ*\n\n" +
-        "> Reply sticker yang mau dijadikan premium!\n\n" +
-        `> Penggunaan: \`${m.prefix}sprem\``,
+        "> ¡Responde a un sticker para convertirlo en premium!\n\n" +
+        `> Uso: \`${m.prefix}sprem\``,
     );
   }
 
@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
 
   try {
     const msg = q.message?.stickerMessage;
-    if (!msg) return m.reply("❌ Gagal membaca data sticker");
+    if (!msg) return m.reply("❌ Fallo al leer los datos del sticker");
 
     const stickerMessage = proto.Message.StickerMessage.fromObject({
       url: msg.url,
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     console.error("[sprem]", err.message);
-    return m.reply(`❌ Gagal: ${err.message}`);
+    return m.reply(`❌ Fallo: ${err.message}`);
   }
 }
 

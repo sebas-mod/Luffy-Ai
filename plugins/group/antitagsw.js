@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'antitagsw',
     alias: ['antitag', 'antistatustag'],
     category: 'group',
-    description: 'Mengaktifkan/menonaktifkan anti tag status di grup',
+    description: 'Activar/desactivar el anti tag de estado en el grupo',
     usage: '.antitagsw <on/off>',
     example: '.antitagsw on',
     isOwner: false,
@@ -10,7 +10,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -26,13 +26,13 @@ async function handler(m, { sock, db }) {
         const status = group.antitagsw || 'off'
 
         await m.reply(
-            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ sᴇᴛᴛɪɴɢs*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `> Fitur ini menghapus pesan tag status\n` +
+            `📢 *ᴀɴᴛɪᴛᴀɢsᴡ ᴄᴏɴꜰɪɢᴜʀᴀᴄɪᴏ́ɴ*\n\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Esta función elimina los mensajes de tag de estado\n` +
             `> (groupStatusMentionMessage)\n\n` +
-            `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-            `> \`${m.prefix}antitagsw on\` → Aktifkan\n` +
-            `> \`${m.prefix}antitagsw off\` → Nonaktifkan`
+            `\`\`\`━━━ ᴏᴘᴄɪᴏɴᴇꜱ ━━━\`\`\`\n` +
+            `> \`${m.prefix}antitagsw on\` → Activar\n` +
+            `> \`${m.prefix}antitagsw off\` → Desactivar`
         )
         return
     }
@@ -40,9 +40,9 @@ async function handler(m, { sock, db }) {
     if (action === 'on') {
         db.setGroup(groupId, { ...group, antitagsw: 'on' })
         await m.reply(
-            `✅ *ᴀɴᴛɪᴛᴀɢsᴡ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil diaktifkan!\n` +
-            `> Pesan tag status akan dihapus otomatis.`
+            `✅ *ᴀɴᴛɪᴛᴀɢsᴡ ᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> ¡El anti tag de estado se activó exitosamente!\n` +
+            `> Los mensajes de tag de estado se eliminarán automáticamente.`
         )
         return
     }
@@ -50,15 +50,15 @@ async function handler(m, { sock, db }) {
     if (action === 'off') {
         db.setGroup(groupId, { ...group, antitagsw: 'off' })
         await m.reply(
-            `❌ *ᴀɴᴛɪᴛᴀɢsᴡ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
-            `> Anti tag status berhasil dinonaktifkan.`
+            `❌ *ᴀɴᴛɪᴛᴀɢsᴡ ɪɴᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> El anti tag de estado se desactivó exitosamente.`
         )
         return
     }
 
     await m.reply(
-        `❌ *ᴘɪʟɪʜᴀɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-        `> Gunakan: on atau off`
+        `❌ *ᴏᴘᴄɪᴏɴ ɪɴᴠᴀʟɪᴅᴀ*\n\n` +
+        `> Usa: on u off`
     )
 }
 

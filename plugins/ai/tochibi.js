@@ -1,20 +1,20 @@
-import { uploadImage } from '../../src/lib/ourin-uploader.js'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { uploadImage } from '../../src/lib/luffy-uploader.js'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'tochibi',
     alias: ['chibi', 'chibistyle'],
     category: 'ai',
-    description: 'Ubah gambar ke style Chibi',
-    usage: '.tochibi (reply gambar)',
+    description: 'Convertir la imagen a estilo Chibi',
+    usage: '.tochibi (responde una imagen)',
     example: '.tochibi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Kirim/reply gambar untuk diubah ke style Chibi\n\n\`${m.prefix}tochibi\``)
+        return m.reply(`🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía/responde una imagen para convertirla a estilo Chibi\n\n\`${m.prefix}tochibi\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
 
         const PROMPT = `Transform into chibi style, big head and small body proportions, cute expression, big sparkling eyes, smooth shading, soft lighting, highly detailed, high quality`

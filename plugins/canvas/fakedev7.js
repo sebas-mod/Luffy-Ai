@@ -1,30 +1,30 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import * as _canvas from '@napi-rs/canvas';
 import axios from "axios";
 import path from "path";
 
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "fakedev7",
   alias: [],
   category: "canvas",
-  description: "Membuat fake developer (Python Theme)",
-  usage: ".fakedev7 <nama> (reply/kirim foto)",
+  description: "Crea fake de desarrollador (Tema Python)",
+  usage: ".fakedev7 <nombre> (responde/envía foto)",
   example: ".fakedev7 Misaki",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
   const name = m.text?.trim();
   if (!name) {
-    return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇᴠᴇʟᴏᴘᴇʀ 7*\n\n> Masukkan nama untuk profile\n\n*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n> 1. Kirim foto + caption \`${m.prefix}fakedev7 <nama>\`\n> 2. Reply foto dengan \`${m.prefix}fakedev7 <nama>\``);
+    return m.reply(`🎮 *ꜰᴀᴋᴇ ᴅᴇꜱᴀʀʀᴏʟʟᴀᴅᴏʀ 7*\n\n> Ingresa el nombre para el perfil\n\n*ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ:*\n> 1. Envía foto + caption \`${m.prefix}fakedev7 <nombre>\`\n> 2. Responde una foto con \`${m.prefix}fakedev7 <nombre>\``);
   }
   let buffer = null;
   if (m.quoted && (m.quoted.type === "imageMessage" || m.quoted.mtype === "imageMessage")) {
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
       buffer = getAssetBuffer("pp-kosong");
     }
   }
-  if (!buffer) return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+  if (!buffer) return m.reply(`❌ ¡Envía/responde una imagen para usarla como avatar!`);
   
   m.react("🕕");
 
@@ -171,7 +171,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`❌ Terjadi kesalahan saat memproses gambar.`);
+    m.reply(`❌ Ocurrió un error al procesar la imagen.`);
   }
 }
 export { pluginConfig as config, handler };

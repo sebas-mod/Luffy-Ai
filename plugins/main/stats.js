@@ -1,5 +1,5 @@
 import os from "os";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "stats",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -56,7 +56,7 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
     const premiumUsers = Object.values(users).filter((u) => u.premium).length;
 
     const statsObj = {
-      bot: botConfig?.bot?.name || "Ourin-AI",
+      bot: botConfig?.bot?.name || "Luffy-Ai",
       version: `v${botConfig?.bot?.version || "1.0.0"}`,
       uptime: formatUptime(uptime),
       database: {

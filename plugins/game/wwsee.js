@@ -1,18 +1,18 @@
 import { nightActionHandler } from './werewolf.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'wwsee',
     alias: ['seer', 'vision', 'wse'],
     category: 'game',
     description: 'Seer night action - See target role',
-    usage: '.wwsee <nomor>',
+    usage: '.wwsee <número>',
     example: '.wwsee 1',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 

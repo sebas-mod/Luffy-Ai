@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "douyindl",
   alias: ["douyin", "dydl"],
   category: "download",
-  description: "Download video/audio dari Douyin (TikTok China)",
+  description: "Descarga videos/audio de Douyin (TikTok chino)",
   usage: ".douyindl <url>",
   example: ".douyindl https://v.douyin.com/xxx",
   isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -28,7 +28,7 @@ async function douyinFetch(url, retries = 3) {
       await new Promise(r => setTimeout(r, 1000));
     }
   }
-  throw new Error("Gagal mengambil data dari server");
+  throw new Error("Error al obtener los datos del servidor");
 }
 
 async function handler(m, { sock }) {
@@ -37,10 +37,10 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎵 *Douyin Downloader*\n\n` +
-        `Download video atau audio dari Douyin (TikTok China).\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}douyindl <link>*\n\n` +
-        `*CONTOH:*\n` +
+        `Descarga videos o audio de Douyin (TikTok chino).\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}douyindl <enlace>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}douyindl https://v.douyin.com/xxx*`,
     );
   }
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mengambil data Douyin, coba lagi nanti");
+    m.reply("❌ Error al obtener los datos de Douyin, intenta de nuevo más tarde");
   }
 }
 

@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'delpremall',
     alias: ['delpremiumall', 'removepremall'],
     category: 'owner',
-    description: 'Menghapus semua member grup dari premium',
+    description: 'Eliminar a todos los miembros del grupo del premium',
     usage: '.delprem all',
     example: '.delprem all',
     isOwner: true,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No hay miembros en este grupo`)
         }
         
         await m.react('🕕')
@@ -61,14 +61,14 @@ async function handler(m, { sock }) {
         await m.react('🗑️')
         
         await m.reply(
-            `🗑️ *ᴅᴇʟ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
-            `╭┈┈⬡「 📋 *ʜᴀsɪʟ* 」\n` +
-            `┃ 👥 ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀ: \`${participants.length}\`\n` +
-            `┃ ✅ ᴅɪʜᴀᴘᴜs: \`${removedCount}\`\n` +
-            `┃ ⏭️ ʙᴜᴋᴀɴ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +
-            `┃ 💎 sɪsᴀ ᴘʀᴇᴍɪᴜᴍ: \`${db.data.premium.length}\`\n` +
+            `🗑️ *ᴇʟɪᴍɪɴᴀʀ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
+            `╭┈┈⬡「 📋 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+            `┃ 👥 ᴛᴏᴛᴀʟ ᴍɪᴇᴍʙʀᴏs: \`${participants.length}\`\n` +
+            `┃ ✅ ᴇʟɪᴍɪɴᴀᴅᴏs: \`${removedCount}\`\n` +
+            `┃ ⏭️ ɴᴏ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +
+            `┃ 💎 ᴘʀᴇᴍɪᴜᴍ ʀᴇsᴛᴀɴᴛᴇs: \`${db.data.premium.length}\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Grup: ${groupMeta.subject}`
+            `> Grupo: ${groupMeta.subject}`
         )
         
     } catch (error) {

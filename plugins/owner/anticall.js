@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import config from "../../config.js";
 
 const pluginConfig = {
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,12 +25,12 @@ async function handler(m, { sock }) {
   if (!option) {
     const current = db.setting("antiCall") ?? config.features?.antiCall ?? true;
     return m.reply(
-      `📞 *Anti Call*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}anticall on* — Aktifkan\n` +
-        `> *${m.prefix}anticall off* — Nonaktifkan\n\n` +
-        `_Bot akan otomatis menolak panggilan masuk_`
+      `📞 *Anti Llamada*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}anticall on* — Activar\n` +
+        `> *${m.prefix}anticall off* — Desactivar\n\n` +
+        `_El bot rechazará automáticamente las llamadas entrantes_`
     );
   }
 
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     db.setting("antiCall", true);
     const ctx = saluranCtx();
     return m.reply(
-      `📞 *Anti Call Aktif*\n\n` +
-        `> Bot akan otomatis menolak panggilan masuk`,
+      `📞 *Anti Llamada Activo*\n\n` +
+        `> El bot rechazará automáticamente las llamadas entrantes`,
       { contextInfo: ctx }
     );
   }
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("antiCall", false);
     return m.reply(
-      `📞 *Anti Call Nonaktif*\n\n` +
-        `> Bot tidak akan menolak panggilan masuk`
+      `📞 *Anti Llamada Inactivo*\n\n` +
+        `> El bot no rechazará las llamadas entrantes`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}anticall on* atau *${m.prefix}anticall off*`
+    `❌ *Opción No Válida*\n\n> Usa *${m.prefix}anticall on* o *${m.prefix}anticall off*`
   );
 }
 

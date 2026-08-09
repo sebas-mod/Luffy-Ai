@@ -1,17 +1,17 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'ptv',
     alias: ['pvideo', 'circlevideo'],
     category: 'tools',
-    description: 'Kirim video sebagai PTV (circle video)',
-    usage: '.ptv (reply video)',
+    description: 'Envía el video como PTV (video en círculo)',
+    usage: '.ptv (responde un video)',
     example: '.ptv',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,25 +22,25 @@ async function handler(m, { sock }) {
         try {
             video = await m.quoted.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video dari quoted.`)
+            return m.reply(`❌ No se pudo descargar el video citado.`)
         }
     } else if (m.isVideo) {
         try {
             video = await m.download()
         } catch (e) {
-            return m.reply(`❌ Gagal download video.`)
+            return m.reply(`❌ No se pudo descargar el video.`)
         }
     }
     
     if (!video) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Kirim *video* atau *balas video* lalu ketik:\n` +
+            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+            `> Envía un *video* o *responde un video* y escribe:\n` +
             `> \`${m.prefix}ptv\``
         )
     }
     
-    await m.reply(`🕕 *ᴍᴇᴍʙᴜᴀᴛ ᴘᴛᴠ...*`)
+    await m.reply(`🕕 *ᴄʀᴇᴀɴᴅᴏ ᴘᴛᴠ...*`)
     
     try {
         await sock.sendMessage(m.chat, {

@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "treasure",
@@ -13,16 +13,16 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const CHEST_TYPES = {
-  woodenchest: { name: "📦 Wooden Chest", minGold: 50, maxGold: 200, expRange: [30, 80], rarity: "common" },
-  ironchest: { name: "🗃️ Iron Chest", minGold: 150, maxGold: 500, expRange: [80, 150], rarity: "uncommon" },
-  goldchest: { name: "🎁 Gold Chest", minGold: 400, maxGold: 1200, expRange: [150, 300], rarity: "rare" },
-  diamondchest: { name: "💎 Diamond Chest", minGold: 1000, maxGold: 3000, expRange: [300, 600], rarity: "epic" },
-  mysterybox: { name: "🎲 Mystery Box", minGold: 500, maxGold: 5000, expRange: [200, 800], rarity: "legendary" },
+  woodenchest: { name: "📦 Cofre de Madera", minGold: 50, maxGold: 200, expRange: [30, 80], rarity: "common" },
+  ironchest: { name: "🗃️ Cofre de Hierro", minGold: 150, maxGold: 500, expRange: [80, 150], rarity: "uncommon" },
+  goldchest: { name: "🎁 Cofre de Oro", minGold: 400, maxGold: 1200, expRange: [150, 300], rarity: "rare" },
+  diamondchest: { name: "💎 Cofre de Diamante", minGold: 1000, maxGold: 3000, expRange: [300, 600], rarity: "epic" },
+  mysterybox: { name: "🎲 Caja Misteriosa", minGold: 500, maxGold: 5000, expRange: [200, 800], rarity: "legendary" },
 };
 
 const LOOT_TABLE = {
@@ -72,20 +72,20 @@ async function handler(m, { sock }) {
   const availableChests = Object.entries(CHEST_TYPES).filter(([key]) => (user.inventory[key] || 0) > 0);
 
   if (!chestType) {
-    let txt = `🎁 *GUDANG HARTA KARUN* 🎁\n\n`;
+    let txt = `🎁 *ALMACÉN DE TESOROS* 🎁\n\n`;
 
     if (availableChests.length === 0) {
-      txt += `Yah kak, kamu belum punya peti harta satupun nih... 😭\n\n`;
-      txt += `💡 *Tips dapet peti:*\n`;
-      txt += `> ⚔️ Eksplorasi \`.adventure\` / Dungeon\n`;
-      txt += `> 👹 Bunuh Boss\n`;
-      txt += `> 🗓️ Selesaikan \`.daily\` / \`.weekly\`\n`;
-      txt += `> 🛒 Beli di \`.shop\``;
+      txt += `Vaya bro, todavía no tienes ni un cofre del tesoro... 😭\n\n`;
+      txt += `💡 *Cómo conseguir cofres:*\n`;
+      txt += `> ⚔️ Explora con \`.adventure\` / Mazmorra\n`;
+      txt += `> 👹 Mata a los Jefes\n`;
+      txt += `> 🗓️ Completa \`.daily\` / \`.weekly\`\n`;
+      txt += `> 🛒 Cómpralos en \`.shop\``;
     } else {
-      txt += `Wah peti kamu ada banyak nih! Mau buka yang mana kak?\n\n`;
+      txt += `¡Tienes varios cofres! ¿Cuál quieres abrir bro?\n\n`;
       for (const [key, chest] of availableChests) {
         txt += `📦 ${chest.name}: *${user.inventory[key]} pcs*\n`;
-        txt += `   └ Buka: \`${m.prefix}treasure ${key}\`\n\n`;
+        txt += `   └ Abrir: \`${m.prefix}treasure ${key}\`\n\n`;
       }
     }
     return m.reply(txt);
@@ -93,24 +93,24 @@ async function handler(m, { sock }) {
 
   const chest = CHEST_TYPES[chestType];
   if (!chest) {
-    return m.reply(`Peti *${chestType}* nggak ada di database kak!`);
+    return m.reply(`El cofre *${chestType}* no existe en la base de datos bro!`);
   }
 
   if ((user.inventory[chestType] || 0) < 1) {
-    return m.reply(`Peti *${chest.name}* kamu lagi kosong kak! 😅`);
+    return m.reply(`¡Tu cofre *${chest.name}* está vacío bro! 😅`);
   }
 
   user.inventory[chestType]--;
   if (user.inventory[chestType] <= 0) delete user.inventory[chestType];
 
   await m.react("🎁");
-  await m.reply(`🔓 Mengutak-atik kunci... \nMembuka *${chest.name.toUpperCase()}* secara perlahan... ✨`);
+  await m.reply(`🔓 Manipulando la cerradura... \nAbriendo el *${chest.name.toUpperCase()}* lentamente... ✨`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const goldReward = Math.floor(Math.random() * (chest.maxGold - chest.minGold)) + chest.minGold;
   const expReward = Math.floor(Math.random() * (chest.expRange[1] - chest.expRange[0])) + chest.expRange[0];
 
-  user.koin = (user.koin || 0) + goldReward;
+  user.berry = (user.berry || 0) + goldReward;
 
   const droppedItems = [];
   const lootPool = LOOT_TABLE[chest.rarity] || LOOT_TABLE.common;
@@ -128,21 +128,21 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `💥 *CRAAASH!! PETI TERBUKA!!* 💥\n\n`;
-  txt += `Wah hebat kak! Kamu dapet harta dari *${chest.name}*:\n\n`;
-  txt += `💰 Emas: *+Rp ${goldReward.toLocaleString()}*\n`;
+  let txt = `💥 *¡CRAAASH!! ¡COFRE ABIERTO!!* 💥\n\n`;
+  txt += `¡Genial bro! Conseguiste el tesoro del *${chest.name}*:\n\n`;
+  txt += `💰 Oro: *+Rp ${goldReward.toLocaleString()}*\n`;
   txt += `✨ EXP: *+${expReward}*\n`;
   if (droppedItems.length > 0) {
-    txt += `🎒 *Loot Tambahan:*\n`;
+    txt += `🎒 *Botín Extra:*\n`;
     for (const item of droppedItems) {
       txt += `  • ${item}\n`;
     }
   } else {
-    txt += `🎒 *Loot Tambahan:* _Aduh sayang banget nggak dapet item tambahan..._\n`;
+    txt += `🎒 *Botín Extra:* _Qué lástima, no salió ningún ítem extra..._\n`;
   }
 
   if (chest.rarity === "legendary" || chest.rarity === "epic") {
-    txt += `\n> _"HOKI BANGET KAK!"_ 🌟🔥`;
+    txt += `\n> _"¡QUÉ SUERTAZO BRO!"_ 🌟🔥`;
   }
 
   return m.reply(txt);

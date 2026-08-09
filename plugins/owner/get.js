@@ -2,12 +2,12 @@ import config from "../../config.js";
 import axios from "axios";
 import fs from "fs";
 import path from "path";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "get",
   alias: ["fetch", "http", "request", "curl"],
   category: "owner",
-  description: "Advanced HTTP request tool (Owner Only)",
+  description: "Herramienta avanzada de peticiones HTTP (Solo Owner)",
   usage: ".get <url> [options]",
   example:
     '.get https://api.example.com --method POST --json {"key":"value"} --header "Authorization: Bearer token"',
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 0,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -95,7 +95,7 @@ function parseHeaders(headerArgs) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Owner Only!*");
+    return m.reply("❌ *Solo Owner!*");
   }
 
   let input = m.fullArgs?.trim() || m.text?.trim();
@@ -146,7 +146,7 @@ async function handler(m, { sock }) {
   ];
   if (!validMethods.includes(method)) {
     return m.reply(
-      `❌ Invalid method: ${method}. Valid: ${validMethods.join(", ")}`,
+      `❌ Método inválido: ${method}. Válidos: ${validMethods.join(", ")}`,
     );
   }
 
@@ -157,7 +157,7 @@ async function handler(m, { sock }) {
       jsonBody = JSON.parse(jsonMatch[1]);
       input = input.replace(/--json\s+\{[\s\S]*?\}/i, "").trim();
     } catch (e) {
-      return m.reply(`❌ Invalid JSON body: ${e.message}`);
+      return m.reply(`❌ Cuerpo JSON inválido: ${e.message}`);
     }
   }
 
@@ -185,13 +185,13 @@ async function handler(m, { sock }) {
   }
 
   if (isBlockedUrl(url)) {
-    return m.reply("❌ Localhost / internal / metadata address blocked");
+    return m.reply("❌ Dirección localhost / interna / de metadata bloqueada");
   }
 
   try {
     new URL(url);
   } catch {
-    return m.reply("❌ Invalid URL");
+    return m.reply("❌ URL inválida");
   }
 
   await m.reply(`🕕 ${method} ${url} ...`);
@@ -205,7 +205,7 @@ async function handler(m, { sock }) {
       validateStatus: () => true,
       responseType: "arraybuffer",
       headers: {
-        "User-Agent": "Ourin-Bot/2.0",
+        "User-Agent": "Luffy-Bot/2.0",
         Accept: "*/*",
         ...(jsonBody ? { "Content-Type": "application/json" } : {}),
         ...customHeaders,
@@ -305,7 +305,7 @@ async function handler(m, { sock }) {
           if (text.length > MAX_JSON_PREVIEW) {
             text =
               text.slice(0, MAX_JSON_PREVIEW) +
-              "\n\n... (truncated, full size: " +
+              "\n\n... (truncado, tamaño completo: " +
               formatSize(size) +
               ")";
           }
@@ -327,7 +327,7 @@ async function handler(m, { sock }) {
               mimetype: "application/json",
               caption:
                 header +
-                `\n\n📄 Pretty JSON dikirim sebagai file (${formatSize(pretty.length)})`,
+                `\n\n📄 El JSON formateado se envió como archivo (${formatSize(pretty.length)})`,
             },
             { quoted: m },
           );
@@ -339,7 +339,7 @@ async function handler(m, { sock }) {
               document: buffer,
               fileName,
               mimetype: mimeType || "application/octet-stream",
-              caption: header + "\n\n📎 Full response dikirim sebagai file",
+              caption: header + "\n\n📎 La respuesta completa se envió como archivo",
             },
             { quoted: m },
           );
@@ -352,7 +352,7 @@ async function handler(m, { sock }) {
             document: buffer,
             fileName,
             mimetype: mimeType || "application/octet-stream",
-            caption: header + "\n\n📎 Full response dikirim sebagai file",
+            caption: header + "\n\n📎 La respuesta completa se envió como archivo",
           },
           { quoted: m },
         );
@@ -365,13 +365,13 @@ async function handler(m, { sock }) {
           document: buffer,
           fileName,
           mimetype: mimeType || "application/octet-stream",
-          caption: header + "\n\n📎 Full response dikirim sebagai file",
+          caption: header + "\n\n📎 La respuesta completa se envió como archivo",
         },
         { quoted: m },
       );
     }
   } catch (e) {
-    await m.reply(`❌ *REQUEST FAILED*\n\n> ${e.message}`);
+    await m.reply(`❌ *REQUEST FALLIDO*\n\n> ${e.message}`);
   }
 }
 

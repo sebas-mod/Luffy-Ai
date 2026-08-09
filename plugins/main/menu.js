@@ -1,4 +1,4 @@
-import { getCaseCount, getCasesByCategory } from "../../case/ourin.js";
+import { getCaseCount, getCasesByCategory } from "../../case/luffy.js";
 import {
   prepareWAMessageMedia,
   generateWAMessageFromContent,
@@ -10,12 +10,12 @@ import config from "../../config.js";
 import {
   formatUptime,
   getTimeGreeting,
-} from "../../src/lib/ourin-formatter.js";
+} from "../../src/lib/luffy-formatter.js";
 import {
   getCommandsByCategory,
   getCategories,
-} from "../../src/lib/ourin-plugins.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+} from "../../src/lib/luffy-plugins.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import fs from "fs";
 import path from "path";
 
@@ -36,7 +36,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 const CATEGORY_EMOJIS = {
@@ -53,7 +53,6 @@ const CATEGORY_EMOJIS = {
   media: "🎬",
   ai: "🤖",
   group: "👥",
-  religi: "☪️",
   islamic: "🕌",
   info: "ℹ️",
   cek: "📁",
@@ -163,7 +162,6 @@ function getSortedCategories(m, botMode) {
     "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",
@@ -173,21 +171,15 @@ function getSortedCategories(m, botMode) {
     "premium",
     "ephoto",
     "jpm",
-    "pushkontak",
-    "panel",
     "store"
   ];
   let modeAllowedMap = {
     md: null,
-    cpanel: ["main", "group", "sticker", "owner", "tools", "panel"],
     store: ["main", "group", "sticker", "owner", "store"],
-    pushkontak: ["main", "group", "sticker", "owner", "pushkontak"],
   };
   let modeExcludeMap = {
-    md: ["panel", "pushkontak", "store"],
-    cpanel: null,
+    md: ["store"],
     store: null,
-    pushkontak: null,
   };
   const allowedCats = modeAllowedMap[botMode];
   const excludeCats = modeExcludeMap[botMode] || [];
@@ -213,11 +205,11 @@ function getSortedCategories(m, botMode) {
   return { sorted: result, totalCmds, commandsByCategory };
 }
 async function formatTime(date) {
-  const timeHelper = await import("../../src/lib/ourin-time.js");
+  const timeHelper = await import("../../src/lib/luffy-time.js");
   return timeHelper.formatTime("HH:mm");
 }
 async function formatDateShort(date) {
-  const timeHelper = await import("../../src/lib/ourin-time.js");
+  const timeHelper = await import("../../src/lib/luffy-time.js");
   return timeHelper.formatFull("dddd, DD MMMM YYYY");
 }
 async function buildMenuText(
@@ -230,7 +222,7 @@ async function buildMenuText(
 ) {
   const prefix = botConfig.command?.prefix || ".";
   const user = db.getUser(m.sender);
-  const timeHelper = await import("../../src/lib/ourin-time.js");
+  const timeHelper = await import("../../src/lib/luffy-time.js");
   const timeStr = timeHelper.formatTime("HH:mm");
   const dateStr = timeHelper.formatFull("dddd, DD MMMM YYYY");
   const categories = getCategories();
@@ -271,10 +263,10 @@ async function buildMenuText(
   txt += `╰➤------------------------------\n`;
 
   txt += `    ᯓ INFO BOT\n`;
-  txt += `╭  • Name : ${botConfig.bot?.name || "Ourin-AI"}\n`;
+  txt += `╭  • Name : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
   txt += `┆  • Author : ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Versi : ${botConfig.bot?.version || "1.2.0"}\n`;
-  txt += `┆  • Type script : OURIN x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `┆  • Type script : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Uptime : ${uptimeFormatted}\n`;
   txt += `╰➤------------------------------\n`;
   const categoryOrder = [
@@ -290,7 +282,6 @@ async function buildMenuText(
     "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",
@@ -300,8 +291,6 @@ async function buildMenuText(
     "premium",
     "ephoto",
     "jpm",
-    "pushkontak",
-    "panel",
     "store"
   ];
   const sortedCategories = [...categories].sort((a, b) => {
@@ -311,15 +300,11 @@ async function buildMenuText(
   });
   let modeAllowedMap = {
     md: null,
-    cpanel: ["main", "group", "sticker", "owner", "tools", "panel"],
     store: ["main", "group", "sticker", "owner", "store"],
-    pushkontak: ["main", "group", "sticker", "owner", "pushkontak"],
   };
   let modeExcludeMap = {
-    md: ["panel", "pushkontak", "store"],
-    cpanel: null,
+    md: ["store"],
     store: null,
-    pushkontak: null,
   };
   try {
     const botmodePlugin = await import("../group/botmode.js");
@@ -380,14 +365,14 @@ function getContextInfo(
 ) {
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
   const saluranLink = botConfig.saluran?.link || "";
   const ctx = {
     mentionedJid: [m.sender],
     forwardingScore: 9,
     isForwarded: true,
     externalAdReply: {
-      title: botConfig.bot?.name || "Ourin-AI",
+      title: botConfig.bot?.name || "Luffy-Ai",
       body: `BOT WHATSAPP MULTI DEVICE`,
       sourceUrl: saluranLink,
       previewType: "VIDEO",
@@ -448,15 +433,15 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   let videoBuffer = null;
 
   try {
-    imageBuffer = fs.readFileSync(botConfig.assets["ourin"])
-    thumbBuffer = fs.readFileSync(botConfig.assets["ourin2"])
+    imageBuffer = fs.readFileSync(botConfig.assets["luffy"])
+    thumbBuffer = fs.readFileSync(botConfig.assets["luffy2"])
   } catch (e) {
     console.error("Gagal load assets:", e.message);
   }
   const prefix = botConfig.command?.prefix || ".";
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
   const saluranLink =
     botConfig.saluran?.link ||
     "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t";
@@ -481,7 +466,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
       case 1:
         if (imageBuffer) {
           await sock.sendMessage(m.chat, {
-            image: fs.readFileSync(config.assets["ourin"]),
+            image: fs.readFileSync(config.assets["luffy"]),
             caption: ``,
             footer: `Hai @${m.pushName} 👋
             
@@ -491,7 +476,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 │ ◈ *Nama Bot* : *${config.bot?.name}*
 │ ◈ *Versi* : *${config.bot.version}*  
 │ ◈ *Pengembang* : *${config.bot.developer}*  
-│ ◈ *Pustaka* : \`ourin-baileys\`
+│ ◈ *Pustaka* : \`luffy-baileys\`
 ╰┈┈┈┈┈┈┈┈
 
 ╭┈┈⫹⫺ *INFORMASI PENGGUNA* ⫹⫺┈┈╮
@@ -499,10 +484,10 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 │ ◈ *Member?* : *${m?.isOwner ? "Bukan, tapi Owner" : m?.isPremium ? "Bukan, tapi Premium" : "Iyapp"}*
 │ ◈ *Level* : *${user.level || 0}*
 │ ◈ *Exp* : *${user.exp || 0}* 
-│ ◈ *Energi* : *${user.energi || 0}*
-│ ◈ *Koin* : *${user.koin || 0}*
-│ ◈ *Register* : *${user.isRegistered ? "Sudah" : "Belum"}*
-│ ◈ *Energi* : *${user.energi || 0}*
+│ ◈ *Carne* : *${user.carne || 0}*
+│ ◈ *Berry* : *${user.berry || 0}*
+│ ◈ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
+│ ◈ *Carne* : *${user.carne || 0}*
 ╰┈┈┈┈┈┈┈┈
 
 Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
@@ -568,7 +553,7 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
           s += "╰─⬣\n\n"
         });
         const media = await prepareWAMessageMedia({
-          image: fs.readFileSync(config.assets["ourin"])
+          image: fs.readFileSync(config.assets["luffy"])
         }, { upload: sock.waUploadToServer })
         const readmore = String.fromCharCode(8206).repeat(4001)
         await sock.relayMessage(
@@ -593,16 +578,16 @@ Welcome to ${config.bot?.name}, Our bot will help you
 > 🤖 *Name*: ${config.bot?.name}
 > ⚙️ *Version*: ${config.bot?.version}
 > 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+> 🧩 *Library*: \`luffy-baileys\`
 
 🍅 *USER INFORMATION*
 > 🧑 *Name*: ${m.pushName}
 > 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
 > 🧀 *Level*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}
+> 🥩 *Carne*: ${user.carne || 0}
+> 🎏 *Berry*: ${user.berry || 0}
+> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}
 
 ${readmore}${s}`
                   },
@@ -631,13 +616,13 @@ ${readmore}${s}`
                       bottom_sheet: {
                         in_thread_buttons_limit: 2,
                         divider_indices: [1, 2, 3, 4, 5, 999],
-                        list_title: "Silahkan pilih menu yang kamu inginkan",
+                        list_title: "Por favor, elige el menú que quieras",
                         button_title: "🍅 Selengkapnya",
                       },
                       tap_target_configuration: {
                         title: " X ",
                         description: "bomboclard",
-                        canonical_url: "https://ourin.site",
+                        canonical_url: "https://https://example.com",
                         domain: "shop.example.com",
                         button_index: 0,
                       },
@@ -695,7 +680,7 @@ ${readmore}${s}`
               },
             ],
             locationMessage: {
-              jpegThumbnail: await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 170).toBuffer(),
+              jpegThumbnail: await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 170).toBuffer(),
               name: config.bot.name,
               address: `Versi saat ini: ${config.bot.version}`
             },
@@ -707,16 +692,16 @@ Welcome to ${config.bot?.name}, Our bot will help you
 > 🤖 *Name*: ${config.bot?.name}
 > ⚙️ *Version*: ${config.bot?.version}
 > 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`ourin-baileys\`
+> 🧩 *Library*: \`luffy-baileys\`
 
 🍅 *USER INFORMATION*
 > 🧑 *Name*: ${m.pushName}
 > 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
 > 🧀 *Level*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Energi*: ${user.energi || 0}
-> 🎏 *Koin*: ${user.koin || 0}
-> 🍬 *Register*: ${user.isRegistered ? "Sudah" : "Belum"}`,
+> 🥩 *Carne*: ${user.carne || 0}
+> 🎏 *Berry*: ${user.berry || 0}
+> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
             footerText: '🍔 Silahkan pilih dari salah satu tombol di bawah',
             headerType: 6,
           },
@@ -732,7 +717,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
         break
 
       case 4: {
-        const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
         const qvideo = {
           key: {
             fromMe: false,
@@ -749,7 +734,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
           }
         }
         const media4 = await prepareWAMessageMedia({
-          video: fs.readFileSync(config.assets["ourin-mp4"]),
+          video: fs.readFileSync(config.assets["luffy-mp4"]),
           gifPlayback: true
         }, { upload: sock.waUploadToServer });
         let singlePush = categories.sorted.map(cat => {
@@ -823,7 +808,7 @@ Enjoy your use brother.`
                     tap_target_configuration: {
                       title: " X ",
                       description: "bomboclard",
-                      canonical_url: "https://ourin.site",
+                      canonical_url: "https://https://example.com",
                       domain: "shop.example.com",
                       button_index: 0,
                     },
@@ -885,7 +870,7 @@ Enjoy your use brother.`
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
@@ -896,10 +881,10 @@ Enjoy your use brother.`
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
-        const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
         const qOrder = {
           key: {
             fromMe: false,
@@ -916,7 +901,7 @@ Enjoy your use brother.`
           }
         }
         const media4 = await prepareWAMessageMedia({
-          video: fs.readFileSync(config.assets["ourin-mp4"]),
+          video: fs.readFileSync(config.assets["luffy-mp4"]),
           gifPlayback: true
         }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
@@ -980,7 +965,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     tap_target_configuration: {
                       title: " X ",
                       description: "bomboclard",
-                      canonical_url: "https://ourin.site",
+                      canonical_url: "https://https://example.com",
                       domain: "shop.example.com",
                       button_index: 0,
                     },
@@ -1050,7 +1035,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
             )
 
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
 
             const res = await axios.get(
               `https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`
@@ -1061,7 +1046,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
         const rawStats = fs.readFileSync(path.join(process.cwd(), 'database/main/stats.json'), 'utf8')
@@ -1083,7 +1068,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           topCmdText += `╭   • Belum ada command\n╰➤------------------------------\n`
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -1094,7 +1079,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-Ai",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
@@ -1123,7 +1108,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     tap_target_configuration: {
                       title: " X ",
                       description: "bomboclard",
-                      canonical_url: "https://ourin.site",
+                      canonical_url: "https://https://example.com",
                       domain: "shop.example.com",
                       button_index: 0,
                     },
@@ -1208,7 +1193,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `││  name : _${userName}_\n`;
         case7Text += `││  status : ${userStatus}\n`;
         case7Text += `││  role : ${userRole}\n`;
-        case7Text += `││  energi : ${userLimit}\n`;
+        case7Text += `││  carne : ${userLimit}\n`;
         case7Text += `╰╯\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
@@ -1221,8 +1206,8 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `╰╯`;
 
 
-        const { getAssetBuffer } = await import("../../src/lib/ourin-asset-manager.js");
-        const imageBuffer = await getAssetBuffer("ourin2");
+        const { getAssetBuffer } = await import("../../src/lib/luffy-asset-manager.js");
+        const imageBuffer = await getAssetBuffer("luffy2");
         const sharp = (await import("sharp")).default;
         const stickerBuf = await sharp(imageBuffer).resize(512, 512).webp().toBuffer();
 
@@ -1245,11 +1230,11 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
 
         const { generateWAMessageFromContent } = await import("ourin");
         const menuMedia = await prepareWAMessageMedia({
-          image: await getAssetBuffer("ourin")
+          image: await getAssetBuffer("luffy")
         }, { upload: sock.waUploadToServer });
 
         const videoLive = await prepareWAMessageMedia({
-          video: await getAssetBuffer("ourin-mp4")
+          video: await getAssetBuffer("luffy-mp4")
         }, { upload: sock.waUploadToServer });
 
         const msg = generateWAMessageFromContent(m.chat, {
@@ -1357,7 +1342,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         if (userLevel >= 100) userRank = "🐉 Mythic";
 
         const userJabatan = m.isOwner ? "[ Owner ]" : (m.isPremium ? "[ Premium ]" : "[ User ]");
-        const userKoin = dbUser?.koin || 0;
+        const userBerry = dbUser?.berry || 0;
         const userExp = dbUser?.exp || 0;
         const hariKe = dbUser?.activeDays || 0;
 
@@ -1365,9 +1350,9 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `❑ Role: ${userJabatan}\n`;
         case7Text += `❑ Rank: ${userRank}\n`;
         case7Text += `❑ Level: ${userLevel}\n`;
-        case7Text += `❑ Coin: ${userKoin}\n`;
+        case7Text += `❑ Coin: ${userBerry}\n`;
         case7Text += `❑ Exp: ${userExp}\n`;
-        case7Text += `❑ Energy: ${userLimit}\n\n`;
+        case7Text += `❑ Carne: ${userLimit}\n\n`;
         case7Text += `Hello, my friend *"${m.pushName}"*!\nHow are you today? You're feeling well, right?\n\nYou've been online for *${hariKe} days*\n\n`;
 
 case7Text += `Website Buy Panel & Sewabot\n`;
@@ -1396,9 +1381,9 @@ case7Text += `fallxdstore.zone.id\n\n`;
         }
         case7Text = case7Text.trimEnd();
 
-        const { getAssetBuffer } = await import("../../src/lib/ourin-asset-manager.js");
-        const imageBuffer = await getAssetBuffer("ourin");
-        const favB = await getAssetBuffer("ourin2");
+        const { getAssetBuffer } = await import("../../src/lib/luffy-asset-manager.js");
+        const imageBuffer = await getAssetBuffer("luffy");
+        const favB = await getAssetBuffer("luffy2");
         const sharp = (await import("sharp")).default;
         const thumbBuf = await sharp(imageBuffer).resize(1280, 720).jpeg().toBuffer();
         const favBuf = await sharp(favB).resize(512, 512).jpeg().toBuffer();
@@ -1492,7 +1477,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
     }
     const audioEnabled = db.setting("audioMenu") !== false;
     if (audioEnabled) {
-      const audioUrl = botConfig.assets["ourin-mp3"];
+      const audioUrl = botConfig.assets["luffy-mp3"];
       try {
         switch (menuVariant) {
           case 1:
@@ -1571,7 +1556,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
               }, { quoted: qpoll });
             } catch (err) {
               await sock.sendMessage(m.chat, {
-                audio: fs.readFileSync(config.assets["ourin-mp3"]),
+                audio: fs.readFileSync(config.assets["luffy-mp3"]),
                 mimetype: "audio/mpeg",
                 ptt: false,
               }, { quoted: qpoll });
@@ -1589,7 +1574,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
               }
             };
             await sock.sendMessage(m.chat, {
-              audio: fs.readFileSync(config.assets["ourin-mp3"]),
+              audio: fs.readFileSync(config.assets["luffy-mp3"]),
               mimetype: "audio/mpeg",
               ptt: false,
             }, { quoted: qtext });
@@ -1661,7 +1646,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
                   sellerJid: botConfig.botNumber
                     ? `${botConfig.botNumber}@s.whatsapp.net`
                     : m.sender,
-                  token: "ourin-menu-v8",
+                  token: "luffy-menu-v8",
                   totalAmount1000: 3333333,
                   totalCurrencyCode: "IDR",
                   contextInfo: {
@@ -1680,7 +1665,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["ourin-mp3"]),
+                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
                   mimetype: "audio/mpeg",
                 },
                 { quoted: ftroliQuoted },
@@ -1689,7 +1674,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["ourin-mp3"]),
+                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
                   mimetype: "audio/mpeg",
                   contextInfo: getContextInfo(botConfig, m, thumbBuffer),
                 },

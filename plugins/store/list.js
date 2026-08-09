@@ -1,19 +1,19 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "list",
   alias: ["liststore", "daftar", "info"],
   category: "store",
-  description: "📋 Lihat daftar informasi toko",
-  usage: ".list atau .list <nomor>",
+  description: "📋 Ver la lista de información de la tienda",
+  usage: ".list o .list <numero>",
   example: ".list 1",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -23,10 +23,10 @@ async function handler(m, { sock }) {
 
   if (lists.length === 0) {
     return m.reply(
-      `📋 *Belum Ada Informasi Toko*\n\n` +
-        `Saat ini belum ada informasi yang ditambahkan oleh admin 😔\n\n` +
-        `Silakan cek kembali nanti atau hubungi admin untuk informasi lebih lanjut.\n\n` +
-        `_Terima kasih atas ketertarikan Anda_ 🙏`,
+      `📋 *Aún No Hay Información de la Tienda*\n\n` +
+        `Actualmente no hay información agregada por el admin 😔\n\n` +
+        `Vuelve a revisar más tarde o contacta al admin para más información.\n\n` +
+        `_Gracias por tu interés_ 🙏`,
     );
   }
 
@@ -56,9 +56,9 @@ async function handler(m, { sock }) {
     return m.reply(txt);
   }
 
-  let txt = `📋 *DAFTAR INFORMASI TOKO*\n\n`;
-  txt += `Berikut informasi yang tersedia saat ini 📝\n`;
-  txt += `Ketik \`${m.prefix}list <nomor>\` untuk melihat detail.\n\n`;
+  let txt = `📋 *LISTA DE INFORMACIÓN DE LA TIENDA*\n\n`;
+  txt += `A continuación la información disponible actualmente 📝\n`;
+  txt += `Escribe \`${m.prefix}list <numero>\` para ver el detalle.\n\n`;
 
   for (let i = 0; i < lists.length; i++) {
     const l = lists[i];
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
   }
   txt += "\n";
 
-  txt += `💡 _Ketik \`${m.prefix}list <nomor>\` untuk membaca detail informasi_`;
+  txt += `💡 _Escribe \`${m.prefix}list <numero>\` para leer el detalle de la información_`;
 
   await m.reply(txt);
 }

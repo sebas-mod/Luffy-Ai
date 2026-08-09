@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekkece',
     alias: ['kece', 'cool'],
     category: 'cek',
-    description: 'Cek seberapa kece kamu',
-    usage: '.cekkece <nama>',
+    description: 'Comprueba cuán genial eres',
+    usage: '.cekkece <nombre>',
     example: '.cekkece Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'KECE BADAI! 😎🔥'
+        desc = '¡GENIALIDAD TOTAL! 😎🔥'
     } else if (percent >= 70) {
-        desc = 'Kece banget! ✨'
+        desc = '¡Muy genial! ✨'
     } else if (percent >= 50) {
-        desc = 'Lumayan kece~ 👍'
+        desc = 'Bastante genial~ 👍'
     } else if (percent >= 30) {
-        desc = 'Sedikit kece 😊'
+        desc = 'Un poco genial 😊'
     } else {
-        desc = 'Biasa aja, tapi tetep keren! 🙂'
+        desc = 'Normal, pero igual genial! 🙂'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kekecean kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kekecean @${mentioned.split('@')[0]} yak? 
+Tu nivel de genialidad es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de genialidad de @${mentioned.split('@')[0]}? 
     
-Tingkat kekecean dia sebesar *${percent}%*
+Su nivel de genialidad es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

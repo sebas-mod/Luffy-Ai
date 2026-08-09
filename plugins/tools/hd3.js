@@ -1,18 +1,18 @@
 import axios from "axios";
 import FormData from "form-data";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import _sharp from 'sharp';
 
 const pluginConfig = {
   name: "hd3",
   alias: ["enhance3", "upscale3", "unblur"],
   category: "tools",
-  description: "Memperjelas gambar blur menjadi tajam dengan AI (Unblur)",
-  usage: ".hd3 (reply gambar)",
+  description: "Aclara imágenes borrosas y las hace nítidas con IA (Unblur)",
+  usage: ".hd3 (responde una imagen)",
   example: ".hd3",
   cooldown: 20,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -20,12 +20,12 @@ async function handler(m, { sock }) {
   const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
 
   if (!isImage) {
-    let help = `✨ *FITUR HD ENHANCE V3 (UNBLUR)*\n\n`
-    help += `Fitur canggih untuk memperbaiki gambar yang buram (blur) menjadi jelas dan tajam kembali menggunakan kecerdasan buatan!\n\n`
-    help += `*Cara Penggunaan:*\n`
-    help += `- Kirim gambar dan tambahkan pesan *${m.prefix}hd3*\n`
-    help += `- Atau balas (reply) gambar yang sudah terkirim dengan perintah *${m.prefix}hd3*\n\n`
-    help += `_Proses rendering mungkin memerlukan waktu beberapa saat._`
+    let help = `✨ *MEJORA HD V3 (UNBLUR)*\n\n`
+    help += `Función avanzada para arreglar imágenes borrosas y devolverles nitidez usando inteligencia artificial!\n\n`
+    help += `*Cómo Usar:*\n`
+    help += `- Envía una imagen y agrega el mensaje *${m.prefix}hd3*\n`
+    help += `- O responde a una imagen ya enviada con el comando *${m.prefix}hd3*\n\n`
+    help += `_El proceso de renderizado puede tardar unos momentos._`
     return m.reply(help);
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`Maaf, sistem gagal mengunduh gambar yang kamu berikan. Silakan coba kirim ulang gambarnya!`);
+      return m.reply(`Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Por favor, intenta volver a enviarla!`);
     }
 
     const form = new FormData();
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     const data = response.data;
     if (!data || !data.status || !data.result || !data.result.output_url || !data.result.output_url[0]) {
       await m.react("❌");
-      return m.reply(`Maaf, AI gagal memproses gambarmu kali ini. Silakan coba lagi dalam beberapa saat!`);
+      return m.reply(`Lo siento, la IA no pudo procesar tu imagen esta vez. ¡Inténtalo de nuevo en unos momentos!`);
     }
 
     await m.react("✅");

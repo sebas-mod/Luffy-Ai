@@ -7,15 +7,15 @@ const pluginConfig = {
     name: 'bandingkan-hp',
     alias: ['bandingkanhp', 'comparehp'],
     category: 'tools',
-    description: 'Membandingkan dua spesifikasi smartphone dari Carisinyal.',
-    usage: '.bandingkan-hp <hp1> | <hp2>',
+    description: 'Compara las especificaciones de dos smartphones desde Carisinyal.',
+    usage: '.bandingkan-hp <teléfono1> | <teléfono2>',
     example: '.bandingkan-hp oppo a3s | vivo y91',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 };
 
@@ -125,12 +125,12 @@ async function fetchCompare(id1, id2) {
 async function handler(m, { sock, text }) {
     if (!text || !text.includes('|')) {
         return m.reply(
-            `⚖️ *FITUR PERBANDINGAN HP*\n\n` +
-            `Fitur ini akan membantumu membandingkan spesifikasi dua *smartphone* secara langsung agar kamu bisa memilih mana yang terbaik!\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}bandingkan-hp <hp pertama> | <hp kedua>\`\n` +
-            `- Contoh: \`${m.prefix}bandingkan-hp iphone 13 | samsung s22\`\n\n` +
-            `_Pastikan kamu menggunakan tanda garis lurus (|) sebagai pemisah antara dua nama HP tersebut ya!_`
+            `⚖️ *FUNCIÓN DE COMPARACIÓN DE TELÉFONOS*\n\n` +
+            `Esta función te ayudará a comparar las especificaciones de dos *smartphones* directamente para que puedas elegir cuál es el mejor!\n\n` +
+            `*CÓMO USAR:*\n` +
+            `- Escribe \`${m.prefix}bandingkan-hp <primer teléfono> | <segundo teléfono>\`\n` +
+            `- Ejemplo: \`${m.prefix}bandingkan-hp iphone 13 | samsung s22\`\n\n` +
+            `_Asegúrate de usar la barra vertical (|) como separador entre los dos nombres de teléfono!_`
         );
     }
 
@@ -140,7 +140,7 @@ async function handler(m, { sock, text }) {
         const [query1, query2] = text.split('|').map(v => v.trim());
         if (!query1 || !query2) {
             await m.react('❌');
-            return m.reply(`❌ *FORMAT SALAH*\n\nPastikan kamu memasukkan dua nama ponsel dengan pemisah tanda vertikal (|).`);
+            return m.reply(`❌ *FORMATO INCORRECTO*\n\nAsegúrate de escribir los dos nombres de teléfonos separados con la barra vertical (|).`);
         }
 
         const list = await getPhoneList();
@@ -149,10 +149,10 @@ async function handler(m, { sock, text }) {
 
         if (!phone1 || !phone2) {
             await m.react('❌');
-            let errStr = `❌ *HP TIDAK DITEMUKAN*\n\n`;
-            if (!phone1) errStr += `- *${query1}* tidak ditemukan di database.\n`;
-            if (!phone2) errStr += `- *${query2}* tidak ditemukan di database.\n`;
-            errStr += `\nSilakan coba kata kunci yang berbeda.`;
+            let errStr = `❌ *TELÉFONO NO ENCONTRADO*\n\n`;
+            if (!phone1) errStr += `- *${query1}* no se encontró en la base de datos.\n`;
+            if (!phone2) errStr += `- *${query2}* no se encontró en la base de datos.\n`;
+            errStr += `\nPrueba con palabras clave diferentes.`;
             return m.reply(errStr);
         }
 
@@ -172,9 +172,9 @@ async function handler(m, { sock, text }) {
             }
         }
 
-        let caption = `⚖️ *PERBANDINGAN SMARTPHONE*\n\n`;
-        caption += `📱 *HP 1:* ${phone1.title}\n`;
-        caption += `📱 *HP 2:* ${phone2.title}\n\n`;
+        let caption = `⚖️ *COMPARACIÓN DE SMARTPHONES*\n\n`;
+        caption += `📱 *TELÉFONO 1:* ${phone1.title}\n`;
+        caption += `📱 *TELÉFONO 2:* ${phone2.title}\n\n`;
 
         for (const sec of sections) {
             caption += `✨ *${sec.section.toUpperCase()}*\n`;
@@ -187,7 +187,7 @@ async function handler(m, { sock, text }) {
             caption += `\n`;
         }
 
-        caption += `🔗 *Sumber:* Carisinyal`;
+        caption += `🔗 *Fuente:* Carisinyal`;
 
         await m.reply(caption);
 
@@ -236,7 +236,7 @@ async function handler(m, { sock, text }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MENGAMBIL DATA*\n\nMaaf, sistem mengalami gangguan saat mencoba membandingkan HP dari *Carisinyal*. Silakan coba lagi nanti.`);
+        m.reply(`❌ *FALLO AL OBTENER LOS DATOS*\n\nLo siento, el sistema está teniendo problemas al comparar teléfonos desde *Carisinyal*. Inténtalo de nuevo más tarde.`);
     }
 }
 

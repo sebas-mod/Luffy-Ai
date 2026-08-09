@@ -4,11 +4,11 @@ const pluginConfig = {
   name: "spotifydl",
   alias: ["spdl", "spotify-dl", "spotdl"],
   category: "download",
-  description: "Unduh lagu favoritmu langsung dari Spotify tanpa ribet!",
+  description: "Descarga tus canciones favoritas directamente desde Spotify sin complicaciones!",
   usage: ".spdl <link>",
   example: ".spdl https://open.spotify.com/track/...",
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -16,7 +16,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text || !/open\.spotify\.com\/track/i.test(text)) {
-    return m.reply("❌ *Waduh, link Spotify-nya mana nih atau kurang tepat!*\n\nKamu harus memasukkan tautan (link) lagu dari Spotify yang valid. Pastikan itu adalah link ke track/lagu ya! \n\nContoh: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
+    return m.reply("❌ *Vaya, ¿dónde está el enlace de Spotify o no es correcto?!*\n\nDebes ingresar un enlace válido de una canción de Spotify. Asegúrate de que sea un enlace a un track/canción! \n\nEjemplo: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
   }
 
   await m.react("🕕");
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result || !data.result.url) {
       await m.react("❌");
-      return m.reply("⚠️ *Gagal mengambil lagu!* \n\nServer tidak merespon dengan tautan unduhan yang valid.");
+      return m.reply("⚠️ *¡Error al obtener la canción!* \n\nEl servidor no respondió con un enlace de descarga válido.");
     }
 
     const { title, artist, url } = data.result;
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Spotify DL Error]", error);
     await m.react("❌");
-    m.reply("😔 *Terjadi kesalahan sistem saat memproses tautan Spotify tersebut.* Mohon coba lagi nanti ya!");
+    m.reply("😔 *Ocurrió un error del sistema al procesar ese enlace de Spotify.* ¡Intenta de nuevo más tarde!");
   }
 }
 

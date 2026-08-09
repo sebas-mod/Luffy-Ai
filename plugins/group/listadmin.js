@@ -1,10 +1,10 @@
-import { getParticipantJid } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { getParticipantJid } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'listadmin',
     alias: ['admins', 'adminlist'],
     category: 'group',
-    description: 'Menampilkan daftar admin grup',
+    description: 'Mostrar la lista de admins del grupo',
     usage: '.listadmin',
     example: '.listadmin',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: false,
     isBotAdmin: false
@@ -25,14 +25,14 @@ async function handler(m, { sock }) {
         const admins = participants.filter(p => p.admin)
 
         if (admins.length === 0) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada admin di grup ini.`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No hay admins en este grupo.`)
             return
         }
 
         const owner = admins.find(a => a.admin === 'superadmin')
         const regularAdmins = admins.filter(a => a.admin === 'admin')
 
-        let adminList = `👑 *ʟɪsᴛ ᴀᴅᴍɪɴ*\n\n`
+        let adminList = `👑 *ʟɪsᴛᴀ ᴅᴇ ᴀᴅᴍɪɴs*\n\n`
 
         if (owner) {
             adminList += `\`\`\`━━━ ᴏᴡɴᴇʀ ━━━\`\`\`\n`
@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
         }
 
         if (regularAdmins.length > 0) {
-            adminList += `\`\`\`━━━ ᴀᴅᴍɪɴ ━━━\`\`\`\n`
+            adminList += `\`\`\`━━━ ᴀᴅᴍɪɴs ━━━\`\`\`\n`
             regularAdmins.forEach((admin, i) => {
                 adminList += `\`\`\`${i + 1}. @${getParticipantJid(admin).split('@')[0]}\`\`\`\n`
             })
         }
-        adminList += `\n\`Total Admin: ${admins.length}\``
+        adminList += `\n\`Total Admins: ${admins.length}\``
 
         const mentions = admins.map(a => getParticipantJid(a))
 

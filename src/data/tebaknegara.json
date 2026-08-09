@@ -1,32 +1,122 @@
 [
-  {"soal": "Negara kepulauan terbesar di dunia dengan lebih dari 17.000 pulau", "jawaban": "Indonesia"},
-  {"soal": "Negara di Eropa yang terkenal dengan menara miring Pisa", "jawaban": "Italia"},
-  {"soal": "Negara paling kecil di dunia yang terletak di dalam kota Roma", "jawaban": "Vatikan"},
-  {"soal": "Negara yang terkenal dengan piramida dan Sphinx di gurun pasir", "jawaban": "Mesir"},
-  {"soal": "Negara dengan populasi terbanyak di dunia yang ibukotanya Beijing", "jawaban": "China"},
-  {"soal": "Negara benua sekaligus yang terkenal dengan kanguru dan koala", "jawaban": "Australia"},
-  {"soal": "Negara di Asia Timur yang terkenal dengan teknologi dan K-Pop", "jawaban": "Korea Selatan"},
-  {"soal": "Negara di Eropa yang terkenal dengan jam, cokelat, dan pegunungan Alpen", "jawaban": "Swiss"},
-  {"soal": "Negara di Amerika Selatan terbesar yang terkenal dengan karnavalnya", "jawaban": "Brasil"},
-  {"soal": "Negara kepulauan di Pasifik yang terkenal dengan haka dan suku Maori", "jawaban": "Selandia Baru"},
-  {"soal": "Negara di Asia Tenggara yang dikenal sebagai negeri Gajah Putih", "jawaban": "Thailand"},
-  {"soal": "Negara di Eropa yang terkenal dengan tulip, kincir angin, dan keju", "jawaban": "Belanda"},
-  {"soal": "Negara di Afrika Selatan yang pernah dipimpin Nelson Mandela", "jawaban": "Afrika Selatan"},
-  {"soal": "Negara yang terkenal dengan sushi, sakura, dan gunung Fuji", "jawaban": "Jepang"},
-  {"soal": "Negara di Amerika Utara yang terkenal dengan Patung Liberty", "jawaban": "Amerika Serikat"},
-  {"soal": "Negara monarki di Asia Tenggara yang kaya akan minyak", "jawaban": "Brunei"},
-  {"soal": "Negara terluas di dunia yang membentang dari Eropa hingga Asia", "jawaban": "Rusia"},
-  {"soal": "Negara di Eropa Barat yang terkenal dengan menara Eiffel", "jawaban": "Prancis"},
-  {"soal": "Negara di Timur Tengah yang terkenal dengan gedung Burj Khalifa", "jawaban": "Uni Emirat Arab"},
-  {"soal": "Negara di Asia Selatan yang terkenal dengan Taj Mahal", "jawaban": "India"},
-  {"soal": "Negara di Eropa yang terkenal dengan Tembok Berlin dan bir", "jawaban": "Jerman"},
-  {"soal": "Negara kepulauan di Karibia yang terkenal dengan musik reggae", "jawaban": "Jamaika"},
-  {"soal": "Negara di Amerika Selatan yang terkenal dengan tango dan steak", "jawaban": "Argentina"},
-  {"soal": "Negara di Eropa Utara yang dijuluki negeri es dan api", "jawaban": "Islandia"},
-  {"soal": "Negara di Asia Tenggara yang bentuknya seperti huruf S", "jawaban": "Vietnam"},
-  {"soal": "Negara di Afrika Timur yang terkenal dengan safari dan Kilimanjaro", "jawaban": "Tanzania"},
-  {"soal": "Negara monarki konstitusional yang ibukotanya London", "jawaban": "Inggris"},
-  {"soal": "Negara di Eropa Selatan yang terkenal dengan pantai Santorini", "jawaban": "Yunani"},
-  {"soal": "Negara pulau kecil di Asia Tenggara yang dijuluki kota singa", "jawaban": "Singapura"},
-  {"soal": "Negara di Amerika Tengah yang terkenal dengan reruntuhan Maya", "jawaban": "Meksiko"}
+  {
+    "soal": "El país archipelágico más grande del mundo con más de 17.000 islas.",
+    "jawaban": "Indonesia"
+  },
+  {
+    "soal": "País de Europa famoso por la Torre Inclinada de Pisa.",
+    "jawaban": "Italia"
+  },
+  {
+    "soal": "El país más pequeño del mundo se encuentra dentro de la ciudad de Roma.",
+    "jawaban": "Vaticano"
+  },
+  {
+    "soal": "El país es famoso por sus pirámides y la Esfinge en el desierto.",
+    "jawaban": "Egipto"
+  },
+  {
+    "soal": "El país con mayor población del mundo cuya capital es Beijing",
+    "jawaban": "China"
+  },
+  {
+    "soal": "Este país continental también es famoso por sus canguros y koalas.",
+    "jawaban": "Australia"
+  },
+  {
+    "soal": "País del este de Asia famoso por la tecnología y el K-Pop.",
+    "jawaban": "Corea del Sur"
+  },
+  {
+    "soal": "Un país europeo famoso por los relojes, el chocolate y los Alpes",
+    "jawaban": "Suiza"
+  },
+  {
+    "soal": "El país más grande de Sudamérica es famoso por sus carnavales.",
+    "jawaban": "Brasil"
+  },
+  {
+    "soal": "Una nación insular en el Pacífico famosa por sus tribus haka y maoríes.",
+    "jawaban": "Nueva Zelanda"
+  },
+  {
+    "soal": "Un país del sudeste asiático conocido como la tierra del elefante blanco.",
+    "jawaban": "Tailandia"
+  },
+  {
+    "soal": "País europeo famoso por los tulipanes, los molinos de viento y el queso.",
+    "jawaban": "Países Bajos"
+  },
+  {
+    "soal": "El país de Sudáfrica que alguna vez fue gobernado por Nelson Mandela",
+    "jawaban": "Sudáfrica"
+  },
+  {
+    "soal": "Un país famoso por el sushi, los cerezos en flor y el monte Fuji.",
+    "jawaban": "Japón"
+  },
+  {
+    "soal": "País de América del Norte famoso por la Estatua de la Libertad.",
+    "jawaban": "Estados Unidos"
+  },
+  {
+    "soal": "Un país monárquico del sudeste asiático rico en petróleo.",
+    "jawaban": "Brunéi"
+  },
+  {
+    "soal": "El país más grande del mundo que se extiende desde Europa hasta Asia.",
+    "jawaban": "Rusia"
+  },
+  {
+    "soal": "País de Europa occidental famoso por la Torre Eiffel.",
+    "jawaban": "Francia"
+  },
+  {
+    "soal": "El país de Oriente Medio es famoso por el edificio Burj Khalifa.",
+    "jawaban": "Emiratos Árabes Unidos"
+  },
+  {
+    "soal": "País del sur de Asia famoso por el Taj Mahal.",
+    "jawaban": "India"
+  },
+  {
+    "soal": "País de Europa famoso por el Muro de Berlín y la cerveza.",
+    "jawaban": "Alemania"
+  },
+  {
+    "soal": "Una nación insular en el Caribe conocida por su música reggae.",
+    "jawaban": "Jamaica"
+  },
+  {
+    "soal": "País sudamericano famoso por el tango y el bistec",
+    "jawaban": "Argentina"
+  },
+  {
+    "soal": "Un país del norte de Europa apodado la tierra del hielo y el fuego.",
+    "jawaban": "Islandia"
+  },
+  {
+    "soal": "Un país del sudeste asiático que tiene forma de letra S.",
+    "jawaban": "Vietnam"
+  },
+  {
+    "soal": "País del este de África famoso por los safaris y el Kilimanjaro",
+    "jawaban": "tanzanía"
+  },
+  {
+    "soal": "Una monarquía constitucional cuya capital es Londres",
+    "jawaban": "Inglaterra"
+  },
+  {
+    "soal": "Un país del sur de Europa famoso por su playa de Santorini.",
+    "jawaban": "Grecia"
+  },
+  {
+    "soal": "Un pequeño país insular del sudeste asiático apodado la ciudad del león.",
+    "jawaban": "Singapur"
+  },
+  {
+    "soal": "Un país de Centroamérica famoso por sus ruinas mayas.",
+    "jawaban": "México"
+  }
 ]

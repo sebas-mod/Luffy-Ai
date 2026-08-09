@@ -1,18 +1,18 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import {
   drawBoard,
   getRandomMap,
   DICE_STICKERS,
-} from "../../src/lib/ourin-game-ulartangga.js";
+} from "../../src/lib/luffy-game-ulartangga.js";
 import config from "../../config.js";
 import fs from "fs";
 import path from "path";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "ulartangga",
   alias: ["ut", "snakeladder", "sl"],
   category: "game",
-  description: "Main ular tangga bersama player lain dengan visual board",
+  description: "Juega a la serpiente y escaleras con otros jugadores con tablero visual",
   usage: ".ulartangga <create|join|start|info|exit|delete>",
   example: ".ulartangga create",
   isOwner: false,
@@ -20,16 +20,16 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 if (!global.ulartanggaGames) global.ulartanggaGames = {};
 
 const PLAYER_COLORS = ["🔴", "🟡", "🟢", "🔵"];
-const PLAYER_NAMES = ["Merah", "Kuning", "Hijau", "Biru"];
+const PLAYER_NAMES = ["Rojo", "Amarillo", "Verde", "Azul"];
 
-const WIN_REWARD = { koin: 2000, exp: 1000, energi: 5 };
+const WIN_REWARD = { berry: 2000, exp: 1000, carne: 5 };
 
 function uniqueMentions(mentions = []) {
   return [...new Set((mentions || []).filter(Boolean))];
@@ -41,7 +41,7 @@ try {
     process.cwd(),
     "assets",
     "image",
-    "ourin-games.jpg",
+    "luffy-games.jpg",
   );
   if (fs.existsSync(thumbPath)) {
     thumbUT = fs.readFileSync(thumbPath);
@@ -50,7 +50,7 @@ try {
 
 function utCtx(mentions) {
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+  const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
   const normalizedMentions = uniqueMentions(mentions);
   return {
     forwardingScore: 9999,
@@ -70,8 +70,8 @@ async function sendUT(sock, jid, text, title, body, mentions, options) {
     {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
-      title: title || "🐍🎲 ULAR TANGGA",
-      description: body || "Permainan klasik!",
+      title: title || "🐍🎲 SERPIENTES Y ESCALERAS",
+      description: body || "¡Juego clásico!",
       jpegThumbnail: thumbUT,
       previewType: 0,
     },
@@ -93,12 +93,12 @@ async function handler(m, { sock }) {
         return sendUT(
           sock,
           m.chat,
-          `❌ *ROOM SUDAH ADA*\n\n` +
-          `> Masih ada sesi permainan di chat ini!\n` +
+          `❌ *LA SALA YA EXISTE*\n\n` +
+          `> ¡Aún hay una sesión de juego en este chat!\n` +
           `> Host: @${ut[m.chat].host.split("@")[0]}\n` +
-          `> Status: ${ut[m.chat].status}`,
-          "🐍🎲 ULAR TANGGA",
-          "Permainan klasik!",
+          `> Estado: ${ut[m.chat].status}`,
+          "🐍🎲 SERPIENTES Y ESCALERAS",
+          "¡Juego clásico!",
           [ut[m.chat].host],
           { quoted: m },
         );
@@ -124,21 +124,21 @@ async function handler(m, { sock }) {
       await sendUT(
         sock,
         m.chat,
-        `🐍🎲 *ULAR TANGGA*\n\n` +
-        `Room berhasil dibuat!\n\n` +
-        `╭┈┈⬡「 📋 *INFO ROOM* 」\n` +
+        `🐍🎲 *SERPIENTES Y ESCALERAS*\n\n` +
+        `¡Sala creada con éxito!\n\n` +
+        `╭┈┈⬡「 📋 *INFO DE LA SALA* 」\n` +
         `┃ 👑 Host: @${m.sender.split("@")[0]}\n` +
-        `┃ 👥 Players: 1/4\n` +
-        `┃ 🗺️ Map: ${mapConfig.name}\n` +
+        `┃ 👥 Jugadores: 1/4\n` +
+        `┃ 🗺️ Mapa: ${mapConfig.name}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 🎮 *COMMANDS* 」\n` +
-        `┃ ➕ \`${prefix}ut join\` - Gabung\n` +
-        `┃ ▶️ \`${prefix}ut start\` - Mulai\n` +
-        `┃ ℹ️ \`${prefix}ut info\` - Info room\n` +
-        `┃ 🚪 \`${prefix}ut exit\` - Keluar\n` +
+        `╭┈┈⬡「 🎮 *COMANDOS* 」\n` +
+        `┃ ➕ \`${prefix}ut join\` - Unirse\n` +
+        `┃ ▶️ \`${prefix}ut start\` - Empezar\n` +
+        `┃ ℹ️ \`${prefix}ut info\` - Info de la sala\n` +
+        `┃ 🚪 \`${prefix}ut exit\` - Salir\n` +
         `╰┈┈┈┈┈┈┈┈⬡`,
         "🎲 ROOM CREATED",
-        "Ayo bergabung!",
+        "¡Vamos a unirse!",
         [m.sender],
         { quoted: m },
       );
@@ -147,21 +147,21 @@ async function handler(m, { sock }) {
     join: async () => {
       if (!ut[m.chat]) {
         return m.reply(
-          `❌ Tidak ada sesi permainan!\n> Ketik \`${prefix}ut create\` untuk membuat room.`,
+          `❌ ¡No hay sesión de juego!\n> Escribe \`${prefix}ut create\` para crear una sala.`,
         );
       }
 
       if (ut[m.chat].players[m.sender]) {
-        return m.reply(`❌ Kamu sudah bergabung di room ini!`);
+        return m.reply(`❌ ¡Ya estás en esta sala!`);
       }
 
       const playerCount = Object.keys(ut[m.chat].players).length;
       if (playerCount >= 4) {
-        return m.reply(`❌ Room sudah penuh! (Max 4 player)`);
+        return m.reply(`❌ ¡La sala está llena! (Max 4 jugadores)`);
       }
 
       if (ut[m.chat].status === "PLAYING") {
-        return m.reply(`❌ Game sedang berjalan, tidak bisa join!`);
+        return m.reply(`❌ ¡El juego está en curso, no puedes unirte!`);
       }
 
       ut[m.chat].players[m.sender] = { rank: "MEMBER", position: 1 };
@@ -178,18 +178,18 @@ async function handler(m, { sock }) {
       await sendUT(
         sock,
         m.chat,
-        `✅ *PLAYER BERGABUNG*\n\n` +
-        `@${m.sender.split("@")[0]} masuk!\n\n` +
-        `╭┈┈⬡「 👥 *PLAYERS* 」\n` +
+        `✅ *JUGADOR SE UNIÓ*\n\n` +
+        `@${m.sender.split("@")[0]} entró!\n\n` +
+        `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
         `${playerList
           .split("\n")
           .map((l) => `┃ ${l}`)
           .join("\n")}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `> Total: ${players.length}/4\n` +
-        `> ${players.length >= 2 ? `✅ Bisa mulai! \`${prefix}ut start\`` : "🕕 Butuh 1 player lagi"}`,
+        `> ${players.length >= 2 ? `✅ ¡Pueden empezar! \`${prefix}ut start\`` : "🕕 Falta 1 jugador más"}`,
         "👥 PLAYER JOINED",
-        `${players.length}/4 players`,
+        `${players.length}/4 jugadores`,
         players,
         { quoted: m },
       );
@@ -197,20 +197,20 @@ async function handler(m, { sock }) {
 
     start: async () => {
       if (!ut[m.chat]) {
-        return m.reply(`❌ Tidak ada sesi permainan!`);
+        return m.reply(`❌ ¡No hay sesión de juego!`);
       }
 
       if (ut[m.chat].status === "PLAYING") {
-        return m.reply(`❌ Permainan sudah berjalan!`);
+        return m.reply(`❌ ¡El juego ya está en curso!`);
       }
 
       if (ut[m.chat].host !== m.sender && !config.isOwner?.(m.sender)) {
-        return m.reply(`❌ Hanya host yang dapat memulai permainan!`);
+        return m.reply(`❌ ¡Solo el host puede iniciar el juego!`);
       }
 
       const players = Object.keys(ut[m.chat].players);
       if (players.length < 2) {
-        return m.reply(`❌ Minimal 2 player untuk bermain!`);
+        return m.reply(`❌ ¡Se necesitan mínimo 2 jugadores para jugar!`);
       }
 
       ut[m.chat].status = "PLAYING";
@@ -243,15 +243,15 @@ async function handler(m, { sock }) {
           {
             image: boardImage,
             caption:
-              `🐍🎲 *PERMAINAN DIMULAI!*\n\n` +
-              `╭┈┈⬡「 👥 *PLAYERS* 」\n` +
+              `🐍🎲 *¡EL JUEGO HA COMENZADO!*\n\n` +
+              `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
               `${playerList
                 .split("\n")
                 .map((l) => `┃ ${l}`)
                 .join("\n")}\n` +
               `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-              `> 🎯 Giliran: @${players[0].split("@")[0]}\n` +
-              `> Ketik *kocok* untuk lempar dadu!`,
+              `> 🎯 Turno de: @${players[0].split("@")[0]}\n` +
+              `> Escribe *kocok* / *lanzar* para tirar el dado!`,
             contextInfo: utCtx(players),
           },
           { quoted: m },
@@ -260,17 +260,17 @@ async function handler(m, { sock }) {
         await sendUT(
           sock,
           m.chat,
-          `🐍🎲 *PERMAINAN DIMULAI!*\n\n` +
-          `╭┈┈⬡「 👥 *PLAYERS* 」\n` +
+          `🐍🎲 *¡EL JUEGO HA COMENZADO!*\n\n` +
+          `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
           `${playerList
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> 🎯 Giliran: @${players[0].split("@")[0]}\n` +
-          `> Ketik *kocok* untuk lempar dadu!`,
+          `> 🎯 Turno de: @${players[0].split("@")[0]}\n` +
+          `> Escribe *kocok* / *lanzar* para tirar el dado!`,
           "🎮 GAME STARTED",
-          "Lempar dadu!",
+          "¡Tira el dado!",
           players,
           { quoted: m },
         );
@@ -279,7 +279,7 @@ async function handler(m, { sock }) {
 
     info: async () => {
       if (!ut[m.chat]) {
-        return m.reply(`❌ Tidak ada sesi permainan!`);
+        return m.reply(`❌ ¡No hay sesión de juego!`);
       }
 
       const players = Object.keys(ut[m.chat].players);
@@ -299,21 +299,21 @@ async function handler(m, { sock }) {
         m.chat,
         {
           text:
-            `🐍🎲 *INFO ROOM*\n\n` +
-            `╭┈┈⬡「 📋 *ROOM* 」\n` +
+            `🐍🎲 *INFO DE LA SALA*\n\n` +
+            `╭┈┈⬡「 📋 *SALA* 」\n` +
             `┃ 👑 Host: @${ut[m.chat].host.split("@")[0]}\n` +
-            `┃ 📍 Status: ${ut[m.chat].status}\n` +
-            `┃ 🗺️ Map: ${ut[m.chat].mapName}\n` +
-            `┃ 👥 Players: ${players.length}/4\n` +
+            `┃ 📍 Estado: ${ut[m.chat].status}\n` +
+            `┃ 🗺️ Mapa: ${ut[m.chat].mapName}\n` +
+            `┃ 👥 Jugadores: ${players.length}/4\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `╭┈┈⬡「 👥 *PLAYERS* 」\n` +
+            `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
             `${playerList
               .split("\n")
               .map((l) => `┃ ${l}`)
               .join("\n")}\n` +
             `╰┈┈┈┈┈┈┈┈⬡` +
             (currentTurn
-              ? `\n\n> 🎯 Giliran: @${currentTurn.split("@")[0]}`
+              ? `\n\n> 🎯 Turno de: @${currentTurn.split("@")[0]}`
               : ""),
           contextInfo: utCtx(players),
         },
@@ -323,27 +323,27 @@ async function handler(m, { sock }) {
 
     exit: async () => {
       if (!ut[m.chat]) {
-        return m.reply(`❌ Tidak ada sesi permainan!`);
+        return m.reply(`❌ ¡No hay sesión de juego!`);
       }
 
       if (!ut[m.chat].players[m.sender]) {
-        return m.reply(`❌ Kamu tidak ada di permainan ini!`);
+        return m.reply(`❌ ¡No estás en este juego!`);
       }
 
       delete ut[m.chat].players[m.sender];
       await sendUT(
         sock,
         m.chat,
-        `👋 @${m.sender.split("@")[0]} keluar dari permainan.`,
-        "🐍🎲 ULAR TANGGA",
-        "Permainan klasik!",
+        `👋 @${m.sender.split("@")[0]} salió del juego.`,
+        "🐍🎲 SERPIENTES Y ESCALERAS",
+        "¡Juego clásico!",
         [m.sender],
         { quoted: m },
       );
 
       if (Object.keys(ut[m.chat].players).length === 0) {
         delete ut[m.chat];
-        return m.reply(`🗑️ Room dihapus karena tidak ada player.`);
+        return m.reply(`🗑️ Sala eliminada porque no hay jugadores.`);
       }
 
       if (!ut[m.chat].players[ut[m.chat].host]) {
@@ -353,9 +353,9 @@ async function handler(m, { sock }) {
         await sendUT(
           sock,
           m.chat,
-          `👑 Host dipindahkan ke @${newHost.split("@")[0]}`,
-          "🐍🎲 ULAR TANGGA",
-          "Permainan klasik!",
+          `👑 El host pasó a ser @${newHost.split("@")[0]}`,
+          "🐍🎲 SERPIENTES Y ESCALERAS",
+          "¡Juego clásico!",
           [newHost],
           { quoted: m },
         );
@@ -368,9 +368,9 @@ async function handler(m, { sock }) {
         await sendUT(
           sock,
           m.chat,
-          `> Giliran: @${players[ut[m.chat].turn].split("@")[0]}\n> Ketik *kocok*`,
-          "🐍🎲 ULAR TANGGA",
-          "Permainan klasik!",
+          `> Turno de: @${players[ut[m.chat].turn].split("@")[0]}\n> Escribe *kocok*`,
+          "🐍🎲 SERPIENTES Y ESCALERAS",
+          "¡Juego clásico!",
           [players[ut[m.chat].turn]],
         );
       }
@@ -378,16 +378,16 @@ async function handler(m, { sock }) {
 
     delete: async () => {
       if (!ut[m.chat]) {
-        return m.reply(`❌ Tidak ada sesi permainan!`);
+        return m.reply(`❌ ¡No hay sesión de juego!`);
       }
 
       if (ut[m.chat].host !== m.sender && !config.isOwner?.(m.sender)) {
-        return m.reply(`❌ Hanya host yang dapat menghapus room!`);
+        return m.reply(`❌ ¡Solo el host puede eliminar la sala!`);
       }
 
       delete ut[m.chat];
       await m.react("🗑️");
-      await m.reply(`🗑️ Room berhasil dihapus!`);
+      await m.reply(`🗑️ ¡Sala eliminada con éxito!`);
     },
   };
 
@@ -395,25 +395,25 @@ async function handler(m, { sock }) {
     return sendUT(
       sock,
       m.chat,
-      `🐍🎲 *ULAR TANGGA*\n\n` +
-      `Permainan klasik yang penuh petualangan!\n` +
-      `Naiki tangga, hindari ular, sampai ke 100!\n\n` +
-      `╭┈┈⬡「 🎮 *COMMANDS* 」\n` +
-      `┃ 🎲 \`${prefix}ut create\` - Buat room\n` +
-      `┃ ➕ \`${prefix}ut join\` - Gabung room\n` +
-      `┃ ▶️ \`${prefix}ut start\` - Mulai game\n` +
-      `┃ ℹ️ \`${prefix}ut info\` - Info room\n` +
-      `┃ 🚪 \`${prefix}ut exit\` - Keluar\n` +
-      `┃ 🗑️ \`${prefix}ut delete\` - Hapus room\n` +
+      `🐍🎲 *SERPIENTES Y ESCALERAS*\n\n` +
+      `¡Un juego clásico lleno de aventura!\n` +
+      `¡Sube las escaleras, esquiva las serpientes, llega al 100!\n\n` +
+      `╭┈┈⬡「 🎮 *COMANDOS* 」\n` +
+      `┃ 🎲 \`${prefix}ut create\` - Crear sala\n` +
+      `┃ ➕ \`${prefix}ut join\` - Unirse a sala\n` +
+      `┃ ▶️ \`${prefix}ut start\` - Empezar juego\n` +
+      `┃ ℹ️ \`${prefix}ut info\` - Info de la sala\n` +
+      `┃ 🚪 \`${prefix}ut exit\` - Salir\n` +
+      `┃ 🗑️ \`${prefix}ut delete\` - Eliminar sala\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `╭┈┈⬡「 🏆 *HADIAH* 」\n` +
-      `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Koin\n` +
+      `╭┈┈⬡「 🏆 *PREMIOS* 」\n` +
+      `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
       `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
-      `┃ ⚡ +${WIN_REWARD.energi} Energi\n` +
+      `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Min 2 player, Max 4 player`,
-      "🐍🎲 ULAR TANGGA",
-      "Ayo main!",
+      `> Min 2 jugadores, Max 4 jugadores`,
+      "🐍🎲 SERPIENTES Y ESCALERAS",
+      "¡A jugar!",
       [],
       { quoted: m },
     );
@@ -432,7 +432,7 @@ async function answerHandler(m, sock) {
   if (!m.body) return false;
 
   const text = m.body.trim().toLowerCase();
-  if (text !== "kocok") return false;
+  if (!["kocok", "lanzar", "tirar", "dado", "rodar", "roll"].includes(text)) return false;
 
   const ut = global.ulartanggaGames;
   if (!ut[m.chat]) return false;
@@ -444,7 +444,7 @@ async function answerHandler(m, sock) {
   const currentTurn = ut[m.chat].turn % players.length;
   if (players.indexOf(m.sender) !== currentTurn) {
     await m.reply(
-      `❌ Bukan giliranmu!\n> Giliran: @${players[currentTurn].split("@")[0]}`,
+      `❌ ¡No es tu turno!\n> Turno de: @${players[currentTurn].split("@")[0]}`,
       {
         mentions: [players[currentTurn]],
       },
@@ -488,9 +488,9 @@ async function answerHandler(m, sock) {
   if (snakesLadders[newPos]) {
     const destination = snakesLadders[newPos];
     if (destination > newPos) {
-      event = `\n🪜 *Naik tangga!*`;
+      event = `\n🪜 *¡Subiste una escalera!*`;
     } else {
-      event = `\n🐍 *Kena ular!*`;
+      event = `\n🐍 *¡Te picó una serpiente!*`;
     }
     newPos = destination;
   }
@@ -505,8 +505,8 @@ async function answerHandler(m, sock) {
   if (newPos === 100) {
     // Give rewards
     try {
-      db.updateKoin(m.sender, WIN_REWARD.koin);
-      db.updateEnergi(m.sender, WIN_REWARD.energi);
+      db.updateBerry(m.sender, WIN_REWARD.berry);
+      db.updateCarne(m.sender, WIN_REWARD.carne);
       const userData = db.getUser(m.sender) || {};
       userData.exp = (userData.exp || 0) + WIN_REWARD.exp;
       db.setUser(m.sender, userData);
@@ -534,29 +534,29 @@ async function answerHandler(m, sock) {
       await sock.sendMessage(m.chat, {
         image: boardImage,
         caption:
-          `🎉 *PEMENANG!*\n\n` +
-          `${color} @${m.sender.split("@")[0]} sampai ke 100!\n\n` +
-          `╭┈┈⬡「 🎁 *HADIAH* 」\n` +
-          `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Koin\n` +
+          `🎉 *¡GANADOR!*\n\n` +
+          `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
+          `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
+          `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
           `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
-          `┃ ⚡ +${WIN_REWARD.energi} Energi\n` +
+          `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
           `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `> GG WP! Main lagi? \`.ut create\``,
+          `> ¡GG WP! ¿Otra ronda? \`.ut create\``,
         contextInfo: utCtx([m.sender]),
       });
     } else {
       await sendUT(
         sock,
         m.chat,
-        `🎉 *PEMENANG!*\n\n` +
-        `${color} @${m.sender.split("@")[0]} sampai ke 100!\n\n` +
-        `╭┈┈⬡「 🎁 *HADIAH* 」\n` +
-        `┃ 💰 +${WIN_REWARD.koin.toLocaleString()} Koin\n` +
+        `🎉 *¡GANADOR!*\n\n` +
+        `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
+        `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
+        `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
         `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
-        `┃ ⚡ +${WIN_REWARD.energi} Energi\n` +
+        `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
         `╰┈┈┈┈┈┈┈┈⬡`,
         "🏆 WINNER!",
-        `${name} menang!`,
+        `¡${name} ganó!`,
         [m.sender],
       );
     }
@@ -586,20 +586,20 @@ async function answerHandler(m, sock) {
     await sock.sendMessage(m.chat, {
       image: boardImage,
       caption:
-        `🎲 *DADU: ${dadu}* ${DICE_EMOJI[dadu - 1]}\n\n` +
+        `🎲 *DADO: ${dadu}* ${DICE_EMOJI[dadu - 1]}\n\n` +
         `${color} ${name}: *${oldPos}* → *${newPos}*${event}\n\n` +
-        `> 🎯 Giliran: @${nextPlayer.split("@")[0]}\n` +
-        `> Ketik *kocok*`,
+        `> 🎯 Turno de: @${nextPlayer.split("@")[0]}\n` +
+        `> Escribe *kocok*`,
       contextInfo: utCtx([nextPlayer]),
     });
   } else {
     await sendUT(
       sock,
       m.chat,
-      `🎲 *DADU: ${dadu}* ${DICE_EMOJI[dadu - 1]}\n\n` +
+      `🎲 *DADO: ${dadu}* ${DICE_EMOJI[dadu - 1]}\n\n` +
       `${color} ${name}: *${oldPos}* → *${newPos}*${event}\n\n` +
-      `> 🎯 Giliran: @${nextPlayer.split("@")[0]}\n` +
-      `> Ketik *kocok*`,
+      `> 🎯 Turno de: @${nextPlayer.split("@")[0]}\n` +
+      `> Escribe *kocok*`,
       "🎲 GILIRAN",
       PLAYER_NAMES[nextTurn],
       [nextPlayer],

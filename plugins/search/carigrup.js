@@ -1,4 +1,4 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 import axios from "axios";
 
@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "carigrup",
   alias: ["searchgrup", "findgrup", "grupwa"],
   category: "search",
-  description: "Cari grup WhatsApp berdasarkan keyword",
+  description: "Buscar grupos de WhatsApp por palabra clave",
   usage: ".carigrup <keyword>",
   example: ".carigrup gb isian",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `🔍 *ᴄᴀʀɪ ɢʀᴜᴘ ᴡᴀ*\n\n> Masukkan keyword pencarian\n\n\`Contoh: ${m.prefix}carigrup gb isian\``,
+      `🔍 *ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ɢʀᴜᴘᴏs*\n\n> Ingresa una palabra clave de búsqueda\n\n\`Ejemplo: ${m.prefix}carigrup gb isian\``,
     );
   }
 
@@ -35,14 +35,14 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.data?.groups?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan grup untuk keyword *${text}*`);
+      return m.reply(`❌ No se encontraron grupos para la palabra clave *${text}*`);
     }
 
     const groups = data.data.groups;
     let result =
-      `🔍 *ᴄᴀʀɪ ɢʀᴜᴘ ᴡᴀ*\n\n` +
-      `📌 Keyword: *${data.data.query}*\n` +
-      `📊 Total: *${data.data.total}* grup ditemukan\n`;
+      `🔍 *ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ɢʀᴜᴘᴏs*\n\n` +
+      `📌 Palabra clave: *${data.data.query}*\n` +
+      `📊 Total: *${data.data.total}* grupos encontrados\n`;
 
     groups.forEach((g, i) => {
       result +=

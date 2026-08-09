@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebakdrakor', {
     alias: ['drakor', 'kdrama'],
     emoji: '🇰🇷',
-    title: 'TEBAK DRAKOR',
-    description: 'Tebak judul drama Korea',
+    title: 'ADIVINA EL DRAMA',
+    description: 'Adivina el título del drama coreano',
     hasImage: true
 })
 

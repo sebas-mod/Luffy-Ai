@@ -1,19 +1,19 @@
 import axios from 'axios'
 import * as cheerio from 'cheerio'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['antara', 'cnn', 'cnbc', 'sindonews', 'berita'],
     alias: [],
     category: 'berita',
-    description: 'Mendapatkan berita terkini dari berbagai sumber',
-    usage: '.berita <sumber>',
-    example: '.kompas atau .berita cnn',
+    description: 'Obtener las últimas noticias de varias fuentes',
+    usage: '.berita <fuente>',
+    example: '.kompas o .berita cnn',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -91,23 +91,23 @@ async function handler(m) {
     if (cmd === 'berita') {
         const arg = m.text?.toLowerCase()?.trim()
         if (!arg) {
-            let txt = `📰 *ᴅᴀꜰᴛᴀʀ sᴜᴍʙᴇʀ ʙᴇʀɪᴛᴀ*\n\n`
+            let txt = `📰 *ʟɪꜱᴛᴀ ᴅᴇ ꜰᴜᴇɴᴛᴇs ᴅᴇ ɴᴏᴛɪᴄɪᴀs*\n\n`
             for (const [key, val] of Object.entries(NEWS_SOURCES)) {
                 txt += `> ${val.emoji} \`${m.prefix}${key}\` - ${val.name}\n`
             }
-            txt += `\n_Atau gunakan: \`${m.prefix}berita <sumber>\`_`
+            txt += `\n_O usa: \`${m.prefix}berita <fuente>\`_`
             return m.reply(txt)
         }
         
         if (!NEWS_SOURCES[arg]) {
-            return m.reply(`❌ Sumber berita tidak ditemukan.\n> Gunakan: \`${m.prefix}berita\` untuk melihat daftar.`)
+            return m.reply(`❌ Fuente de noticias no encontrada.\n> Usa: \`${m.prefix}berita\` para ver la lista.`)
         }
         source = arg
     }
     
     const newsSource = NEWS_SOURCES[source]
     if (!newsSource) {
-        return m.reply(`❌ Sumber berita tidak valid.`)
+        return m.reply(`❌ Fuente de noticias no válida.`)
     }
     
     await m.react('🕕')
@@ -116,7 +116,7 @@ async function handler(m) {
         const articles = await fetchRSS(newsSource.url)
         
         if (articles.length === 0) {
-            return m.reply(`❌ Tidak ada berita ditemukan.`)
+            return m.reply(`❌ No se encontraron noticias.`)
         }
         
         let txt = `${newsSource.emoji} *${newsSource.name.toUpperCase()}*\n`
@@ -136,7 +136,7 @@ async function handler(m) {
         }
         
         txt += `━━━━━━━━━━━━━━━\n`
-        txt += `_Total: ${articles.length} artikel tersedia_`
+        txt += `_Total: ${articles.length} artículos disponibles_`
         
         await m.reply(txt)
         m.react('📰')

@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'addpremall',
     alias: ['addpremiumall', 'setpremall'],
     category: 'owner',
-    description: 'Menambahkan semua member grup ke premium',
+    description: 'Agregar a todos los miembros del grupo al premium',
     usage: '.addprem all',
     example: '.addprem all',
     isOwner: true,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak ada member di grup ini`)
+            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No hay miembros en este grupo`)
         }
         
         await m.react('🕕')
@@ -46,15 +46,15 @@ async function handler(m, { sock }) {
             db.data.premium.push(number)
             
             const jid = number + '@s.whatsapp.net'
-            const premLimit = config.limits?.premium || 100
+            const premCarne = config.carne?.premium || 100
             const user = db.getUser(jid) || db.setUser(jid)
             
-            user.energi = premLimit
+            user.carne = premCarne
             user.isPremium = true
             
             db.setUser(jid, user)
             db.updateExp(jid, 200000)
-            db.updateKoin(jid, 20000)
+            db.updateBerry(jid, 20000)
             addedCount++
         }
         
@@ -63,13 +63,13 @@ async function handler(m, { sock }) {
         await m.react('💎')
         await m.reply(
             `💎 *ᴀᴅᴅ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
-            `╭┈┈⬡「 📋 *ʜᴀsɪʟ* 」\n` +
-            `┃ 👥 ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀ: \`${participants.length}\`\n` +
-            `┃ ✅ ᴅɪᴛᴀᴍʙᴀʜᴋᴀɴ: \`${addedCount}\`\n` +
-            `┃ ⏭️ sᴜᴅᴀʜ ᴘʀᴇᴍɪᴜᴍ: \`${alreadyPremCount}\`\n` +
+            `╭┈┈⬡「 📋 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+            `┃ 👥 ᴛᴏᴛᴀʟ ᴅᴇ ᴍɪᴇᴍʙʀᴏs: \`${participants.length}\`\n` +
+            `┃ ✅ ᴀɢʀᴇɢᴀᴅᴏs: \`${addedCount}\`\n` +
+            `┃ ⏭️ ʏᴀ ᴘʀᴇᴍɪᴜᴍ: \`${alreadyPremCount}\`\n` +
             `┃ 💎 ᴛᴏᴛᴀʟ ᴘʀᴇᴍɪᴜᴍ: \`${db.data.premium.length}\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Grup: ${groupMeta.subject}`
+            `> Grupo: ${groupMeta.subject}`
         )
         
     } catch (error) {

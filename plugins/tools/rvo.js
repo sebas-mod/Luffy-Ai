@@ -1,19 +1,19 @@
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "rvo",
   alias: ["readvo", "readviewonce", "readview"],
   category: "tools",
-  description: "Baca pesan sekali lihat (view once)",
-  usage: ".rvo (reply pesan view once)",
+  description: "Lee mensajes de una sola vista (view once)",
+  usage: ".rvo (responde un mensaje view once)",
   example: ".rvo",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -21,12 +21,12 @@ async function handler(m, { sock }) {
   const quoted = m.quoted;
   if (!quoted) {
     return m.reply(
-      `Reply pesan sekali lihat (view once) untuk membukanya.\n\n\`Contoh: ${m.prefix}rvo\` (reply pesan view once)`,
+      `Responde un mensaje de una sola vista (view once) para abrirlo.\n\n\`Ejemplo: ${m.prefix}rvo\` (responde un mensaje view once)`,
     );
   }
 
   if (!quoted.isViewOnce && !quoted.isMedia) {
-    return m.reply("❌ Reply pesan view once (sekali lihat) untuk membukanya.");
+    return m.reply("❌ Responde un mensaje view once (de una sola vista) para abrirlo.");
   }
 
   m.react("⏱️");
@@ -40,9 +40,9 @@ async function handler(m, { sock }) {
     }
 
     const buffer = await quoted.download();
-    if (!buffer) throw new Error("Gagal download media");
+    if (!buffer) throw new Error("No se pudo descargar el media");
 
-    const caption = originalCaption ? `\`Pesan :\`\n> ${originalCaption}` : "";
+    const caption = originalCaption ? `\`Mensaje :\`\n> ${originalCaption}` : "";
 
     if (quoted.isImage) {
       await sock.sendMessage(
@@ -92,7 +92,7 @@ async function handler(m, { sock }) {
     m.react("☢");
     let msg = e.message;
     if (
-      msg.includes("Gagal download") ||
+      msg.includes("No se pudo descargar") ||
       msg.includes("decrypt") ||
       msg.includes("download") ||
       msg.includes("Timeout") ||
@@ -100,9 +100,9 @@ async function handler(m, { sock }) {
       msg.includes("Gone")
     ) {
       msg =
-        "Media sudah kadaluarsa atau sudah dihapus dari server WhatsApp.\n\n_Pesan View Once yang terlalu lama atau sering dibuka biasanya akan otomatis hangus dari sistem WhatsApp dan tidak bisa diunduh lagi._";
+        "El media caducó o ya fue eliminado del servidor de WhatsApp.\n\n_Los mensajes view once que son muy antiguos o que se abren con frecuencia suelen expirar automáticamente del sistema de WhatsApp y ya no pueden descargarse._";
     }
-    m.reply(`❌ *Gagal Membuka View Once*\n\n> ${msg}`);
+    m.reply(`❌ *Fallo al abrir el View Once*\n\n> ${msg}`);
   }
 }
 

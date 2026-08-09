@@ -5,7 +5,7 @@ import config from "../../config.js";
 import axios from "axios";
 import {
   getTimeGreeting,
-} from "../../src/lib/ourin-formatter.js";
+} from "../../src/lib/luffy-formatter.js";
 import fs from "fs"
 import {
   getCommandsByCategory,
@@ -13,8 +13,8 @@ import {
   getPluginCount,
   getPlugin,
   getPluginsByCategory,
-} from "../../src/lib/ourin-plugins.js";
-import { getCasesByCategory, getCaseCount } from "../../case/ourin.js";
+} from "../../src/lib/luffy-plugins.js";
+import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
 const pluginConfig = {
   name: "allmenu",
   alias: ["fullmenu", "am", "allcommand", "semua"],
@@ -27,7 +27,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 const CATEGORY_EMOJIS = {
@@ -44,8 +44,6 @@ const CATEGORY_EMOJIS = {
   game: "🎯",
   media: "🎬",
   info: "ℹ️",
-  religi: "☪️",
-  panel: "🖥️",
   user: "📊",
   linode: "☁️",
   random: "🎲",
@@ -58,7 +56,6 @@ const CATEGORY_EMOJIS = {
   cek: "📋",
   ephoto: "🎨",
   jpm: "📢",
-  pushkontak: "📱",
 };
 
 function createBracketBox(emoji, title, lines = []) {
@@ -84,7 +81,7 @@ function getCommandSymbols(cmdName) {
 function getContextInfo(botConfig, m, thumbBuffer) {
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
   const saluranName =
-    botConfig.saluran?.name || botConfig.bot?.name || "Ourin-AI";
+    botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
   const saluranLink = botConfig.saluran?.link || "";
   return {
     mentionedJid: [m.sender],
@@ -161,7 +158,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   txt += `• Multi feature\n`;
   txt += `• User friendly\n\n`;
   txt += `Silakan pilih menu di bawah ini.\n`;
-  txt += `Gunakan sesuai kebutuhan dan jangan lupa gunakan dengan bijak.\n\n`;
+  txt += `Úsalo según tus necesidades y úsalo con responsabilidad.\n\n`;
   const categoryOrder = [
     "owner",
     "main",
@@ -175,7 +172,6 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     "media",
     "ai",
     "group",
-    "religi",
     "info",
     "cek",
     "economy",
@@ -191,15 +187,11 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   });
   let modeAllowedMap = {
     md: null,
-    cpanel: ["main", "group", "sticker", "owner", "tools", "panel"],
     store: ["main", "group", "sticker", "owner", "store"],
-    pushkontak: ["main", "group", "sticker", "owner", "pushkontak"],
   };
   let modeExcludeMap = {
-    md: ["panel", "pushkontak", "store"],
-    cpanel: null,
+    md: ["store"],
     store: null,
-    pushkontak: null,
   };
   try {
     if (botmodePlugin && botmodePlugin.MODES) {
@@ -244,7 +236,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         break;
       case 2:
         const media = await prepareWAMessageMedia({
-          image: fs.readFileSync(config.assets["ourin"])
+          image: fs.readFileSync(config.assets["luffy"])
         }, { upload: sock.waUploadToServer })
         await sock.relayMessage(
           m.chat,
@@ -320,22 +312,22 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
             const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
-        const thumbnail = await _sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await _sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
         const qOrder = {
           key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
           message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
         }
-        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["ourin-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -350,7 +342,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
                 },
@@ -358,7 +350,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   messageParamsJson: JSON.stringify({
                     limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
                     bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
-                    tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
+                    tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                   }),
                   buttons: [
                     { name: "", buttonParamsJson: "" },
@@ -389,17 +381,17 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
             const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
-        const thumbnail = await _sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await _sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
 
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
@@ -411,7 +403,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-Ai",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
@@ -425,7 +417,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
                 },
@@ -445,7 +437,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     }
     const audioEnabled = db.setting("audioMenu") !== false;
     if (audioEnabled) {
-      const audioUrl = botConfig.assets["ourin-mp3"];
+      const audioUrl = botConfig.assets["luffy-mp3"];
       const audioVariant = db.setting("allmenuAudioStyle") || 1;
       try {
         const fs = (await import("fs")).default;
@@ -547,7 +539,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               }
             };
             await sock.sendMessage(m.chat, {
-              audio: fs.readFileSync(config.assets["ourin-mp3"]),
+              audio: fs.readFileSync(config.assets["luffy-mp3"]),
               mimetype: "audio/mpeg",
               ptt: false,
             }, { quoted: qtext });
@@ -575,7 +567,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   sellerJid: botConfig.botNumber
                     ? `${botConfig.botNumber}@s.whatsapp.net`
                     : m.sender,
-                  token: "ourin-menu-v8",
+                  token: "luffy-menu-v8",
                   totalAmount1000: 3333333,
                   totalCurrencyCode: "IDR",
                   contextInfo: {
@@ -583,7 +575,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     forwardingScore: 9,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: "120363351980387532@newsletter",
-                      newsletterName: "Ourin Bot",
+                      newsletterName: "Luffy Bot",
                       serverMessageId: 127,
                     },
                   },
@@ -594,7 +586,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["ourin-mp3"]),
+                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
                   mimetype: "audio/mpeg",
                 },
                 { quoted: ftroliQuoted },
@@ -603,7 +595,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["ourin-mp3"]),
+                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
                   mimetype: "audio/mpeg",
                 },
                 { quoted: m },

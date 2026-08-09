@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'setbirthday',
     alias: ['setbday', 'setultah', 'settgl'],
     category: 'user',
-    description: 'Set tanggal ulang tahun',
+    description: 'Configurar fecha de cumpleaños',
     usage: '.setbirthday <DD-MM>',
     example: '.setbirthday 25-12',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -29,13 +29,13 @@ async function handler(m) {
         let text = `🎂 *sᴇᴛ ʙɪʀᴛʜᴅᴀʏ*\n\n`
         
         if (currentBday) {
-            text += `> Birthday kamu: *${currentBday}*\n\n`
+            text += `> Tu cumpleaños: *${currentBday}*\n\n`
         }
         
         text += `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n`
         text += `┃ ${m.prefix}setbirthday DD-MM\n`
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `*Contoh:*\n`
+        text += `*Ejemplo:*\n`
         text += `> ${m.prefix}setbirthday 25-12\n`
         text += `> ${m.prefix}setbirthday 01-01`
         
@@ -46,19 +46,19 @@ async function handler(m) {
     const match = input.match(dateRegex)
     
     if (!match) {
-        return m.reply(`❌ Format salah! Gunakan: DD-MM\n\n> Contoh: ${m.prefix}setbirthday 25-12`)
+        return m.reply(`❌ ¡Formato incorrecto! Usa: DD-MM\n\n> Ejemplo: ${m.prefix}setbirthday 25-12`)
     }
     
     const day = parseInt(match[1])
     const month = parseInt(match[2])
     
     if (month < 1 || month > 12) {
-        return m.reply(`❌ Bulan tidak valid! (1-12)`)
+        return m.reply(`❌ ¡Mes no válido! (1-12)`)
     }
     
     const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     if (day < 1 || day > daysInMonth[month - 1]) {
-        return m.reply(`❌ Tanggal tidak valid untuk bulan ${month}!`)
+        return m.reply(`❌ ¡Fecha no válida para el mes ${month}!`)
     }
     
     const formattedDate = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}`
@@ -69,16 +69,16 @@ async function handler(m) {
     
     await db.save()
     
-    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
     
     await m.reply(
-        `✅ *ʙɪʀᴛʜᴅᴀʏ ᴅɪsɪᴍᴘᴀɴ!*\n\n` +
-        `╭┈┈⬡「 🎂 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 📅 Tanggal: *${day} ${months[month - 1]}*\n` +
-        `┃ 👤 User: @${cleanJid}\n` +
+        `✅ *ʙɪʀᴛʜᴅᴀʏ ɢᴜᴀʀᴅᴀᴅᴏ!*\n\n` +
+        `╭┈┈⬡「 🎂 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 📅 Fecha: *${day} ${months[month - 1]}*\n` +
+        `┃ 👤 Usuario: @${cleanJid}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Bot akan mengucapkan selamat\n` +
-        `> ulang tahun di hari spesialmu! 🎉`,
+        `> El bot te felicitará\n` +
+        `> por tu cumpleaños en tu día especial! 🎉`,
         { mentions: [userJid] }
     )
 }

@@ -1,4 +1,4 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import axios from 'axios'
 import FormData from 'form-data'
 
@@ -6,15 +6,15 @@ const pluginConfig = {
     name: 'addproduk',
     alias: ['addproduct'],
     category: 'store',
-    description: '➕ Tambah produk baru ke toko (hanya di private chat)',
-    usage: '.addproduk <nama>|<harga>|<tipe>|<stok>|<deskripsi>',
-    example: '.addproduk Spotify Premium|25000|digital|10|Akun Premium 1 Bulan',
+    description: '➕ Agregar un producto nuevo a la tienda (solo en chat privado)',
+    usage: '.addproduk <nombre>|<precio>|<tipo>|<stock>|<descripcion>',
+    example: '.addproduk Spotify Premium|25000|digital|10|Cuenta Premium 1 Mes',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -36,10 +36,10 @@ async function uploadToCatbox(buffer, filename = 'file.jpg') {
 async function handler(m, { sock }) {
     if (m.isGroup) {
         return m.reply(
-            `🚫 *Akses Ditolak*\n\n` +
-            `Untuk menjaga privasi dan keamanan data produk 🛡️, penambahan produk hanya dapat dilakukan di *private chat*.\n\n` +
-            `Silakan chat bot secara langsung 📱, lalu ketik:\n` +
-            `\`${m.prefix}addproduk <nama>|<harga>|<tipe>|<stok>|<deskripsi>\``
+            `🚫 *Acceso Denegado*\n\n` +
+            `Para proteger la privacidad y seguridad de los datos del producto 🛡️, solo se puede agregar productos en el *chat privado*.\n\n` +
+            `Contacta al bot directamente 📱 y escribe:\n` +
+            `\`${m.prefix}addproduk <nombre>|<precio>|<tipo>|<stock>|<descripcion>\``
         )
     }
 
@@ -49,26 +49,26 @@ async function handler(m, { sock }) {
 
     if (parts.length < 2) {
         return m.reply(
-            `➕ *TAMBAH PRODUK BARU*\n\n` +
-            `📋 Format:\n` +
-            `\`${m.prefix}addproduk <nama>|<harga>|<tipe>|<stok>|<deskripsi>\`\n\n` +
-            `📌 *Parameter:*\n` +
-            `• *nama* — Nama produk (min. 2 karakter)\n` +
-            `• *harga* — Harga dalam Rupiah (min. 1.000)\n` +
-            `• *tipe* — \`digital\` 🔑 atau \`fisik\` 📦 (opsional, default: digital)\n` +
-            `• *stok* — Jumlah stok atau \`unlimited\` (opsional, default: 999)\n` +
-            `• *deskripsi* — Deskripsi singkat (opsional)\n\n` +
-            `🔑 *Digital* = Produk berupa akun/key/data unik per item\n` +
-            `📦 *Fisik* = Produk berupa barang, stok berupa jumlah\n\n` +
-            `📝 *Contoh:*\n` +
-            `\`${m.prefix}addproduk Spotify Premium|25000|digital|10|Akun Premium 1 Bulan\`\n` +
-            `\`${m.prefix}addproduk Baju Kaos|65000|fisik|8|Kaos Polos Cotton 30s\`\n` +
-            `\`${m.prefix}addproduk Netflix|35000|digital|unlimited|Sharing Account\`\n\n` +
-            `🖼️ *Tips:*\n` +
-            `• Kirim gambar/video terlebih dahulu, lalu reply media tersebut dengan command di atas untuk menambahkan thumbnail 📸\n` +
-            `• Untuk produk *digital*, gunakan \`${m.prefix}addstok\` setelah produk dibuat untuk menambahkan data akun/key 🔑\n` +
-            `• Untuk produk *fisik*, stok otomatis diatur dari angka yang dimasukkan 📦\n` +
-            `• Harga diskon bisa diatur nanti dengan \`${m.prefix}editproduk\` 🏷️`
+            `➕ *AGREGAR PRODUCTO NUEVO*\n\n` +
+            `📋 Formato:\n` +
+            `\`${m.prefix}addproduk <nombre>|<precio>|<tipo>|<stock>|<descripcion>\`\n\n` +
+            `📌 *Parámetros:*\n` +
+            `• *nombre* — Nombre del producto (mín. 2 caracteres)\n` +
+            `• *precio* — Precio en Rupias (mín. 1.000)\n` +
+            `• *tipo* — \`digital\` 🔑 o \`fisik\` 📦 (opcional, por defecto: digital)\n` +
+            `• *stock* — Cantidad de stock o \`unlimited\` (opcional, por defecto: 999)\n` +
+            `• *descripcion* — Descripción corta (opcional)\n\n` +
+            `🔑 *Digital* = Producto con cuenta/clave/datos únicos por artículo\n` +
+            `📦 *Físico* = Producto físico, el stock es la cantidad\n\n` +
+            `📝 *Ejemplos:*\n` +
+            `\`${m.prefix}addproduk Spotify Premium|25000|digital|10|Cuenta Premium 1 Mes\`\n` +
+            `\`${m.prefix}addproduk Camiseta|65000|fisik|8|Camiseta Lisa Cotton 30s\`\n` +
+            `\`${m.prefix}addproduk Netflix|35000|digital|unlimited|Cuenta Compartida\`\n\n` +
+            `🖼️ *Consejos:*\n` +
+            `• Envía la imagen/video primero y luego responde ese medio con el comando para agregar la miniatura 📸\n` +
+            `• Para productos *digitales*, usa \`${m.prefix}addstok\` después de crear el producto para agregar los datos de cuenta/clave 🔑\n` +
+            `• Para productos *físicos*, el stock se ajusta automáticamente con el número indicado 📦\n` +
+            `• El precio de descuento se puede configurar luego con \`${m.prefix}editproduk\` 🏷️`
         )
     }
 
@@ -79,10 +79,10 @@ async function handler(m, { sock }) {
     const description = (parts[4] || '').replace(/;;/g, '\n')
 
     if (!name || name.length < 2) {
-        return m.reply(`❌ *Nama produk terlalu pendek.*\n\nMinimal 2 karakter diperlukan agar mudah dikenali pelanggan 📝`)
+        return m.reply(`❌ *Nombre del producto demasiado corto.*\n\nSe necesitan al menos 2 caracteres para que los clientes lo reconozcan fácilmente 📝`)
     }
     if (isNaN(price) || price < 1000) {
-        return m.reply(`❌ *Harga tidak valid.*\n\nHarga minimal *Rp 1.000* 💰 Pastikan Anda memasukkan angka yang benar.`)
+        return m.reply(`❌ *Precio no válido.*\n\nEl precio mínimo es *Rp 1.000* 💰 Asegúrate de ingresar el número correcto.`)
     }
 
     const type = typeStr === 'fisik' || typeStr === 'physical' ? 'fisik' : 'digital'
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
     const isDirectMedia = m.isMedia && (m.isImage || m.isVideo)
 
     if (hasQuotedMedia || isDirectMedia) {
-        await m.reply(`⏳ _Mengunggah media..._`)
+        await m.reply(`⏳ _Subiendo el medio..._`)
         try {
             const buffer = hasQuotedMedia ? await m.quoted.download() : await m.download()
             if (buffer) {
@@ -134,27 +134,27 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     const typeIcon = type === 'digital' ? '🔑' : '📦'
-    const typeLabel = type === 'digital' ? 'Digital' : 'Fisik'
+    const typeLabel = type === 'digital' ? 'Digital' : 'Físico'
 
-    let reply = `✅ *PRODUK DITAMBAHKAN*\n\n`
-    reply += `🏷️ Nama: *${name}*\n`
-    reply += `💰 Harga: *Rp ${price.toLocaleString('id-ID')}*\n`
-    reply += `${typeIcon} Tipe: *${typeLabel}*\n`
-    reply += `📊 Stok: *${stock === -1 ? 'Unlimited ♾️' : stock}*\n`
-    if (description) reply += `📝 Deskripsi: _${description}_\n`
-    if (imageUrl) reply += `🖼️ Thumbnail: ✅ Gambar\n`
-    if (videoUrl) reply += `🎬 Thumbnail: ✅ Video\n`
-    reply += `\n📌 *Langkah Selanjutnya:*\n`
+    let reply = `✅ *PRODUCTO AGREGADO*\n\n`
+    reply += `🏷️ Nombre: *${name}*\n`
+    reply += `💰 Precio: *Rp ${price.toLocaleString('id-ID')}*\n`
+    reply += `${typeIcon} Tipo: *${typeLabel}*\n`
+    reply += `📊 Stock: *${stock === -1 ? 'Unlimited ♾️' : stock}*\n`
+    if (description) reply += `📝 Descripción: _${description}_\n`
+    if (imageUrl) reply += `🖼️ Miniatura: ✅ Imagen\n`
+    if (videoUrl) reply += `🎬 Miniatura: ✅ Video\n`
+    reply += `\n📌 *Siguientes pasos:*\n`
 
     if (type === 'digital') {
-        reply += `1️⃣ Tambahkan data akun/key: \`${m.prefix}addstok ${products.length}|<detail>\`\n`
-        reply += `2️⃣ Atau import dari file .txt: \`${m.prefix}addstok ${products.length}\` (reply file 📄)\n`
+        reply += `1️⃣ Agregar datos de cuenta/clave: \`${m.prefix}addstok ${products.length}|<detalle>\`\n`
+        reply += `2️⃣ O importar desde archivo .txt: \`${m.prefix}addstok ${products.length}\` (responde el archivo 📄)\n`
     } else {
-        reply += `1️⃣ Stok sudah diatur otomatis (${stock} pcs) 📦\n`
-        reply += `2️⃣ Tambah stok: \`${m.prefix}editproduk ${products.length} stok <jumlah>\`\n`
+        reply += `1️⃣ El stock ya se configuró automáticamente (${stock} pcs) 📦\n`
+        reply += `2️⃣ Agregar stock: \`${m.prefix}editproduk ${products.length} stok <cantidad>\`\n`
     }
-    reply += `3️⃣ Lihat produk: \`${m.prefix}listproduk\` 🛍️\n\n`
-    reply += `_Produk ini akan terlihat oleh pelanggan melalui \`${m.prefix}listproduk\`_ 🎉`
+    reply += `3️⃣ Ver el producto: \`${m.prefix}listproduk\` 🛍️\n\n`
+    reply += `_Los clientes verán este producto mediante \`${m.prefix}listproduk\`_ 🎉`
 
     return m.reply(reply)
 }

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { bratVid } from 'brat-canvas/video'
 import fs from 'fs'
 import path from 'path'
@@ -10,22 +10,22 @@ const pluginConfig = {
     name: 'bratvid',
     alias: ['bratgif', 'bratvideo'],
     category: 'sticker',
-    description: 'Membuat sticker brat animated',
-    usage: '.bratvid <text>',
-    example: '.bratvid Hai semua',
+    description: 'Crea sticker brat animado',
+    usage: '.bratvid <texto>',
+    example: '.bratvid Hola a todos',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 15,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const text = m.args.join(' ')
     if (!text) {
-        return m.reply(`🎬 *ʙʀᴀᴛ ᴀɴɪᴍᴀᴛᴇᴅ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid Hai semua\``)
+        return m.reply(`🎬 *ʙʀᴀᴛ ᴀɴɪᴍᴀᴛᴇᴅ*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}bratvid Hola a todos\``)
     }
     
     m.react('🕕')

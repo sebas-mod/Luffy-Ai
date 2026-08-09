@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import { TempMailCreate, TempMailInbox } from "../../src/scraper/tempmail.js";
 
 const pluginConfig = {
   name: "tempmail",
   alias: ["tmpmail", "tmp", "trashmail"],
   category: "tools",
-  description: "Buat email sementara & cek inbox",
+  description: "Crea un email temporal y revisa la bandeja de entrada",
   usage: ".tempmail create/inbox",
   example: ".tempmail create",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,14 +25,14 @@ async function handler(m) {
     const saved = db.getUser(m.sender)?.tempmail;
     return m.reply(
       `📧 *Temp Mail*\n\n` +
-        `Buat email sementara yang bisa terima pesan — cocok buat daftar akun tanpa kasih email asli.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}tempmail create* — Bikin email baru\n` +
-        `> *${m.prefix}tempmail inbox* — Cek pesan masuk\n\n` +
+        `Crea un email temporal que puede recibir mensajes, ideal para registrarte en cuentas sin dar tu email real.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}tempmail create* — Crear un email nuevo\n` +
+        `> *${m.prefix}tempmail inbox* — Revisar los mensajes recibidos\n\n` +
         (saved
-          ? `> Email aktif: *${saved}*\n`
-          : `> Belum punya email, ketik *${m.prefix}tempmail create* dulu\n`) +
-        `\n_Email ini bersifat sementara, bisa hilang kapan saja_`
+          ? `> Email activo: *${saved}*\n`
+          : `> Aún no tienes email, escribe *${m.prefix}tempmail create* primero\n`) +
+        `\n_Este email es temporal y puede desaparecer en cualquier momento_`
     );
   }
 
@@ -42,7 +42,7 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Gagal Bikin Email*\n\n> ${result.error}`);
+      return m.reply(`❌ *Fallo al crear el email*\n\n> ${result.error}`);
     }
 
     const userData = db.getUser(m.sender) || {};
@@ -51,11 +51,11 @@ async function handler(m) {
 
     m.react("✅");
     return m.reply(
-      `📧 *Email Sementara Dibuat!*\n\n` +
+      `📧 *¡Email Temporal Creado!*\n\n` +
         `> 📬 Email: *${result.email}*\n\n` +
-        `Sekarang kamu bisa pakai email ini buat daftar apa aja.\n` +
-        `Cek pesan masuk dengan *${m.prefix}tempmail inbox*\n\n` +
-        `_Email ini sementara, jangan dipakai buat hal penting_`
+        `Ahora puedes usar este email para registrarte en lo que quieras.\n` +
+        `Revisa los mensajes recibidos con *${m.prefix}tempmail inbox*\n\n` +
+        `_Este email es temporal, no lo uses para cosas importantes_`
     );
   }
 
@@ -64,9 +64,9 @@ async function handler(m) {
     if (!saved) {
       m.react("❌");
       return m.reply(
-        `❌ *Belum Ada Email*\n\n` +
-          `Kamu belum bikin email sementara.\n` +
-          `Ketik *${m.prefix}tempmail create* dulu.`
+        `❌ *No Hay Email*\n\n` +
+          `Aún no has creado un email temporal.\n` +
+          `Escribe *${m.prefix}tempmail create* primero.`
       );
     }
 
@@ -75,27 +75,27 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Gagal Cek Inbox*\n\n> ${result.error}`);
+      return m.reply(`❌ *Fallo al revisar la bandeja de entrada*\n\n> ${result.error}`);
     }
 
     if (result.count === 0) {
       m.react("📭");
       return m.reply(
-        `📭 *Inbox Kosong*\n\n` +
+        `📭 *Bandeja de Entrada Vacía*\n\n` +
           `> Email: *${saved}*\n\n` +
-          `Belum ada pesan masuk. Coba cek lagi nanti.`
+          `Aún no hay mensajes. Intenta revisar más tarde.`
       );
     }
 
-    let txt = `📬 *Inbox — ${result.count} Pesan*\n\n`;
+    let txt = `📬 *Bandeja de Entrada — ${result.count} Mensajes*\n\n`;
     txt += `> Email: *${saved}*\n\n`;
 
     for (const msg of result.messages) {
       txt += `*━━━━━━━━━━━━━━━━━━━━*\n`;
-      txt += `> 📧 Dari: *${msg.from}*\n`;
-      txt += `> 📌 Subjek: *${msg.subject}*\n`;
+      txt += `> 📧 De: *${msg.from}*\n`;
+      txt += `> 📌 Asunto: *${msg.subject}*\n`;
       txt += `> 🕐 ${msg.created_at}\n`;
-      txt += `> 📝 ${msg.body_text?.substring(0, 500) || "(tidak ada isi)"}\n\n`;
+      txt += `> 📝 ${msg.body_text?.substring(0, 500) || "(sin contenido)"}\n\n`;
     }
 
     m.react("✅");
@@ -103,7 +103,7 @@ async function handler(m) {
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}tempmail create* atau *${m.prefix}tempmail inbox*`
+    `❌ *Opción Inválida*\n\n> Usa *${m.prefix}tempmail create* o *${m.prefix}tempmail inbox*`
   );
 }
 

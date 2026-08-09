@@ -1,19 +1,19 @@
 import axios from 'axios'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'balogo',
     alias: ['bluearchivelogo', 'ba'],
     category: 'canvas',
-    description: 'Membuat logo Blue Archive style',
-    usage: '.balogo <textL> & <textR>',
+    description: 'Crea logo estilo Blue Archive',
+    usage: '.balogo <texto1> & <texto2>',
     example: '.balogo Blue & Archive',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
 
     if (parts.length < 2) {
-        return m.reply(`🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ʟᴏɢᴏ*\n\n> Masukkan 2 teks untuk logo\n\n> Contoh: ${m.prefix}balogo Blue & Archive`)
+        return m.reply(`🎮 *ʟᴏɢᴏ ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ*\n\n> Ingresa 2 textos para el logo\n\n> Ejemplo: ${m.prefix}balogo Blue & Archive`)
     }
 
     const textL = parts[0]

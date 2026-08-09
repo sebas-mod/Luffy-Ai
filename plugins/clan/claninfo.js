@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'claninfo',
     alias: ['infoclan', 'myclan', 'guildinfo'],
     category: 'clan',
-    description: 'Lihat info clan',
+    description: 'Ver info del clan',
     usage: '.claninfo [clan_id]',
     example: '.claninfo',
     isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -38,9 +38,9 @@ async function handler(m) {
 
     if (!clanId) {
         return m.reply(
-            `❌ Kamu belum punya clan\n\n` +
-            `Buat: *.clancreate <nama>*\n` +
-            `Gabung: *.clanjoin <id>*`
+            `❌ Aún no tienes clan\n\n` +
+            `Crea: *.clancreate <nombre>*\n` +
+            `Únete: *.clanjoin <id>*`
         )
     }
 
@@ -49,7 +49,7 @@ async function handler(m) {
     const clan = db.db.data.clans[clanId]
         || Object.values(db.db.data.clans).find(c => c.name.toLowerCase() === clanId.toLowerCase())
         || Object.values(db.db.data.clans).find(c => c.id.toLowerCase() === clanId.toLowerCase())
-    if (!clan) return m.reply(`❌ Clan tidak ditemukan`)
+    if (!clan) return m.reply(`❌ Clan no encontrado`)
 
     const totalGames = (clan.wins || 0) + (clan.losses || 0)
     const winRate = totalGames > 0
@@ -64,13 +64,13 @@ async function handler(m) {
         `${emblem} *${clan.name}*\n` +
         `${rank} · Level ${clan.level || 1}\n\n` +
         `EXP  ${bar}\n\n` +
-        `┌ 👑 Leader · @${clan.leader.split('@')[0]}\n` +
-        `├ 👥 Members · ${clan.members.length}/50\n` +
-        `├ 🔓 Status · ${clan.isOpen ? 'Open' : 'Closed'}\n` +
-        `└ 📅 Dibuat · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n\n` +
-        `⚔️ *War Stats*\n` +
+        `┌ 👑 Líder · @${clan.leader.split('@')[0]}\n` +
+        `├ 👥 Miembros · ${clan.members.length}/50\n` +
+        `├ 🔓 Estado · ${clan.isOpen ? 'Abierto' : 'Cerrado'}\n` +
+        `└ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n\n` +
+        `⚔️ *Estadísticas de guerra*\n` +
         `${clan.wins || 0}W · ${clan.losses || 0}L · ${winRate}% WR\n\n` +
-        `_${clan.description || 'Belum ada deskripsi'}_\n\n` +
+        `_${clan.description || 'Sin descripción'}_\n\n` +
         `ID: \`${clan.id}\``,
         { mentions: [clan.leader] }
     )

@@ -1,11 +1,11 @@
 import fetch from "node-fetch";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "izen",
   alias: ["skiplink", "izen"],
   category: "tools",
-  description: "Bypass shortlink / skiplink menggunakan izen",
+  description: "Omite enlaces cortos / skiplink usando izen",
   usage: ".izen link",
   example: ".izen https://sfl.gl/xxxxx",
   isOwner: false,
@@ -13,17 +13,17 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 async function handler(m, { args, sock }) {
   if (!args[0]) {
-    let txt = `🔗 *SKIPLINK BYPASS* 🔗\n\n`;
-    txt += `Halo kak! Punya link yang ribet ngelewatin iklan? Sini aku bantu lewatin biar langsung ke tujuan akhir!\n\n`;
-    txt += `*Cara Pakai:*\n`;
-    txt += `👉 \`${m.prefix}izen <link>\`\n\n`;
-    txt += `*Contoh:*\n`;
+    let txt = `🔗 *OMISIÓN DE ENLACE CORTO* 🔗\n\n`;
+    txt += `¡Hola! ¿Tienes un enlace complicado con publicidad? Déjame ayudarte a omitirla para ir directo al destino final!\n\n`;
+    txt += `*Cómo Usar:*\n`;
+    txt += `👉 \`${m.prefix}izen <enlace>\`\n\n`;
+    txt += `*Ejemplo:*\n`;
     txt += `👉 \`${m.prefix}izen https://sfl.gl/xxxxx\``;
     return m.reply(txt);
   }
@@ -35,20 +35,20 @@ async function handler(m, { args, sock }) {
     const json = await res.json();
     
     if (!json.data?.result?.result) {
-       return m.reply("❌ Waduh kak, gagal ngelewatin link-nya nih! Coba link lain ya.");
+       return m.reply("❌ ¡Vaya, no se pudo omitir el enlace! Intenta con otro enlace.");
     }
     
-    let txt = `✅ *BERHASIL BYPASS LINK!* ✅\n\n`;
-    txt += `*Link Asli:* \n`;
+    let txt = `✅ *¡ENLACE OMITIDO CON ÉXITO!* ✅\n\n`;
+    txt += `*Enlace Original:* \n`;
     txt += `🔗 ${args[0]}\n\n`;
-    txt += `*Hasil Bypass:* \n`;
+    txt += `*Resultado de la Omisión:* \n`;
     txt += `🚀 ${json.data.result.result}\n\n`;
-    txt += `Semoga ngebantu ya kak! ✨`;
+    txt += `¡Espero que te ayude! ✨`;
     
     await m.reply(txt);
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Maaf kak, terjadi kesalahan sistem! 😭\nError: ${e.message}`);
+    m.reply(`❌ Lo siento, ocurrió un error del sistema! 😭\nError: ${e.message}`);
   }
 }
 

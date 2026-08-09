@@ -2,7 +2,7 @@ import config from '../../config.js'
 import { downloadMediaMessage } from 'ourin'
 import fs from 'fs'
 import { default as axios } from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'ppcouple',
     alias: ['cp', 'ppcp'],
@@ -13,7 +13,7 @@ const pluginConfig = {
     isBotAdmin: false,
     isAdmin: false,
     cooldown: 10,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 };
 

@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekotaku',
     alias: ['otaku'],
     category: 'cek',
-    description: 'Cek tingkat otaku kamu',
-    usage: '.cekotaku <nama>',
+    description: 'Comprueba tu nivel de otaku',
+    usage: '.cekotaku <nombre>',
     example: '.cekotaku Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,17 +20,17 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) desc = 'SUGOI! True otaku desu! 🎌✨'
-    else if (percent >= 70) desc = 'Weeb level tinggi~ 🇯🇵'
-    else if (percent >= 50) desc = 'Casual anime enjoyer 📺'
-    else if (percent >= 30) desc = 'Tau anime dikit-dikit 🤔'
-    else desc = 'Normie detected! 😂'
+    else if (percent >= 70) desc = 'Nivel weeb alto~ 🇯🇵'
+    else if (percent >= 50) desc = 'Disfruta del anime casualmente 📺'
+    else if (percent >= 30) desc = 'Sabe un poquito de anime 🤔'
+    else desc = '¡Normie detectado! 😂'
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat keotakuan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat keotakuan @${mentioned.split('@')[0]} yak? 
+Tu nivel de otaku es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de otaku de @${mentioned.split('@')[0]}? 
     
-Tingkat keotakuan dia sebesar *${percent}%*
+Su nivel de otaku es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

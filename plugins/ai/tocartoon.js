@@ -1,18 +1,18 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'tocartoon',
     alias: ['cartoon', 'cartoonify', 'tooncartoon'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya kartun',
-    usage: '.tocartoon (reply/kirim gambar)',
+    description: 'Convertir la foto a estilo caricatura',
+    usage: '.tocartoon (responde/envía imagen)',
     example: '.tocartoon',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🎬 *ᴛᴏ ᴄᴀʀᴛᴏᴏɴ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya kartun\n\n` +
+            `> Envía/responde una imagen para convertirla a estilo caricatura\n\n` +
             `\`${m.prefix}tocartoon\``
         )
     }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

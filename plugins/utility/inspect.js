@@ -1,17 +1,17 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'inspect',
     alias: ['cekgrup', 'ceksaluran', 'groupinfo', 'channelinfo'],
     category: 'utility',
-    description: 'Inspect info grup atau saluran WhatsApp via link',
-    usage: '.inspect <link grup/saluran>',
+    description: 'Inspecciona la información de un grupo o canal de WhatsApp mediante un enlace',
+    usage: '.inspect <enlace del grupo/canal>',
     example: '.inspect https://chat.whatsapp.com/xxx',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -21,8 +21,8 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🔍 *ɪɴsᴘᴇᴄᴛ*\n\n` +
-            `> Cek info grup atau saluran via link\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
+            `> Comprueba la información de un grupo o canal mediante un enlace\n\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
             `> \`${m.prefix}inspect https://chat.whatsapp.com/xxx\`\n` +
             `> \`${m.prefix}inspect https://whatsapp.com/channel/xxx\``
         )
@@ -40,29 +40,29 @@ async function handler(m, { sock }) {
             const groupInfo = await sock.groupGetInviteInfo(inviteCode)
             
             let teks = 
-                `📋 *ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ɢʀᴏᴜᴘ*\n\n` +
-                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀɪʟ* 」\n` +
-                `┃ 📝 ɴᴀᴍᴇ: *${groupInfo.subject}*\n` +
+                `📋 *ɪɴꜰᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
+                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                `┃ 📝 ɴᴏᴍʙʀᴇ: *${groupInfo.subject}*\n` +
                 `┃ 🆔 ɪᴅ: \`${groupInfo.id}\`\n` +
-                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date(groupInfo.creation * 1000).toLocaleString('id-ID')}\n`
+                `┃ 📅 ᴄʀᴇᴀᴅᴏ: ${new Date(groupInfo.creation * 1000).toLocaleString('id-ID')}\n`
 
             if (groupInfo.owner) {
-                teks += `┃ 👑 ᴄʀᴇᴀᴛᴏʀ: @${groupInfo.owner.split('@')[0]}\n`
+                teks += `┃ 👑 ᴄʀᴇᴀᴅᴏʀ: @${groupInfo.owner.split('@')[0]}\n`
             }
 
             teks += 
-                `┃ 🔗 ʟɪɴᴋᴇᴅ ᴘᴀʀᴇɴᴛ: ${groupInfo.linkedParent || 'None'}\n` +
-                `┃ 🔒 ʀᴇsᴛʀɪᴄᴛ: ${groupInfo.restrict ? '✅' : '❌'}\n` +
-                `┃ 📢 ᴀɴɴᴏᴜɴᴄᴇ: ${groupInfo.announce ? '✅' : '❌'}\n` +
-                `┃ 🏘️ ɪs ᴄᴏᴍᴍᴜɴɪᴛʏ: ${groupInfo.isCommunity ? '✅' : '❌'}\n` +
-                `┃ 📣 ᴄᴏᴍᴍᴜɴɪᴛʏ ᴀɴɴᴏᴜɴᴄᴇ: ${groupInfo.isCommunityAnnounce ? '✅' : '❌'}\n` +
-                `┃ ✅ ᴊᴏɪɴ ᴀᴘᴘʀᴏᴠᴀʟ: ${groupInfo.joinApprovalMode ? '✅' : '❌'}\n` +
-                `┃ ➕ ᴍᴇᴍʙᴇʀ ᴀᴅᴅ ᴍᴏᴅᴇ: ${groupInfo.memberAddMode ? '✅' : '❌'}\n` +
-                `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛs: ${groupInfo.participants?.length || 0}\n` +
+                `┃ 🔗 ᴘᴀᴅʀᴇ ᴇɴʟᴀᴢᴀᴅᴏ: ${groupInfo.linkedParent || 'None'}\n` +
+                `┃ 🔒 ʀᴇsᴛʀɪᴄᴄɪᴏɴ: ${groupInfo.restrict ? '✅' : '❌'}\n` +
+                `┃ 📢 ᴀɴᴜɴᴄɪᴏ: ${groupInfo.announce ? '✅' : '❌'}\n` +
+                `┃ 🏘️ ᴇs ᴄᴏᴍᴜɴɪᴅᴀᴅ: ${groupInfo.isCommunity ? '✅' : '❌'}\n` +
+                `┃ 📣 ᴀɴᴜɴᴄɪᴏ ᴅᴇ ʟᴀ ᴄᴏᴍᴜɴɪᴅᴀᴅ: ${groupInfo.isCommunityAnnounce ? '✅' : '❌'}\n` +
+                `┃ ✅ ᴀᴘʀᴏʙᴀᴄɪᴏɴ ᴅᴇ ᴜɴɪᴏɴ: ${groupInfo.joinApprovalMode ? '✅' : '❌'}\n` +
+                `┃ ➕ ᴍᴏᴅᴏ ᴀɢʀᴇɢᴀʀ ᴍɪᴇᴍʙʀᴏs: ${groupInfo.memberAddMode ? '✅' : '❌'}\n` +
+                `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: ${groupInfo.participants?.length || 0}\n` +
                 `╰┈┈⬡\n\n`
 
             if (groupInfo.desc) {
-                teks += `📝 *ᴅᴇsᴄʀɪᴘᴛɪᴏɴ:*\n${groupInfo.desc}\n\n`
+                teks += `📝 *ᴅᴇsᴄʀɪᴘᴄɪᴏɴ:*\n${groupInfo.desc}\n\n`
             }
 
             if (groupInfo.participants?.length > 0) {
@@ -91,22 +91,22 @@ async function handler(m, { sock }) {
             const channelInfo = await sock.newsletterMsg(channelId)
             
             const teks = 
-                `📺 *ɪɴꜰᴏʀᴍᴀᴛɪᴏɴ ᴄʜᴀɴɴᴇʟ*\n\n` +
-                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀɪʟ* 」\n` +
+                `📺 *ɪɴꜰᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ᴄᴀɴᴀʟ*\n\n` +
+                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
                 `┃ 🆔 ɪᴅ: \`${channelInfo.id}\`\n` +
-                `┃ 📌 sᴛᴀᴛᴇ: ${channelInfo.state?.type || '-'}\n` +
-                `┃ 📝 ɴᴀᴍᴇ: *${channelInfo.thread_metadata?.name?.text || '-'}*\n` +
-                `┃ 📅 ᴄʀᴇᴀᴛᴇᴅ: ${new Date((channelInfo.thread_metadata?.creation_time || 0) * 1000).toLocaleString('id-ID')}\n` +
-                `┃ 👥 sᴜʙsᴄʀɪʙᴇʀs: ${channelInfo.thread_metadata?.subscribers_count || 0}\n` +
-                `┃ ✅ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ: ${channelInfo.thread_metadata?.verification || '-'}\n` +
+                `┃ 📌 ᴇsᴛᴀᴅᴏ: ${channelInfo.state?.type || '-'}\n` +
+                `┃ 📝 ɴᴏᴍʙʀᴇ: *${channelInfo.thread_metadata?.name?.text || '-'}*\n` +
+                `┃ 📅 ᴄʀᴇᴀᴅᴏ: ${new Date((channelInfo.thread_metadata?.creation_time || 0) * 1000).toLocaleString('id-ID')}\n` +
+                `┃ 👥 sᴜsᴄʀɪᴛᴏʀᴇs: ${channelInfo.thread_metadata?.subscribers_count || 0}\n` +
+                `┃ ✅ ᴠᴇʀɪꜰɪᴄᴀᴄɪᴏɴ: ${channelInfo.thread_metadata?.verification || '-'}\n` +
                 `╰┈┈⬡\n\n` +
-                `📝 *ᴅᴇsᴄʀɪᴘᴛɪᴏɴ:*\n${channelInfo.thread_metadata?.description?.text || 'No description'}`
+                `📝 *ᴅᴇsᴄʀɪᴘᴄɪᴏɴ:*\n${channelInfo.thread_metadata?.description?.text || 'Sin descripción'}`
 
             m.react('✅')
             return m.reply(teks)
 
         } else {
-            return m.reply('❌ Hanya support URL Grup atau Saluran WhatsApp!')
+            return m.reply('❌ Solo se admiten URL de Grupos o Canales de WhatsApp!')
         }
 
     } catch (error) {
@@ -114,13 +114,13 @@ async function handler(m, { sock }) {
         
         if (error.data) {
             if ([400, 406].includes(error.data)) {
-                return m.reply('❌ Grup/Saluran tidak ditemukan!')
+                return m.reply('❌ ¡Grupo/Canal no encontrado!')
             }
             if (error.data === 401) {
-                return m.reply('❌ Bot di-kick dari grup tersebut!')
+                return m.reply('❌ ¡El bot fue expulsado de ese grupo!')
             }
             if (error.data === 410) {
-                return m.reply('❌ URL grup telah di-reset!')
+                return m.reply('❌ ¡La URL del grupo fue restablecida!')
             }
         }
         

@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "meditation",
   alias: ["rest", "istirahat", "tidur", "sleep"],
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 600,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -31,16 +31,16 @@ async function handler(m) {
 
   if (currentStamina >= maxStamina && currentHealth >= maxHealth && currentMana >= maxMana) {
     return m.reply(
-      `💤 *sᴜᴅᴀʜ ꜰᴜʟʟ*\n\n` +
-        `> ⚡ Stamina: ${currentStamina}/${maxStamina}\n` +
-        `> ❤️ Health: ${currentHealth}/${maxHealth}\n` +
-        `> 💙 Mana: ${currentMana}/${maxMana}\n\n` +
-        `💡 Kamu sudah dalam kondisi prima!`,
+      `💤 *ʏᴀ ʟʟᴇɴᴏ*\n\n` +
+        `> ⚡ Resistencia: ${currentStamina}/${maxStamina}\n` +
+        `> ❤️ Salud: ${currentHealth}/${maxHealth}\n` +
+        `> 💙 Maná: ${currentMana}/${maxMana}\n\n` +
+        `💡 ¡Ya estás en plena forma!`,
     );
   }
 
   await m.react("💤");
-  await m.reply(`💤 *ʙᴇʀɪsᴛɪʀᴀʜᴀᴛ...*\n\n> Memulihkan energi...`);
+  await m.reply(`💤 *ᴅᴇꜱᴄᴀɴꜱᴀɴᴅᴏ...*\n\n> Recuperando energía...`);
   await new Promise((r) => setTimeout(r, 3000));
 
   const staminaRecovered = Math.min(maxStamina - currentStamina, 40 + Math.floor(Math.random() * 20));
@@ -55,14 +55,14 @@ async function handler(m) {
 
   await m.react("✨");
   return m.reply(
-    `✨ *ɪsᴛɪʀᴀʜᴀᴛ sᴇʟᴇsᴀɪ!*\n\n` +
-      `*💖 *ᴘᴜʟɪʜ:*
+    `✨ *ᴅᴇꜱᴄᴀɴꜱᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ!*\n\n` +
+      `*💖 *ʀᴇᴄᴜᴘᴇʀᴀᴅᴏ:*
 \n` +
-      `> ⚡ Stamina: *+${staminaRecovered}* (${user.rpg.stamina}/${maxStamina})\n` +
-      `> ❤️ Health: *+${healthRecovered}* (${user.rpg.health}/${maxHealth})\n` +
-      `> 💙 Mana: *+${manaRecovered}* (${user.rpg.mana}/${maxMana})\n` +
+      `> ⚡ Resistencia: *+${staminaRecovered}* (${user.rpg.stamina}/${maxStamina})\n` +
+      `> ❤️ Salud: *+${healthRecovered}* (${user.rpg.health}/${maxHealth})\n` +
+      `> 💙 Maná: *+${manaRecovered}* (${user.rpg.mana}/${maxMana})\n` +
       `\n\n` +
-      `> Kamu merasa lebih segar! 🌟`,
+      `> ¡Te sientes más fresco! 🌟`,
   );
 }
 

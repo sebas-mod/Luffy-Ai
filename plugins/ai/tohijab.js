@@ -1,20 +1,20 @@
 import axios from 'axios'
-import { uploadImage } from '../../src/lib/ourin-uploader.js'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { uploadImage } from '../../src/lib/luffy-uploader.js'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'tohijab',
     alias: ['hijab', 'hijabstyle', 'addhijab'],
     category: 'ai',
-    description: 'Tambahkan hijab ke gambar',
-    usage: '.tohijab (reply gambar)',
+    description: 'Añadir hijab a la imagen',
+    usage: '.tohijab (responde una imagen)',
     example: '.tohijab',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🧕 *ʜɪᴊᴀʙ sᴛʏʟᴇ*\n\n> Kirim/reply gambar\n\n\`${m.prefix}tohijab\``)
+        return m.reply(`🧕 *ʜɪᴊᴀʙ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}tohijab\``)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const imageUrl = await uploadImage(buffer, 'image.jpg')

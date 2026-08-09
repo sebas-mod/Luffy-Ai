@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "ngamen",
   alias: ["nyanyi", "konser"],
   category: "rpg",
-  description: "Ngamen di jalanan untuk mencari koin",
+  description: "Cantar en la calle para ganar monedas",
   usage: ".ngamen",
   example: ".ngamen",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Suara serak, tenggorokan kering! 🥵\n\nNgamen butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Minum es teh dulu gih! ☕`);
+    return m.reply(`¡Voz ronca, garganta seca! 🥵\n\nCantar en la calle necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Tómate un té helado! ☕`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -35,32 +35,32 @@ async function handler(m, { sock }) {
   await m.react("🎸");
 
   const locations = [
-    { name: "Perempatan Lampu Merah", min: 3000, max: 10000 },
-    { name: "Warung Kopi", min: 5000, max: 15000 },
-    { name: "Depan Minimarket", min: 4000, max: 12000 },
-    { name: "Kafe Gaul", min: 8000, max: 25000 },
-    { name: "Angkringan", min: 2000, max: 8000 }
+    { name: "Semáforo del Cruce", min: 3000, max: 10000 },
+    { name: "Cafetería Local", min: 5000, max: 15000 },
+    { name: "Frente al Minimarket", min: 4000, max: 12000 },
+    { name: "Café Moderno", min: 8000, max: 25000 },
+    { name: "Puesto Callejero", min: 2000, max: 8000 }
   ];
 
   const loc = locations[Math.floor(Math.random() * locations.length)];
   const earning = Math.floor(Math.random() * (loc.max - loc.min + 1)) + loc.min;
 
-  await m.reply(`Mulai jreng-jreng gitar di *${loc.name}*... 🎶\nSemoga hari ini banyak yang ngasih receh! 💸`);
+  await m.reply(`Comenzando a rasguear la guitarra en *${loc.name}*... 🎶\n¡Ojalá hoy muchos den monedas! 💸`);
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
-  user.koin = (user.koin || 0) + earning;
+  user.berry = (user.berry || 0) + earning;
 
   const expGain = Math.floor(earning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
 
-  let txt = `ALHAMDULILLAH HASIL NGAMEN! 🎸✨\n\n`;
-  txt += `Lokasi: *${loc.name}*\n`;
-  txt += `💵 Pendapatan: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  let txt = `¡RESULTADO DE CANTAR EN LA CALLE! 🎸✨\n\n`;
+  txt += `Lugar: *${loc.name}*\n`;
+  txt += `💵 Ingreso: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
-  txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Lumayan buat beli nasi bungkus hari ini! 🤤`;
+  txt += `⚡ Resistencia: *-${staminaCost}*\n\n`;
+  txt += `¡Nada mal para comprar la comida del día! 🤤`;
 
   m.reply(txt);
 }

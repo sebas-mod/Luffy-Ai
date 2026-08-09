@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { sendRpgPreview } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { sendRpgPreview } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "dice",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -27,26 +27,26 @@ async function handler(m, { sock }) {
 
   if (!guess || guess < 1 || guess > 6) {
     return m.reply(
-      `🎲 *Bandar Dadu Jalanan* 🎲\n\n` +
-        `Tebak angka yang bakal keluar! (1-6)\n\n` +
-        `*Cara Main:*\n` +
-        `👉 \`.dice <angka> <taruhan>\`\n\n` +
-        `*Contoh:*\n` +
+      `🎲 *El Bandar de Dados Callejero* 🎲\n\n` +
+        `¡Adivina el número que saldrá! (1-6)\n\n` +
+        `*Cómo Jugar:*\n` +
+        `👉 \`.dice <número> <apuesta>\`\n\n` +
+        `*Ejemplo:*\n` +
         `👉 \`.dice 6 5000\``
     );
   }
 
   if (!bet || bet < 1000) {
-    return m.reply(`Mana ada bandar nerima taruhan segitu! Minimal bawa *Rp 1.000* sini! 🎲`);
+    return m.reply(`¡No hay bandar que acepte una apuesta así! ¡Trae mínimo *Rp 1.000*! 🎲`);
   }
 
-  if ((user.koin || 0) < bet) {
-    return m.reply(`Duit lu kurang bos! Di saku cuma ada *Rp ${(user.koin || 0).toLocaleString("id-ID")}*. Jangan ngutang di mari! 😤`);
+  if ((user.berry || 0) < bet) {
+    return m.reply(`Te falta dinero jefe! Solo tienes *Rp ${(user.berry || 0).toLocaleString("id-ID")}* en el bolsillo. ¡No pidas prestado aquí! 😤`);
   }
 
-  user.koin -= bet;
+  user.berry -= bet;
 
-  await sendRpgPreview(sock, m.chat, `🎲 Bandar mengocok dadu di dalam mangkok kayu... *krok krok krok*...`, "🎲 DADU JALANAN", "Rolling!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, `🎲 El bandar agita los dados en el tazón de madera... *krok krok krok*...`, "🎲 DADOS CALLEJEROS", "¡Lanzando!", { quoted: m });
   await new Promise((r) => setTimeout(r, 2500));
 
   const result = Math.floor(Math.random() * 6) + 1;
@@ -54,22 +54,22 @@ async function handler(m, { sock }) {
 
   const isWin = guess === result;
 
-  let txt = `*MANGKOK DIBUKA!* 🎲💥\n\n`;
-  txt += `Tebakan Lu: *${guess}*\n`;
-  txt += `Mata Dadu: *${result}* ${diceEmoji}\n\n`;
+  let txt = `*¡EL TAZÓN SE ABRE!* 🎲💥\n\n`;
+  txt += `Tu Elección: *${guess}*\n`;
+  txt += `Cara del Dado: *${result}* ${diceEmoji}\n\n`;
 
   if (isWin) {
     const winnings = bet * 5;
-    user.koin = (user.koin || 0) + winnings;
-    txt += `🎉 *GILA LU HOKI BANGET!*\n`;
-    txt += `💰 Uang Berlipat 5x: *+Rp ${winnings.toLocaleString("id-ID")}*`;
+    user.berry = (user.berry || 0) + winnings;
+    txt += `🎉 *¡ERES TREMENDAMENTE SUERTUDO!*\n`;
+    txt += `💰 Dinero x5: *+Rp ${winnings.toLocaleString("id-ID")}*`;
   } else {
-    txt += `🤣 *HAHAHA MAMPUS LU SALAH!*\n`;
-    txt += `💸 Duit Lu Ditarik Bandar: *-Rp ${bet.toLocaleString("id-ID")}*`;
+    txt += `🤣 *¡JAJAJA TE EQUIVOCASTE!*\n`;
+    txt += `💸 El bandar te quitó tu dinero: *-Rp ${bet.toLocaleString("id-ID")}*`;
   }
 
   db.save();
-  await sendRpgPreview(sock, m.chat, txt, "🎲 HASIL DADU", "Result!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, txt, "🎲 RESULTADO DE DADOS", "¡Resultado!", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

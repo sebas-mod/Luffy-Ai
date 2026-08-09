@@ -1,11 +1,11 @@
 import { spawn } from 'child_process'
 import path from 'path'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'restart',
     alias: ['reset', 'reboot', 'restartbot'],
     category: 'owner',
-    description: 'Restart bot process (real restart)',
+    description: 'Reiniciar el proceso del bot (reinicio real)',
     usage: '.restart',
     example: '.restart',
     isOwner: true,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -24,14 +24,14 @@ async function handler(m, { sock }) {
         const startTime = Date.now()
         
         await sock.sendMessage(m.chat, {
-            text: `🔄 *ʀᴇsᴛᴀʀᴛɪɴɢ ʙᴏᴛ...*\n\n` +
+            text: `🔄 *ʀᴇɪɴɪᴄɪᴀɴᴅᴏ ʙᴏᴛ...*\n\n` +
                   `╭┈┈⬡「 📊 *ɪɴꜰᴏ* 」\n` +
-                  `┃ ⏰ Time: ${new Date().toLocaleTimeString('id-ID')}\n` +
-                  `┃ 🔧 Method: Process Spawn\n` +
+                  `┃ ⏰ Hora: ${new Date().toLocaleTimeString('es-ES')}\n` +
+                  `┃ 🔧 Método: Process Spawn\n` +
                   `┃ 📦 PID: ${process.pid}\n` +
                   `╰┈┈⬡\n\n` +
-                  `> Bot akan restart dalam 2 detik...\n` +
-                  `> Proses mungkin memakan waktu 10-30 detik`
+                  `> El bot se reiniciará en 2 segundos...\n` +
+                  `> El proceso puede tardar de 10 a 30 segundos`
         }, { quoted: m })
         
         console.log('[Restart] Command triggered by:', m.sender)

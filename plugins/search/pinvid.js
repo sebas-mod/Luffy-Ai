@@ -10,15 +10,15 @@ import {
   jidNormalizedUser,
 } from "ourin";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const execAsync = promisify(exec);
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "pinvid",
   alias: ["pinvideo", "pinterestv", "pinv"],
   category: "search",
-  description: "Search video Pinterest (album)",
+  description: "Busca videos de Pinterest (álbum)",
   usage: ".pinvid <query>",
   example: ".pinvid anime",
   isOwner: false,
@@ -26,7 +26,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -41,8 +41,8 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴠɪᴅᴇᴏ sᴇᴀʀᴄʜ*\n\n` +
-        `> Masukkan query pencarian\n\n` +
+      `📌 *ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴠɪᴅᴇᴏ ᴘɪɴᴛᴇʀᴇsᴛ*\n\n` +
+        `> Ingresa una consulta de búsqueda\n\n` +
         `\`${m.prefix}pinvid anime\``,
     );
   }
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
   try {
     const res = await axios.get(
-      `https://firefly.maiku.my.id/api/pinterestvideo?apikey=OurinNextGen&q=${encodeURIComponent(query)}`,
+      `https://firefly.maiku.my.id/api/pinterestvideo?apikey=LuffyNextGen&q=${encodeURIComponent(query)}`,
       {
         timeout: 60000,
       },
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
     if (!res.data?.status || !res.data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan video untuk: ${query}`);
+      return m.reply(`❌ No se encontraron videos para: ${query}`);
     }
 
     const videos = res.data.data.slice(0, 5);
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Gagal mengunduh video`);
+      return m.reply(`❌ Error al descargar el video`);
     }
 
     m.react("📤");
@@ -186,7 +186,7 @@ async function handler(m, { sock }) {
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Ourin-AI";
+        config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
       for (const content of mediaList) {
         await sock.sendMessage(

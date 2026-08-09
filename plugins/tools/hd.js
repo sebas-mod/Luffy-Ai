@@ -1,14 +1,14 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const config = {
   name: "remini",
   alias: ["hd", "enhance", "upscale"],
   category: "tools",
-  description: "Enhance gambar jadi HD",
-  usage: ".remini (reply gambar)",
+  description: "Mejora imágenes a HD",
+  usage: ".remini (responde una imagen)",
   example: ".remini",
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
   if (!img) {
     return m.reply(
-      `*🪁 HD IMAGE*\n> Reply gambar yang mau dijernihkan\n\n\`\`\`${m.prefix}remini\`\`\``
+      `*🪁 IMAGEN HD*\n> Responde la imagen que quieres mejorar\n\n\`\`\`${m.prefix}remini\`\`\``
     );
   }
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: enhancedBuffer,
-        caption: `✅ *BERHASIL*\n\n> Gambar telah berhasil di-upscale dan dijernihkan.`,
+        caption: `✅ *EXITOSO*\n\n> La imagen fue mejorada (upscale) y aclarada exitosamente.`,
       },
       { quoted: m }
     );
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[HD Error]", err);
     m.react("❌");
-    m.reply("Maaf, terjadi kesalahan saat memproses gambar dari scraper. Coba lagi nanti ya.");
+    m.reply("Lo siento, ocurrió un error al procesar la imagen desde el scraper. Inténtalo de nuevo más tarde.");
   }
 }
 

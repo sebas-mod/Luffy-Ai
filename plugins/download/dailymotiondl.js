@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "dailymotiondl",
   alias: ["dailymotion", "dmdl"],
   category: "download",
-  description: "Download video dari Dailymotion",
+  description: "Descarga videos de Dailymotion",
   usage: ".dailymotiondl <url>",
   example: ".dailymotiondl https://www.dailymotion.com/video/xxx",
   isOwner: false,
@@ -19,7 +19,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -29,12 +29,12 @@ async function handler(m, { sock }) {
     m.react("❌");
     return m.reply(
       `🎬 *Dailymotion Downloader*\n\n` +
-        `Download video dari Dailymotion, otomatis dikonversi ke MP4.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}dailymotiondl <link>*\n\n` +
-        `*CONTOH:*\n` +
+        `Descarga videos de Dailymotion, se convierten automáticamente a MP4.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}dailymotiondl <enlace>*\n\n` +
+        `*EJEMPLO:*\n` +
         `> *${m.prefix}dailymotiondl https://www.dailymotion.com/video/xxx*\n\n` +
-        `_Proses konversi mungkin agak lama_`,
+        `_El proceso de conversión puede tardar un poco_`,
     );
   }
 
@@ -45,14 +45,14 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Dailymotion Gagal*\n\n> ${result.error}`);
+      return m.reply(`❌ *Dailymotion Falló*\n\n> ${result.error}`);
     }
 
     let caption =
       `🎬 *Dailymotion*\n\n` +
       `> 📌 ${result.title}\n` +
-      `> ⏱️ Durasi: ${result.duration}\n` +
-      `> 📺 Kualitas: ${result.quality}`;
+      `> ⏱️ Duración: ${result.duration}\n` +
+      `> 📺 Calidad: ${result.quality}`;
 
     if (result.thumbnail) {
       await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Gagal mengambil data Dailymotion, coba lagi nanti");
+    m.reply("❌ Error al obtener los datos de Dailymotion, intenta de nuevo más tarde");
   }
 }
 

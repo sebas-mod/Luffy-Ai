@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'antiswgc',
     alias: ['antiswgroup', 'antiswmentiongc', 'antiswtaggc'],
     category: 'group',
-    description: 'Deteksi tipe SW group mention atau status mention yang masuk ke grup',
+    description: 'Detectar menciones tipo SW group o menciones de estado que llegan al grupo',
     usage: '.antiswgc <on/off>',
     example: '.antiswgc on',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -26,8 +26,8 @@ async function handler(m, { db }) {
         const status = group.antiswgc || 'off'
         await m.reply(
             `📡 *ᴀɴᴛɪsᴡɢᴄ*\n\n` +
-            `> Status: *${status === 'on' ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `> Fitur ini mendeteksi tipe SW group mention seperti:\n` +
+            `> Estado: *${status === 'on' ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `> Esta función detecta menciones tipo SW group como:\n` +
             `> • groupStatusMentionMessage\n` +
             `> • groupMentionedMessage\n` +
             `> • statusMentionMessage\n` +
@@ -40,17 +40,17 @@ async function handler(m, { db }) {
 
     if (action === 'on') {
         db.setGroup(m.chat, { ...group, antiswgc: 'on' })
-        await m.reply('✅ *AntiSWGC aktif*\n\n> Tipe SW group mention akan dihapus otomatis.')
+        await m.reply('✅ *AntiSWGC activo*\n\n> Las menciones tipo SW group se eliminarán automáticamente.')
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...group, antiswgc: 'off' })
-        await m.reply('❌ *AntiSWGC nonaktif*')
+        await m.reply('❌ *AntiSWGC inactivo*')
         return
     }
 
-    await m.reply('❌ Gunakan: on atau off')
+    await m.reply('❌ Usa: on u off')
 }
 
 export { pluginConfig as config, handler }

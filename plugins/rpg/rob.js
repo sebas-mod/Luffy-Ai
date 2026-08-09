@@ -1,6 +1,6 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
-import { sendRpgPreview } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
+import { sendRpgPreview } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "rob",
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 600,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -24,71 +24,71 @@ async function handler(m, { sock }) {
   const target = m.mentionedJid?.[0] || m.quoted?.sender;
 
   if (!target) {
-    return m.reply(`Hayo, mau malak siapa nih? 🦹‍♂️🔪\nTag target yang mau dirampok hartanya!\nContoh: \`.rob @user\``);
+    return m.reply(`Vaya, ¿a quién piensas asaltar? 🦹‍♂️🔪\nEtiqueta al objetivo que quieres robar!\nEjemplo: \`.rob @user\``);
   }
 
   if (target === m.sender) {
-    return m.reply(`Sakit jiwa lu? Masa ngerampok dompet sendiri! 😂❌`);
+    return m.reply(`¿Estás enfermo? ¿Robarte tu propia cartera? 😂❌`);
   }
 
   const robber = db.getUser(m.sender);
   const victim = db.getUser(target);
 
   if (!victim) {
-    return m.reply(`Target buronanmu nggak ketemu di database! Kayaknya dia udah kabur duluan. 🏃💨`);
+    return m.reply(`Tu objetivo no aparece en la base de datos! Parece que ya huyó. 🏃💨`);
   }
 
-  if ((victim.koin || 0) < 1000) {
-    return m.reply(`Yaelah, target lu miskin parah! Duitnya di bawah Rp 1.000, masa tega dirampok? Cari mangsa yang tajir dong! 😤`);
+  if ((victim.berry || 0) < 1000) {
+    return m.reply(`Vaya, tu objetivo está pobre de verdad! Tiene menos de Rp 1.000, ¿cómo vas a robarlo? ¡Busca una presa más rica! 😤`);
   }
 
   if (!robber.rpg) robber.rpg = {};
   robber.rpg.health = robber.rpg.health || 100;
 
   if (robber.rpg.health < 30) {
-    return m.reply(`Woy bos, badan lu tinggal tulang gitu masih nekat ngerampok?! 🤒\nMinimal *30 HP*, darah lu cuma *${robber.rpg.health} HP*. Berobat sana!`);
+    return m.reply(`Oye jefe, estás hecho un esqueleto y ¿aún te atreves a robar?! 🤒\nNecesitas mínimo *30 HP*, solo tienes *${robber.rpg.health} HP*. ¡Ve a curarte!`);
   }
 
-  await sendRpgPreview(sock, m.chat, `*Sssstttt...* Bersembunyi di gang gelap nunggu target lewat... 🦹‍♂️🔪`, "🦹 BEGAL", "Beraksi!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, `*Sssstttt...* Escondiéndote en un callejón oscuro esperando al objetivo... 🦹‍♂️🔪`, "🦹 ASALTANTE", "¡En acción!", { quoted: m });
   await new Promise((r) => setTimeout(r, 2500));
 
   const successRate = 0.4;
   const isSuccess = Math.random() < successRate;
 
   if (isSuccess) {
-    const maxSteal = Math.floor((victim.koin || 0) * 0.3);
+    const maxSteal = Math.floor((victim.berry || 0) * 0.3);
     const stolen = Math.floor(Math.random() * maxSteal) + 1000;
 
-    victim.koin = (victim.koin || 0) - stolen;
-    robber.koin = (robber.koin || 0) + stolen;
+    victim.berry = (victim.berry || 0) - stolen;
+    robber.berry = (robber.berry || 0) + stolen;
 
     const expGain = 300;
     await addExpWithLevelCheck(sock, m, db, robber, expGain);
 
     db.save();
 
-    let txt = `MANTAP! TARGET BERHASIL DIPALAK! 🦹‍♂️💰\n\n`;
-    txt += `Lu berhasil nakutin si @${target.split("@")[0]} sampai ngencing di celana!\n`;
-    txt += `Uang hasil palakan: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
-    txt += `Bonus EXP Begal: *+${expGain}*\n\n`;
-    txt += `*Buru kabur sebelum polis dateng!!!* 🚓💨`;
+    let txt = `¡GENIAL! ¡EL OBJETIVO FUE ASALTADO! 🦹‍♂️💰\n\n`;
+    txt += `Lograste asustar a @${target.split("@")[0]} hasta que se orinó del susto!\n`;
+    txt += `Dinero robado: *+Rp ${stolen.toLocaleString("id-ID")}*\n`;
+    txt += `EXP Bonus de Asalto: *+${expGain}*\n\n`;
+    txt += `*¡Corre antes de que llegue la policía!!!* 🚓💨`;
 
     await m.reply(txt, { mentions: [target] });
   } else {
     const fine = Math.floor(Math.random() * 10000) + 5000;
-    const actualFine = Math.min(fine, robber.koin || 0);
+    const actualFine = Math.min(fine, robber.berry || 0);
     const healthLoss = 25;
 
-    robber.koin = Math.max(0, (robber.koin || 0) - actualFine);
+    robber.berry = Math.max(0, (robber.berry || 0) - actualFine);
     robber.rpg.health = Math.max(0, robber.rpg.health - healthLoss);
 
     db.save();
 
-    let txt = `GOBLOK! KETAHUAN WARGA!! 🚨🤬\n\n`;
-    txt += `Bukannya dapet duit, lu malah ketangkep basah terus *digebukin warga 1 RT*!\n`;
-    txt += `💸 Duit lu disita RT: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
-    txt += `🤕 Badan Babak Belur: *-${healthLoss} HP*\n\n`;
-    txt += `*MAMPUS LU, makanya jangan main-main di mari!* 🤣`;
+    let txt = `¡TORPE! ¡LOS VECINOS TE DESCUBRIERON!! 🚨🤬\n\n`;
+    txt += `En vez de dinero, te atraparon en el acto y *todo el vecindario te dio una paliza*!\n`;
+    txt += `💸 Tu dinero fue confiscado: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
+    txt += `🤕 Cuerpo Magullado: *-${healthLoss} HP*\n\n`;
+    txt += `*¡TE LO MERECES, no andes de travieso por aquí!* 🤣`;
 
     await m.reply(txt);
   }

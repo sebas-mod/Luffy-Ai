@@ -1,19 +1,19 @@
 import config from '../../config.js'
-import { getParticipantJids } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { getParticipantJids } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'hidetag2',
     alias: ['h2', 'ht2'],
     category: 'group',
-    description: 'Hidetag dengan fakeQuoted styling',
-    usage: '.h2 <text> atau reply pesan',
-    example: '.h2 Pengumuman penting!',
+    description: 'Hidetag con estilo fakeQuoted',
+    usage: '.h2 <texto> o responde un mensaje',
+    example: '.h2 ¡Anuncio importante!',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -25,8 +25,8 @@ async function handler(m, { sock }) {
     if (!text && !m.quoted) {
         return m.reply(
             `📢 *HIDETAG 2*\n\n` +
-            `• \`${m.prefix}h2 <text>\`\n` +
-            `• Reply pesan + \`${m.prefix}h2\``
+            `• \`${m.prefix}h2 <texto>\`\n` +
+            `• Responde un mensaje + \`${m.prefix}h2\``
         )
     }
     try {
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
                 remoteJid: 'status@broadcast'
             },
             message: {
-                conversation: config.bot?.name || 'Ourin MD'
+                conversation: config.bot?.name || 'Luffy MD'
             }
         }
         if (m.quoted) {

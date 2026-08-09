@@ -1,20 +1,20 @@
 import { Qwen3 } from "../../src/scraper/qwen3.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-import te from "../../src/lib/ourin-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "qwen3",
   alias: ["qwen", "qw3"],
   category: "ai",
-  description: "Chat dengan Qwen3 80B via OverChat",
-  usage: ".qwen3 <pertanyaan>",
-  example: ".qwen3 Apa itu machine learning?",
+  description: "Chat con Qwen3 80B vía OverChat",
+  usage: ".qwen3 <pregunta>",
+  example: ".qwen3 ¿Qué es machine learning?",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🔵 *Qwen3 80B*\n\n` +
-        `Tanya apa aja ke AI Qwen3 — model besar dari Alibaba yang jago bahasa apa aja.\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}qwen3 <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}qwen3 Apa itu machine learning?*\n` +
-        `> *${m.prefix}qwen3 Buat resep masakan Indonesia*\n\n` +
-        `_Model 80B, jadi agak lama tapi jawabannya mantap_`
+        `Pregúntale lo que sea al AI Qwen3 — modelo grande de Alibaba que domina cualquier idioma.\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}qwen3 <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}qwen3 ¿Qué es machine learning?*\n` +
+        `> *${m.prefix}qwen3 Crea una receta de cocina indonesia*\n\n` +
+        `_Modelo 80B, tarda un poco pero sus respuestas son excelentes_`
     );
   }
 
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *Qwen3 Gagal*\n\n> ${result.error || "Gagal mendapatkan respons"}`
+        `❌ *Error de Qwen3*\n\n> ${result.error || "No se pudo obtener una respuesta"}`
       );
     }
 

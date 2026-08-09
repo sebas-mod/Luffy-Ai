@@ -1,12 +1,12 @@
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
 
 const pluginConfig = {
   name: "melolo",
   alias: ["melolodrama", "dramamelolo"],
   category: "search",
-  description: "Cari daftar drama pendek berdasarkan kategori dari Melolo",
+  description: "Buscar dramas cortos por categoría desde Melolo",
   usage: ".melolo <category>",
   example: ".melolo fantasy",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 8,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -53,7 +53,7 @@ async function fetchMelolo(category) {
   });
 
   if (!data?.status || !data?.data) {
-    throw new Error(data?.message || "Hasil Melolo tidak ditemukan");
+    throw new Error(data?.message || "Resultados de Melolo no encontrados");
   }
 
   return data;
@@ -64,12 +64,12 @@ async function handler(m, { sock }) {
 
   if (!category) {
     return m.reply(
-      `🎭 *MELOLO DRAMA*\n\n> Contoh:\n\`${m.prefix}melolo fantasy\``,
+      `🎭 *DRAMA DE MELOLO*\n\n> Ejemplo:\n\`${m.prefix}melolo fantasy\``,
     );
   }
 
   if (!config.APIkey?.covenant) {
-    return m.reply("❌ API key covenant tidak dikonfigurasi!");
+    return m.reply("❌ La API key de covenant no está configurada!");
   }
 
   m.react("🔍");
@@ -81,15 +81,15 @@ async function handler(m, { sock }) {
     if (items.length === 0) {
       m.react("❌");
       return m.reply(
-        `❌ Tidak ditemukan hasil Melolo untuk kategori: ${category}`,
+        `❌ No se encontraron resultados de Melolo para la categoría: ${category}`,
       );
     }
 
-    let caption = "🎭 *MELOLO DRAMA*\n\n";
-    caption += `🌿 *Category:* ${category}\n`;
+    let caption = "🎭 *DRAMA DE MELOLO*\n\n";
+    caption += `🌿 *Categoría:* ${category}\n`;
     caption += `📦 *Total:* ${items.length}\n`;
-    caption += `💳 *Cost:* ${result?.usage?.cost ?? "-"}\n`;
-    caption += `🔋 *Sisa Credit:* ${result?.usage?.remaining ?? "-"}\n\n`;
+    caption += `💳 *Costo:* ${result?.usage?.cost ?? "-"}\n`;
+    caption += `🔋 *Crédito Restante:* ${result?.usage?.remaining ?? "-"}\n\n`;
 
     items.forEach((item, index) => {
       caption += `*${index + 1}.* ${trimText(item.title, 70)}\n`;

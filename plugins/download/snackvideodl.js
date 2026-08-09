@@ -1,10 +1,10 @@
 import { snackvideo } from 'btch-downloader'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'snackvideodl',
     alias: ['svdl', 'snackvideo', 'sv'],
     category: 'download',
-    description: 'Download video SnackVideo',
+    description: 'Descarga videos de SnackVideo',
     usage: '.svdl <url>',
     example: '.svdl https://www.snackvideo.com/@xxx/video/xxx',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -21,15 +21,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
             `> \`${m.prefix}svdl <url>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}svdl https://www.snackvideo.com/@xxx/video/xxx\``
         )
     }
     
     if (!url.match(/snackvideo\.com/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link SnackVideo.`)
+        return m.reply(`❌ URL no válida. Usa un enlace de SnackVideo.`)
     }
     
     await m.react('🕕')
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         const data = await snackvideo(url)
         
         if (!data?.status || !data?.result?.videoUrl) {
-            return m.reply(`❌ Gagal mengambil video. Coba link lain.`)
+            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace.`)
         }
         
         const result = data.result

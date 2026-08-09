@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tekateki', {
     alias: ['teka'],
     emoji: '🧩',
-    title: 'TEKA-TEKI',
-    description: 'Game teka-teki tradisional'
+    title: 'ACERTIJOS',
+    description: 'Juego de acertijos tradicional'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tekateki')

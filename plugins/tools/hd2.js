@@ -1,22 +1,22 @@
 import axios from "axios";
 import FormData from "form-data";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import _sharp from 'sharp';
 
 const pluginConfig = {
   name: "hd2",
   alias: ["enhance2", "upscale2", "aienhancer"],
   category: "tools",
-  description: "Enhance gambar menjadi HD dengan AI (V3)",
-  usage: ".hd2 (reply gambar)",
+  description: "Mejora imágenes a HD con IA (V3)",
+  usage: ".hd2 (responde una imagen)",
   example: ".hd2",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -24,12 +24,12 @@ async function handler(m, { sock }) {
   const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
 
   if (!isImage) {
-    let help = `✨ *FITUR HD ENHANCE V2*\n\n`
-    help += `Tingkatkan resolusi gambar kamu menjadi jauh lebih HD dan tajam menggunakan AI!\n\n`
-    help += `*Cara Penggunaan:*\n`
-    help += `- Kirim gambar dan tambahkan pesan *${m.prefix}hd2*\n`
-    help += `- Atau balas (reply) gambar yang sudah terkirim dengan perintah *${m.prefix}hd2*\n\n`
-    help += `_Proses rendering mungkin memerlukan waktu beberapa detik hingga satu menit._`
+    let help = `✨ *FUNCIÓN MEJORA HD V2*\n\n`
+    help += `¡Aumenta la resolución de tu imagen para que se vea mucho más HD y nítida usando IA!\n\n`
+    help += `*Cómo Usar:*\n`
+    help += `- Envía una imagen y agrega el mensaje *${m.prefix}hd2*\n`
+    help += `- O responde a una imagen ya enviada con el comando *${m.prefix}hd2*\n\n`
+    help += `_El proceso de renderizado puede tardar desde unos segundos hasta un minuto._`
     return m.reply(help);
   }
 
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`Maaf, sistem gagal mengunduh gambar yang kamu berikan. Silakan coba kirim ulang gambarnya!`);
+      return m.reply(`Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Por favor, intenta volver a enviarla!`);
     }
 
     const form = new FormData();
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     const data = response.data;
     if (!data || !data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`Maaf, AI gagal memproses gambarmu kali ini. Silakan coba lagi dalam beberapa saat!`);
+      return m.reply(`Lo siento, la IA no pudo procesar tu imagen esta vez. ¡Inténtalo de nuevo en unos momentos!`);
     }
 
     await m.react("✅");

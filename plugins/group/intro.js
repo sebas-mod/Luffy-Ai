@@ -1,11 +1,11 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 import moment from 'moment-timezone'
 const pluginConfig = {
     name: 'intro',
     alias: ['perkenalan', 'selamatdatang'],
     category: 'group',
-    description: 'Tampilkan pesan intro grup',
+    description: 'Mostrar el mensaje de intro del grupo',
     usage: '.intro',
     example: '.intro',
     isOwner: false,
@@ -13,23 +13,23 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
-const DEFAULT_INTRO = `halo kak @user 🖐
+const DEFAULT_INTRO = `hola @user 🖐
 
-Kenalan dulu yukk
-- Nama : 
-- Umur : 
-- Asal : 
-- Hobi : 
-- Status : 
+Preséntate un poco
+- Nombre : 
+- Edad : 
+- Origen : 
+- Hobby : 
+- Estado : 
 
-Semoga betah yahh, di grup @group
+Esperamos que estés a gusto en el grupo @group
 
-> Untuk Owner:
-ganti intro bawaan dengan .setintro <text>`
+> Para el Owner:
+cambia el intro predeterminado con .setintro <texto>`
  function parsePlaceholders(text, m, groupMeta) {
     const now = moment().tz('Asia/Jakarta')
     const dateStr = now.format('D MMMM YYYY')
@@ -37,12 +37,12 @@ ganti intro bawaan dengan .setintro <text>`
     
     return text
         .replace(/@user/gi, `@${m.sender.split('@')[0]}`)
-        .replace(/@group/gi, groupMeta?.subject || 'Grup')
+        .replace(/@group/gi, groupMeta?.subject || 'Grupo')
         .replace(/@count/gi, groupMeta?.participants?.length || '0')
         .replace(/@date/gi, dateStr)
         .replace(/@time/gi, timeStr)
-        .replace(/@desc/gi, groupMeta?.desc || 'Tidak ada deskripsi')
-        .replace(/@botname/gi, config.bot?.name || 'Ourin-AI')
+        .replace(/@desc/gi, groupMeta?.desc || 'Sin descripción')
+        .replace(/@botname/gi, config.bot?.name || 'Luffy-Ai')
 }
 
 async function handler(m, { sock }) {

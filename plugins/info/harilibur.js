@@ -1,11 +1,11 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "harilibur",
   alias: ["libur", "harinasional"],
   category: "info",
-  description: "Menampilkan informasi hari libur dan hari nasional mendatang",
+  description: "Muestra información de los próximos días festivos y feriados nacionales",
   usage: ".harilibur",
   example: ".harilibur",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -31,24 +31,24 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Gagal mengambil informasi hari libur saat ini.");
+      return m.reply("⚠️ Error al obtener la información de días festivos.");
     }
 
     const r = data.result;
-    let caption = `📅 *HARI LIBUR & NASIONAL MENDATANG* 📅\n\n`;
+    let caption = `📅 *PRÓXIMOS DÍAS FESTIVOS Y NACIONALES* 📅\n\n`;
 
     if (r.mendatang.hari_libur && r.mendatang.hari_libur.length > 0) {
-      caption += `*Hari Libur Mendatang*\n`;
+      caption += `*Próximos Días Festivos*\n`;
       r.mendatang.hari_libur.slice(0, 5).forEach(item => {
-        caption += `- ${item.date}: ${item.event} (${item.daysUntil} hari lagi)\n`;
+        caption += `- ${item.date}: ${item.event} (${item.daysUntil} días restantes)\n`;
       });
       caption += `\n`;
     }
 
     if (r.mendatang.event_nasional && r.mendatang.event_nasional.length > 0) {
-      caption += `*Hari Nasional Mendatang*\n`;
+      caption += `*Próximos Feriados Nacionales*\n`;
       r.mendatang.event_nasional.slice(0, 5).forEach(item => {
-        caption += `- ${item.date}: ${item.event} (${item.daysUntil} hari lagi)\n`;
+        caption += `- ${item.date}: ${item.event} (${item.daysUntil} días restantes)\n`;
       });
     }
 
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Hari Libur]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mengambil data hari libur.");
+    m.reply("😔 Ocurrió un error al obtener los datos de días festivos.");
   }
 }
 

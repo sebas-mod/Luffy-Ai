@@ -1,19 +1,19 @@
 import fs from "fs";
 import path from "path";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "disableplugin",
   alias: ["dplugin", "plugindisable", "offplugin"],
   category: "owner",
-  description: "Menonaktifkan plugin tertentu",
-  usage: ".disableplugin <nama_plugin>",
+  description: "Desactivar un plugin específico",
+  usage: ".disableplugin <nombre_plugin>",
   example: ".disableplugin sticker",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -56,9 +56,9 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `🔌 *ᴅɪsᴀʙʟᴇ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Masukkan nama plugin yang ingin dinonaktifkan\n\n` +
-        `*Contoh:*\n` +
+      `🔌 *ᴅᴇsᴀᴄᴛɪᴠᴀʀ ᴘʟᴜɢɪɴ*\n\n` +
+        `> Introduce el nombre del plugin que quieres desactivar\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}disableplugin sticker\`\n` +
         `> \`${m.prefix}disableplugin tiktok\``,
     );
@@ -67,13 +67,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`❌ Plugin *${pluginName}* tidak ditemukan!`);
+    return m.reply(`❌ ¡Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled === false) {
-    return m.reply(`⚠️ Plugin *${pluginName}* sudah dinonaktifkan!`);
+    return m.reply(`⚠️ ¡El plugin *${pluginName}* ya está desactivado!`);
   }
 
   try {
@@ -84,14 +84,14 @@ async function handler(m, { sock }) {
     fs.writeFileSync(filePath, content);
 
     await m.reply(
-      `✅ *ᴘʟᴜɢɪɴ ᴅɪsᴀʙʟᴇᴅ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
+      `✅ *ᴘʟᴜɢɪɴ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
-        `┃ 📁 Category: *${category}*\n` +
-        `┃ 📄 File: *${file}*\n` +
-        `┃ 🔴 Status: *Disabled*\n` +
+        `┃ 📁 Categoría: *${category}*\n` +
+        `┃ 📄 Archivo: *${file}*\n` +
+        `┃ 🔴 Estado: *Desactivado*\n` +
         `╰┈┈⬡\n\n` +
-        `> Restart bot atau gunakan hot reload untuk apply.`,
+        `> Reinicia el bot o usa hot reload para aplicar.`,
     );
   } catch (error) {
     await m.reply(te(m.prefix, m.command, m.pushName));

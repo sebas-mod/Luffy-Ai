@@ -1,18 +1,18 @@
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
 const pluginConfig = {
   name: "sendngl",
   alias: [],
   category: "tools",
-  description: "Send NGL",
-  usage: ".sendngl <url> | <text>",
-  example: ".sendngl https://ngl.link/xxxx | hai",
+  description: "Enviar NGL",
+  usage: ".sendngl <url> | <texto>",
+  example: ".sendngl https://ngl.link/xxxx | hola",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -21,11 +21,11 @@ async function handler(m, { sock }) {
   const [link, kata] = text;
   if (!link)
     return m.reply(
-      `*LINK NGL NYA MANA ??*\nContoh: \`${m?.prefix}sendngl https://ngl.link/xxxx | hai`,
+      `*¿DÓNDE ESTÁ EL ENLACE NGL??*\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   if (!kata)
     return m.reply(
-      `*KATA KATA NYA MANA ??*\n\nContoh: \`${m?.prefix}sendngl https://ngl.link/xxxx | hai`,
+      `*¿Y EL MENSAJE??*\n\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   m.react("🎴");
 
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
     await sock.sendMessage(
       m.chat,
       {
-        text: `✅ *DONE*\n\nBerhasil mengirim pesan!\nTarget: ${link}\nPesan: ${kata}`,
+        text: `✅ *HECHO*\n\nMensaje enviado correctamente!\nDestino: ${link}\nMensaje: ${kata}`,
       },
       { quoted: m },
     );

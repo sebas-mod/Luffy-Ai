@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'antidocument',
     alias: ['antidoc', 'nodocument', 'nodoc'],
     category: 'group',
-    description: 'Mengatur antidocument di grup',
+    description: 'Configura antidocumento en el grupo',
     usage: '.antidocument <on/off>',
     example: '.antidocument on',
     isOwner: false,
@@ -14,13 +14,13 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 function gpMsg(key, replacements = {}) {
     const defaults = {
-        antidocument: '⚠ *AntiDocument* — Dokumen dari @%user% dihapus.',
+        antidocument: '⚠ *AntiDocumento* — El documento de @%user% fue eliminado.',
     }
     let text = config.groupProtection?.[key] || defaults[key] || ''
     for (const [k, v] of Object.entries(replacements)) {
@@ -58,25 +58,25 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antidocument ? '✅ ON' : '❌ OFF'
-        await m.reply(`📄 *AntiDocument*\n\n> Status: *${status}*\n\n> \`.antidocument on/off\``)
+        await m.reply(`📄 *AntiDocumento*\n\n> Estado: *${status}*\n\n> \`.antidocument on/off\``)
         return
     }
 
     if (action === 'on') {
         db.setGroup(m.chat, { antidocument: true })
         m.react('✅')
-        await m.reply(`✅ *AntiDocument diaktifkan*`)
+        await m.reply(`✅ *AntiDocumento activado*`)
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { antidocument: false })
         m.react('❌')
-        await m.reply(`❌ *AntiDocument dinonaktifkan*`)
+        await m.reply(`❌ *AntiDocumento desactivado*`)
         return
     }
 
-    await m.reply(`❌ Gunakan \`.antidocument on\` atau \`.antidocument off\``)
+    await m.reply(`❌ Usa \`.antidocument on\` o \`.antidocument off\``)
 }
 
 export { pluginConfig as config, handler, checkAntidocument }

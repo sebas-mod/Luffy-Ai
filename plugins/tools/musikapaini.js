@@ -2,19 +2,19 @@ import axios from "axios";
 import FormData from "form-data";
 import config from "../../config.js";
 import { downloadMediaMessage } from "ourin";
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "musikapaini",
   alias: ["whatmusic", "shazam", "recognizemusic", "mai"],
   category: "tools",
-  description: "Identifikasi lagu dari audio",
-  usage: ".musikapaini (reply audio)",
+  description: "Identifica canciones a partir de audio",
+  usage: ".musikapaini (responde audio)",
   example: ".musikapaini",
   cooldown: 20,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -70,27 +70,27 @@ async function handler(m, { sock }) {
 
   if (!audioBuffer) {
     return m.reply(
-      `🎵 *ᴍᴜsɪᴋ ᴀᴘᴀ ɪɴɪ?*\n\n` +
-        `> Identifikasi lagu dari audio\n\n` +
-        `*Cara pakai:*\n` +
-        `> Reply audio dengan \`${m.prefix}musikapaini\`\n` +
-        `> Atau kirim audio + caption command`,
+      `🎵 *¿ǫᴜᴇ ᴍᴜsɪᴄᴀ ᴇs ᴇsᴛᴀ?*\n\n` +
+        `> Identifica la canción a partir del audio\n\n` +
+        `*Cómo usar:*\n` +
+        `> Responde un audio con \`${m.prefix}musikapaini\`\n` +
+        `> O envía un audio + caption con el comando`,
     );
   }
 
   m.react("🎵");
 
   try {
-    await m.reply("🕕 *ᴍᴇɴɢᴜᴘʟᴏᴀᴅ...*\n\n> Mengupload audio...");
+    await m.reply("🕕 *sᴜʙɪᴇɴᴅᴏ...*\n\n> Subiendo audio...");
 
     const audioUrl = await uploadTo0x0(audioBuffer, filename);
 
-    await m.reply("🔍 *ᴍᴇɴɢɪᴅᴇɴᴛɪꜰɪᴋᴀsɪ...*\n\n> Mencari info lagu...");
+    await m.reply("🔍 *ɪᴅᴇɴᴛɪғɪᴄᴀɴᴅᴏ...*\n\n> Buscando información de la canción...");
 
     const data = await ourinApi.neoxr.whatMusic(
       {
         url: audioUrl,
-        apikey: config.APIkey?.neoxr || "Milik-Bot-OurinMD",
+        apikey: config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai",
       },
       {
         timeout: 60000,
@@ -99,14 +99,14 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Lagu tidak dikenali atau API error");
+      return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> Canción no reconocida o error de API");
     }
 
     const music = data.data;
     const links = music.links || {};
 
-    let text = `🎵 *ʟᴀɢᴜ ᴅɪᴛᴇᴍᴜᴋᴀɴ!*\n\n`;
-    text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n`;
+    let text = `🎵 *ᴄᴀɴᴄɪᴏɴ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ!*\n\n`;
+    text += `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n`;
     text += `┃ 🎶 Title: ${music.title || "-"}\n`;
     text += `┃ 👤 Artist: ${music.artist || "-"}\n`;
     text += `┃ 💿 Album: ${music.album || "-"}\n`;

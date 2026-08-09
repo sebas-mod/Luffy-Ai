@@ -1,28 +1,28 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "addstok",
   alias: ["addstock", "importstok", "importstock"],
   category: "store",
-  description: "📦 Tambah stok item ke produk (hanya di private chat)",
+  description: "📦 Agregar stock de artículos al producto (solo en chat privado)",
   usage:
-    ".addstok <nomor_produk>|<detail> atau .addstok <nomor> <jumlah> (fisik)",
+    ".addstok <numero_producto>|<detalle> o .addstok <numero> <cantidad> (físico)",
   example: ".addstok 1|Email: user@mail.com;;Password: pass123",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: true,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
   if (m.isGroup) {
     return m.reply(
-      `🚫 *Akses Ditolak*\n\n` +
-        `Untuk menjaga privasi data stok 🛡️, penambahan stok hanya dapat dilakukan di *private chat*.\n\n` +
-        `Silakan chat bot secara langsung 📱`,
+      `🚫 *Acceso Denegado*\n\n` +
+        `Para proteger la privacidad de los datos de stock 🛡️, solo se puede agregar stock en el *chat privado*.\n\n` +
+        `Contacta al bot directamente 📱`,
     );
   }
 
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
 
   if (products.length === 0) {
     return m.reply(
-      `📭 *Belum ada produk.*\n\nTambahkan produk terlebih dahulu: \`${m.prefix}addproduk\` ➕`,
+      `📭 *Aún no hay productos.*\n\nAgrega primero un producto: \`${m.prefix}addproduk\` ➕`,
     );
   }
 
@@ -51,21 +51,21 @@ async function handler(m, { sock }) {
           db.setting("storeProducts", products);
           await m.react("✅");
           return m.reply(
-            `📦 *STOK FISIK DITAMBAHKAN*\n\n` +
-              `🏷️ Produk: *${product.name}*\n` +
-              `➕ Ditambahkan: *${addCount} pcs*\n` +
-              `📊 Total stok: *${product.stock} pcs*\n\n` +
-              `_Tambah lagi: \`${m.prefix}addstok ${productNo + 1} <jumlah>\`_`,
+            `📦 *STOCK FÍSICO AGREGADO*\n\n` +
+              `🏷️ Producto: *${product.name}*\n` +
+              `➕ Agregados: *${addCount} pcs*\n` +
+              `📊 Stock total: *${product.stock} pcs*\n\n` +
+              `_Agregar más: \`${m.prefix}addstok ${productNo + 1} <cantidad>\`_`,
           );
         }
 
         return m.reply(
-          `📦 *TAMBAH STOK FISIK*\n\n` +
-            `Produk *${product.name}* bertipe **Fisik** 📦\n\n` +
-            `Format: \`${m.prefix}addstok ${productNo + 1} <jumlah>\`\n\n` +
-            `📝 *Contoh:*\n` +
-            `\`${m.prefix}addstok ${productNo + 1} 8\` — Tambah 8 pcs\n\n` +
-            `Stok saat ini: *${product.stock === -1 ? "♾️ Unlimited" : product.stock + " pcs"}*`,
+          `📦 *AGREGAR STOCK FÍSICO*\n\n` +
+            `El producto *${product.name}* es de tipo **Físico** 📦\n\n` +
+            `Formato: \`${m.prefix}addstok ${productNo + 1} <cantidad>\`\n\n` +
+            `📝 *Ejemplo:*\n` +
+            `\`${m.prefix}addstok ${productNo + 1} 8\` — Agregar 8 pcs\n\n` +
+            `Stock actual: *${product.stock === -1 ? "♾️ Unlimited" : product.stock + " pcs"}*`,
         );
       }
 
@@ -80,17 +80,17 @@ async function handler(m, { sock }) {
           "";
 
         if (isDocument && fileName.toLowerCase().endsWith(".txt")) {
-          await m.reply(`⏳ _Memproses file..._`);
+          await m.reply(`⏳ _Procesando archivo..._`);
           let fileBuffer;
           try {
             fileBuffer = await m.quoted.download();
           } catch {
             return m.reply(
-              `❌ *Gagal membaca file.*\n\nPastikan file tidak kosong dan dapat diunduh 📄`,
+              `❌ *Error al leer el archivo.*\n\nAsegúrate de que el archivo no esté vacío y se pueda descargar 📄`,
             );
           }
           if (!fileBuffer || fileBuffer.length === 0)
-            return m.reply(`❌ *File kosong.* 📄`);
+            return m.reply(`❌ *Archivo vacío.* 📄`);
 
           const fileContent = fileBuffer.toString("utf-8").trim();
           const lines = [];
@@ -115,10 +115,10 @@ async function handler(m, { sock }) {
             lines.push(...tokens);
           }
           if (lines.length === 0)
-            return m.reply(`❌ *File tidak berisi data valid.* 📄`);
+            return m.reply(`❌ *El archivo no contiene datos válidos.* 📄`);
           if (lines.length > 1000)
             return m.reply(
-              `❌ *Terlalu banyak item.* Maksimal 1.000 per import 📄`,
+              `❌ *Demasiados artículos.* Máximo 1.000 por importación 📄`,
             );
 
           if (!product.stockItems) product.stockItems = [];
@@ -148,33 +148,33 @@ async function handler(m, { sock }) {
           db.setting("storeProducts", products);
           await m.react("✅");
           return m.reply(
-            `✅ *IMPORT STOK SELESAI*\n\n` +
-              `🏷️ Produk: *${product.name}*\n` +
-              `➕ Ditambahkan: *${added}* akun 🔑\n` +
-              (skipped > 0 ? `⏭️ Duplikat dilewati: *${skipped}*\n` : "") +
-              `\n📊 Total stok: *${product.stockItems.length}* akun\n\n` +
-              `_Lihat daftar stok: \`${m.prefix}liststok ${productNo + 1}\`_`,
+            `✅ *IMPORTACIÓN DE STOCK COMPLETADA*\n\n` +
+              `🏷️ Producto: *${product.name}*\n` +
+              `➕ Agregados: *${added}* cuentas 🔑\n` +
+              (skipped > 0 ? `⏭️ Duplicados omitidos: *${skipped}*\n` : "") +
+              `\n📊 Stock total: *${product.stockItems.length}* cuentas\n\n` +
+              `_Ver la lista de stock: \`${m.prefix}liststok ${productNo + 1}\`_`,
           );
         }
       }
     }
 
     return m.reply(
-      `📦 *TAMBAH STOK*\n\n` +
-        `🔑 *Produk Digital* — Tambah data akun/key:\n` +
-        `\`${m.prefix}addstok <nomor_produk>|<detail>\`\n\n` +
-        `📄 *Import dari file .txt:*\n` +
-        `\`${m.prefix}addstok <nomor_produk>\` (reply file .txt)\n\n` +
-        `📦 *Produk Fisik* — Tambah jumlah stok:\n` +
-        `\`${m.prefix}addstok <nomor_produk> <jumlah>\`\n\n` +
-        `📝 *Contoh digital:*\n` +
+      `📦 *AGREGAR STOCK*\n\n` +
+        `🔑 *Producto Digital* — Agregar datos de cuenta/key:\n` +
+        `\`${m.prefix}addstok <numero_producto>|<detalle>\`\n\n` +
+        `📄 *Importar desde archivo .txt:*\n` +
+        `\`${m.prefix}addstok <numero_producto>\` (responde el archivo .txt)\n\n` +
+        `📦 *Producto Físico* — Agregar cantidad de stock:\n` +
+        `\`${m.prefix}addstok <numero_producto> <cantidad>\`\n\n` +
+        `📝 *Ejemplo digital:*\n` +
         `\`${m.prefix}addstok 1|Email: user@mail.com;;Password: pass123\`\n\n` +
-        `📝 *Contoh fisik:*\n` +
-        `\`${m.prefix}addstok 2 8\` — Tambah 8 pcs untuk produk #2\n\n` +
-        `• Gunakan \`;;\` untuk baris baru dalam detail 🔑\n` +
-        `• Setiap baris di file .txt = 1 stok item 📄\n` +
-        `• Maksimal 1.000 item per import 📊\n\n` +
-        `_Data stok digital bersifat rahasia 🔒 dan hanya dikirim ke pembeli setelah pembayaran dikonfirmasi_`,
+        `📝 *Ejemplo físico:*\n` +
+        `\`${m.prefix}addstok 2 8\` — Agregar 8 pcs al producto #2\n\n` +
+        `• Usa \`;;\` para nueva línea en el detalle 🔑\n` +
+        `• Cada línea del archivo .txt = 1 artículo de stock 📄\n` +
+        `• Máximo 1.000 artículos por importación 📊\n\n` +
+        `_Los datos del stock digital son confidenciales 🔒 y solo se envían al comprador después de confirmar el pago_`,
     );
   }
 
@@ -186,7 +186,7 @@ async function handler(m, { sock }) {
 
   if (isNaN(productNo) || productNo < 0 || productNo >= products.length) {
     return m.reply(
-      `❌ *Nomor produk tidak valid.*\n\nLihat daftar produk: \`${m.prefix}liststok\` 📋`,
+      `❌ *Número de producto no válido.*\n\nVer la lista de productos: \`${m.prefix}liststok\` 📋`,
     );
   }
 
@@ -196,25 +196,25 @@ async function handler(m, { sock }) {
     const addCount = parseInt(detail);
     if (isNaN(addCount) || addCount <= 0) {
       return m.reply(
-        `📦 *Produk ini bertipe Fisik*\n\n` +
-          `Gunakan format: \`${m.prefix}addstok ${productNo + 1} <jumlah>\`\n\n` +
-          `📝 Contoh: \`${m.prefix}addstok ${productNo + 1} 8\` — Tambah 8 pcs`,
+        `📦 *Este producto es de tipo Físico*\n\n` +
+          `Usa el formato: \`${m.prefix}addstok ${productNo + 1} <cantidad>\`\n\n` +
+          `📝 Ejemplo: \`${m.prefix}addstok ${productNo + 1} 8\` — Agregar 8 pcs`,
       );
     }
     product.stock = (product.stock === -1 ? 0 : product.stock) + addCount;
     db.setting("storeProducts", products);
     await m.react("✅");
     return m.reply(
-      `📦 *STOK FISIK DITAMBAHKAN*\n\n` +
-        `🏷️ Produk: *${product.name}*\n` +
-        `➕ Ditambahkan: *${addCount} pcs*\n` +
-        `📊 Total stok: *${product.stock} pcs*`,
+      `📦 *STOCK FÍSICO AGREGADO*\n\n` +
+        `🏷️ Producto: *${product.name}*\n` +
+        `➕ Agregados: *${addCount} pcs*\n` +
+        `📊 Stock total: *${product.stock} pcs*`,
     );
   }
 
   if (!detail || detail.length < 3) {
     return m.reply(
-      `❌ *Detail stok terlalu pendek.*\n\nMinimal 3 karakter diperlukan agar data stok dapat digunakan 🔑`,
+      `❌ *Detalle de stock demasiado corto.*\n\nSe necesitan al menos 3 caracteres para que los datos de stock sean utilizables 🔑`,
     );
   }
 
@@ -223,7 +223,7 @@ async function handler(m, { sock }) {
   const isDuplicate = product.stockItems.some((item) => item.detail === detail);
   if (isDuplicate) {
     return m.reply(
-      `⚠️ *Data stok sudah ada.*\n\nItem dengan detail yang sama sudah terdaftar di produk *${product.name}* 🔑`,
+      `⚠️ *El dato de stock ya existe.*\n\nUn artículo con el mismo detalle ya está registrado en el producto *${product.name}* 🔑`,
     );
   }
 
@@ -237,10 +237,10 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ *STOK DITAMBAHKAN*\n\n` +
-      `🏷️ Produk: *${product.name}*\n` +
-      `🔑 Total stok saat ini: *${product.stockItems.length}* akun\n\n` +
-      `_Tambah lagi: \`${m.prefix}addstok ${productNo + 1}|<detail>\`_`,
+    `✅ *STOCK AGREGADO*\n\n` +
+      `🏷️ Producto: *${product.name}*\n` +
+      `🔑 Stock total actual: *${product.stockItems.length}* cuentas\n\n` +
+      `_Agregar más: \`${m.prefix}addstok ${productNo + 1}|<detalle>\`_`,
   );
 }
 

@@ -1,10 +1,10 @@
 import config, { getOwnerName } from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import {
   addJadibotOwner,
   removeJadibotOwner,
   getJadibotOwners,
-} from "../../src/lib/ourin-jadibot-database.js";
+} from "../../src/lib/luffy-jadibot-database.js";
 import fs from "fs";
 import path from "path";
 import {
@@ -12,7 +12,7 @@ import {
   lidToJid,
   resolveAnyLidToJid,
   isLidConverted,
-} from "../../src/lib/ourin-lid.js";
+} from "../../src/lib/luffy-lid.js";
 import { getGroupMode } from "../group/botmode.js";
 const pluginConfig = {
   name: "addowner",
@@ -26,7 +26,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -140,17 +140,17 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbOwners = getJadibotOwners(jadibotId);
       if (jbOwners.length === 0) {
         return m.reply(
-          `📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Belum ada owner terdaftar.\n> Gunakan \`${m.prefix}addowner\` untuk menambah.`,
+          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}addowner\` para agregar.`,
         );
       }
-      let txt = `📋 *DAFTAR OWNER JADIBOT* — ${jadibotId}\n\n`;
+      let txt = `📋 *LISTA DE OWNERS JADIBOT* — ${jadibotId}\n\n`;
       const mentions = jbOwners.map(toMentionJid).filter(Boolean);
       jbOwners.forEach((s, i) => {
         const number = String(s || "").replace(/[^0-9]/g, "");
         const name = getOwnerName(number);
         txt += `${i + 1}. 👑 @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
       });
-      txt += `\nTotal: *${jbOwners.length}* owner`;
+      txt += `\nTotal: *${jbOwners.length}* owners`;
       return m.reply(txt, { mentions });
     } else if (isCpanelMode) {
       const panelOwners = config.pterodactyl.ownerPanels || [];
@@ -159,10 +159,10 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
       if (allOwners.length === 0) {
         return m.reply(
-          `📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Belum ada owner panel terdaftar.`,
+          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Aún no hay owners de panel registrados.`,
         );
       }
-      let txt = `📋 *DAFTAR OWNER PANEL*\n\n`;
+      let txt = `📋 *LISTA DE OWNERS DE PANEL*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
       allOwners.forEach((s, i) => {
         const label =
@@ -175,7 +175,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
         const name = getOwnerName(number);
         txt += `${i + 1}. ${label} @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
       });
-      txt += `\nTotal: *${allOwners.length}* owner | 👑 Full, 🖥️ Panel`;
+      txt += `\nTotal: *${allOwners.length}* owners | 👑 Completo, 🖥️ Panel`;
       return m.reply(txt, { mentions });
     } else {
       const configOwners = (config.owner?.number || []).map(String);
@@ -183,9 +183,9 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const allOwners = [...new Set([...configOwners, ...dbOwners])];
 
       if (allOwners.length === 0) {
-        return m.reply(`📋 *ᴅᴀꜰᴛᴀʀ ᴏᴡɴᴇʀ*\n\n> Belum ada owner terdaftar.`);
+        return m.reply(`📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.`);
       }
-      let txt = `📋 *DAFTAR OWNER*\n\n`;
+      let txt = `📋 *LISTA DE OWNERS*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
       allOwners.forEach((s, i) => {
         const number = String(s || "").replace(/[^0-9]/g, "");
@@ -199,7 +199,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
         const name = getOwnerName(number);
         txt += `${i + 1}. ${label} @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
       });
-      txt += `\nTotal: *${allOwners.length}* owner | ⭐ Main, 👑 Added`;
+      txt += `\nTotal: *${allOwners.length}* owners | ⭐ Principal, 👑 Añadido`;
       return m.reply(txt, { mentions });
     }
   }
@@ -212,15 +212,15 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
   if (!targetNumber) {
     return m.reply(
-      `👑 *${isAdd ? "ADD" : "DEL"} OWNER*\n\n` +
-        `Reply/tag/ketik nomor user\n` +
-        `\`Contoh: ${m.prefix}${cmd} 6281234567890\`\n` +
-        `\`Dengan nama: ${m.prefix}${cmd} 6281234567890 NamaOwner\``,
+      `👑 *${isAdd ? "AGREGAR" : "ELIMINAR"} OWNER*\n\n` +
+        `Responde/etiqueta o escribe el número del usuario\n` +
+        `\`Ejemplo: ${m.prefix}${cmd} 6281234567890\`\n` +
+        `\`Con nombre: ${m.prefix}${cmd} 6281234567890 NombreOwner\``,
     );
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Format nomor tidak valid`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido`);
   }
 
   if (isJadibot && jadibotId) {
@@ -228,21 +228,21 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (addJadibotOwner(jadibotId, targetNumber)) {
         await m.react("👑");
         return m.reply(
-          `✅ Berhasil menambahkan *${targetNumber}* sebagai owner jadibot`,
+          `✅ Exitoso, se añadió *${targetNumber}* como owner jadibot`,
         );
       } else {
         return m.reply(
-          `❌ \`${targetNumber}\` sudah menjadi owner Jadibot ini.`,
+          `❌ \`${targetNumber}\` ya es owner de este Jadibot.`,
         );
       }
     } else if (isDel) {
       if (removeJadibotOwner(jadibotId, targetNumber)) {
         await m.react("✅");
         return m.reply(
-          `✅ Berhasil menghapus *${targetNumber}* dari owner jadibot`,
+          `✅ Exitoso, se eliminó *${targetNumber}* de los owners jadibot`,
         );
       } else {
-        return m.reply(`❌ \`${targetNumber}\` bukan owner Jadibot ini.`);
+        return m.reply(`❌ \`${targetNumber}\` no es owner de este Jadibot.`);
       }
     }
     return;
@@ -251,25 +251,25 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   if (isCpanelMode) {
     if (isAdd) {
       if (config.pterodactyl.ownerPanels.includes(targetNumber)) {
-        return m.reply(`❌ \`${targetNumber}\` sudah menjadi owner panel.`);
+        return m.reply(`❌ \`${targetNumber}\` ya es owner de panel.`);
       }
 
       let roleChanged = "";
       if (removeFromSellers(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade dari Seller ke Owner Panel`;
+        roleChanged = `\n> ⚡ Auto-upgrade de Seller a Owner de Panel`;
       }
 
       config.pterodactyl.ownerPanels.push(targetNumber);
       if (savePanelConfig()) {
         await m.react("👑");
         return m.reply(
-          `✅ Berhasil menambahkan *${targetNumber}* sebagai owner panel${roleChanged}`,
+          `✅ Exitoso, se añadió *${targetNumber}* como owner de panel${roleChanged}`,
         );
       } else {
         config.pterodactyl.ownerPanels = config.pterodactyl.ownerPanels.filter(
           (s) => s !== targetNumber,
         );
-        return m.reply(`❌ Gagal menyimpan ke config.js`);
+        return m.reply(`❌ Error al guardar en config.js`);
       }
     } else if (isDel) {
       const ownerList = config.pterodactyl.ownerPanels || [];
@@ -278,7 +278,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       );
       if (!found) {
         return m.reply(
-          `❌ \`${targetNumber}\` bukan owner panel.\n\n> Current list: ${ownerList.join(", ") || "empty"}`,
+          `❌ \`${targetNumber}\` no es owner de panel.\n\n> Lista actual: ${ownerList.join(", ") || "vacía"}`,
         );
       }
       config.pterodactyl.ownerPanels = ownerList.filter(
@@ -287,25 +287,25 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (savePanelConfig()) {
         await m.react("✅");
         return m.reply(
-          `✅ Berhasil menghapus *${targetNumber}* dari owner panel`,
+          `✅ Exitoso, se eliminó *${targetNumber}* de los owners de panel`,
         );
       } else {
-        return m.reply(`❌ Gagal menyimpan ke config.js`);
+        return m.reply(`❌ Error al guardar en config.js`);
       }
     }
   } else {
     if (isAdd) {
       if (db.data.owner.includes(targetNumber)) {
-        return m.reply(`❌ \`${targetNumber}\` sudah menjadi full owner.`);
+        return m.reply(`❌ \`${targetNumber}\` ya es full owner.`);
       }
 
       let roleChanged = "";
       if (removeFromSellers(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade dari Seller`;
+        roleChanged = `\n> ⚡ Auto-upgrade de Seller`;
         savePanelConfig();
       }
       if (removeFromOwnerPanels(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade dari Panel Owner`;
+        roleChanged = `\n> ⚡ Auto-upgrade de Panel Owner`;
         savePanelConfig();
       }
 
@@ -320,12 +320,12 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const displayName = customName || getOwnerName(targetNumber);
       await m.react("👑");
       return m.reply(
-        `✅ Berhasil menambahkan *${targetNumber}* sebagai full owner${customName ? ` (${customName})` : ""}${roleChanged}`,
+        `✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}${roleChanged}`,
       );
     } else if (isDel) {
       const index = db.data.owner.indexOf(targetNumber);
       if (index === -1) {
-        return m.reply(`❌ \`${targetNumber}\` bukan full owner.`);
+        return m.reply(`❌ \`${targetNumber}\` no es full owner.`);
       }
 
       db.data.owner.splice(index, 1);
@@ -335,7 +335,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       db.save();
 
       await m.react("✅");
-      return m.reply(`✅ Berhasil menghapus *${targetNumber}* dari full owner`);
+      return m.reply(`✅ Exitoso, se eliminó *${targetNumber}* de los full owners`);
     }
   }
 }

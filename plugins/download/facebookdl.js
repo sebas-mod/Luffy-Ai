@@ -1,11 +1,11 @@
 import { fbdown } from '../../src/scraper/fbdown.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'facebookdl',
     alias: ['fbdown', 'fb', 'facebook', 'fbdl'],
     category: 'download',
-    description: 'Download video Facebook',
+    description: 'Descarga videos de Facebook',
     usage: '.facebookdl <url>',
     example: '.facebookdl https://www.facebook.com/watch?v=xxx',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,15 +22,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *CARA PAKAI*\n\n` +
+            `⚠️ *CÓMO USAR*\n\n` +
             `- \`${m.prefix}facebookdl <url>\`\n\n` +
-            `*Contoh:*\n` +
+            `*Ejemplo:*\n` +
             `- \`${m.prefix}fbdown https://www.facebook.com/watch?v=xxx\``
         )
     }
     
     if (!url.match(/facebook\.com|fb\.watch|fb\.com/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link Facebook.`)
+        return m.reply(`❌ URL no válida. Usa un enlace de Facebook.`)
     }
     
     await m.react('🕕')
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ Gagal mengambil video. Coba link lain atau pastikan postingan bersifat publik.\n\n_Catatan: Sistem saat ini belum mendukung download foto Facebook, hanya video._`)
+            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.\n\n_Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
         // Find HD if available, else SD, else first item
@@ -50,16 +50,16 @@ async function handler(m, { sock }) {
         
         if (!video || !video.url) {
             await m.react('❌')
-            return m.reply(`❌ Video tidak ditemukan di link tersebut.\n\n_Catatan: Sistem saat ini belum mendukung download foto Facebook, hanya video._`)
+            return m.reply(`❌ No se encontró ningún video en ese enlace.\n\n_Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
-        let caption = `🎥 *FACEBOOK DOWNLOADER*\n\n`
-        caption += `*Judul:* ${data.result.title || "Video Facebook"}\n`
-        caption += `*Kualitas:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
+        let caption = `🎥 *DESCARGADOR DE FACEBOOK*\n\n`
+        caption += `*Título:* ${data.result.title || "Video de Facebook"}\n`
+        caption += `*Calidad:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
         if (video.formattedSize) {
-            caption += `*Ukuran:* ${video.formattedSize}\n`
+            caption += `*Tamaño:* ${video.formattedSize}\n`
         }
-        caption += `\n_Catatan: Fitur ini tidak mensupport postingan foto._`
+        caption += `\n_Nota: Esta función no soporta publicaciones de fotos._`
 
         await sock.sendMedia(m.chat, video.url, caption, m, {
             type: 'video',

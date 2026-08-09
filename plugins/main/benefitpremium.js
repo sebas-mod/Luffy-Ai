@@ -1,10 +1,10 @@
-import { getAllPlugins } from '../../src/lib/ourin-plugins.js'
+import { getAllPlugins } from '../../src/lib/luffy-plugins.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'benefitpremium',
-    alias: ['premiumbenefits', 'premiumfitur', 'benefitprem'],
+    alias: ['beneficiospremium', 'funcionespremium', 'beneficioprem'],
     category: 'main',
-    description: 'Lihat penjelasan dan daftar fitur khusus Premium',
+    description: 'Ver la explicación y lista de funciones exclusivas de Premium',
     usage: '.benefitpremium',
     isOwner: false,
     isGroup: false,
@@ -28,34 +28,34 @@ async function handler(m, { sock }) {
     commandList.sort()
     
     const totalCommands = commandList.length
-    const defaultLimit = config.limits?.default || 25
-    const premiumLimit = config.limits?.premium || 100
+    const defaultCarne = config.carne?.default || 25
+    const premiumCarne = config.carne?.premium || 100
     
     const message = 
-        `⭐ *ᴀᴘᴀ ɪᴛᴜ ᴘʀᴇᴍɪᴜᴍ?*\n\n` +
-        `Premium adalah *user berbayar* yang mendapatkan akses ke fitur eksklusif dan keuntungan lebih.\n\n` +
-        `╭┈┈⬡「 💎 *ᴋᴇᴜɴᴛᴜɴɢᴀɴ ᴘʀᴇᴍɪᴜᴍ* 」\n` +
-        `┃ ✦ \`\`\`Limit harian: ${premiumLimit}x (vs ${defaultLimit}x user biasa)\`\`\`\n` +
-        `┃ ✦ \`\`\`Cooldown lebih rendah\`\`\`\n` +
-        `┃ ✦ \`\`\`Akses fitur eksklusif\`\`\`\n` +
-        `┃ ✦ \`\`\`Prioritas response\`\`\`\n` +
-        `┃ ✦ \`\`\`No watermark di beberapa fitur\`\`\`\n` +
-        `┃ ✦ \`\`\`Support prioritas\`\`\`\n` +
+        `⭐ *¿QUÉ ES PREMIUM?*\n\n` +
+        `Premium es un *usuario de pago* que obtiene acceso a funciones exclusivas y mayores ventajas.\n\n` +
+        `╭┈┈⬡「 💎 *VENTAJAS PREMIUM* 」\n` +
+        `┃ ✦ \`\`\`Carne diaria: ${premiumCarne}x (vs ${defaultCarne}x usuario normal)\`\`\`\n` +
+        `┃ ✦ \`\`\`Cooldown más bajo\`\`\`\n` +
+        `┃ ✦ \`\`\`Acceso a funciones exclusivas\`\`\`\n` +
+        `┃ ✦ \`\`\`Prioridad de respuesta\`\`\`\n` +
+        `┃ ✦ \`\`\`Sin marca de agua en algunas funciones\`\`\`\n` +
+        `┃ ✦ \`\`\`Soporte prioritario\`\`\`\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *ᴄᴀʀᴀ ᴍᴇɴᴅᴀᴘᴀᴛᴋᴀɴ* 」\n` +
-        `┃ \`Premium didapatkan melalui:\`\n` +
-        `┃ • Hubungi owner bot\n` +
-        `┃ • \`\`\`${config.command?.prefix || '.'}addprem <nomor> <durasi>\`\`\`\n` +
-        `┃ • Contoh: .addprem 628xxx 30d\n` +
+        `╭┈┈⬡「 ⚙️ *CÓMO OBTENERLO* 」\n` +
+        `┃ \`Premium se obtiene mediante:\`\n` +
+        `┃ • Contacta al owner del bot\n` +
+        `┃ • \`\`\`${config.command?.prefix || '.'}addprem <número> <duración>\`\`\`\n` +
+        `┃ • Ejemplo: .addprem 628xxx 30d\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴄᴏᴍᴍᴀɴᴅ ᴘʀᴇᴍɪᴜᴍ* 」\n` +
-        `┃ \`Total: ${totalCommands} command\`\n` +
+        `╭┈┈⬡「 📋 *LISTA DE COMANDOS PREMIUM* 」\n` +
+        `┃ \`Total: ${totalCommands} comandos\`\n` +
         `┃\n` +
         (totalCommands > 0 
             ? commandList.map(cmd => `┃ ${cmd}`).join('\n')
-            : `┃ Semua command bisa diakses user biasa`) +
+            : `┃ Todos los comandos están disponibles para usuarios normales`) +
         `\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `Mau Upgrade? silahkan hubungi owner bot\n${config.owner.number.map(num => `- wa.me/${num}`).join('\n') }`
+        `¿Quieres actualizar? Contacta al capitán del bot\n${config.owner.number.map(num => `- wa.me/${num}`).join('\n') }`
     
     await m.reply(message)
 }

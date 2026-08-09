@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import * as timeHelper from '../../src/lib/ourin-time.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import * as timeHelper from '../../src/lib/luffy-time.js'
 const pluginConfig = {
     name: 'listsewa',
     alias: ['sewalist', 'daftarsewa'],
     category: 'owner',
-    description: 'Lihat daftar grup yang terdaftar sewa',
+    description: 'Ver la lista de grupos registrados en el alquiler',
     usage: '.listsewa',
     example: '.listsewa',
     isOwner: true,
@@ -12,13 +12,13 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 function formatCountdown(data) {
-    if (data.status === 'expired') return '🚫 EXPIRED (left)'
-    if (data.isLifetime) return '♾️ Permanent'
+    if (data.status === 'expired') return '🚫 EXPIRED (salido)'
+    if (data.isLifetime) return '♾️ Permanente'
     const diff = data.expiredAt - Date.now()
     if (diff <= 0) return '❌ EXPIRED'
     const days = Math.floor(diff / 86400000)
@@ -50,10 +50,10 @@ function handler(m) {
 
     if (groupIds.length === 0) {
         return m.reply(
-            `📋 *DAFTAR SEWA*\n\n` +
-            `Status: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n` +
-            `Belum ada grup terdaftar\n\n` +
-            `Tambah dengan: *${m.prefix}addsewa <link> <durasi>*`
+            `📋 *LISTA DE RENTAS*\n\n` +
+            `Estado: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n` +
+            `Aún no hay grupos registrados\n\n` +
+            `Agrega con: *${m.prefix}addsewa <enlace> <duración>*`
         )
     }
 
@@ -68,9 +68,9 @@ function handler(m) {
     const active = sorted.filter(id => sewaGroups[id].isLifetime || sewaGroups[id].expiredAt > Date.now())
     const expired = sorted.filter(id => !sewaGroups[id].isLifetime && sewaGroups[id].expiredAt <= Date.now())
 
-    let text = `📋 *DAFTAR SEWA*\n\n`
-    text += `Status sistem: *${db.db.data.sewa.enabled ? '✅ AKTIF' : '❌ NONAKTIF'}*\n`
-    text += `Total: *${groupIds.length}* grup (${active.length} aktif, ${expired.length} expired)\n\n`
+    let text = `📋 *LISTA DE RENTAS*\n\n`
+    text += `Estado del sistema: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
+    text += `Total: *${groupIds.length}* grupos (${active.length} activos, ${expired.length} expirados)\n\n`
 
     for (let i = 0; i < sorted.length; i++) {
         const gid = sorted[i]
@@ -81,13 +81,13 @@ function handler(m) {
 
         text += `${status} *${i + 1}. ${data.name || 'Unknown'}*\n`
         text += `   ID: ${gid.split('@')[0]}\n`
-        text += `   Sisa: ${countdown}\n`
-        text += `   Ditambah: ${addedDate}\n\n`
+        text += `   Restante: ${countdown}\n`
+        text += `   Agregado: ${addedDate}\n\n`
     }
 
-    text += `*AKSI:*\n`
-    text += `• *${m.prefix}renewsewa <id> <durasi>* — Perpanjang\n`
-    text += `• *${m.prefix}delsewa <id>* — Hapus dari whitelist`
+    text += `*ACCIONES:*\n`
+    text += `• *${m.prefix}renewsewa <id> <duración>* — Renovar\n`
+    text += `• *${m.prefix}delsewa <id>* — Quitar de la lista blanca`
 
     return m.reply(text)
 }

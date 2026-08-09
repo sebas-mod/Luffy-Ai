@@ -1,8 +1,8 @@
 import fs from "fs"
 import path from "path"
 import axios from "axios"
-import { getDatabase } from "../../src/lib/ourin-database.js"
-import te from "../../src/lib/ourin-error.js"
+import { getDatabase } from "../../src/lib/luffy-database.js"
+import te from "../../src/lib/luffy-error.js"
 import { prepareWAMessageMedia, generateWAMessageFromContent } from "ourin"
 
 const NSFW_DATA_DIR = path.join(process.cwd(), "src", "data", "nsfw")
@@ -60,15 +60,15 @@ const pluginConfig = {
   name: ALL_COMMANDS,
   alias: ["oppai", "oppaianimee"],
   category: "nsfw",
-  description: "Koleksi gambar NSFW anime dari berbagai kategori (Hanya untuk 18+)",
-  usage: ".nsfw atau .<kategori>",
+  description: "Colección de imágenes NSFW de anime de varias categorías (Solo para mayores de 18)",
+  usage: ".nsfw o .<categoría>",
   example: ".nsfw hentai",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 8,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 }
 
@@ -89,30 +89,30 @@ async function fetchFromJson(filename) {
 
 function buildCategoryList(prefix) {
   let text = `🔞 *NSFW MENU*\n\n`
-  text += `Kumpulan gambar anime NSFW dari berbagai kategori.\n`
-  text += `Fitur ini hanya untuk pengguna berusia *18 tahun ke atas*.\n\n`
-  text += `*📂 KATEGORI TERSEDIA:*\n\n`
+  text += `Colección de imágenes de anime NSFW de varias categorías.\n`
+  text += `Esta función es solo para usuarios mayores de *18 años*.\n\n`
+  text += `*📂 CATEGORÍAS DISPONIBLES:*\n\n`
 
-  text += `*— Dari Database Lokal —*\n`
+  text += `*— Desde la base de datos local —*\n`
   for (const [cmd, info] of Object.entries(JSON_CATEGORIES)) {
     const count = loadJsonUrls(info.file).length
-    text += `- ${info.emoji} *${prefix}${cmd}* — ${info.label} (${count} gambar)\n`
+    text += `- ${info.emoji} *${prefix}${cmd}* — ${info.label} (${count} imágenes)\n`
   }
 
-  text += `\n*— Dari API Online —*\n`
+  text += `\n*— Desde la API en línea —*\n`
   for (const [cmd, info] of Object.entries(API_CATEGORIES)) {
     text += `- ${info.emoji} *${prefix}${cmd}* — ${info.label}\n`
   }
 
-  text += `\n*⚙️ PENGATURAN GRUP:*\n`
-  text += `- *${prefix}nsfwon* — Mengaktifkan fitur NSFW di grup ini\n`
-  text += `- *${prefix}nsfwoff* — Menonaktifkan fitur NSFW di grup ini\n`
+  text += `\n*⚙️ AJUSTES DEL GRUPO:*\n`
+  text += `- *${prefix}nsfwon* — Activa la función NSFW en este grupo\n`
+  text += `- *${prefix}nsfwoff* — Desactiva la función NSFW en este grupo\n`
 
-  text += `\n*📌 CATATAN PENTING:*\n`
-  text += `- Fitur ini bisa digunakan langsung di *chat pribadi* bot\n`
-  text += `- Untuk grup, admin harus mengaktifkan dulu dengan *${prefix}nsfwon*\n`
-  text += `- Gunakan dengan bijak dan bertanggung jawab\n`
-  text += `- Konten ini hanya untuk pengguna *18+*`
+  text += `\n*📌 NOTA IMPORTANTE:*\n`
+  text += `- Esta función se puede usar directamente en el *chat privado* del bot\n`
+  text += `- Para grupos, el admin debe activarla primero con *${prefix}nsfwon*\n`
+  text += `- Úsala con prudencia y responsabilidad\n`
+  text += `- Este contenido es solo para usuarios *18+*`
 
   return text
 }
@@ -128,43 +128,43 @@ async function handler(m, { sock }) {
   const cmd = m.command.toLowerCase()
 
   if (cmd === "nsfwon") {
-    if (!m.isGroup) return m.reply(`❌ *Perintah ini hanya untuk grup*\n\nFitur NSFW bisa langsung digunakan di chat pribadi tanpa perlu diaktifkan.`)
-    if (!m.isAdmin && !m.isOwner) return m.reply(`❌ *Akses Ditolak*\n\nHanya admin grup yang bisa mengaktifkan atau menonaktifkan fitur NSFW di grup ini.`)
+    if (!m.isGroup) return m.reply(`❌ *Este comando es solo para grupos*\n\nLa función NSFW se puede usar directamente en el chat privado sin necesidad de activarla.`)
+    if (!m.isAdmin && !m.isOwner) return m.reply(`❌ *Acceso denegado*\n\nSolo los admins del grupo pueden activar o desactivar la función NSFW en este grupo.`)
 
     const groupData = db.getGroup(m.chat) || {}
     groupData.nsfw = true
     db.setGroup(m.chat, groupData)
     return m.reply(
-      `✅ *NSFW DIAKTIFKAN*\n\n` +
-      `Fitur NSFW telah berhasil diaktifkan untuk grup ini.\n\n` +
-      `*Perhatian:*\n` +
-      `- Pastikan semua anggota grup sudah berusia *18+*\n` +
-      `- Admin bertanggung jawab atas konten yang muncul di grup\n` +
-      `- Gunakan *${m.prefix}nsfwoff* untuk menonaktifkan kembali\n\n` +
-      `Ketik *${m.prefix}nsfw* untuk melihat daftar kategori yang tersedia.`
+      `✅ *NSFW ACTIVADO*\n\n` +
+      `La función NSFW se ha activado correctamente para este grupo.\n\n` +
+      `*Atención:*\n` +
+      `- Asegúrate de que todos los miembros del grupo tengan *18+* años\n` +
+      `- El admin es responsable del contenido que aparece en el grupo\n` +
+      `- Usa *${m.prefix}nsfwoff* para volver a desactivarla\n\n` +
+      `Escribe *${m.prefix}nsfw* para ver la lista de categorías disponibles.`
     )
   }
 
   if (cmd === "nsfwoff") {
-    if (!m.isGroup) return m.reply(`❌ *Perintah ini hanya untuk grup*\n\nDi chat pribadi, fitur NSFW selalu tersedia.`)
-    if (!m.isAdmin && !m.isOwner) return m.reply(`❌ *Akses Ditolak*\n\nHanya admin grup yang bisa mengaktifkan atau menonaktifkan fitur NSFW di grup ini.`)
+    if (!m.isGroup) return m.reply(`❌ *Este comando es solo para grupos*\n\nEn el chat privado, la función NSFW siempre está disponible.`)
+    if (!m.isAdmin && !m.isOwner) return m.reply(`❌ *Acceso denegado*\n\nSolo los admins del grupo pueden activar o desactivar la función NSFW en este grupo.`)
 
     const groupData = db.getGroup(m.chat) || {}
     groupData.nsfw = false
     db.setGroup(m.chat, groupData)
     return m.reply(
-      `✅ *NSFW DINONAKTIFKAN*\n\n` +
-      `Fitur NSFW telah berhasil dinonaktifkan untuk grup ini.\n` +
-      `Semua perintah NSFW tidak akan bisa digunakan di sini sampai diaktifkan kembali.`
+      `✅ *NSFW DESACTIVADO*\n\n` +
+      `La función NSFW se ha desactivado correctamente para este grupo.\n` +
+      `Todos los comandos NSFW no podrán usarse aquí hasta que se active nuevamente.`
     )
   }
 
   if (!isNsfwAllowed(m, db)) {
     return m.reply(
-      `🔒 *FITUR NSFW BELUM AKTIF*\n\n` +
-      `Fitur NSFW belum diaktifkan untuk grup ini.\n` +
-      `Minta admin grup untuk mengaktifkannya terlebih dahulu dengan perintah *${m.prefix}nsfwon*\n\n` +
-      `Atau kamu bisa menggunakan fitur ini di *chat pribadi* bot secara langsung.`
+      `🔒 *FUNCIÓN NSFW AÚN NO ACTIVA*\n\n` +
+      `La función NSFW no se ha activado para este grupo.\n` +
+      `Pide al admin del grupo que la active primero con el comando *${m.prefix}nsfwon*\n\n` +
+      `O puedes usar esta función en el *chat privado* del bot directamente.`
     )
   }
 
@@ -200,7 +200,7 @@ async function sendNsfwImage(m, sock, category) {
       info = API_CATEGORIES[category]
       buffer = await fetchFromApi(info.endpoint)
     } else {
-      return m.reply(`❌ Kategori *${category}* tidak ditemukan.`)
+      return m.reply(`❌ La categoría *${category}* no existe.`)
     }
 
     const media = await prepareWAMessageMedia(
@@ -217,7 +217,7 @@ async function sendNsfwImage(m, sock, category) {
           },
           interactiveMessage: {
             body: { text: `${info.emoji} *${info.label.toUpperCase()}*` },
-            footer: { text: "🔞 Konten ini hanya untuk 18+ — Gunakan dengan bijak" },
+            footer: { text: "🔞 Este contenido es solo para 18+ — Úsalo con prudencia" },
             header: {
               hasMediaAttachment: true,
               imageMessage: media.imageMessage,
@@ -227,14 +227,14 @@ async function sendNsfwImage(m, sock, category) {
                 {
                   name: "quick_reply",
                   buttonParamsJson: JSON.stringify({
-                    display_text: `${info.emoji} Lanjut Lagi?`,
+                    display_text: `${info.emoji} ¿Otra vez?`,
                     id: `${m.prefix}${category}`,
                   }),
                 },
                 {
                   name: "quick_reply",
                   buttonParamsJson: JSON.stringify({
-                    display_text: "📂 Lihat Semua Kategori",
+                    display_text: "📂 Ver Todas las Categorías",
                     id: `${m.prefix}nsfw`,
                   }),
                 },

@@ -1,14 +1,14 @@
 import axios from 'axios'
 import config from '../../config.js'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
-const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
+const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 
 const pluginConfig = {
     name: 'videy',
     alias: ['vdl', 'videydownload', 'videydl'],
     category: 'download',
-    description: 'Download video dari videy.co',
+    description: 'Descarga videos de videy.co',
     usage: '.videy <url>',
     example: '.videy https://videy.co/v?id=7ZH1ZRIF',
     isOwner: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -26,13 +26,13 @@ async function handler(m, { sock }) {
     if (!url) {
         return m.reply(
             `🎬 *ᴠɪᴅᴇʏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Masukkan URL videy.co\n\n` +
-            `\`Contoh: ${m.prefix}videy https://videy.co/v?id=7ZH1ZRIF\``
+            `> Ingresa la URL de videy.co\n\n` +
+            `\`Ejemplo: ${m.prefix}videy https://videy.co/v?id=7ZH1ZRIF\``
         )
     }
     
     if (!url.match(/videy\.co/i)) {
-        return m.reply(`❌ URL tidak valid. Gunakan link dari videy.co`)
+        return m.reply(`❌ URL no válida. Usa un enlace de videy.co`)
     }
     
     m.react('🕕')
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.url) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil video. Link tidak valid atau sudah expired.`)
+            return m.reply(`❌ Error al obtener el video. Enlace no válido o caducado.`)
         }
         
         const videoUrl = data.data.url

@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "listproduk",
   alias: ["produk", "katalog", "catalog"],
   category: "store",
-  description: "🛍️ Lihat daftar produk yang tersedia",
+  description: "🛍️ Ver la lista de productos disponibles",
   usage: ".listproduk",
   example: ".listproduk",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,27 +27,27 @@ async function handler(m, { sock }) {
 
   if (products.length === 0) {
     return m.reply(
-      `🏪 *Produk Belum Tersedia*\n\n` +
-        `Saat ini belum ada produk yang ditambahkan oleh admin 😔\n\n` +
-        `Silakan cek kembali nanti atau hubungi admin untuk informasi lebih lanjut.\n\n` +
-        `_Terima kasih atas ketertarikan Anda_ 🙏`,
+      `🏪 *Productos Aún No Disponibles*\n\n` +
+        `Actualmente no hay productos agregados por el admin 😔\n\n` +
+        `Vuelve a revisar más tarde o contacta al admin para más información.\n\n` +
+        `_Gracias por tu interés_ 🙏`,
     );
   }
 
-  let txt = `🛍️ *DAFTAR PRODUK*\n\n`;
-  txt += `Berikut adalah produk yang tersedia saat ini 🎉\n`;
-  txt += `Untuk pembelian, ketik \`${m.prefix}beli <nomor>\`\n\n`;
+  let txt = `🛍️ *LISTA DE PRODUCTOS*\n\n`;
+  txt += `Estos son los productos disponibles actualmente 🎉\n`;
+  txt += `Para comprar, escribe \`${m.prefix}beli <numero>\`\n\n`;
 
   for (let i = 0; i < products.length; i++) {
     const p = products[i];
     const type = p.type || "digital";
     const typeIcon = type === "digital" ? "🔑" : "📦";
-    const typeLabel = type === "digital" ? "Digital" : "Fisik";
+    const typeLabel = type === "digital" ? "Digital" : "Físico";
 
     let stockDisplay;
     if (type === "digital") {
       const count = p.stockItems?.length || 0;
-      stockDisplay = p.stock === -1 ? "♾️ Unlimited" : `${count} akun`;
+      stockDisplay = p.stock === -1 ? "♾️ Unlimited" : `${count} cuentas`;
     } else {
       stockDisplay = p.stock === -1 ? "♾️ Unlimited" : `${p.stock} pcs`;
     }
@@ -65,18 +65,18 @@ async function handler(m, { sock }) {
 
     txt += `*${i + 1}.* ${typeIcon} ${p.name}\n`;
     txt += `   💰 ${originalPriceStr}${priceStr}\n`;
-    txt += `   📊 Stok: ${stockDisplay} ${statusIcon}\n`;
-    txt += `   🏷️ Tipe: ${typeLabel}\n`;
+    txt += `   📊 Stock: ${stockDisplay} ${statusIcon}\n`;
+    txt += `   🏷️ Tipo: ${typeLabel}\n`;
     if (p.description)
       txt += `   📝 _${p.description.substring(0, 60)}${p.description.length > 60 ? "..." : ""}_\n`;
     txt += `\n`;
   }
 
-  txt += `💡 _Ketik \`${m.prefix}beli <nomor>\` untuk memesan produk_`;
+  txt += `💡 _Escribe \`${m.prefix}beli <numero>\` para pedir el producto_`;
 
   if (m.isGroup) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     await sock.sendMessage(
       m.chat,
       {

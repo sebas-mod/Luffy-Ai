@@ -1,11 +1,11 @@
 import fs from 'fs'
 import path from 'path'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'sampah',
     alias: ['clearsampah', 'cleartemp', 'deltemp'],
     category: 'owner',
-    description: 'Menghapus semua sampah di temp',
+    description: 'Eliminar todos los archivos basura en temp',
     usage: '.sampah',
     example: '.sampah',
     isOwner: true,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,7 +21,7 @@ async function handler(m) {
     const tempPath = path.join(process.cwd(), 'temp')
 
     if (!fs.existsSync(tempPath)) {
-        return m.reply('❌ Folder temp tidak ditemukan!')
+        return m.reply('❌ ¡La carpeta temp no existe!')
     }
 
     await m.react('🗑️')
@@ -30,7 +30,7 @@ async function handler(m) {
         const files = fs.readdirSync(tempPath)
 
         if (!files.length) {
-            return m.reply('📁 Folder temp sudah kosong!')
+            return m.reply('📁 ¡La carpeta temp ya está vacía!')
         }
 
         let deleted = 0
@@ -44,8 +44,8 @@ async function handler(m) {
 
         await m.react('✅')
         await m.reply(
-            `🗑️ *TEMP CLEANED!*\n\n` +
-            `> Total file/folder dihapus: *${deleted}*`
+            `🗑️ *TEMP LIMPIO!*\n\n` +
+            `> Total de archivos/carpetas eliminados: *${deleted}*`
         )
 
     } catch (error) {

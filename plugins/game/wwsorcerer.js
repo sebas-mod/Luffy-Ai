@@ -4,14 +4,14 @@ const pluginConfig = {
     alias: ['sorcerer', 'wws'],
     category: 'game',
     description: 'Sorcerer night action - Check if target is Seer',
-    usage: '.wwsorcerer <nomor>',
+    usage: '.wwsorcerer <número>',
     example: '.wwsorcerer 3',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 

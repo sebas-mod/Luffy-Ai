@@ -1,18 +1,18 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'buyfitur',
     alias: ['belifitur', 'purchasefeature', 'buyfeature'],
     category: 'user',
-    description: 'Beli fitur premium (1 fitur = 3000 koin)',
-    usage: '.buyfitur [nama_fitur]',
+    description: 'Comprar función premium (1 función = 3000 berry)',
+    usage: '.buyfitur [nombre_funcion]',
     example: '.buyfitur',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,10 +20,10 @@ const PRICE_PER_FEATURE = 3000
 
 const PREMIUM_FEATURES = [
     { id: 'sticker', name: 'Sticker Unlimited', desc: 'Unlimited sticker commands' },
-    { id: 'downloader', name: 'Downloader Pro', desc: 'Download tanpa limit' },
-    { id: 'ai', name: 'AI Access', desc: 'Akses fitur AI premium' },
-    { id: 'tools', name: 'Advanced Tools', desc: 'Tools eksklusif' },
-    { id: 'game', name: 'Game Bonus', desc: '2x rewards game' }
+    { id: 'downloader', name: 'Downloader Pro', desc: 'Descarga sin límite' },
+    { id: 'ai', name: 'AI Access', desc: 'Acceso a funciones AI premium' },
+    { id: 'tools', name: 'Advanced Tools', desc: 'Herramientas exclusivas' },
+    { id: 'game', name: 'Game Bonus', desc: '2x recompensas de juego' }
 ]
 
 function formatNumber(num) {
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     if (user.isPremium || config.isPremium(m.sender)) {
         return m.reply(
             `✨ *ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀ*\n\n` +
-            `> Kamu sudah premium!\n` +
-            `> Semua fitur sudah ter-unlock!`
+            `> ¡Ya eres premium!\n` +
+            `> ¡Todas las funciones ya están desbloqueadas!`
         )
     }
     
@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
         text += `┃  🛒 *ʙᴜʏ ꜰɪᴛᴜʀ*\n`
         text += `╰━━━━━━━━━━━━━━━━━╯\n\n`
         
-        text += `> Harga: *${formatNumber(PRICE_PER_FEATURE)}* bal/fitur\n`
-        text += `> Koin: *${formatNumber(user.koin || 0)}*\n\n`
+        text += `> Precio: *${formatNumber(PRICE_PER_FEATURE)}* bal/función\n`
+        text += `> Berry: *${formatNumber(user.berry || 0)}*\n\n`
         
         text += `╭┈┈⬡「 📋 *ꜰɪᴛᴜʀ* 」\n`
         
@@ -65,8 +65,8 @@ async function handler(m, { sock }) {
         }
         
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `> Gunakan: \`.buyfitur <id>\`\n`
-        text += `> Atau jadi *Premium* unlock semua!`
+        text += `> Usa: \`.buyfitur <id>\`\n`
+        text += `> O hazte *Premium* y desbloquea todo!`
         
         await m.reply(text)
         return
@@ -76,44 +76,44 @@ async function handler(m, { sock }) {
     
     if (!feature) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Fitur \`${featureName}\` tidak ditemukan\n` +
-            `> Ketik \`.buyfitur\` untuk lihat daftar`
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> La función \`${featureName}\` no fue encontrada\n` +
+            `> Escribe \`.buyfitur\` para ver la lista`
         )
     }
     
     const unlockedFeatures = user.unlockedFeatures || []
     
     if (unlockedFeatures.includes(feature.id)) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Fitur \`${feature.name}\` sudah ter-unlock!`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> La función \`${feature.name}\` ya está desbloqueada!`)
     }
     
-    if ((user.koin || 0) < PRICE_PER_FEATURE) {
+    if ((user.berry || 0) < PRICE_PER_FEATURE) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Koin tidak cukup!\n` +
-            `> Butuh: *${formatNumber(PRICE_PER_FEATURE)}*\n` +
-            `> Kamu punya: *${formatNumber(user.koin || 0)}*`
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> ¡No tienes suficientes berry!\n` +
+            `> Necesitas: *${formatNumber(PRICE_PER_FEATURE)}*\n` +
+            `> Tienes: *${formatNumber(user.berry || 0)}*`
         )
     }
     
-    db.updateKoin(m.sender, -PRICE_PER_FEATURE)
+    db.updateBerry(m.sender, -PRICE_PER_FEATURE)
     unlockedFeatures.push(feature.id)
     db.setUser(m.sender, { unlockedFeatures })
     
-    const newKoin = db.getUser(m.sender).koin
+    const newBerry = db.getUser(m.sender).berry
     
     m.react('✅')
     
     await m.reply(
-        `✅ *ꜰɪᴛᴜʀ ᴅɪ-ᴜɴʟᴏᴄᴋ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 🎁 ꜰɪᴛᴜʀ: *${feature.name}*\n` +
-        `┃ 💵 ʜᴀʀɢᴀ: *-${formatNumber(PRICE_PER_FEATURE)}* bal\n` +
-        `┃ 💰 sɪsᴀ: *${formatNumber(newKoin)}*\n` +
+        `✅ *ꜰᴜɴᴄɪᴏɴ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴀ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 🎁 ꜰᴜɴᴄɪᴏɴ: *${feature.name}*\n` +
+        `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(PRICE_PER_FEATURE)}* bal\n` +
+        `┃ 💰 ʀᴇsᴛᴀɴᴛᴇ: *${formatNumber(newBerry)}*\n` +
         `╰┈┈⬡\n\n` +
         `> _${feature.desc}_\n\n` +
-        `> 💡 Tip: Jadi *Premium* untuk unlock SEMUA!`
+        `> 💡 Tip: Hazte *Premium* para desbloquear TODO!`
     )
 }
 

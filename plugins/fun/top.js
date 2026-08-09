@@ -1,17 +1,17 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'top',
     alias: ['top5', 'toplist'],
     category: 'fun',
-    description: 'Random top 5 member untuk kategori tertentu',
-    usage: '.top <kategori>',
-    example: '.top orang pintar',
+    description: 'Top 5 aleatorio de miembros para una categoría',
+    usage: '.top <categoría>',
+    example: '.top personas inteligentes',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     
     if (!kategori) {
         return m.reply(
-            `\`Contoh: ${m.prefix}top orang pintar\``
+            `\`Ejemplo: ${m.prefix}top personas inteligentes\``
         )
     }
     
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
             .filter(id => id && id !== sock.user?.id?.split(':')[0] + '@s.whatsapp.net')
         
         if (members.length < 2) {
-            return m.reply(`❌ Member grup kurang dari 5 orang!`)
+            return m.reply(`❌ ¡El grupo tiene menos de 5 miembros!`)
         }
         
         const shuffled = members.sort(() => Math.random() - 0.5)

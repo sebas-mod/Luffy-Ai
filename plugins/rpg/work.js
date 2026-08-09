@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "work",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 180,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,39 +27,39 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Hadeh kak, badan kamu udah loyo banget! 🥵💦\n\nKerja butuh *${staminaCost} Stamina*, tapi sisa *${user.rpg.stamina}* doang.\nIstirahat dulu kek, jangan diforsir ntar tepar! 🛌💤`);
+    return m.reply(`Vaya bro, ¡tu cuerpo ya está muy agotado! 🥵💦\n\nTrabajar necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*.\nDescansa un poco, no te esfuerces de más o te desmayas! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   const jobs = [
-    { name: "👨‍🌾 Petani", min: 1000, max: 3000 },
-    { name: "🧹 Cleaning Service", min: 2000, max: 5000 },
-    { name: "📦 Kurir", min: 3000, max: 7000 },
-    { name: "👨‍🍳 Koki", min: 4000, max: 10000 },
-    { name: "👨‍💻 Programmer", min: 8000, max: 20000 },
-    { name: "👨‍⚕️ Dokter", min: 15000, max: 30000 },
+    { name: "👨‍🌾 Granjero", min: 1000, max: 3000 },
+    { name: "🧹 Personal de Limpieza", min: 2000, max: 5000 },
+    { name: "📦 Mensajero", min: 3000, max: 7000 },
+    { name: "👨‍🍳 Cocinero", min: 4000, max: 10000 },
+    { name: "👨‍💻 Programador", min: 8000, max: 20000 },
+    { name: "👨‍⚕️ Médico", min: 15000, max: 30000 },
   ];
 
   const job = jobs[Math.floor(Math.random() * jobs.length)];
   const salary = Math.floor(Math.random() * (job.max - job.min + 1)) + job.min;
   const expGain = Math.floor(salary / 10);
 
-  await m.reply(`Otw berangkat kerja jadi *${job.name.substring(3)}* dulu kak! 🏃💼💨`);
+  await m.reply(`En camino a trabajar como *${job.name.substring(3)}* bro! 🏃💼💨`);
   await new Promise((r) => setTimeout(r, 3000));
 
-  user.koin = (user.koin || 0) + salary;
+  user.berry = (user.berry || 0) + salary;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   db.save();
 
-  let txt = `CIE YANG ABIS KERJA! 💸✨\n\n`;
-  txt += `Gila, gajinya lumayan banget nih:\n`;
-  txt += `💼 Profesi: *${job.name}*\n`;
-  txt += `💵 Gaji Bersih: *+Rp ${salary.toLocaleString("id-ID")}*\n`;
+  let txt = `¡MIRA QUIÉN TERMINÓ DE TRABAJAR! 💸✨\n\n`;
+  txt += `Qué locura, el sueldo está muy bien:\n`;
+  txt += `💼 Profesión: *${job.name}*\n`;
+  txt += `💵 Salario Neto: *+Rp ${salary.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${expGain}*\n`;
-  txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Kerja keras bagai quda membuahkan hasil kak! Lanjutkan! 🐴🔥`;
+  txt += `⚡ Resistencia: *-${staminaCost}*\n\n`;
+  txt += `El trabajo duro da frutos bro! ¡Sigue así! 🐴🔥`;
 
   await m.reply(txt);
 }

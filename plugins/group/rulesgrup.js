@@ -1,12 +1,12 @@
 import config from "../../config.js"
-import { getDatabase } from "../../src/lib/ourin-database.js"
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js"
+import { getDatabase } from "../../src/lib/luffy-database.js"
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js"
 
 const pluginConfig = {
     name: "rulesgrup",
     alias: ["grouprules", "aturangrup", "grules"],
     category: "group",
-    description: "Menampilkan rules dan aturan grup secara lengkap",
+    description: "Mostrar las reglas del grupo en detalle",
     usage: ".rulesgrup",
     example: ".rulesgrup",
     isOwner: false,
@@ -14,41 +14,41 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
 }
 
-const DEFAULT_GROUP_RULES = `📜 *ATURAN GRUP*
+const DEFAULT_GROUP_RULES = `📜 *REGLAS DEL GRUPO*
 
-Selamat datang di grup ini! Supaya suasana tetap nyaman dan kondusif untuk semua anggota, harap patuhi aturan-aturan berikut ini ya.
+Bienvenido a este grupo! Para que el ambiente siga siendo agradable y armonioso para todos los miembros, por favor respeta las siguientes reglas.
 
-🔹 *ETIKA BERKOMUNIKASI*
+🔹 *ETIQUETA AL COMUNICARSE*
 
-- Gunakan *bahasa yang sopan* dan saling menghargai satu sama lain. Tidak ada toleransi untuk kata-kata kasar atau ujaran kebencian.
-- Dilarang melakukan *spam* pesan berulang-ulang, termasuk spam sticker, gambar, dan voice note secara berlebihan.
-- Dilarang menyebarkan *konten SARA, pornografi, dan kekerasan* dalam bentuk apapun.
-- Jangan *menghina, membully, atau mempermalukan* anggota grup lainnya.
+- Usa *un lenguaje educado* y respeta a los demás. No hay tolerancia para palabras groseras o discursos de odio.
+- Prohibido hacer *spam* de mensajes repetidos, incluyendo stickers, imágenes y notas de voz en exceso.
+- Prohibido difundir *contenido SARA, pornografía y violencia* en cualquier forma.
+- No *insultar, acosar ni humillar* a los demás miembros del grupo.
 
-🔹 *KONTEN DAN LINK*
+🔹 *CONTENIDO Y ENLACES*
 
-- Dilarang *promosi* produk, jasa, atau akun media sosial tanpa izin admin grup.
-- Dilarang *menyebarkan link* apapun tanpa persetujuan admin, termasuk link grup WhatsApp lain.
-- Dilarang menyebarkan *berita hoax* atau informasi yang belum terverifikasi kebenarannya.
-- Dilarang mengirim *dokumen atau file mencurigakan* yang berpotensi mengandung virus.
+- Prohibida la *promoción* de productos, servicios o cuentas de redes sociales sin permiso de los admins del grupo.
+- Prohibido *compartir enlaces* sin la aprobación de los admins, incluyendo enlaces de otros grupos de WhatsApp.
+- Prohibido difundir *noticias falsas (hoax)* o información no verificada.
+- Prohibido enviar *documentos o archivos sospechosos* que puedan contener virus.
 
-🔹 *PENGGUNAAN BOT*
+🔹 *USO DEL BOT*
 
-- Gunakan command bot *secukupnya*, jangan spam command berulang-ulang.
-- *Patuhi instruksi admin* grup kapan saja. Keputusan admin adalah final.
-- Jika ada masalah, sampaikan dengan baik-baik ke admin, bukan di grup.
+- Usa los comandos del bot *con moderación*, no hagas spam de comandos repetidos.
+- *Sigue las instrucciones de los admins* en todo momento. La decisión de los admins es definitiva.
+- Si tienes un problema, coméntalo respetuosamente con los admins, no en el grupo.
 
-🔹 *KONSEKUENSI*
+🔹 *CONSECUENCIAS*
 
-- Pelanggaran ringan mendapat *peringatan (warning)* dari admin
-- Pelanggaran berat atau berulang akan di-*kick* dari grup
-- Admin berhak mengeluarkan member kapan saja tanpa pemberitahuan
+- Las faltas leves reciben *advertencias (warning)* de los admins
+- Las faltas graves o repetidas serán motivo de *expulsión (kick)* del grupo
+- Los admins se reservan el derecho de expulsar miembros en cualquier momento sin previo aviso
 
-_Dengan bergabung di grup ini, kamu dianggap sudah menyetujui semua aturan di atas._`
+_Al unirte a este grupo, se considera que aceptas todas las reglas anteriores._`
 
 async function handler(m, { sock }) {
     const db = getDatabase()
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const customRules = groupData.groupRules
     const rulesText = customRules || DEFAULT_GROUP_RULES
 
-    const imageBuffer = getAssetBuffer("ourin-rules")
+    const imageBuffer = getAssetBuffer("luffy-rules")
 
     if (imageBuffer) {
         await sock.sendMessage(m.chat, {

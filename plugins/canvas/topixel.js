@@ -1,12 +1,12 @@
 import sharp from "sharp";
 import { downloadMediaMessage, getContentType } from "ourin";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "topixel",
   alias: ["pixelate", "pixelart"],
   category: "canvas",
-  description: "Ubah foto kamu jadi gambar pixel art yang keren",
+  description: "Convierte tu foto en una imagen pixel art genial",
   usage: ".topixel [level] (reply/kirim foto)",
   example: ".topixel 30",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -93,12 +93,12 @@ async function handler(m, { sock }) {
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`👾 *PIXEL ART MAKER*\n\nKirim atau reply foto dengan perintah \`${m.prefix}topixel [level]\` untuk mengubah fotomu menjadi gaya retro pixel art!\n\n_Catatan: Level opsional antara 1-40 (semakin besar semakin kotak-kotak)._`);
+      return m.reply(`👾 *PIXEL ART MAKER*\n\nEnvía o responde una foto con el comando \`${m.prefix}topixel [nivel]\` para convertir tu foto a un estilo retro pixel art!\n\n_Nota: El nivel es opcional, entre 1-40 (cuanto más alto, más cuadriculado)._`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("❌ Gagal membaca media gambar, coba lagi!");
+  if (!media) return m.reply("❌ No se pudo leer la imagen, ¡inténtalo de nuevo!");
 
   await m.react("🕕");
 
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
       m.chat, 
       { 
         image: pixelatedBuffer, 
-        caption: `👾 *PIXEL ART BERHASIL!*\n\nIni dia fotomu dalam gaya pixel art retro 8-bit. Keren kan? ✨` 
+        caption: `👾 *PIXEL ART HECHO!*\n\nAquí está tu foto en estilo pixel art retro 8-bit. ¿Genial, verdad? ✨` 
       }, 
       { quoted: m }
     );

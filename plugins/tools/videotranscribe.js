@@ -1,15 +1,15 @@
 import crypto from "crypto";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "videotranscribe",
   alias: ["video-transcribe", "transkripvideo"],
   category: "tools",
-  description: "Transkrip video dari URL menjadi teks (YouTube, mp4, dll)",
-  usage: ".video-transcribe <url> [lang]",
+  description: "Transcribe un video desde una URL a texto (YouTube, mp4, etc.)",
+  usage: ".video-transcribe <url> [idioma]",
   example: ".video-transcribe https://youtu.be/dQw4w9WgXcQ\n.video-transcribe https://youtu.be/dQw4w9WgXcQ id",
   cooldown: 30,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -50,7 +50,7 @@ function cleanResult(input, json) {
     return {
       status: false,
       code: json?.code || 500,
-      message: json?.msg || json?.message || "Transcript tidak ditemukan",
+      message: json?.msg || json?.message || "No se encontró la transcripción",
     };
   }
   const title = data.find((item) => item?.videoTitle)?.videoTitle || "No title";
@@ -71,7 +71,7 @@ function cleanResult(input, json) {
 
 async function transcriber(url, language = DEFAULT_LANG) {
   if (!url || !/^https?:\/\//i.test(String(url))) {
-    throw new Error("URL kosong / tidak valid");
+    throw new Error("URL vacía / no válida");
   }
   const body = {
     track_id: makeTrackId(),
@@ -88,7 +88,7 @@ async function transcriber(url, language = DEFAULT_LANG) {
   try {
     json = JSON.parse(text);
   } catch {
-    throw new Error("Response bukan JSON: " + text.slice(0, 200));
+    throw new Error("La respuesta no es JSON: " + text.slice(0, 200));
   }
   const result = cleanResult(url, json);
   if (!result.status) throw new Error(result.message);
@@ -101,7 +101,7 @@ async function handler(m, { args }) {
 
   if (!url) {
     return m.reply(
-      `*📝 VIDEO TRANSCRIBE*\n\n\`\`\`${m.prefix}video-transcribe <url_video> [bahasa]\`\`\`\n\nContoh:\n\`${m.prefix}video-transcribe https://youtu.be/... id\``
+      `*📝 TRANSCRIPCIÓN DE VIDEO*\n\n\`\`\`${m.prefix}video-transcribe <url_del_video> [idioma]\`\`\`\n\nEjemplo:\n\`${m.prefix}video-transcribe https://youtu.be/... id\``
     );
   }
 
@@ -110,14 +110,14 @@ async function handler(m, { args }) {
   try {
     const result = await transcriber(url, lang);
     
-    let info = `📝 *VIDEO TRANSCRIBE*\n\n`;
-    info += `*🎬 Title:* ${result.title}\n`;
-    info += `*🗣️ Language:* ${lang.toUpperCase()}\n`;
-    info += `*🔢 Segments:* ${result.total}\n\n`;
-    info += `*📜 Transcript:*\n${result.transcript.substring(0, 2500)}`;
+    let info = `📝 *TRANSCRIPCIÓN DE VIDEO*\n\n`;
+    info += `*🎬 Título:* ${result.title}\n`;
+    info += `*🗣️ Idioma:* ${lang.toUpperCase()}\n`;
+    info += `*🔢 Segmentos:* ${result.total}\n\n`;
+    info += `*📜 Transcripción:*\n${result.transcript.substring(0, 2500)}`;
     
     if (result.transcript.length > 2500) {
-      info += `... (teks terlalu panjang)`;
+      info += `... (el texto es demasiado largo)`;
     }
 
     m.react("✅");
@@ -125,7 +125,7 @@ async function handler(m, { args }) {
   } catch (err) {
     console.error("[VideoTranscribe]", err.message);
     m.react("☢");
-    m.reply(`❌ *Gagal:* ${err.message || "Gagal memproses video"}`);
+    m.reply(`❌ *Error:* ${err.message || "No se pudo procesar el video"}`);
   }
 }
 

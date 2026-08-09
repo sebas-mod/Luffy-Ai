@@ -1,28 +1,28 @@
 import * as _canvas from "@napi-rs/canvas";
 import path from "path";
 import fs from "fs";
-import * as timeHelper from "../../src/lib/ourin-time.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import * as timeHelper from "../../src/lib/luffy-time.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import axios from "axios";
 import config from "../../config.js";
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 const pluginConfig = {
   name: "nulis",
   alias: ["tulis", "write"],
   category: "tools",
-  description: "Generate tulisan tangan di kertas",
-  usage: ".nulis <teks>",
-  example: ".nulis Aku cinta kamu selamanya",
+  description: "Genera texto escrito a mano en un papel",
+  usage: ".nulis <texto>",
+  example: ".nulis Te quiero por siempre",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
-const fontUrl = getAssetBuffer("ourin-font");
+const fontUrl = getAssetBuffer("luffy-font");
 let _fontRegistered = false;
 function wrapText(ctx, text, maxWidth) {
   const words = text.split(" ");
@@ -45,28 +45,28 @@ async function handler(m, { sock }) {
   const text = m.args?.join(" ");
   if (!text) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}nulis <teks>\`\n\n` +
-        `> Contoh:\n` +
-        `> \`${m.prefix}nulis Aku cinta kamu selamanya\``,
+      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+        `> \`${m.prefix}nulis <texto>\`\n\n` +
+        `> Ejemplo:\n` +
+        `> \`${m.prefix}nulis Te quiero por siempre\``,
     );
   }
   if (text.length > 500) {
-    return m.reply(`❌ *ᴛᴇᴋs ᴛᴇʀʟᴀʟᴜ ᴘᴀɴᴊᴀɴɢ*\n\n> Maksimal 500 karakter`);
+    return m.reply(`❌ *ᴛᴇxᴛᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ʟᴀʀɢᴏ*\n\n> Máximo 500 caracteres`);
   }
-  const inputUrl = getAssetBuffer("ourin-kertas");
+  const inputUrl = getAssetBuffer("luffy-kertas");
   if (!inputUrl) {
     return m.reply(
-      `❌ *ᴛᴇᴍᴘʟᴀᴛᴇ ᴛɪᴅᴀᴋ ᴀᴅᴀ*\n\n> File template kertas tidak ditemukan di config.assets`,
+      `❌ *ᴘʟᴀɴᴛɪʟʟᴀ ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇ*\n\n> El archivo de plantilla de papel no se encontró en config.assets`,
     );
   }
   await m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇᴍᴘʀᴏsᴇs...*\n\n> Membuat tulisan tangan...`);
+  await m.reply(`🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Creando texto a mano...`);
   try {
     const { createCanvas, loadImage, GlobalFonts } = _canvas;
     if (!_fontRegistered) {
       try {
-        const fontBuf = getAssetBuffer("ourin-font");
+        const fontBuf = getAssetBuffer("luffy-font");
         if (fontBuf) {
           GlobalFonts.register(fontBuf, "Zahraaa");
         }
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
       }
       _fontRegistered = true;
     }
-    const bgBuf = getAssetBuffer("ourin-kertas");
+    const bgBuf = getAssetBuffer("luffy-kertas");
     const bgImage = await loadImage(bgBuf);
     const canvas = createCanvas(bgImage.width, bgImage.height);
     const ctx = canvas.getContext("2d");
@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
     await sock.sendMedia(
       m.chat,
       buffer,
-      `✅ *ʟᴜʟɪsᴀɴ ᴛᴀɴɢᴀɴ*\n\n> Hatihati ketahuan! 📖`,
+      `✅ *ᴇsᴄʀɪᴛᴜʀᴀ ᴀ ᴍᴀɴᴏ*\n\n> ¡Cuidado que te descubren! 📖`,
       m,
       { type: "image", contextInfo: saluranCtx() },
     );

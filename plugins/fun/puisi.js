@@ -1,14 +1,14 @@
 import axios from 'axios'
 import config from '../../config.js'
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
-const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
+const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 
 const pluginConfig = {
     name: 'puisi',
     alias: ['puisiku', 'sajak'],
     category: 'fun',
-    description: 'Random puisi Indonesia',
+    description: 'Poema aleatorio de Indonesia',
     usage: '.puisi',
     example: '.puisi',
     isOwner: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
         
         if (!res.status || !res.data?.text) {
             m.react('❌')
-            return m.reply(`❌ Gagal mengambil puisi`)
+            return m.reply(`❌ Error al obtener el poema`)
         }
         
         const text = res.data.text

@@ -1,26 +1,26 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "fakegopay",
     alias: ["fakegopay"],
     category: "canvas",
-    description: "Membuat canvas fake gopay",
-    usage: ".fakegopay <saldo>|<coin>|<terpakai>|<bulan>",
-    example: ".fakegopay 100000|500|20000|Januari",
+    description: "Crea canvas de fake gopay",
+    usage: ".fakegopay <saldo>|<moneda>|<usado>|<mes>",
+    example: ".fakegopay 100000|500|20000|Enero",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`Format salah!\n\n> Contoh: .fakegopay 100000|500|20000|Januari`);
+    if (!text) return m.reply(`Formato incorrecto!\n\n> Ejemplo: .fakegopay 100000|500|20000|Enero`);
     const [saldo, coin, terpakai, bulan] = text.split("|").map(v => v.trim());
-    if (!saldo || !coin || !terpakai || !bulan) return m.reply(`Pastikan semua argumen diisi dengan benar, dipisah dengan tanda |.`);
+    if (!saldo || !coin || !terpakai || !bulan) return m.reply(`Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
     
     await m.react("🕕");
     try {
@@ -32,7 +32,7 @@ async function handler(m, { sock, text }) {
                 "Content-Type": "application/json"
             }
         });
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Berhasil membuat fake gopay" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Fake gopay creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[FakeGopay Error]", e);

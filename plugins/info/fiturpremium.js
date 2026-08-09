@@ -1,11 +1,11 @@
-import { getAllPlugins } from "../../src/lib/ourin-plugins.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getAllPlugins } from "../../src/lib/luffy-plugins.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const config = {
   name: "fiturpremium",
   alias: ["listprem", "listpremium", "fiturprem"],
   category: "info",
-  description: "Melihat daftar seluruh fitur premium bot",
+  description: "Ver la lista de todas las funciones premium del bot",
   usage: ".fiturpremium",
   example: ".fiturpremium",
   isOwner: false,
@@ -13,7 +13,7 @@ const config = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -41,8 +41,8 @@ async function handler(m, { sock }) {
   if (premiumFeatures.length === 0) {
     await m.react("✅");
     return m.reply(
-      `📝 *DAFTAR FITUR PREMIUM*\n\n` +
-      `Saat ini belum ada fitur yang terdaftar sebagai fitur premium eksklusif.`
+      `📝 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+      `Actualmente no hay funciones registradas como premium exclusivas.`
     );
   }
   
@@ -52,10 +52,10 @@ async function handler(m, { sock }) {
   
   await m.react("✅");
   return m.reply(
-    `💎 *DAFTAR FITUR PREMIUM*\n\n` +
-    `Berikut adalah seluruh daftar fitur eksklusif yang hanya bisa diakses oleh member berstatus Premium:\n\n` +
+    `💎 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+    `Esta es la lista completa de funciones exclusivas a las que solo pueden acceder los miembros con estado Premium:\n\n` +
     `${listText}\n\n` +
-    `_Untuk berlangganan premium, silakan hubungi owner._`
+    `_Para suscribirte a premium, por favor contacta al capitán._`
   );
 }
 

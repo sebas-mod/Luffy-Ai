@@ -1,17 +1,17 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
   name: 'custompayment',
   alias: ['setpayment', 'setpaytext'],
   category: 'owner',
-  description: 'Atur teks custom untuk .payment dengan placeholder',
-  usage: '.custompayment <teks> / .custompayment reset',
+  description: 'Configurar el texto personalizado de .payment con placeholders',
+  usage: '.custompayment <texto> / .custompayment reset',
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true
 }
 
@@ -22,27 +22,27 @@ async function handler(m) {
 
   if (!input) {
     return m.reply(
-      `📝 *CUSTOM PAYMENT TEXT*\n\n` +
-      `Teks saat ini:\n${current || '_(belum diatur, pakai default)_'}\n\n` +
-      `*PLACEHOLDER YANG TERSEDIA:*\n` +
-      `• \`{botname}\` — Nama bot\n` +
-      `• \`{owner}\` — Nama owner\n` +
-      `• \`{methods}\` — Daftar e-wallet\n` +
-      `• \`{banks}\` — Daftar bank\n` +
-      `• \`{qris}\` — Status QRIS\n\n` +
-      `*CONTOH:*\n` +
-      `> \`${m.prefix}custompayment Halo! Bayar ke {methods}\`\n\n` +
-      `> \`${m.prefix}custompayment reset\` — Kembalikan ke default`
+      `📝 *TEXTO DE PAGO PERSONALIZADO*\n\n` +
+      `Texto actual:\n${current || '_(aún no configurado, usa el predeterminado)_'}\n\n` +
+      `*PLACEHOLDERS DISPONIBLES:*\n` +
+      `• \`{botname}\` — Nombre del bot\n` +
+      `• \`{owner}\` — Nombre del owner\n` +
+      `• \`{methods}\` — Lista de e-wallets\n` +
+      `• \`{banks}\` — Lista de bancos\n` +
+      `• \`{qris}\` — Estado de QRIS\n\n` +
+      `*EJEMPLO:*\n` +
+      `> \`${m.prefix}custompayment ¡Hola! Paga a {methods}\`\n\n` +
+      `> \`${m.prefix}custompayment reset\` — Restaurar el predeterminado`
     )
   }
 
   if (input.toLowerCase() === 'reset') {
     db.setting('customPaymentText', '')
-    return m.reply('✅ Teks custom payment direset ke default.')
+    return m.reply('✅ El texto de pago personalizado se reinició al predeterminado.')
   }
 
   db.setting('customPaymentText', input)
-  return m.reply(`✅ Teks custom payment disimpan!\n\nPreview:\n${input}`)
+  return m.reply(`✅ ¡Texto de pago personalizado guardado!\n\nVista previa:\n${input}`)
 }
 
 export { pluginConfig as config, handler }

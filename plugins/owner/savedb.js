@@ -2,12 +2,12 @@ import moment from 'moment-timezone'
 import fs from 'fs'
 import path from 'path'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'savedb',
     alias: ['backupdb', 'downloaddb', 'getdb'],
     category: 'owner',
-    description: 'Download file database',
+    description: 'Descargar el archivo de la base de datos',
     usage: '.savedb',
     example: '.savedb',
     isOwner: true,
@@ -15,16 +15,16 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 async function handler(m, { sock }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('❌ *Owner Only!*')
+        return m.reply('❌ *Solo Owner!*')
     }
     const dbPath = path.join(process.cwd(), 'database', 'db.json')
     if (!fs.existsSync(dbPath)) {
-        return m.reply(`❌ File database tidak ditemukan!`)
+        return m.reply(`❌ ¡El archivo de la base de datos no existe!`)
     }
     try {
         const stats = fs.statSync(dbPath)
@@ -36,12 +36,12 @@ async function handler(m, { sock }) {
             document: data,
             fileName: fileName,
             mimetype: 'application/json',
-            caption: `📦 *ᴅᴀᴛᴀʙᴀsᴇ ʙᴀᴄᴋᴜᴘ*\n\n` +
+            caption: `📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇ ʟᴀ ʙᴀsᴇ ᴅᴇ ᴅᴀᴛᴏs*\n\n` +
                 `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
-                `┃ 📁 File: \`db.json\`\n` +
-                `┃ 📊 Size: \`${(stats.size / 1024).toFixed(2)} KB\`\n` +
-                `┃ 📅 Date: \`${now.format('DD/MM/YYYY')}\`\n` +
-                `┃ ⏰ Time: \`${now.format('HH:mm:ss')}\`\n` +
+                `┃ 📁 Archivo: \`db.json\`\n` +
+                `┃ 📊 Tamaño: \`${(stats.size / 1024).toFixed(2)} KB\`\n` +
+                `┃ 📅 Fecha: \`${now.format('DD/MM/YYYY')}\`\n` +
+                `┃ ⏰ Hora: \`${now.format('HH:mm:ss')}\`\n` +
                 `╰┈┈┈┈┈┈┈┈⬡`
         }, { quoted: m })
     } catch (error) {

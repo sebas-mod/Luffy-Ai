@@ -1,5 +1,5 @@
 import { Canvas, loadImage, FontLibrary } from 'skia-canvas'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 FontLibrary.use('CartoonVibes', process.cwd() + '/assets/fonts/Epep.ttf')
 
 async function generate(angka) {
@@ -36,24 +36,24 @@ const pluginConfig = {
     name: 'fakedana',
     alias: ['danafake'],
     category: 'canvas',
-    description: 'Membuat gambar fake dana',
-    usage: '.fakedana <text>',
-    example: '.fakedana Hai cantik',
+    description: 'Crea una imagen de fake dana',
+    usage: '.fakedana <texto>',
+    example: '.fakedana Hola guapa',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const nominal = m.text
     if (!nominal) {
-        return m.reply(`*FAKE DANA*\n\n\`Contoh: ${m.prefix}fakedana 10000\``)
+        return m.reply(`*FAKE DANA*\n\n\`Ejemplo: ${m.prefix}fakedana 10000\``)
     }
-    if(isNaN(nominal)) return m.reply(`*HARAP MASUKKAN ANGKA*`)
+    if(isNaN(nominal)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO*`)
     m.react('🕕')
     
     try {

@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "unmutegc",
   alias: ["unmutegrup", "unmutebot", "unblockbot", "unlockbot"],
   category: "group",
-  description: "Buka blokir command bot untuk member di grup",
+  description: "Desbloquear los comandos del bot para los miembros del grupo",
   usage: ".unmutegc",
   example: ".unmutegc",
   isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isAdmin: true,
   isBotAdmin: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,20 +25,20 @@ async function handler(m, { sock }) {
 
   if (!groupData.mutegc) {
     return m.reply(
-      `🔊 *Mute GC Tidak Aktif*\n\n` +
-        `> Member sudah bisa menggunakan command bot di grup ini`
+      `🔊 *Mute GC Inactivo*\n\n` +
+        `> Los miembros ya pueden usar comandos del bot en este grupo`
     );
   }
 
   db.setGroup(m.chat, { mutegc: false });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔊 *Mute GC Nonaktif*\n\n` +
-      `> Grup: *${groupName}*\n` +
-      `> Member sekarang bisa menggunakan command bot lagi\n\n` +
-      `_Ketik *${m.prefix}mutegc* untuk memblokir kembali_`,
+    `🔊 *Mute GC Desactivado*\n\n` +
+      `> Grupo: *${groupName}*\n` +
+      `> Los miembros ahora pueden usar comandos del bot de nuevo\n\n` +
+      `_Escribe *${m.prefix}mutegc* para volver a bloquear_`,
     { contextInfo: ctx }
   );
 }

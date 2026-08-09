@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import te from "../../src/lib/ourin-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: ["tod", "spin", "putarbotol"],
   alias: ["todgame"],
   category: "fun",
-  description: "Bermain Truth or Dare bersama teman-teman grup secara instan!",
+  description: "¡Juega a Verdad o Reto con tus amigos del grupo al instante!",
   usage: ".tod",
   example: ".tod",
   isOwner: false,
@@ -13,44 +13,44 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const truths = [
-  "Siapa orang terakhir yang kamu chat sebelum pesan ini?",
-  "Apa rahasia terbesar yang belum pernah kamu ceritakan pada siapapun di grup ini?",
-  "Jika kamu diwajibkan menikah dengan salah satu member grup ini, siapa yang akan kamu pilih? Tag orangnya!",
-  "Pernahkah kamu menyukai seseorang di grup ini tapi tidak berani mengungkapkannya?",
-  "Apa hal paling memalukan yang pernah terjadi padamu di depan umum?",
-  "Sebutkan 3 hal yang paling kamu benci dari dirimu sendiri.",
-  "Jika kamu bisa kembali ke masa lalu, momen memalukan apa yang ingin kamu ubah?",
-  "Siapa mantan terindahmu? Kenapa putus?",
-  "Pernahkah kamu berbohong ke orang tua demi bolos sekolah/kuliah/kerja? Ceritakan!",
-  "Apa hal paling konyol yang pernah kamu cari di history Google pencarianmu?",
-  "Siapa member di grup ini yang menurutmu paling asik, dan siapa yang paling ngeselin?",
-  "Kapan terakhir kali kamu menangis dan apa alasannya?",
-  "Berapa jumlah saldo di rekening/e-wallet kamu sekarang? Jujur!",
-  "Apakah kamu pernah ketahuan stalking sosmed orang? Siapa?",
-  "Apa kebohongan terbesar yang pernah kamu ucapkan ke sahabatmu?"
+  "¿A quién le escribiste por último antes de este mensaje?",
+  "¿Cuál es el mayor secreto que nunca le has contado a nadie de este grupo?",
+  "Si tuvieras que casarte con un miembro de este grupo, ¿a quién elegirías? ¡Etiquétalo!",
+  "¿Alguna vez te ha gustado alguien de este grupo pero no te atreviste a decirlo?",
+  "¿Cuál es lo más vergonzoso que te ha pasado en público?",
+  "Menciona 3 cosas que más odias de ti mismo.",
+  "Si pudieras volver al pasado, ¿qué momento vergonzoso cambiarías?",
+  "¿Quién es tu ex más lindo/a? ¿Por qué terminaron?",
+  "¿Alguna vez mentiste a tus padres para faltar a la escuela/universidad/trabajo? ¡Cuéntalo!",
+  "¿Qué es lo más ridículo que has buscado en el historial de Google?",
+  "¿Qué miembro de este grupo es el más divertido y quién el más molesto?",
+  "¿Cuándo fue la última vez que lloraste y por qué?",
+  "¿Cuánto saldo tienes en tu cuenta/e-wallet ahora? ¡Sé honesto!",
+  "¿Alguien te ha pillado espiando sus redes sociales? ¿A quién?",
+  "¿Cuál es la mentira más grande que le has dicho a tu mejor amigo?"
 ];
 
 const dares = [
-  "Kirim foto selfie kamu dengan gaya paling jelek sekarang juga ke grup!",
-  "Kirim VN (Voice Note) nyanyi reff lagu 'Balonku Ada Lima' tapi semua huruf vokalnya diganti jadi 'O'.",
-  "Chat mantan kamu sekarang, bilang 'Aku masih sayang', lalu screenshot dan kirim ke grup ini!",
-  "Pakai foto profil wajah jelekmu selama 1 jam penuh!",
-  "Tulis status WhatsApp 'Aku sayang banget sama [Tag 1 Member Grup]' dan biarkan selama 30 menit. SS ke grup!",
-  "Kirim VN bilang 'Mewing mewing sigma skibidi' dengan nada serius ke grup.",
-  "Spam 5 stiker paling absurd/nggak jelas yang kamu punya ke grup ini sekarang.",
-  "Tag salah satu admin grup dan bilang 'Kamu jelek banget hari ini'.",
-  "Ubah bio WhatsApp kamu menjadi 'Saya badut ancol' selama 1 hari.",
-  "Kirim gombalan paling maut ke member yang berlawanan jenis di grup ini!",
-  "Buat 1 puisi alay tentang ayam goreng, bacakan lewat VN!",
-  "Ketik 'Aku ini sebenernya alien' dan tag 3 orang secara acak di grup ini.",
-  "Sebutkan nama lengkapmu dengan suara berteriak di VN!",
-  "Pilih salah satu nomor secara acak dari kontakmu, chat 'P' sebanyak 10 kali, screenshot ke sini!",
-  "Jadikan foto profil bot ini sebagai foto profil WhatsApp kamu selama 30 menit."
+  "¡Envía una selfie con la peor pose ahora mismo al grupo!",
+  "Envía una nota de voz cantando el estribillo de la canción 'Balonku Ada Lima' pero cambiando todas las vocales por 'O'.",
+  "Escríbele a tu ex ahora, dile 'Aku masih sayang' (todavía te quiero), haz captura y envíala al grupo!",
+  "¡Usa tu peor foto de perfil durante 1 hora completa!",
+  "Escribe en tu estado de WhatsApp 'Aku sayang banget sama [etiqueta a 1 miembro del grupo]' y déjalo 30 minutos. ¡Captura y envía al grupo!",
+  "Envía una nota de voz diciendo 'Mewing mewing sigma skibidi' con tono serio al grupo.",
+  "Envía al grupo 5 stickers de los más absurdos/raros que tengas.",
+  "Etiqueta a un admin del grupo y dile 'Hoy estás muy feo/a'.",
+  "Cambia tu bio de WhatsApp a 'Saya badut ancol' durante 1 día.",
+  "¡Envíale la frase de ligue más cursi a un miembro del sexo opuesto de este grupo!",
+  "Escribe un poema cursi sobre pollo frito y léelo en una nota de voz.",
+  "Escribe 'Aku ini sebenernya alien' (en realidad soy un alien) y etiqueta a 3 personas al azar del grupo.",
+  "¡Di tu nombre completo gritando en una nota de voz!",
+  "Elige un número al azar de tus contactos, envíale 'P' 10 veces y haz captura aquí.",
+  "Usa la foto de perfil de este bot como tu foto de perfil de WhatsApp durante 30 minutos."
 ];
 
 async function handler(m, { sock }) {
@@ -66,19 +66,19 @@ async function handler(m, { sock }) {
       let challengeText = "";
 
       if (isTruth) {
-        typeLabel = "🗣️ *TRUTH* 🗣️\n_(Harus dijawab dengan sangat jujur!)_";
+        typeLabel = "🗣️ *TRUTH* 🗣️\n_(¡Debe responderse con total honestidad!)_";
         challengeText = truths[Math.floor(Math.random() * truths.length)];
       } else {
-        typeLabel = "🔥 *DARE* 🔥\n_(Harus dilakukan, buktikan ke grup!)_";
+        typeLabel = "🔥 *DARE* 🔥\n_(¡Debe cumplirse, demuéstralo al grupo!)_";
         challengeText = dares[Math.floor(Math.random() * dares.length)];
       }
 
-      let text = `🍾 *BOTOL DIPUTAR!* 🍾\n\n`;
-      text += `Botol berputar kencang di tengah-tengah kalian...\n`;
-      text += `Perlahan putarannya melambat, dan berhenti menunjuk kepada...\n\n`;
+      let text = `🍾 *¡LA BOTELLA GIRA!* 🍾\n\n`;
+      text += `La botella gira rápido en medio de todos...\n`;
+      text += `Lentamente se va frenando, y se detiene señalando a...\n\n`;
       text += `👉 @${targetJid.split('@')[0]} 👈\n\n`;
       text += `${typeLabel}\n\n`;
-      text += `*Tantangan/Pertanyaan:*\n👉 ${challengeText}`;
+      text += `*Reto/Pregunta:*\n👉 ${challengeText}`;
 
       return m.reply(text, { mentions: [targetJid] });
     }

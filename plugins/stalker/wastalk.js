@@ -5,14 +5,14 @@ const pluginConfig = {
     name: 'wastalk',
     alias: ['whatsappstalk', 'stalkwa'],
     category: 'stalker',
-    description: 'Stalk profile WhatsApp',
-    usage: '.wastalk <nomor/tag>',
+    description: 'Buscar perfil de WhatsApp',
+    usage: '.wastalk <numero/tag>',
     example: '.wastalk 6281234567890',
     isGroup: false,
     isBotAdmin: false,
     isAdmin: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 };
 
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     let num = m.quoted?.sender || m.mentionedJid?.[0] || text;
     console.log(num)
     if (!num) {
-        return m.reply(`Example: ${m.prefix}${m.command} @tag / 628xxx`);
+        return m.reply(`Ejemplo: ${m.prefix}${m.command} @tag / 628xxx`);
     }
 
     num = num.replace(/\D/g, '') + '@s.whatsapp.net';
@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
     try {
         const onWa = await sock.onWhatsApp(num);
         if (!onWa || !onWa[0]?.exists) {
-            return m.reply('❌ User not exists on WhatsApp');
+            return m.reply('❌ El usuario no existe en WhatsApp');
         }
 
         let img = 'https://telegra.ph/file/70e8de9b1879568954f09.jpg';
@@ -71,25 +71,25 @@ async function handler(m, { sock }) {
         const formattedNumber = format ? format.getNumber('international') : num.split('@')[0];
 
         let res = `\t\t\t\t*▾ WHATSAPP ▾*\n\n` +
-                  `*° Country :* ${country ? country.toUpperCase() : '-'}\n` +
-                  `*° Name :* ${name}\n` +
-                  `*° Format Number :* ${formattedNumber}\n` +
-                  `*° Url Api :* wa.me/${num.split('@')[0]}\n` +
-                  `*° Mentions :* @${num.split('@')[0]}\n` +
-                  `*° Status :* ${bio?.status || '-'}\n` +
-                  `*° Date Status :* ${bio?.setAt ? moment(bio.setAt).tz('Asia/Jakarta').format('LLLL') : '-'}\n\n`;
+                  `*° País :* ${country ? country.toUpperCase() : '-'}\n` +
+                  `*° Nombre :* ${name}\n` +
+                  `*° Número formateado :* ${formattedNumber}\n` +
+                  `*° URL :* wa.me/${num.split('@')[0]}\n` +
+                  `*° Menciones :* @${num.split('@')[0]}\n` +
+                  `*° Estado :* ${bio?.status || '-'}\n` +
+                  `*° Fecha del estado :* ${bio?.setAt ? moment(bio.setAt).tz('Asia/Jakarta').format('LLLL') : '-'}\n\n`;
 
         if (business) {
-            res += `\t\t\t\t*▾ INFO BUSINESS ▾*\n\n` +
-                   `*° BusinessId :* ${business.wid}\n` +
+            res += `\t\t\t\t*▾ INFO DE LA EMPRESA ▾*\n\n` +
+                   `*° ID de negocio :* ${business.wid}\n` +
                    `*° Website :* ${business.website ? business.website : '-'}\n` +
                    `*° Email :* ${business.email ? business.email : '-'}\n` +
-                   `*° Category :* ${business.category}\n` +
-                   `*° Address :* ${business.address ? business.address : '-'}\n` +
-                   `*° Timezone :* ${business.business_hours?.timezone ? business.business_hours.timezone : '-'}\n` +
-                   `*° Description :* ${business.description ? business.description : '-'}`;
+                   `*° Categoría :* ${business.category}\n` +
+                   `*° Dirección :* ${business.address ? business.address : '-'}\n` +
+                   `*° Zona horaria :* ${business.business_hours?.timezone ? business.business_hours.timezone : '-'}\n` +
+                   `*° Descripción :* ${business.description ? business.description : '-'}`;
         } else {
-            res += '*Standard WhatsApp Account*';
+            res += '*Cuenta estándar de WhatsApp*';
         }
 
         await sock.sendMessage(m.chat, {
@@ -100,7 +100,7 @@ async function handler(m, { sock }) {
 
     } catch (e) {
         console.error('WaStalk Error:', e);
-        m.reply('❌ Failed to stalk user.');
+        m.reply('❌ Error al buscar al usuario.');
     }
 }
 

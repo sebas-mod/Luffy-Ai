@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "fishing",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 60,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -28,22 +28,22 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina || 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Aduh kak, stamina kamu abis nih! 😭⚡\n\nBuat mancing butuh *${staminaCost} Stamina*, tapi punya kamu sisa *${user.rpg.stamina}*.\nIstirahat dulu gih biar seger lagi! 🛌💤`);
+    return m.reply(`Uy bro, ¡tu resistencia se agotó! 😭⚡\n\nPara pescar necesitas *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*.\n¡Descansa un poco para recuperarte! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("🎣");
-  await m.reply(`Melempar kail ke air yang tenang... 🌊🎣\nSssttt, jangan berisik biar ikannya makan umpan! 🤫👀`);
+  await m.reply(`Lanzando el anzuelo al agua tranquila... 🌊🎣\nShhh, no hagas ruido para que el pez muerda el cebo! 🤫👀`);
   await new Promise((r) => setTimeout(r, 4000));
 
   const drops = [
-    { item: "trash", chance: 20, name: "🗑️ Sampah", exp: 10 },
-    { item: "fish", chance: 50, name: "🐟 Ikan", exp: 100 },
-    { item: "prawn", chance: 30, name: "🦐 Udang", exp: 150 },
-    { item: "octopus", chance: 15, name: "🐙 Gurita", exp: 300 },
-    { item: "shark", chance: 5, name: "🦈 Hiu", exp: 800 },
-    { item: "whale", chance: 1, name: "🐳 Paus", exp: 2000 },
+    { item: "trash", chance: 20, name: "🗑️ Basura", exp: 10 },
+    { item: "fish", chance: 50, name: "🐟 Pescado", exp: 100 },
+    { item: "prawn", chance: 30, name: "🦐 Camarón", exp: 150 },
+    { item: "octopus", chance: 15, name: "🐙 Pulpo", exp: 300 },
+    { item: "shark", chance: 5, name: "🦈 Tiburón", exp: 800 },
+    { item: "whale", chance: 1, name: "🐳 Ballena", exp: 2000 },
   ];
 
   const rand = Math.random() * 100;
@@ -66,15 +66,15 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `HAPPP! Kailnya ditarik! 🎣💦\n\nWah, kamu berhasil dapetin:\n`;
+  let txt = `¡HAPPP! ¡El hilo fue jalado! 🎣💦\n\nVaya, lograste conseguir:\n`;
   if (caught.item === "trash") {
-    txt += `> ${caught.name} 🤢\nYahh dapetnya sampah kak... Lumayan lah dapet *+${expReward} EXP* pengalaman buang sampah pada tempatnya! 😂\n\n`;
+    txt += `> ${caught.name} 🤢\nUy, te tocó basura bro... Bueno, al menos ganaste *+${expReward} EXP* por tirar la basura en su lugar! 😂\n\n`;
   } else {
-    txt += `> *${caught.name}* 🎉✨\nAsik banget! Kamu juga dapet *+${expReward} EXP* nih!\n\n`;
+    txt += `> *${caught.name}* 🎉✨\n¡Qué genial! También ganaste *+${expReward} EXP*!\n\n`;
   }
   
-  txt += `⚡ Stamina terpakai: *-${staminaCost}*\n`;
-  txt += `\nIkan/sampahnya udah masuk ke tas (\`.inv\`) ya! Jangan lupa mancing lagi nanti! 💖🌊`;
+  txt += `⚡ Resistencia usada: *-${staminaCost}*\n`;
+  txt += `\nEl pez/basura ya está en tu bolsa (\`.inv\`)! No olvides pescar más tarde! 💖🌊`;
 
   await m.reply(txt);
 }

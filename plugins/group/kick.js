@@ -1,10 +1,10 @@
-import { findParticipantByNumber } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { findParticipantByNumber } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'kick',
     alias: ['remove', 'tendang'],
     category: 'group',
-    description: 'Kick member dari grup',
+    description: 'Expulsar a un miembro del grupo',
     usage: '.kick @user',
     example: '.kick @user',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -29,9 +29,9 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         await m.reply(
-            `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Reply pesan user atau mention!\n` +
-            `> Contoh: \`${m.prefix}kick @user\``
+            `❌ *ᴛᴀʀɢᴇᴛᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n` +
+            `> ¡Responde el mensaje de un usuario o haz mention!\n` +
+            `> Ejemplo: \`${m.prefix}kick @user\``
         )
         return
     }
@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.replace(/@.*$/, '')
 
     if (targetJid === botNumber || targetNumber === botNumber.replace(/@.*$/, '')) {
-        await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick bot sendiri!`)
+        await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar al bot mismo!`)
         return
     }
 
     if (targetJid === m.sender) {
-        await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick diri sendiri!`)
+        await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡No puedes expulsarte a ti mismo!`)
         return
     }
 
@@ -54,18 +54,18 @@ async function handler(m, { sock }) {
         const targetParticipant = findParticipantByNumber(groupMeta.participants, targetJid)
         
         if (!targetParticipant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan dalam grup!`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El usuario no está en el grupo!`)
             return
         }
         
         if (targetParticipant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa kick admin grup!`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar a un admin del grupo!`)
             return
         }
         
         await sock.groupParticipantsUpdate(m.chat, [targetParticipant.id], 'remove')
 
-        await m.reply(`✅ @${targetNumber} telah dikeluarkan dari grup ini.`, { mentions: [targetJid] })
+        await m.reply(`✅ @${targetNumber} fue expulsado de este grupo.`, { mentions: [targetJid] })
 
     } catch (error) {
         m.reply(te(m.prefix, m.command, m.pushName))

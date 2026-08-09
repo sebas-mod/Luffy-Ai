@@ -1,12 +1,12 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import config from '../../config.js'
 
 const pluginConfig = {
     name: 'ytstalk',
     alias: ['youtubestalk', 'stalkyt'],
     category: 'stalker',
-    description: 'Stalk channel YouTube',
+    description: 'Buscar canal de YouTube',
     usage: '.ytstalk <username>',
     example: '.ytstalk mrbeast',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n> Masukkan username YouTube\n\n\`Contoh: ${m.prefix}ytstalk mrbeast\``)
+        return m.reply(`📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n> Ingresa el username de YouTube\n\n\`Ejemplo: ${m.prefix}ytstalk mrbeast\``)
     }
     
     m.react('🔍')
@@ -34,18 +34,18 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`❌ Channel *${username}* tidak ditemukan`)
+            return m.reply(`❌ Canal *${username}* no fue encontrado`)
         }
         
         const c = res.data.data
         
         let caption = `📺 *ʏᴏᴜᴛᴜʙᴇ sᴛᴀʟᴋ*\n\n` +
-            `👤 *Nama:* ${c.name}\n` +
+            `👤 *Nombre:* ${c.name}\n` +
             `🔗 *Username:* @${username}\n` +
-            `✅ *Verified:* ${c.verified ? 'Ya' : 'Tidak'}\n\n` +
+            `✅ *Verificado:* ${c.verified ? 'Sí' : 'No'}\n\n` +
             `👥 *Subscribers:* ${c.subscribers}\n` +
-            `🎬 *Total Video:* ${c.video_count}\n\n` +
-            `📝 *Deskripsi:*\n${c.about || '-'}\n\n` +
+            `🎬 *Total de videos:* ${c.video_count}\n\n` +
+            `📝 *Descripción:*\n${c.about || '-'}\n\n` +
             `🔗 ${c.url}`
             
         m.react('✅')

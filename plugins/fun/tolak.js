@@ -1,10 +1,10 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "tolak",
   alias: ["reject", "no", "gaktau"],
   category: "fun",
-  description: "Menolak tembakan dari seseorang",
+  description: "Rechaza el disparo de alguien",
   usage: ".tolak @tag",
   example: ".tolak @628xxx",
   isOwner: false,
@@ -12,19 +12,19 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 const rejectionQuotes = [
-  "Sabar ya, yang lebih baik pasti datang! 🌟",
-  "Belum jodoh bukan berarti tidak ada jodoh 💪",
-  "Move on! Banyak ikan di laut! 🐟",
-  "Yang sabar ya, cinta sejati akan datang 💕",
-  "Jangan patah semangat, tetap semangat! 🔥",
-  "Penolakan adalah awal dari keberhasilan 💪",
-  "Masih banyak kesempatan di luar sana! ✨",
-  "Yakin masih ada yang lebih cocok buat kamu! 🌈",
+  "¡Ten paciencia, algo mejor llegará! 🌟",
+  "No es el destino todavía, pero sí lo habrá 💪",
+  "¡Sigue adelante! ¡Hay muchos peces en el mar! 🐟",
+  "Ten paciencia, el amor verdadero llegará 💕",
+  "¡No te desanimes, sigue con energía! 🔥",
+  "El rechazo es el comienzo del éxito 💪",
+  "¡Todavía hay muchas oportunidades ahí fuera! ✨",
+  "¡Seguro que hay alguien más adecuado para ti! 🌈",
 ];
 
 async function handler(m, { sock }) {
@@ -51,18 +51,18 @@ async function handler(m, { sock }) {
 
   if (!shooterJid) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> Reply pesan tembakan + \`${m.prefix}tolak\`\n` +
-        `> Atau \`${m.prefix}tolak @tag\``,
+      `⚠️ *ᴄᴏ́ᴍᴏ ᴜsᴀʀ*\n\n` +
+        `> Responde al mensaje de disparo + \`${m.prefix}tolak\`\n` +
+        `> O \`${m.prefix}tolak @tag\``,
     );
   }
 
   if (shooterJid === m.sender) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa menolak diri sendiri!`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡No puedes rechazarte a ti mismo!`);
   }
 
   if (shooterJid === m.botNumber) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Bot tidak punya hati untuk ditolak!`);
+    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El bot no tiene corazón para ser rechazado!`);
   }
 
   let shooterData = db.getUser(shooterJid) || {};
@@ -76,8 +76,8 @@ async function handler(m, { sock }) {
     shooterData.fun.tembakTarget !== m.sender
   ) {
     return m.reply(
-      `❌ *ᴛɪᴅᴀᴋ ᴍᴇɴᴇᴍʙᴀᴋ*\n\n` +
-        `> @${shooterJid.split("@")[0]} tidak sedang menembakmu`,
+      `❌ *ɴᴏ ᴛᴇ ᴅɪsᴘᴀʀᴀ*\n\n` +
+        `> @${shooterJid.split("@")[0]} no te está disparando`,
       { mentions: [shooterJid] },
     );
   }
@@ -105,9 +105,9 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `💔 *WADUHH, YANG SABAR YAK* @${shooterJid.split("@")[0]}\n\n` +
-      `@${m.sender.split("@")[0]} menolak @${shooterJid.split("@")[0]} sebagai pacarnya\n\n` +
-      `Sabar ya, masih banyak yang lain! 😢`,
+    `💔 *¡UY, TEN PACIENCIA!* @${shooterJid.split("@")[0]}\n\n` +
+      `@${m.sender.split("@")[0]} rechazó a @${shooterJid.split("@")[0]} como su pareja\n\n` +
+      `¡Ten paciencia, quedan muchos más! 😢`,
     { contextInfo: ctx },
   );
 }

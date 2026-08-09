@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'setbio',
     alias: ['setbiobot', 'setstatus', 'setabout'],
     category: 'tools',
-    description: 'Mengubah bio/status bot',
-    usage: '.setbio <bio baru>',
+    description: 'Cambia la bio/estado del bot',
+    usage: '.setbio <nueva bio>',
     example: '.setbio Bot WhatsApp by Lucky Archz',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -19,9 +19,9 @@ async function handler(m, { sock }) {
     
     if (!newBio && m.args?.length === 0) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}setbio Bio bot baru\`\n` +
-            `> \`${m.prefix}setbio clear\` - Hapus bio`
+            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+            `> \`${m.prefix}setbio Nueva bio del bot\`\n` +
+            `> \`${m.prefix}setbio clear\` - Borra la bio`
         )
         return
     }
@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
     
     if (bioToSet.length > 139) {
         await m.reply(
-            `⚠️ *ᴠᴀʟɪᴅᴀsɪ*\n\n` +
-            `> Bio maksimal 139 karakter.`
+            `⚠️ *ᴠᴀʟɪᴅᴀᴄɪᴏɴ*\n\n` +
+            `> La bio admite un máximo de 139 caracteres.`
         )
         return
     }
@@ -41,20 +41,20 @@ async function handler(m, { sock }) {
         
         if (bioToSet) {
             await m.reply(
-                `✅ *ʙɪᴏ ʙᴏᴛ ᴅɪᴜʙᴀʜ*\n\n` +
-                `> Bio bot sekarang:\n` +
+                `✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴀ*\n\n` +
+                `> La bio del bot ahora es:\n` +
                 `> _${bioToSet}_`
             )
         } else {
             await m.reply(
-                `✅ *ʙɪᴏ ʙᴏᴛ ᴅɪʜᴀᴘᴜs*\n\n` +
-                `> Bio bot berhasil dihapus!`
+                `✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ*\n\n` +
+                `> ¡La bio del bot se eliminó exitosamente!`
             )
         }
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat mengubah bio bot.\n` +
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> No se pudo cambiar la bio del bot.\n` +
             `> _${error.message}_`
         )
     }

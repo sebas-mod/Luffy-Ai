@@ -11,14 +11,14 @@ const pluginConfig = {
     name: "iqcpink",
     alias: [],
     category: "canvas",
-    description: "Membuat Fake Quote iOS style versi pink.",
+    description: "Crea Fake Quote estilo iOS versión rosa.",
     usage: ".iqcpink [text/reply]",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
@@ -40,7 +40,7 @@ const SX = BG_W / 1080;
 const SY = BG_H / 2280;
 
 const state = {
-    text: "Kesendirian adalah teman terbaik ku😂😂",
+    text: "La soledad es mi mejor amiga😂😂",
     time: "22.54",
     bubbleColor:  "#ffc5d5", 
     textColor:    "#111111",
@@ -446,12 +446,12 @@ async function handler(m, { sock, text }) {
         
         if (!targetText && !targetImgBuffer) {
             return m.reply(
-                `🩷 *FITUR FAKE QUOTE iOS PINK*\n\n` +
-                `Sistem ini akan mengubah teks yang kamu berikan menjadi gambar *quote* bergaya iOS dengan tema Pink yang cantik dan elegan.\n\n` +
-                `*CARA PENGGUNAAN:*\n` +
-                `- Ketik \`${m.prefix}iqcpink <teks kamu>\`\n` +
-                `- Atau balas (*reply*) pesan orang lain dengan perintah \`${m.prefix}iqcpink\`\n\n` +
-                `_Pesan yang dibalas akan otomatis diubah menjadi quote menggunakan nama dan foto profil pembuat pesan tersebut!_`
+                `🩷 *FUNCIÓN FAKE QUOTE iOS ROSA*\n\n` +
+                `Este sistema convertirá el texto que ingreses en una imagen *quote* estilo iOS con el tema Rosa, bonita y elegante.\n\n` +
+                `*CÓMO USARLO:*\n` +
+                `- Escribe \`${m.prefix}iqcpink <tu texto>\`\n` +
+                `- O responde (*reply*) al mensaje de otra persona con el comando \`${m.prefix}iqcpink\`\n\n` +
+                `_El mensaje respondido se convertirá automáticamente en un quote usando el nombre y la foto de perfil de quien envió el mensaje!_`
             );
         }
 
@@ -491,7 +491,7 @@ async function handler(m, { sock, text }) {
         appleEmojiMap = null;
         console.error("[iqcpink error]:", error);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES QUOTE*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar quote pink. Silakan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR EL QUOTE*\n\nLo siento, ocurrió un error al intentar crear la imagen de quote rosa. Inténtalo de nuevo en unos momentos.`);
     }
 }
 

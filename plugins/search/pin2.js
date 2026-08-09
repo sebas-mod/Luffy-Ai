@@ -2,14 +2,14 @@ import {
   generateWAMessageFromContent,
   prepareWAMessageMedia,
 } from "ourin";
-import te from "../../src/lib/ourin-error.js";
-import { f } from "../../src/lib/ourin-http.js";
+import te from "../../src/lib/luffy-error.js";
+import { f } from "../../src/lib/luffy-http.js";
 
 const pluginConfig = {
   name: "pin2",
   alias: ["pinterest2"],
   category: "search",
-  description: "Cari satu gambar acak di Pinterest dengan tombol next",
+  description: "Busca una imagen aleatoria en Pinterest con botón next",
   usage: ".pin2 <query>",
   example: ".pin2 anime",
   isOwner: false,
@@ -17,7 +17,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   const query = m.text?.trim();
 
   if (!query) {
-    return m.reply(`❌ Masukkan kata kunci pencarian.\n\nContoh: \`${m.prefix}pin2 kucing\``);
+    return m.reply(`❌ Ingresa una palabra clave de búsqueda.\n\nEjemplo: \`${m.prefix}pin2 kucing\``);
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ Waduh, pencarian untuk *${query}* tidak ditemukan. Coba kata kunci lain.`);
+      return m.reply(`❌ Vaya, no se encontraron resultados para *${query}*. Intenta con otra palabra clave.`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("⚠️ Gambar tidak tersedia.");
+      return m.reply("⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -65,10 +65,10 @@ async function handler(m, { sock }) {
               imageMessage: mediaMessage.imageMessage
             },
             footer: {
-              text: "Klik tombol di bawah untuk gambar lain 👇"
+              text: "Haz clic en el botón de abajo para ver otra imagen 👇"
             },
             body: {
-              text: `📸 *PINTEREST SEARCH*\n\n> Pencarian: *${query}*`
+              text: `📸 *BÚSQUEDA EN PINTEREST*\n\n> Búsqueda: *${query}*`
             },
             nativeFlowMessage: {
               buttons: [
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PIN2 Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Gagal memuat pencarian Pinterest. Server mungkin sedang bermasalah.");
+    m.reply("😔 Error al cargar la búsqueda de Pinterest. El servidor puede estar teniendo problemas.");
   }
 }
 

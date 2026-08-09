@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebaklagu', {
     alias: ['tl', 'guesssong'],
     emoji: '🎵',
-    title: 'TEBAK LAGU',
-    description: 'Tebak judul lagu'
+    title: 'ADIVINA LA CANCIÓN',
+    description: 'Adivina el título de la canción'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebaklagu')

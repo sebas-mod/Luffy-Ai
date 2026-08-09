@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const PAGE_SIZE = 20;
 
 function getRegistrationContextInfo() {
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-  const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+  const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
   return {
     forwardingScore: 9999,
@@ -51,7 +51,7 @@ function parseListOptions(input) {
   for (let i = 0; i < tokens.length; i += 1) {
     const token = tokens[i].toLowerCase();
 
-    if (token === "page" || token === "hal" || token === "halaman") {
+    if (token === "page" || token === "hal" || token === "halaman" || token === "pagina" || token === "página") {
       const next = parseInt(tokens[i + 1], 10);
       if (!Number.isNaN(next) && next > 0) {
         page = next;
@@ -60,7 +60,7 @@ function parseListOptions(input) {
       continue;
     }
 
-    if (token === "search" || token === "cari" || token === "nama") {
+    if (token === "search" || token === "cari" || token === "nama" || token === "buscar" || token === "nombre") {
       const searchTokens = [];
       for (let j = i + 1; j < tokens.length; j += 1) {
         const nextToken = tokens[j].toLowerCase();
@@ -69,11 +69,16 @@ function parseListOptions(input) {
             "page",
             "hal",
             "halaman",
+            "pagina",
+            "página",
             "search",
             "cari",
             "nama",
+            "buscar",
+            "nombre",
             "sort",
             "urut",
+            "ordenar",
           ].includes(nextToken)
         )
           break;
@@ -86,16 +91,16 @@ function parseListOptions(input) {
       continue;
     }
 
-    if (token === "sort" || token === "urut") {
+    if (token === "sort" || token === "urut" || token === "ordenar") {
       const nextToken = tokens[i + 1]?.toLowerCase();
-      if (nextToken === "terbaru" || nextToken === "newest") {
+      if (nextToken === "terbaru" || nextToken === "newest" || nextToken === "nuevo") {
         sort = "terbaru";
         i += 1;
       }
       continue;
     }
 
-    if (token === "terbaru" || token === "newest") {
+    if (token === "terbaru" || token === "newest" || token === "nuevo") {
       sort = "terbaru";
       continue;
     }
@@ -113,15 +118,15 @@ const pluginConfig = {
   alias: ["listuser", "registeredusers", "daftarlist"],
   category: "user",
   description:
-    "Lihat daftar user yang sudah terdaftar dengan filter dan pagination",
-  usage: ".listdaftar [page <nomor>] [search <nama>] [sort terbaru]",
-  example: ".listdaftar search zann sort terbaru page 2",
+    "Ver la lista de usuarios registrados con filtro y paginación",
+  usage: ".listdaftar [page <numero>] [search <nombre>] [sort nuevo]",
+  example: ".listdaftar search zann sort nuevo page 2",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -132,7 +137,7 @@ async function handler(m, { sock }) {
   let registeredUsers = Object.values(allUsers).filter((u) => u.isRegistered);
 
   if (registeredUsers.length === 0) {
-    return m.reply(`❌ Belum ada user yang terdaftar!`);
+    return m.reply(`❌ ¡Aún no hay usuarios registrados!`);
   }
 
   if (options.search) {
@@ -152,7 +157,7 @@ async function handler(m, { sock }) {
 
   if (registeredUsers.length === 0) {
     return m.reply(
-      `❌ Tidak ada user yang cocok dengan pencarian: *${options.search}*`,
+      `❌ No hay usuarios que coincidan con la búsqueda: *${options.search}*`,
     );
   }
 
@@ -164,10 +169,10 @@ async function handler(m, { sock }) {
     startIndex + PAGE_SIZE,
   );
 
-  let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴜsᴇʀ ᴛᴇʀᴅᴀꜰᴛᴀʀ*\n\n`;
-  text += `> Total hasil: *${registeredUsers.length}* user\n`;
-  text += `> Halaman: *${page}/${totalPages}*\n`;
-  text += `> Urut: *${options.sort === "terbaru" ? "Terbaru" : "Default"}*\n`;
+  let text = `📋 *ʟɪsᴛᴀ ᴅᴇ ᴜsᴜᴀʀɪᴏs ʀᴇɢɪsᴛʀᴀᴅᴏs*\n\n`;
+  text += `> Total: *${registeredUsers.length}* usuarios\n`;
+  text += `> Página: *${page}/${totalPages}*\n`;
+  text += `> Orden: *${options.sort === "terbaru" ? "Nuevos" : "Default"}*\n`;
   if (options.search) {
     text += `> Search: *${options.search}*\n`;
   }
@@ -175,21 +180,21 @@ async function handler(m, { sock }) {
 
   displayUsers.forEach((user, i) => {
     const genderEmoji =
-      user.regGender === "Laki-laki"
+      user.regGender === "Masculino"
         ? "👨"
-        : user.regGender === "Perempuan"
+        : user.regGender === "Femenino"
           ? "👩"
           : "👤";
     const listNumber = startIndex + i + 1;
     const registeredAt = formatDateTime(
       user.lastRegisteredAt || user.registeredAt,
     );
-    text += `${listNumber}. ${genderEmoji} *${user.regName || "Unknown"}*\n`;
-    text += `   > @${user.jid} | ${user.regAge || "?"} tahun | ${registeredAt}\n`;
+    text += `${listNumber}. ${genderEmoji} *${user.regName || "Desconocido"}*\n`;
+    text += `   > @${user.jid} | ${user.regAge || "?"} años | ${registeredAt}\n`;
   });
 
   if (totalPages > 1) {
-    text += `\n> Gunakan \`${m.prefix}listdaftar page ${page + 1 > totalPages ? totalPages : page + 1}\` untuk halaman lain`;
+    text += `\n> Usa \`${m.prefix}listdaftar page ${page + 1 > totalPages ? totalPages : page + 1}\` para ver otra página`;
   }
 
   const mentions = displayUsers.map((u) => u.jid + "@s.whatsapp.net");

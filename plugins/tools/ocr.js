@@ -1,6 +1,6 @@
 import * as _tesseract from "tesseract.js";
-import te from "../../src/lib/ourin-error.js";
-import { sendToolsPreview } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { sendToolsPreview } from "../../src/lib/luffy-context.js";
 
 function getTesseract() {
   return _tesseract;
@@ -9,29 +9,29 @@ const pluginConfig = {
   name: "ocr",
   alias: ["totext", "imagetotext", "readtext"],
   category: "tools",
-  description: "Extract teks dari gambar (Offline/Local)",
-  usage: ".ocr (reply gambar)",
+  description: "Extrae texto de imágenes (Offline/Local)",
+  usage: ".ocr (responde una imagen)",
   example: ".ocr",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 async function handler(m, { sock }) {
   const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
   if (!isImage) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> Reply gambar dengan \`${m.prefix}ocr\`\n\n` +
-        `> Media yang didukung:\n` +
+      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+        `> Responde una imagen con \`${m.prefix}ocr\`\n\n` +
+        `> Medios compatibles:\n` +
         `> JPG, PNG, GIF, WEBP`,
     );
   }
   await m.react("🕕");
-  await m.reply(`🕕 *ᴍᴇᴍᴘʀᴏsᴇs...*\n\n> Mengekstrak teks dari gambar...`);
+  await m.reply(`🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Extrayendo texto de la imagen...`);
   try {
     let buffer;
     if (m.quoted && m.quoted.isMedia) {
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     }
     if (!buffer || buffer.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat download gambar`);
+      return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se pudo descargar la imagen`);
     }
     const Tesseract = await getTesseract();
     const {
@@ -51,19 +51,19 @@ async function handler(m, { sock }) {
     if (!extractedText || extractedText.length === 0) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴀᴅᴀ ᴛᴇᴋs*\n\n> Tidak ada teks yang terdeteksi di gambar`,
+        `❌ *sɪɴ ᴛᴇxᴛᴏ*\n\n> No se detectó texto en la imagen`,
       );
     }
     await m.react("✅");
     const responseText =
-      `📖 *ᴏᴄʀ ʀᴇsᴜʟᴛ*\n\n` +
-      `╭┈┈⬡「 📝 *ᴛᴇᴋs* 」\n` +
+      `📖 *ʀᴇsᴜʟᴛᴀᴅᴏ ᴏᴄʀ*\n\n` +
+      `╭┈┈⬡「 📝 *ᴛᴇxᴛᴏ* 」\n` +
       `${extractedText
         .split("\n")
         .map((l) => `┃ ${l}`)
         .join("\n")}\n` +
       `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `> Total: ${extractedText.length} karakter`;
+      `> Total: ${extractedText.length} caracteres`;
     await sendToolsPreview(
       sock,
       m.chat,

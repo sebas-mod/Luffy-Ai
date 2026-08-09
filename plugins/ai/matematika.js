@@ -1,4 +1,4 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import axios from 'axios'
 import config from '../../config.js'
 
@@ -6,15 +6,15 @@ const pluginConfig = {
     name: 'matematika',
     alias: ['mathgpt', 'math', 'mathsolver'],
     category: 'ai',
-    description: 'AI untuk menyelesaikan soal matematika',
-    usage: '.matematika <soal>',
-    example: '.matematika 2+2 berapa?',
+    description: 'IA para resolver problemas de matemáticas',
+    usage: '.matematika <problema>',
+    example: '.matematika ¿cuánto es 2+2?',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
 
     if (!text) {
-        return m.reply(`📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Masukkan soal matematika\n\n\`Contoh: ${m.prefix}matematika 2+2 berapa?\``)
+        return m.reply(`📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Escribe el problema de matemáticas\n\n\`Ejemplo: ${m.prefix}matematika ¿cuánto es 2+2?\``)
     }
 
     m.react('🕕')
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
         if (!data.status || !data.result) {
             await m.react('❌')
-            return m.reply("⚠️ Gagal memproses soal matematika.")
+            return m.reply("⚠️ No se pudo procesar el problema de matemáticas.")
         }
 
         const answer = data.result

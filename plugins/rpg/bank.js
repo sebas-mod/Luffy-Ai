@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "bank",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     db.db.data.users[cleanJid].rpg.bank = 0;
   }
 
-  const currentBalance = db.db.data.users[cleanJid].koin || 0;
+  const currentBalance = db.db.data.users[cleanJid].berry || 0;
   const currentBank = db.db.data.users[cleanJid].rpg.bank || 0;
 
   const args = m.args || [];
@@ -47,16 +47,16 @@ async function handler(m, { sock }) {
       amount = parseInt(amountStr);
     }
 
-    if (!amount || amount <= 0) return m.reply(`Hayo kak, masukin jumlah koin yang bener dong! Masa nabung angka gaib 😂💸`);
-    if (currentBalance < amount) return m.reply(`Eits, uang *cash* kamu nggak cukup kak! 😭\nDi dompet cuma ada *Rp ${currentBalance.toLocaleString("id-ID")}* nih. Nyari duit dulu gih! 🏃💨`);
+    if (!amount || amount <= 0) return m.reply(`¡Oye bro, ingresa una cantidad de berry válida! No vas a ahorrar una cifra fantasma 😂💸`);
+    if (currentBalance < amount) return m.reply(`¡Ey, tu dinero en *efectivo* no alcanza bro! 😭\nEn tu cartera solo hay *Rp ${currentBalance.toLocaleString("id-ID")}*. ¡Ve a buscar dinero! 🏃💨`);
 
-    db.db.data.users[cleanJid].koin = currentBalance - amount;
+    db.db.data.users[cleanJid].berry = currentBalance - amount;
     db.db.data.users[cleanJid].rpg.bank = currentBank + amount;
 
     await db.save();
 
     const newBank = db.db.data.users[cleanJid].rpg.bank;
-    return m.reply(`Makasih kak udah nabung di Bank RPG! 🏦💖\n\n✅ Deposit berhasil: *Rp ${amount.toLocaleString("id-ID")}*\n💳 Saldo Tabungan: *Rp ${newBank.toLocaleString("id-ID")}*\n\nUangnya kita simpen dengan aman ya! 🔒✨`);
+    return m.reply(`¡Gracias por ahorrar en el Banco RPG! 🏦💖\n\n✅ Depósito exitoso: *Rp ${amount.toLocaleString("id-ID")}*\n💳 Saldo de Ahorros: *Rp ${newBank.toLocaleString("id-ID")}*\n\n¡Guardamos tu dinero de forma segura! 🔒✨`);
   }
 
   if (action === "withdraw" || action === "tarik") {
@@ -67,25 +67,25 @@ async function handler(m, { sock }) {
       amount = parseInt(amountStr);
     }
 
-    if (!amount || amount <= 0) return m.reply(`Hayo kak, masukin jumlah koin yang bener dong! Mau narik angin? 😂💸`);
-    if (currentBank < amount) return m.reply(`Yahh kak, saldo tabungan kamu nggak cukup! 😭\nDi rekening cuma ada *Rp ${currentBank.toLocaleString("id-ID")}* nih. Jangan ngadi-ngadi deh! 🫣`);
+    if (!amount || amount <= 0) return m.reply(`¡Oye bro, ingresa una cantidad de berry válida! ¿Quieres retirar viento? 😂💸`);
+    if (currentBank < amount) return m.reply(`Vaya bro, tu saldo de ahorros no alcanza! 😭\nEn tu cuenta solo hay *Rp ${currentBank.toLocaleString("id-ID")}*. ¡No inventes! 🫣`);
 
     db.db.data.users[cleanJid].rpg.bank = currentBank - amount;
-    db.db.data.users[cleanJid].koin = currentBalance + amount;
+    db.db.data.users[cleanJid].berry = currentBalance + amount;
 
     await db.save();
 
-    const newBalance = db.db.data.users[cleanJid].koin;
-    return m.reply(`Uangnya berhasil ditarik ya kak! 🏧💸\n\n✅ Penarikan: *Rp ${amount.toLocaleString("id-ID")}*\n💰 Uang Cash: *Rp ${newBalance.toLocaleString("id-ID")}*\n\nJangan boros-boros pakainya ya! 🛍️✨`);
+    const newBalance = db.db.data.users[cleanJid].berry;
+    return m.reply(`¡El dinero fue retirado con éxito bro! 🏧💸\n\n✅ Retiro: *Rp ${amount.toLocaleString("id-ID")}*\n💰 Dinero en Efectivo: *Rp ${newBalance.toLocaleString("id-ID")}*\n\n¡No lo gastes de más! 🛍️✨`);
   }
 
-  let txt = `Halo kak! Selamat datang di Bank RPG! 🏦✨\nMau ngecek saldo atau ada keperluan lain nih?\n\n`;
-  txt += `💰 Uang Dompet: *Rp ${currentBalance.toLocaleString("id-ID")}*\n`;
-  txt += `💳 Saldo Tabungan: *Rp ${currentBank.toLocaleString("id-ID")}*\n\n`;
-  txt += `*Layanan Bank:* 💁‍♀️\n`;
-  txt += `Nabung: \`.bank deposit <jumlah>\`\n`;
-  txt += `Tarik tunai: \`.bank withdraw <jumlah>\`\n\n`;
-  txt += `*(Pake kata 'all' kalau mau nabung/narik semuanya sekaligus!)* 🚀`;
+  let txt = `¡Hola bro! ¡Bienvenido al Banco RPG! 🏦✨\n¿Quieres revisar tu saldo o necesitas algo más?\n\n`;
+  txt += `💰 Dinero en Cartera: *Rp ${currentBalance.toLocaleString("id-ID")}*\n`;
+  txt += `💳 Saldo de Ahorros: *Rp ${currentBank.toLocaleString("id-ID")}*\n\n`;
+  txt += `*Servicios del Banco:* 💁‍♀️\n`;
+  txt += `Ahorrar: \`.bank deposit <cantidad>\`\n`;
+  txt += `Retiro en efectivo: \`.bank withdraw <cantidad>\`\n\n`;
+  txt += `*(¡Usa la palabra 'all' para ahorrar/retirar todo de una vez!)* 🚀`;
 
   await m.reply(txt);
 }

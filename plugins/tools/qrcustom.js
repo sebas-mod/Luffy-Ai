@@ -1,11 +1,11 @@
 import axios from 'axios'
 import FormData from 'form-data'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['qrcustom', 'qrcode', 'qr'],
     alias: [],
     category: 'tools',
-    description: 'Generate QR code custom dengan logo',
+    description: 'Genera un código QR personalizado con logo',
     usage: '.qrcustom <url>',
     example: '.qrcustom https://wa.me/628xxx',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -43,15 +43,15 @@ async function handler(m, { sock }) {
     
     if (!data) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}qrcustom <url/text>\`\n\n` +
-            `*Contoh:*\n` +
+            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+            `> \`${m.prefix}qrcustom <url/texto>\`\n\n` +
+            `*Ejemplo:*\n` +
             `> \`${m.prefix}qrcustom https://wa.me/628xxx\`\n\n` +
-            `💡 Reply gambar untuk custom logo di tengah QR`
+            `💡 Responde una imagen para usar un logo personalizado en el centro del QR`
         )
     }
     
-    await m.reply(`🕕 *Generating QR code...*`)
+    await m.reply(`🕕 *Generando código QR...*`)
     
     try {
         let imageUrl = ''

@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "casino",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -24,32 +24,32 @@ async function handler(m, { sock }) {
   let bet = args[0];
 
   if (!bet) {
-    let txt = `🎰 *LAS VEGAS KELILING* 🎰\n\n`;
-    txt += `Selamat datang di Kasino! Mau ngadu nasib sama bandar?\n\n`;
-    txt += `*Cara Taruhan:*\n`;
-    txt += `👉 \`${m.prefix}casino <jumlah>\`\n\n`;
-    txt += `Contoh:\n`;
+    let txt = `🎰 *LAS VEGAS AMBULANTE* 🎰\n\n`;
+    txt += `¡Bienvenido al Casino! ¿Quieres probar tu suerte contra el bandar?\n\n`;
+    txt += `*Cómo Apostar:*\n`;
+    txt += `👉 \`${m.prefix}casino <cantidad>\`\n\n`;
+    txt += `Ejemplos:\n`;
     txt += `👉 \`${m.prefix}casino 10000\`\n`;
-    txt += `👉 \`${m.prefix}casino all\` (Nekat bener!)`;
+    txt += `👉 \`${m.prefix}casino all\` (¡Qué atrevido!)`;
     return m.reply(txt);
   }
 
   if (/^all$/i.test(bet)) {
-    bet = user.koin || 0;
+    bet = user.berry || 0;
   } else {
     bet = parseInt(bet);
   }
 
   if (isNaN(bet) || bet < 1000) {
-    return m.reply(`Hadeh... mau judi kok modal receh? 💸\nMinimal taruhan di sini *Rp 1.000* bro!`);
+    return m.reply(`Vaya... ¿a jugar con monedas de a centavo? 💸\nLa apuesta mínima aquí es *Rp 1.000* bro!`);
   }
 
-  if (bet > (user.koin || 0)) {
-    return m.reply(`Jangan ngutang bos! 😂\nUang lu cuma *Rp ${(user.koin || 0).toLocaleString("id-ID")}* tapi sok-sokan taruhan *Rp ${bet.toLocaleString("id-ID")}*.\nSana kerja dulu!`);
+  if (bet > (user.berry || 0)) {
+    return m.reply(`¡No pidas prestado jefe! 😂\nSolo tienes *Rp ${(user.berry || 0).toLocaleString("id-ID")}* pero apuestas *Rp ${bet.toLocaleString("id-ID")}*.\n¡Ve a trabajar primero!`);
   }
 
   await m.react("🎰");
-  await m.reply(`🎲 Bandar mengocok dadu dan memutar roda Roulette... Tahan napas lu!`);
+  await m.reply(`🎲 El bandar lanza los dados y hace girar la ruleta... ¡Aguanta la respiración!`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const playerScore = Math.floor(Math.random() * 100);
@@ -58,40 +58,40 @@ async function handler(m, { sock }) {
   let result, emoji, moneyChange, bandarTaunt;
 
   if (playerScore > botScore) {
-    result = "MENANG!";
+    result = "¡GANASTE!";
     emoji = "🎉";
     moneyChange = bet;
-    user.koin = (user.koin || 0) + bet;
-    bandarTaunt = `"Cih! Kebetulan doang lu hoki kali ini." - *Bandar* 😒`;
+    user.berry = (user.berry || 0) + bet;
+    bandarTaunt = `"¡Bah! Pura suerte de principiante esta vez." - *Bandar* 😒`;
   } else if (playerScore < botScore) {
-    result = "KALAH TELAK!";
+    result = "¡PERDISTE EN SECO!";
     emoji = "💸";
     moneyChange = -bet;
-    user.koin = (user.koin || 0) - bet;
-    bandarTaunt = `"AHAHA! Udah miskin makin miskin lu! Pulang sana!" - *Bandar* 😈`;
+    user.berry = (user.berry || 0) - bet;
+    bandarTaunt = `"¡JAJAJA! Ya eras pobre y ahora más pobre. ¡Vete a casa!" - *Bandar* 😈`;
   } else {
-    result = "SERI!";
+    result = "¡EMPATE!";
     emoji = "🤝";
     moneyChange = 0;
-    bandarTaunt = `"Hoo... Imbang ya? Boleh juga nyali lu." - *Bandar* 👀`;
+    bandarTaunt = `"Ho... ¿Empate? No tienes nada mal, tienes agallas." - *Bandar* 👀`;
   }
 
   db.save();
 
   await m.react(emoji);
 
-  let txt = `🎰 *MEJA KASINO DITUTUP!* 🎰\n\n`;
-  txt += `*Papan Skor:*\n`;
-  txt += `👤 Poin Lu: *${playerScore}*\n`;
-  txt += `🤖 Poin Bandar: *${botScore}*\n\n`;
-  txt += `*Hasil: ${emoji} ${result}*\n`;
+  let txt = `🎰 *¡MESA DE CASINO CERRADA!* 🎰\n\n`;
+  txt += `*Marcador:*\n`;
+  txt += `👤 Tus Puntos: *${playerScore}*\n`;
+  txt += `🤖 Puntos del Bandar: *${botScore}*\n\n`;
+  txt += `*Resultado: ${emoji} ${result}*\n`;
   if (moneyChange !== 0) {
-    txt += `Uang Bandar: *${moneyChange > 0 ? "+" : ""}Rp ${moneyChange.toLocaleString("id-ID")}*\n\n`;
+    txt += `Dinero en Juego: *${moneyChange > 0 ? "+" : ""}Rp ${moneyChange.toLocaleString("id-ID")}*\n\n`;
   } else {
-    txt += `Uang Kembali (Balik Modal)\n\n`;
+    txt += `Dinero Devuelto (Recuperas tu apuesta)\n\n`;
   }
   txt += `${bandarTaunt}\n\n`;
-  txt += `*Sisa Saldo Lu:* Rp ${(user.koin || 0).toLocaleString("id-ID")}`;
+  txt += `*Tu Saldo Restante:* Rp ${(user.berry || 0).toLocaleString("id-ID")}`;
 
   m.reply(txt);
 }

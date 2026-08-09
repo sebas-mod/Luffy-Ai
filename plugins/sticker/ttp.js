@@ -1,20 +1,20 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "ttp",
   alias: ["texttopicture"],
   category: "maker",
-  description: "Membuat stiker keren dari teks",
-  usage: ".ttp <teks>",
-  example: ".ttp Hai Cantik",
+  description: "Crea stickers geniales a partir de texto",
+  usage: ".ttp <texto>",
+  example: ".ttp Hola Guapa",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ *Waduh, teksnya mana nih?*\n\nKamu harus memasukkan teks yang ingin dijadikan stiker.\n\nContoh: `.ttp Hai Cantik`");
+    return m.reply("❌ *¡Vaya, ¿dónde está el texto?*\n\nDebes ingresar el texto que quieras convertir en sticker.\n\nEjemplo: `.ttp Hola Guapa`");
   }
 
   await m.react("🕕");
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[TTP Maker]", err.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat stiker. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de stickers. Inténtalo de nuevo en unos momentos.");
   }
 }
 

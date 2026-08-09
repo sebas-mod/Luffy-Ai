@@ -1,10 +1,10 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "tembak",
   alias: ["nembak", "propose"],
   category: "fun",
-  description: "Menembak seseorang untuk pacaran",
+  description: "Declárale a alguien para ser pareja",
   usage: ".tembak @tag",
   example: ".tembak @628xxx",
   isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 30,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -20,16 +20,16 @@ if (!global.tembakSessions) global.tembakSessions = {};
 
 const SESSION_TIMEOUT = 3600000;
 const romanticQuotes = [
-  "Aku bukan pilot, tapi aku bisa buat hatimu terbang tinggi bersamaku 💕",
-  "Kamu tau kenapa aku suka hujan? Karena hujan itu seperti kamu, sejuk di hati 🌧️",
-  "Kamu adalah alasan kenapa aku senyum tanpa sebab 😊",
-  "Kalau kamu bintang, aku mau jadi langit yang selalu nemenin kamu ✨",
-  "Aku gak butuh GPS, karena hatiku udah nunjuk ke arahmu 💘",
-  "Kamu tau bedanya kamu sama kopi? Kopi bikin melek, kamu bikin aku nggak bisa tidur mikirin kamu ☕",
-  "Boleh pinjam hatimu? Janji bakal dijaga selamanya 💖",
-  "Kalau cinta itu adalah lagu, kamu adalah melodi terindahnya 🎵",
-  "Aku butuh 3 hal: Matahari, Bulan, dan Kamu. Matahari untuk siang, Bulan untuk malam, Kamu untuk selamanya 🌙",
-  "Kamu adalah puzzle terakhir yang kubutuhkan untuk melengkapi hidupku 🧩",
+  "No soy piloto, pero puedo hacer que tu corazón vuele alto conmigo 💕",
+  "¿Sabes por qué me gusta la lluvia? Porque es como tú, refresca el corazón 🌧️",
+  "Eres la razón por la que sonrío sin motivo 😊",
+  "Si tú eres una estrella, quiero ser el cielo que siempre te acompaña ✨",
+  "No necesito GPS, porque mi corazón ya apunta hacia ti 💘",
+  "¿Sabes la diferencia entre tú y el café? El café me despierta, tú me quitas el sueño pensando en ti ☕",
+  "¿Puedo pedir prestado tu corazón? Prometo cuidarlo para siempre 💖",
+  "Si el amor es una canción, tú eres su melodía más hermosa 🎵",
+  "Necesito 3 cosas: el Sol, la Luna y a ti. El Sol para el día, la Luna para la noche, y a ti para siempre 🌙",
+  "Eres la última pieza del rompecabezas que necesito para completar mi vida 🧩",
 ];
 
 async function handler(m, { sock }) {
@@ -51,20 +51,20 @@ async function handler(m, { sock }) {
 
   if (!targetJid) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+      `⚠️ *ᴄᴏ́ᴍᴏ ᴜsᴀʀ*\n\n` +
         `> \`${m.prefix}tembak @tag\`\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}tembak @628xxx\`\n` +
-        `> Reply pesan + \`${m.prefix}tembak\``,
+        `> Responde al mensaje + \`${m.prefix}tembak\``,
     );
   }
 
   if (targetJid === m.sender) {
-    return m.reply(`Tidak bisa menembak diri sendiri!`);
+    return m.reply(`¡No puedes declararte a ti mismo!`);
   }
 
   if (targetJid === m.botNumber) {
-    return m.reply(`Bot tidak bisa pacaran!`);
+    return m.reply(`¡El bot no puede tener pareja!`);
   }
 
   let senderData = db.getUser(m.sender) || {};
@@ -77,9 +77,9 @@ async function handler(m, { sock }) {
     const partnerData = db.getUser(senderData.fun.pasangan);
     if (partnerData?.fun?.pasangan === m.sender) {
       return m.reply(
-        `❌ *sᴜᴅᴀʜ ᴘᴜɴʏᴀ ᴘᴀsᴀɴɢᴀɴ*\n\n` +
-          `Pasanganmu: @${senderData.fun.pasangan.split("@")[0]}\n` +
-          `Putus dulu sama ${partnerData.name} dengan cara: \`${m.prefix}putus\``,
+        `❌ *ʏᴀ ᴛɪᴇɴᴇ ᴘᴀʀᴇᴊᴀ*\n\n` +
+          `Tu pareja: @${senderData.fun.pasangan.split("@")[0]}\n` +
+          `Primero corta con ${partnerData.name} usando: \`${m.prefix}putus\``,
         { mentions: [senderData.fun.pasangan] },
       );
     }
@@ -89,8 +89,8 @@ async function handler(m, { sock }) {
     const targetPartner = db.getUser(targetData.fun.pasangan);
     if (targetPartner?.fun?.pasangan === targetJid) {
       return m.reply(
-        `💔 *ᴅɪᴀ sᴜᴅᴀʜ ᴘᴀᴄᴀʀᴀɴ*\n\n` +
-          `Pasangannya: @${targetData.fun.pasangan.split("@")[0]}`,
+        `💔 *ʏᴀ ᴛɪᴇɴᴇ ᴘᴀʀᴇᴊᴀ*\n\n` +
+          `Su pareja: @${targetData.fun.pasangan.split("@")[0]}`,
         { mentions: [targetData.fun.pasangan] },
       );
     }
@@ -110,9 +110,9 @@ async function handler(m, { sock }) {
 
     await m.react("💕");
     return m.reply(
-      `💕 *CIE CIEE :3*\n\n` +
-        `@${m.sender.split("@")[0]} dan @${targetJid.split("@")[0]} resmi pacaran !\n\n` +
-        `Semoga langgeng yak! 💍`,
+      `💕 *OOH LA LA :3*\n\n` +
+        `@${m.sender.split("@")[0]} y @${targetJid.split("@")[0]} oficialmente son pareja !\n\n` +
+        `¡Que dure para siempre! 💍`,
       { mentions: [m.sender, targetJid] },
     );
   }
@@ -134,10 +134,10 @@ async function handler(m, { sock }) {
   const ctx = saluranCtx();
   ctx.mentionedJid = [targetJid, m.sender];
   const sentMsg = await m.reply(
-    `💘 *ADA YANG NEMBAK NIHH*\n\n` +
-      `Hei @${targetJid.split("@")[0]} , kamu ditembak oleh @${m.sender.split("@")[0]} nichh\n\n` +
-      `⏱️ Berlaku *1 jam* dari sekarang\n` +
-      `gunakan: \`${m.prefix}terima\` / \`${m.prefix}tolak\``,
+    `💘 *¡ALGUIEN SE DECLARÓ!*\n\n` +
+      `Oye @${targetJid.split("@")[0]} , @${m.sender.split("@")[0]} se ha declarado a ti\n\n` +
+      `⏱️ Válido por *1 hora* desde ahora\n` +
+      `usa: \`${m.prefix}terima\` / \`${m.prefix}tolak\``,
     { contextInfo: ctx },
   );
 
@@ -186,9 +186,9 @@ async function answerHandler(m, sock) {
 
     await m.react("💕");
     await m.reply(
-      `💕 *WIDIHHHH, CIE CIE DITERIMA* @${sessData.shooter.split("@")[0]}\n\n` +
-        `@${m.sender.split("@")[0]} dan @${sessData.shooter.split("@")[0]} resmi pacaran\n\n` +
-        `Semoga langgeng dan bahagia 💍`,
+      `💕 *¡OOH LA LA, ACEPTADO!* @${sessData.shooter.split("@")[0]}\n\n` +
+        `@${m.sender.split("@")[0]} y @${sessData.shooter.split("@")[0]} oficialmente son pareja\n\n` +
+        `¡Que dure y sean felices! 💍`,
       { mentions: [m.sender, sessData.shooter] },
     );
 
@@ -213,9 +213,9 @@ async function answerHandler(m, sock) {
 
     await m.react("💔");
     await m.reply(
-      `💔 *WADUHH, YANG SABAR YAK* @${sessData.shooter.split("@")[0]}\n\n` +
-        `@${m.sender.split("@")[0]} menolak @${sessData.shooter.split("@")[0]} sebagai pacarnya\n\n` +
-        `Sabar ya, masih banyak yang lain! 😢`,
+      `💔 *¡UY, TEN PACIENCIA!* @${sessData.shooter.split("@")[0]}\n\n` +
+        `@${m.sender.split("@")[0]} rechazó a @${sessData.shooter.split("@")[0]} como su pareja\n\n` +
+        `¡Ten paciencia, quedan muchos más! 😢`,
       { mentions: [m.sender, sessData.shooter] },
     );
     return true;

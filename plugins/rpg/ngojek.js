@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "ngojek",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Mesin motornya udah panas banget kak, mending istirahat dulu! 🥵🏍️💨\n\nNgojek butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}* doang. Ngopi dulu gih! ☕`);
+    return m.reply(`¡El motor de tu moto ya está muy caliente bro, mejor descansa! 🥵🏍️💨\n\nSer mototaxista necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Tómate un café! ☕`);
   }
 
   user.rpg.stamina -= staminaCost;
@@ -35,11 +35,11 @@ async function handler(m, { sock }) {
   await m.react("🏍️");
 
   const orders = [
-    { type: "🍔 GoFood", distance: "2km", min: 5000, max: 15000 },
-    { type: "👤 GoRide", distance: "5km", min: 10000, max: 25000 },
-    { type: "📦 GoSend", distance: "3km", min: 8000, max: 20000 },
-    { type: "🛒 GoMart", distance: "4km", min: 12000, max: 30000 },
-    { type: "👥 GoRide Plus", distance: "10km", min: 20000, max: 50000 },
+    { type: "🍔 Entrega de Comida", distance: "2km", min: 5000, max: 15000 },
+    { type: "👤 Viaje en Moto", distance: "5km", min: 10000, max: 25000 },
+    { type: "📦 Envío de Paquete", distance: "3km", min: 8000, max: 20000 },
+    { type: "🛒 Compra en Supermercado", distance: "4km", min: 12000, max: 30000 },
+    { type: "👥 Viaje en Moto Plus", distance: "10km", min: 20000, max: 50000 },
   ];
 
   const order = orders[Math.floor(Math.random() * orders.length)];
@@ -47,10 +47,10 @@ async function handler(m, { sock }) {
   const tips = Math.random() > 0.7 ? Math.floor(Math.random() * 5000) + 1000 : 0;
   const totalEarning = earning + tips;
 
-  await m.reply(`Nyalain motor, tarik gas! Mencari penumpang... 🏍️💨\nAda orderan *${order.type}* sejauh *${order.distance}* nih, Gasss! 🗺️`);
+  await m.reply(`Encendiendo la moto, ¡a todo gas! Buscando pasajeros... 🏍️💨\nHay un pedido de *${order.type}* a *${order.distance}*, ¡Vámonos! 🗺️`);
   await new Promise((r) => setTimeout(r, 3000));
 
-  user.koin = (user.koin || 0) + totalEarning;
+  user.berry = (user.berry || 0) + totalEarning;
 
   const expGain = Math.floor(totalEarning / 20);
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, expGain);
@@ -59,16 +59,16 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `ALHAMDULILLAH ORDERAN KELAR! 🏍️✨\n\n`;
-  txt += `Rincian narik ojol hari ini:\n`;
-  txt += `📱 Tipe: *${order.type}*\n`;
-  txt += `💵 Tarif: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  let txt = `¡PEDIDO TERMINADO! 🏍️✨\n\n`;
+  txt += `Detalles de las carreras de hoy:\n`;
+  txt += `📱 Tipo: *${order.type}*\n`;
+  txt += `💵 Tarifa: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
   if (tips > 0) {
-    txt += `🎁 Tips Customer: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+    txt += `🎁 Propina del Cliente: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
   }
   txt += `📈 EXP: *+${expGain}*\n`;
-  txt += `⚡ Stamina: *-${staminaCost}*\n\n`;
-  txt += `Lumayan buat nambah-nambahin jajan kak! Semangat narik lagi nanti! 🔥💪`;
+  txt += `⚡ Resistencia: *-${staminaCost}*\n\n`;
+  txt += `¡Nada mal para aumentar la mesada bro! ¡Sigue trabajando duro! 🔥💪`;
 
   m.reply(txt);
 }

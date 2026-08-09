@@ -1,10 +1,10 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 const pluginConfig = {
   name: "antimedia",
   alias: ["am", "nomedia"],
   category: "group",
-  description: "Mengatur antimedia di grup (blokir gambar/video/audio/dokumen)",
+  description: "Configurar antimedia en el grupo (bloquear imagen/video/audio/documento)",
   usage: ".antimedia <on/off>",
   example: ".antimedia on",
   isOwner: false,
@@ -14,13 +14,13 @@ const pluginConfig = {
   isAdmin: true,
   isBotAdmin: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 function gpMsg(key, replacements = {}) {
   const defaults = {
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
+    antimedia: "⚠ *AntiMedia* — El medio de @%user% fue eliminado.",
   };
   let text = config.groupProtection?.[key] || defaults[key] || "";
   for (const [k, v] of Object.entries(replacements)) {
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
   if (!action) {
     const status = groupData.antimedia ? "✅ ON" : "❌ OFF";
     await m.reply(
-      `🖼️ *AntiMedia*\n\n> Status: *${status}*\n\n> \`.antimedia on/off\``,
+      `🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``,
     );
     return;
   }
@@ -68,18 +68,18 @@ async function handler(m, { sock }) {
   if (action === "on") {
     db.setGroup(m.chat, { antimedia: true });
     m.react("✅");
-    await m.reply(`✅ *AntiMedia diaktifkan*`);
+    await m.reply(`✅ *AntiMedia activado*`);
     return;
   }
 
   if (action === "off") {
     db.setGroup(m.chat, { antimedia: false });
     m.react("❌");
-    await m.reply(`❌ *AntiMedia dinonaktifkan*`);
+    await m.reply(`❌ *AntiMedia desactivado*`);
     return;
   }
 
-  await m.reply(`❌ Gunakan \`.antimedia on\` atau \`.antimedia off\``);
+  await m.reply(`❌ Usa \`.antimedia on\` o \`.antimedia off\``);
 }
 
 export { pluginConfig as config, handler, checkAntimedia };

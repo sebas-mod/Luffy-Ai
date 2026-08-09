@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekberat',
     alias: ['berat', 'weight'],
     category: 'cek',
-    description: 'Cek berat badan random',
-    usage: '.cekberat <nama>',
+    description: 'Comprueba tu peso al azar',
+    usage: '.cekberat <nombre>',
     example: '.cekberat Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -22,21 +22,21 @@ async function handler(m) {
     if (berat >= 90) {
         desc = 'Big boy/girl! 💪'
     } else if (berat >= 70) {
-        desc = 'Berisi dan sehat! 😊'
+        desc = '¡Robusto y saludable! 😊'
     } else if (berat >= 55) {
-        desc = 'Ideal banget! 👍'
+        desc = '¡Ideal total! 👍'
     } else if (berat >= 45) {
-        desc = 'Langsing nih~ 🌸'
+        desc = 'Delgado~ 🌸'
     } else {
-        desc = 'Kurus banget, makan yang banyak! 🍔'
+        desc = '¡Muy flaco, come mucho! 🍔'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Berat badan kamu *${berat} kg*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek berat badan @${mentioned.split('@')[0]} yak? 
+Tu peso es *${berat} kg*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el peso de @${mentioned.split('@')[0]}? 
     
-Berat badan dia sebesar *${berat} kg*
+Su peso es *${berat} kg*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

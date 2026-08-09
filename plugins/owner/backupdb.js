@@ -1,9 +1,9 @@
-import { sendStoreBackup, SCHEMA_VERSION } from '../../src/lib/ourin-store-backup.js'
+import { sendStoreBackup, SCHEMA_VERSION } from '../../src/lib/luffy-store-backup.js'
 const pluginConfig = {
     name: 'backupdb',
     alias: ['dbbackup', 'backupstore', 'storebackup'],
     category: 'owner',
-    description: 'Backup database/store dan kirim ke owner',
+    description: 'Hacer backup de la base de datos/tienda y enviarlo al capitán',
     usage: '.backupdb',
     isOwner: true,
     isGroup: false,
@@ -12,17 +12,16 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const backupContents = [
-        '📁 database/*.json (semua file JSON)',
-        '📁 database/cpanel/* (data cPanel)',
-        '📄 storage/database.json (main database)',
-        '📄 db.json (root database)',
-        '📄 database/main/*.json (main database)',
-        '📋 backup_metadata.json (info schema)'
+        '📁 database/*.json (todos los archivos JSON)',
+        '📄 storage/database.json (base de datos principal)',
+        '📄 db.json (base de datos raíz)',
+        '📄 database/main/*.json (base de datos principal)',
+        '📋 backup_metadata.json (info del schema)'
     ]
     
     await m.reply(
-        `🕕 *Membuat backup database...*\n\n` +
-        `╭┈┈⬡「 📦 *ᴀᴘᴀ ʏᴀɴɢ ᴅɪ-ʙᴀᴄᴋᴜᴘ* 」\n` +
+        `🕕 *Creando backup de la base de datos...*\n\n` +
+        `╭┈┈⬡「 📦 *ʟᴏ ǫᴜᴇ sᴇ ʀᴇsᴘᴀʟᴅᴀ* 」\n` +
         backupContents.map(c => `┃ ${c}`).join('\n') +
         `\n╰┈┈┈┈┈┈┈┈⬡`
     )
@@ -31,15 +30,15 @@ async function handler(m, { sock }) {
     
     if (result.success) {
         await m.reply(
-            `✅ *Backup Berhasil!*\n\n` +
-            `📦 Size: ${result.size}\n` +
-            `📁 Files: ${result.files}\n` +
+            `✅ *¡Backup exitoso!*\n\n` +
+            `📦 Tamaño: ${result.size}\n` +
+            `📁 Archivos: ${result.files}\n` +
             `🔖 Schema: v${SCHEMA_VERSION}\n\n` +
-            `> Type-safe backup, kompatibel dengan update mendatang.\n` +
-            `> Backup telah dikirim ke owner utama.`
+            `> Backup type-safe, compatible con futuras actualizaciones.\n` +
+            `> El backup fue enviado al capitán principal.`
         )
     } else {
-        await m.reply(`❌ Backup gagal: ${result.error}`)
+        await m.reply(`❌ Backup fallido: ${result.error}`)
     }
 }
 

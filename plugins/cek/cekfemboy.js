@@ -1,22 +1,22 @@
 import fs from "fs";
 import path from "path";
 import cekfemboy from "../../src/scraper/lufemboy.js";
-import { queueFFmpeg } from "../../src/lib/ourin-ffmpeg.js";
-import { fetchBuffer } from "../../src/lib/ourin-utils.js";
-import te from "../../src/lib/ourin-error.js";
+import { queueFFmpeg } from "../../src/lib/luffy-ffmpeg.js";
+import { fetchBuffer } from "../../src/lib/luffy-utils.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "cekfemboy",
   alias: ["femboy"],
   category: "cek",
-  description: "Cek seberapa femboy kamu",
-  usage: ".cekfemboy <nama>",
+  description: "Comprueba cuán femboy eres",
+  usage: ".cekfemboy <nombre>",
   example: ".cekfemboy Budi",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
   const inputName = m.text?.trim();
   const nama =
     mentioned === m.sender
-      ? inputName || m.pushName || "Kamu"
+      ? inputName || m.pushName || "Tú"
       : `@${mentioned.split("@")[0]}`;
 
   try {
@@ -70,10 +70,10 @@ async function handler(m, { sock }) {
 
     let txt =
       mentioned === m.sender
-        ? `Hai @${mentioned.split("@")[0]}
+        ? `Hola @${mentioned.split("@")[0]}
 
 ${result.hasil}`
-        : `Kamu ingin ngecek tingkat kefemboyan @${mentioned.split("@")[0]} yak? 
+        : `¿Quieres comprobar el nivel de femboy de @${mentioned.split("@")[0]}? 
 
 ${result.hasil}`;
 

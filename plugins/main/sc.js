@@ -1,4 +1,4 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js"
 
 const pluginConfig = {
@@ -13,18 +13,18 @@ const pluginConfig = {
     isBanned: false,
     isAdmin: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isBotAdmin: false,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     return await sock.sendMessage(m.chat, {
-        image: getAssetBuffer("ourin"),
+        image: getAssetBuffer("luffy"),
         caption: `🌾 Halo kak *${m.pushName}*
         
-Untuk asli dari bot ini, kamu bisa dapatkan melalui link, nanti kamu tinggal cari kata kunci *OURIN MD*`,
-        footer: "💬 Link ini nanti akan mengarahkan kamu ke Youtube *Zanspiw*",
+El original de este bot lo consigues mediante el enlace; luego solo busca la palabra clave *Luffy-Ai MD*`,
+        footer: "💬 Este enlace te llevará al Youtube *Zanspiw*",
         interactiveButtons: [
             {
                 name: "cta_url",

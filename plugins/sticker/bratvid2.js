@@ -1,19 +1,19 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'bratvid2',
     alias: ['bratv2'],
     category: 'sticker',
     description: 'Generate brat video v2',
-    usage: '.bratvid2 <text>',
+    usage: '.bratvid2 <texto>',
     example: '.bratvid2 hello world',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
     
     if (!text) {
-        return m.reply(`🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratvid2 hello world\``)
+        return m.reply(`🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}bratvid2 hello world\``)
     }
     
     m.react('🕕')

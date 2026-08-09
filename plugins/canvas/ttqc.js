@@ -2,7 +2,7 @@
 import { createCanvas, loadImage, GlobalFonts } from '@napi-rs/canvas';
 import https from 'node:https';
 import http from 'node:http';
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const TEMPLATE_URL  = 'https://raw.githubusercontent.com/Ditzzx-vibecoder/Assets/main/ttqc/qyzwa.png';
 
@@ -15,12 +15,12 @@ const FONT_ASSETS = [
 ];
 
 const MENU_ICONS = [
-  { unicode: '\uf3e5', text: 'Balas',           color: '#000000' },
-  { unicode: '\uf064', text: 'Teruskan',         color: '#000000' },
-  { unicode: '\uf0c5', text: 'Salin',            color: '#000000' },
-  { unicode: '\uf1ab', text: 'Terjemahkan',      color: '#000000' },
-  { unicode: '\uf2ed', text: 'Hapus untuk saya', color: '#000000' },
-  { unicode: '\uf024', text: 'Laporkan',         color: '#ea4335' },
+  { unicode: '\uf3e5', text: 'Responder',           color: '#000000' },
+  { unicode: '\uf064', text: 'Reenviar',         color: '#000000' },
+  { unicode: '\uf0c5', text: 'Copiar',            color: '#000000' },
+  { unicode: '\uf1ab', text: 'Traducir',      color: '#000000' },
+  { unicode: '\uf2ed', text: 'Eliminar para mí', color: '#000000' },
+  { unicode: '\uf024', text: 'Reportar',         color: '#ea4335' },
 ];
 
 const canvasConfig = {
@@ -227,15 +227,15 @@ const pluginConfig = {
   name: "ttqc",
   alias: ["tiktokquote", "ttq"],
   category: "canvas",
-  description: "Buat fake quote chat ala TikTok",
-  usage: ".ttqc <teks> (atau reply teks)",
-  example: ".ttqc Hallo Dunia",
+  description: "Crea fake quote de chat estilo TikTok",
+  usage: ".ttqc <texto> (o responde un texto)",
+  example: ".ttqc Hola Mundo",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -252,7 +252,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `💬 *ᴛɪᴋᴛᴏᴋ ǫᴜᴏᴛᴇ*\n\n> Masukkan teks atau reply pesan yang ingin dijadikan quote.\n\n\`Contoh: ${m.prefix}ttqc Hallo Dunia\``,
+      `💬 *ǫᴜᴏᴛᴇ ᴛɪᴋᴛᴏᴋ*\n\n> Ingresa un texto o responde un mensaje que quieras convertir en quote.\n\n\`Ejemplo: ${m.prefix}ttqc Hola Mundo\``,
     );
   }
 

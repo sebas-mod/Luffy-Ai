@@ -2,8 +2,8 @@ import os from 'os'
 import { performance } from 'perf_hooks'
 import { execSync } from 'child_process'
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'ping2',
@@ -17,7 +17,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
             tableData,
             m,
             {
-                headerText: `${config.bot?.name || 'Ourin-AI'} *STATUS*\n\n- 🎄 Dibawah ini adalah statistik bot kita`,
+                headerText: `${config.bot?.name || 'Luffy-Ai'} *STATUS*\n\n- 🎄 Dibawah ini adalah statistik bot kita`,
                 footer: '🍃 Realtime Monitoring'
             }
         )

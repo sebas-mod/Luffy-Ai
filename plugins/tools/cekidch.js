@@ -1,19 +1,19 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'cekidch',
     alias: ['idch', 'channelid', 'infoch', 'channelinfo'],
     category: 'tools',
-    description: 'Cek ID dan info lengkap channel dari link',
-    usage: '.cekidch <link channel>',
+    description: 'Comprueba el ID e información completa del canal desde un enlace',
+    usage: '.cekidch <enlace del canal>',
     example: '.cekidch https://whatsapp.com/channel/xxxxx',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -36,15 +36,15 @@ async function handler(m, { sock }) {
 
     if (!text) {
         return m.reply(
-            `ℹ️ *INFORMASI PENGGUNAAN*\n\n` +
-            `Silakan masukkan link channel WhatsApp yang ingin Anda cek informasinya secara detail.\n\n` +
-            `*CONTOH PENGGUNAAN:*\n` +
+            `ℹ️ *INFORMACIÓN DE USO*\n\n` +
+            `Ingresa el enlace del canal de WhatsApp cuya información deseas consultar en detalle.\n\n` +
+            `*EJEMPLO DE USO:*\n` +
             `• \`${m.prefix}cekidch https://whatsapp.com/channel/xxxxx\``
         )
     }
 
     if (!text.includes('https://whatsapp.com/channel/')) {
-        return m.reply(`❌ *LINK TIDAK VALID*\n\nPastikan link yang Anda masukkan adalah link channel WhatsApp yang sah dan benar.`)
+        return m.reply(`❌ *ENLACE NO VÁLIDO*\n\nAsegúrate de que el enlace que ingresaste sea un enlace de canal de WhatsApp válido y correcto.`)
     }
 
     m.react('🕕')
@@ -54,42 +54,42 @@ async function handler(m, { sock }) {
 
         if (!metadata?.id) {
             m.react('❌')
-            return m.reply(`❌ *CHANNEL TIDAK DITEMUKAN*\n\nMaaf, sistem tidak dapat menemukan informasi dari channel tersebut. Mungkin link sudah kedaluwarsa atau channel telah dihapus.`)
+            return m.reply(`❌ *CANAL NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar información de ese canal. Quizás el enlace caducó o el canal fue eliminado.`)
         }
 
         const chName = metadata.name || 'Unknown'
         const chId = metadata.id
         const chSubs = metadata.subscribers ?? metadata.subscribers_count ?? 0
         const chDesc = metadata.description || '—'
-        const chVerified = metadata.verification === 'VERIFIED' ? '✓ Verified' : 'Unverified'
+        const chVerified = metadata.verification === 'VERIFIED' ? '✓ Verificado' : 'No verificado'
         const chCreated = formatDate(metadata.creation_time)
         const chPicUrl = metadata.preview === "https://mmg.whatsapp.net" ? "https://files.catbox.moe/lp9tpd.jpg" : metadata.preview
 
         const descPreview = chDesc.length > 120 ? chDesc.slice(0, 120) + '...' : chDesc
 
         const infoText =
-            `Berikut adalah detail informasi lengkap mengenai channel yang Anda cari:\n\n` +
-            `*RINCIAN CHANNEL:*\n` +
-            `• Nama: *${chName}*\n` +
-            `• ID Channel: \`${chId}\`\n` +
-            `• Subscriber: *${formatSubs(chSubs)}*\n` +
-            `• Status: *${chVerified}*\n` +
-            `• Dibuat Pada: *${chCreated}*\n\n` +
-            `*DESKRIPSI:*\n` +
+            `Estos son los detalles completos de información del canal que estás buscando:\n\n` +
+            `*DETALLES DEL CANAL:*\n` +
+            `• Nombre: *${chName}*\n` +
+            `• ID del Canal: \`${chId}\`\n` +
+            `• Suscriptores: *${formatSubs(chSubs)}*\n` +
+            `• Estado: *${chVerified}*\n` +
+            `• Creado el: *${chCreated}*\n\n` +
+            `*DESCRIPCIÓN:*\n` +
             `${descPreview}`
 
         const buttons = [
             {
                 name: 'cta_copy',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '📋 Ambil ID Saluran nya',
+                    display_text: '📋 Obtener el ID del canal',
                     copy_code: chId
                 })
             },
             {
                 name: 'cta_url',
                 buttonParamsJson: JSON.stringify({
-                    display_text: '🔗 Buka Channel nya',
+                    display_text: '🔗 Abrir el canal',
                     url: text
                 })
             }
@@ -97,7 +97,7 @@ async function handler(m, { sock }) {
 
         await sock.sendButton(m.chat, chPicUrl, infoText, m, {
             buttons: buttons,
-            footer: `© ${config.bot?.name || 'Ourin-AI'}`,
+            footer: `© ${config.bot?.name || 'Luffy-Ai'}`,
         })
 
         m.react('✅')

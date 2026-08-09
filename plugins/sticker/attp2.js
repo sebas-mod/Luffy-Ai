@@ -1,23 +1,23 @@
 import axios from 'axios';
 import config from '../../config.js';
-import te from '../../src/lib/ourin-error.js';
+import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
   name: 'attp2',
   alias: ['attp2'],
   category: 'sticker',
-  description: 'Buat sticker animasi teks',
-  usage: '.attp2 <teks>',
-  example: '.attp2 Halo dunia',
+  description: 'Crea sticker de texto animado',
+  usage: '.attp2 <texto>',
+  example: '.attp2 Hola mundo',
   cooldown: 5,
-  energi: 2,
+  carne: 2,
 };
 
 async function handler(m, { sock }) {
   const text = m.text?.trim() || m.quoted?.text?.trim();
 
   if (!text) {
-    return m.reply(`⚠️ Harap masukkan teks!\nContoh: \`${m.prefix}${m.command} Halo semua\``);
+    return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
   }
 
   await m.react('🕕');
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
 
     const response = await axios.get(apiUrl);
     if (!response.data.status || !response.data.data?.url) {
-      return m.reply('❌ Gagal membuat sticker, kemungkinan limit API habis.');
+      return m.reply('❌ No se pudo crear el sticker, posiblemente el límite de la API se agotó.');
     }
 
     const stickerUrl = response.data.data.url;

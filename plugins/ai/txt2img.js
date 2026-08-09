@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import { f } from './../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { f } from './../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'text2img3',
     alias: [],
     category: 'ai',
-    description: 'Generate gambar dari teks dengan AI',
+    description: 'Genera imágenes desde texto con IA',
     usage: '.txt2img <prompt> | <style>',
     example: '.txt2img beautiful sunset | anime',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -24,8 +24,8 @@ async function handler(m, { sock }) {
     if (!input) {
         return m.reply(
             `🎨 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
-            `> Generate gambar dari teks dengan AI\n\n` +
-            `\`Contoh: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
+            `> Genera imágenes desde texto con IA\n\n` +
+            `\`Ejemplo: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
             `🎭 *sᴛʏʟᴇs*\n` +
             `> \`${STYLES.join(', ')}\``
         )

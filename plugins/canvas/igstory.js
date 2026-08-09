@@ -8,14 +8,14 @@ const pluginConfig = {
     name: 'igstory',
     alias: ['igstorypost'],
     category: 'canvas',
-    description: 'Membuat gambar simulasi post Instagram Story dari foto profil dan gambarmu.',
-    usage: '.igstory [kirim/reply gambar]',
+    description: 'Crea una imagen simulando un post de Instagram Story con tu foto de perfil y tu imagen.',
+    usage: '.igstory [envía/responde imagen]',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 }
 
@@ -265,12 +265,12 @@ async function handler(m, { sock }) {
 
         if (!targetImgBuffer) {
             return m.reply(
-                `📸 *FITUR IG STORY POST*\n\n` +
-                `Sistem ini akan membuat simulasi gambar postingan Instagram Story menggunakan foto yang kamu kirimkan.\n\n` +
-                `*CARA PENGGUNAAN:*\n` +
-                `- Kirimkan gambar langsung dengan caption \`${m.prefix}igstory\`\n` +
-                `- Atau balas (*reply*) pesan gambar yang sudah ada dengan perintah \`${m.prefix}igstory\`\n\n` +
-                `_Bot akan otomatis memasukkan nama pengguna, foto profilmu, beserta detail interaksi seperti jumlah suka dan komentar secara acak!_`
+                `📸 *FUNCIÓN IG STORY POST*\n\n` +
+                `Este sistema creará una simulación de imagen de publicación de Instagram Story usando la foto que envíes.\n\n` +
+                `*CÓMO USARLO:*\n` +
+                `- Envía una imagen directamente con caption \`${m.prefix}igstory\`\n` +
+                `- O responde (*reply*) a una imagen existente con el comando \`${m.prefix}igstory\`\n\n` +
+                `_El bot añadirá automáticamente el nombre de usuario, tu foto de perfil y detalles de interacción como el número de me gusta y comentarios al azar!_`
             );
         }
 
@@ -313,7 +313,7 @@ async function handler(m, { sock }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar IG Story. Pastikan gambar yang dikirim valid dan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo siento, ocurrió un error al intentar crear la imagen de IG Story. Asegúrate de que la imagen enviada sea válida e inténtalo de nuevo en unos momentos.`);
     }
 }
 

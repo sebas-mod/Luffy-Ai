@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebakepep', {
     alias: ['tebakff', 'tebakfreefire'],
     emoji: '🔫',
-    title: 'TEBAK EPEP',
-    description: 'Tebak karakter Free Fire',
+    title: 'ADIVINA EL EPEP',
+    description: 'Adivina el personaje de Free Fire',
     hasImage: true
 })
 

@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "gacha",
   alias: ["spin", "pull", "lucky"],
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 300,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -145,9 +145,9 @@ async function handler(m, { sock }) {
 
   switch (reward.type) {
     case "balance":
-      db.updateKoin(m.sender, reward.amount);
+      db.updateBerry(m.sender, reward.amount);
       typeEmoji = "💰";
-      rewardText = `+${reward.amount.toLocaleString()} Koin`;
+      rewardText = `+${reward.amount.toLocaleString()} Berry`;
       break;
     case "exp":
       if (!user.rpg) user.rpg = {};
@@ -155,15 +155,15 @@ async function handler(m, { sock }) {
       typeEmoji = "⭐";
       rewardText = `+${reward.amount.toLocaleString()} EXP`;
       break;
-    case "energi":
-      db.updateEnergi(m.sender, reward.amount);
+    case "carne":
+      db.updateCarne(m.sender, reward.amount);
       typeEmoji = "⚡";
-      rewardText = `+${reward.amount} Energi`;
+      rewardText = `+${reward.amount} Carne`;
       break;
     case "jackpot":
-      db.updateKoin(m.sender, reward.amount);
+      db.updateBerry(m.sender, reward.amount);
       typeEmoji = "💎";
-      rewardText = `+${reward.amount.toLocaleString()} Koin`;
+      rewardText = `+${reward.amount.toLocaleString()} Berry`;
       break;
   }
 

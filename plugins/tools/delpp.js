@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'delpp',
     alias: ['delprofilebot', 'delppbot', 'hapusppbot'],
     category: 'tools',
-    description: 'Menghapus foto profil bot',
+    description: 'Elimina la foto de perfil del bot',
     usage: '.delpp',
     example: '.delpp',
     isOwner: true,
@@ -10,7 +10,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -18,20 +18,20 @@ async function handler(m, { sock }) {
     try {
         const botJid = sock.user?.id
         if (!botJid) {
-            await m.reply(`❌ Bot JID tidak ditemukan.`)
+            await m.reply(`❌ JID del bot no encontrado.`)
             return
         }
         
         await sock.removeProfilePicture(botJid)
         
         await m.reply(
-            `✅ *ᴘᴘ ʙᴏᴛ ᴅɪʜᴀᴘᴜs*\n\n` +
-            `> Foto profil bot berhasil dihapus!`
+            `✅ *ᴘᴘ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ*\n\n` +
+            `> ¡La foto de perfil del bot se eliminó exitosamente!`
         )
     } catch (error) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Tidak dapat menghapus foto bot.\n` +
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> No se pudo eliminar la foto del bot.\n` +
             `> _${error.message}_`
         )
     }

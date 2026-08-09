@@ -1,12 +1,12 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { isLid, lidToJid } from '../../src/lib/ourin-lid.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import { isLid, lidToJid } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'unmutemember',
     alias: ['unmutmember', 'unsilentmember', 'unbisukanmember', 'listmutemember', 'listmute'],
     category: 'group',
-    description: 'Membuka mute member tertentu',
-    usage: '.unmutemember <@tag/reply/nomor>',
+    description: 'Desilenciar a un miembro específico',
+    usage: '.unmutemember <@tag/reply/número>',
     example: '.unmutemember @user',
     isOwner: false,
     isPremium: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -45,15 +45,15 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply(`🔇 *LIST MUTED MEMBERS*\n\n> Tidak ada member yang dimute di grup ini`)
+            return m.reply(`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`)
         }
 
-        let txt = `🔇 *LIST MUTED MEMBERS*\n\n╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ* 」\n`
+        let txt = `🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n╭┈┈⬡「 📋 *ʟɪsᴛᴀ* 」\n`
         mutedMembers.forEach((jid, i) => {
             const num = jid.replace(/@.+/g, '')
             txt += `┃ ${i + 1}. @${num}\n`
         })
-        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` member dimute`
+        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` miembros silenciados`
 
         return m.reply(txt, { mentions: mutedMembers })
     }
@@ -62,12 +62,12 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            `🔊 *UNMUTE MEMBER*\n\n` +
-            `> Membuka mute member tertentu\n\n` +
-            `\`Contoh:\`\n` +
+            `🔊 *DESILENCIAR MIEMBRO*\n\n` +
+            `> Desilencia a un miembro específico\n\n` +
+            `\`Ejemplo:\`\n` +
             `> ${m.prefix}unmutemember @user\n` +
             `> ${m.prefix}unmutemember 6281234567890\n` +
-            `> Reply pesan member + ${m.prefix}unmutemember`
+            `> Responde el mensaje del miembro + ${m.prefix}unmutemember`
         )
     }
 
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Member @${targetNumber} tidak sedang dimute`, { mentions: [targetJid] })
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
@@ -87,11 +87,11 @@ async function handler(m, { sock }) {
 
     m.react('🔊')
     await m.reply(
-        `🔊 *MEMBER DIUNMUTE*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-        `┃ 👤 ᴍᴇᴍʙᴇʀ: @${targetNumber}\n` +
-        `┃ 🔊 sᴛᴀᴛᴜs: \`Unmuted\`\n` +
-        `┃ 📊 sɪsᴀ ᴍᴜᴛᴇ: \`${mutedMembers.length}\` ᴍᴇᴍʙᴇʀ\n` +
+        `🔊 *MIEMBRO DESILENCIADO*\n\n` +
+        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 👤 ᴍɪᴇᴍʙʀᴏ: @${targetNumber}\n` +
+        `┃ 🔊 ᴇsᴛᴀᴅᴏ: \`Desilenciado\`\n` +
+        `┃ 📊 sɪʟᴇɴᴄɪᴀᴅᴏs ʀᴇsᴛᴀɴᴛᴇs: \`${mutedMembers.length}\` ᴍɪᴇᴍʙʀᴏs\n` +
         `╰┈┈⬡`,
         { mentions: [targetJid] }
     )

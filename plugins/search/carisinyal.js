@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'spekhp',
     alias: ['spek', 'spesifikasi'],
     category: 'search',
-    description: 'Mencari spesifikasi lengkap smartphone dari Carisinyal.',
+    description: 'Busca especificaciones completas de smartphones desde Carisinyal.',
     usage: '.spekhp <nama hp>',
     example: '.spekhp oppo a3s',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 };
 
@@ -131,12 +131,12 @@ async function detail(url) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `📱 *FITUR PENCARIAN SPESIFIKASI HP*\n\n` +
-            `Fitur ini membantumu mencari spesifikasi lengkap dari sebuah *smartphone* menggunakan *database* terpercaya dari Carisinyal.\n\n` +
-            `*CARA PENGGUNAAN:*\n` +
-            `- Ketik \`${m.prefix}spekhp <nama hp>\`\n` +
-            `- Contoh: \`${m.prefix}spekhp oppo a3s\`\n\n` +
-            `_Sistem akan secara otomatis mencari ponsel yang paling sesuai dengan kata kuncimu dan menampilkan rincian spesifikasinya lengkap dengan gambarnya!_`
+            `📱 *BUSCADOR DE ESPECIFICACIONES DE MÓVILES*\n\n` +
+            `Esta función te ayuda a buscar las especificaciones completas de un *smartphone* usando la base de datos confiable de Carisinyal.\n\n` +
+            `*CÓMO USAR:*\n` +
+            `- Escribe \`${m.prefix}spekhp <nombre del movil>\`\n` +
+            `- Ejemplo: \`${m.prefix}spekhp oppo a3s\`\n\n` +
+            `_El sistema buscará automáticamente el móvil más adecuado según tu palabra clave y mostrará sus especificaciones completas con su imagen!_`
         );
     }
 
@@ -146,7 +146,7 @@ async function handler(m, { sock, text }) {
 
         if (!results || results.length === 0) {
             await m.react('❌');
-            return m.reply(`❌ *TIDAK DITEMUKAN*\n\nMaaf, sistem tidak dapat menemukan ponsel dengan kata kunci *${text}*. Cobalah menggunakan nama merk atau seri yang lebih spesifik.`);
+            return m.reply(`❌ *NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar un móvil con la palabra clave *${text}*. Intenta usar una marca o serie más específica.`);
         }
 
         const phone = results.find(r => (r.type || "").toLowerCase().includes("ponsel")) || results[0];
@@ -154,18 +154,18 @@ async function handler(m, { sock, text }) {
         const data = await detail(phone.url);
 
         let caption = `📱 *SPESIFIKASI ${data.title.toUpperCase()}*\n\n`;
-        if (data.release) caption += `📅 *Rilis:* ${data.release}\n`;
-        if (data.network) caption += `📶 *Jaringan:* ${data.network}\n`;
+        if (data.release) caption += `📅 *Lanzamiento:* ${data.release}\n`;
+        if (data.network) caption += `📶 *Red:* ${data.network}\n`;
         caption += `\n`;
 
-        caption += `🖥️ *LAYAR*\n`;
-        if (data.display.type) caption += `- *Tipe:* ${data.display.type}\n`;
-        if (data.display.size) caption += `- *Ukuran:* ${data.display.size}\n`;
-        if (data.display.resolution) caption += `- *Resolusi:* ${data.display.resolution}\n`;
+        caption += `🖥️ *PANTALLA*\n`;
+        if (data.display.type) caption += `- *Tipo:* ${data.display.type}\n`;
+        if (data.display.size) caption += `- *Tamaño:* ${data.display.size}\n`;
+        if (data.display.resolution) caption += `- *Resolución:* ${data.display.resolution}\n`;
         if (data.display.refreshRate) caption += `- *Refresh Rate:* ${data.display.refreshRate}\n`;
         caption += `\n`;
 
-        caption += `⚙️ *PERFORMA & MEMORI*\n`;
+        caption += `⚙️ *RENDIMIENTO Y MEMORIA*\n`;
         if (data.performance.chipset) caption += `- *Chipset:* ${data.performance.chipset}\n`;
         if (data.performance.cpu) caption += `- *CPU:* ${data.performance.cpu}\n`;
         if (data.performance.gpu) caption += `- *GPU:* ${data.performance.gpu}\n`;
@@ -173,24 +173,24 @@ async function handler(m, { sock, text }) {
         if (data.performance.storage) caption += `- *Storage:* ${data.performance.storage}\n`;
         caption += `\n`;
 
-        caption += `📸 *KAMERA UTAMA*\n`;
-        if (data.camera.total) caption += `- *Jumlah:* ${data.camera.total}\n`;
-        if (data.camera.configuration) caption += `- *Konfigurasi:* ${data.camera.configuration}\n`;
+        caption += `📸 *CÁMARA PRINCIPAL*\n`;
+        if (data.camera.total) caption += `- *Cantidad:* ${data.camera.total}\n`;
+        if (data.camera.configuration) caption += `- *Configuración:* ${data.camera.configuration}\n`;
         if (data.camera.video) caption += `- *Video:* ${data.camera.video}\n`;
         caption += `\n`;
 
-        caption += `🔋 *BATERAI*\n`;
-        if (data.battery.capacity) caption += `- *Kapasitas:* ${data.battery.capacity}\n`;
-        if (data.battery.charging) caption += `- *Charging:* ${data.battery.charging}\n`;
+        caption += `🔋 *BATERÍA*\n`;
+        if (data.battery.capacity) caption += `- *Capacidad:* ${data.battery.capacity}\n`;
+        if (data.battery.charging) caption += `- *Carga:* ${data.battery.charging}\n`;
         caption += `\n`;
 
-        caption += `📡 *KONEKTIVITAS & LAINNYA*\n`;
-        if (data.system.os) caption += `- *OS Saat Rilis:* ${data.system.os}\n`;
+        caption += `📡 *CONECTIVIDAD Y OTROS*\n`;
+        if (data.system.os) caption += `- *OS al Lanzar:* ${data.system.os}\n`;
         if (data.connectivity.nfc) caption += `- *NFC:* ${data.connectivity.nfc}\n`;
         if (data.audio.jack) caption += `- *Audio Jack:* ${data.audio.jack}\n`;
         if (data.sensors) caption += `- *Sensor:* ${data.sensors}\n`;
 
-        caption += `\n🔗 *Sumber:* Carisinyal`;
+        caption += `\n🔗 *Fuente:* Carisinyal`;
 
         if (data.image) {
             await sock.sendMessage(m.chat, { image: { url: data.image }, caption: caption }, { quoted: m });
@@ -202,7 +202,7 @@ async function handler(m, { sock, text }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *GAGAL MENGAMBIL DATA*\n\nMaaf, sistem mengalami gangguan saat mencoba mengambil data dari *Carisinyal*. Silakan coba lagi nanti.`);
+        m.reply(`❌ *ERROR AL OBTENER DATOS*\n\nLo siento, el sistema tuvo un problema al intentar obtener los datos de *Carisinyal*. Inténtalo de nuevo más tarde.`);
     }
 }
 

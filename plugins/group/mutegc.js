@@ -1,11 +1,11 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "mutegc",
   alias: ["mutegrup", "mutebot", "blockbot", "lockbot"],
   category: "group",
-  description: "Blokir command bot untuk member, hanya admin/owner yang bisa pakai",
+  description: "Bloquear comandos del bot para los miembros, solo admin/owner pueden usarlos",
   usage: ".mutegc",
   example: ".mutegc",
   isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isAdmin: true,
   isBotAdmin: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,23 +25,23 @@ async function handler(m, { sock }) {
 
   if (groupData.mutegc) {
     return m.reply(
-      `🔇 *Mute GC Sudah Aktif*\n\n` +
-        `> Member tidak bisa menggunakan command bot di grup ini\n` +
-        `> Hanya admin grup dan owner bot yang bisa akses\n\n` +
-        `_Ketik *${m.prefix}unmutegc* untuk membuka_`
+      `🔇 *Mute GC Ya Activo*\n\n` +
+        `> Los miembros no pueden usar comandos del bot en este grupo\n` +
+        `> Solo los admins del grupo y el owner del bot pueden acceder\n\n` +
+        `_Escribe *${m.prefix}unmutegc* para abrir_`
     );
   }
 
   db.setGroup(m.chat, { mutegc: true });
   const ctx = saluranCtx();
-  const groupName = m.groupMetadata?.subject || "grup ini";
+  const groupName = m.groupMetadata?.subject || "este grupo";
 
   return m.reply(
-    `🔇 *Mute GC Aktif*\n\n` +
-      `> Grup: *${groupName}*\n` +
-      `> Member tidak bisa menggunakan command bot\n` +
-      `> Admin grup dan owner bot tetap bisa akses\n\n` +
-      `_Ketik *${m.prefix}unmutegc* untuk membuka_`,
+    `🔇 *Mute GC Activo*\n\n` +
+      `> Grupo: *${groupName}*\n` +
+      `> Los miembros no pueden usar comandos del bot\n` +
+      `> Los admins del grupo y el owner del bot pueden acceder\n\n` +
+      `_Escribe *${m.prefix}unmutegc* para abrir_`,
     { contextInfo: ctx }
   );
 }

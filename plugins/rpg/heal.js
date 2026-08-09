@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "heal",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 600,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
   user.rpg.maxStamina = user.rpg.maxStamina || 100;
 
   if (user.rpg.health >= user.rpg.maxHealth && user.rpg.stamina >= user.rpg.maxStamina) {
-    return m.reply(`Eits, badan kamu masih seger bugar kak! 🏋️✨\nNggak usah istirahat dulu, mending lanjut petualang aja! 🚀`);
+    return m.reply(`¡Ey, tu cuerpo está en plena forma bro! 🏋️✨\nNo descanses todavía, ¡mejor sigue con la aventura! 🚀`);
   }
 
   await m.react("🛌");
-  await m.reply("Tidur dulu ah... Zzz... 🛌💤");
+  await m.reply("Mejor duermo un rato... Zzz... 🛌💤");
   await new Promise((r) => setTimeout(r, 3000));
 
   const healthRecover = 30;
@@ -43,11 +43,11 @@ async function handler(m, { sock }) {
   user.rpg.health = Math.min(user.rpg.health + healthRecover, user.rpg.maxHealth);
   user.rpg.stamina = Math.min(user.rpg.stamina + staminaRecover, user.rpg.maxStamina);
 
-  let txt = `Hooammm... seger banget abis tidur! 🥱🌞\n\n`;
-  txt += `Status kamu udah pulih nih:\n`;
-  txt += `❤️ Health: ${oldHealth} 📈 *${user.rpg.health}*\n`;
-  txt += `⚡ Stamina: ${oldStamina} 📈 *${user.rpg.stamina}*\n\n`;
-  txt += `Kalo males nunggu istirahat, kamu bisa beli potion di \`.shop\` dan ketik \`.use potion\` buat heal instant ya! 🥤💖`;
+  let txt = `Hooammm... qué refrescante es despertar! 🥱🌞\n\n`;
+  txt += `Tu estado se recuperó:\n`;
+  txt += `❤️ Salud: ${oldHealth} 📈 *${user.rpg.health}*\n`;
+  txt += `⚡ Resistencia: ${oldStamina} 📈 *${user.rpg.stamina}*\n\n`;
+  txt += `Si te da pereza esperar el descanso, puedes comprar pociones en \`.shop\` y escribir \`.use potion\` para curarte al instante! 🥤💖`;
 
   db.save();
   await m.reply(txt);

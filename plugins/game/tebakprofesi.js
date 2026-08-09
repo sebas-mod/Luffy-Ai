@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebakprofesi', {
     alias: ['tp', 'guessjob'],
     emoji: '👨‍💼',
-    title: 'TEBAK PROFESI',
-    description: 'Tebak nama profesi'
+    title: 'ADIVINA LA PROFESIÓN',
+    description: 'Adivina el nombre de la profesión'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakprofesi')

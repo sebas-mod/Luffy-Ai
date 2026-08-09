@@ -1,15 +1,15 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "pddikti",
   alias: ["dikti", "carimahasiswa"],
   category: "search",
-  description: "Cari data Mahasiswa, Dosen, PT, dan Prodi dari PDDIKTI",
+  description: "Busca datos de estudiantes, docentes, instituciones y programas de PDDIKTI",
   usage: ".pddikti <mode> <query>",
   example: ".pddikti all Gibran Khalil\n.pddikti detail <id_mahasiswa>",
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -41,19 +41,19 @@ async function pddikti(input) {
       const mhsId = typeof input?.mahasiswaId === "string" ? input.mahasiswaId.trim() : "";
       if (!mhsId) {
         return { Status: false, Code: 400, Input: input, Result: null,
-          Error: "Field 'mahasiswaId' wajib untuk mode 'detail'. Ambil dari hasil search mhs (field 'id')." };
+          Error: "El campo 'mahasiswaId' es obligatorio para el modo 'detail'. Tómalo de los resultados de búsqueda mhs (campo 'id')." };
       }
       const data = await pddiktiGet(`/detail/mhs/${encodeURIComponent(mhsId)}`);
       const message = data?.nama
         ? `🎓 ${data.nama} — ${data.nim} | ${data.prodi} @ ${data.nama_pt}`
-        : "🎓 Detail mahasiswa";
+        : "🎓 Detalle del estudiante";
       return {
         Status: true, Code: 200, Input: input,
         Result: {
           message,
           nama: data.nama,
           nim: data.nim,
-          jenisKelamin: data.jenis_kelamin === "L" ? "Laki-laki" : data.jenis_kelamin === "P" ? "Perempuan" : null,
+          jenisKelamin: data.jenis_kelamin === "L" ? "Masculino" : data.jenis_kelamin === "P" ? "Femenino" : null,
           jenjang: data.jenjang,
           prodi: data.prodi,
           kodeProdi: data.kode_prodi,
@@ -71,11 +71,11 @@ async function pddikti(input) {
 
     if (!query) {
       return { Status: false, Code: 400, Input: input, Result: null,
-        Error: "Kata kunci pencarian wajib (nama, NIM, NIDN, dll)." };
+        Error: "La palabra clave de búsqueda es obligatoria (nombre, NIM, NIDN, etc.)." };
     }
     if (query.length < 3) {
       return { Status: false, Code: 400, Input: input, Result: null,
-        Error: "Query terlalu pendek (min 3 karakter)." };
+        Error: "La consulta es demasiado corta (mín. 3 caracteres)." };
     }
 
     let path;
@@ -89,7 +89,7 @@ async function pddikti(input) {
       case "prodi": path = `/pencarian/prodi/${encodeURIComponent(query)}`; break;
       default:
         return { Status: false, Code: 400, Input: input, Result: null,
-          Error: `Unknown mode '${mode}'. Pakai: all | mhs | dosen | pt | prodi | detail` };
+          Error: `Modo desconocido '${mode}'. Usa: all | mhs | dosen | pt | prodi | detail` };
     }
 
     const data = await pddiktiGet(path);
@@ -103,7 +103,7 @@ async function pddikti(input) {
       return {
         Status: true, Code: 200, Input: input,
         Result: {
-          message: `🔍 ${total} hasil untuk "${query}" (${mhs.length} mhs, ${dosen.length} dosen, ${pt.length} pt, ${prodi.length} prodi)`,
+          message: `🔍 ${total} resultados para "${query}" (${mhs.length} mhs, ${dosen.length} dosen, ${pt.length} pt, ${prodi.length} prodi)`,
           query,
           totalCount: total,
           mahasiswa: mhs,
@@ -119,8 +119,8 @@ async function pddikti(input) {
       Status: true, Code: 200, Input: input,
       Result: {
         message: items.length > 0
-          ? `🔍 ${items.length} hasil ${mode} untuk "${query}"`
-          : `🔍 Gak ada hasil ${mode} untuk "${query}"`,
+          ? `🔍 ${items.length} resultados ${mode} para "${query}"`
+          : `🔍 No hay resultados ${mode} para "${query}"`,
         query,
         mode,
         count: items.length,
@@ -141,15 +141,15 @@ async function pddikti(input) {
 async function handler(m, { args }) {
   if (args.length === 0) {
     return m.reply(
-      `🎓 *PDDIKTI SEARCH*\n\n` +
-      `> Mode pencarian:\n` +
+      `🎓 *BÚSQUEDA PDDIKTI*\n\n` +
+      `> Modos de búsqueda:\n` +
       `- \`.pddikti all <query>\`\n` +
-      `- \`.pddikti mhs <nama/NIM>\`\n` +
-      `- \`.pddikti dosen <nama/NIDN>\`\n` +
-      `- \`.pddikti pt <nama_kampus>\`\n` +
-      `- \`.pddikti prodi <nama_prodi>\`\n` +
-      `- \`.pddikti detail <id_mahasiswa>\`\n\n` +
-      `*Contoh:* \`.pddikti mhs Gibran Rakabuming\``
+      `- \`.pddikti mhs <nombre/NIM>\`\n` +
+      `- \`.pddikti dosen <nombre/NIDN>\`\n` +
+      `- \`.pddikti pt <nombre_universidad>\`\n` +
+      `- \`.pddikti prodi <nombre_programa>\`\n` +
+      `- \`.pddikti detail <id_estudiante>\`\n\n` +
+      `*Ejemplo:* \`.pddikti mhs Gibran Rakabuming\``
     );
   }
 
@@ -159,7 +159,7 @@ async function handler(m, { args }) {
     const mode = args[0].toLowerCase();
     
     if (mode === "detail") {
-      if (args.length < 2) return m.reply("❌ Masukkan ID Mahasiswa!");
+      if (args.length < 2) return m.reply("❌ ¡Ingresa el ID del estudiante!");
       const mhsId = args[1];
       const res = await pddikti({ mode: "detail", mahasiswaId: mhsId });
       
@@ -169,16 +169,16 @@ async function handler(m, { args }) {
       }
       
       const r = res.Result;
-      let txt = `🎓 *DETAIL MAHASISWA*\n\n`;
-      txt += `- 📝 Nama          : *${r.nama}*\n`;
-      txt += `- 🆔 NIM           : *${r.nim}*\n`;
-      txt += `- 👤 Jenis Kelamin : *${r.jenisKelamin ?? "-"}*\n`;
-      txt += `- 🎓 Jenjang       : *${r.jenjang}*\n`;
-      txt += `- 📚 Prodi         : *${r.prodi}*\n`;
-      txt += `- 🏛️ Perguruan T.  : *${r.namaPt}*\n`;
-      txt += `- 📅 Tgl Masuk     : *${r.tanggalMasuk}*\n`;
-      txt += `- 📊 Status        : *${r.statusSaatIni}*\n`;
-      txt += `- 💼 Jenis Daftar  : *${r.jenisDaftar}*\n`;
+      let txt = `🎓 *DETALLE DEL ESTUDIANTE*\n\n`;
+      txt += `- 📝 Nombre         : *${r.nama}*\n`;
+      txt += `- 🆔 NIM            : *${r.nim}*\n`;
+      txt += `- 👤 Género         : *${r.jenisKelamin ?? "-"}*\n`;
+      txt += `- 🎓 Nivel          : *${r.jenjang}*\n`;
+      txt += `- 📚 Programa       : *${r.prodi}*\n`;
+      txt += `- 🏛️ Universidad    : *${r.namaPt}*\n`;
+      txt += `- 📅 Fecha Ingreso  : *${r.tanggalMasuk}*\n`;
+      txt += `- 📊 Estado         : *${r.statusSaatIni}*\n`;
+      txt += `- 💼 Tipo de Registro: *${r.jenisDaftar}*\n`;
       
       m.react("✅");
       return m.reply(txt);
@@ -186,7 +186,7 @@ async function handler(m, { args }) {
     
     // For other modes
     const query = args.slice(1).join(" ");
-    if (!query) return m.reply("❌ Masukkan kata kunci pencarian!");
+    if (!query) return m.reply("❌ ¡Ingresa una palabra clave de búsqueda!");
     
     const res = await pddikti({ mode, query });
     if (!res.Status) {
@@ -204,22 +204,22 @@ async function handler(m, { args }) {
       const pr = r.prodi.slice(0, 3);
       
       if (mh.length) {
-        txt += `👨🎓 *MAHASISWA (top 3):*\n`;
+        txt += `👨🎓 *ESTUDIANTES (top 3):*\n`;
         for (const m of mh) txt += `- ${m.nama} [${m.nim}] — ${m.nama_prodi}, ${m.nama_pt}\n`;
         txt += `\n`;
       }
       if (ds.length) {
-        txt += `👨🏫 *DOSEN (top 3):*\n`;
+        txt += `👨🏫 *DOCENTES (top 3):*\n`;
         for (const d of ds) txt += `- ${d.nama} [NIDN ${d.nidn}] — ${d.nama_prodi}, ${d.nama_pt}\n`;
         txt += `\n`;
       }
       if (pt.length) {
-        txt += `🏛️ *PERGURUAN TINGGI (top 3):*\n`;
+        txt += `🏛️ *UNIVERSIDADES (top 3):*\n`;
         for (const p of pt) txt += `- ${p.nama} (${p.nama_singkat ?? p.sinkatan_pt ?? "-"})\n`;
         txt += `\n`;
       }
       if (pr.length) {
-        txt += `📚 *PRODI (top 3):*\n`;
+        txt += `📚 *PROGRAMAS (top 3):*\n`;
         for (const p of pr) txt += `- ${p.nama} @ ${p.nama_pt ?? "-"}\n`;
         txt += `\n`;
       }
@@ -235,13 +235,13 @@ async function handler(m, { args }) {
           txt += `- 📚 ${item.nama_prodi} @ ${item.nama_pt}\n\n`;
         } else if (mode === "pt") {
           txt += `*#${i + 1} ${item.nama} (${item.nama_singkat ?? "-"})*\n`;
-          txt += `- Kode: ${item.kode ?? "-"}\n\n`;
+          txt += `- Código: ${item.kode ?? "-"}\n\n`;
         } else if (mode === "prodi") {
           txt += `*#${i + 1} ${item.nama}*\n`;
           txt += `- @ ${item.nama_pt ?? "-"}\n\n`;
         }
       }
-      if (r.count > 10) txt += `> ... +${r.count - 10} hasil lainnya.\n`;
+      if (r.count > 10) txt += `> ... +${r.count - 10} resultados más.\n`;
     }
     
     m.react("✅");

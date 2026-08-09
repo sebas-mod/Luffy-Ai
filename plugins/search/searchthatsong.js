@@ -1,12 +1,12 @@
 import http from "http";
 import https from "https";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "searchthatsong",
   alias: ["sts", "carilagu"],
   category: "search",
-  description: "Mencari detail sebuah lagu dari lirik atau potongan kata",
+  description: "Busca los detalles de una canción por su letra o fragmento",
   usage: ".searchthatsong <potongan lirik>",
   example: ".searchthatsong ku menangis membayangkan",
   isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Masukkan potongan lirik atau nama lagu yang ingin dicari.\n\nContoh: `.sts ku menangis membayangkan`");
+    return m.reply("❌ Ingresa un fragmento de la letra o el nombre de la canción que quieres buscar.\n\nEjemplo: `.sts ku menangis membayangkan`");
   }
 
   await m.react("🕕");
@@ -125,14 +125,14 @@ async function handler(m, { sock }) {
 
     if (!result.song) {
       await m.react("❌");
-      return m.reply("⚠️ Lagu tidak ditemukan. Coba gunakan lirik yang lebih spesifik.");
+      return m.reply("⚠️ Canción no encontrada. Intenta usar una letra más específica.");
     }
 
     let caption = `🎵 *SEARCH THAT SONG* 🎵\n\n`;
-    caption += `*Judul:* ${result.song}\n`;
-    if (result.artist) caption += `*Artis:* ${result.artist}\n`;
-    if (result.album) caption += `*Album:* ${result.album}\n`;
-    if (result.year) caption += `*Tahun:* ${result.year}\n`;
+    caption += `*Título:* ${result.song}\n`;
+    if (result.artist) caption += `*Artista:* ${result.artist}\n`;
+    if (result.album) caption += `*Álbum:* ${result.album}\n`;
+    if (result.year) caption += `*Año:* ${result.year}\n`;
     if (result.genre) caption += `*Genre:* ${result.genre}\n`;
     if (result.youtubeUrl) caption += `*YouTube:* ${result.youtubeUrl}\n`;
     if (result.relevantChunk) caption += `\n*Match:* ${result.relevantChunk}\n`;
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
     }
 
     if (result.lyrics) {
-      await sock.sendMessage(m.chat, { text: `*Lirik:*\n\n${result.lyrics}` }, { quoted: m });
+      await sock.sendMessage(m.chat, { text: `*Letra:*\n\n${result.lyrics}` }, { quoted: m });
     }
 
     if (result.previewUrl) {
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SearchThatSong]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat mencari lagu. Server mungkin sedang bermasalah.");
+    m.reply("😔 Ocurrió un error al buscar la canción. El servidor puede estar teniendo problemas.");
   }
 }
 

@@ -1,10 +1,10 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js";
 const pluginConfig = {
   name: "setallmenu",
   alias: ["allmenuvariant", "allmenustyle"],
   category: "owner",
-  description: "Mengatur variant tampilan allmenu",
+  description: "Configurar la variante de visualización de allmenu",
   usage: ".setallmenu <v1-v5>",
   example: ".setallmenu v2",
   isOwner: true,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -20,7 +20,7 @@ const VARIANTS = {
   v1: {
     id: 1,
     name: "ALLMENU BASIC",
-    desc: "ini mengikuti dari setreply",
+    desc: "sigue el estilo de setreply",
     emoji: "📝",
   },
   v2: {
@@ -32,13 +32,13 @@ const VARIANTS = {
   v5: {
     id: 5,
     name: "ALLMENU NATIVEFLOW",
-    desc: "Tampilan native flow premium dengan video & cuaca",
+    desc: "Visualización nativa flow premium con video y clima",
     emoji: "✨",
   },
   v6: {
     id: 6,
     name: "ALLMENU LOCATION",
-    desc: "Tampilan location message tanpa tombol interaktif",
+    desc: "Visualización con mensaje de ubicación sin botones interactivos",
     emoji: "📍",
   },
 };
@@ -50,7 +50,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`❌ *VARIANT TIDAK VALID*\n\nGunakan: *v1*, *v2*, *v5*, atau *v6*`);
+      await m.reply(`❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5* o *v6*`);
       return;
     }
 
@@ -58,7 +58,7 @@ async function handler(m, { sock, db }) {
     await db.save();
 
     await m.reply(
-      `✅ *ALLMENU VARIANT DIUBAH*\n\n` +
+      `✅ *VARIANTE DE ALLMENU CAMBIADA*\n\n` +
       `${selected.emoji} *V${selected.id} — ${selected.name}*\n` +
       `_${selected.desc}_`,
     );
@@ -81,27 +81,27 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "📋 Pilih Variant Allmenu",
-        sections: [{ title: "Daftar Variant Allmenu", rows }],
+        title: "📋 Elegir Variante de Allmenu",
+        sections: [{ title: "Lista de Variantes de Allmenu", rows }],
       }),
     },
   ];
 
   const bodyText =
-    `📋📑 *ALLMENU VARIANT*\n\n` +
-    `Atur tampilan allmenu yang menampilkan seluruh daftar perintah bot dalam satu halaman 📖✨\n` +
-    `Variant aktif saat ini: *V${current} — ${VARIANTS[`v${current}`]?.name || "Unknown"}* 🎯\n\n` +
-    `*PENJELASAN VARIANT:*\n\n` +
-    `- *V1 Simple Text* 📝 — Daftar perintah ditampilkan sebagai text biasa tanpa gambar atau contextInfo, paling ringan dan cepat dimuat\n\n` +
-    `- *V2 Image + Context* 🖼️ — Gambar header allmenu + full contextInfo dengan label forwarded newsletter, tampilan standar yang informatif\n\n` +
-    `- *V3 Document* 📄 — Allmenu dikirim sebagai file document dengan thumbnail kecil dan verified quoted reply, terlihat seperti file resmi\n\n` +
-    `- *V4 Interactive Button* 🔘 — Pesan interaktif dengan tombol single_select untuk memilih kategori dan quick_reply untuk navigasi, tampilan modern\n\n` +
-    `- *V5 NativeFlow* ✨ — NativeFlow message dengan limited_time_offer badge dan interactive buttons, tampilan paling premium dan eye-catching\n\n` +
-    `> Pilih variant allmenu dari tombol di bawah 👇`;
+    `📋📑 *VARIANTE DE ALLMENU*\n\n` +
+    `Configura la visualización del allmenu que muestra toda la lista de comandos del bot en una sola página 📖✨\n` +
+    `Variante activa actualmente: *V${current} — ${VARIANTS[`v${current}`]?.name || "Desconocida"}* 🎯\n\n` +
+    `*EXPLICACIÓN DE LAS VARIANTES:*\n\n` +
+    `- *V1 Texto Simple* 📝 — La lista de comandos se muestra como texto plano sin imagen ni contextInfo, la más ligera y rápida de cargar\n\n` +
+    `- *V2 Imagen + Contexto* 🖼️ — Imagen de cabecera del allmenu + contextInfo completo con etiqueta de newsletter reenviada, visualización estándar e informativa\n\n` +
+    `- *V3 Documento* 📄 — El allmenu se envía como archivo de documento con miniatura pequeña y respuesta citada verificada, parece un archivo oficial\n\n` +
+    `- *V4 Botón Interactivo* 🔘 — Mensaje interactivo con botón single_select para elegir categoría y quick_reply para navegar, visualización moderna\n\n` +
+    `- *V5 NativeFlow* ✨ — Mensaje NativeFlow con insignia limited_time_offer y botones interactivos, la visualización más premium y llamativa\n\n` +
+    `> Elige la variante del allmenu con el botón de abajo 👇`;
 
   await sock.sendButton(
     m.chat,
-    getAssetBuffer("ourin"),
+    getAssetBuffer("luffy"),
     bodyText,
     m,
     { buttons },

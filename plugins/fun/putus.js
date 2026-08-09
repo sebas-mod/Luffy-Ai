@@ -2,12 +2,12 @@
  * Putus - End relationship
  */
 
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'putus',
     alias: ['breakup', 'cerai'],
     category: 'fun',
-    description: 'Memutuskan hubungan dengan pasangan',
+    description: 'Termina la relación con tu pareja',
     usage: '.putus',
     example: '.putus',
     isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 60,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -26,8 +26,8 @@ async function handler(m, { sock }) {
     if (!senderData.fun.pasangan) {
         await m.react('❌')
         return m.reply(
-            `❌ *Kamu gak ada pacar wehh*\n\n` +
-            `Cari dulu dengan \`${m.prefix}tembak @tag\``
+            `❌ *No tienes pareja*\n\n` +
+            `Busca una primero con \`${m.prefix}tembak @tag\``
         )
     }
     const exPartner = senderData.fun.pasangan
@@ -40,9 +40,9 @@ async function handler(m, { sock }) {
     db.setUser(m.sender, senderData)
     await m.react('💔')
     await m.reply(
-        `💔 *PUTUS!*\n\n` +
-        `@${m.sender.split('@')[0]} dan @${exPartner.split('@')[0]} resmi putus !!\n\n` +
-        `Semoga mendapat yang lebih baik! 🙏`,
+        `💔 *¡ROMPIERON!*\n\n` +
+        `@${m.sender.split('@')[0]} y @${exPartner.split('@')[0]} oficialmente terminaron su relación !!\n\n` +
+        `¡Espero que encuentren algo mejor! 🙏`,
         { mentions: [m.sender, exPartner] }
     )
 }

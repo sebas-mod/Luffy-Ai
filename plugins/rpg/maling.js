@@ -1,6 +1,6 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
-import { sendRpgPreview } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
+import { sendRpgPreview } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "maling",
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 180,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -26,19 +26,19 @@ async function handler(m, { sock }) {
   user.rpg.health = user.rpg.health || 100;
 
   if (user.rpg.health < 40) {
-    return m.reply(`Napas lu aja udah ngos-ngosan nyuruh nyopet! 🤒\nMinimal *40 HP* ya bos, darah lu sekarang *${user.rpg.health} HP*. Tidur dulu gih!`);
+    return m.reply(`¡Tu respiración ni te da para robar! 🤒\nNecesitas mínimo *40 HP* jefe, solo tienes *${user.rpg.health} HP*. ¡Mejor ve a dormir!`);
   }
 
-  await sendRpgPreview(sock, m.chat, "Nyempil di keramaian pasar... Mengincar tas emak-emak... 🦹‍♂️🤏", "🦹 COPET", "Beraksi!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, "Escabulléndose entre la multitud del mercado... Apuntando a la bolsa de una señora... 🦹‍♂️🤏", "🦹 CARTERISTA", "¡En acción!", { quoted: m });
   await new Promise((r) => setTimeout(r, 2500));
 
   const outcomes = [
-    { success: true, type: "big", money: 20000, exp: 500, msg: "GILA! Lu dapet dompet isinya *ATM Black Card* sama duit gepokan! 🤑" },
-    { success: true, type: "medium", money: 8000, exp: 200, msg: "Lumayan lah, dapet dompet kulit asli isi cepek puluhan ribu. 😏" },
-    { success: true, type: "small", money: 2000, exp: 50, msg: "Apes lu, dapet dompet bapak-bapak isinya KTP sama struk Indomaret doang! 😑 Tapi ada nyelip dikit duit." },
-    { success: false, type: "caught", fine: 15000, health: 30, msg: "WOY MALING!!! 😱 Emak-emak teriak dan lu *dihakimi massa* ampe gigi copot!" },
-    { success: false, type: "police", fine: 25000, health: 10, msg: "Lagi asik nyeloteh dompet, eh tangan lu *digenggam intel* nyamar! 👮‍♂️ Busted!" },
-    { success: false, type: "fail", fine: 0, health: 0, msg: "Sialan! Target ngerasa ada yang raba-raba tasnya, langsung kabur di kerumunan! 😤 Gagal bro." },
+    { success: true, type: "big", money: 20000, exp: 500, msg: "¡¡LOCO!! Conseguiste una cartera con *Tarjeta Black* y un fajo de billetes! 🤑" },
+    { success: true, type: "medium", money: 8000, exp: 200, msg: "Nada mal, te tocó una cartera de cuero original con varios miles. 😏" },
+    { success: true, type: "small", money: 2000, exp: 50, msg: "Qué mala suerte, conseguiste la cartera de un señor con su DNI y un ticket de tienda! 😑 Pero había un poco de dinero escondido." },
+    { success: false, type: "caught", fine: 15000, health: 30, msg: "¡¡OYE LADRÓN!!! 😱 La señora gritó y *la gente te linchó* hasta que se te cayeron los dientes!" },
+    { success: false, type: "police", fine: 25000, health: 10, msg: "Estabas a punto de robar la cartera, ¡y un *policía de incógnito* te agarró la mano! 👮‍♂️ ¡Atrapado!" },
+    { success: false, type: "fail", fine: 0, health: 0, msg: "¡Maldición! El objetivo sintió que le tocaban la bolsa y huyó entre la multitud! 😤 Fracasado bro." },
   ];
 
   const weights = [5, 20, 30, 15, 10, 20];
@@ -57,32 +57,32 @@ async function handler(m, { sock }) {
   let txt = "";
 
   if (outcome.success) {
-    user.koin = (user.koin || 0) + outcome.money;
+    user.berry = (user.berry || 0) + outcome.money;
     await addExpWithLevelCheck(sock, m, db, user, outcome.exp);
 
-    txt = `OPERASI BERSIH! 🦹‍♂️✨\n\n`;
+    txt = `¡OPERACIÓN LIMPIA! 🦹‍♂️✨\n\n`;
     txt += `${outcome.msg}\n\n`;
-    txt += `💰 Koin Haram: *+Rp ${outcome.money.toLocaleString("id-ID")}*\n`;
-    txt += `📈 EXP Copet: *+${outcome.exp}*`;
+    txt += `💰 Berry Ilegales: *+Rp ${outcome.money.toLocaleString("id-ID")}*\n`;
+    txt += `📈 EXP de Carterista: *+${outcome.exp}*`;
   } else {
-    const actualFine = Math.min(outcome.fine, user.koin || 0);
-    user.koin = Math.max(0, (user.koin || 0) - actualFine);
+    const actualFine = Math.min(outcome.fine, user.berry || 0);
+    user.berry = Math.max(0, (user.berry || 0) - actualFine);
     user.rpg.health = Math.max(0, user.rpg.health - outcome.health);
 
-    txt = `KACAU BALAU!! 🚨🤬\n\n`;
+    txt = `¡¡UN DESASTRE!! 🚨🤬\n\n`;
     txt += `${outcome.msg}\n\n`;
-    if (outcome.fine > 0) txt += `💸 Duit Damai/Rampasan: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
-    if (outcome.health > 0) txt += `🤕 Darah Bercucuran: *-${outcome.health} HP*`;
+    if (outcome.fine > 0) txt += `💸 Soborno/Robo: *-Rp ${actualFine.toLocaleString("id-ID")}*\n`;
+    if (outcome.health > 0) txt += `🤕 Sangre Derramada: *-${outcome.health} HP*`;
 
     if (user.rpg.health <= 0) {
       user.rpg.health = 0;
       user.exp = Math.floor((user.exp || 0) / 2);
-      txt += `\n\n💀 *INNALILLAHI... KAMU MATI GEGARA DIGEBUKIN MASSA!*\nExp-mu hangus 50%! 😭`;
+      txt += `\n\n💀 *POR DIOS... ¡MORISTE POR LA PALIZA DE LA MULTITUD!*\n¡Tu EXP se redujo al 50%! 😭`;
     }
   }
 
   db.save();
-  await sendRpgPreview(sock, m.chat, txt, "🦹 HASIL NYOPET", "Result!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, txt, "🦹 RESULTADO DEL CARTERISTA", "Result!", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

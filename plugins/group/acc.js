@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'acc',
     alias: ['accall', 'joinrequest', 'reqjoin'],
     category: 'group',
-    description: 'Kelola permintaan masuk grup (accept/reject)',
-    usage: '.acc <list|approve|reject> [all|nomor]',
+    description: 'Gestionar las solicitudes de ingreso al grupo (aceptar/rechazar)',
+    usage: '.acc <list|approve|reject> [all|número]',
     example: '.acc approve all',
     isOwner: false,
     isPremium: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -36,8 +36,8 @@ async function handler(m, { sock }) {
 
     if (!sub || !['list', 'approve', 'reject'].includes(sub)) {
         return m.reply(
-            `📋 *ᴊᴏɪɴ ʀᴇQᴜᴇsᴛ ᴍᴀɴᴀɢᴇʀ*\n\n` +
-            `╭┈┈⬡「 📌 *ᴄᴏᴍᴍᴀɴᴅ* 」\n` +
+            `📋 *ᴅɪsᴇñᴀᴅᴏʀ ᴅᴇ sᴏʟɪᴄɪᴛᴜᴅᴇs ᴅᴇ ᴜɴɪóɴ*\n\n` +
+            `╭┈┈⬡「 📌 *ᴄᴏᴍᴀɴᴅᴏs* 」\n` +
             `┃ ${m.prefix}acc list\n` +
             `┃ ${m.prefix}acc approve all\n` +
             `┃ ${m.prefix}acc reject all\n` +
@@ -54,16 +54,16 @@ async function handler(m, { sock }) {
 
         if (!pendingList?.length) {
             await m.react('📭')
-            return m.reply(`📭 Tidak ada permintaan masuk yang tertunda.`)
+            return m.reply(`📭 No hay solicitudes de ingreso pendientes.`)
         }
 
         if (sub === 'list') {
-            let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴘᴇʀᴍɪɴᴛᴀᴀɴ ᴍᴀsᴜᴋ*\n\n`
-            text += `> Total: ${pendingList.length} permintaan\n\n`
+            let text = `📋 *ʟɪsᴛᴀ ᴅᴇ sᴏʟɪᴄɪᴛᴜᴅᴇs ᴅᴇ ɪɴɢʀᴇsᴏ*\n\n`
+            text += `> Total: ${pendingList.length} solicitudes\n\n`
 
             for (let i = 0; i < pendingList.length; i++) {
                 const req = pendingList[i]
-                const number = req.jid?.split('@')[0] || 'Unknown'
+                const number = req.jid?.split('@')[0] || 'Desconocido'
                 const method = req.request_method || '-'
                 const time = req.request_time ? formatDate(req.request_time) : '-'
 
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
                 text += `   🕐 ${time}\n\n`
             }
 
-            text += `> Gunakan \`${m.prefix}acc approve all\` atau \`${m.prefix}acc reject all\``
+            text += `> Usa \`${m.prefix}acc approve all\` o \`${m.prefix}acc reject all\``
 
             const mentions = pendingList.map(r => r.jid)
             await m.react('📋')
@@ -90,12 +90,12 @@ async function handler(m, { sock }) {
             const success = results.filter(r => r.status === '200' || !r.status || r.status === 200).length
             const failed = results.length - success
 
-            const label = action === 'approve' ? 'Diterima' : 'Ditolak'
+            const label = action === 'approve' ? 'Aceptada' : 'Rechazada'
             await m.react('✅')
             return m.reply(
-                `✅ *${label.toUpperCase()} SEMUA*\n\n` +
-                `> ✅ Berhasil: ${success}\n` +
-                `> ❌ Gagal: ${failed}\n` +
+                `✅ *${label.toUpperCase()} TODAS*\n\n` +
+                `> ✅ Correctas: ${success}\n` +
+                `> ❌ Fallidas: ${failed}\n` +
                 `> 📊 Total: ${results.length}`
             )
         }
@@ -105,15 +105,15 @@ async function handler(m, { sock }) {
         if (!indices.length) {
             await m.react('❌')
             return m.reply(
-                `❌ Nomor tidak valid.\n\n` +
-                `> Gunakan \`${m.prefix}acc list\` untuk melihat daftar.\n` +
-                `> Contoh: \`${m.prefix}acc ${action} 1|2|3\``
+                `❌ Número no válido.\n\n` +
+                `> Usa \`${m.prefix}acc list\` para ver la lista.\n` +
+                `> Ejemplo: \`${m.prefix}acc ${action} 1|2|3\``
             )
         }
 
         const targets = indices.map(i => pendingList[i])
         let text = ''
-        const label = action === 'approve' ? 'Diterima' : 'Ditolak'
+        const label = action === 'approve' ? 'Aceptada' : 'Rechazada'
         let successCount = 0
 
         for (const target of targets) {
@@ -123,7 +123,7 @@ async function handler(m, { sock }) {
                 const ok = status === '200' || !status || status === 200
 
                 const number = target.jid.split('@')[0]
-                text += `${ok ? '✅' : '❌'} ${number} — ${ok ? label : 'Gagal'}\n`
+                text += `${ok ? '✅' : '❌'} ${number} — ${ok ? label : 'Fallida'}\n`
                 if (ok) successCount++
             } catch {
                 const number = target.jid.split('@')[0]
@@ -133,9 +133,9 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         return m.reply(
-            `📋 *ʜᴀsɪʟ ${label.toUpperCase()}*\n\n` +
+            `📋 *ʀᴇsᴜʟᴛᴀᴅᴏ ${label.toUpperCase()}*\n\n` +
             text + `\n` +
-            `> ✅ ${successCount}/${targets.length} berhasil`
+            `> ✅ ${successCount}/${targets.length} correctas`
         )
     } catch (error) {
         await m.react('☢')

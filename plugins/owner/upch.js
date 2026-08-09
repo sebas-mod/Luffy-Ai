@@ -5,7 +5,7 @@ import { exec } from 'child_process'
 import { promisify } from 'util'
 import { downloadMediaMessage } from 'ourin'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const run = promisify(exec)
 
@@ -13,11 +13,11 @@ const pluginConfig = {
     name: "upch",
     alias: ["uploadch", "uploadsaluran", "uch"],
     category: "owner",
-    description: "Upload gambar, audio, video, atau teks ke saluran",
-    usage: ".upch <id saluran> <teks opsional>",
-    example: ".upch 12xxx@newsletter Halo!",
+    description: "Subir imagen, audio, video o texto a un canal",
+    usage: ".upch <id del canal> <texto opcional>",
+    example: ".upch 12xxx@newsletter ¡Hola!",
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isOwner: true,
     isEnabled: true
 }
@@ -54,7 +54,7 @@ function generateWaveform(audioBuf, samples = 64) {
 async function handler(m, { sock }) {
     const args = m.text?.replace(/^\.upch\s+/i, '').split(" ") || []
     const chId = args[0]?.includes("@newsletter") ? args.shift() : config?.saluran?.id
-    const chName = config?.saluran?.name || config?.bot?.name || "Ourin-AI"
+    const chName = config?.saluran?.name || config?.bot?.name || "Luffy-Ai"
     const caption = args.join(" ").trim()
 
     const quoted = m.quoted || m
@@ -65,14 +65,14 @@ async function handler(m, { sock }) {
 
     if (!isMedia && !caption) {
         return m.reply(
-            `📤 *UPLOAD SALURAN*\n\n` +
-            `Kirim/reply media dengan caption:\n` +
-            `  \`${m.prefix}upch 12xxx@newsletter <teks opsional>\`\n\n` +
-            `*Support:*\n` +
-            `  🖼️ Gambar\n` +
+            `📤 *SUBIR AL CANAL*\n\n` +
+            `Envía/responde un media con caption:\n` +
+            `  \`${m.prefix}upch 12xxx@newsletter <texto opcional>\`\n\n` +
+            `*Soportado:*\n` +
+            `  🖼️ Imagen\n` +
             `  🎥 Video\n` +
             `  🎵 Audio/VN\n` +
-            `  📝 Teks (tanpa media)`
+            `  📝 Texto (sin media)`
         )
     }
 
@@ -82,11 +82,11 @@ async function handler(m, { sock }) {
         if (!isMedia && caption) {
             await sock.sendMessage(chId, { text: caption })
             await m.react("✅")
-            return m.reply(`✅ Teks berhasil dikirim ke saluran`)
+            return m.reply(`✅ Texto enviado con éxito al canal`)
         }
 
         const mediaBuf = await downloadMediaMessage(quoted, "buffer", {})
-        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("Media terlalu kecil atau gagal download")
+        if (!mediaBuf || mediaBuf.length < 1000) throw new Error("Media demasiado pequeño o fallo al descargar")
 
         if (isImage) {
             await sock.sendMessage(chId, {
@@ -94,7 +94,7 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Gambar berhasil dikirim ke saluran")
+            return m.reply("✅ Imagen enviada con éxito al canal")
         }
 
         if (isVideo) {
@@ -103,12 +103,12 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Video berhasil dikirim ke saluran")
+            return m.reply("✅ Video enviado con éxito al canal")
         }
 
         if (isAudio) {
             const opusBuf = await toOggOpus(mediaBuf)
-            if (opusBuf.length < 5000) throw new Error("Konversi opus gagal")
+            if (opusBuf.length < 5000) throw new Error("Conversión de opus fallida")
             const waveform = generateWaveform(opusBuf)
             await sock.sendMessage(chId, {
                 audio: opusBuf,
@@ -117,10 +117,10 @@ async function handler(m, { sock }) {
                 waveform: Array.from(waveform)
             })
             await m.react("✅")
-            return m.reply("✅ Audio berhasil dikirim ke saluran")
+            return m.reply("✅ Audio enviado con éxito al canal")
         }
 
-        m.reply("❌ Tipe media tidak didukung")
+        m.reply("❌ Tipo de media no soportado")
     } catch (e) {
         console.error("[UpCh]", e)
         await m.react("☢")

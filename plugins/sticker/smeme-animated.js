@@ -1,25 +1,25 @@
 import axios from 'axios';
 import config from '../../config.js';
-import te from '../../src/lib/ourin-error.js';
-import { uploadImage } from '../../src/lib/ourin-uploader.js';
+import te from '../../src/lib/luffy-error.js';
+import { uploadImage } from '../../src/lib/luffy-uploader.js';
 import { downloadMediaMessage, getContentType } from 'ourin';
 
 const pluginConfig = {
   name: 'smeme-animated',
   alias: ['smeme-animated', 'smemevid'],
   category: 'sticker',
-  description: 'Buat stiker meme animasi',
-  usage: '.smeme-animated <teks_atas>|<teks_bawah>',
-  example: '.smeme-animated mas|anies (sambil balas gambar)',
+  description: 'Crea sticker meme animado',
+  usage: '.smeme-animated <texto_superior>|<texto_inferior>',
+  example: '.smeme-animated arriba|abajo (respondiendo una imagen)',
   cooldown: 5,
-  energi: 2,
+  carne: 2,
 };
 
 async function handler(m, { sock }) {
   const text = m.text?.trim();
   
   if (!text) {
-    return m.reply(`⚠️ Harap masukkan teks atas dan bawah!\nContoh: \`${m.prefix}${m.command} atas|bawah\``);
+    return m.reply(`⚠️ ¡Ingresa el texto superior e inferior!\nEjemplo: \`${m.prefix}${m.command} arriba|abajo\``);
   }
 
   const parts = text.split('|');
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
   const isImage = getContentType(msg) === 'imageMessage' || m.mtype === 'imageMessage';
 
   if (!isImage && !isQuotedImage) {
-    return m.reply(`⚠️ Harap kirim atau balas gambar dengan caption \`${m.prefix}${m.command} teks_atas|teks_bawah\``);
+    return m.reply(`⚠️ Envía o responde una imagen con el caption \`${m.prefix}${m.command} texto_superior|texto_inferior\``);
   }
 
   await m.react('🕕');
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     
     const response = await axios.get(apiUrl);
     if (!response.data.status || !response.data.data?.url) {
-      return m.reply('❌ Gagal membuat meme, kemungkinan API sedang gangguan.');
+      return m.reply('❌ No se pudo crear el meme, posiblemente la API tenga problemas.');
     }
 
     const stickerUrl = response.data.data.url;

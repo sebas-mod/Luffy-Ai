@@ -1,22 +1,22 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import te from "../../src/lib/luffy-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
     name: "stickerly",
     alias: ["stikerly", "stickerlysearch"],
     category: "sticker",
-    description: "Cari dan download sticker pack dari Sticker.ly",
+    description: "Busca y descarga sticker packs de Sticker.ly",
     usage: ".stickerly <query / url>",
     example: ".stickerly anime",
     cooldown: 10,
-    energi: 2,
+    carne: 2,
 };
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        return m.reply(`⚠️ Harap masukkan kata kunci pencarian atau URL Sticker.ly!\nContoh: \`${m.prefix}${m.command} anime\``);
+        return m.reply(`⚠️ ¡Ingresa la palabra clave de búsqueda o la URL de Sticker.ly!\nEjemplo: \`${m.prefix}${m.command} anime\``);
     }
 
     await m.react("🕕");
@@ -32,12 +32,12 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.result || data.result.length === 0) {
             await m.react("❌");
-            return m.reply(`Maaf, sticker pack untuk "${text}" tidak ditemukan. Coba kata kunci lain.`);
+            return m.reply(`Lo siento, no se encontró el sticker pack para "${text}". Prueba con otra palabra clave.`);
         }
 
         const maxResults = Math.min(data.result.length, 10);
-        let listTxt = `🎨 *HASIL PENCARIAN STICKER.LY: ${text.toUpperCase()}*\n\n`;
-        listTxt += `Ditemukan beberapa pack, pilih salah satu ya:\n\n`;
+        let listTxt = `🎨 *RESULTADOS DE BÚSQUEDA STICKER.LY: ${text.toUpperCase()}*\n\n`;
+        listTxt += `Se encontraron varios packs, elige uno:\n\n`;
 
         const searchResults = [];
 
@@ -51,7 +51,7 @@ async function handler(m, { sock, text }) {
             listTxt += `*${i + 1}.* ${item.name} by ${item.authorName}\n`;
         }
 
-        listTxt += `\n> 💡 *Kirim angka (contoh: 1)* untuk mendownload pack, atau ketik \`batal\` untuk membatalkan pencarian.`;
+        listTxt += `\n> 💡 *Envía un número (ejemplo: 1)* para descargar el pack, o escribe \`batal\` para cancelar la búsqueda.`;
         
         const db = getDatabase();
         const user = db.getUser(m.sender);
@@ -85,7 +85,7 @@ async function stickerlyAnswerHandler(m, sock) {
     if (Date.now() - session.time > SESSION_TIMEOUT) {
         delete user.stickerly_session;
         db.save();
-        await m.reply(`⏰ *SESI KEDALUWARSA*\n\nSesi pencarian stickerly sudah berakhir karena lebih dari 5 menit. Silakan ulangi perintah.`);
+        await m.reply(`⏰ *SESIÓN EXPIRADA*\n\nLa sesión de búsqueda de stickerly terminó porque pasaron más de 5 minutos. Por favor repite el comando.`);
         return true;
     }
 
@@ -94,7 +94,7 @@ async function stickerlyAnswerHandler(m, sock) {
     if (text === "batal" || text === "cancel") {
         delete user.stickerly_session;
         db.save();
-        await m.reply(`🚪 Pencarian stickerly dibatalkan.`);
+        await m.reply(`🚪 Búsqueda de stickerly cancelada.`);
         return true;
     }
 
@@ -113,7 +113,7 @@ async function stickerlyAnswerHandler(m, sock) {
 
 async function downloadStickerlyPack(sock, m, packUrl) {
     await m.react("🕕");
-    await m.reply(`> Sedang mendownload sticker pack... ⏳`);
+    await m.reply(`> Descargando sticker pack... ⏳`);
 
     try {
         const url = `https://my.izuka-api.xyz/api/search/stickerly-pack?url=${encodeURIComponent(packUrl)}`;
@@ -122,7 +122,7 @@ async function downloadStickerlyPack(sock, m, packUrl) {
 
         if (!data || !data.status || !data.result || !data.result.stickers || data.result.stickers.length === 0) {
             await m.react("❌");
-            return m.reply(`❌ Gagal mengambil detail pack.`);
+            return m.reply(`❌ No se pudo obtener el detalle del pack.`);
         }
 
         const stickersData = data.result.stickers;
@@ -136,7 +136,7 @@ async function downloadStickerlyPack(sock, m, packUrl) {
 
         if (stickerUrls.length === 0) {
             await m.react("❌");
-            return m.reply(`❌ Tidak ada sticker dalam pack ini.`);
+            return m.reply(`❌ No hay stickers en este pack.`);
         }
 
         const packname = packInfo.name || "Sticker.ly Pack";
@@ -149,13 +149,13 @@ async function downloadStickerlyPack(sock, m, packUrl) {
                 packname: packname,
                 publisher: author,
                 author: author,
-                description: `Sticker pack dari Sticker.ly`,
+                description: `Sticker pack de Sticker.ly`,
                 emojis: ["✨"]
             });
             await m.react("✅");
         } catch (packErr) {
             console.error("[Stickerly Pack Send Error]", packErr.message);
-            await m.reply(`❌ Gagal mengirim pack sekaligus, mencoba mengirim satu per satu...`);
+            await m.reply(`❌ No se pudo enviar el pack completo, intentando enviar uno por uno...`);
             
             let sent = 0;
             for (const sUrl of urlsToProcess) {
@@ -172,10 +172,10 @@ async function downloadStickerlyPack(sock, m, packUrl) {
             }
             if (sent > 0) {
                 await m.react("✅");
-                await m.reply(`✅ Berhasil mengirim ${sent} sticker.`);
+                await m.reply(`✅ Se enviaron ${sent} stickers.`);
             } else {
                 await m.react("❌");
-                await m.reply(`❌ Gagal mengirim seluruh sticker.`);
+                await m.reply(`❌ No se pudieron enviar todos los stickers.`);
             }
         }
     } catch (error) {

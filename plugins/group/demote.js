@@ -1,10 +1,10 @@
-import { getParticipantJid } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { getParticipantJid } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'demote',
     alias: ['unadmin', 'turunkan'],
     category: 'group',
-    description: 'Turunkan admin menjadi member biasa',
+    description: 'Quitar el rango de admin a un miembro',
     usage: '.demote @user',
     example: '.demote @user',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -29,9 +29,10 @@ async function handler(m, { sock }) {
 
     if (!target) {
         await m.reply(
-            `❌ *ᴛᴀʀɢᴇᴛ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Reply pesan user atau mention!\n` +
-            `> Contoh: \`${m.prefix}demote @user\``
+            `❌ *ᴛᴀʀɢᴇᴛ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n` +
+            `> Responde un mensaje o menciona!
+` +
+            `> Ejemplo: \`${m.prefix}demote @user\``
         )
         return
     }
@@ -41,24 +42,24 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User tidak ditemukan di grup!`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no está en el grupo.`)
             return
         }
 
         if (!participant.admin) {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> User bukan admin!`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no es admin.`)
             return
         }
 
         if (participant.admin === 'superadmin') {
-            await m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Tidak bisa demote owner grup!`)
+            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se puede degradar al creador del grupo.`)
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'demote')
 
         await m.reply(
-            `@${target.split('@')[0]} sekarang bukan admin lagi.`,
+            `@${target.split('@')[0]} ya no es admin.`,
             { mentions: [target] }
         )
 

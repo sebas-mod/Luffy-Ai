@@ -1,12 +1,12 @@
 import config from "../../config.js"
-import { getDatabase } from "../../src/lib/ourin-database.js"
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js"
+import { getDatabase } from "../../src/lib/luffy-database.js"
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js"
 
 const pluginConfig = {
     name: "rules",
     alias: ["aturanbot", "botrules", "peraturanbot"],
     category: "main",
-    description: "Menampilkan rules dan aturan penggunaan bot secara lengkap",
+    description: "Mostrar las reglas y normas de uso del bot",
     usage: ".rules",
     example: ".rules",
     isOwner: false,
@@ -14,49 +14,49 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
 }
 
 function buildDefaultRules(botName, prefix) {
-    return `📜 *PERATURAN ${botName.toUpperCase()}*
+    return `📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*
 
-Hai! Sebelum kamu menggunakan semua fitur yang tersedia, pastikan kamu memahami dan mematuhi peraturan berikut ini ya. Peraturan ini dibuat supaya semua pengguna bisa nyaman dan bot bisa berjalan dengan lancar.
+¡Hola! Antes de usar todas las funciones disponibles, asegúrate de comprender y cumplir las siguientes reglas. Estas reglas existen para que todos los usuarios estén cómodos y el bot funcione sin problemas.
 
-🔹 *ATURAN UMUM*
+🔹 *Rᴇɢʟᴀs ɢᴇɴᴇʀᴀʟᴇs*
 
-- Dilarang keras melakukan *spam command* secara berulang-ulang dalam waktu singkat. Sistem anti-spam aktif dan pelanggar bisa langsung dibanned otomatis oleh bot.
-- Gunakan semua fitur bot dengan *bijak dan bertanggung jawab*. Jangan menyalahgunakan fitur untuk hal-hal yang merugikan orang lain.
-- Dilarang menggunakan bot untuk menyebarkan *konten SARA, ujaran kebencian, atau konten ilegal* dalam bentuk apapun.
-- *Hormati sesama pengguna* bot. Jangan menggunakan fitur untuk mengganggu, membully, atau merugikan pengguna lain.
-- Jangan mengirimkan *konten NSFW* di grup tanpa persetujuan admin grup terlebih dahulu.
+- Está *prohibido* hacer *spam de comandos* repetidamente en poco tiempo. El sistema anti-spam está activo y los infractores pueden ser bloqueados automáticamente por el bot.
+- Usa todas las funciones del bot con *responsabilidad*. No uses las funciones para perjudicar a otros.
+- Prohibido usar el bot para difundir *contenido de odio, discriminación o contenido ilegal* de cualquier tipo.
+- *Respeta a los demás usuarios* del bot. No uses las funciones para molestar, acosar o perjudicar a otros usuarios.
+- No envíes *contenido NSFW* en grupos sin el permiso previo del admin del grupo.
 
-🔹 *ATURAN PENGGUNAAN FITUR*
+🔹 *Rᴇɢʟᴀs ᴅᴇ ᴜsᴏ ᴅᴇ ғᴜɴᴄɪᴏɴᴇs*
 
-- Setiap penggunaan command membutuhkan *energi*. Gunakan energi kamu dengan bijak supaya tidak cepat habis.
-- Fitur *premium* hanya bisa diakses oleh pengguna yang sudah berlangganan. Ketik *${prefix}benefitpremium* untuk info lengkap.
-- Jika menemukan *bug atau error*, segera laporkan ke owner bot melalui *${prefix}owner*. Jangan disalahgunakan.
-- Dilarang melakukan *request fitur yang tidak masuk akal* atau memaksa owner untuk menambahkan fitur tertentu.
+- Cada uso de comando requiere *carne*. Usa tu carne con responsabilidad para que no se acabe rápido.
+- Las funciones *premium* solo las usan usuarios suscritos. Escribe *${prefix}benefitpremium* para más información.
+- Si encuentras un *bug o error*, repórtalo al capitán del bot con *${prefix}owner*. No lo uses mal.
+- Prohibido hacer *solicitudes de funciones irracionales* o presionar al capitán para agregar funciones específicas.
 
-🔹 *KONSEKUENSI PELANGGARAN*
+🔹 *Cᴏɴsᴇᴄᴜᴇɴᴄɪᴀs ᴅᴇ ʟᴀs ɪɴғʀᴀᴄᴄɪᴏɴᴇs*
 
-- Pelanggaran ringan akan mendapat *peringatan* dari admin atau owner
-- Pelanggaran berat atau berulang dapat mengakibatkan *banned permanen* dari penggunaan bot
-- Owner berhak memutuskan sanksi tanpa pemberitahuan terlebih dahulu
+- Las infracciones leves reciben una *advertencia* del admin o del capitán
+- Las infracciones graves o repetidas pueden provocar un *baneo permanente* del uso del bot
+- El capitán tiene derecho a decidir las sanciones sin previo aviso
 
-_Dengan menggunakan bot ini, kamu dianggap sudah membaca dan menyetujui seluruh peraturan di atas._`
+_Al usar este bot, se considera que leíste y aceptaste todas las reglas anteriores._`
 }
 
 async function handler(m, { sock }) {
     const db = getDatabase()
-    const botName = config.bot?.name || "Ourin-AI"
+    const botName = config.bot?.name || "Luffy-Ai"
     const customRules = db.setting("botRules")
 
     let rulesText
     if (customRules && typeof customRules === "string" && customRules.trim().length > 0) {
         rulesText = customRules
     } else if (Array.isArray(customRules) && customRules.length > 0) {
-        rulesText = `📜 *PERATURAN ${botName.toUpperCase()}*\n\n`
+        rulesText = `📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*\n\n`
         customRules.forEach((rule, i) => {
             rulesText += `${i + 1}. ${rule}\n`
         })
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
         rulesText = buildDefaultRules(botName, m.prefix)
     }
 
-    const imageBuffer = getAssetBuffer("ourin-rules")
+    const imageBuffer = getAssetBuffer("luffy-rules")
 
     if (imageBuffer) {
         await sock.sendMessage(m.chat, {

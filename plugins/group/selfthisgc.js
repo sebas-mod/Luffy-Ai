@@ -1,12 +1,12 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import te from "../../src/lib/ourin-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "selfthisgc",
   alias: ["selfgc", "selfgroup", "selfthisgroup"],
   category: "group",
-  description: "Aktifkan mode self hanya di grup ini",
+  description: "Activar el modo self solo en este grupo",
   usage: ".selfthisgc",
   example: ".selfthisgc",
   isOwner: true,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,9 +27,9 @@ async function handler(m, { sock }) {
 
   if (isSelfGroup) {
     return m.reply(
-      `ℹ️ *ɢʀᴜᴘ ɪɴɪ sᴜᴅᴀʜ ᴍᴏᴅᴇ sᴇʟꜰ*\n\n` +
-        `> Bot hanya merespon owner & bot sendiri\n\n` +
-        `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+      `ℹ️ *ᴇsᴛᴇ ɢʀᴜᴘᴏ ʏᴀ ᴇsᴛá ᴇɴ ᴍᴏᴅᴏ sᴇʟꜰ*\n\n` +
+        `> El bot solo responde al owner y al propio bot\n\n` +
+        `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
     );
   }
 
@@ -42,12 +42,12 @@ async function handler(m, { sock }) {
 
   m.react("🔒");
   return m.reply(
-    `🔒 *ᴍᴏᴅᴇ sᴇʟꜰ ᴀᴋᴛɪꜰ*\n\n` +
-      `> Bot di grup ini sekarang hanya merespon:\n` +
-      `> • Owner bot\n` +
-      `> • Bot sendiri (fromMe)\n\n` +
-      `📋 *Grup lain tidak terpengaruh*\n\n` +
-      `_Gunakan ${m.prefix}publicthisgc untuk membuka akses_`,
+    `🔒 *ᴍᴏᴅᴏ sᴇʟꜰ ᴀᴄᴛɪᴠᴏ*\n\n` +
+      `> El bot en este grupo ahora solo responde a:\n` +
+      `> • El owner del bot\n` +
+      `> • El propio bot (fromMe)\n\n` +
+      `📋 *Los demás grupos no se ven afectados*\n\n` +
+      `_Usa ${m.prefix}publicthisgc para abrir el acceso_`,
   );
 }
 

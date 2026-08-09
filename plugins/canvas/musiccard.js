@@ -6,15 +6,15 @@ const pluginConfig = {
   name: "musiccard",
   alias: ["mcard", "spotifycard"],
   category: "maker",
-  description: "Membuat kartu musik (music card) keren dari gambar yang dikirim.",
-  usage: ".musiccard <judul>|<nama artis>",
+  description: "Crea una tarjeta de música (music card) genial a partir de la imagen enviada.",
+  usage: ".musiccard <título>|<nombre del artista>",
   example: ".musiccard Rewrite The Stars|James Arthur",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (type !== "imageMessage") {
-      return m.reply("❌ *Waduh, itu bukan gambar!*\n\nKamu harus me-reply (membalas) pesan berupa *gambar* dengan format `.musiccard <judul>|<nama>`.\n\nContoh: \nBalas gambar temanmu, lalu ketik: `.musiccard Perfect|Ed Sheeran`");
+      return m.reply("❌ *¡Vaya, eso no es una imagen!*\n\nDebes responder (responder) un mensaje que sea *imagen* con el formato `.musiccard <título>|<artista>`.\n\nEjemplo: \nResponde a la imagen de tu amigo y luego escribe: `.musiccard Perfect|Ed Sheeran`");
     }
     try {
       mediaBuffer = await downloadMediaMessage(
@@ -37,12 +37,12 @@ async function handler(m, { sock }) {
       );
       mimetype = m.quoted.message[type]?.mimetype;
     } catch (e) {
-      return m.reply("😔 *Gagal mendownload gambar.* Coba kirim ulang gambarnya ya.");
+      return m.reply("😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
     }
   } else if (m.message) {
     const type = getContentType(m.message);
     if (type !== "imageMessage") {
-      return m.reply("❌ *Waduh, gambarnya mana nih?*\n\nKamu harus mengirim sebuah gambar dengan caption (teks pelengkap) `.musiccard <judul>|<nama>` atau reply gambar yang sudah ada.\n\nContoh: \nKirim gambar dengan caption: `.musiccard Perfect|Ed Sheeran`");
+      return m.reply("❌ *¡Vaya, ¿dónde está la imagen?*\n\nDebes enviar una imagen con caption (texto complementario) `.musiccard <título>|<artista>` o responder a una imagen existente.\n\nEjemplo: \nEnvía una imagen con caption: `.musiccard Perfect|Ed Sheeran`");
     }
     try {
       mediaBuffer = await downloadMediaMessage(
@@ -52,16 +52,16 @@ async function handler(m, { sock }) {
       );
       mimetype = m.message[type]?.mimetype;
     } catch (e) {
-      return m.reply("😔 *Gagal mendownload gambar.* Coba kirim ulang gambarnya ya.");
+      return m.reply("😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
     }
   }
 
   if (!mediaBuffer) {
-    return m.reply("❌ *Gambar tidak terdeteksi!* Pastikan kamu mengirim gambar dengan benar.");
+    return m.reply("❌ *¡Imagen no detectada!* Asegúrate de enviar la imagen correctamente.");
   }
 
   if (!text) {
-    return m.reply("❌ *Judul lagu dan artis belum diisi!*\n\nFormat penulisan yang benar adalah: `.musiccard <judul>|<nama>`\nPisahkan judul dan nama artis dengan simbol pita ( | ).");
+    return m.reply("❌ *¡Faltan el título y el artista!*\n\nEl formato correcto es: `.musiccard <título>|<artista>`\nSepara el título y el nombre del artista con el símbolo ( | ).");
   }
 
   let judul = text;
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
 
     if (!uploadResult || !uploadResult.directLink) {
       await m.react("❌");
-      return m.reply("⚠️ *Gagal mengunggah gambar!* Pastikan ukuran gambarnya tidak terlalu besar dan coba lagi ya.");
+      return m.reply("⚠️ *¡No se pudo subir la imagen!* Asegúrate de que la imagen no sea demasiado grande e inténtalo de nuevo.");
     }
 
     const apiUrl = `https://api.nexray.eu.cc/canvas/musiccard?judul=${encodeURIComponent(judul)}&nama=${encodeURIComponent(nama)}&image_url=${encodeURIComponent(uploadResult.directLink)}`;
@@ -94,14 +94,14 @@ async function handler(m, { sock }) {
 
     if (res.headers["content-type"] && !res.headers["content-type"].includes("image")) {
       await m.react("❌");
-      return m.reply("⚠️ *Gagal membuat Music Card.* Server merespon dengan format yang salah.");
+      return m.reply("⚠️ *No se pudo crear la Music Card.* El servidor respondió con un formato incorrecto.");
     }
 
     const cardBuffer = Buffer.from(res.data);
 
     await sock.sendMessage(m.chat, {
       image: cardBuffer,
-      caption: `✨ *MUSIC CARD BERHASIL DIBUAT!* ✨\n\n🎧 *Judul*: ${judul}\n🎤 *Artis*: ${nama}\n\nKeren banget kan hasilnya? Pamerin ke teman-temanmu yuk! 🚀`
+      caption: `✨ *MUSIC CARD CREADA CON ÉXITO!* ✨\n\n🎧 *Título*: ${judul}\n🎤 *Artista*: ${nama}\n\nEl resultado es genial, ¿verdad? ¡Presúmelo con tus amigos! 🚀`
     }, { quoted: m });
 
     await m.react("✅");
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[Music Card]", err.message);
     await m.react("☢");
-    m.reply("😔 *Terjadi masalah di sistem kami.* \n\nSistem gagal menghubungi server pembuat kartu. Silakan coba beberapa saat lagi ya.");
+    m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de tarjetas. Por favor, inténtalo de nuevo en unos momentos.");
   }
 }
 

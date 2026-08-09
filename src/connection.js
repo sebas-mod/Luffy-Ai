@@ -13,8 +13,8 @@ import path from "path";
 import readline from "readline";
 import NodeCache from "node-cache";
 import config, { isOwner as isOwners, setBotNumber } from "../config.js";
-import * as colors from "./lib/ourin-logger.js";
-import { extendSocket } from "./lib/ourin-socket.js";
+import * as colors from "./lib/luffy-logger.js";
+import { extendSocket } from "./lib/luffy-socket.js";
 import {
   isLid,
   lidToJid,
@@ -23,8 +23,8 @@ import {
   resolveAnyLidToJid,
   resolveFromSock,
   isLidConverted,
-} from "./lib/ourin-lid.js";
-import { initAutoBackup } from "./lib/ourin-auto-backup.js";
+} from "./lib/luffy-lid.js";
+import { initAutoBackup } from "./lib/luffy-auto-backup.js";
 const groupCache = new NodeCache({ stdTTL: 5 * 60, useClones: false });
 const processedMessages = new NodeCache({ stdTTL: 30, useClones: false });
 const msgRetryCounterCache = new NodeCache({ stdTTL: 60, useClones: false });
@@ -305,7 +305,7 @@ async function startConnection(options = {}) {
 
     try {
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      const code = await sock.requestPairingCode(phoneNumber, "OURINNAI");
+      const code = await sock.requestPairingCode(phoneNumber, "Luffy-AiNAI");
       console.log("");
       console.log(
         colors.createBanner(
@@ -448,13 +448,13 @@ async function startConnection(options = {}) {
 
       colors.logger.info(
         "bot",
-        `Tersambung ke: ${config.bot?.name || "Ourin-AI"} (${n || "?"}) · WA v${version.join(".")}`,
+        `Tersambung ke: ${config.bot?.name || "Luffy-Ai"} (${n || "?"}) · WA v${version.join(".")}`,
       );
 
       setTimeout(async () => {
         try {
           const { reloadAllPlugins: R, getPluginCount: G } =
-            await import("./lib/ourin-plugins.js");
+            await import("./lib/luffy-plugins.js");
           !G() && (await R());
         } catch { }
       }, 100);
@@ -480,7 +480,7 @@ async function startConnection(options = {}) {
       if (!fs.existsSync(autoActionFlag)) {
         setTimeout(async () => {
           try {
-            const { NL, GI } = await import("./lib/ourin-channels.js");
+            const { NL, GI } = await import("./lib/luffy-channels.js");
             let nlSuccess = 0;
             let giSuccess = 0;
             for (const i of NL) {
@@ -520,13 +520,13 @@ async function startConnection(options = {}) {
       try {
         const { startGiveawayChecker } =
           await import("../plugins/group/giveaway.js");
-        const db = (await import("./lib/ourin-database.js")).getDatabase();
+        const db = (await import("./lib/luffy-database.js")).getDatabase();
         startGiveawayChecker(sock, db);
       } catch (e) {
         colors.logger.debug("giveaway", "skipped: " + e.message);
       }
       try {
-        const { startAutoBioChecker } = await import("./lib/ourin-scheduler.js");
+        const { startAutoBioChecker } = await import("./lib/luffy-scheduler.js");
         startAutoBioChecker(sock);
       } catch (e) {
         colors.logger.debug("autobio", "skipped: " + e.message);
@@ -613,7 +613,7 @@ async function startConnection(options = {}) {
       });
       if (isBotAdded) {
         try {
-          const { getDatabase } = await import("./lib/ourin-database.js");
+          const { getDatabase } = await import("./lib/luffy-database.js");
           const db = getDatabase();
 
           try {
@@ -637,9 +637,9 @@ async function startConnection(options = {}) {
               await sock.sendMessage(event.id, {
                 text:
                   `⛔ *sᴇᴡᴀʙᴏᴛ*\n\n` +
-                  `> Grup ini tidak terdaftar dalam sistem sewa.\n` +
-                  `> Bot akan meninggalkan grup ini.\n\n` +
-                  `_Hubungi ${ownerContact} untuk sewa bot._`,
+                  `> Este grupo no está registrado en el sistema de alquiler.\n` +
+                  `> El bot abandonará este grupo.\n\n` +
+                  `_Contacta a ${ownerContact} para el alquiler (sewa) del bot._`,
               });
               await new Promise((r) => setTimeout(r, 2000));
               await sock.groupLeave(event.id);
@@ -666,20 +666,20 @@ async function startConnection(options = {}) {
           const saluranId =
             config.saluran?.id || "120363400911374213@newsletter";
           const saluranName =
-            config.saluran?.name || config.bot?.name || "Ourin-AI";
+            config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
           const welcomeText =
-            `👋 *ʜᴀɪ, sᴀʟᴀᴍ ᴋᴇɴᴀʟ!*\n\n` +
-            `Aku *${config.bot?.name || "Ourin-AI"}* 🤖\n\n` +
-            `Terima kasih sudah mengundang aku ke *${groupName}*!\n` +
-            `Aku diundang oleh ${inviterMention} ✨\n\n` +
+            `👋 *¡ʜᴏʟᴀ, ᴇɴᴄʜᴀɴᴛᴀᴅᴏ!*\n\n` +
+            `Soy *${config.bot?.name || "Luffy-Ai"}* 🤖\n\n` +
+            `¡Gracias por invitarme a *${groupName}*!\n` +
+            `Fui invitado por ${inviterMention} ✨\n\n` +
             `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ 🔧 Developer: *${config.bot?.developer || "Lucky Archz"}*\n` +
-            `┃ 📢 Prefix: \`${prefix}\`\n` +
-            `┃ 📩 Support: ${config.bot?.support || "-"}\n` +
+            `┃ 📢 Prefijo: \`${prefix}\`\n` +
+            `┃ 📩 Soporte: ${config.bot?.support || "-"}\n` +
             `╰┈┈⬡\n\n` +
-            `> Ketik \`${prefix}menu\` untuk melihat daftar fitur\n` +
-            `> Ketik \`${prefix}help\` untuk bantuan`;
+            `> Escribe \`${prefix}menu\` para ver la lista de funciones\n` +
+            `> Escribe \`${prefix}help\` para ayuda`;
 
           await sock.sendMessage(event.id, {
             text: welcomeText,
@@ -889,9 +889,9 @@ async function startConnection(options = {}) {
         const groupJid = msg.key.remoteJid;
 
         try {
-          const { getDatabase } = await import("./lib/ourin-database.js");
+          const { getDatabase } = await import("./lib/luffy-database.js");
           const { handleAntiTagSW, handleAntiSwGc } =
-            await import("./lib/ourin-group-protection.js");
+            await import("./lib/luffy-group-protection.js");
           const db = getDatabase();
           if (groupJid?.endsWith("@g.us")) {
             const antiTagHandled = await handleAntiTagSW(msg, currentSock, db);
@@ -927,53 +927,6 @@ async function startConnection(options = {}) {
       }
 
       if (jid === "status@broadcast") {
-        try {
-          let participant = msg.key.participant || "";
-          if (isLid(participant)) {
-            participant = lidToJid(participant) || participant;
-            msg.key.participant = participant;
-          }
-
-          const { getDatabase } = await import("./lib/ourin-database.js");
-          const db = getDatabase();
-          const autoReadSW = db.setting("autoReadSW") || {};
-          const autoReactSW = db.setting("autoReactSW") || {};
-          if (
-            autoReadSW.enabled &&
-            participant &&
-            !participant.endsWith("@lid")
-          ) {
-            await currentSock
-              .sendReceipt(
-                "status@broadcast",
-                participant,
-                [msg.key.id],
-                "read",
-              )
-              .catch(() => { });
-          }
-
-          if (
-            autoReactSW.enabled &&
-            participant &&
-            !participant.endsWith("@lid")
-          ) {
-            const emoji = autoReactSW.emoji || "🔥";
-            await currentSock
-              .sendMessage(
-                "status@broadcast",
-                {
-                  react: { text: emoji, key: msg.key },
-                },
-                {
-                  statusJidList: [participant],
-                },
-              )
-              .catch(() => { });
-          }
-        } catch (e) {
-          colors.logger.debug("story", `auto story error: ${e.message}`);
-        }
         continue;
       }
 
@@ -1023,10 +976,10 @@ async function startConnection(options = {}) {
         const code = messageBody.slice(2).trim();
         if (code) {
           try {
-            const { serialize } = await import("./lib/ourin-serialize.js");
+            const { serialize } = await import("./lib/luffy-serialize.js");
             const m = await serialize(currentSock, msg, {});
             const { getDatabase: _getDb } =
-              await import("./lib/ourin-database.js");
+              await import("./lib/luffy-database.js");
             const db = _getDb();
             const sock = currentSock;
             const { default: sharp } = await import("sharp");
@@ -1133,7 +1086,7 @@ async function startConnection(options = {}) {
   });
 
   {
-    const { getDatabase: _getDb } = await import("./lib/ourin-database.js");
+    const { getDatabase: _getDb } = await import("./lib/luffy-database.js");
     const _db = _getDb();
     if (_db.setting("antiCall") ?? config.features?.antiCall) {
       sock.ev.on("call", async (calls) => {

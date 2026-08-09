@@ -40,8 +40,8 @@ function buildTextMessage(message, history = [], imageBuffer = null) {
 }
 
 function getAiNames(aiFullName = "") {
-  const fullName = String(aiFullName || config.bot?.name || "Ourin AI").trim();
-  const nickName = fullName.split(/\s+/)[0] || "Ourin";
+  const fullName = String(aiFullName || config.bot?.name || "Luffy AI").trim();
+  const nickName = fullName.split(/\s+/)[0] || "Luffy";
   return { fullName, nickName };
 }
 

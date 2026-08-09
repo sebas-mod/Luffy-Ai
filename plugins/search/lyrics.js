@@ -1,5 +1,5 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 async function fetchLyrics(judul) {
   try {
@@ -17,7 +17,7 @@ const pluginConfig = {
     name: 'lirik',
     alias: ['lyric', 'lyrics', 'liriklagu'],
     category: 'search',
-    description: 'Cari lirik lagu',
+    description: 'Buscar letras de canciones',
     usage: '.lirik <query>',
     example: '.lirik sempurna',
     isOwner: false,
@@ -25,7 +25,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `Hai kak! ✨ Lupa masukin judul lagunya ya? 😅\n\n` +
-            `Coba deh ketik perintahnya begini: *${m.prefix}lirik sempurna andra and the backbone* 🎶\n\n` +
-            `Yuk, masukin judulnya biar kita bisa nyanyi bareng! 🎤🔥`
+            `¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n\n` +
+            `Intenta escribir el comando así: *${m.prefix}lirik sempurna andra and the backbone* 🎶\n\n` +
+            `¡Escribe el título para que podamos cantar juntos! 🎤🔥`
         )
     }
     
@@ -47,19 +47,19 @@ async function handler(m, { sock }) {
         
         if (!data || !data.lyrics || !data.lyrics.plain_lyrics) {
             m.react('❌')
-            return m.reply(`Waduh, maaf banget kak 🥺 lirik lagu *${query}* nggak ketemu nih di database. Coba pakai kata kunci atau judul yang lebih spesifik ya! 💔`)
+            return m.reply(`Vaya, lo siento mucho 🥺 la letra de *${query}* no fue encontrada en la base de datos. ¡Intenta con una palabra clave o un título más específico! 💔`)
         }
         
         const title = data.title || query
-        const artist = data.artist || data.lyrics.artist_name || 'Tidak diketahui'
+        const artist = data.artist || data.lyrics.artist_name || 'Desconocido'
         const lyricsText = data.lyrics.plain_lyrics
         
-        const texts = `Ketemu nih liriknya! 🎉\n\n` +
-                      `🎵 *Judul:* ${title}\n` +
-                      `🎤 *Artis:* ${artist}\n\n` +
-                      `Ini dia lirik lengkapnya buat kamu:\n\n` +
+        const texts = `¡Encontré la letra! 🎉\n\n` +
+                      `🎵 *Título:* ${title}\n` +
+                      `🎤 *Artista:* ${artist}\n\n` +
+                      `Aquí tienes la letra completa:\n\n` +
                       `${lyricsText}\n\n` +
-                      `Selamat bernyanyi ria, kak! 🎧💖`
+                      `¡A cantar a todo pulmón! 🎧💖`
                       
         if (data.thumbnail && data.thumbnail !== '-') {
             await sock.sendMessage(m.chat, {
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
         
     } catch (error) {
         m.react('☢')
-        m.reply(`Yah, server liriknya lagi ngambek nih kak 😭 Coba lagi nanti ya! 🛠️✨`)
+        m.reply(`Ay, el servidor de letras está de malas 😭 ¡Inténtalo de nuevo más tarde! 🛠️✨`)
     }
 }
 

@@ -1,18 +1,18 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'liststok',
     alias: ['liststock', 'stok', 'stock'],
     category: 'store',
-    description: '📋 Lihat daftar stok item produk',
-    usage: '.liststok <nomor_produk>',
+    description: '📋 Ver la lista de artículos de stock del producto',
+    usage: '.liststok <numero_producto>',
     example: '.liststok 1',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,23 +21,23 @@ async function handler(m, { sock }) {
     const products = db.setting('storeProducts') || []
 
     if (products.length === 0) {
-        return m.reply(`📭 *Belum ada produk.*\n\nTambahkan produk terlebih dahulu: \`${m.prefix}addproduk\` ➕`)
+        return m.reply(`📭 *Aún no hay productos.*\n\nAgrega primero un producto: \`${m.prefix}addproduk\` ➕`)
     }
 
     const idx = parseInt(m.text?.trim()) - 1
 
     if (isNaN(idx) || idx < 0 || idx >= products.length) {
-        let txt = `📋 *DAFTAR STOK PRODUK*\n\nPilih produk untuk melihat stok:\n\n`
+        let txt = `📋 *LISTA DE STOCK DE PRODUCTOS*\n\nElige un producto para ver su stock:\n\n`
         for (let i = 0; i < products.length; i++) {
             const p = products[i]
             const typeIcon = p.type === 'fisik' ? '📦' : '🔑'
             const stockDisplay = p.type === 'fisik'
                 ? (p.stock === -1 ? '♾️' : `${p.stock} pcs`)
-                : `${p.stockItems?.length || 0} akun`
+                : `${p.stockItems?.length || 0} cuentas`
             const icon = (p.type === 'fisik' ? (p.stock > 0 || p.stock === -1) : (p.stockItems?.length > 0 || p.stock === -1)) ? '✅' : '⚠️'
             txt += `${typeIcon} *${i + 1}.* ${p.name} — ${stockDisplay} ${icon}\n`
         }
-        txt += `\nKetik \`${m.prefix}liststok <nomor>\` untuk melihat detail stok 📊`
+        txt += `\nEscribe \`${m.prefix}liststok <numero>\` para ver el detalle del stock 📊`
         return m.reply(txt)
     }
 
@@ -46,13 +46,13 @@ async function handler(m, { sock }) {
 
     if (product.type === 'fisik') {
         return m.reply(
-            `📦 *STOK: ${product.name}*\n\n` +
-            `📊 Tipe: *Fisik*\n` +
+            `📦 *STOCK: ${product.name}*\n\n` +
+            `📊 Tipo: *Físico*\n` +
             `📦 Total: *${product.stock === -1 ? '♾️ Unlimited' : product.stock + ' pcs'}*\n\n` +
-            `*Kelola stok:*\n` +
-            `• Tambah: \`${m.prefix}addstok ${idx + 1} <jumlah>\`\n` +
-            `• Edit: \`${m.prefix}editproduk ${idx + 1} stok <jumlah>\`\n\n` +
-            `_Stok fisik diatur berdasarkan jumlah, bukan per-item_ 📦`
+            `*Administrar stock:*\n` +
+            `• Agregar: \`${m.prefix}addstok ${idx + 1} <cantidad>\`\n` +
+            `• Editar: \`${m.prefix}editproduk ${idx + 1} stok <cantidad>\`\n\n` +
+            `_El stock físico se gestiona por cantidad, no por artículo_ 📦`
         )
     }
 
@@ -60,17 +60,17 @@ async function handler(m, { sock }) {
 
     if (stockItems.length === 0) {
         return m.reply(
-            `🔑 *Stok: ${product.name}*\n\n` +
-            `📭 Belum ada stok item yang ditambahkan.\n\n` +
-            `*Tambah stok:*\n` +
-            `• Manual: \`${m.prefix}addstok ${idx + 1}|<detail>\`\n` +
-            `• Import: \`${m.prefix}addstok ${idx + 1}\` (reply file .txt 📄)\n\n` +
-            `_Stok item bersifat rahasia 🔒 dan hanya dikirim ke pembeli setelah pembayaran dikonfirmasi_`
+            `🔑 *Stock: ${product.name}*\n\n` +
+            `📭 Aún no se han agregado artículos de stock.\n\n` +
+            `*Agregar stock:*\n` +
+            `• Manual: \`${m.prefix}addstok ${idx + 1}|<detalle>\`\n` +
+            `• Importar: \`${m.prefix}addstok ${idx + 1}\` (responde un archivo .txt 📄)\n\n` +
+            `_Los artículos de stock son confidenciales 🔒 y solo se envían al comprador después de confirmar el pago_`
         )
     }
 
-    let txt = `🔑 *STOK: ${product.name}*\n\n`
-    txt += `📊 Total: *${stockItems.length}* akun\n\n`
+    let txt = `🔑 *STOCK: ${product.name}*\n\n`
+    txt += `📊 Total: *${stockItems.length}* cuentas\n\n`
 
     const showItems = stockItems.slice(0, 30)
     for (let i = 0; i < showItems.length; i++) {
@@ -79,13 +79,13 @@ async function handler(m, { sock }) {
     }
 
     if (stockItems.length > 30) {
-        txt += `\n_dan ${stockItems.length - 30} item lainnya..._ 📋`
+        txt += `\n_y ${stockItems.length - 30} artículos más..._ 📋`
     }
 
-    txt += `\n\n🛠️ *Kelola stok:*\n`
-    txt += `🗑️ Hapus: \`${m.prefix}hapusstok ${idx + 1} <nomor_item>\`\n`
-    txt += `✏️ Edit: \`${m.prefix}editstok ${idx + 1} <nomor_item>|<detail_baru>\`\n`
-    txt += `➕ Tambah: \`${m.prefix}addstok ${idx + 1}|<detail>\``
+    txt += `\n\n🛠️ *Administrar stock:*\n`
+    txt += `🗑️ Eliminar: \`${m.prefix}hapusstok ${idx + 1} <numero_item>\`\n`
+    txt += `✏️ Editar: \`${m.prefix}editstok ${idx + 1} <numero_item>|<detalle_nuevo>\`\n`
+    txt += `➕ Agregar: \`${m.prefix}addstok ${idx + 1}|<detalle>\``
 
     return m.reply(txt)
 }

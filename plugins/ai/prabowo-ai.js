@@ -1,19 +1,19 @@
 import { UnlimitedAI } from "../../src/scraper/unlimitedai.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "prabowo-ai",
   alias: ["prabowoi", "prabowo", "pakprabowo"],
   category: "ai",
-  description: "Chat dengan Pak Prabowo — Pria Sawit",
-  usage: ".prabowo-ai <pertanyaan>",
-  example: ".prabowo-ai Saudara, kita harus berdaulat!",
+  description: "Chat con el Sr. Prabowo — El hombre de la palma",
+  usage: ".prabowo-ai <pregunta>",
+  example: ".prabowo-ai Hermano, ¡debemos ser soberanos!",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🇮🇩 *Pak Prabowo*\n\n` +
-        `> Pria Sawit — Presiden RI\n> Tegas, patriotik, dan karismatik\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}prabowo-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}prabowo-ai Saudara, kita harus berdaulat!*`
+        `> El hombre de la palma — Presidente de Indonesia\n> Firme, patriótico y carismático\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}prabowo-ai Hermano, ¡debemos ser soberanos!*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Prabowo AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Error de Prabowo AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

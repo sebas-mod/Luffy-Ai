@@ -1,5 +1,5 @@
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "leave",
   alias: ["leavegrup", "leavegroup", "keluar", "bye"],
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -40,15 +40,15 @@ async function handler(m, { sock }) {
     targetGroupJid = m.chat;
     try {
       const meta = m.groupMetadata;
-      groupName = meta.subject || "Grup ini";
+      groupName = meta.subject || "Este grupo";
     } catch {
-      groupName = "Grup ini";
+      groupName = "Este grupo";
     }
   } else if (input) {
     const inviteCode = await extractInviteCode(input);
 
     if (!inviteCode) {
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Link invite tidak valid`);
+      return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Enlace de invitación no válido`);
     }
 
     try {
@@ -57,22 +57,22 @@ async function handler(m, { sock }) {
       groupName = groupInfo.subject || "Unknown";
     } catch (error) {
       return m.reply(
-        `❌ *ɢᴀɢᴀʟ*\n\n> Tidak dapat mengambil info grup dari link`,
+        `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudo obtener la info del grupo desde el enlace`,
       );
     }
   } else {
     return m.reply(
-      `🚪 *ʟᴇᴀᴠᴇ ɢʀᴜᴘ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-        `┃ ◦ Di grup: \`.leave\`\n` +
-        `┃ ◦ Via link: \`.leave <link>\`\n` +
+      `🚪 *sᴀʟɪʀ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
+        `┃ ◦ En el grupo: \`.leave\`\n` +
+        `┃ ◦ Vía enlace: \`.leave <enlace>\`\n` +
         `╰┈┈⬡\n\n` +
-        `\`Contoh: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
+        `\`Ejemplo: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
     );
   }
 
   if (!targetGroupJid) {
-    return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Grup tidak ditemukan`);
+    return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Grupo no encontrado`);
   }
 
   await m.react("🕕");
@@ -81,14 +81,14 @@ async function handler(m, { sock }) {
     global.sewaLeaving = true;
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     if (m.isGroup && targetGroupJid === m.chat) {
       await sock.sendMessage(m.chat, {
         text:
           `👋 *ɢᴏᴏᴅʙʏᴇ*\n\n` +
-          `> Bot akan keluar dari grup ini.\n` +
-          `> Terima kasih sudah menggunakan bot!`,
+          `> El bot saldrá de este grupo.\n` +
+          `> ¡Gracias por usar el bot!`,
         contextInfo: {
           forwardingScore: 9999,
           isForwarded: true,
@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
     if (!m.isGroup || targetGroupJid !== m.chat) {
       await m.react("✅");
       await m.reply(
-        `✅ *ʙᴇʀʜᴀsɪʟ ᴋᴇʟᴜᴀʀ*\n\n` + `> Bot telah keluar dari: *${groupName}*`,
+        `✅ *sᴀʟɪᴅᴀ ᴇxɪᴛᴏsᴀ*\n\n` + `> El bot salió de: *${groupName}*`,
       );
     }
   } catch (error) {

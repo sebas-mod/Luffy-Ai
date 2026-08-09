@@ -1,19 +1,19 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
-import { sendToolsPreview } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { sendToolsPreview } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "pastebin",
   alias: ["paste", "pb"],
   category: "tools",
-  description: "Upload teks ke Pastebin",
-  usage: ".pastebin <text>",
+  description: "Sube texto a Pastebin",
+  usage: ".pastebin <texto>",
   example: '.pastebin console.log("Hello World")',
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -26,18 +26,18 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📋 *ᴘᴀsᴛᴇʙɪɴ ᴜᴘʟᴏᴀᴅ*\n\n` +
-        `Kirim teks untuk di-upload ke Pastebin.\n\n` +
-        `*Cara pakai:*\n` +
-        `• \`${m.prefix}pastebin <text>\`\n` +
-        `• Reply teks dengan \`${m.prefix}pastebin\`\n\n` +
-        `> Contoh: \`${m.prefix}pastebin console.log("Hello")\``,
+      `📋 *sᴜʙɪʀ ᴀ ᴘᴀsᴛᴇʙɪɴ*\n\n` +
+        `Envía texto para subirlo a Pastebin.\n\n` +
+        `*Cómo usar:*\n` +
+        `• \`${m.prefix}pastebin <texto>\`\n` +
+        `• Responde un texto con \`${m.prefix}pastebin\`\n\n` +
+        `> Ejemplo: \`${m.prefix}pastebin console.log("Hello")\``,
     );
   }
 
   const api_dev_key = "h9WMT2Mn9QW-qDhvUSc-KObqAYcjI0he";
   const api_paste_code = text.trim();
-  const api_paste_name = `Paste dari ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
+  const api_paste_name = `Paste de ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
 
   const data = new URLSearchParams({
     api_dev_key,
@@ -60,17 +60,17 @@ async function handler(m, { sock }) {
     const url = res.data;
 
     if (url.startsWith("Bad API request")) {
-      return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> ${url}`);
+      return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ${url}`);
     }
 
     const responseText =
-      `✅ *ᴘᴀsᴛᴇʙɪɴ ʙᴇʀʜᴀsɪʟ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-      `┃ 📝 ᴊᴜᴅᴜʟ: *${api_paste_name}*\n` +
-      `┃ 📊 ᴜᴋᴜʀᴀɴ: *${text.length} chars*\n` +
-      `┃ 🔗 ʟɪɴᴋ: ${url}\n` +
+      `✅ *ᴘᴀsᴛᴇʙɪɴ ᴇxɪᴛᴏsᴏ*\n\n` +
+      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+      `┃ 📝 ᴛɪᴛᴜʟᴏ: *${api_paste_name}*\n` +
+      `┃ 📊 ᴛᴀᴍᴀɴᴏ: *${text.length} caracteres*\n` +
+      `┃ 🔗 ᴇɴʟᴀᴄᴇ: ${url}\n` +
       `╰┈┈⬡\n\n` +
-      `> Paste akan expired sesuai pengaturan Pastebin.`;
+      `> El paste expirará según la configuración de Pastebin.`;
     await sendToolsPreview(
       sock,
       m.chat,

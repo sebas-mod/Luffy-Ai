@@ -1,10 +1,10 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'autosticker',
     alias: ['autostiker', 'as'],
     category: 'group',
-    description: 'Toggle auto sticker - otomatis jadikan gambar/video jadi sticker',
+    description: 'Activa o desactiva auto sticker - convierte automáticamente imagen/video en sticker',
     usage: '.autosticker on/off',
     example: '.autosticker on',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -25,37 +25,37 @@ async function handler(m, { sock }) {
     const arg = args[0]?.toLowerCase()
     
     if (!arg) {
-        const status = current ? '✅ Aktif' : '❌ Nonaktif'
+        const status = current ? '✅ Activo' : '❌ Inactivo'
         return m.reply(
             `🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n` +
-            `> Status: ${status}\n\n` +
-            `> Gunakan:\n` +
-            `> \`${m.prefix}autosticker on\` - aktifkan\n` +
-            `> \`${m.prefix}autosticker off\` - nonaktifkan\n\n` +
-            `> _Otomatis jadikan gambar/video jadi sticker_`
+            `> Estado: ${status}\n\n` +
+            `> Usa:\n` +
+            `> \`${m.prefix}autosticker on\` - activar\n` +
+            `> \`${m.prefix}autosticker off\` - desactivar\n\n` +
+            `> _Convierte automáticamente imagen/video en sticker_`
         )
     }
     
     
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah aktif!`)
+            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está activo!`)
         }
         db.setGroup(m.chat, { autosticker: true })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ Berhasil diaktifkan!\n> Gambar/video akan otomatis jadi sticker`)
+        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ ¡Activado correctamente!\n> La imagen/video se convertirá automáticamente en sticker`)
     }
     
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> Sudah nonaktif!`)
+            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está inactivo!`)
         }
         db.setGroup(m.chat, { autosticker: false })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ Berhasil dinonaktifkan!`)
+        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ ¡Desactivado correctamente!`)
     }
     
-    return m.reply(`❌ Gunakan: \`${m.prefix}autosticker on/off\``)
+    return m.reply(`❌ Usa: \`${m.prefix}autosticker on/off\``)
 }
 
 async function autoStickerHandler(m, sock) {
@@ -93,7 +93,7 @@ async function autoStickerHandler(m, sock) {
         
         if (isImage) {
             await sock.sendImageAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'Ourin',
+                packname: config.sticker?.packname || 'Luffy',
                 author: config.sticker?.author || 'Bot'
             })
         } else if (isVideo) {
@@ -102,7 +102,7 @@ async function autoStickerHandler(m, sock) {
             if (duration > 10) return false
             
             await sock.sendVideoAsSticker(m.chat, buffer, m, {
-                packname: config.sticker?.packname || 'Ourin',
+                packname: config.sticker?.packname || 'Luffy',
                 author: config.sticker?.author || 'Bot'
             })
         }

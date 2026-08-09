@@ -1,9 +1,9 @@
-import { getRandomItem } from '../../src/lib/ourin-game-data.js'
+import { getRandomItem } from '../../src/lib/luffy-game-data.js'
 const pluginConfig = {
     name: 'dare',
     alias: ['dareq', 'tantang'],
     category: 'fun',
-    description: 'Random tantangan dare',
+    description: 'Reto aleatorio (dare)',
     usage: '.dare',
     example: '.dare',
     isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
@@ -19,7 +19,7 @@ async function handler(m) {
     const challenge = getRandomItem('dare.json');
     
     if (!challenge) {
-        await m.reply('❌ Data tidak tersedia!');
+        await m.reply('❌ ¡Datos no disponibles!');
         return;
     }
     

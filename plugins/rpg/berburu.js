@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "berburu",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -28,22 +28,22 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Aduh kak, stamina kamu abis nih! 😭⚡\n\nBuat berburu butuh *${staminaCost} Stamina*, tapi punya kamu sisa *${user.rpg.stamina}*.\nIstirahat dulu gih biar seger lagi! 🛌💤`);
+    return m.reply(`Uy bro, ¡tu resistencia se agotó! 😭⚡\n\nPara cazar necesitas *${staminaCost} de Resistencia*, pero solo te quedan *${user.rpg.stamina}*.\n¡Descansa un poco para recuperarte! 🛌💤`);
   }
 
   user.rpg.stamina -= staminaCost;
 
   await m.react("🏹");
-  await m.reply(`Mengendap-endap masuk ke hutan... 🤫🌳\nSiapin panah dan bidik dengan teliti! 🏹👀`);
+  await m.reply(`Avanzando sigilosamente por el bosque... 🤫🌳\n¡Prepara la flecha y apunta con precisión! 🏹👀`);
   await new Promise((r) => setTimeout(r, 3000));
 
   const animals = [
-    { name: "🐰 Kelinci", item: "daging_kelinci", chance: 80, min: 1, max: 3, exp: 50, money: 500 },
-    { name: "🦌 Rusa", item: "daging_rusa", chance: 50, min: 1, max: 2, exp: 100, money: 1500 },
-    { name: "🐗 Babi Hutan", item: "daging_babi", chance: 40, min: 1, max: 2, exp: 150, money: 2000 },
-    { name: "🦊 Rubah", item: "bulu_rubah", chance: 30, min: 1, max: 1, exp: 200, money: 3000 },
-    { name: "🐻 Beruang", item: "cakar_beruang", chance: 15, min: 1, max: 1, exp: 500, money: 10000 },
-    { name: "🦁 Singa", item: "taring_singa", chance: 5, min: 1, max: 1, exp: 1000, money: 25000 },
+    { name: "🐰 Conejo", item: "daging_kelinci", chance: 80, min: 1, max: 3, exp: 50, money: 500 },
+    { name: "🦌 Ciervo", item: "daging_rusa", chance: 50, min: 1, max: 2, exp: 100, money: 1500 },
+    { name: "🐗 Jabalí", item: "daging_babi", chance: 40, min: 1, max: 2, exp: 150, money: 2000 },
+    { name: "🦊 Zorro", item: "bulu_rubah", chance: 30, min: 1, max: 1, exp: 200, money: 3000 },
+    { name: "🐻 Oso", item: "cakar_beruang", chance: 15, min: 1, max: 1, exp: 500, money: 10000 },
+    { name: "🦁 León", item: "taring_singa", chance: 5, min: 1, max: 1, exp: 1000, money: 25000 },
   ];
 
   const caught = animals.filter((a) => Math.random() * 100 <= a.chance);
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
   if (caught.length === 0) {
     await m.react("😢");
     db.save();
-    return m.reply(`Yahh, apes banget hari ini kak! 😭😭\n\nHewannya pada lari semua, nggak dapet apa-apa deh.\nPadahal stamina udah kepotong *-${staminaCost}* ⚡. Sabar ya, coba lagi nanti! 🥺🌿`);
+    return m.reply(`Vaya, ¡qué mala suerte hoy bro! 😭😭\n\nLos animales se escaparon todos, no conseguiste nada.\nY tu resistencia ya se redujo *-${staminaCost}* ⚡. Ten paciencia, ¡inténtalo más tarde! 🥺🌿`);
   }
 
   let results = [];
@@ -66,22 +66,22 @@ async function handler(m, { sock }) {
     results.push({ name: animal.name, qty, money: animal.money * qty });
   }
 
-  user.koin = (user.koin || 0) + totalMoney;
+  user.berry = (user.berry || 0) + totalMoney;
   const levelResult = await addExpWithLevelCheck(sock, m, db, user, totalExp);
 
   db.save();
 
   await m.react("✅");
 
-  let txt = `CROOT! Kena sasaran kak! 🎯🏹\n\nKamu pulang bawa hasil buruan nih:\n`;
+  let txt = `¡CROOT! ¡Diste en el blanco bro! 🎯🏹\n\nVolviste a casa con estos trofeos de caza:\n`;
   for (const r of results) {
-    txt += `• ${r.name}: *+${r.qty} ekor*\n`;
+    txt += `• ${r.name}: *+${r.qty} unidades*\n`;
   }
-  txt += `\nHasil buruannya otomatis kejual ya! 🎉\n`;
-  txt += `💸 Koin: *+Rp ${totalMoney.toLocaleString("id-ID")}*\n`;
+  txt += `\n¡Los trofeos se vendieron automáticamente! 🎉\n`;
+  txt += `💸 Berry: *+Rp ${totalMoney.toLocaleString("id-ID")}*\n`;
   txt += `📈 EXP: *+${totalExp}*\n`;
-  txt += `⚡ Stamina terpakai: *-${staminaCost}*\n\n`;
-  txt += `Mantap banget, besok-besok berburu lagi ya kak! 🔥🥩`;
+  txt += `⚡ Resistencia usada: *-${staminaCost}*\n\n`;
+  txt += `¡Excelente, vuelve a cazar otro día bro! 🔥🥩`;
 
   m.reply(txt);
 }

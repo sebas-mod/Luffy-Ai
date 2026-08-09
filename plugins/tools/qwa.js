@@ -1,22 +1,22 @@
 import axios from 'axios'
-import { uploadImage } from '../../src/lib/ourin-uploader.js'
-import te from '../../src/lib/ourin-error.js'
-import { serialize } from '../../src/lib/ourin-serialize.js'
+import { uploadImage } from '../../src/lib/luffy-uploader.js'
+import te from '../../src/lib/luffy-error.js'
+import { serialize } from '../../src/lib/luffy-serialize.js'
 import { parsePhoneNumber } from 'awesome-phonenumber'
 
 const pluginConfig = {
     name: 'qwa',
     alias: ['quotewa', 'fakeqwa'],
     category: 'tools',
-    description: 'Membuat gambar quote WhatsApp',
-    usage: '.qwa [teks]',
-    example: '.qwa Halo Dunia',
+    description: 'Crea una imagen de cita/quote de WhatsApp',
+    usage: '.qwa [texto]',
+    example: '.qwa Hola Mundo',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 }
 
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
         }
 
         if (!textToQuote && !mainMsg.isMedia) {
-            return m.reply(`❌ *FORMAT SALAH*\n\nKirim perintah \`.qwa <teks>\` atau reply pesan orang lain dengan \`.qwa\`.`)
+            return m.reply(`❌ *FORMATO INCORRECTO*\n\nEnvía el comando \`.qwa <texto>\` o responde el mensaje de otra persona con \`.qwa\`.`)
         }
         await m.react('🕕')
         const msgTime = mainMsg.messageTimestamp ? new Date(mainMsg.messageTimestamp * 1000) : new Date()
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
                     mainImage = await uploadImage(buffer)
                 }
             } catch (err) {
-                console.error("Gagal download/upload media utama:", err)
+                console.error("No se pudo descargar/subir el media principal:", err)
             }
         }
 
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
                     quotedImage = await uploadImage(buffer)
                 }
             } catch (err) {
-                console.error("Gagal download/upload media quoted:", err)
+                console.error("No se pudo descargar/subir el media citado:", err)
             }
         }
 
@@ -119,14 +119,14 @@ async function handler(m, { sock }) {
         })
         await sock.sendMessage(m.chat, {
             image: Buffer.from(res.data),
-            caption: `✅ Berhasil membuat quote WhatsApp!`
+            caption: `✅ Cita/quote de WhatsApp creada con éxito!`
         }, { quoted: m })
 
         await m.react('✅')
     } catch (error) {
         console.error("Error QWA:", error)
         await m.react('❌')
-        m.reply(`❌ *GAGAL MEMBUAT QUOTE*\n\n> Terjadi kesalahan atau API sedang bermasalah.`)
+        m.reply(`❌ *FALLO AL CREAR LA CITA/QUOTE*\n\n> Se produjo un error o la API no está funcionando.`)
     }
 }
 

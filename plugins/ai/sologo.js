@@ -1,19 +1,19 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "sologo",
   alias: ["ailogo", "bikinlogo"],
   category: "ai",
-  description: "Membuat logo menggunakan AI dari teks (prompt)",
+  description: "Crear logos usando IA a partir de un texto (prompt)",
   usage: ".sologo <prompt>",
-  example: ".sologo Kucing lucu warna biru",
+  example: ".sologo Gato lindo color azul",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const prompt = m.text?.trim() || m.args.join(" ");
 
   if (!prompt) {
-    return m.reply("❌ Masukkan deskripsi logo yang ingin dibuat.\n\nContoh: `.sologo robot keren warna merah`");
+    return m.reply("❌ Ingresa la descripción del logo que quieres crear.\n\nEjemplo: `.sologo robot genial color rojo`");
   }
 
   await m.react("🕕");
@@ -38,16 +38,16 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result || data.result.length === 0) {
       await m.react("❌");
-      return m.reply("⚠️ AI gagal membuat logo. Coba gunakan prompt (deskripsi) yang lain.");
+      return m.reply("⚠️ La IA no pudo crear el logo. Prueba con otro prompt (descripción).");
     }
 
     const logo = data.result[0];
 
     const caption = `🎨 *SOLOGO AI* 🎨\n\n` +
       `*Prompt:* ${prompt}\n` +
-      `*Judul:* ${logo.title}\n` +
-      `*Deskripsi:* ${logo.desc}\n` +
-      `*Tipe:* ${logo.logo_type || "origin"}`;
+      `*Título:* ${logo.title}\n` +
+      `*Descripción:* ${logo.desc}\n` +
+      `*Tipo:* ${logo.logo_type || "origin"}`;
 
     await sock.sendMessage(m.chat, {
       image: { url: logo.thumbnail },
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SoLogo AI]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat memproses permintaan ke AI.");
+    m.reply("😔 Ocurrió un error al procesar la solicitud hacia la IA.");
   }
 }
 

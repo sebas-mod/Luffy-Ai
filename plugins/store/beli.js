@@ -1,19 +1,19 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "beli",
   alias: ["order", "pesan", "buy"],
   category: "store",
-  description: "🛒 Pesan produk dan dapatkan nomor transaksi",
-  usage: ".beli <nomor_produk>",
+  description: "🛒 Pedir un producto y obtener número de transacción",
+  usage: ".beli <numero_producto>",
   example: ".beli 1",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
 
   if (products.length === 0) {
     return m.reply(
-      `📭 *Belum ada produk tersedia.*\n\nKetik \`${m.prefix}listproduk\` untuk melihat daftar produk 🛍️`,
+      `📭 *Aún no hay productos disponibles.*\n\nEscribe \`${m.prefix}listproduk\` para ver la lista de productos 🛍️`,
     );
   }
 
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
   const idx = parseInt(args[0]) - 1;
 
   if (isNaN(idx) || idx < 0 || idx >= products.length) {
-    let txt = `🛒 *Pilih Produk*\n\nKetik \`${m.prefix}beli <nomor>\` untuk memesan.\n\n`;
+    let txt = `🛒 *Elige Producto*\n\nEscribe \`${m.prefix}beli <numero>\` para pedir.\n\n`;
     for (let i = 0; i < products.length; i++) {
       const p = products[i];
       const typeIcon = p.type === "fisik" ? "📦" : "🔑";
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
   const product = products[idx];
   const typeIcon = product.type === "fisik" ? "📦" : "🔑";
-  const typeLabel = product.type === "fisik" ? "Fisik" : "Digital";
+  const typeLabel = product.type === "fisik" ? "Físico" : "Digital";
 
   const isAvailable =
     product.type === "fisik"
@@ -59,10 +59,10 @@ async function handler(m, { sock }) {
 
   if (!isAvailable) {
     return m.reply(
-      `❌ *Stok Habis*\n\n` +
-        `${typeIcon} Produk *${product.name}* saat ini sedang tidak tersedia 😔\n\n` +
-        `Silakan hubungi admin atau cek kembali nanti.\n\n` +
-        `_Kami akan segera mengisi ulang stok_ 🙏`,
+      `❌ *Stock Agotado*\n\n` +
+        `${typeIcon} El producto *${product.name}* no está disponible actualmente 😔\n\n` +
+        `Contacta al admin o vuelve a revisar más tarde.\n\n` +
+        `_Repondremos el stock pronto_ 🙏`,
     );
   }
 
@@ -94,12 +94,12 @@ async function handler(m, { sock }) {
       ? `${String(ownerNumbers[0]).replace(/[^0-9]/g, "")}@s.whatsapp.net`
       : null;
 
-  let txt = `🛒 *PESANAN DIBUAT*\n\n`;
-  txt += `🧾 Nomor Transaksi: \`${trxId}\`\n\n`;
-  txt += `📦 *Detail Pesanan:*\n`;
-  txt += `${typeIcon} Produk: *${product.name}*\n`;
-  txt += `🏷️ Tipe: *${typeLabel}*\n`;
-  txt += `💰 Harga: *${formatPrice(product.price)}*\n`;
+  let txt = `🛒 *PEDIDO CREADO*\n\n`;
+  txt += `🧾 Número de Transacción: \`${trxId}\`\n\n`;
+  txt += `📦 *Detalle del Pedido:*\n`;
+  txt += `${typeIcon} Producto: *${product.name}*\n`;
+  txt += `🏷️ Tipo: *${typeLabel}*\n`;
+  txt += `💰 Precio: *${formatPrice(product.price)}*\n`;
   if (product.originalPrice)
     txt += `🏷️ ~~${formatPrice(product.originalPrice)}~~\n`;
   if (product.description) txt += `📝 _${product.description}_\n`;
@@ -121,25 +121,25 @@ async function handler(m, { sock }) {
     await m.reply(txt);
   }
 
-  let paymentTxt = `💳 *INSTRUKSI PEMBAYARAN*\n\n`;
-  paymentTxt += `1️⃣ Transfer sebesar *${formatPrice(product.price)}* ke nomor admin 💰\n`;
+  let paymentTxt = `💳 *INSTRUCCIONES DE PAGO*\n\n`;
+  paymentTxt += `1️⃣ Transfiere *${formatPrice(product.price)}* al número del admin 💰\n`;
 
   if (config.store?.payment?.length) {
     for (const p of config.store.payment) {
-      paymentTxt += `   🏦 ${p.name}: \`${p.number}\` a.n ${p.holder}\n`;
+      paymentTxt += `   🏦 ${p.name}: \`${p.number}\` a nombre de ${p.holder}\n`;
     }
   }
   if (config.store?.qris) {
-    paymentTxt += `   📱 QRIS: Tersedia\n`;
+    paymentTxt += `   📱 QRIS: Disponible\n`;
   }
 
-  paymentTxt += `\n2️⃣ Setelah transfer, kirim *bukti pembayaran* ke admin 📸\n`;
-  paymentTxt += `3️⃣ Admin akan memverifikasi dan mengirim data produk ke Anda ✅\n\n`;
-  paymentTxt += `🧾 Nomor Transaksi Anda: \`${trxId}\`\n`;
-  paymentTxt += `_Simpan nomor ini untuk referensi_ 📌`;
+  paymentTxt += `\n2️⃣ Después de transferir, envía el *comprobante de pago* al admin 📸\n`;
+  paymentTxt += `3️⃣ El admin verificará y enviará los datos del producto ✅\n\n`;
+  paymentTxt += `🧾 Tu número de transacción: \`${trxId}\`\n`;
+  paymentTxt += `_Guarda este número como referencia_ 📌`;
 
   if (ownerJid) {
-    paymentTxt += `\n\n📞 Hubungi admin: wa.me/${ownerJid.split("@")[0]}`;
+    paymentTxt += `\n\n📞 Contacta al admin: wa.me/${ownerJid.split("@")[0]}`;
   }
 
   await m.reply(paymentTxt);
@@ -148,13 +148,13 @@ async function handler(m, { sock }) {
     const buyerNum = m.sender.split("@")[0];
     await sock.sendMessage(ownerJid, {
       text:
-        `🛒 *PESANAN BARU*\n\n` +
+        `🛒 *NUEVO PEDIDO*\n\n` +
         `🧾 TRX: \`${trxId}\`\n` +
-        `👤 Pembeli: *${m.pushName || buyerNum}*\n` +
-        `📱 Nomor: \`${buyerNum}\`\n` +
-        `${typeIcon} Produk: *${product.name}*\n` +
-        `💰 Harga: *${formatPrice(product.price)}*\n\n` +
-        `_Setelah menerima bukti transfer 📸, reply pesan pembeli lalu ketik \`${m.prefix}done ${trxId}\`_ ✅`,
+        `👤 Comprador: *${m.pushName || buyerNum}*\n` +
+        `📱 Número: \`${buyerNum}\`\n` +
+        `${typeIcon} Producto: *${product.name}*\n` +
+        `💰 Precio: *${formatPrice(product.price)}*\n\n` +
+        `_Después de recibir el comprobante de transferencia 📸, responde el mensaje del comprador y escribe \`${m.prefix}done ${trxId}\`_ ✅`,
     });
   }
 }

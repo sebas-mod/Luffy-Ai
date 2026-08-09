@@ -4,17 +4,17 @@ import {
   isLid,
   isLidConverted,
   lidToJid,
-} from "../../src/lib/ourin-lid.js";
+} from "../../src/lib/luffy-lid.js";
 import moment from "moment-timezone";
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-import { createGoodbyeCard } from "../../src/lib/ourin-welcome-card.js";
-import { resolveAnyLidToJid } from "../../src/lib/ourin-lid.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+import { createGoodbyeCard } from "../../src/lib/luffy-welcome-card.js";
+import { resolveAnyLidToJid } from "../../src/lib/luffy-lid.js";
 import path from "path";
 import fs from "fs";
-import te from "../../src/lib/ourin-error.js";
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import te from "../../src/lib/luffy-error.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import { prepareWAMessageMedia, generateWAMessageFromContent } from "ourin";
 function resolvePlaceholders(
   template,
@@ -27,33 +27,33 @@ function resolvePlaceholders(
 ) {
   const now = moment().tz("Asia/Jakarta");
   const dayNames = {
-    Sunday: "Minggu",
-    Monday: "Senin",
-    Tuesday: "Selasa",
-    Wednesday: "Rabu",
-    Thursday: "Kamis",
-    Friday: "Jumat",
-    Saturday: "Sabtu",
+    Sunday: "Domingo",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
   };
   const dayId = dayNames[now.format("dddd")] || now.format("dddd");
   return template
     .replace(/{user}/gi, `@${username}`)
     .replace(/{number}/gi, username)
-    .replace(/{group}/gi, groupName || "Grup")
+    .replace(/{group}/gi, groupName || "Grupo")
     .replace(/{desc}/gi, groupDesc || "")
     .replace(/{count}/gi, memberCount?.toString() || "0")
     .replace(/{owner}/gi, groupOwner || "Admin")
     .replace(/{date}/gi, now.format("DD/MM/YYYY"))
     .replace(/{time}/gi, now.format("HH:mm"))
     .replace(/{day}/gi, dayId)
-    .replace(/{bot}/gi, config.bot?.name || "Ourin")
+    .replace(/{bot}/gi, config.bot?.name || "Luffy")
     .replace(/{prefix}/gi, prefix);
 }
 const pluginConfig = {
   name: "goodbye",
   alias: ["bye", "leave"],
   category: "group",
-  description: "Mengatur goodbye message untuk grup",
+  description: "Configurar el mensaje de despedida para el grupo",
   usage: ".goodbye <on/off>",
   example: ".goodbye on",
   isOwner: false,
@@ -62,7 +62,7 @@ const pluginConfig = {
   isPrivate: false,
   isAdmin: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 // eslint-disable-next-line require-await
@@ -77,50 +77,50 @@ async function buildGoodbyeMessage(
 ) {
   const farewells = [
     `Sayonara`,
-    `Sampai jumpa`,
+    `Hasta pronto`,
     `Bye bye`,
-    `Dadah`,
+    `Adiós`,
     `See you`,
-    `Hati-hati`,
+    `Cuídate`,
     `Oyasumi~`,
   ];
   const quotes = [
-    `Semoga langkahmu selalu dimudahkan ke depannya.`,
-    `Terima kasih sudah jadi bagian dari grup ini.`,
-    `Semoga kita bisa bertemu lagi di lain waktu.`,
-    `Pintu selalu terbuka kalau suatu saat mau kembali.`,
-    `Jaga diri baik-baik ya, tomodachi.`,
-    `Kenangan di sini bakal tetap ada.`,
+    `Que tu camino se llene de facilidades de ahora en adelante.`,
+    `Gracias por haber sido parte de este grupo.`,
+    `Esperamos que nos volvamos a ver en otra ocasión.`,
+    `La puerta siempre está abierta si algún día quieres volver.`,
+    `Cuídate mucho, tomodachi.`,
+    `Los recuerdos de aquí siempre quedarán.`,
   ];
   const emojis = ["🌙", "👋", "🥀", "💫", "😢", "🤍"];
   const headers = [
     `🌙 Oyasumi~ minna-san...
-Hari ini satu tomodachi harus berpamitan.
-Semoga perjalanan barunya penuh kebaikan.`,
+Hoy un tomodachi debe despedirse.
+Que su nuevo camino esté lleno de cosas buenas.`,
     `🥀 Minna-san...
-Ada perpisahan kecil hari ini.
-Terima kasih sudah pernah berjalan bersama.`,
+Hoy hay una pequeña despedida.
+Gracias por haber caminado a nuestro lado.`,
     `💫 Sayonara~
-Bukan akhir, hanya sampai jumpa.
-Semoga hari-harimu selalu hangat.`,
+No es el final, solo un hasta pronto.
+Que tus días siempre estén llenos de calidez.`,
     `🌌 Minna-san...
-Satu bintang berpindah langit malam ini.
-Doakan yang terbaik untuknya ya.`,
+Una estrella cambia de cielo esta noche.
+Deseémosle lo mejor.`,
   ];
   const farewell = farewells[Math.floor(Math.random() * farewells.length)];
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
   const emoji = emojis[Math.floor(Math.random() * emojis.length)];
   const header = headers[Math.floor(Math.random() * headers.length)];
-  const username = participant?.split("@")[0] || "User";
+  const username = participant?.split("@")[0] || "Usuario";
   const now = moment().tz("Asia/Jakarta");
   const dayNames = {
-    Sunday: "Minggu",
-    Monday: "Senin",
-    Tuesday: "Selasa",
-    Wednesday: "Rabu",
-    Thursday: "Kamis",
-    Friday: "Jumat",
-    Saturday: "Sabtu",
+    Sunday: "Domingo",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
   };
   const dayId = dayNames[now.format("dddd")] || now.format("dddd");
   if (customMsg) {
@@ -134,14 +134,14 @@ Doakan yang terbaik untuknya ya.`,
       prefix,
     );
   }
-  let msg = `👋🏻 *SAYONARA MEMBER* 👋🏻\n\n`;
+  let msg = `👋🏻 *SAYONARA MIEMBRO* 👋🏻\n\n`;
   msg += `${header}\n`;
   msg += `${emoji} ${farewell}, *@${username}* 🤍\n\n`;
-  msg += `📌 *INFO GROUP*\n`;
-  msg += `> 🏠 *Nama* : ${groupName}\n`;
-  msg += `> 👥 *Sisa Member* : ${memberCount}\n`;
-  msg += `> 📅 *Tanggal* : ${now.format("DD/MM/YYYY")}\n\n`;
-  msg += `💌 *Pesan*\n> 「 ${quote} 」\n\n🌸 _Sampai jumpa lagi, tomodachi._ 🤍`;
+  msg += `📌 *INFO DEL GRUPO*\n`;
+  msg += `> 🏠 *Nombre* : ${groupName}\n`;
+  msg += `> 👥 *Miembros Restantes* : ${memberCount}\n`;
+  msg += `> 📅 *Fecha* : ${now.format("DD/MM/YYYY")}\n\n`;
+  msg += `💌 *Mensaje*\n> 「 ${quote} 」\n\n🌸 _Hasta pronto, tomodachi._ 🤍`;
 
   return msg;
 
@@ -177,8 +177,8 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       }
     }
     const memberCount = groupMeta?.participants?.length || 0;
-    const groupName = groupMeta?.subject || "Grup";
-    let userName = realParticipant?.split("@")[0] || "User";
+    const groupName = groupMeta?.subject || "Grupo";
+    let userName = realParticipant?.split("@")[0] || "Usuario";
     let ppUrl =
       "https://cdn.gimita.id/download/pp%20kosong%20wa%20default%20(1)_1769506608569_52b57f5b.jpg";
     try {
@@ -194,7 +194,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       config.command?.prefix || ".",
     );
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     if (goodbyeType === 2) {
       const cardBody = groupData?.goodbyeMsg
         ? resolvePlaceholders(
@@ -206,14 +206,14 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
           groupMeta?.owner?.split("@")[0] || "",
           config.command?.prefix || ".",
         )
-        : `Terima kasih sudah bergabung di *${groupName}*\nSisa ${memberCount} member`;
+        : `Gracias por haber estado en *${groupName}*\nQuedan ${memberCount} miembros`;
       await sock.sendMessage(groupJid, {
         interactiveMessage: {
           body: {
             text: `👋 *Sayonara* *@${userName}*`,
           },
-          footer: { text: config.bot?.name || "Ourin-AI" },
-          header: { title: "Goodbye", hasMediaAttachment: false },
+          footer: { text: config.bot?.name || "Luffy-Ai" },
+          header: { title: "Despedida", hasMediaAttachment: false },
           carouselMessage: {
             cards: [
               {
@@ -223,13 +223,13 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
                 body: {
                   text: cardBody,
                 },
-                footer: { text: config.bot?.name || "Ourin-AI" },
+                footer: { text: config.bot?.name || "Luffy-Ai" },
                 nativeFlowMessage: {
                   buttons: [
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "👋 Selamat Tinggal",
+                        display_text: "👋 Hasta pronto",
                         id: "bye",
                       }),
                     },
@@ -283,7 +283,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
         {
           caption: "https://goodbye.guys " + text,
           url: "https://goodbye.guys",
-          title: `Goodbye from ${groupName}`,
+          title: `Despedida de ${groupName}`,
           description: `👋 Sayonara @${userName}!`,
           image: ppUrl,
           previewType: 1,
@@ -296,7 +296,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       );
     } else if (goodbyeType === 6) {
       await sock.sendMessage(groupJid, {
-        video: getAssetBuffer("ourin-mp4") || { url: "https://files.catbox.moe/k28dhp.mp4" },
+        video: getAssetBuffer("luffy-mp4") || { url: "https://files.catbox.moe/k28dhp.mp4" },
         gifPlayback: true,
         caption: text,
         contextInfo: {
@@ -311,7 +311,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
           remoteJid: realParticipant
         },
         message: {
-          conversation: `Selamat tinggal semuanya! 👋`
+          conversation: `¡Adiós a todos! 👋`
         }
       };
 
@@ -334,7 +334,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
                 text: text
               },
               footer: {
-                text: config.bot?.name || "Ourin-AI"
+                text: config.bot?.name || "Luffy-Ai"
               },
               contextInfo: {
                 mentionedJid: [realParticipant],
@@ -351,7 +351,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
                   {
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
-                      display_text: "👋 Selamat Tinggal",
+                      display_text: "👋 Hasta pronto",
                       id: "bye"
                     })
                   }
@@ -367,7 +367,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       });
     } else if (goodbyeType === 8) {
       await sock.sendMessage(groupJid, {
-        text: `Goodbye @${userName}, from grup ${groupName}`,
+        text: `Adiós @${userName}, gracias por estar en el grupo ${groupName}`,
         mentions: [realParticipant],
       });
     } else {
@@ -412,7 +412,7 @@ async function handler(m, { sock }) {
   const currentStatus = groupData.goodbye === true;
   if (sub === "on" && sub2 === "all") {
     if (!m.isOwner) {
-      return m.reply(`❌ Hanya owner yang bisa menggunakan fitur ini!`);
+      return m.reply(`❌ Solo el owner puede usar esta función!`);
     }
     m.react("🕕");
     try {
@@ -425,8 +425,8 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `✅ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
-        `> Goodbye diaktifkan di *${count}* grup!`,
+        `✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
+        `> Despedida activada en *${count}* grupos!`,
       );
     } catch (err) {
       m.react("☢");
@@ -435,7 +435,7 @@ async function handler(m, { sock }) {
   }
   if (sub === "off" && sub2 === "all") {
     if (!m.isOwner) {
-      return m.reply(`❌ Hanya owner yang bisa menggunakan fitur ini!`);
+      return m.reply(`❌ Solo el owner puede usar esta función!`);
     }
     m.react("🕕");
     try {
@@ -448,8 +448,8 @@ async function handler(m, { sock }) {
       }
       m.react("✅");
       return m.reply(
-        `❌ *ɢᴏᴏᴅʙʏᴇ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
-        `> Goodbye dinonaktifkan di *${count}* grup!`,
+        `❌ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
+        `> Despedida desactivada en *${count}* grupos!`,
       );
     } catch (err) {
       m.react("☢");
@@ -459,46 +459,46 @@ async function handler(m, { sock }) {
   if (sub === "on") {
     if (currentStatus) {
       return m.reply(
-        `⚠️ *ɢᴏᴏᴅʙʏᴇ ᴀʟʀᴇᴀᴅʏ ᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *✅ ON*\n` +
-        `> Goodbye sudah aktif di grup ini.\n\n` +
-        `_Gunakan \`${m.prefix}goodbye off\` untuk menonaktifkan._`,
+        `⚠️ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʏᴀ ᴀᴄᴛɪᴠᴀ*\n\n` +
+        `> Estado: *✅ ON*\n` +
+        `> La despedida ya está activa en este grupo.\n\n` +
+        `_Usa \`${m.prefix}goodbye off\` para desactivarla._`,
       );
     }
     db.setGroup(m.chat, { goodbye: true, leave: true });
     return m.reply(
-      `✅ *ɢᴏᴏᴅʙʏᴇ ᴀᴋᴛɪꜰ*\n\n` +
-      `> Goodbye message berhasil diaktifkan!\n` +
-      `> Member yang keluar akan diberi pesan.\n\n` +
-      `_Gunakan \`${m.prefix}setgoodbye\` untuk custom pesan._`,
+      `✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ᴀᴄᴛɪᴠᴀ*\n\n` +
+      `> El mensaje de despedida se activó correctamente!\n` +
+      `> Los miembros que salgan recibirán un mensaje.\n\n` +
+      `_Usa \`${m.prefix}setgoodbye\` para personalizar el mensaje._`,
     );
   }
   if (sub === "off") {
     if (!currentStatus) {
       return m.reply(
-        `⚠️ *ɢᴏᴏᴅʙʏᴇ ᴀʟʀᴇᴀᴅʏ ɪɴᴀᴄᴛɪᴠᴇ*\n\n` +
-        `> Status: *❌ OFF*\n` +
-        `> Goodbye sudah nonaktif di grup ini.\n\n` +
-        `_Gunakan \`${m.prefix}goodbye on\` untuk mengaktifkan._`,
+        `⚠️ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʏᴀ ɪɴᴀᴄᴛɪᴠᴀ*\n\n` +
+        `> Estado: *❌ OFF*\n` +
+        `> La despedida ya está inactiva en este grupo.\n\n` +
+        `_Usa \`${m.prefix}goodbye on\` para activarla._`,
       );
     }
     db.setGroup(m.chat, { goodbye: false, leave: false });
     return m.reply(
-      `❌ *ɢᴏᴏᴅʙʏᴇ ɴᴏɴᴀᴋᴛɪꜰ*\n\n` +
-      `> Goodbye message berhasil dinonaktifkan.\n` +
-      `> Member yang keluar tidak akan diberi pesan.`,
+      `❌ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɪɴᴀᴄᴛɪᴠᴀ*\n\n` +
+      `> El mensaje de despedida se desactivó correctamente.\n` +
+      `> Los miembros que salgan no recibirán mensaje.`,
     );
   }
   m.reply(
-    `👋 *ɢᴏᴏᴅʙʏᴇ sᴇᴛᴛɪɴɢs*\n\n` +
-    `> Status: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
-    `\`\`\`━━━ ᴘɪʟɪʜᴀɴ ━━━\`\`\`\n` +
-    `> \`${m.prefix}goodbye on\` → Aktifkan\n` +
-    `> \`${m.prefix}goodbye off\` → Nonaktifkan\n` +
+    `👋 *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ ᴅᴇ ᴅᴇsᴘᴇᴅɪᴅᴀ*\n\n` +
+    `> Estado: *${currentStatus ? "✅ ON" : "❌ OFF"}*\n\n` +
+    `\`\`\`━━━ ᴏᴘᴄɪᴏɴᴇs ━━━\`\`\`\n` +
+    `> \`${m.prefix}goodbye on\` → Activar\n` +
+    `> \`${m.prefix}goodbye off\` → Desactivar\n` +
     `> \`${m.prefix}goodbye on all\` → Global ON (owner)\n` +
     `> \`${m.prefix}goodbye off all\` → Global OFF (owner)\n` +
-    `> \`${m.prefix}setgoodbye\` → Custom pesan\n` +
-    `> \`${m.prefix}resetgoodbye\` → Reset default`,
+    `> \`${m.prefix}setgoodbye\` → Personalizar mensaje\n` +
+    `> \`${m.prefix}resetgoodbye\` → Restablecer predeterminado`,
   );
 }
 export { pluginConfig as config, handler, sendGoodbyeMessage };

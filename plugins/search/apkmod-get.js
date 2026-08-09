@@ -1,11 +1,11 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "apkmod-get",
   alias: ["apkmodget", "getapkmod"],
   category: "search",
-  description: "Download APK MOD dari hasil pencarian",
+  description: "Descargar APK MOD de los resultados de búsqueda",
   usage: ".apkmod-get <no> <query>",
   example: ".apkmod-get 1 vpn",
   isOwner: false,
@@ -13,11 +13,11 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 async function handler(m, { sock }) {
   const args = m.args || [];
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   const query = args.slice(1).join(" ");
 
   if (!no || !query) {
-    return m.reply(`❌ Format: \`${m.prefix}apkmod-get <no> <query>\``);
+    return m.reply(`❌ Formato: \`${m.prefix}apkmod-get <no> <query>\``);
   }
 
   m.react("🕕");
@@ -39,14 +39,14 @@ async function handler(m, { sock }) {
     );
 
     if (!data?.status || !data?.data) {
-      throw new Error("Gagal mengambil detail APK");
+      throw new Error("Error al obtener los detalles del APK");
     }
 
     const app = data.data;
     const file = data.file;
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     if (file?.url) {
       await sock.sendMessage(
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
 
       m.react("✅");
     } else {
-      let caption = `> ⚠️ Download URL tidak tersedia`;
+      let caption = `> ⚠️ URL de descarga no disponible`;
       await sock.sendMessage(
         m.chat,
         {

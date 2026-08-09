@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'clanleaderboard',
     alias: ['clanlb', 'topclan', 'guildrank'],
     category: 'clan',
-    description: 'Lihat ranking clan',
+    description: 'Ver ranking de clanes',
     usage: '.clanleaderboard',
     example: '.clanleaderboard',
     isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -31,7 +31,7 @@ async function handler(m) {
 
     const clans = Object.values(db.db.data.clans)
     if (clans.length === 0) {
-        return m.reply(`🏰 Belum ada clan terdaftar\n\nBuat: *.clancreate <nama>*`)
+        return m.reply(`🏰 Aún no hay clanes registrados\n\nCrea: *.clancreate <nombre>*`)
     }
 
     clans.sort((a, b) => {
@@ -42,7 +42,7 @@ async function handler(m) {
 
     const medals = ['🥇', '🥈', '🥉']
 
-    let txt = `🏰 *CLAN LEADERBOARD*\n\n`
+    let txt = `🏰 *RANKING DE CLANES*\n\n`
 
     clans.slice(0, 10).forEach((clan, i) => {
         const medal = medals[i] || `${i + 1}.`
@@ -57,7 +57,7 @@ async function handler(m) {
         txt += `   ${rank} Lv.${clan.level || 1} · ${clan.wins || 0}W/${clan.losses || 0}L (${winRate}%) · 👥 ${clan.members.length}\n\n`
     })
 
-    txt += `Total *${clans.length}* clan terdaftar`
+    txt += `Total: *${clans.length}* clanes registrados`
 
     await m.reply(txt)
 }

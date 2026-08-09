@@ -14,12 +14,12 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 async function handler(m, { sock }) {
-  const botName = config.bot?.name || "Ourin-AI";
+  const botName = config.bot?.name || "Luffy-Ai";
   const ownerName = config.owner?.name || "Owner";
   const saluranId = config.saluran?.id || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || botName;

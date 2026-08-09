@@ -1,20 +1,20 @@
 import config from '../../config.js';
-import { updateAssetUrl } from '../../src/lib/ourin-uploader.js';
-import te from '../../src/lib/ourin-error.js';
+import { updateAssetUrl } from '../../src/lib/luffy-uploader.js';
+import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
     name: 'ganti-asset',
     alias: ['gantiasset', 'setasset'],
     category: 'owner',
-    description: 'All-in-one tools untuk ganti asset secara interaktif',
-    usage: '.ganti-asset (reply media)',
+    description: 'Herramienta todo-en-uno para cambiar assets de forma interactiva',
+    usage: '.ganti-asset (responde a un medio)',
     example: '.ganti-asset',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const isMedia = isImage || isVideo || isAudio || isDocument;
 
         if (!isMedia) {
-            return m.reply(`🖼️ *ɢᴀɴᴛɪ ᴀssᴇᴛ*\n\n> Silakan reply media (gambar/video/audio/document) dengan pesan \`${m.prefix}ganti-asset\``);
+            return m.reply(`🖼️ *ᴄᴀᴍʙɪᴀʀ ᴀssᴇᴛ*\n\n> Responde a un medio (imagen/video/audio/documento) con el mensaje \`${m.prefix}ganti-asset\``);
         }
 
         m.react('🕕');
@@ -45,13 +45,13 @@ async function handler(m, { sock }) {
         }
 
         if (!buffer) {
-            return m.reply('❌ Gagal mendownload media.');
+            return m.reply('❌ Error al descargar el medio.');
         }
 
         const assets = config.assets || {};
         const keys = Object.keys(assets);
         if (keys.length === 0) {
-            return m.reply('❌ Tidak ada asset di config.js.');
+            return m.reply('❌ No hay assets en config.js.');
         }
 
         const imageKeys = [];
@@ -77,32 +77,32 @@ async function handler(m, { sock }) {
 
         const orderedKeys = [...imageKeys, ...videoKeys, ...audioKeys, ...fontKeys, ...otherKeys];
 
-        let listText = `📂 *PILIH ASSET YANG INGIN DIGANTI*\n\n`;
-        listText += `_Silakan reply pesan ini dengan nomor (1-${orderedKeys.length})_\n\n`;
+        let listText = `📂 *ELIGE EL ASSET QUE QUIERES CAMBIAR*\n\n`;
+        listText += `_Responde a este mensaje con el número (1-${orderedKeys.length})_\n\n`;
 
         let idx = 1;
         if (imageKeys.length > 0) {
-            listText += `*🖼️ Image Assets:*\n`;
+            listText += `*🖼️ Assets de Imagen:*\n`;
             imageKeys.forEach(k => { listText += `> ${idx++}. ${k}\n`; });
             listText += `\n`;
         }
         if (videoKeys.length > 0) {
-            listText += `*🎥 Video Assets:*\n`;
+            listText += `*🎥 Assets de Video:*\n`;
             videoKeys.forEach(k => { listText += `> ${idx++}. ${k}\n`; });
             listText += `\n`;
         }
         if (audioKeys.length > 0) {
-            listText += `*🎵 Audio Assets:*\n`;
+            listText += `*🎵 Assets de Audio:*\n`;
             audioKeys.forEach(k => { listText += `> ${idx++}. ${k}\n`; });
             listText += `\n`;
         }
         if (fontKeys.length > 0) {
-            listText += `*🔤 Font Assets:*\n`;
+            listText += `*🔤 Assets de Fuente:*\n`;
             fontKeys.forEach(k => { listText += `> ${idx++}. ${k}\n`; });
             listText += `\n`;
         }
         if (otherKeys.length > 0) {
-            listText += `*📁 Other Assets:*\n`;
+            listText += `*📁 Otros Assets:*\n`;
             otherKeys.forEach(k => { listText += `> ${idx++}. ${k}\n`; });
             listText += `\n`;
         }
@@ -149,7 +149,7 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     if (num < 1 || num > session.keys.length) {
         if (m.quoted && m.quoted.fromMe) {
-            await m.reply(`❌ Nomor tidak valid. Pilih antara 1-${session.keys.length}.`);
+            await m.reply(`❌ Número no válido. Elige entre 1-${session.keys.length}.`);
         }
         return false;
     }
@@ -162,19 +162,19 @@ async function gantiAssetAnswerHandler(m, sock) {
     const isFontUpload = session.isFontUpload;
 
     if (session.imageKeys && session.imageKeys.includes(selectedKey) && !isImageUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file gambar (Image).`);
+        await m.reply(`❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de imagen.`);
         return true;
     }
     if (session.videoKeys && session.videoKeys.includes(selectedKey) && !isVideoUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file video.`);
+        await m.reply(`❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de video.`);
         return true;
     }
     if (session.audioKeys && session.audioKeys.includes(selectedKey) && !isAudioUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file audio.`);
+        await m.reply(`❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de audio.`);
         return true;
     }
     if (session.fontKeys && session.fontKeys.includes(selectedKey) && !isFontUpload) {
-        await m.reply(`❌ Format tidak sesuai!\n> Asset *${selectedKey}* membutuhkan file dokumen font (.ttf/.otf).`);
+        await m.reply(`❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un documento de fuente (.ttf/.otf).`);
         return true;
     }
 
@@ -189,12 +189,12 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     try {
         const newPath = await updateAssetUrl(selectedKey, session.buffer, filename);
-        await m.reply(`✅ *BERHASIL*\n\n> Asset *${selectedKey}* telah diganti ke:\n> ${newPath}\n> Config telah diupdate secara realtime!`);
+        await m.reply(`✅ *EXITOSO*\n\n> El asset *${selectedKey}* fue reemplazado por:\n> ${newPath}\n> ¡La config se actualizó en tiempo real!`);
         delete global.gantiAssetSessions[m.chat];
         await m.react('✅');
     } catch (e) {
         await m.react('❌');
-        await m.reply(`❌ Gagal mengganti asset: ${e.message}`);
+        await m.reply(`❌ Error al cambiar el asset: ${e.message}`);
     }
 
     return true;

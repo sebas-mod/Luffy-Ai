@@ -1,19 +1,19 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import axios from "axios";
 import config from "../../config.js";
 import fs from "fs";
-import te from "../../src/lib/ourin-error.js";
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+import te from "../../src/lib/luffy-error.js";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "film",
   alias: ["movie", "nonton", "lk21"],
   category: "search",
-  description: "Cari film dan nonton online",
+  description: "Buscar películas y verlas en línea",
   usage: ".film <judul>",
   example: ".film civil war",
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -25,11 +25,11 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `🎬 *ꜰɪʟᴍ sᴇᴀʀᴄʜ*\n\n` +
-        `> Cari dan nonton film online\n\n` +
-        `*Format:*\n` +
-        `> \`${m.prefix}film <judul>\`\n\n` +
-        `*Contoh:*\n` +
+      `🎬 *ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀs*\n\n` +
+        `> Busca y mira películas en línea\n\n` +
+        `*Formato:*\n` +
+        `> \`${m.prefix}film <título>\`\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}film civil war\``,
     );
   }
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Film "${query}" tidak ditemukan`,
+        `❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> Película "${query}" no encontrada`,
       );
     }
 
@@ -58,15 +58,15 @@ async function handler(m, { sock }) {
       filmSessions.delete(m.sender);
     }, 300000);
 
-    let text = `🎬 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ*\n\n`;
-    text += `> Ditemukan *${films.length}* film untuk "${query}"\n\n`;
+    let text = `🎬 *ʀᴇsᴜʟᴛᴀᴅᴏs*\n\n`;
+    text += `> Se encontraron *${films.length}* películas para "${query}"\n\n`;
 
     films.forEach((f, i) => {
       text += `*${i + 1}. ${f.title}*\n`;
       text += `> ⭐ ${f.rating} | 📺 ${f.quality} | 📅 ${f.release}\n\n`;
     });
 
-    text += `> _Pilih film dari list di bawah_`;
+    text += `> _Elige una película de la lista de abajo_`;
 
     const listItems = films.map((f, i) => ({
       header: "",
@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
 
     await sock.sendButton(
       m.chat,
-      getAssetBuffer("ourin"),
+      getAssetBuffer("luffy"),
       text,
       m,
       {
@@ -85,10 +85,10 @@ async function handler(m, { sock }) {
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: "🎬 Pilih Film",
+              title: "🎬 Elegir Película",
               sections: [
                 {
-                  title: "Hasil Pencarian",
+                  title: "Resultados de Búsqueda",
                   rows: listItems,
                 },
               ],

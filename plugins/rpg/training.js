@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 const pluginConfig = {
   name: "training",
   alias: ["train", "latihan", "workout"],
@@ -12,16 +12,16 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 180,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const TRAINING_TYPES = {
-  attack: { name: "⚔️ Attack Training", stat: "attack", bonus: [1, 3], exp: 80, staminaCost: 20 },
-  defense: { name: "🛡️ Defense Training", stat: "defense", bonus: [1, 2], exp: 70, staminaCost: 15 },
-  health: { name: "❤️ Health Training", stat: "health", bonus: [5, 15], exp: 90, staminaCost: 25 },
-  speed: { name: "💨 Speed Training", stat: "speed", bonus: [1, 2], exp: 75, staminaCost: 18 },
-  luck: { name: "🍀 Luck Training", stat: "luck", bonus: [1, 2], exp: 85, staminaCost: 22 },
+  attack: { name: "⚔️ Entrenamiento de Ataque", stat: "attack", bonus: [1, 3], exp: 80, staminaCost: 20 },
+  defense: { name: "🛡️ Entrenamiento de Defensa", stat: "defense", bonus: [1, 2], exp: 70, staminaCost: 15 },
+  health: { name: "❤️ Entrenamiento de Salud", stat: "health", bonus: [5, 15], exp: 90, staminaCost: 25 },
+  speed: { name: "💨 Entrenamiento de Velocidad", stat: "speed", bonus: [1, 2], exp: 75, staminaCost: 18 },
+  luck: { name: "🍀 Entrenamiento de Suerte", stat: "luck", bonus: [1, 2], exp: 85, staminaCost: 22 },
 };
 
 async function handler(m, { sock }) {
@@ -34,22 +34,22 @@ async function handler(m, { sock }) {
   const trainType = args[0]?.toLowerCase();
 
   if (!trainType) {
-    let txt = `🏋️ *ᴛʀᴀɪɴɪɴɢ sʏsᴛᴇᴍ*\n\n`;
-    txt += `> Latihan untuk meningkatkan stats!\n\n`;
-    txt += `*📊 *sᴛᴀᴛs ᴋᴀᴍᴜ:*
+    let txt = `🏋️ *ꜱɪꜱᴛᴇᴍᴀ ᴅᴇ ᴇɴᴛʀᴇɴᴀᴍɪᴇɴᴛᴏ*\n\n`;
+    txt += `> ¡Entrena para mejorar tus estadísticas!\n\n`;
+    txt += `*📊 *ᴛᴜꜱ ᴇꜱᴛᴀᴅɪꜱᴛɪᴄᴀꜱ:*
 \n`;
-    txt += `> ⚔️ Attack: *${user.rpg.attack || 10}*\n`;
-    txt += `> 🛡️ Defense: *${user.rpg.defense || 5}*\n`;
-    txt += `> ❤️ Health: *${user.rpg.health || 100}*\n`;
-    txt += `> 💨 Speed: *${user.rpg.speed || 10}*\n`;
-    txt += `> 🍀 Luck: *${user.rpg.luck || 5}*\n`;
-    txt += `> ⚡ Stamina: *${user.rpg.stamina ?? 100}*\n`;
+    txt += `> ⚔️ Ataque: *${user.rpg.attack || 10}*\n`;
+    txt += `> 🛡️ Defensa: *${user.rpg.defense || 5}*\n`;
+    txt += `> ❤️ Salud: *${user.rpg.health || 100}*\n`;
+    txt += `> 💨 Velocidad: *${user.rpg.speed || 10}*\n`;
+    txt += `> 🍀 Suerte: *${user.rpg.luck || 5}*\n`;
+    txt += `> ⚡ Resistencia: *${user.rpg.stamina ?? 100}*\n`;
     txt += `\n\n`;
-    txt += `*🏋️ *ᴛʀᴀɪɴɪɴɢ:*
+    txt += `*🏋️ *ᴇɴᴛʀᴇɴᴀᴍɪᴇɴᴛᴏ:*
 \n`;
     for (const [key, train] of Object.entries(TRAINING_TYPES)) {
       txt += `> ${train.name}\n`;
-      txt += `> ⚡ Stamina: ${train.staminaCost}\n`;
+      txt += `> ⚡ Resistencia: ${train.staminaCost}\n`;
       txt += `> → \`${m.prefix}training ${key}\`\n> \n`;
     }
     txt += ``;
@@ -58,19 +58,19 @@ async function handler(m, { sock }) {
 
   const training = TRAINING_TYPES[trainType];
   if (!training) {
-    return m.reply(`❌ Training tidak ditemukan!\n\n> Ketik \`${m.prefix}training\` untuk melihat daftar.`);
+    return m.reply(`❌ ¡Entrenamiento no encontrado!\n\n> Escribe \`${m.prefix}training\` para ver la lista.`);
   }
 
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < training.staminaCost) {
-    return m.reply(`⚡ *sᴛᴀᴍɪɴᴀ ᴋᴜʀᴀɴɢ*\n\n` + `> Butuh: ${training.staminaCost}\n` + `> Punya: ${user.rpg.stamina}\n\n` + `💡 Gunakan \`${m.prefix}rest\` atau makan makanan`);
+    return m.reply(`⚡ *ʀᴇꜱɪꜱᴛᴇɴᴄɪᴀ ɪɴꜱᴜꜰɪᴄɪᴇɴᴛᴇ*\n\n` + `> Necesitas: ${training.staminaCost}\n` + `> Tienes: ${user.rpg.stamina}\n\n` + `💡 Usa \`${m.prefix}rest\` o come algo`);
   }
 
   user.rpg.stamina -= training.staminaCost;
 
   await m.react("🏋️");
-  await m.reply(`🏋️ *ʟᴀᴛɪʜᴀɴ ${training.name.toUpperCase()}...*`);
+  await m.reply(`🏋️ *ᴇɴᴛʀᴇɴᴀɴᴅᴏ ${training.name.toUpperCase()}...*`);
   await new Promise((r) => setTimeout(r, 2500));
 
   const statBonus = Math.floor(Math.random() * (training.bonus[1] - training.bonus[0] + 1)) + training.bonus[0];
@@ -82,12 +82,12 @@ async function handler(m, { sock }) {
 
   await m.react("💪");
   return m.reply(
-    `💪 *ᴛʀᴀɪɴɪɴɢ sᴇʟᴇsᴀɪ!*\n\n` +
-      `*📊 *ʀᴇsᴜʟᴛ:*
+    `💪 *ᴇɴᴛʀᴇɴᴀᴍɪᴇɴᴛᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ!*\n\n` +
+      `*📊 *ʀᴇꜱᴜʟᴛᴀᴅᴏ:*
 \n` +
-      `> 🏋️ Training: *${training.name}*\n` +
+      `> 🏋️ Entrenamiento: *${training.name}*\n` +
       `> 📈 ${training.stat}: *${currentStat} → ${currentStat + statBonus}* (+${statBonus})\n` +
-      `> ⚡ Stamina: *-${training.staminaCost}*\n` +
+      `> ⚡ Resistencia: *-${training.staminaCost}*\n` +
       `> ✨ EXP: *+${training.exp}*\n` +
       ``,
   );

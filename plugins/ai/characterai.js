@@ -1,41 +1,41 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import te from "../../src/lib/luffy-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
     name: "character-ai",
     alias: ["cai", "charai"],
     category: "ai",
-    description: "Cari karakter AI dan jadikan sebagai Auto AI di chat ini",
-    usage: ".character-ai search <nama> | .character-ai off | .character-ai reset",
+    description: "Busca un personaje AI y actívalo como Auto AI en este chat",
+    usage: ".character-ai search <nombre> | .character-ai off | .character-ai reset",
     example: ".character-ai search yuji",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true,
 };
 
 async function handler(m, { sock, args, text }) {
     if (!args || args.length === 0) {
         return m.reply(`🤖 *CHARACTER AI*\n\n` +
-            `Gunakan perintah berikut:\n` +
-            `> *.character-ai search <nama>* (Cari karakter)\n` +
-            `> *.character-ai off* (Matikan Auto AI)\n` +
-            `> *.character-ai reset* (Hapus memori obrolan)\n\n` +
-            `*Contoh:* .character-ai search gojo`);
+            `Usa los siguientes comandos:\n` +
+            `> *.character-ai search <nombre>* (Buscar personaje)\n` +
+            `> *.character-ai off* (Apagar Auto AI)\n` +
+            `> *.character-ai reset* (Borrar memoria de la conversación)\n\n` +
+            `*Ejemplo:* .character-ai search gojo`);
     }
 
     const cmd = args[0].toLowerCase();
 
     if (cmd === "search") {
         const query = args.slice(1).join(" ");
-        if (!query) return m.reply(`Ketik nama karakter yang mau dicari!\nContoh: .character-ai search yuji`);
+        if (!query) return m.reply(`¡Escribe el nombre del personaje que quieres buscar!\nEjemplo: .character-ai search yuji`);
 
         await m.react("🕕");
         try {
@@ -45,12 +45,12 @@ async function handler(m, { sock, args, text }) {
 
             if (!resData || !resData.status || !resData.data || resData.data.length === 0) {
                 await m.react("❌");
-                return m.reply(`Karakter "${query}" tidak ditemukan.`);
+                return m.reply(`No se encontró el personaje "${query}".`);
             }
 
             const maxResults = Math.min(resData.data.length, 10);
-            let listTxt = `🤖 *HASIL PENCARIAN KARAKTER: ${query.toUpperCase()}*\n\n`;
-            listTxt += `Pilih salah satu karakter di bawah ini:\n\n`;
+            let listTxt = `🤖 *RESULTADOS DE BÚSQUEDA DE PERSONAJE: ${query.toUpperCase()}*\n\n`;
+            listTxt += `Elige uno de los personajes de abajo:\n\n`;
 
             const searchResults = [];
 
@@ -69,7 +69,7 @@ async function handler(m, { sock, args, text }) {
                 listTxt += `> 👤 by ${item.creator_username}\n\n`;
             }
 
-            listTxt += `> 💡 *Kirim angka (contoh: 1)* untuk memilih dan mengaktifkan AI, atau ketik \`batal\` untuk membatalkan.`;
+            listTxt += `> 💡 *Envía un número (ejemplo: 1)* para elegir y activar la IA, o escribe \`batal\` para cancelar.`;
 
             const db = getDatabase();
             const user = db.getUser(m.sender);
@@ -95,9 +95,9 @@ async function handler(m, { sock, args, text }) {
         if (db.db.data.characterai[m.chat]?.enabled) {
             delete db.db.data.characterai[m.chat];
             db.save();
-            m.reply(`✅ *Auto Character AI dinonaktifkan di chat ini.*`);
+            m.reply(`✅ *Auto Character AI desactivado en este chat.*`);
         } else {
-            m.reply(`❌ Tidak ada Auto Character AI yang aktif di chat ini.`);
+            m.reply(`❌ No hay ningún Auto Character AI activo en este chat.`);
         }
     } else if (cmd === "reset") {
         const db = getDatabase();
@@ -107,12 +107,12 @@ async function handler(m, { sock, args, text }) {
         if (chatAi?.enabled) {
             chatAi.conversation_id = null;
             db.save();
-            m.reply(`✅ *Memori obrolan berhasil direset.*\n\nKarakter "${chatAi.name}" sekarang tidak mengingat percakapan sebelumnya.`);
+            m.reply(`✅ *Memoria de la conversación reiniciada exitosamente.*\n\nEl personaje "${chatAi.name}" ya no recuerda las conversaciones anteriores.`);
         } else {
-            m.reply(`❌ Tidak ada Auto Character AI yang aktif di chat ini.`);
+            m.reply(`❌ No hay ningún Auto Character AI activo en este chat.`);
         }
     } else {
-        m.reply(`Perintah tidak valid. Gunakan search, off, atau reset.`);
+        m.reply(`Comando no válido. Usa search, off o reset.`);
     }
 }
 
@@ -130,7 +130,7 @@ async function caiAnswerHandler(m, sock) {
     if (Date.now() - session.time > SESSION_TIMEOUT) {
         delete user.cai_search_session;
         db.save();
-        await m.reply(`⏰ *SESI KEDALUWARSA*\n\nSesi pencarian karakter AI sudah berakhir.`);
+        await m.reply(`⏰ *SESIÓN EXPIRADA*\n\nLa sesión de búsqueda de personaje AI ha terminado.`);
         return true;
     }
 
@@ -139,7 +139,7 @@ async function caiAnswerHandler(m, sock) {
     if (text === "batal" || text === "cancel") {
         delete user.cai_search_session;
         db.save();
-        await m.reply(`🚪 Pencarian karakter dibatalkan.`);
+        await m.reply(`🚪 Búsqueda de personaje cancelada.`);
         return true;
     }
 
@@ -165,8 +165,8 @@ async function caiAnswerHandler(m, sock) {
     db.save();
 
     await m.react("✅");
-    const nsfwWarning = selected.is_nsfw ? "\n⚠️ *WARNING: Karakter ini berlabel NSFW.*" : "";
-    await m.reply(`🤖 *CHARACTER AI DIAKTIFKAN*\n\nKarakter *${selected.name}* telah terpilih! Mulai sekarang, AI akan merespons semua pesan biasa di chat ini.\n\n> Ketik \`.character-ai off\` untuk mematikan.${nsfwWarning}`);
+    const nsfwWarning = selected.is_nsfw ? "\n⚠️ *ADVERTENCIA: Este personaje está etiquetado como NSFW.*" : "";
+    await m.reply(`🤖 *CHARACTER AI ACTIVADO*\n\n¡El personaje *${selected.name}* fue elegido! A partir de ahora, la IA responderá a todos los mensajes normales en este chat.\n\n> Escribe \`.character-ai off\` para apagarlo.${nsfwWarning}`);
 
     return true;
 }

@@ -1,12 +1,12 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import fs from "fs";
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "setwelcometype",
   alias: ["welcometype", "welcomevariant", "welcomestyle"],
   category: "owner",
-  description: "Mengatur variant tampilan welcome message",
+  description: "Configurar la variante de visualización del mensaje de bienvenida",
   usage: ".setwelcometype",
   example: ".setwelcometype",
   isOwner: true,
@@ -14,30 +14,30 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 const VARIANTS = {
   1: {
     name: "Canvas Image",
-    desc: "Gambar canvas dengan foto profil",
+    desc: "Imagen canvas con foto de perfil",
     emoji: "🎨",
   },
   2: {
     name: "Carousel Cards",
-    desc: "Kartu carousel interaktif dengan tombol",
+    desc: "Tarjetas carousel interactivas con botones",
     emoji: "🃏",
   },
   3: {
     name: "Text Only",
-    desc: "Pesan teks minimalis tanpa gambar",
+    desc: "Mensaje de texto minimalista sin imagen",
     emoji: "📝",
   },
-  4: { name: "Group", desc: "ContextInfo group style", emoji: "👥" },
-  5: { name: "Simple", desc: "Pesan teks simple + foto profile", emoji: "✨" },
-  6: { name: "Video", desc: "Kirim video perkenalan", emoji: "🎥" },
-  7: { name: "Interactive Quoted", desc: "Interactive message dengan fake quoted", emoji: "💬" },
-  8: { name: "Super Simple", desc: "Pesan teks sangat singkat tanpa hiasan", emoji: "👋" },
+  4: { name: "Group", desc: "Estilo ContextInfo de grupo", emoji: "👥" },
+  5: { name: "Simple", desc: "Mensaje de texto simple + foto de perfil", emoji: "✨" },
+  6: { name: "Video", desc: "Enviar video de bienvenida", emoji: "🎥" },
+  7: { name: "Interactive Quoted", desc: "Mensaje interactivo con fake quoted", emoji: "💬" },
+  8: { name: "Super Simple", desc: "Mensaje de texto muy breve sin adornos", emoji: "👋" },
 };
 async function handler(m, { sock, db }) {
   const args = m.args || [];
@@ -48,7 +48,7 @@ async function handler(m, { sock, db }) {
     db.setting("welcomeType", id);
     await db.save();
     await m.reply(
-      `✅ *WELCOME TYPE DIUBAH*\n\n` +
+      `✅ *TIPO DE WELCOME CAMBIADO*\n\n` +
         `${VARIANTS[id].emoji} *V${id} — ${VARIANTS[id].name}*\n` +
         `_${VARIANTS[id].desc}_`,
     );
@@ -67,28 +67,28 @@ async function handler(m, { sock, db }) {
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "👋 Pilih Tipe Welcome",
-        sections: [{ title: "Daftar Tipe Welcome", rows }],
+        title: "👋 Elegir Tipo de Welcome",
+        sections: [{ title: "Lista de Tipos de Welcome", rows }],
       }),
     },
   ];
   const bodyText =
-    `👋🎨 *WELCOME TYPE*\n\n` +
-    `Atur tampilan pesan welcome saat member baru masuk grup 🚪✨\n` +
-    `Tipe aktif saat ini: *V${current} — ${VARIANTS[current].name}* 🎯\n\n` +
-    `*PENJELASAN TIPE:*\n\n` +
-    `- *V1 Canvas Image* 🎨 — Bot membuat gambar canvas otomatis berisi foto profil dan nama member yang baru join, lalu dikirim sebagai gambar\n\n` +
-    `- *V2 Carousel Cards* 🃏 — Menampilkan kartu carousel interaktif yang bisa di-swipe lengkap dengan tombol action, cocok untuk grup yang ingin tampilan modern\n\n` +
-    `- *V3 Text Only* 📝 — Pesan teks biasa tanpa gambar sama sekali, ringan dan minimalis\n\n` +
-    `- *V4 Group* 👥 — Menggunakan contextInfo bergaya group forward, tampilan rapi dengan label newsletter\n\n` +
-    `- *V5 Simple* ✨ — Pesan teks sederhana disertai foto profile member yang join, tidak terlalu mencolok namun informatif\n\n` +
-    `- *V6 Video* 🎥 — Mengirimkan video sambutan menarik dilengkapi caption selamat datang untuk member\n\n` +
-    `- *V7 Interactive Quoted* 💬 — Mengirimkan pesan interaktif dan fake quoted dari orang yang join\n\n` +
-    `- *V8 Super Simple* 👋 — Pesan teks sangat singkat tanpa hiasan (Contoh: Hai @user, welcome to grup...)\n\n` +
-    `> Pilih tipe welcome dari tombol di bawah 👇`;
+    `👋🎨 *TIPO DE WELCOME*\n\n` +
+    `Configura la visualización del mensaje de bienvenida cuando un miembro nuevo entra al grupo 🚪✨\n` +
+    `Tipo activo actualmente: *V${current} — ${VARIANTS[current].name}* 🎯\n\n` +
+    `*EXPLICACIÓN DE LOS TIPOS:*\n\n` +
+    `- *V1 Canvas Image* 🎨 — El bot genera automáticamente una imagen canvas con la foto de perfil y el nombre del miembro que se une, y la envía como imagen\n\n` +
+    `- *V2 Carousel Cards* 🃏 — Muestra tarjetas carousel interactivas con swipe, completas con botones de acción, ideal para grupos que quieren una visualización moderna\n\n` +
+    `- *V3 Text Only* 📝 — Mensaje de texto normal sin imagen alguna, ligero y minimalista\n\n` +
+    `- *V4 Group* 👥 — Usa contextInfo con estilo de reenvío de grupo, visualización limpia con etiqueta de newsletter\n\n` +
+    `- *V5 Simple* ✨ — Mensaje de texto simple acompañado de la foto de perfil del miembro que se une, discreto pero informativo\n\n` +
+    `- *V6 Video* 🎥 — Envía un video de bienvenida atractivo con caption de saludo para el miembro\n\n` +
+    `- *V7 Interactive Quoted* 💬 — Envía un mensaje interactivo y fake quoted de la persona que se une\n\n` +
+    `- *V8 Super Simple* 👋 — Mensaje de texto muy breve sin adornos (Ejemplo: Hola @usuario, bienvenido al grupo...)\n\n` +
+    `> Elige el tipo de welcome con el botón de abajo 👇`;
   await sock.sendButton(
     m.chat,
-    getAssetBuffer("ourin"),
+    getAssetBuffer("luffy"),
     bodyText,
     m,
     { buttons },

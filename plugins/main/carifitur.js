@@ -1,9 +1,9 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
-import { getCaseCommands } from "../../case/ourin.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
+import { getCaseCommands } from "../../case/luffy.js";
 import fs from "fs";
 import path from "path";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,7 +19,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 function levenshteinDistance(str1, str2) {
@@ -95,7 +95,7 @@ async function loadAllPlugins() {
               isPremium: plugin.config.isPremium || false,
               isOwner: plugin.config.isOwner || false,
               cooldown: plugin.config.cooldown || 0,
-              energi: plugin.config.energi || 0,
+              carne: plugin.config.carne || 0,
               isCase: false,
             });
           }
@@ -128,7 +128,7 @@ async function loadAllPlugins() {
           isPremium: false,
           isOwner: false,
           cooldown: 5,
-          energi: 0,
+          carne: 0,
           isCase: true,
         });
       }
@@ -205,7 +205,7 @@ async function handler(m, { sock }) {
       );
     }
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     let text = `🔍 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ: "${keyword}"*\n`;
     text += `> Ditemukan *${matches.length}* fitur\n`;
     text += `> Pilih salah satu command di bawah:\n\n`;
@@ -233,7 +233,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendButton(
       m.chat,
-      getAssetBuffer("ourin"),
+      getAssetBuffer("luffy"),
       text,
       m,
       {

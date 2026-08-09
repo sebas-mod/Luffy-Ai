@@ -1,11 +1,11 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { calculateLevel, getRole } from '../../src/lib/ourin-level.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import { calculateLevel, getRole } from '../../src/lib/luffy-level.js'
 
 const pluginConfig = {
     name: 'exp',
     alias: ['cekexp', 'myexp', 'xp'],
     category: 'user',
-    description: 'Cek exp user',
+    description: 'Ver exp del usuario',
     usage: '.exp [@user]',
     example: '.exp',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     const db = getDatabase()
     
     let targetJid = m.sender
-    let targetName = m.pushName || 'Kamu'
+    let targetName = m.pushName || 'Tú'
     
     if (m.quoted) {
         targetJid = m.quoted.sender
@@ -43,12 +43,12 @@ async function handler(m, { sock }) {
     const level = calculateLevel(user.exp || 0)
     const title = getRole(level)
     
-    let text = `*〔 ⭐ EXP INFO 〕*\n\n`
+    let text = `*〔 ⭐ INFO EXP 〕*\n\n`
 
-text += `*〔 👤 User 〕* ${targetName}\n`
+text += `*〔 👤 Usuario 〕* ${targetName}\n`
 text += `*〔 ⭐ Exp 〕* ${expDisplay}\n`
 text += `*〔 🏆 Level 〕* ${level}\n`
-text += `*〔 🎖️ Title 〕* ${title}\n`
+text += `*〔 🎖️ Título 〕* ${title}\n`
     
     await m.reply(text)
 }

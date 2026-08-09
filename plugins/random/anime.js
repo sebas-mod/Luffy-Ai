@@ -1,6 +1,6 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import { prepareWAMessageMedia, generateWAMessageFromContent } from "ourin";
 
 const nexrayTypes = [
@@ -22,7 +22,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 

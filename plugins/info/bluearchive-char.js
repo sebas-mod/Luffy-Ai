@@ -1,19 +1,19 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "bluearchive-char",
   alias: ["bachar"],
   category: "info",
-  description: "Lihat info character Blue Archive",
-  usage: ".bluearchive-char <nama>",
+  description: "Ver información de personajes de Blue Archive",
+  usage: ".bluearchive-char <nombre>",
   example: ".bluearchive-char shiroko",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -55,7 +55,7 @@ class BluArchive {
         .filter((u) => u.includes(name.toLowerCase().split(" ")[0]))
         .slice(0, 5);
       throw new Error(
-        `Character "${name}" tidak ditemukan.\n\n> Mungkin maksud: ${suggestions.join(", ") || "tidak ada"}`,
+        `Personaje "${name}" no encontrado.\n\n> Quizás quisiste decir: ${suggestions.join(", ") || "nada"}`,
       );
     }
 
@@ -79,9 +79,9 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `🎮 *ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ ᴄʜᴀʀᴀᴄᴛᴇʀ*\n\n` +
-        `> Lihat info character Blue Archive\n\n` +
-        `> *Contoh:*\n` +
+      `🎮 *ᴘᴇʀꜱᴏɴᴀᴊᴇ ᴅᴇ ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ*\n\n` +
+        `> Ver información de personajes de Blue Archive\n\n` +
+        `> *Ejemplo:*\n` +
         `> ${m.prefix}bluearchive-char shiroko\n` +
         `> ${m.prefix}bachar hoshino\n` +
         `> ${m.prefix}ba aru`,
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
     const char = await ba.char(name);
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     let caption = `🎮 *${char.name?.toUpperCase()}*\n\n`;
 
@@ -116,7 +116,7 @@ async function handler(m, { sock }) {
     if (char.profile?.CV) caption += `┃ 🎤 CV: *${char.profile.CV}*\n`;
     caption += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
-    caption += `╭┈┈⬡「 ⚔️ *ʙᴀᴛᴛʟᴇ* 」\n`;
+    caption += `╭┈┈⬡「 ⚔️ *ʙᴀᴛᴀʟʟᴀ* 」\n`;
     if (char.type) caption += `┃ 🏷️ Type: *${char.type}*\n`;
     if (char.role) caption += `┃ 🎭 Role: *${char.role}*\n`;
     if (char.position) caption += `┃ 📍 Position: *${char.position}*\n`;
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
     caption += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
 
     if (char.skills && char.skills.length > 0) {
-      caption += `╭┈┈⬡「 ✨ *sᴋɪʟʟs* 」\n`;
+      caption += `╭┈┈⬡「 ✨ *ʜᴀʙɪʟɪᴅᴀᴅᴇs* 」\n`;
       for (const skill of char.skills.slice(0, 4)) {
         caption += `┃ 🔹 *${skill.name}* (${skill.type})\n`;
       }

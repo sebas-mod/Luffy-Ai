@@ -1,20 +1,20 @@
 import axios from "axios";
-import { f } from "../../src/lib/ourin-http.js";
-import te from "../../src/lib/ourin-error.js";
+import { f } from "../../src/lib/luffy-http.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 const pluginConfig = {
   name: "text2img",
   alias: [],
   category: "ai",
-  description: "Buat gambar dari teks",
-  usage: ".text2img <teks>",
-  example: ".text2img Buat gambar dari teks",
+  description: "Crear imágenes a partir de texto",
+  usage: ".text2img <texto>",
+  example: ".text2img Crea una imagen a partir de texto",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}text2img Buat gambar dari teks\``,
+      `📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Escribe el texto\n\n\`Ejemplo: ${m.prefix}text2img Crea una imagen a partir de texto\``,
     );
   }
 

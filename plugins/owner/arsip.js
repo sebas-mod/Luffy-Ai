@@ -7,7 +7,7 @@ const pluginConfig = {
   example: ".arsip 628xxx",
   isOwner: true,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -42,11 +42,11 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `📁 *${count} grup diarsipkan*\n\n> Private chat tidak bisa diarsipkan sekaligus (tidak ada daftar chat)`,
+        `📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar todos a la vez (no hay lista de chats)`,
       );
     } catch (err) {
       global.isFetchingGroups = false;
-      return m.reply(`❌ Gagal: ${err.message}`);
+      return m.reply(`❌ Falló: ${err.message}`);
     }
   } else {
     if (m.mentionedJid?.length > 0) {
@@ -63,12 +63,12 @@ async function handler(m, { sock }) {
 
   if (!targetJid) {
     return m.reply(
-      "📁 *ᴀʀsɪᴘ ᴄʜᴀᴛ*\n\n" +
-        "> `.arsip 628xxx` — Arsipkan chat\n" +
-        "> `.arsip` (di private chat) — Arsipkan chat ini\n" +
-        "> `.arsip` (reply pesan) — Arsipkan chat pengirim\n" +
-        "> `.arsip buka 628xxx` — Buka arsip chat\n" +
-        "> `.arsip semua` — Arsipkan semua chat",
+      "📁 *ᴀʀᴄʜɪᴠᴏ ᴅᴇʟ ᴄʜᴀᴛ*\n\n" +
+        "> `.arsip 628xxx` — Archivar el chat\n" +
+        "> `.arsip` (en chat privado) — Archivar este chat\n" +
+        "> `.arsip` (responde un mensaje) — Archivar el chat del remitente\n" +
+        "> `.arsip buka 628xxx` — Desarchivar el chat\n" +
+        "> `.arsip semua` — Archivar todos los chats",
     );
   }
 
@@ -78,11 +78,11 @@ async function handler(m, { sock }) {
     const target = targetJid.split("@")[0];
     return m.reply(
       archive
-        ? `📁 *ᴄʜᴀᴛ ᴅɪᴀʀsɪᴘᴋᴀɴ*\n\n> Target: ${target}\n> Gunakan \`.arsip buka ${target}\` untuk membuka`
-        : `📂 *ᴀʀsɪᴘ ᴅɪʙᴜᴋᴀ*\n\n> Target: ${target}`,
+        ? `📁 *ᴄʜᴀᴛ ᴀʀᴄʜɪᴠᴀᴅᴏ*\n\n> Target: ${target}\n> Usa \`.arsip buka ${target}\` para desarchivarlo`
+        : `📂 *ᴀʀᴄʜɪᴠᴏ ᴀʙɪᴇʀᴛᴏ*\n\n> Target: ${target}`,
     );
   } catch (err) {
-    return m.reply(`❌ Gagal: ${err.message}`);
+    return m.reply(`❌ Falló: ${err.message}`);
   }
 }
 

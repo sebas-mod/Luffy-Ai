@@ -1,10 +1,10 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'linkgc',
     alias: ['linkgrup', 'getlink', 'gclink'],
     category: 'group',
-    description: 'Dapatkan link invite grup',
+    description: 'Obtener el enlace de invitación del grupo',
     usage: '.linkgc',
     example: '.linkgc',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     try {
         const code = await sock.groupInviteCode(m.chat)
         const urlGrup = `https://chat.whatsapp.com/${code}`
-        await m.reply(`Link grup grup ini\n${urlGrup}`)
+        await m.reply(`Enlace de invitación de este grupo\n${urlGrup}`)
         
         m.react('✅')
         

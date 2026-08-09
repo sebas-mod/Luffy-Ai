@@ -1,21 +1,21 @@
 import axios from "axios";
-import { uploadImage } from "../../src/lib/ourin-uploader.js";
-import { f } from "../../src/lib/ourin-http.js";
-import te from "../../src/lib/ourin-error.js";
+import { uploadImage } from "../../src/lib/luffy-uploader.js";
+import { f } from "../../src/lib/luffy-http.js";
+import te from "../../src/lib/luffy-error.js";
 import { live3d } from "../../src/scraper/seaart.js";
 const pluginConfig = {
   name: "toblack",
   alias: ["black", "hitamkan", "hitam", "tohitam"],
   category: "ai",
-  description: "Ubah gambar ke skin tone lebih gelap",
-  usage: ".toblack (reply gambar)",
+  description: "Convertir la imagen a un tono de piel más oscuro",
+  usage: ".toblack (responde una imagen)",
   example: ".toblack",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
   if (!isImage) {
     return m.reply(
-      `🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Kirim/reply gambar\n\n\`${m.prefix}toblack\``,
+      `🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}toblack\``,
     );
   }
 
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       m.react("❌");
-      return m.reply(`❌ Gagal mendownload gambar`);
+      return m.reply(`❌ No se pudo descargar la imagen`);
     }
 
     const result = await live3d(buffer, PROMPT);

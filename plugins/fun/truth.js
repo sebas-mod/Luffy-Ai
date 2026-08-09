@@ -1,9 +1,9 @@
-import { getRandomItem } from '../../src/lib/ourin-game-data.js'
+import { getRandomItem } from '../../src/lib/luffy-game-data.js'
 const pluginConfig = {
     name: 'truth',
     alias: ['truthq'],
     category: 'fun',
-    description: 'Random pertanyaan truth',
+    description: 'Pregunta de verdad aleatoria (truth)',
     usage: '.truth',
     example: '.truth',
     isOwner: false,
@@ -11,14 +11,14 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
 async function handler(m) {
     const question = getRandomItem('truth.json');
     if (!question) {
-        await m.reply('❌ Data tidak tersedia!');
+        await m.reply('❌ ¡Datos no disponibles!');
         return;
     }
     await m.reply(`\`\`\`${question}\`\`\``);

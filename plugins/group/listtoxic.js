@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import { DEFAULT_TOXIC_WORDS } from './antitoxic.js'
 const pluginConfig = {
     name: 'listtoxic',
     alias: ['toxiclist', 'katatoxic', 'lihatkata'],
     category: 'group',
-    description: 'Lihat daftar kata toxic',
+    description: 'Ver la lista de palabras tóxicas',
     usage: '.listtoxic',
     example: '.listtoxic',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     const customWords = groupData.toxicWords || []
     const defaultWords = DEFAULT_TOXIC_WORDS || []
     
-    let text = `📋 *ᴅᴀꜰᴛᴀʀ ᴋᴀᴛᴀ ᴛᴏxɪᴄ*\n\n`
+    let text = `📋 *ʟɪsᴛᴀ ᴅᴇ ᴘᴀʟᴀʙʀᴀs ᴛᴏxɪᴄᴀs*\n\n`
     
     if (customWords.length > 0) {
         text += `╭┈┈⬡「 ✏️ *ᴄᴜsᴛᴏᴍ* (${customWords.length}) 」\n`
@@ -34,16 +34,16 @@ async function handler(m, { sock }) {
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     }
     
-    text += `╭┈┈⬡「 📦 *ᴅᴇꜰᴀᴜʟᴛ* (${defaultWords.length}) 」\n`
+    text += `╭┈┈⬡「 📦 *ᴘʀᴇᴅᴇᴛᴇʀᴍɪɴᴀᴅᴀs* (${defaultWords.length}) 」\n`
     
     for (let i = 0; i < defaultWords.length; i++) {
         text += `┃ ${i + 1}. ${defaultWords[i]}\n`
     }
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
     
-    text += `Total: *${customWords.length + defaultWords.length}* kata\n`
-    text += `\`.addtoxic <kata>\` untuk tambah\n`
-    text += `\`.deltoxic <kata>\` untuk hapus`
+    text += `Total: *${customWords.length + defaultWords.length}* palabras\n`
+    text += `\`.addtoxic <palabra>\` para agregar\n`
+    text += `\`.deltoxic <palabra>\` para eliminar`
     
     await m.reply(text)
 }

@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('riddle', {
     alias: ['rd', 'tebaktebak', 'riddles'],
     emoji: '❓',
-    title: 'RIDDLE',
-    description: 'Riddle/tebak-tebakan'
+    title: 'ACERTIJO',
+    description: 'Acertijo/adivinanzas'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('riddle')

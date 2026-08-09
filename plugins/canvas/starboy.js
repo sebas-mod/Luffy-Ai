@@ -1,13 +1,13 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 import axios from "axios";
-import { uploadImage } from "../../src/lib/ourin-uploader.js";
+import { uploadImage } from "../../src/lib/luffy-uploader.js";
 
 const pluginConfig = {
   name: "starboy",
   alias: ["canvasstarboy", "efekstarboy"],
   category: "canvas",
-  description: "Buat gambar efek Starboy dari foto",
+  description: "Crea una imagen con efecto Starboy desde una foto",
   usage: ".starboy <reply/kirim foto>",
   example: ".starboy",
   isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
 
   if (!mime.startsWith("image/")) {
     return m.reply(
-      `🌟 *S T A R B O Y*\n\n> Kirim gambar dengan caption *${m.prefix + m.command}* atau balas gambar yang sudah dikirim.`,
+      `🌟 *S T A R B O Y*\n\n> Envía una imagen con caption *${m.prefix + m.command}* o responde a una imagen ya enviada.`,
     );
   }
 

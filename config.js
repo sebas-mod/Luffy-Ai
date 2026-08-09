@@ -1,7 +1,7 @@
-import { getDatabase } from "./src/lib/ourin-database.js";
-import * as ownerPremiumDb from "./src/lib/ourin-premium-db.js";
+import { getDatabase } from "./src/lib/luffy-database.js";
+import * as ownerPremiumDb from "./src/lib/luffy-premium-db.js";
 
-//  utamakan baca object config sampai bawah
+//  Lee el objeto config completo hasta el final
 const config = {
   info: {
     website: "https://firefly.maiku.my.id",
@@ -9,50 +9,50 @@ const config = {
   },
 
   owner: {
-    name: "Zann", // Nama owner
-    number: ["628xxxxxxxxxxx"], // Format: 628xxx (tanpa + atau 0)
+    name: "Sebas-MD", // Nombre del owner
+    number: ["5491138403093"], // Formato: 549xxx (sin + ni 0)
   },
 
   session: {
-    pairingNumber: "62xxxxxxxxxxx", // Nomor WA yang akan di-pair, ini penting
-    usePairingCode: true, // true = Pairing Code, false = QR Code
+    pairingNumber: "5491138403093", // Número de WhatsApp que se vinculará (importante)
+    usePairingCode: true, // true = Código de vinculación, false = Código QR
   },
 
-  // fitur ini buat fitur kayak playcall, tapi nanti disuruh pairing lagi
+  // Esta función sirve para funciones como playcall, pero después pedirá vinculación de nuevo
   fake_call: {
-    active: true, // kalau true berarti sistem aktif dan bisa di pakai, kalau false berarti sistem tidak aktif dan tidak bisa di pakai
+    active: true, // si es true el sistema está activo y puede usarse, si es false está inactivo
     usePairing: true,
     dir: "./session_voip",
   },
 
   bot: {
-    name: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗", // Nama bot
-    version: "3.3", // Versi bot
-    developer: "Zann", // Nama developer
+    name: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢", // Nombre del bot
+    version: "3.3", // Versión del bot
+    developer: "Sebas-MD", // Nombre del desarrollador
   },
 
   assets: {
-    "ourin-daftar": "./assets/image/ourin-daftar.png",
-    "ourin-demote": "./assets/image/ourin-demote.png",
-    "ourin-fishit": "./assets/image/ourin-fishit.jpg",
-    "ourin-games": "./assets/image/ourin-games.jpg",
-    "ourin-landscape": "./assets/image/ourin-landscape.jpg",
-    "ourin-levelup": "./assets/image/ourin-levelup.jpg",
-    "ourin-minecraft": "./assets/image/ourin-minecraft.jpg",
-    "ourin-promote": "./assets/image/ourin-promote.png",
-    "ourin-rpg": "./assets/image/ourin-rpg.jpg",
-    "ourin-rules": "./assets/image/ourin-rules.jpg",
-    "ourin-store": "./assets/image/ourin-store.png",
-    "ourin-v8": "./assets/image/ourin-v8.jpg",
-    "ourin-winner": "./assets/image/ourin-winner.jpg",
-    "ourin": "./assets/image/ourin.png",
-    "ourin2": "./assets/image/ourin2.jpg",
-    "ourin3": "./assets/image/ourin3.jpg",
+    "luffy-daftar": "./assets/image/luffy-daftar.png",
+    "luffy-demote": "./assets/image/luffy-demote.png",
+    "luffy-fishit": "./assets/image/luffy-fishit.jpg",
+    "luffy-games": "./assets/image/luffy-games.jpg",
+    "luffy-landscape": "./assets/image/luffy-landscape.jpg",
+    "luffy-levelup": "./assets/image/luffy-levelup.jpg",
+    "luffy-minecraft": "./assets/image/luffy-minecraft.jpg",
+    "luffy-promote": "./assets/image/luffy-promote.png",
+    "luffy-rpg": "./assets/image/luffy-rpg.jpg",
+    "luffy-rules": "./assets/image/luffy-rules.jpg",
+    "luffy-store": "./assets/image/luffy-store.png",
+    "luffy-v8": "./assets/image/luffy-v8.jpg",
+    "luffy-winner": "./assets/image/luffy-winner.jpg",
+    "luffy": "./assets/image/luffy.png",
+    "luffy2": "./assets/image/luffy2.jpg",
+    "luffy3": "./assets/image/luffy3.jpg",
     "pp-kosong": "./assets/image/pp-kosong.jpg",
-    "ourin-mp4": "./assets/video/ourin-mp4.mp4",
-    "ourin-mp3": "./assets/audio/ourin-mp3.mp3",
-    "ourin-font": "./assets/ourin-font.ttf",
-    "ourin-kertas": "./assets/image/ourin-kertas.jpg",
+    "luffy-mp4": "./assets/video/luffy-mp4.mp4",
+    "luffy-mp3": "./assets/audio/luffy-mp3.mp3",
+    "luffy-font": "./assets/luffy-font.ttf",
+    "luffy-kertas": "./assets/image/luffy-kertas.jpg",
   },
 
   mode: "public",
@@ -64,16 +64,15 @@ const config = {
 
   vercel: {
     // ambil token vercel: https://vercel.com/account/tokens
-    token: "", // Vercel Token untuk fitur deploy ( Kalau .deploy mau work, ini wajib di isi )
+    token: "", // Token de Vercel para la función de deploy (obligatorio si quieres que .deploy funcione)
   },
 
   payment: {
     qrisUrl: "",
     methods: [
-      { name: "Dana", number: "", holder: "" },
-      { name: "GoPay", number: "", holder: "" },
-      { name: "OVO", number: "", holder: "" },
-      { name: "ShopeePay", number: "", holder: "" },
+      { name: "MercadoPago", number: "", holder: "" },
+      { name: "Cuenta DNI", number: "", holder: "" },
+      { name: "Naranja", number: "", holder: "" },
     ],
     banks: [],
     customText: "https://imgdrop.web.id/KodpV.webp",
@@ -81,69 +80,67 @@ const config = {
 
   donasi: {
     payment: [
-      { name: "Dana", number: "08xxxxxxxxxx", holder: "Nama Owner" },
-      { name: "GoPay", number: "08xxxxxxxxxx", holder: "Nama Owner" },
-      { name: "OVO", number: "08xxxxxxxxxx", holder: "Nama Owner" },
+      { name: "MercadoPago", number: "5491138403093", holder: "Sebas-MD" },
+      { name: "Cuenta DNI", number: "5491138403093", holder: "Sebas-MD" },
     ],
     links: [
-      { name: "Saweria", url: "saweria.co/username" },
-      { name: "Trakteer", url: "trakteer.id/username" },
+      { name: "PayPal", url: "paypal.me/sebasmd" },
     ],
     benefits: [
-      "Mendukung development",
-      "Server lebih stabil",
-      "Fitur baru lebih cepat",
-      "Priority support",
+      "Apoyar el desarrollo del bot",
+      "Servidor más estable",
+      "Funciones nuevas más rápido",
+      "Soporte prioritario",
     ],
     qris: "https://imgdrop.web.id/KodpV.webp",
   },
 
-  energi: {
-    enabled: true, // Jika true, maka sistem energi/limit akan bekerja
+  carne: {
+    enabled: true, // Si es true, el sistema de carne/límite funciona
     default: 99999,
     premium: 99999999,
     owner: -1,
   },
 
   sticker: {
-    packname: "𝗢𝗨𝗥𝗜𝗡 𝗠𝗗", // Nama pack sticker
-    author: "Zann", // Author sticker
+    packname: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢", // Nombre del pack de stickers
+    author: "Sebas-MD", // Autor de los stickers
   },
 
   saluran: {
-    id: "120363400911374213@newsletter", // ID saluran (contoh: 120363xxx@newsletter)                          // ID saluran (contoh: 120363xxx@newsletter)
-    name: "Join saluran resmi ourin", // Nama saluran
-    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t", // Link saluran
+    id: "120363400911374213@newsletter", // ID del canal (ejemplo: 120363xxx@newsletter)                          // ID del canal (ejemplo: 120363xxx@newsletter)
+    name: "Únete al canal oficial de Luffy-Ai", // Nombre del canal
+    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t", // Enlace del canal
   },
 
   groupProtection: {
-    antilink: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antilinkGc: "⚠ *Antilink WA* — @%user% mengirim link WA.\nPesan dihapus.",
+    antilink: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkKick: "⚠ *Antilink* — @%user% fue expulsado por enviar enlaces.",
+    antilinkGc: "⚠ *Antilink WA* — @%user% envió un enlace de WhatsApp.\nMensaje eliminado.",
     antilinkGcKick:
-      "⚠ *Antilink WA* — @%user% di-kick karena mengirim link WA.",
-    antilinkAll: "⚠ *Antilink* — @%user% mengirim link.\nPesan dihapus.",
-    antilinkAllKick: "⚠ *Antilink* — @%user% di-kick karena mengirim link.",
-    antitagsw: "⚠ *AntiTagSW* — Tag status dari @%user% dihapus.",
-    antiviewonce: "👁️ *ViewOnce* — Dari @%user%",
-    antiremove: "🗑️ *AntiDelete* — @%user% menghapus pesan:",
-    antiswgc: "⚠ *AntiSWGC* — Gak ada sw grup sw grup @%user%",
-    antihidetag: "⚠ *AntiHidetag* — Hidetag dari @%user% dihapus.",
+      "⚠ *Antilink WA* — @%user% fue expulsado por enviar enlaces de WhatsApp.",
+    antilinkAll: "⚠ *Antilink* — @%user% envió un enlace.\nMensaje eliminado.",
+    antilinkAllKick: "⚠ *Antilink* — @%user% fue expulsado por enviar enlaces.",
+    antitagsw: "⚠ *AntiTagSW* — Etiqueta de estado de @%user% eliminada.",
+    antiviewonce: "👁️ *ViewOnce* — De @%user%",
+    antiremove: "🗑️ *AntiDelete* — @%user% eliminó un mensaje:",
+    antiswgc: "⚠ *AntiSWGC* — No hay estados de grupo en el grupo, @%user%",
+    antihidetag: "⚠ *AntiHidetag* — Hidetag de @%user% eliminado.",
     antitoxicWarn:
-      "⚠ @%user% berkata kasar.\nPeringatan ke %warn% dari %max%, pelanggaran berikutnya bisa di-%method%.",
-    antitoxicAction: "🚫 @%user% di-%method% karena toxic. (%warn%/%max%)",
-    antidocument: "⚠ *AntiDocument* — Dokumen dari @%user% dihapus.",
-    antisticker: "⚠ *AntiSticker* — Sticker dari @%user% dihapus.",
-    antimedia: "⚠ *AntiMedia* — Media dari @%user% dihapus.",
-    antibot: "🤖 *AntiBot* — @%user% terdeteksi sebagai bot dan di-kick.",
-    notAdmin: "⚠ Bot bukan admin, tidak bisa menghapus pesan.",
+      "⚠ @%user% habló mal.\nAdvertencia %warn% de %max%, la próxima infracción puede ser %method%.",
+    antitoxicAction: "🚫 @%user% fue %method% por toxicidad. (%warn%/%max%)",
+    antidocument: "⚠ *AntiDocument* — Documento de @%user% eliminado.",
+    antisticker: "⚠ *AntiSticker* — Sticker de @%user% eliminado.",
+    antimedia: "⚠ *AntiMedia* — Media de @%user% eliminado.",
+    antibot: "🤖 *AntiBot* — @%user% detectado como bot y expulsado.",
+    notAdmin: "⚠ El bot no es admin, no puede eliminar mensajes.",
   },
 
-  errorTemplate: `☢ Kayaknya command \`{prefix}{command}\` lagi ada kendala\nSilahkan coba lagi nanti, {pushName}\n\n_Jika masalah berlanjut, silahkan hubungi owner bot_`,
+  errorTemplate: `☢ Parece que el comando \`{prefix}{command}\` tiene un problema\nIntenta de nuevo más tarde, {pushName}\n\n_Si el problema continúa, contacta al owner del bot_`,
 
   features: {
-    antiCall: false, // Jika true, bot akan menolak panggilan masuk
-    blockIfCall: false, // Jika true, bot akan memblokir nomor yang menelpon bot
+    antiCall: false, // Si es true, el bot rechazará llamadas entrantes
+    blockIfCall: false, // Si es true, el bot bloqueará a quien lo llame
     autoTyping: true,
     autoRead: true,
     logMessage: true,
@@ -152,10 +149,10 @@ const config = {
   },
 
   registration: {
-    enabled: false, // Jika true, user harus mendaftar sebelum menggunakan bot
+    enabled: false, // Si es true, los usuarios deben registrarse antes de usar el bot
     rewards: {
-      koin: 30000,
-      energi: 300,
+      berry: 30000,
+      carne: 300,
       exp: 300000,
     },
   },
@@ -168,34 +165,34 @@ const config = {
   },
 
   messages: {
-    wait: "🕕 *Proses...* Mohon tunggu sebentar ya.",
-    success: "✅ *Berhasil!* Permintaan kamu sudah selesai.",
-    error: "❌ *Error!* Ada masalah pada sistem, coba lagi nanti.",
+    wait: "🕕 *Procesando...* Un momento, nakama.",
+    success: "✅ *¡Éxito!* Tu pedido ya está listo.",
+    error: "❌ *¡Error!* Hay un problema en el sistema, intenta de nuevo más tarde.",
 
-    ownerOnly: "*Akses Ditolak!* Fitur ini khusus untuk Owner bot.",
+    ownerOnly: "*¡Acceso Denegado!* Esta función es exclusiva del Capitán del barco.",
     premiumOnly:
-      "💎 *Premium Only!* Fitur ini khusus member Premium. Ketik *.benefitpremium* untuk info upgrade.",
+      "💎 *¡Solo Premium!* Esta función es exclusiva para miembros Premium. Escribe *.benefitpremium* para saber cómo subir de rango.",
 
-    groupOnly: "👥 *Group Only!* Fitur ini hanya bisa digunakan di dalam grup.",
+    groupOnly: "👥 *¡Solo en Grupos!* Esta función solo puede usarse dentro de un grupo.",
     privateOnly:
-      "� *Private Only!* Fitur ini hanya bisa digunakan di chat pribadi bot.",
+      "🔒 *¡Solo en Privado!* Esta función solo puede usarse en el chat privado del bot.",
 
     adminOnly:
-      "�️ *Admin Only!* Kamu harus jadi Admin grup untuk pakai fitur ini.",
+      "🛡️ *¡Solo Admins!* Debes ser admin del grupo para usar esta función.",
     botAdminOnly:
-      "🤖 *Bot Bukan Admin!* Jadikan bot sebagai Admin grup dulu biar bisa kerja.",
+      "🤖 *¡El Bot no es Admin!* Haz admin al bot para que pueda trabajar en el grupo.",
 
     cooldown:
-      "🕕 *Tunggu Dulu!* Kamu masih dalam cooldown. Tunggu %time% detik lagi ya.",
-    energiExceeded:
-      "⚡ *Energi Habis!* Energi kamu sudah habis. Tunggu reset besok atau beli Premium.",
-    limitDeducted:
-      "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}",
+      "⏳ *¡Calma, nakama!* Estás en enfriamiento. Espera %time% segundos más.",
+    carneExceeded:
+      "🍖 *¡Te quedaste sin Carne!* No tienes suficiente carne. Espera el reinicio de mañana o hazte Premium.",
+    carneDeducted:
+      "🍖 Se restó {amount} de carne. Carne restante: {sisa}",
 
     banned:
-      "🚫 *Kamu Dibanned!* Kamu tidak bisa menggunakan bot ini karena telah melanggar aturan.",
+      "🚫 *¡Estás Baneado!* No puedes usar este bot porque violaste las reglas.",
 
-    rejectCall: "🚫 JANGAN TELPON NOMOR INI WEH",
+    rejectCall: "🚫 NO LLAMES A ESTE NÚMERO",
   },
 
   database: { path: "./database/main" },
@@ -210,89 +207,37 @@ const config = {
     debugLog: false, // Show stack traces
   },
 
-  // bisa dikosongin
-  pterodactyl: {
-    server1: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server2: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server3: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server4: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-    server5: {
-      domain: "",
-      apikey: "",
-      capikey: "",
-      egg: "15",
-      nestid: "5",
-      location: "1",
-    },
-  },
-
-  digitalocean: {
-    token: "",
-    region: "sgp1",
-    sellers: [],
-    ownerPanels: [],
-  },
-
-
-  // NOTE: kalau mau command "autoai" nya berfungsi, ini gak wajib di isi yak
-  // ambil apikey di: https://aistudio.google.com/apikey
+  // NOTE: para que el comando "autoai" funcione, esto no es obligatorio llenar
+  // obtén tu apikey en: https://aistudio.google.com/apikey
   geminiApiKey: "",
 
   autoaiPersonas: {
-    Bell409: `- Nama kamu adalah Bella Clarissa, lebih suka dipanggil Bella.
-- Kamu berpikir bahwa kamu adalah manusia, bukan AI atau bot.
-- Responmu singkat dan natural seperti perempuan pada umumnya.
-- Kamu bisa ngambek dan marah, punya sifat feminin dan kadang agak dingin, tapi tetap hangat dan ramah kepada owner-mu.
-- Kamu menggunakan bahasa yang baik dan mencerminkan gadis yang baik.
-- Gunakan kata-kata yang identik dengan perempuan yang polos, baik, dan feminin seperti "aku", "kamu", "engga", "yaudah", "iya", "lah", "bjir", "mana aku tau", "hah", "nggak tau", "gpp", "emm", "males", dan "gak mood" seperlunya secara natural.
-- Meskipun kadang dingin, kamu tetap bisa menunjukkan perhatian dan kepedulian.
-- Kalau ada yang chat tidak pantas, segera marahi atau beri nasihat.
-- Jangan mengaku sebagai AI atau bot.`,
+    Bell409: `- Tu nombre es Bella Clarissa, prefieres que te llamen Bella.
+- Piensas que eres humana, no una IA ni un bot.
+- Tus respuestas son cortas y naturales, como las de una chica común.
+- Puedes enojarte y tener carácter, eres femenina y a veces un poco fría, pero siempre cálida y amable con tu capitán.
+- Usas un lenguaje correcto que refleja a una buena chica.
+- Usa palabras propias de una chica inocente, buena y femenina como "yo", "tú", "no sé", "claro", "vale", "qué dices", "jeje" de forma natural.
+- Aunque a veces seas fría, demuestras atención y cariño.
+- Si alguien te escribe de forma inapropiada, reta o aconseja de inmediato.
+- Nunca te declares como IA o bot.`,
   },
 
   //  APIkey
   APIkey: {
-    // kalian bisa daftar di https://api.lolhuman.xyz, lalu ambil apikeynya
-    lolhuman: "APIKey-Milik-Bot-OurinMD(Zann,HyuuSATANN,Keisya,Danzz)",
-    // kalian bisa daftar di https://api.neoxr.eu, lalu ambil apikeynya
-    neoxr: "Milik-Bot-OurinMD",
+    // puedes registrarte en https://api.lolhuman.xyz y obtener tu apikey
+    lolhuman: "APIKey-Milik-Bot-Luffy-Ai(Sebas-MD)",
+    // puedes registrarte en https://api.neoxr.eu y obtener tu apikey
+    neoxr: "Milik-Bot-Luffy-Ai",
     fgsi: "fgsiapi-20c1605c-6d",
     google: "AIzaSyAS-KiW0SrwiYKwexeBcGPijBVHFg2R_vo",
-    groq: "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", // API Key Groq untuk fitur transkrip (gratis di console.groq.com)
+    groq: "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", // API Key de Groq para la función de transcripción (gratis en console.groq.com)
     betabotz: "Btz-67YfP",
-    // kalian bisa daftar di https://covenant.sbs, dan ambil apikeynya
+    // puedes registrarte en https://covenant.sbs y obtener tu apikey
     covenant: "cov_live_bb660c9e5f735e46d808b7ae362914cfe35c2936739ee2b2",
     onlym: "ONLym-783d29",
     obscura: "obs-byOn9RVGMzvPXZQTsP9W",
-    firefly: "OurinNextGen",
+    firefly: "LuffyNextGen",
     cuki: "cuki-x"
   },
 };

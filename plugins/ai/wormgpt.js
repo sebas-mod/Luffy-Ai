@@ -1,4 +1,4 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 import axios from "axios";
 
@@ -6,15 +6,15 @@ const pluginConfig = {
   name: "wormgpt",
   alias: ["worm"],
   category: "ai",
-  description: "Chat dengan WormGPT (uncensored AI)",
-  usage: ".wormgpt <pertanyaan>",
-  example: ".wormgpt perkenalkan dirimu",
+  description: "Chat con WormGPT (IA sin censura)",
+  usage: ".wormgpt <pregunta>",
+  example: ".wormgpt preséntate",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `🐛 *ᴡᴏʀᴍ ɢᴘᴛ*\n\n> Masukkan pertanyaan\n\n\`Contoh: ${m.prefix}wormgpt perkenalkan dirimu\``,
+      `🐛 *ᴡᴏʀᴍ ɢᴘᴛ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}wormgpt preséntate\``,
     );
   }
 
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     const { data } = await axios.get(url, { timeout: 30000 });
 
     if (!data.status || !data.data?.response) {
-      throw new Error("Gagal mendapatkan response");
+      throw new Error("No se pudo obtener la respuesta");
     }
 
     m.react("✅");

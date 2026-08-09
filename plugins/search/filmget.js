@@ -1,18 +1,18 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "filmget",
   alias: ["getfilm", "filmdetail", "filminfo"],
   category: "search",
-  description: "Ambil detail film",
+  description: "Obtener detalles de la película",
   usage: ".filmget <url>",
   example: ".filmget https://tv.neoxr.eu/film/civil-war-2024",
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -23,11 +23,11 @@ async function handler(m, { sock }) {
 
   if (!url || !url.includes("neoxr.eu")) {
     return m.reply(
-      `🎬 *ꜰɪʟᴍ ᴅᴇᴛᴀɪʟ*\n\n` +
-        `> Ambil detail film dari URL\n\n` +
-        `*Format:*\n` +
+      `🎬 *ᴅᴇᴛᴀʟʟᴇ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀ*\n\n` +
+        `> Obtén los detalles de la película desde una URL\n\n` +
+        `*Formato:*\n` +
         `> \`${m.prefix}filmget <url>\`\n\n` +
-        `> Gunakan \`${m.prefix}film <judul>\` untuk cari film dulu`,
+        `> Usa \`${m.prefix}film <título>\` para buscar la película primero`,
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Film tidak ditemukan");
+      return m.reply("❌ *ꜰᴀʟʟᴏ*\n\n> Película no encontrada");
     }
 
     const film = data.data;
@@ -109,11 +109,11 @@ async function handler(m, { sock }) {
     });
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     const msgContent = {
       text,
-      footer: `🎬 Nonton Film Online`,
+      footer: `🎬 Ver Película Online`,
       contextInfo: saluranCtx(),
     };
 

@@ -1,18 +1,18 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'tomanga',
     alias: ['manga', 'mangafy', 'mangastyle'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya manga Jepang',
-    usage: '.tomanga (reply/kirim gambar)',
+    description: 'Convertir la foto a estilo manga japonés',
+    usage: '.tomanga (responde/envía imagen)',
     example: '.tomanga',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `📖 *ᴛᴏ ᴍᴀɴɢᴀ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya manga\n\n` +
+            `> Envía/responde una imagen para convertirla a estilo manga\n\n` +
             `\`${m.prefix}tomanga\``
         )
     }
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

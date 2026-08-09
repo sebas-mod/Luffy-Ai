@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('kataacak', {
     alias: ['ka', 'acakkata'],
     emoji: '🔤',
-    title: 'KATA ACAK',
-    description: 'Susun huruf acak'
+    title: 'PALABRAS DESORDENADAS',
+    description: 'Ordena letras desordenadas'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('kataacak')

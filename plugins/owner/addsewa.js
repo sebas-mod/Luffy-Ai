@@ -1,9 +1,9 @@
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import * as timeHelper from "../../src/lib/ourin-time.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import * as timeHelper from "../../src/lib/luffy-time.js";
 import fs from "fs";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "addsewa",
   alias: ["sewaadd", "tambahsewa"],
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -50,7 +50,7 @@ function formatDuration(str) {
     return "Permanent";
   const match = str.match(/^(\d+)([iIdDmMyYhH])$/);
   if (!match) return str;
-  const units = { i: "menit", h: "jam", d: "hari", m: "bulan", y: "tahun" };
+  const units = { i: "minutos", h: "horas", d: "días", m: "meses", y: "años" };
   return `${match[1]} ${units[match[2].toLowerCase()] || match[2]}`;
 }
 
@@ -88,7 +88,7 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
   if (!inviteCode)
     return {
       joined: false,
-      reason: "Tidak ada invite code, tambahkan bot secara manual",
+      reason: "No hay código de invitación, añade el bot manualmente",
     };
   try {
     const botJid = sock.user?.id?.split(":")[0] + "@s.whatsapp.net";
@@ -98,12 +98,12 @@ async function tryJoinGroup(sock, inviteCode, groupId) {
         const pJid = p.id?.split(":")[0] + "@s.whatsapp.net";
         return pJid === botJid || p.id === botJid;
       });
-      if (isMember) return { joined: true, reason: "Bot sudah ada di grup" };
+      if (isMember) return { joined: true, reason: "El bot ya está en el grupo" };
     }
     await sock.groupAcceptInvite(inviteCode);
-    return { joined: true, reason: "Bot berhasil join grup" };
+    return { joined: true, reason: "El bot se unió al grupo con éxito" };
   } catch (e) {
-    return { joined: false, reason: e.message || "Gagal join grup" };
+    return { joined: false, reason: e.message || "Error al unirse al grupo" };
   }
 }
 
@@ -117,22 +117,22 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *TAMBAH SEWA*\n\n` +
-        `Format: *${m.prefix}addsewa <link/id> <durasi>*\n\n` +
-        `*FORMAT DURASI:*\n` +
-        `• 30i = 30 menit\n` +
-        `• 12h = 12 jam\n` +
-        `• 7d = 7 hari\n` +
-        `• 1m = 1 bulan (30 hari)\n` +
-        `• 1y = 1 tahun\n` +
-        `• lifetime = Permanent\n\n` +
-        `*INPUT GRUP:*\n` +
+      `📝 *AGREGAR SEWA*\n\n` +
+        `Formato: *${m.prefix}addsewa <link/id> <duración>*\n\n` +
+        `*FORMATO DE DURACIÓN:*\n` +
+        `• 30i = 30 minutos\n` +
+        `• 12h = 12 horas\n` +
+        `• 7d = 7 días\n` +
+        `• 1m = 1 mes (30 días)\n` +
+        `• 1y = 1 año\n` +
+        `• lifetime = Permanente\n\n` +
+        `*INPUT DEL GRUPO:*\n` +
         `• Link: https://chat.whatsapp.com/xxx\n` +
         `• ID: 120363xxx@g.us\n\n` +
-        `*CONTOH:*\n` +
+        `*EJEMPLO:*\n` +
         `• ${m.prefix}addsewa https://chat.whatsapp.com/xxx 30d\n` +
         `• ${m.prefix}addsewa 120363xxx 1m\n\n` +
-        `💡 Jika pakai link, bot akan otomatis join ke grup tersebut!`,
+        `💡 Si usas un link, ¡el bot se unirá automáticamente a ese grupo!`,
     );
   }
 
@@ -142,7 +142,7 @@ async function handler(m, { sock }) {
 
   if (!expiredAt)
     return m.reply(
-      `❌ Format durasi tidak valid\n\nContoh: 7d, 1m, 1y, lifetime`,
+      `❌ Formato de duración no válido\n\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -151,7 +151,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grup tidak ditemukan atau link tidak valid`);
+      return m.reply(`❌ Grupo no encontrado o link no válido`);
     }
 
     const { id: groupId, name: groupName, inviteCode } = result;
@@ -167,14 +167,14 @@ async function handler(m, { sock }) {
     db.db.write();
 
     const expiredStr = isLifetime
-      ? "Permanent"
+      ? "Permanente"
       : timeHelper.fromTimestamp(expiredAt, "D MMMM YYYY HH:mm");
 
-    let text = `✅ *SEWA BERHASIL DITAMBAHKAN*\n\n`;
-    text += `Grup: *${groupName}*\n`;
+    let text = `✅ *SEWA AÑADIDA CON ÉXITO*\n\n`;
+    text += `Grupo: *${groupName}*\n`;
     text += `ID: ${groupId.split("@")[0]}\n`;
-    text += `Durasi: *${formatDuration(durationStr)}*\n`;
-    text += `Expired: *${expiredStr}*\n\n`;
+    text += `Duración: *${formatDuration(durationStr)}*\n`;
+    text += `Caduca: *${expiredStr}*\n\n`;
 
     const joinResult = await tryJoinGroup(sock, inviteCode, groupId);
 
@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
         await new Promise((r) => setTimeout(r, 2000));
         await sock.sendText(
           groupId,
-          `👋 *Halo Semuanya!*, perkenalkan, aku ${config.bot?.name}\n\n- Masa sewa: *${formatDuration(durationStr)}*\n- Aku akan keluar pada: *${expiredStr}*\n\nKetik *${m.prefix}menu* untuk melihat fitur dari bot ini.`,
+          `👋 *¡Hola a todos!*, permítanme presentarme, soy ${config.bot?.name}\n\n- Período de sewa: *${formatDuration(durationStr)}*\n- Saldré el: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para ver las funciones de este bot.`,
           null,
           {
             contextInfo: saluranCtx(),
@@ -192,7 +192,7 @@ async function handler(m, { sock }) {
         );
       } catch {}
     } else {
-      text += `⚠️ Auto-join gagal: ${joinResult.reason}\nTambahkan bot ke grup secara manual.`;
+      text += `⚠️ Auto-join falló: ${joinResult.reason}\nAñade el bot al grupo manualmente.`;
     }
 
     await m.react("✅");

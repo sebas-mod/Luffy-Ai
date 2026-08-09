@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'resetwarn',
     alias: ['clearwarn', 'hapuswarn', 'delwarn'],
     category: 'group',
-    description: 'Reset warning member',
+    description: 'Restablecer las advertencias de un miembro',
     usage: '.resetwarn @user',
     example: '.resetwarn @user',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -28,9 +28,9 @@ async function handler(m, { sock }) {
     
     if (!targetUser) {
         await m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> Reply pesan user + \`${m.prefix}resetwarn\`\n` +
-            `> Atau: \`${m.prefix}resetwarn @user\``
+            `⚠️ *ᴄóᴍᴏ ᴜsᴀʀʟᴏ*\n\n` +
+            `> Responde el mensaje de un usuario + \`${m.prefix}resetwarn\`\n` +
+            `> O: \`${m.prefix}resetwarn @user\``
         )
         return
     }
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split('@')[0]
     
     if (!warnings[targetUser] || warnings[targetUser].length === 0) {
-        await m.reply(`✅ @${targetName} tidak memiliki warning.`, { mentions: [targetUser] })
+        await m.reply(`✅ @${targetName} no tiene advertencias.`, { mentions: [targetUser] })
         return
     }
     
@@ -51,10 +51,10 @@ async function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, warnings: warnings })
     
     await m.reply(
-        `✅ *ᴡᴀʀɴɪɴɢ ᴅɪʀᴇsᴇᴛ*\n` +
-        `Warning @${targetName} berhasil direset!\n` +
-        `Sebelumnya: *${prevCount}/${maxWarns}*\n` +
-        `Sekarang: *0/${maxWarns}*`,
+        `✅ *ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀs*\n` +
+        `Las advertencias de @${targetName} se restablecieron!\n` +
+        `Antes: *${prevCount}/${maxWarns}*\n` +
+        `Ahora: *0/${maxWarns}*`,
         { mentions: [targetUser] }
     )
 }

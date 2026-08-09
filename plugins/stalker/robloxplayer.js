@@ -1,13 +1,13 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
-const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-OurinMD'
+import te from '../../src/lib/luffy-error.js'
+const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 
 const pluginConfig = {
     name: 'robloxplayer',
     alias: ['robloxsearch', 'searchroblox', 'robloxfind'],
     category: 'stalker',
-    description: 'Search Roblox player by username',
+    description: 'Buscar jugador de Roblox por username',
     usage: '.robloxplayer <username>',
     example: '.robloxplayer linkmon',
     isOwner: false,
@@ -15,7 +15,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     if (!query) {
         return m.reply(
             `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n` +
-            `> Masukkan username untuk dicari\n\n` +
+            `> Ingresa el username a buscar\n\n` +
             `\`${m.prefix}robloxplayer linkmon\``
         )
     }
@@ -39,28 +39,28 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data?.length) {
             m.react('❌')
-            return m.reply(`❌ Tidak ditemukan player dengan username: ${query}`)
+            return m.reply(`❌ No se encontró ningún jugador con el username: ${query}`)
         }
         
         const players = res.data.data.slice(0, 10)
         
         let text = `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n`
-        text += `> Query: \`${query}\`\n`
-        text += `> Ditemukan: *${players.length}* player\n\n`
+        text += `> Búsqueda: \`${query}\`\n`
+        text += `> Encontrados: *${players.length}* jugadores\n\n`
         
         players.forEach((player, i) => {
             text += `╭┈┈⬡「 ${i + 1}. *${player.displayName}* 」\n`
             text += `┃ 🆔 ID: \`${player.id}\`\n`
             text += `┃ 👤 Username: \`${player.name}\`\n`
             text += `┃ 📛 Display: *${player.displayName}*\n`
-            text += `┃ ✅ Verified: ${player.hasVerifiedBadge ? 'Ya' : 'Tidak'}\n`
+            text += `┃ ✅ Verified: ${player.hasVerifiedBadge ? 'Sí' : 'No'}\n`
             if (player.previousUsernames?.length > 0) {
                 text += `┃ 📜 Previous: ${player.previousUsernames.join(', ')}\n`
             }
             text += `╰┈┈⬡\n\n`
         })
         
-        text += `> _Gunakan \`.robloxstalk <username>\` untuk info detail_`
+        text += `> _Usa \`.robloxstalk <username>\` para información detallada_`
         
         await m.reply(text)
         m.react('✅')

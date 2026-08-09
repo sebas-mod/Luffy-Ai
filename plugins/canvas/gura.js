@@ -2,13 +2,13 @@ import FormData from "form-data";
 import fetch from "node-fetch";
 import mime from "mime-types";
 import { downloadMediaMessage, getContentType } from "ourin";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "gura",
   alias: ["guracanvas"],
   category: "canvas",
-  description: "Bikin efek canvas gura dari fotomu",
+  description: "Crea un efecto canvas Gura a partir de tu foto",
   usage: ".gura (reply/kirim foto)",
   example: ".gura",
   isOwner: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -47,18 +47,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+      return m.reply("⚠️ ¡Oye, responde a un mensaje de imagen por favor!");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`🦈 *GURA CANVAS*\n\nKirim atau reply foto dengan perintah \`${m.prefix}gura\` untuk memberikan efek Gura!`);
+      return m.reply(`🦈 *GURA CANVAS*\n\nEnvía o responde una foto con el comando \`${m.prefix}gura\` para darle el efecto Gura!`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("❌ Gagal membaca media, coba lagi!");
+  if (!media) return m.reply("❌ No se pudo leer el medio, ¡inténtalo de nuevo!");
 
   await m.react("🕕");
 

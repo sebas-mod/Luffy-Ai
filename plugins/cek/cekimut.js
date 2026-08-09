@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekimut',
     alias: ['imut', 'cute'],
     category: 'cek',
-    description: 'Cek seberapa imut kamu',
-    usage: '.cekimut <nama>',
+    description: 'Comprueba cuán lindo eres',
+    usage: '.cekimut <nombre>',
     example: '.cekimut Ani',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'IMUT BANGET! Kawaii~~ 🥺💕'
+        desc = '¡ADORABILÍSIMO! Kawaii~~ 🥺💕'
     } else if (percent >= 70) {
-        desc = 'Imutnya kebangetan! 😍'
+        desc = '¡Demasiado lindo! 😍'
     } else if (percent >= 50) {
-        desc = 'Lumayan imut~ 🌸'
+        desc = 'Bastante lindo~ 🌸'
     } else if (percent >= 30) {
-        desc = 'Ada imutnya dikit 😊'
+        desc = 'Un poquito lindo 😊'
     } else {
-        desc = 'Mungkin cool bukan imut? 😎'
+        desc = '¿Quizás eres cool y no lindo? 😎'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat keimutan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat keimutan @${mentioned.split('@')[0]} yak? 
+Tu nivel de lindura es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de lindura de @${mentioned.split('@')[0]}? 
     
-Tingkat keimutan dia sebesar *${percent}%*
+Su nivel de lindura es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

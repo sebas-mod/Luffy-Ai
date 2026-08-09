@@ -1,10 +1,10 @@
-import { startJadibot, isJadibotActive } from '../../src/lib/ourin-jadibot-manager.js'
+import { startJadibot, isJadibotActive } from '../../src/lib/luffy-jadibot-manager.js'
 
 const pluginConfig = {
     name: 'jadibot',
     alias: ['jadibotqr', 'becomebot', 'bot'],
     category: 'main',
-    description: 'Jadikan nomor kamu menjadi bot (Pairing Code / QR)',
+    description: 'Convierte tu número en bot (Código de emparejamiento / QR)',
     usage: '.jadibot atau .jadibot qr',
     example: '.jadibot',
     isOwner: false,
@@ -12,19 +12,19 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const sender = m.sender
-    if (!sender) return m.reply('❌ Gagal mengidentifikasi nomor kamu')
+    if (!sender) return m.reply('❌ No se pudo identificar tu número')
 
     if (isJadibotActive(sender)) {
         return m.reply(
             `⚠️ *ᴊᴀᴅɪʙᴏᴛ ꜱᴜᴅᴀʜ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Nomor kamu sudah menjadi bot\n` +
-            `> Ketik \`${m.prefix}stopjadibot\` untuk menghentikan`
+            `> Tu número ya es un bot\n` +
+            `> Escribe \`${m.prefix}stopjadibot\` para detenerlo`
         )
     }
 

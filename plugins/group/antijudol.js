@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'antijudol',
     alias: ['antijudi', 'nojudi', 'antislot'],
     category: 'group',
-    description: 'Deteksi konten judol di grup',
+    description: 'Detecta contenido de apuestas (judol) en el grupo',
     usage: '.antijudol <on/off/metode> [kick/remove]',
     example: '.antijudol on',
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -28,9 +28,9 @@ function handler(m) {
         const mode = groupData.antijudolMode || 'remove'
         return m.reply(
             `🎰 *ᴀɴᴛɪᴊᴜᴅᴏʟ*\n\n` +
-            `> Status: *${status.toUpperCase()}*\n` +
-            `> Mode: *${mode.toUpperCase()}*\n\n` +
-            `> Deteksi konten judol seperti judi, slot, gacor, maxwin, togel, bonus member, link alternatif, dan pola sejenis.\n\n` +
+            `> Estado: *${status.toUpperCase()}*\n` +
+            `> Modo: *${mode.toUpperCase()}*\n\n` +
+            `> Detecta contenido de apuestas como judi, slot, gacor, maxwin, togel, bono para miembros, enlaces alternativos y patrones similares.\n\n` +
             `> \`${m.prefix}antijudol on\`\n` +
             `> \`${m.prefix}antijudol off\`\n` +
             `> \`${m.prefix}antijudol metode kick\`\n` +
@@ -40,38 +40,38 @@ function handler(m) {
 
     if (option === 'on') {
         db.setGroup(m.chat, { antijudol: 'on' })
-        return m.reply('✅ *AntiJudol diaktifkan*')
+        return m.reply('✅ *AntiJudol activado*')
     }
 
     if (option === 'off') {
         db.setGroup(m.chat, { antijudol: 'off' })
-        return m.reply('❌ *AntiJudol dinonaktifkan*')
+        return m.reply('❌ *AntiJudol desactivado*')
     }
 
     if (option.startsWith('metode')) {
         const method = m.args?.[1]?.toLowerCase()
         if (method === 'kick') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-            return m.reply('✅ *AntiJudol mode KICK diaktifkan*')
+            return m.reply('✅ *AntiJudol modo KICK activado*')
         }
         if (method === 'remove' || method === 'delete') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-            return m.reply('✅ *AntiJudol mode DELETE diaktifkan*')
+            return m.reply('✅ *AntiJudol modo DELETE activado*')
         }
-        return m.reply(`❌ Metode tidak valid! Gunakan: \`kick\` atau \`remove\``)
+        return m.reply(`❌ ¡Método no válido! Usa: \`kick\` o \`remove\``)
     }
 
     if (option === 'kick') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-        return m.reply('✅ *AntiJudol mode KICK diaktifkan*')
+        return m.reply('✅ *AntiJudol modo KICK activado*')
     }
 
     if (option === 'remove' || option === 'delete') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-        return m.reply('✅ *AntiJudol mode DELETE diaktifkan*')
+        return m.reply('✅ *AntiJudol modo DELETE activado*')
     }
 
-    return m.reply('❌ Opsi tidak valid! Gunakan: `on`, `off`, `metode kick`, `metode remove`')
+    return m.reply('❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick`, `metode remove`')
 }
 
 export { pluginConfig as config, handler }

@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekrezeki',
     alias: ['rezeki', 'fortune'],
     category: 'cek',
-    description: 'Cek tingkat rezeki kamu hari ini',
-    usage: '.cekrezeki <nama>',
+    description: 'Comprueba tu fortuna de hoy',
+    usage: '.cekrezeki <nombre>',
     example: '.cekrezeki Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -19,18 +19,18 @@ async function handler(m) {
     const mentioned = m.mentionedJid[0] || m.sender
                     
     let desc = ''
-    if (percent >= 90) desc = 'Rezeki melimpah! Jackpot! 💰🎉'
-    else if (percent >= 70) desc = 'Rezeki lancar hari ini~ 💵'
-    else if (percent >= 50) desc = 'Rezeki cukup, bersyukurlah 🙏'
-    else if (percent >= 30) desc = 'Rezeki pas-pasan 😅'
-    else desc = 'Sabar ya, rezeki akan datang~ 🫂'
+    if (percent >= 90) desc = '¡Fortuna abundante! ¡Jackpot! 💰🎉'
+    else if (percent >= 70) desc = '¡Buen flujo de fortuna hoy~ 💵'
+    else if (percent >= 50) desc = 'Fortuna suficiente, sé agradecido 🙏'
+    else if (percent >= 30) desc = 'Fortuna justita 😅'
+    else desc = 'Ten paciencia, la fortuna llegará~ 🫂'
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kerezekian kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kerezekian @${mentioned.split('@')[0]} yak? 
+Tu nivel de fortuna es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de fortuna de @${mentioned.split('@')[0]}? 
     
-Tingkat kerezekian dia sebesar *${percent}%*
+Su nivel de fortuna es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

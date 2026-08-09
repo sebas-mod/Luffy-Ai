@@ -1,9 +1,9 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "topchat",
   alias: ["chatstat", "chatstats", "totalchat", "leaderboard"],
   category: "group",
-  description: "Lihat statistik chat member di grup",
+  description: "Ver las estadísticas de chat de los miembros del grupo",
   usage: ".topchat",
   example: ".topchat",
   isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -28,19 +28,19 @@ async function handler(m, { sock }) {
     .sort((a, b) => b.count - a.count);
   if (sorted.length === 0) {
     return m.reply(
-      `📊 *ᴄʜᴀᴛ sᴛᴀᴛɪsᴛɪᴄs*\n\n` +
-      `> Belum ada data chat di grup ini.\n` +
-      `> Data akan tercatat otomatis setelah member aktif chat.`,
+      `📊 *ᴇsᴛᴀᴅísᴛɪᴄᴀs ᴅᴇ ᴄʜᴀᴛ*\n\n` +
+      `> Todavía no hay datos de chat en este grupo.\n` +
+      `> Los datos se registrarán automáticamente cuando los miembros chateen.`,
     );
   }
-  let txt = `📊 *TOTAL CHAT*\nBerikut ini adalah jumlah pesan yang dikirim oleh member di grup ini:\n\n`;
+  let txt = `📊 *TOTAL DE CHAT*\nA continuación se muestra la cantidad de mensajes enviados por los miembros de este grupo:\n\n`;
   for (let i = 0; i < sorted.length; i++) {
     const { jid, count } = sorted[i];
     const name = group.chatStats[jid]?.name || jid.split("@")[0];
     const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "▸";
-    txt += `${medal} @${jid.split("@")[0]} — *${count.toLocaleString("id-ID")}* pesan\n`;
+    txt += `${medal} @${jid.split("@")[0]} — *${count.toLocaleString("id-ID")}* mensajes\n`;
   }
-  txt += `\n*Total Pesan: ${sorted.reduce((a, b) => a + b.count, 0).toLocaleString("id-ID")}*`;
+  txt += `\n*Total de Mensajes: ${sorted.reduce((a, b) => a + b.count, 0).toLocaleString("id-ID")}*`;
   const mentions = sorted.map((u) => u.jid);
   await m.reply(txt, { mentions });
 }

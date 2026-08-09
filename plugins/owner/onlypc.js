@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "onlypc",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -24,11 +24,11 @@ async function handler(m, { sock }) {
     const current = db.setting("onlyPc") || false;
     return m.reply(
       `💬 *Only Private*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}onlypc on* — Bot hanya bisa diakses di private chat\n` +
-        `> *${m.prefix}onlypc off* — Bot bisa diakses di mana saja\n\n` +
-        `_Jika aktif, mode Only Group akan otomatis nonaktif_`
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}onlypc on* — El bot solo se puede usar en chat privado\n` +
+        `> *${m.prefix}onlypc off* — El bot se puede usar en cualquier lugar\n\n` +
+        `_Si está activo, el modo Solo Grupo se desactivará automáticamente_`
     );
   }
 
@@ -37,9 +37,9 @@ async function handler(m, { sock }) {
     db.setting("onlyGc", false);
     await m.react("✅");
     return m.reply(
-      `💬 *Only Private Aktif*\n\n` +
-        `> Bot hanya bisa diakses di private chat\n` +
-        `> Mode Only Group dinonaktifkan`
+      `💬 *Only Private Activo*\n\n` +
+        `> El bot solo se puede usar en chat privado\n` +
+        `> El modo Solo Grupo se desactivó`
     );
   }
 
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
     db.setting("onlyPc", false);
     await m.react("❌");
     return m.reply(
-      `💬 *Only Private Nonaktif*\n\n` +
-        `> Bot bisa diakses di mana saja`
+      `💬 *Only Private Inactivo*\n\n` +
+        `> El bot se puede usar en cualquier lugar`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}onlypc on* atau *${m.prefix}onlypc off*`
+    `❌ *Opción no válida*\n\n> Usa *${m.prefix}onlypc on* o *${m.prefix}onlypc off*`
   );
 }
 

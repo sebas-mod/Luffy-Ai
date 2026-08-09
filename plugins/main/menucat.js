@@ -1,5 +1,5 @@
 import * as botmodePlugin from "../group/botmode.js";
-import { getCasesByCategory } from "../../case/ourin.js";
+import { getCasesByCategory } from "../../case/luffy.js";
 import { prepareWAMessageMedia, generateWAMessageFromContent } from "ourin";
 import config from "../../config.js";
 import axios from "axios";
@@ -8,9 +8,9 @@ import {
   getCommandsByCategory,
   getCategories,
   getPlugin,
-} from "../../src/lib/ourin-plugins.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { getTimeGreeting } from "../../src/lib/ourin-formatter.js";
+} from "../../src/lib/luffy-plugins.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { getTimeGreeting } from "../../src/lib/luffy-formatter.js";
 import fs from "fs"
 
 const pluginConfig = {
@@ -25,7 +25,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -43,11 +43,8 @@ const CATEGORY_EMOJIS = {
   game: "🎯",
   media: "🎬",
   info: "ℹ️",
-  religi: "☪️",
-  panel: "🖥️",
   user: "📊",
   jpm: "📢",
-  pushkontak: "📱",
   ephoto: "🎨",
   store: "🛒",
   linode: "☁️",
@@ -134,10 +131,8 @@ async function handler(m, { sock, db }) {
     const botMode = groupData.botMode || "md";
 
     let modeExcludeMap = {
-      md: ["panel", "pushkontak", "store"],
-      store: ["panel", "pushkontak", "jpm", "ephoto", "cpanel"],
-      pushkontak: ["panel", "store", "jpm", "ephoto", "cpanel"],
-      cpanel: ["pushkontak", "store", "jpm", "ephoto"],
+      md: ["store"],
+      store: ["jpm", "ephoto"],
     };
 
     try {
@@ -166,8 +161,7 @@ async function handler(m, { sock, db }) {
       "media",
       "ai",
       "group",
-      "religi",
-      "info",
+        "info",
       "cek",
       "economy",
       "user",
@@ -175,8 +169,6 @@ async function handler(m, { sock, db }) {
       "random",
       "premium",
       "jpm",
-      "pushkontak",
-      "panel",
       "ephoto",
       "store"
     ];
@@ -232,7 +224,7 @@ async function handler(m, { sock, db }) {
         case 2: {
           const media = await prepareWAMessageMedia(
             {
-              image: fs.readFileSync(config.assets["ourin2"]),
+              image: fs.readFileSync(config.assets["luffy2"]),
             },
             { upload: sock.waUploadToServer },
           );
@@ -309,22 +301,22 @@ async function handler(m, { sock, db }) {
             try {
               const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
               const loc = geo.data.results?.[0]
-              if (!loc) return "Cuaca tidak tersedia"
+              if (!loc) return "Clima no disponible"
               const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
               const current = res.data.current
               const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
               return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
             } catch {
-              return "Cuaca tidak tersedia"
+              return "Clima no disponible"
             }
           }
 
-          const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+          const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
           const qOrder = {
             key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
             message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
           }
-          const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["ourin-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+          const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
           const msg4 = generateWAMessageFromContent(m.chat, {
             viewOnceMessage: {
               message: {
@@ -339,7 +331,7 @@ async function handler(m, { sock, db }) {
                     forwardingScore: 9,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                      newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                      newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                       serverMessageId: 127,
                     },
                   },
@@ -347,7 +339,7 @@ async function handler(m, { sock, db }) {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
                       bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
-                      tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
+                      tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                     }),
                     buttons: [
                       { name: "", buttonParamsJson: "" },
@@ -382,7 +374,7 @@ async function handler(m, { sock, db }) {
 
   if (!matchedCat) {
     return m.reply(
-      `❌ *KATEGORI TIDAK DITEMUKAN*\n\n> Kategori \`${categoryArg}\` tidak ada.\n> Ketik \`${prefix}menucat\` untuk list kategori.`,
+      `❌ *Cᴀᴛᴇɢᴏʀíᴀ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> La categoría \`${categoryArg}\` no existe.\n> Escribe \`${prefix}menucat\` para ver las categorías.`,
     );
   }
 
@@ -396,7 +388,7 @@ async function handler(m, { sock, db }) {
 
   if (allCommands.length === 0) {
     return m.reply(
-      `❌ *KOSONG*\n\n> Kategori \`${matchedCat}\` tidak memiliki command.`,
+      `❌ *ᴠᴀᴄíᴏ*\n\n> La categoría \`${matchedCat}\` no tiene comandos.`,
     );
   }
 
@@ -422,7 +414,7 @@ async function handler(m, { sock, db }) {
       case 2: {
         const media = await prepareWAMessageMedia(
           {
-            image: fs.readFileSync(config.assets["ourin2"]),
+            image: fs.readFileSync(config.assets["luffy2"]),
           },
           { upload: sock.waUploadToServer },
         );
@@ -506,22 +498,22 @@ async function handler(m, { sock, db }) {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
             const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
         const qOrder = {
           key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
           message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
         }
-        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["ourin-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -536,7 +528,7 @@ async function handler(m, { sock, db }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
                 },
@@ -544,7 +536,7 @@ async function handler(m, { sock, db }) {
                   messageParamsJson: JSON.stringify({
                     limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
                     bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
-                    tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
+                    tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                   }),
                   buttons: [
                     { name: "", buttonParamsJson: "" },
@@ -575,17 +567,17 @@ async function handler(m, { sock, db }) {
           try {
             const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1`)
             const loc = geo.data.results?.[0]
-            if (!loc) return "Cuaca tidak tersedia"
+            if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
             const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
-            return "Cuaca tidak tersedia"
+            return "Clima no disponible"
           }
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["ourin"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
 
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
@@ -597,7 +589,7 @@ async function handler(m, { sock, db }) {
                   locationMessage: {
                     degreesLatitude: 0,
                     degreesLongitude: 0,
-                    name: config.bot?.name || "Ourin-AI",
+                    name: config.bot?.name || "Luffy-Ai",
                     address: await weatherMenu(),
                     jpegThumbnail: thumbnail
                   }
@@ -611,7 +603,7 @@ async function handler(m, { sock, db }) {
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
                     newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                    newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                    newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
                 },

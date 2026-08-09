@@ -26,14 +26,14 @@ const pluginConfig = {
     name: 'igstoryimg',
     alias: ['igstory', 'igstoryimage'],
     category: 'canvas',
-    description: 'Membuat gambar layout Instagram Story dari gambarmu.',
-    usage: '.igstoryimg [kirim/reply gambar]',
+    description: 'Crea una imagen con diseño de Instagram Story a partir de tu imagen.',
+    usage: '.igstoryimg [envía/responde imagen]',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true
 }
 
@@ -230,12 +230,12 @@ async function handler(m, { sock }) {
 
         if (!targetImgBuffer) {
             return m.reply(
-                `📸 *FITUR IG STORY IMAGE*\n\n` +
-                `Fitur ini memungkinkan kamu untuk menyulap foto biasamu menjadi tampilan ala Instagram Story yang estetik dan kekinian.\n\n` +
-                `*CARA PENGGUNAAN:*\n` +
-                `- Kirimkan gambar langsung dengan caption \`${m.prefix}igstoryimg\`\n` +
-                `- Atau balas (*reply*) pesan gambar yang sudah ada dengan perintah \`${m.prefix}igstoryimg\`\n\n` +
-                `_Bot akan otomatis memasang foto profil dan namamu di dalam gambarnya!_`
+                `📸 *FUNCIÓN IG STORY IMAGE*\n\n` +
+                `Esta función te permite convertir tu foto normal en una vista estilo Instagram Story, estética y moderna.\n\n` +
+                `*CÓMO USARLO:*\n` +
+                `- Envía una imagen directamente con caption \`${m.prefix}igstoryimg\`\n` +
+                `- O responde (*reply*) a una imagen existente con el comando \`${m.prefix}igstoryimg\`\n\n` +
+                `_El bot pondrá automáticamente tu foto de perfil y tu nombre dentro de la imagen!_`
             );
         }
 
@@ -274,7 +274,7 @@ async function handler(m, { sock }) {
         bgImgBuffer = null;
         fontsLoaded = false;
         await m.react('❌');
-        m.reply(`❌ *GAGAL MEMPROSES GAMBAR*\n\nMaaf, terjadi kesalahan saat mencoba membuat gambar IG Story. Pastikan gambar yang dikirim valid dan coba lagi beberapa saat.`);
+        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo siento, ocurrió un error al intentar crear la imagen de IG Story. Asegúrate de que la imagen enviada sea válida e inténtalo de nuevo en unos momentos.`);
     }
 }
 

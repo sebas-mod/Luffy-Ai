@@ -62,7 +62,7 @@ async function ytdl(url, format = "mp3") {
     if (!videoId) {
       return {
         status: false,
-        mess: "Format URL tidak dikenali atau bukan link YouTube yang valid.",
+        mess: "Formato de URL no reconocido o no es un enlace de YouTube válido.",
       };
     }
 
@@ -119,7 +119,7 @@ async function ytdl(url, format = "mp3") {
       if ((data?.error || 0) > 0) {
         return {
           status: false,
-          mess: `Error dari server: ${data.error}`,
+          mess: `Error del servidor: ${data.error}`,
         };
       }
 

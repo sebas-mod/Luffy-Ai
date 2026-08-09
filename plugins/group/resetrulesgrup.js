@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'resetrulesgrup',
     alias: ['resetgrouprules'],
     category: 'group',
-    description: 'Reset rules grup ke default (admin only)',
+    description: 'Restablecer las reglas del grupo al predeterminado (admin only)',
     usage: '.resetrulesgrup',
     example: '.resetrulesgrup',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -22,9 +22,9 @@ function handler(m) {
     db.setGroup(m.chat, { groupRules: null })
     
     m.reply(
-        `✅ *ɢʀᴜᴘ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n` +
-        `Rules grup berhasil direset ke default!\n` +
-        `Ketik \`${m.prefix}rulesgrup\` untuk melihat.`
+        `✅ *ʀᴇɢʟᴀs ᴅᴇʟ ɢʀᴜᴘᴏ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀs*\n` +
+        `Las reglas del grupo se restablecieron al predeterminado!\n` +
+        `Escribe \`${m.prefix}rulesgrup\` para verlas.`
     )
 }
 

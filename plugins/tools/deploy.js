@@ -6,15 +6,15 @@ const pluginConfig = {
     name: 'deploy',
     alias: ['vercel'],
     category: 'owner',
-    description: 'Deploy HTML atau file ZIP ke Vercel',
-    usage: '.deploy <namawebsite>',
+    description: 'Despliega HTML o un archivo ZIP en Vercel',
+    usage: '.deploy <nombre_del_sitio>',
     example: '.deploy mysite',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -23,17 +23,17 @@ async function handler(m, { sock }) {
 
     if (!name || !m.quoted) {
         return m.reply(
-            `ℹ️ *INFORMASI PENGGUNAAN*\n\n` +
-            `Fitur ini digunakan untuk melakukan *deploy* (hosting) kode HTML atau file proyek lengkap (ZIP) secara langsung ke Vercel.\n\n` +
-            `*CONTOH PENGGUNAAN:*\n` +
-            `• Reply teks/kode HTML dengan perintah: \`${m.prefix}deploy namasitus\`\n` +
-            `• Reply file \`.html\` atau \`.zip\` dengan perintah: \`${m.prefix}deploy namasitus\``
+            `ℹ️ *INFORMACIÓN DE USO*\n\n` +
+            `Esta función se usa para hacer un *deploy* (alojar) código HTML o un proyecto completo (ZIP) directamente en Vercel.\n\n` +
+            `*EJEMPLO DE USO:*\n` +
+            `• Responde un texto/código HTML con el comando: \`${m.prefix}deploy nombresitio\`\n` +
+            `• Responde un archivo \`.html\` o \`.zip\` con el comando: \`${m.prefix}deploy nombresitio\``
         )
     }
 
     const token = config.vercel?.token
     if (!token) {
-        return m.reply(`❌ *TOKEN BELUM DIATUR*\n\nToken Vercel belum dikonfigurasi di pengaturan sistem. Silakan atur \`config.vercel.token\` terlebih dahulu.`)
+        return m.reply(`❌ *TOKEN NO CONFIGURADO*\n\nEl Token de Vercel no está configurado en la configuración del sistema. Configura \`config.vercel.token\` primero.`)
     }
 
     m.react('🕕')
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
             if (filesPayload.length === 0) {
                 m.react('❌')
-                return m.reply(`❌ *FILE ZIP KOSONG*\n\nFile ZIP yang Anda unggah tidak berisi file apapun. Pastikan file ZIP tersebut berisi proyek HTML/Web statis.`)
+                return m.reply(`❌ *ARCHIVO ZIP VACÍO*\n\nEl archivo ZIP que subiste no contiene ningún archivo. Asegúrate de que el ZIP contenga un proyecto HTML/Web estático.`)
             }
         } else if (
             m.quoted.mimetype === 'text/html' ||
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
         } else if (m.quoted.text || m.quoted.body) {
             let htmlContent = m.quoted.text || m.quoted.body
             if (!/<html|<!doctype html|<head|<body/i.test(htmlContent)) {
-                htmlContent = `<!DOCTYPE html>\n<html lang="id">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>${name}</title>\n</head>\n<body>\n${htmlContent}\n</body>\n</html>`
+                htmlContent = `<!DOCTYPE html>\n<html lang="es">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>${name}</title>\n</head>\n<body>\n${htmlContent}\n</body>\n</html>`
             }
 
             filesPayload.push({
@@ -85,11 +85,11 @@ async function handler(m, { sock }) {
         } else {
             m.react('❌')
             return m.reply(
-                `❌ *FORMAT TIDAK DIDUKUNG*\n\n` +
-                `Sistem hanya mendukung deploy dari format berikut:\n` +
-                `• Teks kode HTML\n` +
-                `• Dokumen \`.html\`\n` +
-                `• Dokumen arsip \`.zip\``
+                `❌ *FORMATO NO SOPORTADO*\n\n` +
+                `El sistema solo admite el despliegue desde los siguientes formatos:\n` +
+                `• Texto de código HTML\n` +
+                `• Documento \`.html\`\n` +
+                `• Archivo comprimido \`.zip\``
             )
         }
 
@@ -135,18 +135,18 @@ async function handler(m, { sock }) {
                 domains.find(d => d.name.endsWith('.vercel.app'))?.name ||
                 domain
         } catch {
-            // fallback ke default domain jika gagal mengambil data domain
+            // se usa el dominio por defecto si falla al obtener los dominios
         }
 
         m.react('✅')
 
         await m.reply(
-            `✅ *DEPLOY BERHASIL*\n\n` +
-            `Proyek Anda telah berhasil diunggah ke Vercel dan saat ini sedang dalam proses penyebaran (building). Anda dapat segera mengaksesnya melalui tautan berikut.\n\n` +
-            `*RINCIAN DEPLOY:*\n` +
-            `• Nama Proyek: *${name}*\n` +
-            `• Tipe Proyek: *${isZip ? 'ZIP Archive (Banyak File)' : 'Static HTML (File Tunggal)'}*\n` +
-            `• Tautan: https://${domain}`
+            `✅ *DEPLOY EXITOSO*\n\n` +
+            `Tu proyecto se subió correctamente a Vercel y se está desplegando (building). Puedes acceder a él de inmediato a través del siguiente enlace.\n\n` +
+            `*DETALLES DEL DEPLOY:*\n` +
+            `• Nombre del Proyecto: *${name}*\n` +
+            `• Tipo de Proyecto: *${isZip ? 'Archivo ZIP (Múltiples archivos)' : 'HTML estático (Archivo único)'}*\n` +
+            `• Enlace: https://${domain}`
         )
 
     } catch (error) {
@@ -157,7 +157,7 @@ async function handler(m, { sock }) {
             error.response?.data?.message ||
             error.message
 
-        m.reply(`❌ *DEPLOY GAGAL*\n\nTerjadi kesalahan saat mencoba mengunggah proyek ke Vercel.\n\n*Penyebab Error:*\n> ${err}`)
+        m.reply(`❌ *DEPLOY FALLIDO*\n\nSe produjo un error al intentar subir el proyecto a Vercel.\n\n*Causa del error:*\n> ${err}`)
     }
 }
 

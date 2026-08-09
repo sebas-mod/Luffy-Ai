@@ -1,19 +1,19 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "musicmaker",
   alias: ["bikinlagu", "suno"],
   category: "ai",
-  description: "Membuat musik atau lagu menggunakan AI dari teks (prompt)",
+  description: "Crear música o canciones usando IA a partir de un texto (prompt)",
   usage: ".musicmaker <prompt>",
-  example: ".musicmaker Lagu sedih tentang perpisahan dengan musik piano",
+  example: ".musicmaker Canción triste sobre la despedida con música de piano",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 3,
+  carne: 3,
   isEnabled: true,
 };
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const prompt = m.text?.trim() || m.args.join(" ");
 
   if (!prompt) {
-    return m.reply("❌ Masukkan deskripsi lagu yang ingin dibuat.\n\nContoh: `.musicmaker Lagu pop romantis yang ceria`");
+    return m.reply("❌ Ingresa la descripción de la canción que quieres crear.\n\nEjemplo: `.musicmaker Canción pop romántica y alegre`");
   }
 
   await m.react("🕕");
@@ -39,16 +39,16 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ AI gagal membuat lagu. Coba gunakan prompt (deskripsi) yang lain.");
+      return m.reply("⚠️ La IA no pudo crear la canción. Prueba con otro prompt (descripción).");
     }
 
     const r = data.result;
 
     const caption = `🎵 *MUSIC MAKER AI* 🎵\n\n` +
-      `*Judul:* ${r.title}\n` +
+      `*Título:* ${r.title}\n` +
       `*Tags:* ${r.tags}\n` +
-      `*Durasi:* ${r.duration} detik\n\n` +
-      `*Lirik:*\n${r.lyrics}`;
+      `*Duración:* ${r.duration} segundos\n\n` +
+      `*Letra:*\n${r.lyrics}`;
 
     await sock.sendMessage(m.chat, {
       audio: { url: r.url },
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Music Maker AI]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat memproses permintaan pembuatan lagu ke AI. Server AI mungkin sibuk.");
+    m.reply("😔 Ocurrió un error al procesar la solicitud de creación de canción hacia la IA. Es posible que el servidor de IA esté ocupado.");
   }
 }
 

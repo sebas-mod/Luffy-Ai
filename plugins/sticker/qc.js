@@ -1,19 +1,19 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'qc',
     alias: ['qcstc', 'stcqc', 'qcstic', 'qcstick', 'quotesticker'],
     category: 'sticker',
-    description: 'Membuat sticker quote chat dengan warna custom',
-    usage: '.qc <warna> <text>',
-    example: '.qc pink Hai semuanya!',
+    description: 'Crea sticker de cita de chat con color personalizado',
+    usage: '.qc <color> <texto>',
+    example: '.qc pink Hola a todos!',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -83,12 +83,12 @@ async function handler(m, { sock }) {
         const colorList = Object.keys(COLORS).join(', ')
         return m.reply(
             `💬 *ǫᴜᴏᴛᴇ sᴛɪᴄᴋᴇʀ*\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
-            `┃ ◦ \`${m.prefix}qc <warna> <text>\`\n` +
-            `┃ ◦ Reply pesan + \`${m.prefix}qc <warna>\`\n` +
+            `╭┈┈⬡「 📋 *ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ* 」\n` +
+            `┃ ◦ \`${m.prefix}qc <color> <texto>\`\n` +
+            `┃ ◦ Responde un mensaje + \`${m.prefix}qc <color>\`\n` +
             `╰┈┈⬡\n\n` +
-            `> Contoh: \`${m.prefix}qc pink Hai semuanya!\`\n\n` +
-            `╭┈┈⬡「 🎨 *ᴡᴀʀɴᴀ* 」\n` +
+            `> Ejemplo: \`${m.prefix}qc pink Hola a todos!\`\n\n` +
+            `╭┈┈⬡「 🎨 *ᴄᴏʟᴏʀᴇꜱ* 」\n` +
             `┃ ${colorList}\n` +
             `╰┈┈⬡`
         )
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
     const backgroundColor = COLORS[color]
     
     if (!backgroundColor) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Warna \`${color}\` tidak ditemukan!\n> Gunakan salah satu warna yang tersedia.`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no existe!\n> Usa uno de los colores disponibles.`)
     }
     
     let message = args.slice(1).join(' ')
@@ -108,11 +108,11 @@ async function handler(m, { sock }) {
     }
     
     if (!message) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text untuk quote!`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
     }
     
     if (message.length > 80) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Maksimal 80 karakter! (Saat ini: ${message.length})`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
     }
     
     m.react('🕕')
@@ -165,7 +165,7 @@ async function handler(m, { sock }) {
         const buffer = Buffer.from(response.data, 'base64')
         
         await sock.sendImageAsSticker(m.chat, buffer, m, {
-            packname: config.sticker?.packname || 'Ourin-AI',
+            packname: config.sticker?.packname || 'Luffy-Ai',
             author: config.sticker?.author || 'Bot'
         })
         

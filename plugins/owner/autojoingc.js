@@ -1,6 +1,6 @@
 import config from "../../config.js";
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import te from "../../src/lib/ourin-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "autojoingc",
   alias: ["autojoin", "autojoingroup"],
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 const GROUP_LINK_REGEX = /chat\.whatsapp\.com\/([a-zA-Z0-9]{18,24})/gi;
@@ -23,14 +23,14 @@ async function handler(m) {
   if (!arg || !["on", "off"].includes(arg)) {
     const current = db.setting("autoJoinGc") || false;
     return m.reply(
-      `🔗 *AUTO JOIN GROUP*\n\nStatus: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — aktifkan\n\`${m.prefix}autojoingc off\` — nonaktifkan`,
+      `🔗 *AUTO JOIN DE GRUPOS*\n\nEstado: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — activar\n\`${m.prefix}autojoingc off\` — desactivar`,
     );
   }
   const enabled = arg === "on";
   db.setting("autoJoinGc", enabled);
   await db.save();
   m.reply(
-    `${enabled ? "✅" : "❌"} Auto join group *${enabled ? "diaktifkan" : "dinonaktifkan"}*`,
+    `${enabled ? "✅" : "❌"} Auto join de grupos *${enabled ? "activado" : "desactivado"}*`,
   );
 }
 async function autoJoinDetector(m, sock) {
@@ -51,9 +51,9 @@ async function autoJoinDetector(m, sock) {
     } catch (e) {
       const msg = e.message || String(e);
       if (msg.includes("already") || msg.includes("participant")) {
-        await m.reply(`⚠️ Sudah ada di grup tersebut`);
+        await m.reply(`⚠️ Ya estoy en ese grupo`);
       } else if (msg.includes("expired") || msg.includes("revoked")) {
-        await m.reply(`❌ Link grup sudah expired/revoked`);
+        await m.reply(`❌ El link del grupo está expirado/revocado`);
       } else {
         await m.reply(te(m.prefix, m.command, m.pushName));
       }

@@ -1,19 +1,19 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "quilbot",
   alias: ["quillbot", "parafrase"],
   category: "ai",
-  description: "AI Quillbot untuk menulis ulang atau menyempurnakan kalimat",
-  usage: ".quilbot <teks>",
-  example: ".quilbot Saya sedang makan nasi di rumah",
+  description: "IA Quillbot para reescribir o perfeccionar oraciones",
+  usage: ".quilbot <texto>",
+  example: ".quilbot Estoy comiendo arroz en casa",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ Masukkan teks yang ingin disempurnakan.\n\nContoh: `.quilbot Saya sedang makan nasi di rumah`");
+    return m.reply("❌ Ingresa el texto que quieres perfeccionar.\n\nEjemplo: `.quilbot Estoy comiendo arroz en casa`");
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Quillbot gagal memproses teks.");
+      return m.reply("⚠️ Quillbot no pudo procesar el texto.");
     }
 
     await m.reply(data.result);
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Quillbot]", error.message);
     await m.react("☢");
-    m.reply("😔 Terjadi kesalahan saat memproses teks ke Quillbot.");
+    m.reply("😔 Ocurrió un error al procesar el texto con Quillbot.");
   }
 }
 

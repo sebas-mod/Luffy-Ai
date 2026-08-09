@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "colongpp",
   alias: ["stealpp", "malingpp", "ambilpp"],
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 const FALLBACK_PP = "https://telegra.ph/file/1ecdb5a0aee62ef17d7fc.jpg";
@@ -34,16 +34,16 @@ async function handler(m, { sock }) {
   console.log(targetJid);
   if (!targetJid) {
     return m.reply(
-      `🕵️ *ᴄᴏʟᴏɴɢ ᴘᴘ*\n\n` +
-        `> Reply pesan seseorang untuk mencuri PP-nya\n\n` +
-        `*ᴄᴀʀᴀ:*\n` +
-        `> Reply pesan target → \`${m.prefix}colongpp\``,
+      `🕵️ *ʀᴏʙᴀʀ ᴘᴘ*\n\n` +
+        `> Responde al mensaje de alguien para robar su foto de perfil\n\n` +
+        `*ᴄóᴍᴏ:*\n` +
+        `> Responde al mensaje del target → \`${m.prefix}colongpp\``,
     );
   }
   await m.react("🕵️");
   try {
     let ppBuffer;
-    let source = "profil";
+    let source = "perfil";
     try {
       const ppUrl = await sock.profilePictureUrl(targetJid, "image");
       const res = await axios.get(ppUrl, {
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
         timeout: 15000,
       });
       ppBuffer = Buffer.from(res.data);
-      source = "default (target tidak punya PP)";
+      source = "predeterminada (el target no tiene foto de perfil)";
     }
     const processed = await resizeForPP(ppBuffer);
     const botJid = sock.user?.id;
@@ -65,9 +65,9 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.split("@")[0];
     await m.react("✅");
     return m.reply(
-      `✅ *ᴘᴘ ʙᴇʀʜᴀsɪʟ ᴅɪᴄᴏʟᴏɴɢ!*\n\n` +
+      `✅ *¡ᴀʀᴛᴇ ᴅᴇ ᴘᴇʀꜰɪʟ ʀᴏʙᴀᴅᴀ ᴄᴏɴ Éxɪᴛᴏ!*\n\n` +
         `> 🎯 Target: @${targetNumber}\n` +
-        `> 📸 Sumber: ${source}`,
+        `> 📸 Fuente: ${source}`,
       { mentions: [targetJid] },
     );
   } catch (err) {

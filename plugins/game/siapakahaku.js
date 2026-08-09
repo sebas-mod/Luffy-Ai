@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('siapakahaku', {
     alias: ['siapa', 'whoami'],
     emoji: '🎭',
-    title: 'SIAPAKAH AKU',
-    description: 'Tebak dari deskripsi'
+    title: 'QUIÉN SOY',
+    description: 'Adivina a partir de la descripción'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('siapakahaku')

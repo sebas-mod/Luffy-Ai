@@ -1,10 +1,10 @@
-import { stopJadibot, isJadibotActive, getJadibotStatus } from '../../src/lib/ourin-jadibot-manager.js'
+import { stopJadibot, isJadibotActive, getJadibotStatus } from '../../src/lib/luffy-jadibot-manager.js'
 
 const pluginConfig = {
     name: 'stopjadibot',
     alias: ['berhentijadibot', 'stopbot', 'unjadibot'],
     category: 'main',
-    description: 'Hentikan sesi jadibot kamu',
+    description: 'Detener tu sesión jadibot',
     usage: '.stopjadibot',
     example: '.stopjadibot',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -27,12 +27,12 @@ function formatUptime(ms) {
 
 async function handler(m, { sock }) {
     const sender = m.sender
-    if (!sender) return m.reply('❌ Gagal mengidentifikasi nomor kamu')
+    if (!sender) return m.reply('❌ No se pudo identificar tu número')
 
     if (!isJadibotActive(sender)) {
         return m.reply(
             `❌ *ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴅᴀʟᴀʜ ᴊᴀᴅɪʙᴏᴛ*\n\n` +
-            `> Ketik \`${m.prefix}jadibot\` untuk menjadi bot`
+            `> Escribe \`${m.prefix}jadibot\` para convertirte en bot`
         )
     }
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
             `> 📱 Nomor: *@${sender.split('@')[0]}*\n` +
             `> ⏱️ Uptime: *${uptime}*\n` +
             `> 💾 Session: *Tersimpan*\n\n` +
-            `Ketik \`${m.prefix}jadibot\` untuk mengaktifkan kembali.`,
+            `Escribe \`${m.prefix}jadibot\` para reactivarlo.`,
             { mentions: [sender] }
         )
     } catch (e) {

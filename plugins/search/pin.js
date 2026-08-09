@@ -5,15 +5,15 @@ import {
 } from "ourin";
 import axios from "axios";
 import crypto from "crypto";
-import te from "../../src/lib/ourin-error.js";
-import { f } from "../../src/lib/ourin-http.js";
-import { AIRich } from "../../src/lib/ourin-builder.js";
+import te from "../../src/lib/luffy-error.js";
+import { f } from "../../src/lib/luffy-http.js";
+import { AIRich } from "../../src/lib/luffy-builder.js";
 
 const pluginConfig = {
   name: "pin",
   alias: ["pinsearch", "pinterestsearch", "pins"],
   category: "search",
-  description: "Cari gambar di Pinterest (album)",
+  description: "Busca imágenes en Pinterest (álbum)",
   usage: ".pin <query>",
   example: ".pin Zhao Lusi",
   isOwner: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -29,8 +29,8 @@ async function handler(m, { sock }) {
   const query = m.text?.trim();
   if (!query) {
     return m.reply(
-      `🔍 *ᴘɪɴᴛᴇʀᴇsᴛ sᴇᴀʀᴄʜ*\n\n` +
-      `> Contoh:\n` +
+      `🔍 *ʙᴜsǫᴜᴇᴅᴀ ᴘɪɴᴛᴇʀᴇsᴛ*\n\n` +
+      `> Ejemplo:\n` +
       `\`${m.prefix}pin Zhao Lusi\``,
     );
   }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url)?.slice(0, 10);
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`❌ Tidak ditemukan hasil untuk: ${query}`);
+      return m.reply(`❌ No se encontraron resultados para: ${query}`);
     }
 
     const mediaList = [];
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply("❌ Gagal memuat gambar");
+      return m.reply("❌ Error al cargar la imagen");
     }
 
     try {
@@ -118,7 +118,7 @@ async function handler(m, { sock }) {
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Ourin-AI";
+        config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
       for (const content of mediaList) {
         await sock.sendMessage(

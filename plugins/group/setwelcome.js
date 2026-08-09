@@ -1,18 +1,18 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "setwelcome",
   alias: ["customwelcome"],
   category: "group",
-  description: "Set custom welcome message",
-  usage: ".setwelcome <pesan>",
-  example: ".setwelcome Halo {user}, selamat datang di {group}!",
+  description: "Configurar un mensaje de bienvenida personalizado",
+  usage: ".setwelcome <mensaje>",
+  example: ".setwelcome Hola {user}, bienvenido a {group}!",
   isOwner: false,
   isPremium: false,
   isGroup: true,
   isPrivate: false,
   isAdmin: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -22,23 +22,23 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📝 *sᴇᴛ ᴡᴇʟᴄᴏᴍᴇ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀ* 」\n` +
-        `┃ ◦ \`{user}\` - Nama member\n` +
-        `┃ ◦ \`{number}\` - Nomor member\n` +
-        `┃ ◦ \`{group}\` - Nama grup\n` +
-        `┃ ◦ \`{desc}\` - Deskripsi grup\n` +
-        `┃ ◦ \`{count}\` - Jumlah member\n` +
-        `┃ ◦ \`{owner}\` - Nama owner grup\n` +
-        `┃ ◦ \`{date}\` - Tanggal (DD/MM/YYYY)\n` +
-        `┃ ◦ \`{time}\` - Waktu (HH:mm WIB)\n` +
-        `┃ ◦ \`{day}\` - Hari (Senin, Selasa, dll)\n` +
-        `┃ ◦ \`{bot}\` - Nama bot\n` +
-        `┃ ◦ \`{prefix}\` - Prefix bot\n` +
+      `📝 *ᴄᴏɴꜰɪɢᴜʀᴀʀ ʙɪᴇɴᴠᴇɴɪᴅᴀ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀs* 」\n` +
+        `┃ ◦ \`{user}\` - Nombre del miembro\n` +
+        `┃ ◦ \`{number}\` - Número del miembro\n` +
+        `┃ ◦ \`{group}\` - Nombre del grupo\n` +
+        `┃ ◦ \`{desc}\` - Descripción del grupo\n` +
+        `┃ ◦ \`{count}\` - Cantidad de miembros\n` +
+        `┃ ◦ \`{owner}\` - Nombre del owner del grupo\n` +
+        `┃ ◦ \`{date}\` - Fecha (DD/MM/AAAA)\n` +
+        `┃ ◦ \`{time}\` - Hora (HH:mm WIB)\n` +
+        `┃ ◦ \`{day}\` - Día (Lunes, Martes, etc)\n` +
+        `┃ ◦ \`{bot}\` - Nombre del bot\n` +
+        `┃ ◦ \`{prefix}\` - Prefijo del bot\n` +
         `╰┈┈⬡\n\n` +
-        `\`Contoh:\`\n` +
-        `\`${m.prefix}setwelcome Halo {user}! 👋\`\n` +
-        `\`Selamat datang di {group} pada {day}, {date}\``,
+        `\`Ejemplo:\`\n` +
+        `\`${m.prefix}setwelcome Hola {user}! 👋\`\n` +
+        `\`Bienvenido a {group} el {day}, {date}\``,
     );
   }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   m.react("✅");
 
   await m.reply(
-    `✅ Welcome berhasil di set menjadi *${text}*\nMau reset? ketik ${m.prefix}resetwelcome`,
+    `✅ Bienvenida configurada correctamente como *${text}*\n¿Quieres restablecerla? Escribe ${m.prefix}resetwelcome`,
   );
 }
 

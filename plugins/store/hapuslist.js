@@ -1,18 +1,18 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'hapuslist',
     alias: ['dellist', 'deletelist'],
     category: 'store',
-    description: '🗑️ Hapus informasi toko',
-    usage: '.hapuslist <nomor>',
+    description: '🗑️ Eliminar información de la tienda',
+    usage: '.hapuslist <numero>',
     example: '.hapuslist 1',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,13 +21,13 @@ async function handler(m, { sock }) {
     const lists = db.setting('storeLists') || []
 
     if (lists.length === 0) {
-        return m.reply(`📭 *Belum ada informasi.*\n\nTambahkan informasi terlebih dahulu: \`${m.prefix}addlist\` ➕`)
+        return m.reply(`📭 *Aún no hay información.*\n\nAgrega primero información: \`${m.prefix}addlist\` ➕`)
     }
 
     const idx = parseInt(m.text?.trim()) - 1
 
     if (isNaN(idx) || idx < 0 || idx >= lists.length) {
-        let txt = `🗑️ *Pilih Informasi yang Dihapus*\n\nKetik \`${m.prefix}hapuslist <nomor>\`\n\n`
+        let txt = `🗑️ *Elige la Información a Eliminar*\n\nEscribe \`${m.prefix}hapuslist <numero>\`\n\n`
         for (let i = 0; i < lists.length; i++) {
             const l = lists[i]
             const mediaIcon = l.image ? '🖼️' : l.video ? '🎬' : '📝'
@@ -41,9 +41,9 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     return m.reply(
-        `🗑️ *INFORMASI DIHAPUS*\n\n` +
-        `🏷️ Nama: *${deleted.name}*\n\n` +
-        `⚠️ _Informasi telah dihapus secara permanen dan tidak dapat dikembalikan._`
+        `🗑️ *INFORMACIÓN ELIMINADA*\n\n` +
+        `🏷️ Nombre: *${deleted.name}*\n\n` +
+        `⚠️ _La información fue eliminada permanentemente y no se puede recuperar._`
     )
 }
 

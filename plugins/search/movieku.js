@@ -1,12 +1,12 @@
 import axios from "axios"
 import * as cheerio from "cheerio"
-import te from "../../src/lib/ourin-error.js"
+import te from "../../src/lib/luffy-error.js"
 
 const pluginConfig = {
     name: "movieku",
     alias: ["movie", "film", "carifilm", "carimovie"],
     category: "search",
-    description: "Cari dan tampilkan informasi film lengkap dari Movieku beserta link download dalam berbagai kualitas",
+    description: "Busca y muestra información completa de películas de Movieku con enlaces de descarga en varias calidades",
     usage: ".movieku <judul film>",
     example: ".movieku avengers",
     isOwner: false,
@@ -14,7 +14,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -73,7 +73,7 @@ async function getMovieDetail(movieUrl) {
 
 function formatDownloads(downloads) {
     if (!downloads || Object.keys(downloads).length === 0) return ""
-    let txt = `\n🔽 *LINK DOWNLOAD*\n\n`
+    let txt = `\n🔽 *ENLACES DE DESCARGA*\n\n`
     const qualities = ["1080p", "720p", "480p", "360p"]
     for (const q of qualities) {
         if (!downloads[q]) continue
@@ -94,13 +94,13 @@ async function handler(m, { sock }) {
     if (!query) {
         return m.reply(
             `🎬 *MOVIEKU*\n\n` +
-            `Fitur ini membantu kamu mencari informasi lengkap tentang film dari database Movieku, termasuk sinopsis, detail film, dan link download dalam berbagai kualitas resolusi\n\n` +
-            `*Cara pakai:*\n` +
-            `> \`${m.prefix}movieku <judul film>\`\n\n` +
-            `*Contoh:*\n` +
+            `Esta función te ayuda a buscar información completa de películas de la base de datos de Movieku, incluyendo sinopsis, detalles y enlaces de descarga en varias calidades\n\n` +
+            `*Cómo usar:*\n` +
+            `> \`${m.prefix}movieku <título de la película>\`\n\n` +
+            `*Ejemplo:*\n` +
             `> \`${m.prefix}movieku avengers\`\n` +
             `> \`${m.prefix}movieku one piece\`\n\n` +
-            `_Hasil pencarian akan menampilkan film yang paling relevan dengan judul yang kamu cari_`
+            `_Los resultados de búsqueda mostrarán la película más relevante según el título que busques_`
         )
     }
 
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
 
         if (!movies || movies.length === 0) {
             m.react("❌")
-            return m.reply(`❌ Film dengan kata kunci *${query}* tidak ditemukan, coba gunakan judul yang lebih spesifik ya`)
+            return m.reply(`❌ No se encontró una película con la palabra clave *${query}*, intenta con un título más específico`)
         }
 
         const movie = movies[0]
@@ -126,16 +126,16 @@ async function handler(m, { sock }) {
             txt += `📝 *Sinopsis:*\n${synopsisText}\n\n`
         }
 
-        txt += `📋 *DETAIL FILM*\n\n`
-        if (detail.genre) txt += `🎭 Genre: *${detail.genre}*\n`
-        if (detail.release) txt += `📅 Rilis: *${detail.release}*\n`
-        if (detail.duration) txt += `⏱️ Durasi: *${detail.duration}*\n`
-        if (detail.quality) txt += `📺 Kualitas: *${detail.quality}*\n`
-        if (detail.country) txt += `🌍 Negara: *${detail.country}*\n`
-        if (detail.director) txt += `🎬 Sutradara: *${detail.director}*\n`
+        txt += `📋 *DETALLES DE LA PELÍCULA*\n\n`
+        if (detail.genre) txt += `🎭 Género: *${detail.genre}*\n`
+        if (detail.release) txt += `📅 Lanzamiento: *${detail.release}*\n`
+        if (detail.duration) txt += `⏱️ Duración: *${detail.duration}*\n`
+        if (detail.quality) txt += `📺 Calidad: *${detail.quality}*\n`
+        if (detail.country) txt += `🌍 País: *${detail.country}*\n`
+        if (detail.director) txt += `🎬 Director: *${detail.director}*\n`
         if (detail.rating) txt += `⭐ Rating: *${detail.rating}*\n`
         if (detail.score) txt += `📊 Score: *${detail.score}*\n`
-        if (detail.stars) txt += `🌟 Pemeran: *${detail.stars}*\n`
+        if (detail.stars) txt += `🌟 Reparto: *${detail.stars}*\n`
 
         if (detail.stream) {
             txt += `\n▶️ *Streaming:* ${detail.stream}\n`
@@ -158,14 +158,14 @@ async function handler(m, { sock }) {
         }
 
         if (movies.length > 1) {
-            let listTxt = `🎬 *HASIL LAINNYA*\n\n`
-            listTxt += `Ditemukan *${movies.length}* film yang cocok dengan pencarianmu, berikut daftar lengkapnya:\n\n`
+            let listTxt = `🎬 *MÁS RESULTADOS*\n\n`
+            listTxt += `Se encontraron *${movies.length}* películas que coinciden con tu búsqueda, aquí está la lista completa:\n\n`
             const maxShow = Math.min(movies.length, 10)
             for (let i = 1; i < maxShow; i++) {
                 listTxt += `- *${movies[i].post_title}*\n  > ${movies[i].post_link}\n\n`
             }
             if (movies.length > 10) {
-                listTxt += `_...dan ${movies.length - 10} film lainnya_`
+                listTxt += `_...y ${movies.length - 10} películas más_`
             }
             await m.reply(listTxt.trim())
         }

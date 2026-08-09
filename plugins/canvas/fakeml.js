@@ -1,25 +1,25 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import * as _canvas from '@napi-rs/canvas'
 import axios from "axios";
 import path from "path";
 import fs from "fs";
 
 
-import { uploadTo0x0 } from "../../src/lib/ourin-tmpfiles.js";
-import te from "../../src/lib/ourin-error.js";
+import { uploadTo0x0 } from "../../src/lib/luffy-tmpfiles.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "fakeml",
   alias: ["mlbbfake", "mlcard", "mlfake"],
   category: "canvas",
-  description: "Membuat fake ML profile card",
-  usage: ".fakeml <nama> (reply/kirim foto)",
+  description: "Crea una tarjeta de perfil fake de ML",
+  usage: ".fakeml <nombre> (responde/envía foto)",
   example: ".fakeml Misaki",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 let fontRegistered = false;
@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
   const name = m.text?.trim();
   if (!name) {
     return m.reply(
-      `🎮 *ꜰᴀᴋᴇ ᴍʟ ᴘʀᴏꜰɪʟᴇ*\n\n` +
-        `> Masukkan nama untuk profile\n\n` +
-        `*ᴄᴀʀᴀ ᴘᴀᴋᴀɪ:*\n` +
-        `> 1. Kirim foto + caption \`${m.prefix}fakeml <nama>\`\n` +
-        `> 2. Reply foto dengan \`${m.prefix}fakeml <nama>\``,
+      `🎮 *ᴘᴇʀꜰɪʟ ꜰᴀᴋᴇ ᴅᴇ ᴍʟ*\n\n` +
+        `> Ingresa el nombre para el perfil\n\n` +
+        `*ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ:*\n` +
+        `> 1. Envía foto + caption \`${m.prefix}fakeml <nombre>\`\n` +
+        `> 2. Responde una foto con \`${m.prefix}fakeml <nombre>\``,
     );
   }
   let buffer = null;
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     }
   }
   if (!buffer) {
-    return m.reply(`❌ Kirim/reply gambar untuk dijadikan avatar!`);
+    return m.reply(`❌ ¡Envía/responde una imagen para usarla como avatar!`);
   }
   m.react("🕕");
   try {
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
     m.react("✅");
   } catch (error) {
     m.react("❌");
-    m.reply(`Coba lagi`);
+    m.reply(`Inténtalo de nuevo`);
   }
 }
 export { pluginConfig as config, handler };

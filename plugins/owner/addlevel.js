@@ -1,5 +1,5 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import { calculateLevel, getRole, checkAndNotifyLevelUp } from './../../src/lib/ourin-level.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import { calculateLevel, getRole, checkAndNotifyLevelUp } from './../../src/lib/luffy-level.js'
 
 const pluginConfig = {
     name: 'addlevel',
@@ -13,7 +13,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -38,12 +38,12 @@ async function handler(m, { sock }) {
     
     if (!targetJid || levels <= 0) {
         return m.reply(
-            `📊 *ADD LEVEL*\n\n` +
-            `Sistem untuk menambahkan level kepada member secara instan.\n\n` +
-            `*PENGGUNAAN:*\n` +
-            `- *${m.prefix}addlevel <jumlah>* — (ke diri sendiri)\n` +
-            `- *${m.prefix}addlevel <jumlah> @user* — (ke orang lain)\n\n` +
-            `*CONTOH PENGGUNAAN:*\n` +
+            `📊 *AGREGAR NIVEL*\n\n` +
+            `Sistema para añadir nivel a un miembro de forma instantánea.\n\n` +
+            `*USO:*\n` +
+            `- *${m.prefix}addlevel <cantidad>* — (a ti mismo)\n` +
+            `- *${m.prefix}addlevel <cantidad> @user* — (a otra persona)\n\n` +
+            `*EJEMPLO DE USO:*\n` +
             `- *${m.prefix}addlevel 5*\n` +
             `- *${m.prefix}addlevel 10 @user*`
         )
@@ -70,12 +70,12 @@ async function handler(m, { sock }) {
     const finalLevel = addResult.newLevel || calculateLevel(user.exp)
     
     await m.reply(
-        `✅ *BERHASIL MENAMBAH LEVEL*\n\n` +
-        `Level milik *@${targetJid.split('@')[0]}* telah sukses ditambahkan sebanyak *${levels} Level*.\n\n` +
-        `*Statistik Terkini:*\n` +
-        `- Level Sekarang: *${finalLevel}*\n` +
-        `- Role Saat Ini: *${getRole(finalLevel)}*\n` +
-        `- Total XP: *${user.exp.toLocaleString()}* XP`,
+        `✅ *NIVEL AÑADIDO CON ÉXITO*\n\n` +
+        `Se añadieron *${levels} niveles* al nivel de *@${targetJid.split('@')[0]}*.\n\n` +
+        `*Estadísticas actuales:*\n` +
+        `- Nivel actual: *${finalLevel}*\n` +
+        `- Rol actual: *${getRole(finalLevel)}*\n` +
+        `- XP total: *${user.exp.toLocaleString()}* XP`,
         { mentions: [targetJid] }
     )
 }

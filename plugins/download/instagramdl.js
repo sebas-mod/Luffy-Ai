@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "instagramdl",
   alias: ["igdl", "ig", "instagram"],
   category: "download",
-  description: "Download video/foto Instagram",
+  description: "Descarga videos/fotos de Instagram",
   usage: ".instagramdl <url>",
   example: ".instagramdl https://www.instagram.com/reel/xxx",
   isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
         `> \`${m.prefix}igdl <url>\`\n\n` +
-        `*ᴄᴏɴᴛᴏʜ:*\n` +
+        `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/reel/xxx\`\n` +
         `> \`${m.prefix}igdl https://www.instagram.com/p/xxx\``,
     );
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
 
   if (!IG_REGEX.test(url)) {
     return m.reply(
-      `❌ URL tidak valid. Gunakan link Instagram (reel/post/story).`,
+      `❌ URL no válida. Usa un enlace de Instagram (reel/post/story).`,
     );
   }
 
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Gagal mengambil media. Coba link lain.`);
+      return m.reply(`❌ Error al obtener el contenido. Prueba con otro enlace.`);
     }
 
     const isStory = url.includes("/stories/");
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    return m.reply(`❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n> ${err.message}`);
+    return m.reply(`❌ *ꜰᴀʟʟó ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n> ${err.message}`);
   }
 }
 

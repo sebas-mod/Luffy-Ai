@@ -1,11 +1,11 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
   name: 'text2img2',
   alias: ['t2i2', 'genimg'],
   category: 'ai',
-  description: 'Generate image from text using AI',
+  description: 'Generar imágenes a partir de texto usando IA',
   usage: '.text2img2 <prompt>',
   example: '.text2img2 a futuristic city in mars',
   isOwner: false,
@@ -13,12 +13,12 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 5,
+  carne: 5,
   isEnabled: true,
 }
 
 async function handler(m, { sock }) {
-  if (!m.fullArgs) return m.reply(`Silahkan masukkan prompt.\nContoh: ${m.prefix + m.command} car`)
+  if (!m.fullArgs) return m.reply(`Por favor escribe un prompt.\nEjemplo: ${m.prefix + m.command} car`)
 
   await m.react('🕕')
 

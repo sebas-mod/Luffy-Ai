@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "pet",
@@ -13,29 +13,29 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
 const PET_TYPES = {
-  cat: { name: "🐱 Kucing", baseStats: { attack: 5, defense: 3, luck: 5 }, evolve: "lion" },
-  dog: { name: "🐕 Anjing", baseStats: { attack: 8, defense: 5, luck: 2 }, evolve: "wolf" },
-  bird: { name: "🐦 Burung", baseStats: { attack: 4, defense: 2, luck: 8 }, evolve: "phoenix" },
-  fish: { name: "🐟 Ikan", baseStats: { attack: 2, defense: 2, luck: 10 }, evolve: "dragon" },
-  rabbit: { name: "🐰 Kelinci", baseStats: { attack: 3, defense: 4, luck: 6 }, evolve: "thunderbunny" },
-  lion: { name: "🦁 Singa", baseStats: { attack: 15, defense: 10, luck: 8 }, evolve: null },
-  wolf: { name: "🐺 Serigala", baseStats: { attack: 18, defense: 12, luck: 5 }, evolve: null },
-  phoenix: { name: "🔥 Phoenix", baseStats: { attack: 12, defense: 8, luck: 15 }, evolve: null },
-  dragon: { name: "🐉 Naga", baseStats: { attack: 20, defense: 15, luck: 12 }, evolve: null },
-  thunderbunny: { name: "⚡ Thunder Bunny", baseStats: { attack: 10, defense: 12, luck: 18 }, evolve: null },
+  cat: { name: "🐱 Gato", baseStats: { attack: 5, defense: 3, luck: 5 }, evolve: "lion" },
+  dog: { name: "🐕 Perro", baseStats: { attack: 8, defense: 5, luck: 2 }, evolve: "wolf" },
+  bird: { name: "🐦 Pájaro", baseStats: { attack: 4, defense: 2, luck: 8 }, evolve: "phoenix" },
+  fish: { name: "🐟 Pez", baseStats: { attack: 2, defense: 2, luck: 10 }, evolve: "dragon" },
+  rabbit: { name: "🐰 Conejo", baseStats: { attack: 3, defense: 4, luck: 6 }, evolve: "thunderbunny" },
+  lion: { name: "🦁 León", baseStats: { attack: 15, defense: 10, luck: 8 }, evolve: null },
+  wolf: { name: "🐺 Lobo", baseStats: { attack: 18, defense: 12, luck: 5 }, evolve: null },
+  phoenix: { name: "🔥 Fénix", baseStats: { attack: 12, defense: 8, luck: 15 }, evolve: null },
+  dragon: { name: "🐉 Dragón", baseStats: { attack: 20, defense: 15, luck: 12 }, evolve: null },
+  thunderbunny: { name: "⚡ Conejo Trueno", baseStats: { attack: 10, defense: 12, luck: 18 }, evolve: null },
 };
 
 const FOOD_ITEMS = {
-  bread: { name: "🍞 Roti", hunger: 10, exp: 5 },
-  fish: { name: "🐟 Ikan", hunger: 20, exp: 10 },
-  meat: { name: "🍖 Daging", hunger: 30, exp: 15 },
-  fruit: { name: "🍎 Buah", hunger: 15, exp: 8 },
-  premium_food: { name: "⭐ Premium Food", hunger: 50, exp: 30 },
+  bread: { name: "🍞 Pan", hunger: 10, exp: 5 },
+  fish: { name: "🐟 Pescado", hunger: 20, exp: 10 },
+  meat: { name: "🍖 Carne", hunger: 30, exp: 15 },
+  fruit: { name: "🍎 Fruta", hunger: 15, exp: 8 },
+  premium_food: { name: "⭐ Comida Premium", hunger: 50, exp: 30 },
 };
 
 function handler(m, { sock }) {
@@ -50,11 +50,11 @@ function handler(m, { sock }) {
 
   if (!user.rpg.pet) {
     return m.reply(
-      `Kamu belum punya hewan peliharaan kak! 😭\nSedih banget bertualang sendirian...\n\n` +
-        `*Cara dapetin teman:* \n` +
-        `🛒 Beli di \`${m.prefix}petshop\`\n` +
-        `💕 Dapat dari \`${m.prefix}breeding\`\n` +
-        `🗡️ Drop rare dari boss!`
+      `¡Aún no tienes una mascota bro! 😭\nQué triste es aventurarse solo...\n\n` +
+        `*Cómo conseguir un amigo:* \n` +
+        `🛒 Cómpralo en \`${m.prefix}petshop\`\n` +
+        `💕 Consíguelo con \`${m.prefix}breeding\`\n` +
+        `🗡️ Drop raro de los jefes!`
     );
   }
 
@@ -63,26 +63,26 @@ function handler(m, { sock }) {
 
   if (!action || !["feed", "train", "status", "rename", "evolve"].includes(action)) {
     const maxHunger = 100;
-    const hungerStatus = pet.hunger >= 70 ? "😊 Senang & Kenyang" : pet.hunger >= 40 ? "😐 Biasa Aja" : "😰 Keroncongan Parah!";
+    const hungerStatus = pet.hunger >= 70 ? "😊 Feliz y Lleno" : pet.hunger >= 40 ? "😐 Normalito" : "😰 ¡Hambre de lobo!";
 
-    let txt = `🐾 *Buku Identitas Peliharaan* 🐾\n\n`;
-    txt += `*Profil Si ${pet.name}:*\n`;
-    txt += `• Spesies: *${petInfo.name}*\n`;
-    txt += `• Level: *${pet.level || 1}*\n`;
+    let txt = `🐾 *Carné de Identidad de la Mascota* 🐾\n\n`;
+    txt += `*Perfil de ${pet.name}:*\n`;
+    txt += `• Especie: *${petInfo.name}*\n`;
+    txt += `• Nivel: *${pet.level || 1}*\n`;
     txt += `• EXP: *${pet.exp || 0} / ${(pet.level || 1) * 100}*\n`;
-    txt += `• Perut: *${pet.hunger}/${maxHunger}* (${hungerStatus})\n\n`;
+    txt += `• Panza: *${pet.hunger}/${maxHunger}* (${hungerStatus})\n\n`;
 
-    txt += `*Kekuatan Fisik:*\n`;
-    txt += `⚔️ Attack: *${pet.stats?.attack || petInfo.baseStats.attack}*\n`;
-    txt += `🛡️ Defense: *${pet.stats?.defense || petInfo.baseStats.defense}*\n`;
-    txt += `🍀 Luck: *${pet.stats?.luck || petInfo.baseStats.luck}*\n\n`;
+    txt += `*Fuerza Física:*\n`;
+    txt += `⚔️ Ataque: *${pet.stats?.attack || petInfo.baseStats.attack}*\n`;
+    txt += `🛡️ Defensa: *${pet.stats?.defense || petInfo.baseStats.defense}*\n`;
+    txt += `🍀 Suerte: *${pet.stats?.luck || petInfo.baseStats.luck}*\n\n`;
 
-    txt += `*Interaksi:*\n`;
-    txt += `👉 \`${m.prefix}pet feed <makanan>\` - Kasih makan\n`;
-    txt += `👉 \`${m.prefix}pet train\` - Latih biar kuat\n`;
-    txt += `👉 \`${m.prefix}pet rename <nama_baru>\` - Ganti nama\n`;
+    txt += `*Interacciones:*\n`;
+    txt += `👉 \`${m.prefix}pet feed <comida>\` - Dar de comer\n`;
+    txt += `👉 \`${m.prefix}pet train\` - Entrenar para que se fortalezca\n`;
+    txt += `👉 \`${m.prefix}pet rename <nuevo_nombre>\` - Cambiar nombre\n`;
     if (petInfo.evolve) {
-      txt += `👉 \`${m.prefix}pet evolve\` - Berevolusi (Bila cukup syarat)\n`;
+      txt += `👉 \`${m.prefix}pet evolve\` - Evolucionar (si cumples los requisitos)\n`;
     }
 
     return m.reply(txt);
@@ -92,28 +92,28 @@ function handler(m, { sock }) {
     const foodKey = args[1]?.toLowerCase();
 
     if (!foodKey) {
-      let txt = `Si ${pet.name} lagi ngeliatin kamu sambil jilat bibir... 🤤\nMau dikasih makan apa nih?\n\n`;
-      txt += `*Daftar Makanan di Tasmu:*\n`;
+      let txt = `${pet.name} te mira mientras se lame los labios... 🤤\n¿Con qué le vas a dar de comer?\n\n`;
+      txt += `*Lista de Comidas en Tu Bolsa:*\n`;
       for (const [key, food] of Object.entries(FOOD_ITEMS)) {
         const have = user.inventory[key] || 0;
-        txt += `\n*${food.name}* (Punya: ${have}x)\n`;
-        txt += `🍖 Kenyang: +${food.hunger} | ✨ EXP: +${food.exp}\n`;
-        txt += `👉 Kasih makan: \`.pet feed ${key}\`\n`;
+        txt += `\n*${food.name}* (Tienes: ${have}x)\n`;
+        txt += `🍖 Saciedad: +${food.hunger} | ✨ EXP: +${food.exp}\n`;
+        txt += `👉 Dar de comer: \`.pet feed ${key}\`\n`;
       }
       return m.reply(txt);
     }
 
     const food = FOOD_ITEMS[foodKey];
     if (!food) {
-      return m.reply(`Waduh, jangan kasih makanan aneh-aneh kak! Kasihan nanti sakit perut 😂❌`);
+      return m.reply(`Vaya, ¡no le des comidas raras bro! Le va a doler la panza 😂❌`);
     }
 
     if ((user.inventory[foodKey] || 0) < 1) {
-      return m.reply(`Kamu nggak punya *${food.name}* di tasmu! Belanja dulu sana! 🛒🏃`);
+      return m.reply(`¡No tienes *${food.name}* en tu bolsa! ¡Ve de compras! 🛒🏃`);
     }
 
     if (pet.hunger >= 100) {
-      return m.reply(`Perut si ${pet.name} udah kepenuhan kak! Jangan disiksa disuruh makan terus! 🤢`);
+      return m.reply(`¡${pet.name} ya está muy lleno bro! No lo tortures haciéndolo comer más! 🤢`);
     }
 
     user.inventory[foodKey]--;
@@ -131,23 +131,23 @@ function handler(m, { sock }) {
       pet.stats.attack += 2;
       pet.stats.defense += 1;
       pet.stats.luck += 1;
-      levelUpMsg = `\n🎉 *WOHOO! Si ${pet.name} LEVEL UP jadi Level ${pet.level}!* 🎉`;
+      levelUpMsg = `\n🎉 *¡WOHOO! ¡${pet.name} SUBIÓ DE NIVEL al Nivel ${pet.level}!* 🎉`;
     }
 
     db.save();
 
     return m.reply(
-      `Nyam... nyam... nyam! 🤤🍖\n\n` +
-        `Si *${pet.name}* lahap banget makan *${food.name}* yang kamu kasih!\n` +
-        `🍖 Perutnya keisi *+${food.hunger}* (${pet.hunger}/100)\n` +
-        `✨ Dapet EXP *+${food.exp}*` +
+      `Ñam... ñam... ñam! 🤤🍖\n\n` +
+        `¡*${pet.name}* devoró con gusto el *${food.name}* que le diste!\n` +
+        `🍖 Su panza se llenó *+${food.hunger}* (${pet.hunger}/100)\n` +
+        `✨ Ganó EXP *+${food.exp}*` +
         levelUpMsg
     );
   }
 
   if (action === "train") {
     if (pet.hunger < 20) {
-      return m.reply(`Tega bener nyuruh latihan pas lagi kelaparan! 😭\nSi ${pet.name} perutnya keroncongan tuh, kasih makan dulu!`);
+      return m.reply(`¡Qué cruel hacerlo entrenar con hambre! 😭\nA ${pet.name} le rugen las tripas, ¡dale de comer primero!`);
     }
 
     pet.hunger = Math.max(0, pet.hunger - 15);
@@ -163,15 +163,15 @@ function handler(m, { sock }) {
       pet.stats.attack += 2;
       pet.stats.defense += 1;
       pet.stats.luck += 1;
-      levelUpMsg = `\n🎉 *MANTAP! Si ${pet.name} LEVEL UP jadi Level ${pet.level}!* 🎉`;
+      levelUpMsg = `\n🎉 *¡GENIAL! ¡${pet.name} SUBIÓ DE NIVEL al Nivel ${pet.level}!* 🎉`;
     }
 
     db.save();
 
-    let txt = `Hup! Hup! Hiyah!! 🏃‍♂️💨\n\n`;
-    txt += `Si *${pet.name}* latihan fisik keras hari ini!\n`;
-    txt += `✨ EXP Bertambah: *+${expGain}*\n`;
-    txt += `😰 Rasa Lapar: *-15*\n`;
+    let txt = `¡Arriba! ¡Arriba! ¡Hiyah!! 🏃‍♂️💨\n\n`;
+    txt += `¡*${pet.name}* entrenó duro su cuerpo hoy!\n`;
+    txt += `✨ EXP Ganado: *+${expGain}*\n`;
+    txt += `😰 Hambre: *-15*\n`;
     txt += levelUpMsg;
 
     return m.reply(txt);
@@ -180,23 +180,23 @@ function handler(m, { sock }) {
   if (action === "rename") {
     const newName = args.slice(1).join(" ");
     if (!newName || newName.length < 2 || newName.length > 15) {
-      return m.reply(`Nama apaan tuh kak? Jangan aneh-aneh ah, kasih yang bener (2-15 karakter)! 😂`);
+      return m.reply(`¿Qué nombre es ese bro? No digas cosas raras, ponle uno decente (2-15 caracteres)! 😂`);
     }
 
     const oldName = pet.name;
     pet.name = newName;
     db.save();
 
-    return m.reply(`Sipp! Akte kelahirannya udah diubah.\nSekarang panggil dia *${newName}*! (Sebelumnya: ${oldName}) ✨`);
+    return m.reply(`¡Listo! Ya se actualizó su acta de nacimiento.\nAhora llámalo *${newName}*! (Antes: ${oldName}) ✨`);
   }
 
   if (action === "evolve") {
     if (!petInfo.evolve) {
-      return m.reply(`Batas keturunan si ${pet.name} cuma sampai sini kak, dia udah di bentuk sempurnanya! 🌟`);
+      return m.reply(`La evolución de ${pet.name} termina aquí bro, ya está en su forma perfecta! 🌟`);
     }
 
     if ((pet.level || 1) < 10) {
-      return m.reply(`Sabar kak, si ${pet.name} masih ciut! Minimal *Level 10* baru bisa berevolusi (Sekarang baru level ${pet.level || 1}). 🐣`);
+      return m.reply(`Tranquilo bro, ${pet.name} todavía es pequeño! Necesita mínimo *Nivel 10* para evolucionar (ahora está en nivel ${pet.level || 1}). 🐣`);
     }
 
     const evolvedPet = PET_TYPES[petInfo.evolve];
@@ -208,10 +208,10 @@ function handler(m, { sock }) {
     db.save();
 
     return m.reply(
-      `CLLINGGG!! ✨🌟\n\n` +
-        `Si *${pet.name}* tiba-tiba bercahaya terang banget!\n` +
-        `Wah, dia udah *berevolusi* jadi *${evolvedPet.name}* yang gagah!\n\n` +
-        `Status barunya nge-reset ke awal tapi jadi jauh lebih kuat lho! Cek pake \`.pet status\` ya! 😎🔥`
+      `¡CLLINGGG!! ✨🌟\n\n` +
+        `¡*${pet.name}* de repente brilló intensamente!\n` +
+        `Vaya, ya *evolucionó* a un poderoso *${evolvedPet.name}*!\n\n` +
+        `Sus estadísticas se reiniciaron pero ahora es mucho más fuerte! Revísalo con \`.pet status\`! 😎🔥`
     );
   }
 }

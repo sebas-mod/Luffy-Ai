@@ -1,9 +1,9 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "npm",
   alias: ["npmsearch", "npmjs", "npmfind"],
   category: "search",
-  description: "Search package di NPM registry",
+  description: "Buscar paquetes en el registro de NPM",
   usage: ".npm <query>",
   example: ".npm axios",
   isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -20,9 +20,9 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
         `> \`${m.prefix}npm <query>\`\n\n` +
-        `> Contoh:\n` +
+        `> Ejemplo:\n` +
         `> \`${m.prefix}npm axios\``,
     );
   }
@@ -38,13 +38,13 @@ async function handler(m, { sock }) {
     if (!data.objects || data.objects.length === 0) {
       await m.react("❌");
       return m.reply(
-        `❌ *ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n> Package "${query}" tidak ditemukan`,
+        `❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> Package "${query}" no encontrado`,
       );
     }
 
     let text = `📦 *ɴᴘᴍ sᴇᴀʀᴄʜ*\n\n`;
-    text += `> Query: \`${query}\`\n`;
-    text += `> Found: ${data.total} packages\n\n`;
+    text += `> Consulta: \`${query}\`\n`;
+    text += `> Encontrados: ${data.total} paquetes\n\n`;
 
     data.objects.slice(0, 8).forEach((item, i) => {
       const pkg = item.package;

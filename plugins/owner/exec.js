@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import axios from 'axios'
 import os from 'os'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 import util from 'util'
 const pluginConfig = {
@@ -17,7 +17,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -39,12 +39,12 @@ async function handler(m, { sock, store }) {
     if (!code) {
         return m.reply(
             `⚙️ *ᴇxᴇᴄ*\n\n` +
-            `> Reply pesan berisi kode JavaScript!\n\n` +
-            `*Atau:*\n` +
+            `> ¡Responde a un mensaje con código JavaScript!\n\n` +
+            `*O:*\n` +
             `> .> <code>\n\n` +
-            `*Contoh:*\n` +
-            `> Reply pesan: \`return m.chat\`\n` +
-            `> Lalu ketik: .>`
+            `*Ejemplo:*\n` +
+            `> Responde al mensaje: \`return m.chat\`\n` +
+            `> Luego escribe: .>`
         )
     }
 
@@ -94,12 +94,12 @@ async function handler(m, { sock, store }) {
     const codePreview = code.length > 100 ? code.slice(0, 100) + '...' : code
 
     await m.reply(
-        `⚙️ *ᴇxᴇᴄ ʀᴇsᴜʟᴛ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴏᴅᴇ* 」\n` +
+        `⚙️ *ʀᴇsᴜʟᴛᴀᴅᴏ ᴇxᴇᴄ*\n\n` +
+        `╭┈┈⬡「 📋 *ᴄᴏᴅɪɢᴏ* 」\n` +
         `┃ \`${codePreview}\`\n` +
-        `├┈┈⬡「 📊 *ʀᴇsᴜʟᴛ* 」\n` +
+        `├┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
         `┃ ${status}\n` +
-        `┃ Type: ${type}\n` +
+        `┃ Tipo: ${type}\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `\`\`\`${output}\`\`\``
     )

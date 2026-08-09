@@ -3,15 +3,15 @@ const pluginConfig = {
     name: 'rvo',
     alias: [],
     category: 'group',
-    description: 'Membuka pesan 1x lihat yang di-reply',
-    usage: '.rvo (reply pesan 1x lihat)',
+    description: 'Abrir mensajes de ver una vez que son respondidos',
+    usage: '.rvo (responde un mensaje de ver una vez)',
     example: '.rvo',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -20,9 +20,9 @@ async function handler(m, { sock }) {
 
     if (!quoted) {
         await m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Balas pesan 1x lihat dengan perintah ini!\n` +
-            `> Gunakan: \`${m.prefix}openvo\` (reply pesan 1x lihat)`
+            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `> Responde un mensaje de ver una vez con este comando!\n` +
+            `> Usa: \`${m.prefix}openvo\` (responde un mensaje de ver una vez)`
         )
         return
     }
@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
     const quotedMsg = quoted.message
     if (!quotedMsg) {
         await m.reply(
-            `❌ *ᴘᴇsᴀɴ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Tidak dapat membaca pesan yang di-reply.`
+            `❌ *ᴍᴇɴsᴀᴊᴇ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n` +
+            `> No se pudo leer el mensaje respondido.`
         )
         return
     }
@@ -41,17 +41,17 @@ async function handler(m, { sock }) {
 
     if (!content) {
         await m.reply(
-            `❌ *ᴋᴏɴᴛᴇɴ ᴛɪᴅᴀᴋ ᴅɪᴛᴇᴍᴜᴋᴀɴ*\n\n` +
-            `> Konten pesan tidak dapat dibaca.`
+            `❌ *ᴄᴏɴᴛᴇɴɪᴅᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n` +
+            `> No se pudo leer el contenido del mensaje.`
         )
         return
     }
 
     if (!content.viewOnce) {
         await m.reply(
-            `❌ *ʙᴜᴋᴀɴ ᴠɪᴇᴡᴏɴᴄᴇ*\n\n` +
-            `> Pesan yang di-reply bukan pesan 1x lihat!\n` +
-            `> Balas pesan dengan ikon 1x lihat (👁️).`
+            `❌ *ɴᴏ ᴇs ᴠᴇʀ ᴜɴᴀ ᴠᴇᴢ*\n\n` +
+            `> El mensaje respondido no es de ver una vez!\n` +
+            `> Responde un mensaje con el ícono de ver una vez (👁️).`
         )
         return
     }
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
         if (!mediaType) {
             await m.reply(
-                `Tipenya gak didukung, hanya support image, video, audio`
+                `El tipo no está soportado, solo se admite image, video, audio`
             )
             return
         }
@@ -84,9 +84,9 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length < 100) {
             await m.reply(
-                `❌ *ɢᴀɢᴀʟ ᴍᴇɴɢᴜɴᴅᴜʜ*\n\n` +
-                `> Tidak dapat mengunduh media.\n` +
-                `> Media mungkin sudah kadaluarsa.`
+                `❌ *ᴇʀʀᴏʀ ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n` +
+                `> No se pudo descargar el contenido multimedia.\n` +
+                `> El contenido puede haber expirado.`
             )
             return
         }
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal membuka pesan 1x lihat.\n` +
+            `> No se pudo abrir el mensaje de ver una vez.\n` +
             `> _${error.message}_`
         )
     }

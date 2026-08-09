@@ -1,11 +1,11 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import gsmarena from "gsmarena-api";
 
 const pluginConfig = {
   name: "gsmarena",
   alias: ["gsm", "phonespec", "spesifikasi"],
   category: "search",
-  description: "Cari spesifikasi HP di GSMArena",
+  description: "Buscar especificaciones de móviles en GSMArena",
   usage: ".gsmarena <nama hp>",
   example: ".gsmarena infinix hot 50",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -22,8 +22,8 @@ async function handler(m) {
   if (!text) {
     return m.reply(
       `📱 *ɢsᴍᴀʀᴇɴᴀ*\n\n` +
-        `> Cari spesifikasi HP lengkap\n\n` +
-        `\`Contoh: ${m.prefix}gsmarena samsung galaxy s25\``,
+        `> Busca especificaciones completas de móviles\n\n` +
+        `\`Ejemplo: ${m.prefix}gsmarena samsung galaxy s25\``,
     );
   }
 
@@ -34,7 +34,7 @@ async function handler(m) {
 
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`📱 HP tidak ditemukan untuk *${text}*`);
+      return m.reply(`📱 Móvil no encontrado para *${text}*`);
     }
 
     if (results.length === 1) {
@@ -53,7 +53,7 @@ async function handler(m) {
 }
 
 function formatList(results, query, prefix) {
-  let txt = `📱 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ*\n`;
+  let txt = `📱 *ʀᴇsᴜʟᴛᴀᴅᴏs*\n`;
   txt += `> *${query}*\n\n`;
 
   results.slice(0, 10).forEach((d, i) => {
@@ -67,7 +67,7 @@ function formatList(results, query, prefix) {
     }
   });
 
-  txt += `\n> Ketik \`${prefix}gsmarena <nama lengkap>\` untuk detail`;
+  txt += `\n> Escribe \`${prefix}gsmarena <nombre completo>\` para ver los detalles`;
   return txt;
 }
 
@@ -75,7 +75,7 @@ function formatDetail(device) {
   let txt = `📱 *${device.name}*\n\n`;
 
   if (device.quickSpec && device.quickSpec.length > 0) {
-    txt += `📋 *ʀɪɴɢᴋᴀsᴀɴ:*\n`;
+    txt += `📋 *ʀᴇsᴜᴍᴇɴ:*\n`;
     for (const s of device.quickSpec) {
       txt += `> 🔹 *${s.name}:* ${s.value}\n`;
     }

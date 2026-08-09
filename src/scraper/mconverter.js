@@ -100,7 +100,7 @@ const mconverter = {
     convert: async (inputPath, targetFormat) => {
         await initSession();
 
-        if (!fs.existsSync(inputPath)) return { error: 'File tidak ada' };
+        if (!fs.existsSync(inputPath)) return { error: 'El archivo no existe' };
 
         const filename = path.basename(inputPath);
         const fileSize = fs.statSync(inputPath).size;

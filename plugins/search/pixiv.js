@@ -1,11 +1,11 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "pixiv",
   alias: ["pixivsearch", "caripixiv"],
   category: "search",
-  description: "Cari artwork di Pixiv",
+  description: "Busca ilustraciones en Pixiv",
   usage: ".pixiv <query>",
   example: ".pixiv rem",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `❌ *Masukkan kata kunci pencarian!*\n\n> Contoh: .pixiv rem`,
+        `❌ *¡Ingresa una palabra clave de búsqueda!*\n\n> Ejemplo: .pixiv rem`,
       );
     }
 
     await m.react("🔍");
 
-    const apikey = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+    const apikey = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
     const url = `https://api.neoxr.eu/api/pixiv-search?q=${encodeURIComponent(query)}&apikey=${apikey}`;
 
     const response = await axios.get(url, { timeout: 30000 });
@@ -37,24 +37,24 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.data || data.data.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *Tidak ditemukan hasil untuk:* ${query}`);
+      return m.reply(`❌ *No se encontraron resultados para:* ${query}`);
     }
 
     const results = data.data.slice(0, 10);
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `🎨 *ᴘɪxɪᴠ sᴇᴀʀᴄʜ*\n`;
+    let caption = `🎨 *ʙᴜsǫᴜᴇᴅᴀ ᴘɪxɪᴠ*\n`;
     caption += `📝 *ᴋᴜᴇʀʏ:* ${query}\n`;
-    caption += `📊 *ʜᴀsɪʟ:* ${results.length} artwork\n\n`;
+    caption += `📊 *ʀᴇsᴜʟᴛᴀᴅᴏs:* ${results.length} ilustraciones\n\n`;
 
     results.forEach((art, i) => {
       const aiLabel = art.aiType === 2 ? " 🤖" : "";
       const isNsfw = art.xRestrict > 0 ? " 🔞" : "";
       caption += `*${i + 1}.* ${art.title}${aiLabel}${isNsfw}\n`;
       caption += `   👤 ${art.userName}\n`;
-      caption += `   📐 ${art.width}x${art.height} • 📄 ${art.pageCount} page\n`;
+      caption += `   📐 ${art.width}x${art.height} • 📄 ${art.pageCount} página\n`;
       caption += `   🔗 ${art.url}\n\n`;
     });
 
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     await m.react("☢");
     if (error.response?.status === 403) {
-      return m.reply(`❌ *API Key tidak valid atau limit tercapai*`);
+      return m.reply(`❌ *API Key no válida o límite alcanzado*`);
     }
     m.reply(te(m.prefix, m.command, m.pushName));
   }

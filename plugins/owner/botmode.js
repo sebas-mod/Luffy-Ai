@@ -1,11 +1,11 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'botmode',
     alias: ['setmode', 'mode'],
     category: 'owner',
-    description: 'Mengatur mode bot (md/cpanel/store/pushkontak/all)',
+    description: 'Configurar el modo del bot (md/store/all)',
     usage: '.botmode <mode>',
     example: '.botmode store',
     isOwner: true,
@@ -13,19 +13,17 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
-const VALID_MODES = ['md', 'cpanel', 'store', 'pushkontak', 'otp', 'all']
+const VALID_MODES = ['md', 'store', 'otp', 'all']
 
 const MODE_DESCRIPTIONS = {
-    md: 'Mode default, semua fitur kecuali panel/store/pushkontak',
-    cpanel: 'Mode panel, main + group + sticker + owner + tools + panel',
-    store: 'Mode store manual, main + group + sticker + owner + store',
-    pushkontak: 'Mode pushkontak, main + group + sticker + owner + pushkontak',
-    otp: 'Mode OTP service, main + group + sticker + owner + otp',
-    all: 'Mode full, SEMUA fitur dari semua mode bisa diakses'
+    md: 'Modo por defecto, todas las funciones excepto store/otp',
+    store: 'Modo tienda manual, main + group + sticker + owner + store',
+    otp: 'Modo servicio OTP, main + group + sticker + owner + otp',
+    all: 'Modo completo, TODAS las funciones de todos los modos'
 }
 
 async function handler(m, { sock }) {
@@ -58,10 +56,10 @@ async function handler(m, { sock }) {
         }
         txt += `╰┈┈⬡\n\n`
         
-        txt += `*ꜰʟᴀɢ sᴛᴏʀᴇ:*\n`
-        txt += `> \`${m.prefix}botmode store\` - Manual order\n`
-        txt += `> \`${m.prefix}botmode md\` → Mode default\n`
-        txt += `> \`${m.prefix}botmode all\` → Semua fitur`
+        txt += `*ᴄᴏᴍᴀɴᴅᴏs:*\n`
+        txt += `> \`${m.prefix}botmode store\` - Pedido manual\n`
+        txt += `> \`${m.prefix}botmode md\` → Modo por defecto\n`
+        txt += `> \`${m.prefix}botmode all\` → Todas las funciones`
         
         await m.reply(txt)
         return
@@ -69,8 +67,8 @@ async function handler(m, { sock }) {
 
     if (!VALID_MODES.includes(mode)) {
         return m.reply(
-            `❌ *ᴍᴏᴅᴇ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-            `> Mode tersedia: \`${VALID_MODES.join(', ')}\``
+            `❌ *ᴍᴏᴅᴏ ɴᴏ ᴠáʟɪᴅᴏ*\n\n` +
+            `> Modos disponibles: \`${VALID_MODES.join(', ')}\``
         )
     }
 
@@ -97,16 +95,16 @@ async function handler(m, { sock }) {
 
     let extraInfo = ''
     if (mode === 'store' && m.isGroup) {
-        extraInfo = `\n\n📋 *Manual mode*\n> Admin perlu confirm order manual`
+        extraInfo = `\n\n📋 *Modo manual*\n> El admin debe confirmar el pedido manual`
     }
 
     await m.reply(
-        `✅ *ᴍᴏᴅᴇ ᴅɪᴜʙᴀʜ*\n\n` +
+        `✅ *ᴍᴏᴅᴏ ᴄᴀᴍʙɪᴀᴅᴏ*\n\n` +
         `> Mode: *${mode.toUpperCase()}*\n` +
         `> ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +
         `\n\n` +
-        (m.isGroup ? `> _Mode grup ini juga diubah._` : `> _Mode global diubah._`)
+        (m.isGroup ? `> _El modo de este grupo también cambió._` : `> _El modo global cambió._`)
     )
 
     console.log(`[BotMode] Changed to ${mode.toUpperCase()} by ${m.pushName} (${m.sender})`)

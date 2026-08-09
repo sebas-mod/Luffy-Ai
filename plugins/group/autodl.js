@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: ['autodl', 'autodownload'],
     alias: [],
     category: 'group',
-    description: 'Toggle auto download link sosmed',
+    description: 'Activa o desactiva la descarga automática de enlaces de redes sociales',
     usage: '.autodl on/off',
     example: '.autodl on',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -27,14 +27,14 @@ function handler(m, { sock }) {
     if (!args || args === 'status') {
         return m.reply(
             `🔗 *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Status: ${current ? '✅ Aktif' : '❌ Nonaktif'}\n\n` +
-            `*Platform Support:*\n` +
+            `> Estado: ${current ? '✅ Activo' : '❌ Inactivo'}\n\n` +
+            `*Plataformas soportadas:*\n` +
             `> TikTok, Instagram, Facebook\n` +
             `> YouTube, Twitter/X\n` +
             `> Telegram, Discord\n\n` +
-            `*Penggunaan:*\n` +
-            `> \`${m.prefix}autodl on\` - Aktifkan\n` +
-            `> \`${m.prefix}autodl off\` - Nonaktifkan`
+            `*Uso:*\n` +
+            `> \`${m.prefix}autodl on\` - Activar\n` +
+            `> \`${m.prefix}autodl off\` - Desactivar`
         )
     }
     
@@ -42,19 +42,19 @@ function handler(m, { sock }) {
         db.setGroup(m.chat, { ...groupData, autodl: true })
         m.react('✅')
         return m.reply(
-            `✅ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀᴋᴛɪꜰ*\n\n` +
-            `> Kirim link sosmed dan bot akan auto download!\n` +
-            `> Support: TikTok, IG, FB, YouTube, Twitter/X`
+            `✅ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀᴄᴛɪᴠᴏ*\n\n` +
+            `> Envía un enlace de redes sociales y el bot lo descargará automáticamente!\n` +
+            `> Soporte: TikTok, IG, FB, YouTube, Twitter/X`
         )
     }
     
     if (args === 'off') {
         db.setGroup(m.chat, { ...groupData, autodl: false })
         m.react('❌')
-        return m.reply(`❌ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ɴᴏɴᴀᴋᴛɪꜰ*`)
+        return m.reply(`❌ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ɪɴᴀᴄᴛɪᴠᴏ*`)
     }
     
-    return m.reply(`❌ *ᴀʀɢᴜᴍᴇɴ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n> Gunakan: \`on\` atau \`off\``)
+    return m.reply(`❌ *ᴀʀɢᴜᴍᴇɴᴛᴏ ɪɴᴠáʟɪᴅᴏ*\n\n> Usa: \`on\` o \`off\``)
 }
 
 export { pluginConfig as config, handler }

@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "blacksmith",
@@ -13,21 +13,21 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const RECIPES = {
-  sword: { materials: { iron: 3, wood: 2 }, result: "sword", name: "⚔️ Pedang Besi", exp: 200, price: 500 },
-  shield: { materials: { iron: 4, leather: 2 }, result: "shield", name: "🛡️ Perisai Besi", exp: 250, price: 600 },
-  helmet: { materials: { iron: 2, leather: 1 }, result: "helmet", name: "⛑️ Helm Besi", exp: 150, price: 400 },
-  armor: { materials: { iron: 5, leather: 3 }, result: "armor", name: "🦺 Armor Besi", exp: 350, price: 800 },
-  axe: { materials: { iron: 2, wood: 3 }, result: "axe", name: "🪓 Kapak Besi", exp: 180, price: 450 },
-  pickaxe: { materials: { iron: 3, wood: 2 }, result: "pickaxe", name: "⛏️ Beliung", exp: 180, price: 450 },
-  bow: { materials: { wood: 4, string: 2 }, result: "bow", name: "🏹 Busur", exp: 200, price: 500 },
-  arrow: { materials: { wood: 1, iron: 1 }, result: "arrow", name: "🏹 Anak Panah x10", exp: 50, price: 100, qty: 10 },
-  goldsword: { materials: { gold: 5, diamond: 2, iron: 3 }, result: "goldsword", name: "🗡️ Pedang Emas", exp: 500, price: 2000 },
-  diamondarmor: { materials: { diamond: 8, iron: 5, leather: 3 }, result: "diamondarmor", name: "💎 Armor Berlian", exp: 800, price: 5000 },
+  sword: { materials: { iron: 3, wood: 2 }, result: "sword", name: "⚔️ Espada de Hierro", exp: 200, price: 500 },
+  shield: { materials: { iron: 4, leather: 2 }, result: "shield", name: "🛡️ Escudo de Hierro", exp: 250, price: 600 },
+  helmet: { materials: { iron: 2, leather: 1 }, result: "helmet", name: "⛑️ Casco de Hierro", exp: 150, price: 400 },
+  armor: { materials: { iron: 5, leather: 3 }, result: "armor", name: "🦺 Armadura de Hierro", exp: 350, price: 800 },
+  axe: { materials: { iron: 2, wood: 3 }, result: "axe", name: "🪓 Hacha de Hierro", exp: 180, price: 450 },
+  pickaxe: { materials: { iron: 3, wood: 2 }, result: "pickaxe", name: "⛏️ Pico", exp: 180, price: 450 },
+  bow: { materials: { wood: 4, string: 2 }, result: "bow", name: "🏹 Arco", exp: 200, price: 500 },
+  arrow: { materials: { wood: 1, iron: 1 }, result: "arrow", name: "🏹 Flecha x10", exp: 50, price: 100, qty: 10 },
+  goldsword: { materials: { gold: 5, diamond: 2, iron: 3 }, result: "goldsword", name: "🗡️ Espada de Oro", exp: 500, price: 2000 },
+  diamondarmor: { materials: { diamond: 8, iron: 5, leather: 3 }, result: "diamondarmor", name: "💎 Armadura de Diamante", exp: 800, price: 5000 },
 };
 
 async function handler(m, { sock }) {
@@ -41,26 +41,26 @@ async function handler(m, { sock }) {
   const itemName = args[0]?.toLowerCase();
 
   if (!itemName) {
-    let txt = `Halo petualang! Selamat datang di tempat Pandai Besi! 🔨⚒️\nAda yang bisa kubantu tempa hari ini?\n\n`;
-    txt += `*Daftar Senjata & Armor:*\n`;
+    let txt = `¡Hola aventurero! ¡Bienvenido a la Herrería! 🔨⚒️\n¿Qué te puedo forjar hoy?\n\n`;
+    txt += `*Lista de Armas y Armaduras:*\n`;
 
     for (const [key, recipe] of Object.entries(RECIPES)) {
       const mats = Object.entries(recipe.materials)
         .map(([m, qty]) => `${qty}x ${m}`)
         .join(", ");
       txt += `\n*${recipe.name}*\n`;
-      txt += `📦 Bahan: ${mats}\n`;
+      txt += `📦 Materiales: ${mats}\n`;
       txt += `📈 EXP: +${recipe.exp}\n`;
-      txt += `👉 Ketik: \`.blacksmith ${key}\`\n`;
+      txt += `👉 Escribe: \`.blacksmith ${key}\`\n`;
     }
-    txt += `\n💡 *Tips:* Materialnya bisa dicari lewat \`.mining\` atau \`.hunt\` lho!`;
+    txt += `\n💡 *Consejo:* ¡Los materiales se consiguen con \`.mining\` o \`.hunt\`!`;
 
     return m.reply(txt);
   }
 
   const recipe = RECIPES[itemName];
   if (!recipe) {
-    return m.reply(`Hadeh, panduan bikin apaan tuh? Nggak ada di catatanku kak! 😂\nCek list yang bener pake \`.blacksmith\` ya!`);
+    return m.reply(`Vaya, ¿para qué es esa guía? ¡No está en mis apuntes bro! 😂\n¡Revisa la lista correcta con \`.blacksmith\`!`);
   }
 
   const missingMaterials = [];
@@ -72,11 +72,11 @@ async function handler(m, { sock }) {
   }
 
   if (missingMaterials.length > 0) {
-    return m.reply(`Eits, bahannya belum cukup buat nempa *${recipe.name}* nih! 😭\n\nKekurangannya:\n${missingMaterials.join("\n")}\n\nKumpulin dulu deh, baru balik ke sini! 🏃💨`);
+    return m.reply(`¡Ey, no hay suficientes materiales para forjar *${recipe.name}*! 😭\n\nTe falta:\n${missingMaterials.join("\n")}\n\n¡Recolecta primero y vuelve! 🏃💨`);
   }
 
   await m.react("🔨");
-  await m.reply(`Ting! Ting! Cshhh... 🔥🔨\nMenempa logam untuk membuat *${recipe.name}*... Prosesnya bakal sedikit makan waktu!`);
+  await m.reply(`¡Ting! Ting! ¡Cshhh...! 🔥🔨\nForjando metal para crear *${recipe.name}*... ¡El proceso tomará un poco de tiempo!`);
   await new Promise((r) => setTimeout(r, 4000));
 
   for (const [material, needed] of Object.entries(recipe.materials)) {
@@ -92,12 +92,12 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let txt = `TEMPAAN BERHASIL KAK! ⚔️🛡️\n\n`;
-  txt += `Gila, hasilnya rapi banget! Ini barang buatan tangan kita:\n`;
-  txt += `🔨 Item: *${recipe.name}*\n`;
-  txt += `📊 Jumlah: *+${resultQty}*\n`;
-  txt += `📈 EXP Crafting: *+${recipe.exp}*\n\n`;
-  txt += `Siap buat dipake berantem nih! 😎🔥`;
+  let txt = `¡FORJA EXITOSA BRO! ⚔️🛡️\n\n`;
+  txt += `¡Increíble, el resultado quedó perfecto! Esto es lo que hicimos a mano:\n`;
+  txt += `🔨 Ítem: *${recipe.name}*\n`;
+  txt += `📊 Cantidad: *+${resultQty}*\n`;
+  txt += `📈 EXP de Crafting: *+${recipe.exp}*\n\n`;
+  txt += `¡Listo para usarlo en la pelea! 😎🔥`;
 
   return m.reply(txt);
 }

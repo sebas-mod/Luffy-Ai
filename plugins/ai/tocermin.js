@@ -1,19 +1,19 @@
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 
 const pluginConfig = {
     name: 'tocermin',
     alias: ['mirror', 'tomirror'],
     category: 'ai',
-    description: 'Ubah foto menjadi efek cermin (mirror reflection)',
-    usage: '.tocermin (reply/kirim gambar)',
+    description: 'Convertir la foto a efecto espejo (reflejo)',
+    usage: '.tocermin (responde/envía imagen)',
     example: '.tocermin',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🪞 *ᴛᴏ ᴄᴇʀᴍɪɴ*\n\n` +
-            `> Kirim/reply gambar untuk efek cermin\n\n` +
+            `> Envía/responde una imagen para el efecto espejo\n\n` +
             `\`${m.prefix}tocermin\``
         )
     }
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

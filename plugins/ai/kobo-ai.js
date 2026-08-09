@@ -1,19 +1,19 @@
 import { UnlimitedAI } from "../../src/scraper/unlimitedai.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "kobo-ai",
   alias: ["koboai", "kobo"],
   category: "ai",
-  description: "Chat dengan Kobo Kanaeru — VTuber Hololive ID",
-  usage: ".kobo-ai <pertanyaan>",
-  example: ".kobo-ai Kobo lagi apa?",
+  description: "Chat con Kobo Kanaeru — VTuber Hololive ID",
+  usage: ".kobo-ai <pregunta>",
+  example: ".kobo-ai Kobo, ¿qué haces?",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `🌬️ *Kobo Kanaeru*\n\n` +
-        `> VTuber Hololive Indonesia Gen 3\n> Wind Shaman yang cheerfull dan suka prank!\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}kobo-ai <pertanyaan>*\n\n` +
-        `*CONTOH:*\n` +
-        `> *${m.prefix}kobo-ai Kobo lagi apa?*`
+        `> VTuber Hololive Indonesia Gen 3\n> Chamán del viento alegre y le encanta hacer bromas!\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}kobo-ai <pregunta>*\n\n` +
+        `*EJEMPLO:*\n` +
+        `> *${m.prefix}kobo-ai Kobo, ¿qué haces?*`
     );
   }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Kobo AI Error*\n\n> ${result.error || "Gagal mendapatkan respons"}`);
+      return m.reply(`❌ *Error de Kobo AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

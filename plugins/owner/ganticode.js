@@ -1,21 +1,21 @@
 import fs from "fs";
 import path from "path";
-import { hotReloadPlugin } from "../../src/lib/ourin-plugins.js";
-import te from "../../src/lib/ourin-error.js";
+import { hotReloadPlugin } from "../../src/lib/luffy-plugins.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "ganticode",
   alias: ["replaceplugin", "updateplugin", "gantiplugin"],
   category: "owner",
-  description: "Ganti code plugin yang sudah ada",
-  usage: ".ganticode [namafile] [folder]",
+  description: "Cambiar el código de un plugin ya existente",
+  usage: ".ganticode [nombrearchivo] [carpeta]",
   example: ".ganticode ping main",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -54,12 +54,12 @@ async function handler(m, { sock }) {
 
   if (!quoted) {
     return m.reply(
-      `Halo *${m.pushName}*, sepertinya kamu belum mereply kode plugin barunya.\n\n` +
-      `Silakan reply kode plugin yang baru dengan perintah:\n` +
-      `- .ganticode (untuk deteksi otomatis)\n` +
-      `- .ganticode <nama file> (untuk nama kustom)\n` +
-      `- .ganticode <nama file> <folder> (untuk kustom nama dan folder)\n\n` +
-      `Tenang saja, kode yang lama akan otomatis dibackup sebelum diganti.`
+      `Hola *${m.pushName}*, parece que aún no has respondido al nuevo código del plugin.\n\n` +
+      `Responde al nuevo código del plugin con el comando:\n` +
+      `- .ganticode (detección automática)\n` +
+      `- .ganticode <nombre de archivo> (nombre personalizado)\n` +
+      `- .ganticode <nombre de archivo> <carpeta> (nombre y carpeta personalizados)\n\n` +
+      `Tranquilo, el código antiguo se respaldará automáticamente antes de ser reemplazado.`
     );
   }
 
@@ -72,19 +72,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`Maaf *${m.pushName}*, proses gagal karena file tidak dapat diunduh.`);
+      return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el archivo no se pudo descargar.`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`Maaf *${m.pushName}*, proses gagal karena kode terlalu pendek atau tidak valid.`);
+    return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el código es demasiado corto o no es válido.`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `Maaf *${m.pushName}*, proses gagal karena kode bukan format plugin yang valid. Pastikan ada export dan config di dalamnya.`
+      `Lo siento *${m.pushName}*, el proceso falló porque el código no es un formato de plugin válido. Asegúrate de que tenga export y config.`
     );
   }
 
@@ -96,14 +96,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `Maaf *${m.pushName}*, aku tidak bisa mendeteksi nama pluginnya. Silakan gunakan perintah dengan format .ganticode <nama file>.`
+      `Lo siento *${m.pushName}*, no pude detectar el nombre del plugin. Por favor usa el comando con el formato .ganticode <nombre de archivo>.`
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`Maaf *${m.pushName}*, proses gagal karena nama file tidak valid.`);
+    return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el nombre del archivo no es válido.`);
   }
 
   await m.react("🕕");
@@ -159,24 +159,24 @@ async function handler(m, { sock }) {
     await m.react("✅");
 
     let replyText =
-      `Proses selesai! Kode plugin berhasil ${isNewFile ? "ditambahkan" : "diperbarui"}.\n\n` +
-      `- File: ${fileName}.js\n` +
-      `- Folder: ${targetFolder}\n` +
-      `- Ukuran: ${code.length} bytes\n`;
+      `¡Proceso completado! El código del plugin se ${isNewFile ? "agregó" : "actualizó"} correctamente.\n\n` +
+      `- Archivo: ${fileName}.js\n` +
+      `- Carpeta: ${targetFolder}\n` +
+      `- Tamaño: ${code.length} bytes\n`;
 
     if (!isNewFile) {
-      replyText += `- Ukuran Lama: ${oldSize} bytes\n`;
+      replyText += `- Tamaño anterior: ${oldSize} bytes\n`;
     }
 
     replyText +=
-      `- Status Reload: ${reloadResult.success ? "Berhasil" : "Pending"}\n\n`;
+      `- Estado de recarga: ${reloadResult.success ? "Exitoso" : "Pendiente"}\n\n`;
 
     if (backupPath) {
       const relBackup = path.relative(process.cwd(), backupPath);
-      replyText += `File lama sudah dibackup dengan aman di lokasi berikut:\n${relBackup}\n\n`;
+      replyText += `El archivo anterior se respaldó de forma segura en la siguiente ubicación:\n${relBackup}\n\n`;
     }
 
-    replyText += `Plugin sudah aktif dan siap digunakan, silakan dicoba ya!`;
+    replyText += `¡El plugin ya está activo y listo para usarse, pruébalo!`;
 
     return m.reply(replyText);
   } catch (error) {

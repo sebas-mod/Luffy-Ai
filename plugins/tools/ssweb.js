@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "ssweb",
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -34,8 +34,8 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📸 *sᴄʀᴇᴇɴsʜᴏᴛ ᴡᴇʙ*\n\n` +
-        `> Screenshot halaman website\n\n` +
-        `> *Contoh:*\n` +
+        `> Captura de pantalla de una página web\n\n` +
+        `> *Ejemplo:*\n` +
         `> ${m.prefix}ssweb https://google.com\n` +
         `> ${m.prefix}ss https://github.com --mobile`,
     );
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     const imageBuffer = await ssweb(text, mode);
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     await sock.sendMedia(m.chat, imageBuffer, null, m, {
       type: "image",

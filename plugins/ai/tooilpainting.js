@@ -1,18 +1,18 @@
 import { live3d } from '../../src/scraper/seaart.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'tooilpainting',
     alias: ['oilpainting', 'tooil', 'oil'],
     category: 'ai',
-    description: 'Ubah foto menjadi gaya lukisan minyak (oil painting)',
-    usage: '.tooilpainting (reply/kirim gambar)',
+    description: 'Convertir la foto a estilo pintura al óleo',
+    usage: '.tooilpainting (responde/envía imagen)',
     example: '.tooilpainting',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 60,
-    energi: 3,
+    carne: 3,
     isEnabled: true
 }
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     if (!isImage) {
         return m.reply(
             `🖼️ *ᴛᴏ ᴏɪʟ ᴘᴀɪɴᴛɪɴɢ*\n\n` +
-            `> Kirim/reply gambar untuk diubah ke gaya lukisan minyak\n\n` +
+            `> Envía/responde una imagen para convertirla a estilo pintura al óleo\n\n` +
             `\`${m.prefix}tooilpainting\``
         )
     }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ Gagal mendownload gambar`)
+            return m.reply(`❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

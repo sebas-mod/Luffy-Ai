@@ -1,5 +1,5 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
@@ -10,15 +10,15 @@ const pluginConfig = {
     name: 'cjstoesm',
     alias: ['cjs2esm', 'cjsconvert'],
     category: 'tools',
-    description: 'Convert CommonJS ke ESM (ES Modules)',
-    usage: '.cjstoesm <reply kode>',
+    description: 'Convierte CommonJS a ESM (ES Modules)',
+    usage: '.cjstoesm <responde código>',
     example: '.cjstoesm',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -115,11 +115,11 @@ async function handler(m, { sock }) {
 
     if (!code) {
         return m.reply(
-            `🔄 *ᴄᴊs ᴛᴏ ᴇsᴍ ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n` +
-            `> Convert CommonJS ke ES Modules\n\n` +
-            `> *Cara pakai:*\n` +
-            `> Reply kode CJS dengan ${m.prefix}cjstoesm\n\n` +
-            `> *Contoh CJS:*\n` +
+            `🔄 *ᴄᴏɴᴠᴇʀsᴏʀ ᴄᴊs ᴀ ᴇsᴍ*\n\n` +
+            `> Convierte CommonJS a ES Modules\n\n` +
+            `> *Cómo usar:*\n` +
+            `> Responde el código CJS con ${m.prefix}cjstoesm\n\n` +
+            `> *Ejemplo CJS:*\n` +
             `> \`const axios = require('axios')\`\n` +
             `> \`module.exports = handler\``
         )

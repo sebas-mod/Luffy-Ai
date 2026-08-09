@@ -1,11 +1,11 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import * as timeHelper from '../../src/lib/ourin-time.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import * as timeHelper from '../../src/lib/luffy-time.js'
 const pluginConfig = {
   name: "listwarn",
   alias: ["warnings", "cekwarn", "warnlist"],
   category: "group",
-  description: "Melihat daftar warning member",
-  usage: ".listwarn atau .listwarn @user",
+  description: "Ver la lista de advertencias de los miembros",
+  usage: ".listwarn o .listwarn @user",
   example: ".listwarn @user",
   isOwner: false,
   isPremium: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isPrivate: false,
   isAdmin: true,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -34,13 +34,13 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split("@")[0];
 
     if (userWarnings.length === 0) {
-      await m.reply(`✅ @${targetName} tidak memiliki warning.`, {
+      await m.reply(`✅ @${targetName} no tiene advertencias.`, {
         mentions: [targetUser],
       });
       return;
     }
 
-    let txt = `⚠️ *ᴡᴀʀɴɪɴɢ @${targetName}*\n\n`;
+    let txt = `⚠️ *ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs ᴅᴇ @${targetName}*\n\n`;
     txt += `> Total: *${userWarnings.length}/${maxWarns}*\n\n`;
 
     userWarnings.forEach((w, i) => {
@@ -57,19 +57,19 @@ async function handler(m, { sock }) {
     );
 
     if (usersWithWarnings.length === 0) {
-      await m.reply(`✅ Tidak ada member dengan warning di grup ini.`);
+      await m.reply(`✅ No hay miembros con advertencias en este grupo.`);
       return;
     }
 
-    let txt = `⚠️ *ᴅᴀꜰᴛᴀʀ ᴡᴀʀɴɪɴɢ*\n\n`;
+    let txt = `⚠️ *ʟɪsᴛᴀ ᴅᴇ ᴀᴅᴠᴇʀᴛᴇɴᴄɪᴀs*\n\n`;
 
     usersWithWarnings.forEach((user, i) => {
       const count = warnings[user].length;
       const name = user.split("@")[0];
-      txt += `*${i + 1}.* @${name} - *${count}/${maxWarns}* warning\n`;
+      txt += `*${i + 1}.* @${name} - *${count}/${maxWarns}* advertencias\n`;
     });
 
-    txt += `\n> Ketik \`${m.prefix}listwarn @user\` untuk detail`;
+    txt += `\n> Escribe \`${m.prefix}listwarn @user\` para ver los detalles`;
 
     await m.reply(txt, { mentions: usersWithWarnings });
   }

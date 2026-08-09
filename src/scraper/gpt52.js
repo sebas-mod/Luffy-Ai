@@ -552,10 +552,10 @@ function buildPrompt({ message, instruction = "", history = [] }) {
     parts.push(
       [
         "IKUTI INSTRUKSI SISTEM BERIKUT SECARA KETAT.",
-        "Jangan ringkas, jangan abaikan, dan jangan ubah format tag yang diminta.",
-        "Jika instruksi sistem meminta tag seperti [ACTION:...] atau [RICH:...], keluarkan persis format itu.",
-        "Jangan bungkus jawaban dengan markdown code fence kecuali memang isi RICH:CODE yang diminta.",
-        "Jangan jelaskan aturan. Langsung jawab sesuai instruksi.",
+        "No resumas, no ignores y no cambies el formato de las etiquetas solicitadas.",
+        "Si la instrucción del sistema pide etiquetas como [ACTION:...] o [RICH:...], emite exactamente ese formato.",
+        "No envuelvas la respuesta en bloques de código markdown salvo que sea el contenido RICH:CODE solicitado.",
+        "No expliques las reglas. Responde directamente según la instrucción.",
         "",
         "SYSTEM INSTRUCTION:",
         instruction.trim(),

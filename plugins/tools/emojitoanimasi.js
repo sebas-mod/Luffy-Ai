@@ -1,18 +1,18 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "emojitoanimasi",
   alias: ["emoji2sticker", "emojisticker", "e2s"],
   category: "tools",
-  description: "Konversi emoji ke sticker animasi",
+  description: "Convierte emojis a stickers animados",
   usage: ".emojitoanimasi <emoji>",
   example: ".emojitoanimasi 😳",
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -21,9 +21,9 @@ async function handler(m, { sock }) {
 
   if (!emoji) {
     return m.reply(
-      `🎭 *ᴇᴍᴏᴊɪ ᴛᴏ ᴀɴɪᴍᴀsɪ*\n\n` +
-        `> Konversi emoji ke sticker animasi\n\n` +
-        `*Contoh:*\n` +
+      `🎭 *ᴇᴍᴏᴊɪ ᴀ ᴀɴɪᴍᴀᴄɪᴏɴ*\n\n` +
+        `> Convierte emojis a stickers animados\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}emojitoanimasi 😳\``,
     );
   }
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji tidak ditemukan atau API error");
+      return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> Emoji no encontrado o error de API");
     }
 
     const webpUrl = data.data.url;

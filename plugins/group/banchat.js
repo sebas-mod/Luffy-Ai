@@ -1,10 +1,10 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
-import te from '../../src/lib/ourin-error.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'banchat',
     alias: ['bangroup', 'bangrup', 'unbanchat', 'unbangroup'],
     category: 'group',
-    description: 'Ban grup dari penggunaan bot (hanya owner yang bisa akses)',
+    description: 'Prohibir a un grupo el uso del bot (solo el owner puede acceder)',
     usage: '.banchat',
     example: '.banchat',
     isOwner: true,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -29,44 +29,44 @@ async function handler(m, { sock }) {
         if (isUnban) {
             if (!groupData.isBanned) {
                 return m.reply(
-                    `⚠️ *ɢʀᴜᴘ ᴛɪᴅᴀᴋ ᴅɪʙᴀɴ*\n\n` +
-                    `> Grup ini tidak dalam status banned.\n` +
-                    `> Semua user bisa menggunakan bot.`
+                    `⚠️ *ɢʀᴜᴘᴏ ɴᴏ ʙᴀɴᴇᴀᴅᴏ*\n\n` +
+                    `> Este grupo no está en estado de baneado.\n` +
+                    `> Todos los usuarios pueden usar el bot.`
                 )
             }
             
             db.setGroup(m.chat, { ...groupData, isBanned: false })
             
             return sock.sendMessage(m.chat, {
-                text: `✅ *ɢʀᴜᴘ ᴅɪ-ᴜɴʙᴀɴ*\n\n` +
-                    `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-                    `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                    `┃ 📊 sᴛᴀᴛᴜs: *✅ AKTIF*\n` +
-                    `┃ 👤 ᴜɴʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+                text: `✅ *ɢʀᴜᴘᴏ ᴅᴇsʙᴀɴᴇᴀᴅᴏ*\n\n` +
+                    `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                    `┃ 📛 ɢʀᴜᴘᴏ: *${groupName}*\n` +
+                    `┃ 📊 ᴇsᴛᴀᴅᴏ: *✅ ACTIVO*\n` +
+                    `┃ 👤 ᴅᴇsʙᴀɴᴇᴀᴅᴏ ᴘᴏʀ: @${m.sender.split('@')[0]}\n` +
                     `╰┈┈⬡\n\n` +
-                    `> Semua member sekarang bisa menggunakan bot kembali.`,
+                    `> Todos los miembros ahora pueden volver a usar el bot.`,
                 mentions: [m.sender]
             }, { quoted: m })
         }
         
         if (groupData.isBanned) {
             return m.reply(
-                `⚠️ *ɢʀᴜᴘ sᴜᴅᴀʜ ᴅɪʙᴀɴ*\n\n` +
-                `> Grup ini sudah dalam status banned.\n` +
-                `> Gunakan \`.unbanchat\` untuk membuka akses.`
+                `⚠️ *ɢʀᴜᴘᴏ ʏᴀ ʙᴀɴᴇᴀᴅᴏ*\n\n` +
+                `> Este grupo ya está en estado de baneado.\n` +
+                `> Usa \`.unbanchat\` para abrir el acceso.`
             )
         }
         
         db.setGroup(m.chat, { ...groupData, isBanned: true })
         
-        await m.reply(`🚫 *ɢʀᴜᴘ ᴅɪʙᴀɴ*\n\n` +
-                `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-                `┃ 📛 ɢʀᴜᴘ: *${groupName}*\n` +
-                `┃ 📊 sᴛᴀᴛᴜs: *🔴 BANNED*\n` +
-                `┃ 👤 ʙᴀɴ ᴏʟᴇʜ: @${m.sender.split('@')[0]}\n` +
+        await m.reply(`🚫 *ɢʀᴜᴘᴏ ʙᴀɴᴇᴀᴅᴏ*\n\n` +
+                `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                `┃ 📛 ɢʀᴜᴘᴏ: *${groupName}*\n` +
+                `┃ 📊 ᴇsᴛᴀᴅᴏ: *🔴 BANEADO*\n` +
+                `┃ 👤 ʙᴀɴᴇᴀᴅᴏ ᴘᴏʀ: @${m.sender.split('@')[0]}\n` +
                 `╰┈┈⬡\n\n` +
-                `> Member biasa tidak bisa menggunakan bot di grup ini.\n` +
-                `> Hanya owner yang bisa menggunakan bot.`, {  mentions: [m.sender] })
+                `> Los miembros comunes no pueden usar el bot en este grupo.\n` +
+                `> Solo el owner puede usar el bot.`, {  mentions: [m.sender] })
         
     } catch (error) {
         m.reply(te(m.prefix, m.command, m.pushName))

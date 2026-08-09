@@ -9,22 +9,21 @@ import {
   groupSettingsHandler,
   handleAntiRemoveFromUpsert,
 } from "./src/handler.js";
-import { loadPlugins, pluginStore } from "./src/lib/ourin-plugins.js";
-import { initDatabase, getDatabase } from "./src/lib/ourin-database.js";
+import { loadPlugins, pluginStore } from "./src/lib/luffy-plugins.js";
+import { initDatabase, getDatabase } from "./src/lib/luffy-database.js";
 import {
   initScheduler,
   loadScheduledMessages,
   startGroupScheduleChecker,
   startSewaChecker,
-} from "./src/lib/ourin-scheduler.js";
-import { handleAntiTagSW } from "./src/lib/ourin-group-protection.js";
-import { initSholatScheduler } from "./src/lib/ourin-sholat-scheduler.js";
-import { initNotifScheduler } from "./src/lib/ourin-notif-scheduler.js";
-import { initAutoJpmScheduler } from "./src/lib/ourin-auto-jpm.js";
-import { startMemoryMonitor } from "./src/lib/ourin-memory-monitor.js";
-import { startTempCleaner } from "./src/lib/ourin-temp-cleaner.js";
-import { startDailyPruner } from "./src/lib/ourin-data-pruner.js";
-import { preloadAssets } from "./src/lib/ourin-asset-manager.js";
+} from "./src/lib/luffy-scheduler.js";
+import { handleAntiTagSW } from "./src/lib/luffy-group-protection.js";
+import { initNotifScheduler } from "./src/lib/luffy-notif-scheduler.js";
+import { initAutoJpmScheduler } from "./src/lib/luffy-auto-jpm.js";
+import { startMemoryMonitor } from "./src/lib/luffy-memory-monitor.js";
+import { startTempCleaner } from "./src/lib/luffy-temp-cleaner.js";
+import { startDailyPruner } from "./src/lib/luffy-data-pruner.js";
+import { preloadAssets } from "./src/lib/luffy-asset-manager.js";
 import {
   logger,
   c,
@@ -33,9 +32,9 @@ import {
   logConnection,
   logErrorBox,
   divider,
-} from "./src/lib/ourin-logger.js";
+} from "./src/lib/luffy-logger.js";
 
-await import("./src/lib/ourin-agent.js")
+await import("./src/lib/luffy-agent.js")
   .then((m) => m.initializeAgent())
   .catch(() => { });
 
@@ -111,7 +110,7 @@ function startDevWatcher(pluginsPath) {
         if (!fs.existsSync(fullPath)) {
           fileStatCache.delete(fullPath);
           const pluginName = path.basename(filename, ".js");
-          const { unloadPlugin } = await import("./src/lib/ourin-plugins.js");
+          const { unloadPlugin } = await import("./src/lib/luffy-plugins.js");
           const result = unloadPlugin(pluginName);
           if (result.success) logger.warn("plugin", `removed ${filename}`);
           return;
@@ -132,7 +131,7 @@ function startDevWatcher(pluginsPath) {
           });
 
           const { hotReloadPlugin } =
-            await import("./src/lib/ourin-plugins.js");
+            await import("./src/lib/luffy-plugins.js");
           const result = await hotReloadPlugin(fullPath);
           if (!result.success) {
             logger.error(
@@ -160,7 +159,7 @@ let srcWatcher = null;
 function startSrcWatcher(srcPath) {
   if (srcWatcher) srcWatcher.close();
 
-  logger.system("dev", "Pantauan hot-reload buat src udah jalan bosku");
+  logger.system("dev", "Hot-reload de src activado");
 
   srcWatcher = fs.watch(srcPath, { recursive: true }, (eventType, filename) => {
     if (!filename || !filename.endsWith(".js")) return;
@@ -236,12 +235,12 @@ function setupAntiCrash() {
     process.exit(0);
   });
 
-  logger.success("system", "Sistem anti-crash nyala, aman terkendali 😎");
+  logger.success("system", "Sistema anti-crash activo, todo bajo control 😎");
 }
 
 async function main() {
   await playBootSequence({
-    name: config.bot?.name || "Ourin-AI",
+    name: config.bot?.name || "Luffy-Ai",
     version: config.bot?.version || "1.0.0",
     developer: config.bot?.developer || "Developer",
     mode: config.mode || "public",
@@ -255,7 +254,7 @@ async function main() {
   await initDatabase(dbPath);
   const db = getDatabase();
 
-  await spinText("system", "Lagi muat aset lokal bentar...", { tone: "accent" });
+  await spinText("system", "Cargando assets locales...", { tone: "accent" });
   await preloadAssets(config.assets);
 
   const savedMode = db.setting("botMode");
@@ -270,7 +269,7 @@ async function main() {
   const bCount = Array.isArray(savedBanned) ? savedBanned.length : 0;
   logger.success(
     "database",
-    `Database sukses ke-load | Mode: ${config.mode} | Premium: ${pCount} | Banned: ${bCount}`,
+    `Base de datos cargada | Modo: ${config.mode} | Premium: ${pCount} | Baneados: ${bCount}`,
   );
 
   const pluginsPath = path.join(process.cwd(), "plugins");
@@ -287,13 +286,13 @@ async function main() {
   initScheduler(config);
 
   const bootTime = Date.now() - startTime;
-  logger.success("boot", `Bot nyala mantap dalam ${bootTime}ms 🚀`);
+  logger.success("boot", `Bot listo en ${bootTime}ms 🚀`);
   divider();
   await spinText("network", "Opening WhatsApp connection tunnel...", {
     duration: 900,
     tone: "accent",
   });
-  logConnection("connecting", "Lagi nyambungin ke WhatsApp nih...");
+  logConnection("connecting", "Conectando con WhatsApp...");
   console.log("");
 
   await startConnection({
@@ -360,25 +359,20 @@ async function main() {
         startSewaChecker(sock);
         initScheduler(config, sock);
         initAutoJpmScheduler(sock);
-        initSholatScheduler(sock);
         initNotifScheduler(sock);
         try {
-          const { initSahurCron } =
-            await import("./plugins/religi/autosahur.js");
-          initSahurCron(sock);
-        } catch { }
         try {
           startOrderPoller(sock);
         } catch { }
         try {
           const { startOtpPoller: _startOtp } =
-            await import("./src/lib/ourin-otp-poller.js");
+            await import("./src/lib/luffy-otp-poller.js");
           _startOtp(sock);
         } catch { }
 
         try {
           const { getAllJadibotSessions, restartJadibotSession } =
-            await import("./src/lib/ourin-jadibot-manager.js");
+            await import("./src/lib/luffy-jadibot-manager.js");
           const sessions = getAllJadibotSessions();
           if (sessions.length > 0) {
             logger.info("JADIBOT", `Restoring ${sessions.length} session(s)`);
@@ -395,15 +389,15 @@ async function main() {
             }
           }
         } catch (e) {
-          logger.error("JADIBOT", `Gagal memulihkan: ${e.message}`);
+          logger.error("JADIBOT", `Error al restaurar: ${e.message}`);
         }
 
         const devLabel = config.dev?.enabled ? ` ${c.yellow("• dev")}` : "";
         startMemoryMonitor();
         startTempCleaner();
         startDailyPruner();
-        logger.success("YEYYYY", `Semua sistem udah jalan mantap, langsug saja🚀`);
-        logger.success("NOTE", `Kalau ada error. mohon dimaklumi, soalnnya bukan bot bagus :)`);
+        logger.success("YEYYYY", `Todos los sistemas funcionando, ¡vamos! 🚀`);
+        logger.success("NOTE", `Si hay errores, disculpa, el bot no es perfecto :)`);
         divider();
       }
     },

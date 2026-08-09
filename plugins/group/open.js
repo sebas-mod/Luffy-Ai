@@ -2,7 +2,7 @@ const pluginConfig = {
     name: 'open',
     alias: ['buka', 'opengroup', 'bukagroup'],
     category: 'group',
-    description: 'Membuka grup agar semua member bisa chat',
+    description: 'Abrir el grupo para que todos los miembros puedan chatear',
     usage: '.open',
     example: '.open',
     isOwner: false,
@@ -10,7 +10,7 @@ const pluginConfig = {
     isGroup: true,
     isPrivate: false,
     cooldown: 10,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: true
@@ -22,9 +22,9 @@ async function handler(m, { sock }) {
         
         if (!groupMeta.announce) {
             await m.reply(
-                `⚠️ *ᴠᴀʟɪᴅᴀsɪ ɢᴀɢᴀʟ*\n\n` +
-                `> Grup sudah dalam keadaan \`terbuka\`.\n` +
-                `> Semua member sudah bisa mengirim pesan.`
+                `⚠️ *ᴠᴀʟɪᴅᴀᴄɪóɴ ʀᴇᴄʜᴀᴢᴀᴅᴀ*\n\n` +
+                `> El grupo ya está en estado \`abierto\`.\n` +
+                `> Todos los miembros ya pueden enviar mensajes.`
             );
             return;
         }
@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
         
         const senderNum = m.sender.split('@')[0];
         
-        const successMsg = `✅ @${senderNum} telah membuka grup ini\n_Sekarang kalian bisa mengirim pesan_`;
+        const successMsg = `✅ @${senderNum} abrió este grupo\n_Ahora todos pueden enviar mensajes_`;
         
         await m.reply(successMsg, { mentions: [m.sender] });
         
     } catch (error) {
         await m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
-            `> Gagal membuka grup.\n` +
+            `> No se pudo abrir el grupo.\n` +
             `> _${error.message}_`
         );
     }

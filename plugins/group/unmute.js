@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'unmute',
     alias: ['unbisukan'],
     category: 'group',
-    description: 'Membuka mute grup',
+    description: 'Abrir el silencio del grupo',
     usage: '.unmute',
     example: '.unmute',
     isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
     isAdmin: true,
     isBotAdmin: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -22,10 +22,10 @@ function handler(m, { sock }) {
     const group = db.getGroup(m.chat) || {}
     const groupName = m.groupMetadata.subject
 
-    if (!group.mute) return m.reply('❌ Grup tidak sedang di-mute.')
+    if (!group.mute) return m.reply('❌ El grupo no está silenciado.')
 
     db.setGroup(m.chat, { ...group, mute: false })
-    m.reply(`✅ Grup *${groupName}* berhasil di-unmute oleh @${m.sender.split('@')[0]}\n\nSemua member sekarang bisa mengirim pesan.`, { mentions: [m.sender] })
+    m.reply(`✅ El grupo *${groupName}* fue desilenciado por @${m.sender.split('@')[0]}\n\nTodos los miembros ahora pueden enviar mensajes.`, { mentions: [m.sender] })
 }
 
 export { pluginConfig as config, handler }

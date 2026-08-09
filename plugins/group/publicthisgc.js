@@ -1,12 +1,12 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import te from "../../src/lib/ourin-error.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "publicthisgc",
   alias: ["publicgc", "publicgroup", "publicthisgroup"],
   category: "group",
-  description: "Aktifkan mode public hanya di grup ini",
+  description: "Activar el modo público solo en este grupo",
   usage: ".publicthisgc",
   example: ".publicthisgc",
   isOwner: true,
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: true,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -28,9 +28,9 @@ async function handler(m, { sock }) {
 
   if (isPublicGroup && !isSelfGroup) {
     return m.reply(
-      `ℹ️ *ɢʀᴜᴘ ɪɴɪ sᴜᴅᴀʜ ᴍᴏᴅᴇ ᴘᴜʙʟɪᴄ*\n\n` +
-        `> Bot merespon semua member di grup ini\n\n` +
-        `_Gunakan ${m.prefix}selfthisgc untuk menutup akses_`,
+      `ℹ️ *ᴇsᴛᴇ ɢʀᴜᴘᴏ ʏᴀ ᴇsᴛá ᴇɴ ᴍᴏᴅᴏ ᴘúʙʟɪᴄᴏ*\n\n` +
+        `> El bot responde a todos los miembros de este grupo\n\n` +
+        `_Usa ${m.prefix}selfthisgc para cerrar el acceso_`,
     );
   }
 
@@ -43,11 +43,11 @@ async function handler(m, { sock }) {
 
   m.react("🌐");
   return m.reply(
-    `🌐 *ᴍᴏᴅᴇ ᴘᴜʙʟɪᴄ ᴅɪᴀᴋᴛɪꜰᴋᴀsɪ*\n\n` +
-      `> Bot sekarang merespon semua member di grup ini\n` +
-      `> Override mode global aktif untuk grup ini\n\n` +
-      `📋 *Grup lain tidak terpengaruh*\n\n` +
-      `_Gunakan ${m.prefix}selfthisgc untuk menutup akses lagi_`,
+    `🌐 *ᴍᴏᴅᴏ ᴘúʙʟɪᴄᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
+      `> El bot ahora responde a todos los miembros de este grupo\n` +
+      `> Override del modo global activado para este grupo\n\n` +
+      `📋 *Los demás grupos no se ven afectados*\n\n` +
+      `_Usa ${m.prefix}selfthisgc para cerrar el acceso de nuevo_`,
   );
 }
 

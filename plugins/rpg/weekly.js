@@ -1,4 +1,4 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
   name: "weekly",
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 0,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
     const remaining = lastWeekly + WEEKLY_COOLDOWN - now;
     const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
     const hours = Math.floor((remaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    return m.reply(`Wah, jatah mingguan kamu udah ludes kak! 😂\n\nTunggu *${days} hari ${hours} jam* lagi ya buat gajian mingguan berikutnya! 🗓️💨`);
+    return m.reply(`Vaya, ¡tu pago semanal ya se agotó bro! 😂\n\nEspera *${days} días ${hours} horas* más para el siguiente sueldo semanal! 🗓️💨`);
   }
 
   const expReward = Math.floor(Math.random() * 20000) + 10000;
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
   if (!user.rpg) user.rpg = {};
   db.updateExp(m.sender, expReward);
-  user.koin = (user.koin || 0) + moneyReward;
+  user.berry = (user.berry || 0) + moneyReward;
 
   if (!user.inventory) user.inventory = {};
   user.inventory.uncommon = (user.inventory.uncommon || 0) + crateReward;
@@ -47,12 +47,12 @@ async function handler(m, { sock }) {
   user.cooldowns.weekly = now;
   db.save();
 
-  let txt = `DORRR! GAJIAN MINGGUAN CAIRRR! 🎉🎊🤑\n\n`;
-  txt += `Gila, jatah kamu minggu ini gede banget:\n`;
+  let txt = `¡DORRR! ¡SUELDO SEMANAL LIQUIDADO! 🎉🎊🤑\n\n`;
+  txt += `¡Qué locura, tu reparto de esta semana está enorme:\n`;
   txt += `📈 EXP: *+${expReward.toLocaleString("id-ID")}*\n`;
-  txt += `💰 Koin: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
-  txt += `🛍️ Uncommon Crate: *+${crateReward}x*\n\n`;
-  txt += `Duitnya jangan lupa ditabung ya kak di bank (\`.bank\`)! 🏦💖`;
+  txt += `💰 Berry: *+Rp ${moneyReward.toLocaleString("id-ID")}*\n`;
+  txt += `🛍️ Cofre Poco Común: *+${crateReward}x*\n\n`;
+  txt += `No olvides guardar tu dinero en el banco (\`.bank\`)! 🏦💖`;
 
   await m.reply(txt);
 }

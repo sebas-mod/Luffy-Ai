@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('tebakkata', {
     alias: ['tk', 'guessword'],
     emoji: '📝',
-    title: 'TEBAK KATA',
-    description: 'Tebak kata dari petunjuk'
+    title: 'ADIVINA LA PALABRA',
+    description: 'Adivina la palabra por las pistas'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakkata')

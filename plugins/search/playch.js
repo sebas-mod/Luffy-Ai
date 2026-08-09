@@ -6,18 +6,18 @@ import path from "path";
 import { exec } from "child_process";
 import { promisify } from "util";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const run = promisify(exec);
 const pluginConfig = {
   name: "playch",
   alias: ["pch", "playsaluran"],
   category: "search",
-  description: "Putar musik ke saluran (convert opus)",
+  description: "Reproduce música en el canal (convertir a opus)",
   usage: ".playch <query> atau .playch --idch <id> <query>",
   example: ".playch komang",
   cooldown: 15,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -71,7 +71,7 @@ function generateWaveform(audioBuf, samples = 64) {
 async function handler(m, { sock }) {
   const raw = m.text?.trim() || "";
   let chId = config?.saluran?.id;
-  let chName = config?.saluran?.name || config?.bot?.name || "Ourin-AI";
+  let chName = config?.saluran?.name || config?.bot?.name || "Luffy-Ai";
   let q = raw;
 
   const idchMatch = raw.match(/--idch\s+(\S+)/);
@@ -83,42 +83,42 @@ async function handler(m, { sock }) {
 
   if (!q)
     return m.reply(
-      `🎵 *PLAY SALURAN*\n\n\`${m.prefix}playch <judul lagu>\`\n\`${m.prefix}playch --idch <id_saluran> <judul lagu>\``,
+      `🎵 *REPRODUCIR EN CANAL*\n\n\`${m.prefix}playch <título de la canción>\`\n\`${m.prefix}playch --idch <id_canal> <título de la canción>\``,
     );
   if (!chId)
     return m.reply(
-      `❌ Saluran belum diatur. Gunakan \`--idch <id>\` atau atur di config.js`,
+      `❌ El canal no está configurado. Usa \`--idch <id>\` o configúralo en config.js`,
     );
 
   m.react("🔎");
   try {
     const { videos } = await yts(q);
     const video = pickVideo({ videos });
-    if (!video) return m.reply(`❌ Video tidak ditemukan`);
+    if (!video) return m.reply(`❌ Video no encontrado`);
 
     const ytChannel = video.author?.name || video.author?.username || "Unknown";
     
     const res = await axios.get(`https://api.azbry.com/api/download/ytmp3?url=${encodeURIComponent(video.url)}`, { timeout: 60000 });
     const data = res.data;
     if (!data.status || !data.result || !data.result.download) {
-       throw new Error("Gagal mengambil audio dari API");
+       throw new Error("Error al obtener el audio de la API");
     }
 
-    let info = `🎵 *NOW PLAYING (SALURAN)*\n\n`;
-    info += `📌 *Judul:* ${video.title}\n\n`;
-    info += `*DETAIL*\n`;
-    info += `👤 Channel: *${ytChannel}*\n`;
-    info += `⏱️ Durasi: *${video.duration.timestamp}*\n`;
-    info += `👀 Views: *${formatViews(video.views)}*\n`;
-    info += `📅 Upload: *${video.ago}*\n`;
+    let info = `🎵 *SONANDO AHORA (CANAL)*\n\n`;
+    info += `📌 *Título:* ${video.title}\n\n`;
+    info += `*DETALLE*\n`;
+    info += `👤 Canal: *${ytChannel}*\n`;
+    info += `⏱️ Duración: *${video.duration.timestamp}*\n`;
+    info += `👀 Vistas: *${formatViews(video.views)}*\n`;
+    info += `📅 Subido: *${video.ago}*\n`;
     info += `🆔 ID: \`${video.videoId}\`\n\n`;
     if (video.description) {
       const desc = video.description.substring(0, 150).replace(/\n/g, " ");
-      info += `*Deskripsi:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
+      info += `*Descripción:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
     }
-    info += `📡 Saluran: \`${chId}\`\n`;
+    info += `📡 Canal: \`${chId}\`\n`;
     info += `🔗 ${video.url}\n\n`;
-    info += `_⏳ mengirim audio ke saluran, harap tunggu..._`;
+    info += `_⏳ enviando audio al canal, por favor espera..._`;
 
     await sock.sendMedia(m.chat, video.thumbnail, info, m, { type: "image" });
 
@@ -127,9 +127,9 @@ async function handler(m, { sock }) {
     const audioRes = await axios.get(data.result.download, { responseType: "arraybuffer", timeout: 60000 });
     const mp3Buf = Buffer.from(audioRes.data);
 
-    if (mp3Buf.length < 50000) throw new Error("Audio terlalu kecil");
+    if (mp3Buf.length < 50000) throw new Error("El audio es demasiado pequeño");
     const opusBuf = await toOggOpus(mp3Buf);
-    if (opusBuf.length < 10000) throw new Error("Konversi opus gagal");
+    if (opusBuf.length < 10000) throw new Error("Falló la conversión a opus");
     const title = video.title;
 
     const waveform = generateWaveform(opusBuf);
@@ -140,7 +140,7 @@ async function handler(m, { sock }) {
       waveform: Array.from(waveform),
     });
     m.react("✅");
-    m.reply(`✅ *${title}* berhasil dikirim ke saluran`);
+    m.reply(`✅ *${title}* enviado correctamente al canal`);
   } catch (e) {
     console.error("[PlayCh]", e);
     m.react("☢");

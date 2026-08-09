@@ -1,15 +1,15 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 
 const pluginConfig = {
   name: "nikparser",
   alias: ["nik", "ceknik"],
   category: "tools",
-  description: "Parse dan validasi NIK KTP",
-  usage: ".nikparser <16 digit NIK>",
+  description: "Analiza y valida NIK KTP",
+  usage: ".nikparser <NIK de 16 dígitos>",
   example: ".nikparser 3517072109020003",
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -58,9 +58,9 @@ async function handler(m, { sock }) {
 
   if (!nik || nik.length !== 16) {
     return m.reply(
-      `🪪 *ɴɪᴋ ᴘᴀʀꜱᴇʀ*\n\n` +
-        `- Parse dan validasi NIK KTP 🇮🇩\n` +
-        `- Masukkan 16 digit angka NIK\n\n` +
+      `🪪 *ᴀɴᴀʟɪsᴀᴅᴏʀ ᴅᴇ ɴɪᴋ*\n\n` +
+        `- Analiza y valida el NIK KTP 🇮🇩\n` +
+        `- Ingresa los 16 dígitos del NIK\n\n` +
         `\`${m.prefix}nikparser 3517072109020003\``,
     );
   }
@@ -80,9 +80,9 @@ async function handler(m, { sock }) {
     if (!data?.valid) {
       m.react("❌");
       return m.reply(
-        `🪪 *ɴɪᴋ ᴛɪᴅᴀᴋ ᴠᴀʟɪᴅ*\n\n` +
-          `- NIK yang kamu masukkan tidak valid\n` +
-          `- Pastikan 16 digit angka benar`,
+        `🪪 *ɴɪᴋ ɪɴᴠᴀʟɪᴅᴏ*\n\n` +
+          `- El NIK que ingresaste no es válido\n` +
+          `- Asegúrate de que los 16 dígitos sean correctos`,
       );
     }
 
@@ -99,15 +99,15 @@ async function handler(m, { sock }) {
     const provNama = PROVINSI[data.provinceId] || data.province || "-";
 
     m.reply(
-      `🪪 *ɴɪᴋ ᴘᴀʀꜱᴇʀ*\n\n` +
+      `🪪 *ᴀɴᴀʟɪsᴀᴅᴏʀ ᴅᴇ ɴɪᴋ*\n\n` +
         `- *NIK* → \`${data.raw}\`\n` +
-        `- *Valid* → ✅ Valid\n` +
-        `- *Tanggal Lahir* → ${bFormatted}\n` +
-        `- *Jenis Kelamin* → ${genderEmoji} ${data.gender?.charAt(0).toUpperCase() + data.gender?.slice(1)}\n` +
-        `- *Provinsi* → ${provNama}\n` +
-        `- *Kab/Kota* → Kode \`${data.kabupatenKotaId}\`\n` +
-        `- *Kecamatan* → Kode \`${data.kecamatanId}\`\n` +
-        `- *Kode Unik* → \`${data.uniqcode}\``,
+        `- *Válido* → ✅ Válido\n` +
+        `- *Fecha de Nacimiento* → ${bFormatted}\n` +
+        `- *Sexo* → ${genderEmoji} ${data.gender?.charAt(0).toUpperCase() + data.gender?.slice(1)}\n` +
+        `- *Provincia* → ${provNama}\n` +
+        `- *Kab/Kota* → Código \`${data.kabupatenKotaId}\`\n` +
+        `- *Distrito* → Código \`${data.kecamatanId}\`\n` +
+        `- *Código Único* → \`${data.uniqcode}\``,
     );
   } catch (e) {
     console.log(e);

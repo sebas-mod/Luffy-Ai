@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'resetrules',
     alias: ['resetbotrules'],
     category: 'owner',
-    description: 'Reset rules bot ke default',
+    description: 'Reiniciar las reglas del bot al predeterminado',
     usage: '.resetrules',
     example: '.resetrules',
     isOwner: true,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,9 +21,9 @@ function handler(m) {
     db.setting('botRules', null)
     
     m.reply(
-        `✅ *ʙᴏᴛ ʀᴜʟᴇs ᴅɪʀᴇsᴇᴛ*\n\n` +
-        `> Rules bot berhasil direset ke default!\n` +
-        `> Ketik \`${m.prefix}rules\` untuk melihat.`
+        `✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ʀᴇɪɴɪᴄɪᴀᴅᴀs*\n\n` +
+        `> ¡Las reglas del bot se reiniciaron al predeterminado!\n` +
+        `> Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

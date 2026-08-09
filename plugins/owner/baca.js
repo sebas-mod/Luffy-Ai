@@ -2,12 +2,12 @@ const pluginConfig = {
   name: ["baca", "read", "markread"],
   alias: [],
   category: "owner",
-  description: "Tandai pesan sebagai sudah dibaca",
+  description: "Marcar el mensaje como leído",
   usage: ".baca",
   example: ".baca",
   isOwner: true,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -15,9 +15,9 @@ async function handler(m, { sock }) {
   try {
     await sock.readMessages([m.key]);
     await m.react("✅");
-    return m.reply("📖 *Pesan ditandai sudah dibaca*");
+    return m.reply("📖 *Mensaje marcado como leído*");
   } catch (err) {
-    return m.reply(`❌ Gagal: ${err.message}`);
+    return m.reply(`❌ Falló: ${err.message}`);
   }
 }
 

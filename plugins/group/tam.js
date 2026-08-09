@@ -1,14 +1,14 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 import { generateWAMessageFromContent } from "ourin";
 import config from "../../config.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "tam",
   alias: ["topactive", "topmember"],
   category: "group",
-  description: "Lihat top member paling aktif di grup",
-  usage: ".tam <jumlah>",
+  description: "Ver los miembros más activos del grupo",
+  usage: ".tam <cantidad>",
   example: ".tam 10",
   isOwner: false,
   isPremium: false,
@@ -16,7 +16,7 @@ const pluginConfig = {
   isPrivate: false,
   isAdmin: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
   const db = getDatabase();
   const limit = Math.min(Math.max(parseInt(m.text) || 10, 1), 20);
   const group = db.getGroup(m.chat) || {};
-  const chatName = group.name || "Grup";
+  const chatName = group.name || "Grupo";
   const chatStats = group.chatStats || {};
 
   const sorted = Object.entries(chatStats)
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
 
   if (!sorted.length) {
     return m.reply(
-      `📊 *ᴛᴏᴘ ᴀᴄᴛɪᴠᴇ ᴍᴇᴍʙᴇʀ*\n\n` + `- Belum ada data aktivitas di grup ini`,
+      `📊 *ᴛᴏᴘ ᴍɪᴇᴍʙʀᴏs ᴍás ᴀᴄᴛɪᴠᴏs*\n\n` + `- Todavía no hay datos de actividad en este grupo`,
     );
   }
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
   const content = {
     pollResultSnapshotMessage: {
-      name: `top ${limit} member active all time!\nat ${chatName}`,
+      name: `top ${limit} miembros más activos de todos los tiempos!\nen ${chatName}`,
       pollVotes,
       pollType: 0,
       contextInfo: {

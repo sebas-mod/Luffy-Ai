@@ -46,13 +46,13 @@ const ssyoutube = {
     download: async (videoUrl) => {
         try {
             if (!videoUrl || (!videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be'))) {
-                return { error: 'URL tidak valid. Harap gunakan URL YouTube.' };
+                return { error: 'URL no válida. Usa una URL de YouTube.' };
             }
 
             const currentTs = Date.now().toString();
             const signature = utils.generateSignature(videoUrl, currentTs);
 
-            if (!signature) return { error: 'Gagal membuat signature keamanan.' };
+            if (!signature) return { error: 'Error al crear la firma de seguridad.' };
 
             const payload = {
                 sf_url: videoUrl,

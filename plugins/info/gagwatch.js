@@ -4,14 +4,14 @@ const pluginConfig = {
   name: "gag2watch",
   alias: ["gag2-watch"],
   category: "info",
-  description: "Cek informasi stok GAG2 Watch",
+  description: "Revisa la información de stock de GAG2 Watch",
   usage: ".gag2-watch",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -24,37 +24,37 @@ async function handler(m) {
 
     if (!data.status || !data.data || !data.data.stock) {
       await m.react("❌");
-      return m.reply(`Maaf, data GAG2 tidak ditemukan atau sistem sedang bermasalah.`);
+      return m.reply(`Lo siento, los datos de GAG2 no se encontraron o el sistema tiene problemas.`);
     }
 
     const stock = data.data.stock;
     const weather = stock.weather;
 
-    let txt = `🌱 *GAG2 STOCK MONITOR*\n\n`;
-    txt += `*STATUS:* ${stock.message || '-'}\n`;
-    txt += `*RESTOCK IN:* ${stock.restockInLabel || '-'}\n\n`;
+    let txt = `🌱 *MONITOR DE STOCK GAG2*\n\n`;
+    txt += `*ESTADO:* ${stock.message || '-'}\n`;
+    txt += `*REABASTECIMIENTO EN:* ${stock.restockInLabel || '-'}\n\n`;
 
     if (weather && weather.active) {
-      txt += `⛅ *WEATHER:* ${weather.type.toUpperCase()}\n`;
+      txt += `⛅ *CLIMA:* ${weather.type.toUpperCase()}\n`;
       if (weather.effects && weather.effects.length > 0) {
-        txt += `_Efek:_ ${weather.effects[0]}\n`;
+        txt += `_Efecto:_ ${weather.effects[0]}\n`;
       }
       txt += `\n`;
     }
 
-    txt += `*SEEDS:*\n`;
+    txt += `*SEMILLAS:*\n`;
     stock.seeds.forEach(s => {
       txt += `- ${s.name}: ${s.quantity}\n`;
     });
     txt += `\n`;
 
-    txt += `*GEAR:*\n`;
+    txt += `*EQUIPO:*\n`;
     stock.gear.forEach(g => {
       txt += `- ${g.name}: ${g.quantity}\n`;
     });
     txt += `\n`;
 
-    txt += `*CRATES:*\n`;
+    txt += `*CAJAS:*\n`;
     stock.crates.forEach(c => {
       txt += `- ${c.name}: ${c.quantity}\n`;
     });
@@ -64,7 +64,7 @@ async function handler(m) {
   } catch (error) {
     console.error("[GAG-WATCH Plugin Error]", error);
     await m.react("☢");
-    m.reply(`Terjadi kesalahan saat mengambil data GAG. Coba lagi nanti.`);
+    m.reply(`Ocurrió un error al obtener los datos de GAG. Inténtalo de nuevo más tarde.`);
   }
 }
 

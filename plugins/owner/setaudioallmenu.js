@@ -1,10 +1,10 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const pluginConfig = {
     name: "setaudioallmenu",
     alias: ["setaudioam", "audioallmenu"],
     category: "owner",
-    description: "Mengatur gaya audio untuk All Menu",
+    description: "Configurar el estilo de audio para All Menu",
     usage: ".setaudioallmenu <1-4>",
     example: ".setaudioallmenu 1",
     isOwner: true,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 0,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 };
 
@@ -22,28 +22,28 @@ async function handler(m, { sock }) {
 
     if (!args) {
         return m.reply(
-            `⚠️ *PENGATURAN AUDIO ALL MENU*\n\n` +
-            `Sistem manajemen gaya audio khusus untuk tampilan All Menu.\n\n` +
-            `*PENGGUNAAN:*\n` +
-            `• *${m.prefix}setaudioallmenu 1* — PTT Voice Note dengan reply pesan asli\n` +
-            `• *${m.prefix}setaudioallmenu 2* — PTT Voice Note dengan reply fake polling\n` +
-            `• *${m.prefix}setaudioallmenu 3* — Audio musik biasa dengan reply fake text\n` +
-            `• *${m.prefix}setaudioallmenu 4* — Audio musik biasa dengan reply fake troli order\n\n` +
-            `*PENJELASAN VARIAN:*\n` +
-            `- *Varian 1 & 2* akan secara otomatis mengkonversi file MP3 menjadi Opus (Voice Note) murni menggunakan ffmpeg, sehingga terlihat lebih natural layaknya rekaman suara asli.\n` +
-            `- *Varian 3 & 4* mengirimkan file dalam format MP3 biasa tanpa konversi, namun menggunakan *Fake Quoted* yang terlihat elegan dan keren di layar obrolan.\n\n` +
-            `Saat ini All Menu menggunakan varian: *${db.setting("allmenuAudioStyle") || 1}*`
+            `⚠️ *CONFIGURACIÓN DE AUDIO ALL MENU*\n\n` +
+            `Sistema de gestión del estilo de audio para la visualización de All Menu.\n\n` +
+            `*USO:*\n` +
+            `• *${m.prefix}setaudioallmenu 1* — PTT Voice Note con reply al mensaje original\n` +
+            `• *${m.prefix}setaudioallmenu 2* — PTT Voice Note con reply fake de encuesta\n` +
+            `• *${m.prefix}setaudioallmenu 3* — Audio de música normal con reply fake de texto\n` +
+            `• *${m.prefix}setaudioallmenu 4* — Audio de música normal con reply fake de carrito de pedido\n\n` +
+            `*EXPLICACIÓN DE VARIANTES:*\n` +
+            `- *Variant 1 y 2* convierten automáticamente el archivo MP3 a Opus (Voice Note) puro usando ffmpeg, por lo que se ve más natural, como una grabación de voz real.\n` +
+            `- *Variant 3 y 4* envían el archivo en formato MP3 normal sin conversión, pero usando *Fake Quoted* que se ve elegante y llamativo en la pantalla del chat.\n\n` +
+            `Actualmente All Menu usa la variante: *${db.setting("allmenuAudioStyle") || 1}*`
         );
     }
 
     const newStyle = parseInt(args);
     if (isNaN(newStyle) || newStyle < 1 || newStyle > 4) {
-        return m.reply(`❌ *GAGAL*\n\nPilihan varian audio harus berupa angka 1 sampai 4.\nContoh: *${m.prefix}setaudioallmenu 2*`);
+        return m.reply(`❌ *FALLIDO*\n\nLa opción de variante de audio debe ser un número del 1 al 4.\nEjemplo: *${m.prefix}setaudioallmenu 2*`);
     }
 
     await m.react("🕕");
     db.setting("allmenuAudioStyle", newStyle);
-    await m.reply(`✅ *BERHASIL*\n\nGaya audio All Menu telah sukses diubah menjadi *Varian ${newStyle}*. Silakan tes dengan mengetik *${m.prefix}allmenu*.`);
+    await m.reply(`✅ *EXITOSO*\n\nEl estilo de audio de All Menu se cambió correctamente a *Variante ${newStyle}*. Haz una prueba escribiendo *${m.prefix}allmenu*.`);
     await m.react("✅");
 }
 

@@ -22,7 +22,7 @@ async function DouyinDL(douyinUrl) {
   if (!data || !data.mediaUrls) {
     return {
       status: false,
-      error: "Data tidak ditemukan",
+      error: "Datos no encontrados",
     };
   }
 

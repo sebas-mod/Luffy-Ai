@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { addExpWithLevelCheck } from "../../src/lib/ourin-level.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { addExpWithLevelCheck } from "../../src/lib/luffy-level.js";
 
 const pluginConfig = {
   name: "kurir",
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 120,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -27,12 +27,12 @@ async function handler(m, { sock }) {
   user.rpg.stamina = user.rpg.stamina ?? 100;
 
   if (user.rpg.stamina < staminaCost) {
-    return m.reply(`Pinggang encok kebanyakan bawa kardus! 😩\n\nKurir butuh *${staminaCost} Stamina*, sisa stamina kamu *${user.rpg.stamina}*. Ngurut dulu gih! 💆‍♂️`);
+    return m.reply(`¡Cintura adolorida de cargar cajas! 😩\n\nEl mensajero necesita *${staminaCost} de Resistencia*, solo te quedan *${user.rpg.stamina}*. ¡Hazte un masaje primero! 💆‍♂️`);
   }
 
   user.rpg.stamina -= staminaCost;
   await m.react("📦");
-  await m.reply(`Pakettt!!! 📦\nMencari alamat yang sesuai di maps... 🗺️`);
+  await m.reply(`¡Paqueeeete!!! 📦\nBuscando la dirección correcta en el mapa... 🗺️`);
   await new Promise(r => setTimeout(r, 3000));
 
   const gacha = Math.random();
@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
     await addExpWithLevelCheck(sock, m, db, user, expGain);
     
     await m.react("🐕");
-    return m.reply(`GUK GUK GUK! DIKEJAR ANJING GALAK! 🐕💨\n\nKamu lari keliling komplek demi nyelametin paket orang!\n⚡ Stamina Tambahan: -${extraStamina}\n📈 EXP Kompensasi Lari: *+${expGain}*\n💵 Pendapatan: 0 (Paketnya dilempar ke pagar)\n\nNafas ngos-ngosan banget asli! 🥵`);
+    return m.reply(`¡GUAU GUAU GUAU! ¡TE PERSIGUE UN PERRO BRAVO! 🐕💨\n\nCorriste por todo el vecindario para salvar el paquete!\n⚡ Resistencia Adicional: -${extraStamina}\n📈 EXP por Correr: *+${expGain}*\n💵 Ingreso: 0 (el paquete voló por encima de la cerca)\n\n¡De verdad que te quedaste sin aire! 🥵`);
   }
 
-  const items = ["Dokumen Rahasia", "Baju Online", "Skincare Bini Orang", "Panci Emak-emak"];
+  const items = ["Documento Secreto", "Ropa Online", "Skincare de la Esposa Ajena", "Olla de la Mamá"];
   const item = items[Math.floor(Math.random() * items.length)];
   const earning = Math.floor(Math.random() * 15000) + 5000;
   let tips = 0;
@@ -58,14 +58,14 @@ async function handler(m, { sock }) {
   }
 
   const totalEarning = earning + tips;
-  user.koin = (user.koin || 0) + totalEarning;
+  user.berry = (user.berry || 0) + totalEarning;
   const expGain = Math.floor(totalEarning / 20);
   await addExpWithLevelCheck(sock, m, db, user, expGain);
 
   await m.react("✅");
-  let txt = `ALHAMDULILLAH PAKET SAMPAI! 📦✨\n\nBarang: *${item}*\n💵 Ongkir: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
-  if (tips > 0) txt += `🎁 Tips Tambahan: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
-  txt += `📈 EXP: *+${expGain}*\n⚡ Stamina: -${staminaCost}\n\nBerhasil nganter tepat waktu! 🚚💨`;
+  let txt = `¡POR FIN EL PAQUETE LLEGÓ! 📦✨\n\nArtículo: *${item}*\n💵 Envío: *+Rp ${earning.toLocaleString("id-ID")}*\n`;
+  if (tips > 0) txt += `🎁 Propina Adicional: *+Rp ${tips.toLocaleString("id-ID")}*\n`;
+  txt += `📈 EXP: *+${expGain}*\n⚡ Resistencia: -${staminaCost}\n\n¡Lograste entregarlo a tiempo! 🚚💨`;
   m.reply(txt);
 }
 

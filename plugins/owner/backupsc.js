@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 import archiver from "archiver";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "backupsc",
   alias: ["backup", "backupscript", "backupsource"],
@@ -16,7 +16,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 60,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -97,13 +97,13 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `📦 *ʙᴀᴄᴋᴜᴘ sᴄʀɪᴘᴛ*\n\n> Memproses backup...\n> Mohon tunggu sebentar...`,
+    `📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇʟ sᴄʀɪᴘᴛ*\n\n> Procesando respaldo...\n> Por favor espera un momento...`,
   );
   try {
     const projectRoot = process.cwd();
     const timestamp = moment().tz("Asia/Jakarta").format("YYYY-MM-DD_HH-mm-ss");
     const botName =
-      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "OurinBot";
+      config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "LuffyBot";
     const zipFileName = `${botName}_backup_${timestamp}.zip`;
     const backupDir = getBackupOutputDir(projectRoot);
     const zipFilePath = path.join(backupDir, zipFileName);
@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
     const stats = fs.statSync(zipFilePath);
     const fileSizeMB = (stats.size / (1024 * 1024)).toFixed(2);
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     await sock.sendMessage(
       m.chat,
@@ -193,12 +193,12 @@ async function handler(m, { sock }) {
         fileName: zipFileName,
         mimetype: "application/zip",
         caption:
-          `✅ *ʙᴀᴄᴋᴜᴘ sᴇʟᴇsᴀɪ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-          `┃ 📝 ɴᴀᴍᴀ: \`${zipFileName}\`\n` +
-          `┃ 📊 sɪᴢᴇ: \`${fileSizeMB} MB\`\n` +
-          `┃ 📁 ꜰɪʟᴇ: \`${fileCount}\`\n` +
-          `┃ 📅 ᴛᴀɴɢɢᴀʟ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
+          `✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
+          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+          `┃ 📝 ɴᴏᴍʙʀᴇ: \`${zipFileName}\`\n` +
+          `┃ 📊 ᴛᴀᴍᴀñᴏ: \`${fileSizeMB} MB\`\n` +
+          `┃ 📁 ᴀʀᴄʜɪᴠᴏs: \`${fileCount}\`\n` +
+          `┃ 📅 ꜰᴇᴄʜᴀ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
           `╰┈┈⬡`,
         contextInfo: {
           forwardingScore: 9999,

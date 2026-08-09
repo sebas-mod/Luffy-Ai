@@ -1,18 +1,18 @@
-import { f } from '../../src/lib/ourin-http.js'
-import te from '../../src/lib/ourin-error.js'
+import { f } from '../../src/lib/luffy-http.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['pakustad', 'pak-ustad', 'tanyaustad'],
     alias: [],
     category: 'fun',
-    description: 'Tanya pak ustad (gambar)',
-    usage: '.pakustad <pertanyaan>',
-    example: '.pakustad kenapa aku ganteng',
+    description: 'Pregúntale al maestro (ustad) (imagen)',
+    usage: '.pakustad <pregunta>',
+    example: '.pakustad por qué soy guapo',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -21,9 +21,9 @@ async function handler(m, { sock }) {
     
     if (!text) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-            `> \`${m.prefix}pakustad <pertanyaan>\`\n\n` +
-            `> Contoh: \`${m.prefix}pakustad kenapa aku ganteng\``
+            `⚠️ *ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ*\n\n` +
+            `> \`${m.prefix}pakustad <pregunta>\`\n\n` +
+            `> Ejemplo: \`${m.prefix}pakustad por qué soy guapo\``
         )
     }
     

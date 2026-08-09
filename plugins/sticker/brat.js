@@ -1,49 +1,49 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import fs from "fs";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import ourinApi from "../../src/lib/ourin-apimanager.js";
+import te from "../../src/lib/luffy-error.js";
+import ourinApi from "../../src/lib/luffy-apimanager.js";
 const pluginConfig = {
   name: "brat",
   alias: ["bratmenu", "bratimg", "brattext"],
   category: "sticker",
-  description: "Menu variant brat dan generator sticker brat",
-  usage: ".brat | .bratimg <text>",
-  example: ".bratimg Hai semua",
+  description: "Menú de variantes brat y generador de sticker brat",
+  usage: ".brat | .bratimg <texto>",
+  example: ".bratimg Hola a todos",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
 const BRAT_VARIANTS = [
   {
     title: "Brat Default",
-    description: "Sticker brat versi biasa",
+    description: "Sticker brat versión normal",
     command: "bratimg",
   },
   {
     title: "Brat Green",
-    description: "Variant brat warna hijau",
+    description: "Variante brat color verde",
     command: "bratgreen",
   },
   {
     title: "Brat Cewek",
-    description: "Variant brat cewek",
+    description: "Variante brat chica",
     command: "bratcewek",
   },
   {
     title: "Brat Vermeil",
-    description: "Variant brat Vermeil",
+    description: "Variante brat Vermeil",
     command: "bratvermeil",
   },
-  { title: "Brat HD", description: "Variant brat HD", command: "brathd" },
+  { title: "Brat HD", description: "Variante brat HD", command: "brathd" },
   {
     title: "Brat Video",
-    description: "Sticker brat animated",
+    description: "Sticker brat animado",
     command: "bratvid",
   },
   {
@@ -53,17 +53,17 @@ const BRAT_VARIANTS = [
   },
   {
     title: "Brat Vermeil Video",
-    description: "Variant brat Vermeil video",
+    description: "Variante brat Vermeil video",
     command: "bratvermeilvid",
   },
   {
     title: "Brat Gojo",
-    description: "Variant brat Gojo",
+    description: "Variante brat Gojo",
     command: "bratgojo",
   },
   {
     title: "Brat Gojo Video",
-    description: "Variant brat Gojo video",
+    description: "Variante brat Gojo video",
     command: "bratgojovid",
   },
 ];
@@ -78,15 +78,15 @@ function buildVariantRows(prefix, text) {
 
 async function sendBratMenu(m, sock, text) {
   const caption =
-    "🌿 *kamu mau buat brat yak, silahkan pilih variant brat tombol dibawah*";
+    "🌿 *¿Quieres hacer un brat? Elige la variante brat en los botones de abajo*";
   const buttons = [
     {
       name: "single_select",
       buttonParamsJson: JSON.stringify({
-        title: "🌾 Pilih Variant Brat",
+        title: "🌾 Elegir Variante Brat",
         sections: [
           {
-            title: "Variant Brat",
+            title: "Variante Brat",
             rows: buildVariantRows(m.prefix, text),
           },
         ],
@@ -96,12 +96,12 @@ async function sendBratMenu(m, sock, text) {
 
   await sock.sendButton(
     m.chat,
-    getAssetBuffer("ourin"),
+    getAssetBuffer("luffy"),
     caption,
     m,
     {
       buttons,
-      footer: "Pilih variant brat favorit kamu",
+      footer: "Elige tu variante brat favorita",
     },
   );
 }
@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `🖼️ *ʙʀᴀᴛ ɪᴍᴀɢᴇ*\n\n> Masukkan teks\n\n\`Contoh: ${m.prefix}bratimg Hai semua\``,
+      `🖼️ *ɪᴍᴀɢᴇɴ ʙʀᴀᴛ*\n\n> Ingresa el texto\n\n\`Ejemplo: ${m.prefix}bratimg Hola a todos\``,
     );
   }
 

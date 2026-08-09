@@ -1,10 +1,10 @@
 import axios from 'axios'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'applemusic',
     alias: ['amusic', 'am'],
     category: 'search',
-    description: 'Cari lagu di Apple Music',
+    description: 'Buscar canciones en Apple Music',
     usage: '.applemusic <query>',
     example: '.applemusic Best Friend',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,9 +21,9 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
+            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
             `> \`${m.prefix}applemusic <query>\`\n\n` +
-            `> Contoh:\n` +
+            `> Ejemplo:\n` +
             `> \`${m.prefix}applemusic Best Friend\``
         )
     }
@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const res = await axios.get(`https://api.nexray.web.id/search/applemusic?q=${encodeURIComponent(query)}`)
         
         if (!res.data?.result?.length) {
-            return m.reply(`❌ Tidak ditemukan hasil untuk: ${query}`)
+            return m.reply(`❌ No se encontraron resultados para: ${query}`)
         }
         
         const tracks = res.data.result.slice(0, 5)

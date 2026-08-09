@@ -1,27 +1,27 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'editstok',
     alias: ['editstock'],
     category: 'store',
-    description: '✏️ Edit stok item produk (hanya di private chat)',
-    usage: '.editstok <nomor_produk> <nomor_item>|<detail_baru>',
-    example: '.editstok 1 3|Email: baru@mail.com;;Password: newpass',
+    description: '✏️ Editar artículo de stock del producto (solo en chat privado)',
+    usage: '.editstok <numero_producto> <numero_item>|<detalle_nuevo>',
+    example: '.editstok 1 3|Email: nuevo@mail.com;;Password: newpass',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: true,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     if (m.isGroup) {
         return m.reply(
-            `🚫 *Akses Ditolak*\n\n` +
-            `Untuk menjaga privasi 🛡️, pengeditan stok hanya dapat dilakukan di *private chat*.\n\n` +
-            `Silakan chat bot secara langsung 📱`
+            `🚫 *Acceso Denegado*\n\n` +
+            `Para proteger la privacidad 🛡️, la edición de stock solo se puede hacer en el *chat privado*.\n\n` +
+            `Contacta al bot directamente 📱`
         )
     }
 
@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     const products = db.setting('storeProducts') || []
 
     if (products.length === 0) {
-        return m.reply(`📭 *Belum ada produk.*\n\nTambahkan produk terlebih dahulu: \`${m.prefix}addproduk\` ➕`)
+        return m.reply(`📭 *Aún no hay productos.*\n\nAgrega primero un producto: \`${m.prefix}addproduk\` ➕`)
     }
 
     const text = m.text?.trim() || ''
@@ -37,13 +37,13 @@ async function handler(m, { sock }) {
 
     if (firstPipe === -1) {
         return m.reply(
-            `✏️ *EDIT STOK*\n\n` +
-            `📋 Format: \`${m.prefix}editstok <nomor_produk> <nomor_item>|<detail_baru>\`\n\n` +
-            `📝 *Contoh:*\n` +
-            `\`${m.prefix}editstok 1 3|Email: baru@mail.com;;Password: newpass\`\n\n` +
-            `• Gunakan \`;;\` untuk baris baru dalam detail 🔑\n` +
-            `📋 Lihat nomor item: \`${m.prefix}liststok <nomor_produk>\`\n\n` +
-            `⚠️ _Stok yang sudah terkirim ke pembeli tidak akan berubah_ 🔒`
+            `✏️ *EDITAR STOCK*\n\n` +
+            `📋 Formato: \`${m.prefix}editstok <numero_producto> <numero_item>|<detalle_nuevo>\`\n\n` +
+            `📝 *Ejemplo:*\n` +
+            `\`${m.prefix}editstok 1 3|Email: nuevo@mail.com;;Password: newpass\`\n\n` +
+            `• Usa \`;;\` para nueva línea en el detalle 🔑\n` +
+            `📋 Ver el número de artículo: \`${m.prefix}liststok <numero_producto>\`\n\n` +
+            `⚠️ _El stock ya enviado al comprador no cambiará_ 🔒`
         )
     }
 
@@ -55,28 +55,28 @@ async function handler(m, { sock }) {
     const itemNo = parseInt(parts[1]) - 1
 
     if (isNaN(productNo) || productNo < 0 || productNo >= products.length) {
-        return m.reply(`❌ *Nomor produk tidak valid.*\n\nRentang: 1-${products.length} 📋`)
+        return m.reply(`❌ *Número de producto no válido.*\n\nRango: 1-${products.length} 📋`)
     }
 
     const product = products[productNo]
 
     if (product.type === 'fisik') {
         return m.reply(
-            `📦 *Produk Fisik*\n\n` +
-            `Produk fisik tidak memiliki data per-item 🔑\n` +
-            `Untuk mengubah stok, gunakan:\n` +
-            `\`${m.prefix}editproduk ${productNo + 1} stok <jumlah>\``
+            `📦 *Producto Físico*\n\n` +
+            `El producto físico no tiene datos por artículo 🔑\n` +
+            `Para cambiar el stock, usa:\n` +
+            `\`${m.prefix}editproduk ${productNo + 1} stok <cantidad>\``
         )
     }
 
     const stockItems = product.stockItems || []
 
     if (isNaN(itemNo) || itemNo < 0 || itemNo >= stockItems.length) {
-        return m.reply(`❌ *Nomor item tidak valid.*\n\nRentang: 1-${stockItems.length}\n\n📋 Lihat daftar: \`${m.prefix}liststok ${productNo + 1}\``)
+        return m.reply(`❌ *Número de artículo no válido.*\n\nRango: 1-${stockItems.length}\n\n📋 Ver la lista: \`${m.prefix}liststok ${productNo + 1}\``)
     }
 
     if (!newDetail || newDetail.length < 3) {
-        return m.reply(`❌ *Detail terlalu pendek.*\n\nMinimal 3 karakter diperlukan 🔑`)
+        return m.reply(`❌ *Detalle demasiado corto.*\n\nSe necesitan al menos 3 caracteres 🔑`)
     }
 
     const oldDetail = stockItems[itemNo].detail
@@ -87,12 +87,12 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     return m.reply(
-        `✅ *STOK DIPERBARUI*\n\n` +
-        `🏷️ Produk: *${product.name}*\n` +
-        `🔑 Item #${itemNo + 1}\n\n` +
-        `❌ Sebelum:\n\`${oldDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
-        `✅ Sesudah:\n\`${newDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
-        `⚠️ _Perubahan hanya berlaku untuk item yang belum dikirim ke pembeli_ 🔒`
+        `✅ *STOCK ACTUALIZADO*\n\n` +
+        `🏷️ Producto: *${product.name}*\n` +
+        `🔑 Artículo #${itemNo + 1}\n\n` +
+        `❌ Antes:\n\`${oldDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
+        `✅ Después:\n\`${newDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
+        `⚠️ _El cambio solo aplica a los artículos aún no enviados al comprador_ 🔒`
     )
 }
 

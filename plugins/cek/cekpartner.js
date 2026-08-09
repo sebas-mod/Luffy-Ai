@@ -1,18 +1,18 @@
 import config from '../../config.js'
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'cekpartner',
     alias: ['partnerinfo'],
     category: 'cek',
-    description: 'Cek detail status partner user',
-    usage: '.cekpartner @user',
+    description: 'Comprueba los detalles del estado de partner del usuario',
+    usage: '.cekpartner @usuario',
     example: '.cekpartner',
     isOwner: false,
     isPremium: true,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -41,7 +41,7 @@ async function handler(m) {
     const jid = targetNumber + '@s.whatsapp.net'
 
     if (!info) {
-        return m.reply(`❌ @${targetNumber} bukan partner`, { mentions: [jid] })
+        return m.reply(`❌ @${targetNumber} no es partner`, { mentions: [jid] })
     }
 
     const now = Date.now()
@@ -49,16 +49,16 @@ async function handler(m) {
     const totalDays = info.addedAt ? Math.ceil((info.expired - info.addedAt) / (1000 * 60 * 60 * 24)) : '?'
     const user = db.getUser(jid)
 
-    let txt = `🤝 *DETAIL PARTNER*\n\n`
-    txt += `👤 User: @${targetNumber}\n`
-    txt += `📛 Nama: *${info.name || 'Unknown'}*\n`
-    txt += `📅 Mulai: *${info.addedAt ? formatDate(info.addedAt) : 'Unknown'}*\n`
-    txt += `⏳ Expired: *${formatDate(info.expired)}*\n`
-    txt += `🗓️ Durasi: *${totalDays} hari*\n`
-    txt += `📊 Sisa: *${remaining > 0 ? remaining + ' hari' : '⚠️ Expired'}*\n`
+    let txt = `🤝 *DETALLES DEL PARTNER*\n\n`
+    txt += `👤 Usuario: @${targetNumber}\n`
+    txt += `📛 Nombre: *${info.name || 'Desconocido'}*\n`
+    txt += `📅 Inicio: *${info.addedAt ? formatDate(info.addedAt) : 'Desconocido'}*\n`
+    txt += `⏳ Expira: *${formatDate(info.expired)}*\n`
+    txt += `🗓️ Duración: *${totalDays} días*\n`
+    txt += `📊 Restante: *${remaining > 0 ? remaining + ' días' : '⚠️ Expirado'}*\n`
     if (user) {
-        txt += `⚡ Energi: *${user.energi === -1 ? '∞' : (user.energi ?? 0)}*\n`
-        txt += `💰 Koin: *${user.koin === -1 ? '∞' : (user.koin ?? 0).toLocaleString('id-ID')}*\n`
+        txt += `⚡ Carne: *${user.carne === -1 ? '∞' : (user.carne ?? 0)}*\n`
+        txt += `💰 Berry: *${user.berry === -1 ? '∞' : (user.berry ?? 0).toLocaleString('id-ID')}*\n`
     }
 
     await m.reply(txt, { mentions: [jid] })

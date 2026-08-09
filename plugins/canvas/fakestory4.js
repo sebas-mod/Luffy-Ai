@@ -1,24 +1,24 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import config from "../../config.js";
 import fs from 'fs'
 import * as _canvas from '@napi-rs/canvas'
 
 
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "fakestory4",
   alias: ["fstory4", "igstory4", "albumstory"],
   category: "canvas",
-  description: "Fake Instagram story dengan 2 gambar berbeda",
-  usage: ".fakestory4 <nama>",
-  example: ".fakestory4 Misaki (reply album/2 gambar)",
+  description: "Fake Instagram story con 2 imágenes diferentes",
+  usage: ".fakestory4 <nombre>",
+  example: ".fakestory4 Misaki (responde álbum/2 imágenes)",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 const canvasConfig = {
@@ -217,10 +217,10 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ 4*\n\n` +
-          `> Kirim/reply 1-2 gambar!\n\n` +
-          `> Format: \`${m.prefix}fakestory4 <nama>\`\n` +
-          `> Contoh: \`${m.prefix}fakestory4 Misaki\`\n\n` +
-          `> Tips: Kirim gambar + reply gambar lain untuk 2 gambar berbeda`,
+          `> ¡Envía/responde 1-2 imágenes!\n\n` +
+          `> Formato: \`${m.prefix}fakestory4 <nombre>\`\n` +
+          `> Ejemplo: \`${m.prefix}fakestory4 Misaki\`\n\n` +
+          `> Consejo: Envía una imagen + responde otra imagen para 2 imágenes diferentes`,
       );
     }
     const resultBuffer = await createFakeStory(
@@ -233,7 +233,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: resultBuffer,
-        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜsᴇʀɴᴀᴍᴇ: \`${username}\``,
+        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜꜱᴜᴀʀɪᴏ: \`${username}\``,
       },
       { quoted: m },
     );

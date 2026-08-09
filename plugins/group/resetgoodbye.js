@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'resetgoodbye',
     alias: ['delgoodbye', 'cleargoodbye'],
     category: 'group',
-    description: 'Reset goodbye message ke default',
+    description: 'Restablecer el mensaje de despedida al predeterminado',
     usage: '.resetgoodbye',
     example: '.resetgoodbye',
     isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
     isPrivate: false,
     isAdmin: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
     const groupData = db.getGroup(m.chat)
     
     if (!groupData?.goodbyeMsg) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Goodbye message sudah default`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El mensaje de despedida ya está en el predeterminado`)
     }
     
     db.setGroup(m.chat, { goodbyeMsg: null })
     
     m.react('✅')
     
-    await m.reply(`✅ *ɢᴏᴏᴅʙʏᴇ ᴅɪʀᴇsᴇᴛ*\nKembali ke pesan default`)
+    await m.reply(`✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\nVuelve al mensaje predeterminado`)
 }
 
 export { pluginConfig as config, handler }

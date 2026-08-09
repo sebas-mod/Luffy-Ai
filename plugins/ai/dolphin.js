@@ -1,19 +1,19 @@
 import axios from 'axios'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'dolphin',
     alias: ['dolphinai', 'dphn'],
     category: 'ai',
-    description: 'Chat dengan Dolphin AI (24B Model)',
-    usage: '.dolphin <pertanyaan> atau .dolphin --<template> <pertanyaan>',
-    example: '.dolphin jelaskan tentang AI',
+    description: 'Chat con Dolphin AI (Modelo 24B)',
+    usage: '.dolphin <pregunta> o .dolphin --<plantilla> <pregunta>',
+    example: '.dolphin explica sobre IA',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -41,7 +41,7 @@ async function dolphinAI(question, template = 'logical') {
         .map(line => line.choices[0].delta.content)
         .join('')
     
-    if (!result) throw new Error('Tidak ada respon dari AI')
+    if (!result) throw new Error('No hubo respuesta de la IA')
     
     return result
 }
@@ -52,17 +52,17 @@ async function handler(m, { sock }) {
     if (!text) {
         return m.reply(
             `🐬 *ᴅᴏʟᴘʜɪɴ ᴀɪ*\n\n` +
-            `> Chat dengan Dolphin AI 24B Model\n\n` +
-            `╭┈┈⬡「 📋 *ᴛᴇᴍᴘʟᴀᴛᴇs* 」\n` +
-            `┃ • \`logical\` - Jawaban logis\n` +
-            `┃ • \`creative\` - Jawaban kreatif\n` +
-            `┃ • \`summarize\` - Ringkasan\n` +
-            `┃ • \`code-beginner\` - Kode pemula\n` +
-            `┃ • \`code-advanced\` - Kode lanjutan\n` +
+            `> Chat con el Dolphin AI 24B Model\n\n` +
+            `╭┈┈⬡「 📋 *ᴘʟᴀɴᴛɪʟʟᴀs* 」\n` +
+            `┃ • \`logical\` - Respuesta lógica\n` +
+            `┃ • \`creative\` - Respuesta creativa\n` +
+            `┃ • \`summarize\` - Resumen\n` +
+            `┃ • \`code-beginner\` - Código para principiantes\n` +
+            `┃ • \`code-advanced\` - Código avanzado\n` +
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> *Contoh:*\n` +
-            `> ${m.prefix}dolphin apa itu AI?\n` +
-            `> ${m.prefix}dolphin --creative buat puisi`
+            `> *Ejemplo:*\n` +
+            `> ${m.prefix}dolphin ¿qué es la IA?\n` +
+            `> ${m.prefix}dolphin --creative crea un poema`
         )
     }
     
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
     }
     
     if (!text) {
-        return m.reply(`❌ Masukkan pertanyaan!`)
+        return m.reply(`❌ ¡Escribe una pregunta!`)
     }
     
     await m.react('🕕')

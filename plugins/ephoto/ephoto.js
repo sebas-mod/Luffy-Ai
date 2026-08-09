@@ -2,7 +2,7 @@ import axios from 'axios'
 import FormData from 'form-data'
 import * as cheerio from 'cheerio'
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const EFFECT_URLS = {
     glitchtext: 'https://en.ephoto360.com/create-digital-glitch-text-effects-online-767.html',
     writetext: 'https://en.ephoto360.com/write-text-on-wet-glass-online-589.html',
@@ -50,15 +50,15 @@ const pluginConfig = {
     ],
     alias: ['ephoto'],
     category: 'ephoto',
-    description: 'Buat efek text keren dengan berbagai style',
-    usage: '.<effect> <text>',
-    example: '.glitchtext Ourin-AI',
+    description: 'Crea efectos de texto geniales con varios estilos',
+    usage: '.<efecto> <texto>',
+    example: '.glitchtext Luffy-Ai',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 10,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -118,19 +118,19 @@ async function handler(m, { sock }) {
         const effectList = Object.keys(EFFECT_URLS).map(e => `• \`${m.prefix}${e}\``).join('\n')
         return m.reply(
             `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
-            `> Buat efek text keren!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴀꜰᴛᴀʀ ᴇꜰᴇᴋ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `> *Contoh:* ${m.prefix}glitchtext Ourin-AI`
+            `> ¡Crea efectos de texto geniales!\n\n` +
+            `╭┈┈⬡「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴇꜰᴇᴄᴛᴏꜱ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `> *Ejemplo:* ${m.prefix}glitchtext Luffy-Ai`
         )
     }
     
     if (!text) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Masukkan text!\n> *Contoh:* ${m.prefix}${command} Ourin-AI`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n> *Ejemplo:* ${m.prefix}${command} Luffy-Ai`)
     }
     
     const effectUrl = EFFECT_URLS[command]
     if (!effectUrl) {
-        return m.reply(`❌ Efek tidak ditemukan`)
+        return m.reply(`❌ Efecto no encontrado`)
     }
     
     await m.react('🕕')

@@ -1,20 +1,20 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
-import { addExifToWebp, isAnimatedWebp, DEFAULT_METADATA } from '../../src/lib/ourin-exif.js'
+import te from '../../src/lib/luffy-error.js'
+import { addExifToWebp, isAnimatedWebp, DEFAULT_METADATA } from '../../src/lib/luffy-exif.js'
 
 const pluginConfig = {
     name: 'swm',
     alias: ['wm', 'stickerwm', 'stickermark', 'colong'],
     category: 'sticker',
-    description: 'Mengganti packname dan author pada sticker',
-    usage: '.swm <packname> atau .swm <packname>|<author>',
+    description: 'Cambia el packname y el autor de un sticker',
+    usage: '.swm <packname> o .swm <packname>|<autor>',
     example: '.swm BotName',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 1,
+    carne: 1,
     isEnabled: true
 }
 
@@ -24,27 +24,27 @@ async function handler(m, { sock, config: botConfig }) {
     if (!quoted) {
         return m.reply(
             `🖼️ *sᴛɪᴄᴋᴇʀ ᴡᴀᴛᴇʀᴍᴀʀᴋ*\n\n` +
-            `> Reply sticker dengan caption:\n` +
+            `> Responde un sticker con el caption:\n` +
             `> \`${m.prefix}swm packname\`\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
-            `> \`${m.prefix}swm Ourin-AI\`\n` +
-            `> \`${m.prefix}swm Ourin-AI|LuckyArchz\` _(packname + author)_`
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
+            `> \`${m.prefix}swm Luffy-Ai\`\n` +
+            `> \`${m.prefix}swm Luffy-Ai|LuckyArchz\` _(packname + author)_`
         )
     }
     
     const isSticker = quoted.type === 'stickerMessage' || quoted.isSticker
     if (!isSticker) {
-        return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Reply pesan sticker, bukan ${quoted.type?.replace('Message', '') || 'media lain'}`)
+        return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> Responde un mensaje de sticker, no ${quoted.type?.replace('Message', '') || 'otro medio'}`)
     }
     
     const input = m.text?.trim()
     if (!input) {
         return m.reply(
-            `❌ *ɢᴀɢᴀʟ*\n\n` +
-            `> Masukkan packname\n\n` +
-            `*ᴄᴏɴᴛᴏʜ:*\n` +
-            `> \`${m.prefix}swm Ourin-AI\`\n` +
-            `> \`${m.prefix}swm Ourin-AI|LuckyArchz\` _(+ author)_`
+            `❌ *ꜰᴀʟʟᴏ*\n\n` +
+            `> Ingresa el packname\n\n` +
+            `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
+            `> \`${m.prefix}swm Luffy-Ai\`\n` +
+            `> \`${m.prefix}swm Luffy-Ai|LuckyArchz\` _(+ author)_`
         )
     }
     
@@ -66,7 +66,7 @@ async function handler(m, { sock, config: botConfig }) {
         
         if (!buffer || buffer.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal mendownload sticker`)
+            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el sticker`)
         }
         
         const exifOpts = { packname, author, emojis: ['🤖'] }

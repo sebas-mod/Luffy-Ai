@@ -1,10 +1,10 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "shopeedl",
   alias: ["shopeevideo", "shopeevid"],
   category: "download",
-  description: "Download video dari Shopee",
+  description: "Descarga videos de Shopee",
   usage: ".shopeedl <url>",
   example: ".shopeedl https://shopee.co.id/universal-link/video/...",
   isOwner: false,
@@ -12,7 +12,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 2,
+  carne: 2,
   isEnabled: true,
 };
 
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   const url = m.args[0] || m.text?.trim();
 
   if (!url || !url.includes("shopee")) {
-    return m.reply("❌ Masukkan link video Shopee yang valid.\n\nContoh: `.shopeedl https://shopee.co.id/...`");
+    return m.reply("❌ Ingresa un enlace de video de Shopee válido.\n\nEjemplo: `.shopeedl https://shopee.co.id/...`");
   }
 
   await m.react("🕕");
@@ -55,16 +55,16 @@ async function handler(m, { sock }) {
     const data = await extract(url);
     if (!data || !data.streams_array || data.streams_array.length === 0) {
       await m.react("❌");
-      return m.reply("⚠️ Gagal mengekstrak video. Pastikan link video Shopee sudah benar dan bersifat publik.");
+      return m.reply("⚠️ Error al extraer el video. Asegúrate de que el enlace del video de Shopee sea correcto y público.");
     }
 
     const best = bestStream(data.streams_array);
     const videoUrl = best.stream_url;
 
-    let caption = `🛍️ *SHOPEE VIDEO DOWNLOADER* 🛍️\n\n`;
-    if (data.username) caption += `*Username:* ${data.username}\n`;
-    caption += `*Kualitas:* ${best.quality}\n`;
-    caption += `\n> Dibuat oleh bot kesayanganmu`;
+    let caption = `🛍️ *DESCARGADOR DE VIDEOS SHOPEE* 🛍️\n\n`;
+    if (data.username) caption += `*Usuario:* ${data.username}\n`;
+    caption += `*Calidad:* ${best.quality}\n`;
+    caption += `\n> Hecho por tu bot favorito`;
 
     await sock.sendMessage(m.chat, {
       video: { url: videoUrl },
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Shopee DL]", error.message);
     await m.react("☢");
-    m.reply("😔 Gagal mengunduh video dari Shopee.");
+    m.reply("😔 Error al descargar el video de Shopee.");
   }
 }
 

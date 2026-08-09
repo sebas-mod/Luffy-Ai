@@ -1,24 +1,24 @@
 import axios from "axios";
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "fakeovo",
     alias: ["fake-ovo", "fakeovo"],
     category: "canvas",
-    description: "Membuat canvas fake ovo",
-    usage: ".fake-ovo <nama>",
+    description: "Crea canvas de fake ovo",
+    usage: ".fake-ovo <nombre>",
     example: ".fake-ovo Jokowi",
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 2,
+    carne: 2,
     isEnabled: true,
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`Format salah!\n\n> Contoh: .fake-ovo Budi`);
+    if (!text) return m.reply(`Formato incorrecto!\n\n> Ejemplo: .fake-ovo Budi`);
     
     await m.react("🕕");
     try {
@@ -30,7 +30,7 @@ async function handler(m, { sock, text }) {
                 "Content-Type": "application/json"
             }
         });
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Berhasil membuat fake ovo" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Fake ovo creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[FakeOvo Error]", e);

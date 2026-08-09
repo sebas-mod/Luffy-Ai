@@ -1,18 +1,18 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 const pluginConfig = {
   name: "delsewa",
   alias: ["sewadel", "hapussewa", "removesewa"],
   category: "owner",
-  description: "Hapus grup dari whitelist sewa",
-  usage: ".delsewa <link/id grup>",
+  description: "Eliminar un grupo del whitelist de alquiler",
+  usage: ".delsewa <link/id del grupo>",
   example: ".delsewa https://chat.whatsapp.com/xxx",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -43,30 +43,30 @@ async function handler(m, { sock }) {
   if (!input) {
     if (!m.isGroup) {
       return m.reply(
-        `📝 *HAPUS SEWA*\n\n` +
-          `Dari private: *${m.prefix}delsewa <link/id>*\n` +
-          `Dari grup: ketik *${m.prefix}delsewa* langsung di grup\n\n` +
-          `Contoh:\n` +
+        `📝 *ELIMINAR RENTA*\n\n` +
+          `Desde privado: *${m.prefix}delsewa <link/id>*\n` +
+          `Desde el grupo: escribe *${m.prefix}delsewa* directamente en el grupo\n\n` +
+          `Ejemplo:\n` +
           `• ${m.prefix}delsewa https://chat.whatsapp.com/xxx\n` +
           `• ${m.prefix}delsewa 120363xxx\n\n` +
-          `⚠️ Jika sewabot aktif, bot akan otomatis keluar dari grup yang dihapus`,
+          `⚠️ Si el bot de alquiler está activo, el bot saldrá automáticamente del grupo eliminado`,
       );
     }
     groupId = m.chat;
   } else {
     const result = await resolveGroupId(sock, input);
     if (!result)
-      return m.reply(`❌ Link tidak valid atau grup tidak ditemukan`);
+      return m.reply(`❌ Enlace no válido o grupo no encontrado`);
     groupId = result.id;
     groupName = result.name;
   }
 
-  if (!groupId) return m.reply(`❌ Tidak dapat menentukan grup`);
+  if (!groupId) return m.reply(`❌ No se pudo determinar el grupo`);
 
   const sewaData = db.db.data.sewa.groups[groupId];
   if (!sewaData)
     return m.reply(
-      `❌ Grup tidak terdaftar dalam sistem sewa\n\nLihat daftar: *${m.prefix}listsewa*`,
+      `❌ El grupo no está registrado en el sistema de alquiler\n\nConsulta la lista: *${m.prefix}listsewa*`,
     );
 
   groupName = groupName || sewaData.name || groupId.split("@")[0];
@@ -76,14 +76,14 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   await m.reply(
-    `✅ *SEWA DIHAPUS*\n\nGrup: *${groupName}*\nID: ${groupId.split("@")[0]}`,
+    `✅ *RENTA ELIMINADA*\n\nGrupo: *${groupName}*\nID: ${groupId.split("@")[0]}`,
   );
 
   if (db.db.data.sewa.enabled) {
     try {
       await sock.sendText(
         groupId,
-        `⛔ Grup ini telah dihapus dari whitelist sewa.\nBot akan meninggalkan grup.\n\nHubungi owner untuk sewa ulang.`,
+        `⛔ Este grupo ha sido eliminado de la lista blanca de alquiler.\nEl bot abandonará el grupo.\n\nContacta al owner para volver a alquilar.`,
         null,
         {
           contextInfo: saluranCtx(),

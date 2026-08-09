@@ -1,9 +1,9 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'levelup',
     alias: ['lvlup', 'levelnotif'],
     category: 'user',
-    description: 'Toggle notifikasi level up',
+    description: 'Activar/desactivar notificaciones de subida de nivel',
     usage: '.levelup <on/off>',
     example: '.levelup on',
     isOwner: false,
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -28,8 +28,8 @@ function handler(m, { sock }) {
         db.save()
         return m.reply(
             `✅ *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-            `> Status: *ON* ✅\n` +
-            `> Kamu akan menerima notifikasi saat naik level!`
+            `> Estado: *ON* ✅\n` +
+            `> ¡Recibirás una notificación al subir de nivel!`
         )
     }
     
@@ -38,18 +38,18 @@ function handler(m, { sock }) {
         db.save()
         return m.reply(
             `❌ *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-            `> Status: *OFF* ❌\n` +
-            `> Notifikasi level up dinonaktifkan.`
+            `> Estado: *OFF* ❌\n` +
+            `> Notificaciones de subida de nivel desactivadas.`
         )
     }
     
     const status = user.settings.levelupNotif !== false ? 'ON ✅' : 'OFF ❌'
     return m.reply(
         `🔔 *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
-        `> Status saat ini: *${status}*\n\n` +
-        `╭┈┈⬡「 📋 *ᴜsᴀɢᴇ* 」\n` +
-        `┃ > \`.levelup on\` - Aktifkan\n` +
-        `┃ > \`.levelup off\` - Nonaktifkan\n` +
+        `> Estado actual: *${status}*\n\n` +
+        `╭┈┈⬡「 📋 *ᴜsᴏ* 」\n` +
+        `┃ > \`.levelup on\` - Activar\n` +
+        `┃ > \`.levelup off\` - Desactivar\n` +
         `╰┈┈┈┈┈┈┈┈⬡`
     )
 }

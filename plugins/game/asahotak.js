@@ -1,10 +1,10 @@
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
 games.register('asahotak', {
     alias: ['asah', 'quiz'],
     emoji: '🧠',
-    title: 'ASAH OTAK',
-    description: 'Game asah otak - tebak jawaban'
+    title: 'AGUDIZA MENTAL',
+    description: 'Juego de ingenio - adivina la respuesta'
 })
 
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('asahotak')

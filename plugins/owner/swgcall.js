@@ -1,10 +1,10 @@
-import { getAssetBuffer } from "../../src/lib/ourin-asset-manager.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import { fileTypeFromBuffer } from "file-type";
 import fs from "fs";
 import path from "path";
 import { config } from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const botConfig = config;
 
@@ -12,15 +12,15 @@ const pluginConfig = {
   name: "swgcall",
   alias: ["swgcsemua", "swgcbroadcast", "swgcbc", "groupstoryall"],
   category: "owner",
-  description: "Post Group Status/Story ke SEMUA grup sekaligus (border hijau)",
-  usage: ".swgcall <teks> atau reply media",
-  example: ".swgcall Pengumuman penting!",
+  description: "Publicar Group Status/Story en TODOS los grupos a la vez (borde verde)",
+  usage: ".swgcall <texto> o responde a un medio",
+  example: ".swgcall ¡Anuncio importante!",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 30,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -36,7 +36,7 @@ async function handler(m, { sock, db }) {
     const pending = global._swgcallPending?.get(m.sender);
     if (!pending) {
       return m.reply(
-        `⚠️ *Tidak ada data pending. Kirim ulang media + .swgcall*`,
+        `⚠️ *No hay datos pendientes. Vuelve a enviar el medio + .swgcall*`,
       );
     }
 
@@ -88,14 +88,14 @@ async function handler(m, { sock, db }) {
     }
 
     let report =
-      `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ sᴇʟᴇsᴀɪ*\n\n` +
-      `> Total: *${total}* grup\n` +
-      `> Berhasil: *${success}* ✅\n` +
-      `> Gagal: *${failed}* ❌`;
+      `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
+      `> Total: *${total}* grupos\n` +
+      `> Correctos: *${success}* ✅\n` +
+      `> Fallidos: *${failed}* ❌`;
 
     if (failedGroups.length > 0) {
       report +=
-        `\n\n*Grup gagal:*\n` + failedGroups.map((g) => `> • ${g}`).join("\n");
+        `\n\n*Grupos fallidos:*\n` + failedGroups.map((g) => `> • ${g}`).join("\n");
     }
 
     await m.reply(report);
@@ -122,7 +122,7 @@ async function handler(m, { sock, db }) {
   if (source) {
     try {
       buffer = await source.download();
-      if (!buffer) return m.reply(`❌ Gagal mengambil media.`);
+      if (!buffer) return m.reply(`❌ Fallo al tomar el medio.`);
 
       const fileType = await fileTypeFromBuffer(buffer);
       ext = fileType?.ext || "bin";
@@ -156,11 +156,11 @@ async function handler(m, { sock, db }) {
     rawContent.backgroundColor = "#128C7E";
   } else {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}swgcall teks\` - Story teks ke semua grup\n` +
-        `> Reply gambar/video/audio + \`${m.prefix}swgcall\`\n` +
-        `> Kirim gambar/video + caption \`${m.prefix}swgcall\`\n\n` +
-        `⚠️ _Fitur ini akan mengirim story ke SEMUA grup!_`,
+      `⚠️ *ᴄᴏ́ᴍᴏ ᴜsᴀʀʟᴏ*\n\n` +
+        `> \`${m.prefix}swgcall texto\` - Story de texto a todos los grupos\n` +
+        `> Responde a imagen/video/audio + \`${m.prefix}swgcall\`\n` +
+        `> Envía imagen/video + caption \`${m.prefix}swgcall\`\n\n` +
+        `⚠️ _Esta función enviará el story a TODOS los grupos!_`,
     );
   }
 
@@ -171,7 +171,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      return m.reply(`⚠️ *Bot tidak berada di grup manapun.*`);
+      return m.reply(`⚠️ *El bot no está en ningún grupo.*`);
     }
 
     if (!global._swgcallPending) global._swgcallPending = new Map();
@@ -183,32 +183,32 @@ async function handler(m, { sock, db }) {
     });
 
     const mediaType = rawContent.text
-      ? "Teks"
+      ? "Texto"
       : rawContent.image
-        ? "Gambar"
+        ? "Imagen"
         : rawContent.video
           ? "Video"
           : rawContent.audio
             ? rawContent.ptt
               ? "Voice Note"
               : "Audio"
-            : "Unknown";
+            : "Desconocido";
 
     let thumbnail = null;
     try {
-      thumbnail = getAssetBuffer("ourin2");
+      thumbnail = getAssetBuffer("luffy2");
     } catch {}
 
     const estimatedTime = Math.ceil(groupList.length * 1.5);
 
     await sock.sendMessage(m.chat, {
       text:
-        `📢 *ᴋᴏɴꜰɪʀᴍᴀsɪ ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ*\n\n` +
-        `> Media: *${mediaType}*\n` +
-        `> Total Grup: *${groupList.length}*\n` +
-        `> Estimasi: *~${estimatedTime} detik*\n\n` +
-        `⚠️ _Story akan dipost ke SEMUA grup!_\n` +
-        `_Tekan konfirmasi untuk melanjutkan._`,
+        `📢 *ᴄᴏɴꜰɪʀᴍᴀᴄɪᴏ́ɴ ᴅᴇʟ ʙʀᴏᴀᴅᴄᴀsᴛ sᴡɢᴄ*\n\n` +
+        `> Medio: *${mediaType}*\n` +
+        `> Total de Grupos: *${groupList.length}*\n` +
+        `> Estimado: *~${estimatedTime} segundos*\n\n` +
+        `⚠️ _¡El story se publicará en TODOS los grupos!_\n` +
+        `_Pulsa confirmar para continuar._`,
       contextInfo: {
         ...saluranCtx(),
         forwardedNewsletterMessageInfo: {
@@ -216,19 +216,19 @@ async function handler(m, { sock, db }) {
           newsletterName: botConfig?.saluran?.name,
         },
       },
-      footer: "OURIN MD",
+      footer: "Luffy-Ai MD",
       interactiveButtons: [
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: `✅ Kirim ke ${groupList.length} Grup`,
+            display_text: `✅ Enviar a ${groupList.length} Grupos`,
             id: `${m.prefix}swgcall --yes`,
           }),
         },
         {
           name: "quick_reply",
           buttonParamsJson: JSON.stringify({
-            display_text: "❌ Batal",
+            display_text: "❌ Cancelar",
             id: `${m.prefix}cancelswgcall`,
           }),
         },
@@ -236,7 +236,7 @@ async function handler(m, { sock, db }) {
     });
   } catch (error) {
     await m.reply(
-      `❌ *ᴇʀʀᴏʀ*\n\n> Gagal mengambil daftar grup.\n> _${error.message}_`,
+      `❌ *ᴇʀʀᴏʀ*\n\n> Fallo al obtener la lista de grupos.\n> _${error.message}_`,
     );
     if (tempFile && fs.existsSync(tempFile)) {
       try {

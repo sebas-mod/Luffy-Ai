@@ -1,4 +1,4 @@
-import te from "../../src/lib/ourin-error.js";
+import te from "../../src/lib/luffy-error.js";
 import config from "../../config.js";
 import axios from "axios";
 
@@ -6,15 +6,15 @@ const pluginConfig = {
   name: "watercolortext",
   alias: ["watercolor", "wctext"],
   category: "canvas",
-  description: "Buat gambar teks dengan efek watercolor",
-  usage: ".watercolortext <teks>",
-  example: ".watercolortext OURIN",
+  description: "Crea una imagen de texto con efecto acuarela",
+  usage: ".watercolortext <texto>",
+  example: ".watercolortext Luffy-Ai",
   isOwner: false,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `🎨 *ᴡᴀᴛᴇʀᴄᴏʟᴏʀ ᴛᴇxᴛ*\n\n> Masukkan teks yang ingin dijadikan gambar\n\n\`Contoh: ${m.prefix}watercolortext OURIN\``,
+      `🎨 *ᴡᴀᴛᴇʀᴄᴏʟᴏʀ ᴛᴇxᴛ*\n\n> Ingresa el texto que quieres convertir en imagen\n\n\`Ejemplo: ${m.prefix}watercolortext Luffy-Ai\``,
     );
   }
 
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendMessage(m.chat, { 
       image: imageBuffer, 
-      caption: `🎨 *Water Color Text*\n\nTeks: ${text}` 
+      caption: `🎨 *Water Color Text*\n\nTexto: ${text}` 
     }, { quoted: m });
   } catch (error) {
     console.log(error);

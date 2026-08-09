@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     await sock.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
   } catch (error) {
     console.error("[TestPoll] Gagal:", error);
-    m.reply("Gagal membuat poll menu.");
+    m.reply("Error al crear el menú de encuesta.");
   }
 }
 

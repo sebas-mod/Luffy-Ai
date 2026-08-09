@@ -1,27 +1,23 @@
 import config from "../config.js";
 import { isSelf } from "../config.js";
 import { generateWAMessageFromContent, prepareWAMessageMedia } from "ourin";
-import { serialize, getCachedThumb } from "./lib/ourin-serialize.js";
-import { saluranCtx } from "./lib/ourin-context.js";
+import { serialize, getCachedThumb } from "./lib/luffy-serialize.js";
+import { saluranCtx } from "./lib/luffy-context.js";
 import {
   getPlugin,
   getPluginCount,
   getAllPlugins,
   pluginStore,
   getAllCommandNames,
-} from "./lib/ourin-plugins.js";
-import {
-  findSimilarCommands,
-  formatSuggestionMessage,
-} from "./lib/ourin-similarity.js";
-import { getDatabase } from "./lib/ourin-database.js";
+} from "./lib/luffy-plugins.js";
+import { getDatabase } from "./lib/luffy-database.js";
 import {
   formatUptime,
   createWaitMessage,
   createErrorMessage,
-} from "./lib/ourin-formatter.js";
+} from "./lib/luffy-formatter.js";
 import { getUptime } from "./connection.js";
-import { logger, logMessage, c } from "./lib/ourin-logger.js";
+import { logger, logMessage, c } from "./lib/luffy-logger.js";
 import {
   isLid,
   isLidConverted,
@@ -31,14 +27,14 @@ import {
   cacheParticipantLids,
   savePersistentCache,
   getLidCacheSize,
-} from "./lib/ourin-lid.js";
-import { hasActiveSession, getSession } from "./lib/ourin-game-data.js";
+} from "./lib/luffy-lid.js";
+import { hasActiveSession, getSession } from "./lib/luffy-game-data.js";
 import {
   levenshtein,
   formatAfkDuration,
   checkPermission,
   checkMode,
-} from "./lib/ourin-middleware.js";
+} from "./lib/luffy-middleware.js";
 import {
   handleAntilink,
   handleAntiJudol,
@@ -51,27 +47,27 @@ import {
   handleAntilinkAll,
   handleAntiHidetag,
   handleAntiSwGc,
-} from "./lib/ourin-group-protection.js";
+} from "./lib/luffy-group-protection.js";
 import {
   debounceMessage,
   getCachedUser,
   getCachedGroup,
   getCachedSetting,
-} from "./lib/ourin-performance.js";
+} from "./lib/luffy-performance.js";
 import {
   isJadibotOwner,
   isJadibotPremium,
   loadJadibotDb,
-} from "./lib/ourin-jadibot-database.js";
-import { getActiveJadibots } from "./lib/ourin-jadibot-manager.js";
-import { handleCommand as handleCaseCommand } from "../case/ourin.js";
+} from "./lib/luffy-jadibot-database.js";
+import { getActiveJadibots } from "./lib/luffy-jadibot-manager.js";
+import { handleCommand as handleCaseCommand } from "../case/luffy.js";
 import { RateLimiterMemory } from "rate-limiter-flexible";
-import { games as ourinGames } from "./lib/ourin-games.js";
+import { games as luffyGames } from "./lib/luffy-games.js";
 import fs from "fs";
 import path from "path";
 import { exec } from "child_process";
 import axios from "axios";
-import * as timeHelper from "./lib/ourin-time.js";
+import * as timeHelper from "./lib/luffy-time.js";
 import sharp from "sharp";
 const safe = (fn) => {
   try {
@@ -88,7 +84,6 @@ let FormData,
   dungeonAnswerHandler,
   kyubigameAnswerHandler,
   family100AnswerHandler,
-  pushkontakAnswerHandler,
   anticustomReplyHandler,
   dafontAnswerHandler,
   gantiAssetAnswerHandler,
@@ -123,7 +118,7 @@ try {
   FormData = (await import("form-data")).default || (await import("form-data"));
 } catch { }
 try {
-  levelHelper = await import("./lib/ourin-level.js");
+  levelHelper = await import("./lib/luffy-level.js");
 } catch { }
 try {
   handleBuyerDone = (await import("../plugins/store/done.js")).handleBuyerDone;
@@ -143,11 +138,6 @@ try {
 try {
   family100AnswerHandler = (await import("../plugins/game/family100.js"))
     .family100AnswerHandler;
-} catch { }
-try {
-  pushkontakAnswerHandler = (
-    await import("../plugins/pushkontak/pushkontak.js")
-  ).pushkontakAnswerHandler;
 } catch { }
 try {
   anticustomReplyHandler = (await import("../plugins/group/anticustom.js"))
@@ -226,18 +216,18 @@ try {
   sulapPlugin = await import("../plugins/fun/sulap.js");
 } catch { }
 try {
-  handleAutoAI = (await import("./lib/ourin-auto-ai.js")).handleAutoAI;
+  handleAutoAI = (await import("./lib/luffy-auto-ai.js")).handleAutoAI;
 } catch { }
 try {
-  handleAutoDownload = (await import("./lib/ourin-auto-download.js"))
+  handleAutoDownload = (await import("./lib/luffy-auto-download.js"))
     .handleAutoDownload;
 } catch { }
 try {
-  checkStickerCommand = (await import("./lib/ourin-sticker-command.js"))
+  checkStickerCommand = (await import("./lib/luffy-sticker-command.js"))
     .checkStickerCommand;
 } catch { }
 try {
-  handleStickerReply = (await import("./lib/ourin-sticker-reply.js"))
+  handleStickerReply = (await import("./lib/luffy-sticker-reply.js"))
     .handleStickerReply;
 } catch { }
 try {
@@ -291,7 +281,7 @@ let _smartTriggerThumb = undefined;
 async function getSmartTriggerThumb() {
   if (_smartTriggerThumb !== undefined) return _smartTriggerThumb;
   try {
-    const url = config.assets["ourin2"];
+    const url = config.assets["luffy2"];
     if (url) {
       _smartTriggerThumb = fs.readFileSync(url)
     } else {
@@ -396,8 +386,8 @@ async function handleSmartTriggers(m, sock, db) {
 
   try {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Ourin-AI";
-    const botName = config.bot?.name || "Ourin-AI";
+    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
+    const botName = config.bot?.name || "Luffy-Ai";
 
     let isAutoreplyEnabled = globalSmartTriggers;
 
@@ -480,9 +470,9 @@ async function handleSmartTriggers(m, sock, db) {
 
     if (isMentioned) {
       await m.reply(
-        `Ada yang manggil ${botName}?
+        `¿Alguien llamaba a ${botName}?
         
-Ada apa manggil aku @${m.sender.split("@")[0]}?`,
+¿Qué pasa, me llamabas @${m.sender.split("@")[0]}?`,
         { mentions: [m.sender] },
       );
       return true;
@@ -490,28 +480,28 @@ Ada apa manggil aku @${m.sender.split("@")[0]}?`,
 
     if (text?.toLowerCase() === "p") {
       await m.reply(
-        `Hai @${m.sender.split("@")[0]}, utamakan salam dulu yahh`,
+        `Hola @${m.sender.split("@")[0]}, primero saluda, nakama`,
         { mentions: [m.sender] },
       );
       return true;
     }
 
     if (text?.toLowerCase() === "bot") {
-      await m.reply(`Hai @${m.sender.split("@")[0]}, ${botName} Aktif ✅`, {
+      await m.reply(`Hola @${m.sender.split("@")[0]}, ${botName} Activo ✅`, {
         mentions: [m.sender],
       });
       return true;
     }
 
     if (text?.toLowerCase()?.includes("assalamualaikum")) {
-      await m.reply(`Waaalaikumssalam @${m.sender.split("@")[0]}`, {
+      await m.reply(`¡Hola! @${m.sender.split("@")[0]}`, {
         mentions: [m.sender],
       });
       return true;
     }
 
     if (text?.toLowerCase()?.includes("hallo")) {
-      await m.reply(`Halo juga kak @${m.sender.split("@")[0]}`, {
+      await m.reply(`¡Hola también, nakama! @${m.sender.split("@")[0]}`, {
         mentions: [m.sender],
       });
       return true;
@@ -616,7 +606,7 @@ async function messageHandler(msg, sock, options = {}) {
               groupData.autoSambut.pesanList = [groupData.autoSambut.pesan];
             }
 
-            const pList = groupData.autoSambut.pesanList || ["Halo {user}! Selamat datang kembali 🙇‍♂️"];
+            const pList = groupData.autoSambut.pesanList || ["¡Hola {user}! Bienvenido de nuevo, nakama 🏴‍☠️"];
             const randomMsg = pList[Math.floor(Math.random() * pList.length)];
 
             let sambutan = randomMsg
@@ -831,7 +821,7 @@ async function messageHandler(msg, sock, options = {}) {
         await m
           .reply(
             config.messages?.banned ||
-            "🚫 *Kamu dibanned dari menggunakan bot ini.*",
+            "🚫 *Has sido baneado de usar este bot.*",
           )
           .catch(() => { });
       }
@@ -936,7 +926,7 @@ async function messageHandler(msg, sock, options = {}) {
               contentType: "audio/wav",
             });
             form.append("model", "whisper-large-v3");
-            form.append("language", "id");
+            form.append("language", "es");
             form.append("response_format", "json");
 
             const { data } = await axios.post(
@@ -1007,7 +997,7 @@ async function messageHandler(msg, sock, options = {}) {
                 const commandArgs = words.slice(1).join(" ");
                 m.body = `${prefix}${bestMatch}${commandArgs ? " " + commandArgs : ""}`;
                 const { parseCommand } =
-                  await import("./lib/ourin-serialize.js");
+                  await import("./lib/luffy-serialize.js");
                 const parsed = parseCommand(m.body, prefix);
                 m.isCommand = parsed.isCommand;
                 m.command = parsed.command;
@@ -1087,7 +1077,7 @@ async function messageHandler(msg, sock, options = {}) {
           const { promisify } = await import('util')
           const { generateWAMessage, getBuffer, generateWAMessageFromContent, proto, generateMessageID } = await import('ourin')
           const { exec: childExec } = await import('child_process')
-          const { VERSION, Button, ButtonV2, Carousel, AIRich, } = await import('./lib/ourin-builder.js')
+          const { VERSION, Button, ButtonV2, Carousel, AIRich, } = await import('./lib/luffy-builder.js')
           const exec = promisify(childExec)
           
           ${code}
@@ -1111,13 +1101,13 @@ async function messageHandler(msg, sock, options = {}) {
 
           if (output.length > 0) {
             await m.reply(
-              `✅ *ᴇxᴇᴄ ʀᴇsᴜʟᴛ*\n\n\`\`\`\n${output.substring(0, 4000)}\n\`\`\``,
+              `✅ *ʀᴇsᴜʟᴛᴀᴅᴏ ᴇxᴇᴄ*\n\n\`\`\`\n${output.substring(0, 4000)}\n\`\`\``,
             );
           }
         }
       } catch (execError) {
         await m.reply(
-          `❌ *ᴇxᴇᴄ ᴇʀʀᴏʀ*\n\n\`\`\`\n${execError.message}\n\nStack:\n${execError.stack?.substring(0, 1000) || "N/A"}\n\`\`\``,
+          `❌ *ᴇʀʀᴏʀ ᴇxᴇᴄ*\n\n\`\`\`\n${execError.message}\n\nStack:\n${execError.stack?.substring(0, 1000) || "N/A"}\n\`\`\``,
         );
       }
       return;
@@ -1285,15 +1275,6 @@ async function messageHandler(msg, sock, options = {}) {
     }
 
     try {
-      if (pushkontakAnswerHandler) {
-        const handled = await pushkontakAnswerHandler(m, sock);
-        if (handled) return;
-      }
-    } catch (e) {
-      console.error("[Handler] Pushkontak answer error:", e.message);
-    }
-
-    try {
       if (dafontAnswerHandler) {
         const handled = await dafontAnswerHandler(m, sock);
         if (handled) return;
@@ -1382,7 +1363,7 @@ async function messageHandler(msg, sock, options = {}) {
           if (stickerCmd) {
             const prefix = m.prefix || config.command?.prefix || ".";
             m.body = `${prefix}${stickerCmd}`;
-            const { parseCommand } = await import("./lib/ourin-serialize.js");
+            const { parseCommand } = await import("./lib/luffy-serialize.js");
             const parsed = parseCommand(m.body, prefix);
             m.isCommand = parsed.isCommand;
             m.command = parsed.command;
@@ -1432,7 +1413,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1449,7 +1430,7 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar imagen de la tienda:", e.message);
           }
         }
 
@@ -1486,7 +1467,7 @@ async function messageHandler(msg, sock, options = {}) {
           `${storeCommand.content}\n\n` +
           `───────────────\n` +
           `> 👁️ Views: ${storeData[m.command.toLowerCase()].views}\n` +
-          `> 💳 Ketik \`${m.prefix}payment\` untuk bayar`;
+          `> 💳 Escribe \`${m.prefix}payment\` para pagar`;
 
         if (storeCommand.hasImage && storeCommand.imagePath) {
           try {
@@ -1503,47 +1484,12 @@ async function messageHandler(msg, sock, options = {}) {
               return;
             }
           } catch (e) {
-            console.error("Gagal load image store:", e.message);
+            console.error("Error al cargar imagen de la tienda:", e.message);
           }
         }
 
         await m.reply(caption);
         return;
-      }
-
-      const storeCommands = Object.keys(storeData);
-      const allCommands = [...getAllCommandNames(), ...storeCommands];
-
-      const similarityEnabled = db.setting("similarity") !== false;
-
-      if (similarityEnabled) {
-        const suggestions = findSimilarCommands(m.command, allCommands, {
-          maxResults: 1,
-          minSimilarity: 0.8,
-          maxDistance: 2,
-        });
-
-        if (suggestions.length > 0) {
-          const suggestedCommand = m.prefix + suggestions[0].command;
-          const simpleMessage = `I'm sorry, but I don't have that command :(\n\nDid you mean this command?\n⇒ *${suggestedCommand}*`;
-
-          try {
-            await sock.sendPreview(
-              m.chat,
-              {
-                caption: config.info.website + "\n" + simpleMessage,
-                url: config.info.website,
-                title: "Command not found",
-                description: `Suggestions Command | ${config.bot.name}`,
-                jpegThumbnail: await sharp(fs.readFileSync(config.assets["ourin2"])).resize(300, 300).toBuffer(),
-                previewType: 1,
-              },
-              { quoted: m }
-            );
-          } catch (err) {
-            console.error("[Similarity] Gagal mengirim pesan similarity preview:", err.message);
-          }
-        }
       }
 
       return;
@@ -1565,9 +1511,7 @@ async function messageHandler(msg, sock, options = {}) {
         const jadibotBlockedCategories = [
           "owner",
           "sewa",
-          "panel",
           "store",
-          "pushkontak",
         ];
         const jadibotBlockedCommands = [
           "sewa",
@@ -1599,10 +1543,10 @@ async function messageHandler(msg, sock, options = {}) {
           jadibotBlockedCommands.includes(m.command.toLowerCase())
         ) {
           return m.reply(
-            `⚠️ *ᴀᴋsᴇs ᴛᴇʀʙᴀᴛᴀs*\n\n` +
-            `Fitur ini hanya tersedia di bot utama.\n` +
-            `Jadibot tidak dapat mengakses fitur ini.\n\n` +
-            `> Hubungi owner bot utama untuk informasi lebih lanjut.`,
+            `⚠️ *ᴀᴄᴄᴇsᴏ ʀᴇsᴛʀɪɴɢɪᴅᴏ*\n\n` +
+            `Esta función solo está disponible en el bot principal.\n` +
+            `Jadibot no puede acceder a esta función.\n\n` +
+            `> Contacta al capitán del bot principal para más información.`,
           );
         }
       }
@@ -1611,13 +1555,8 @@ async function messageHandler(msg, sock, options = {}) {
         all: { allowed: null, excluded: null, name: "All Features" },
         md: {
           allowed: null,
-          excluded: ["pushkontak", "store", "panel", "otp"],
+          excluded: ["store", "otp"],
           name: "Multi Device",
-        },
-        cpanel: { allowed: [...baseAllowed, "tools", "panel"], name: "CPanel" },
-        pushkontak: {
-          allowed: [...baseAllowed, "pushkontak"],
-          name: "Push Kontak",
         },
         store: { allowed: [...baseAllowed, "store"], name: "Store" },
         otp: { allowed: [...baseAllowed, "otp"], name: "OTP" },
@@ -1633,10 +1572,7 @@ async function messageHandler(msg, sock, options = {}) {
         utility: "md",
         tools: "md",
         ephoto: "md",
-        religi: "md",
         info: "md",
-        panel: "cpanel",
-        pushkontak: "pushkontak",
         store: "store",
         otp: "otp",
         jpm: "md",
@@ -1670,10 +1606,10 @@ async function messageHandler(msg, sock, options = {}) {
             modeConfig[suggestedMode]?.name || "Multi Device";
 
           await m.reply(
-            `🔒 *ᴄᴏᴍᴍᴀɴᴅ ᴛɪᴅᴀᴋ ᴛᴇʀsᴇᴅɪᴀ*\n\n` +
-            `> Bot sedang dalam mode *${currentConfig.name}*\n` +
-            `> Command \`${m.prefix}${m.command}\` tersedia di mode *${suggestedModeName}*\n\n` +
-            `💡 Hubungi admin grup untuk mengganti mode:\n` +
+            `🔒 *ᴄᴏᴍᴀɴᴅᴏ ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇ*\n\n` +
+            `> El bot está en modo *${currentConfig.name}*\n` +
+            `> El comando \`${m.prefix}${m.command}\` está disponible en modo *${suggestedModeName}*\n\n` +
+            `💡 Contacta al admin del grupo para cambiar el modo:\n` +
             `\`${m.prefix}botmode ${suggestedMode}\``,
           );
           return;
@@ -1686,14 +1622,14 @@ async function messageHandler(msg, sock, options = {}) {
 
         if (pluginCat === "game" && grpData.game === false) {
           await m.reply(
-            `🎮 *FITUR GAME NONAKTIF*\n\nFitur game sedang dinonaktifkan di grup ini oleh admin.\nMinta admin untuk mengaktifkannya kembali dengan perintah *${m.prefix}game on*`
+            `🎮 *FUNCIÓN DE JUEGOS DESACTIVADA*\n\nLos juegos están desactivados en este grupo por el admin.\nPide al admin activarlos con el comando *${m.prefix}game on*`
           );
           return;
         }
 
         if (pluginCat === "rpg" && grpData.rpg === false) {
           await m.reply(
-            `⚔️ *FITUR RPG NONAKTIF*\n\nFitur RPG sedang dinonaktifkan di grup ini oleh admin.\nMinta admin untuk mengaktifkannya kembali dengan perintah *${m.prefix}rpg on*`
+            `⚔️ *FUNCIÓN RPG DESACTIVADA*\n\nEl RPG está desactivado en este grupo por el admin.\nPide al admin activarlo con el comando *${m.prefix}rpg on*`
           );
           return;
         }
@@ -1714,10 +1650,10 @@ async function messageHandler(msg, sock, options = {}) {
       const user = db.getUser(m.sender);
       if (!m.isOwner && !m.isPartner && !m.isPremium && !user?.isRegistered) {
         await m.reply(
-          `📝 *ᴡᴀᴊɪʙ ᴅᴀꜰᴛᴀʀ*\n\n` +
-          `Kamu harus daftar terlebih dahulu!\n\n` +
-          `> Ketik: \`${m.prefix}daftar\`\n\n` +
-          `*Lalu reply pertanyaan bot sampai selesai*`,
+          `📝 *ʀᴇɢɪsᴛʀᴏ ᴏʙʟɪɢᴀᴛᴏʀɪᴏ*\n\n` +
+          `Debes registrarte primero, nakama!\n\n` +
+          `> Escribe: \`${m.prefix}daftar\`\n\n` +
+          `*Luego responde las preguntas del bot hasta terminar*`,
         );
         return;
       }
@@ -1737,42 +1673,42 @@ async function messageHandler(msg, sock, options = {}) {
       }
     }
 
-    const energiEnabled =
-      db.setting("energi") !== undefined
-        ? db.setting("energi")
-        : config.energi?.enabled !== false;
+    const carneEnabled =
+      db.setting("carne") !== undefined
+        ? db.setting("carne")
+        : config.carne?.enabled !== false;
 
-    const capEnergiOverrides = db.setting("capenergi") || {};
-    const pluginEnergiCost = capEnergiOverrides[plugin.config.name] !== undefined ? capEnergiOverrides[plugin.config.name] : (plugin.config.energi || 0);
+    const capCarneOverrides = db.setting("capcarne") || {};
+    const pluginCarneCost = capCarneOverrides[plugin.config.name] !== undefined ? capCarneOverrides[plugin.config.name] : (plugin.config.carne || 0);
 
-    if (energiEnabled && pluginEnergiCost > 0) {
-      const ownerEnergi = config.energi?.owner ?? -1;
-      const premiumEnergi = config.energi?.premium ?? -1;
-      const defaultEnergi = config.energi?.default ?? 0;
+    if (carneEnabled && pluginCarneCost > 0) {
+      const ownerCarne = config.carne?.owner ?? -1;
+      const premiumCarne = config.carne?.premium ?? -1;
+      const defaultCarne = config.carne?.default ?? 0;
 
-      let currentEnergi;
+      let currentCarne;
       if (
         (m.isOwner || m.isPartner) &&
-        (ownerEnergi === -1 || user?.energi === -1)
+        (ownerCarne === -1 || user?.carne === -1)
       ) {
-      } else if (m.isPremium && (premiumEnergi === -1 || user?.energi === -1)) {
+      } else if (m.isPremium && (premiumCarne === -1 || user?.carne === -1)) {
       } else {
-        currentEnergi =
-          user?.energi ??
+        currentCarne =
+          user?.carne ??
           (m.isOwner || m.isPartner
-            ? ownerEnergi
+            ? ownerCarne
             : m.isPremium
-              ? premiumEnergi
-              : defaultEnergi);
-        if (currentEnergi < pluginEnergiCost) {
-          await m.reply(config.messages?.energiExceeded || "⚡ Energi habis!");
+              ? premiumCarne
+              : defaultCarne);
+        if (currentCarne < pluginCarneCost) {
+          await m.reply(config.messages?.carneExceeded || "⚡ Carne habis!");
           return;
         }
-        db.updateEnergi(m.sender, -pluginEnergiCost);
+        db.updateCarne(m.sender, -pluginCarneCost);
 
-        if (db.setting("notiflimit")) {
-          let limitMsg = config.messages?.limitDeducted || "🔋 Limit kau berkurang sebanyak {amount}. Sisa limit: {sisa}";
-          limitMsg = limitMsg.replace("{amount}", pluginEnergiCost.toString()).replace("{sisa}", (currentEnergi - pluginEnergiCost).toString());
+        if (db.setting("notifcarne")) {
+          let limitMsg = config.messages?.carneDeducted || "🍖 Se restó {amount} de carne. Carne restante: {sisa}";
+          limitMsg = limitMsg.replace("{amount}", pluginCarneCost.toString()).replace("{sisa}", (currentCarne - pluginCarneCost).toString());
           await m.reply(limitMsg);
         }
       }
@@ -1841,7 +1777,7 @@ async function messageHandler(msg, sock, options = {}) {
     try {
       const m = await serialize(sock, msg);
       if (m) {
-        await m.reply(`Sepertinya ada kendala, coba hubungi owner`);
+        await m.reply(`Parece que hubo un problema, contacta al capitán`);
       }
     } catch {
       logger.error("Failed to send error message");
@@ -1962,7 +1898,7 @@ async function groupHandler(update, sock) {
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =
-        config.saluran?.name || config.bot?.name || "Ourin-AI";
+        config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
       let groupPpUrl = null;
       try {
@@ -1973,7 +1909,7 @@ async function groupHandler(update, sock) {
         promote: {
           notifKey: "notifPromote",
           imgKey: "_promoteImg",
-          imgPath: config.assets["ourin-promote"],
+          imgPath: config.assets["luffy-promote"],
           emoji: "🎉",
           label: "PROMOTE",
           text: (p, a) =>
@@ -1982,11 +1918,11 @@ async function groupHandler(update, sock) {
         demote: {
           notifKey: "notifDemote",
           imgKey: "_demoteImg",
-          imgPath: config.assets["ourin-demote"],
+          imgPath: config.assets["luffy-demote"],
           emoji: "📉",
           label: "DEMOTE",
           text: (p, a) =>
-            `🌿 @${p} sudah tidak menjadi admin lagi.\nDemoted by: @${a}`,
+            `🌿 @${p} ya no es admin.\nDegradado por: @${a}`,
         },
       };
 
@@ -2013,8 +1949,8 @@ async function groupHandler(update, sock) {
             },
             message: {
               conversation: action === "promote"
-                ? `Halo semua, aku sekarang admin disini`
-                : `Yahhh, aku udah bukan admin lagi 😔`
+                ? `Hola a todos, ahora soy admin aquí`
+                : `Bueno, ya no soy admin 😔`
             }
           };
 
@@ -2024,7 +1960,7 @@ async function groupHandler(update, sock) {
             {
               name: "cta_url",
               buttonParamsJson: JSON.stringify({
-                display_text: "🍙 Cara menjadi admin",
+                display_text: "🍙 Cómo ser admin",
                 url: "https://www.whatsapp.com/communities/learning/beingagoodadmin?lang=id",
                 merchant_url: "https://www.whatsapp.com/communities/learning/beingagoodadmin?lang=id"
               })
@@ -2032,7 +1968,7 @@ async function groupHandler(update, sock) {
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                display_text: "🖐 Halo admin baru",
+                display_text: "🖐 Hola admin nuevo",
                 id: ""
               })
             }
@@ -2042,7 +1978,7 @@ async function groupHandler(update, sock) {
             {
               name: "quick_reply",
               buttonParamsJson: JSON.stringify({
-                display_text: "Tetap semangat ya! 💪",
+                display_text: "¡Sigue con todo! 💪",
                 id: ""
               })
             }
@@ -2054,7 +1990,7 @@ async function groupHandler(update, sock) {
                 messageContextInfo: {},
                 interactiveMessage: {
                   header: { title: "", subtitle: "", hasMediaAttachment: true, imageMessage: media4.imageMessage },
-                  footer: { text: config.bot?.name || "Ourin-AI" },
+                  footer: { text: config.bot?.name || "Luffy-Ai" },
                   body: { text: rankCfg.text(pNum, aNum) },
                   contextInfo: {
                     mentionedJid: mentions,
@@ -2062,19 +1998,19 @@ async function groupHandler(update, sock) {
                     forwardingScore: 9999,
                     forwardedNewsletterMessageInfo: {
                       newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
-                      newsletterName: config.saluran?.name || config.bot?.name || "Ourin-AI",
+                      newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                       serverMessageId: 127,
                     },
                   },
                   nativeFlowMessage: {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
-                        text: action === "promote" ? `Selamat yahh 🎉` : `Tetap Semangat 📉`,
+                        text: action === "promote" ? `¡Felicidades! 🎉` : `¡Sigue con todo! 📉`,
                         url: "Hai",
                         expiration_time: Date.now() + 1000000
                       },
                       bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2], list_title: "Opsi", button_title: "🍙 Lihat Opsi" },
-                      tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://ourin.site", domain: "shop.example.com", button_index: 0 },
+                      tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                     }),
                     buttons: action === "promote" ? promoteButtons : demoteButtons
                   }
@@ -2197,7 +2133,7 @@ async function groupSettingsHandler(update, sock) {
         if (update.announce === false && groupData.notifOpenGroup === true) {
           await sock.sendText(
             groupId,
-            `🎃 Grup *${groupName}* telah di buka kembali oleh admin`,
+            `🎃 El grupo *${groupName}* ha sido reabierto por el administrador`,
             null,
             zannContext,
           );
@@ -2216,14 +2152,14 @@ async function groupSettingsHandler(update, sock) {
         if (update.restrict === true) {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbatas !\nHanya admin yang dapat mengedit grup`,
+            `🥗 Grupo *${groupName}* restringido!\nSolo los admins pueden editar el grupo`,
             null,
             zannContext,
           );
         } else {
           await sock.sendText(
             groupId,
-            `🥗 Info Grup *${groupName}* terbuka !\nSemua member dapat mengedit grup`,
+            `🥗 Grupo *${groupName}* abierto!\nTodos los miembros pueden editar el grupo`,
             null,
             zannContext,
           );

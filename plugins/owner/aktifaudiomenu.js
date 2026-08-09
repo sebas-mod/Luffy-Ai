@@ -1,4 +1,4 @@
-import { getDatabase } from '../../src/lib/ourin-database.js'
+import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'aktifaudiomenu',
     alias: ['audiomenu', 'setaudiomenu', 'toggleaudiomenu'],
@@ -11,7 +11,7 @@ const pluginConfig = {
     isGroup: false,
     isPrivate: false,
     cooldown: 3,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -23,35 +23,35 @@ async function handler(m, { sock, db }) {
 
     if (!option) {
         return m.reply(
-            `🔊 *ᴀᴜᴅɪᴏ ᴍᴇɴᴜ sᴇᴛᴛɪɴɢ*\n\n` +
-            `> Status: *${current ? '✅ Aktif' : '❌ Nonaktif'}*\n\n` +
-            `*Cara pakai:*\n` +
-            `> \`${m.prefix}aktifaudiomenu ya\` - Aktifkan audio\n` +
-            `> \`${m.prefix}aktifaudiomenu gak\` - Nonaktifkan audio`
+            `🔊 *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ ᴅᴇʟ ᴀᴜᴅɪᴏ ᴅᴇʟ ᴍᴇɴú*\n\n` +
+            `> Estado: *${current ? '✅ Activo' : '❌ Inactivo'}*\n\n` +
+            `*Cómo usar:*\n` +
+            `> \`${m.prefix}aktifaudiomenu si\` - Activar el audio\n` +
+            `> \`${m.prefix}aktifaudiomenu no\` - Desactivar el audio`
         )
     }
 
     if (option === 'ya' || option === 'on' || option === '1' || option === 'aktif') {
         if (current) {
-            return m.reply(`⚠️ Audio menu sudah aktif!`)
+            return m.reply(`⚠️ El audio del menú ya está activo!`)
         }
         db.setting('audioMenu', true)
         await db.save()
         await m.react('✅')
-        return m.reply(`✅ Audio menu *diaktifkan*!\n\n> Sekarang ketika ada yang ketik \`.menu\`, audio akan muncul.`)
+        return m.reply(`✅ Audio del menú *activado*!\n\n> Ahora cuando alguien escriba \`.menu\`, el audio aparecerá.`)
     }
 
     if (option === 'gak' || option === 'off' || option === '0' || option === 'nonaktif') {
         if (!current) {
-            return m.reply(`⚠️ Audio menu sudah nonaktif!`)
+            return m.reply(`⚠️ El audio del menú ya está inactivo!`)
         }
         db.setting('audioMenu', false)
         await db.save()
         await m.react('✅')
-        return m.reply(`❌ Audio menu *dinonaktifkan*!\n\n> Sekarang \`.menu\` tidak akan ada audio.`)
+        return m.reply(`❌ Audio del menú *desactivado*!\n\n> Ahora \`.menu\` no tendrá audio.`)
     }
 
-    return m.reply(`❌ Opsi tidak valid!\n\nGunakan: \`ya\` atau \`gak\``)
+    return m.reply(`❌ ¡Opción no válida!\n\nUsa: \`si\` o \`no\``)
 }
 
 export { pluginConfig as config, handler }

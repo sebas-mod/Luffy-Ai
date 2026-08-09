@@ -1,11 +1,11 @@
 import axios from "axios";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 
 const pluginConfig = {
   name: "gempa",
   alias: ["bmkg", "infogempa", "earthquake"],
   category: "info",
-  description: "Info gempa terkini dari BMKG",
+  description: "Información del último terremoto de BMKG",
   usage: ".gempa",
   example: ".gempa",
   isOwner: false,
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -32,18 +32,18 @@ async function handler(m, { sock }) {
       : null;
 
     const text =
-      `🌍 *Info Gempa Terkini — BMKG*\n\n` +
-      `> 📅 Tanggal: *${g.Tanggal}*\n` +
-      `> 🕐 Jam: *${g.Jam}*\n` +
-      `> 📐 Koordinat: *${g.Coordinates}*\n` +
-      `> 📍 Lintang: *${g.Lintang}*\n` +
-      `> 📍 Bujur: *${g.Bujur}*\n` +
-      `> 💥 Magnitude: *${g.Magnitude}*\n` +
-      `> 🔽 Kedalaman: *${g.Kedalaman}*\n` +
-      `> 🗺️ Wilayah: *${g.Wilayah}*\n` +
-      `> ⚠️ Potensi: *${g.Potensi}*\n` +
-      `> 🏠 Dirasakan: *${g.Dirasakan}*\n\n` +
-      `_Sumber: BMKG Indonesia_`;
+      `🌍 *Info del Terremoto Reciente — BMKG*\n\n` +
+      `> 📅 Fecha: *${g.Tanggal}*\n` +
+      `> 🕐 Hora: *${g.Jam}*\n` +
+      `> 📐 Coordenadas: *${g.Coordinates}*\n` +
+      `> 📍 Latitud: *${g.Lintang}*\n` +
+      `> 📍 Longitud: *${g.Bujur}*\n` +
+      `> 💥 Magnitud: *${g.Magnitude}*\n` +
+      `> 🔽 Profundidad: *${g.Kedalaman}*\n` +
+      `> 🗺️ Zona: *${g.Wilayah}*\n` +
+      `> ⚠️ Potencial: *${g.Potensi}*\n` +
+      `> 🏠 Sentido: *${g.Dirasakan}*\n\n` +
+      `_Fuente: BMKG Indonesia_`;
 
     await m.react("✅");
 
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     await m.react("☢");
     await m.reply(
-      `❌ *Gagal mengambil data gempa*\n\n> ${e.message || "Coba lagi nanti"}`,
+      `❌ *Error al obtener los datos del terremoto*\n\n> ${e.message || "Inténtalo de nuevo más tarde"}`,
     );
   }
 }

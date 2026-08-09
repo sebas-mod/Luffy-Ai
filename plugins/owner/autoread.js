@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
 import config from "../../config.js";
 
 const pluginConfig = {
@@ -14,7 +14,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 3,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -25,12 +25,12 @@ async function handler(m, { sock }) {
   if (!option) {
     const current = db.setting("autoRead") ?? config.features?.autoRead ?? false;
     return m.reply(
-      `📖 *Auto Read*\n\n` +
-        `> Status: *${current ? "Aktif ✅" : "Nonaktif ❌"}*\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `> *${m.prefix}autoread on* — Aktifkan\n` +
-        `> *${m.prefix}autoread off* — Nonaktifkan\n\n` +
-        `_Bot akan otomatis membaca pesan masuk_`
+      `📖 *Auto Lectura*\n\n` +
+        `> Estado: *${current ? "Activo ✅" : "Inactivo ❌"}*\n\n` +
+        `*USO:*\n` +
+        `> *${m.prefix}autoread on* — Activar\n` +
+        `> *${m.prefix}autoread off* — Desactivar\n\n` +
+        `_El bot leerá automáticamente los mensajes entrantes_`
     );
   }
 
@@ -38,8 +38,8 @@ async function handler(m, { sock }) {
     db.setting("autoRead", true);
     const ctx = saluranCtx();
     return m.reply(
-      `📖 *Auto Read Aktif*\n\n` +
-        `> Bot akan otomatis membaca pesan masuk`,
+      `📖 *Auto Lectura Activo*\n\n` +
+        `> El bot leerá automáticamente los mensajes entrantes`,
       { contextInfo: ctx }
     );
   }
@@ -47,13 +47,13 @@ async function handler(m, { sock }) {
   if (option === "off") {
     db.setting("autoRead", false);
     return m.reply(
-      `📖 *Auto Read Nonaktif*\n\n` +
-        `> Bot tidak akan otomatis membaca pesan`
+      `📖 *Auto Lectura Inactivo*\n\n` +
+        `> El bot ya no leerá los mensajes automáticamente`
     );
   }
 
   return m.reply(
-    `❌ *Opsi Tidak Valid*\n\n> Gunakan *${m.prefix}autoread on* atau *${m.prefix}autoread off*`
+    `❌ *Opción No Válida*\n\n> Usa *${m.prefix}autoread on* o *${m.prefix}autoread off*`
   );
 }
 

@@ -1,18 +1,18 @@
 import axios from "axios";
 import config from "../../config.js";
-import te from "../../src/lib/ourin-error.js";
-import { saluranCtx } from "../../src/lib/ourin-context.js";
-const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-OurinMD";
+import te from "../../src/lib/luffy-error.js";
+import { saluranCtx } from "../../src/lib/luffy-context.js";
+const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "emojitoimage",
   alias: ["emoji2img", "emojiimg", "e2i"],
   category: "tools",
-  description: "Konversi emoji ke gambar HD (style Apple)",
-  usage: ".emojitoimage <emoji> [style]",
+  description: "Convierte emojis a imágenes HD (estilo Apple)",
+  usage: ".emojitoimage <emoji> [estilo]",
   example: ".emojitoimage 😳 apple",
   cooldown: 5,
-  energi: 1,
+  carne: 1,
   isEnabled: true,
 };
 
@@ -33,13 +33,13 @@ async function handler(m, { sock }) {
 
   if (!emoji) {
     return m.reply(
-      `🖼️ *ᴇᴍᴏᴊɪ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
-        `> Konversi emoji ke gambar HD\n\n` +
-        `*Format:*\n` +
-        `> \`${m.prefix}emojitoimage <emoji> [style]\`\n\n` +
-        `*Contoh:*\n` +
+      `🖼️ *ᴇᴍᴏᴊɪ ᴀ ɪᴍᴀɢᴇɴ*\n\n` +
+        `> Convierte emojis a imágenes HD\n\n` +
+        `*Formato:*\n` +
+        `> \`${m.prefix}emojitoimage <emoji> [estilo]\`\n\n` +
+        `*Ejemplo:*\n` +
         `> \`${m.prefix}emojitoimage 😳 apple\`\n\n` +
-        `*Style tersedia:*\n` +
+        `*Estilos disponibles:*\n` +
         `> ${STYLES.join(", ")}`,
     );
   }
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ɢᴀɢᴀʟ*\n\n> Emoji tidak ditemukan atau API error");
+      return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> Emoji no encontrado o error de API");
     }
 
     const imgUrl = data.data.url;
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
     await sock.sendMedia(
       m.chat,
       imgUrl,
-      `🖼️ *ᴇᴍᴏᴊɪ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Emoji: ${emoji}\n> Style: ${validStyle}\n> Code: ${data.data.code || "-"}`,
+      `🖼️ *ᴇᴍᴏᴊɪ ᴀ ɪᴍᴀɢᴇɴ*\n\n> Emoji: ${emoji}\n> Estilo: ${validStyle}\n> Código: ${data.data.code || "-"}`,
       m,
       { type: "image", contextInfo: saluranCtx() },
     );

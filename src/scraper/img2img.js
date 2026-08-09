@@ -43,7 +43,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
     const poll = await axios.get(pollUrl, { timeout: 30000 });
 
     if (!poll.data?.status) {
-      return { status: false, error: "Polling gagal" };
+      return { status: false, error: "Fallo en el polling" };
     }
 
     if (poll.data.data?.status === "Success") {
@@ -52,7 +52,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
     }
 
     if (poll.data.data?.status === "Failed") {
-      return { status: false, error: "Proses img2img gagal" };
+      return { status: false, error: "Fallo el proceso img2img" };
     }
 
     await new Promise((r) => setTimeout(r, 2000));

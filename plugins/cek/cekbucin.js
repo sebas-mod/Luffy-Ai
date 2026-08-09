@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cekbucin',
     alias: ['bucin'],
     category: 'cek',
-    description: 'Cek seberapa bucin kamu',
-    usage: '.cekbucin <nama>',
+    description: 'Comprueba cuán bucin eres',
+    usage: '.cekbucin <nombre>',
     example: '.cekbucin Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -20,23 +20,23 @@ async function handler(m) {
                     
     let desc = ''
     if (percent >= 90) {
-        desc = 'BUCIN AKUT! Udah gabisa diselamatkan 😭💔'
+        desc = '¡BUCIN AGUDO! Ya no se puede salvar 😭💔'
     } else if (percent >= 70) {
-        desc = 'Bucin parah nih~ 🥺'
+        desc = 'Bucin severo~ 🥺'
     } else if (percent >= 50) {
-        desc = 'Lumayan bucin 💕'
+        desc = 'Bastante bucin 💕'
     } else if (percent >= 30) {
-        desc = 'Sedikit bucin 😊'
+        desc = 'Un poco bucin 😊'
     } else {
-        desc = 'Santai aja, gak bucin 😎'
+        desc = 'Tranquilo, nada bucin 😎'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tingkat kebucinan kamu *${percent}%*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat kebucinan @${mentioned.split('@')[0]} yak? 
+Tu nivel de bucin es *${percent}%*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar el nivel de bucin de @${mentioned.split('@')[0]}? 
     
-Tingkat kebucinan dia sebesar *${percent}%*
+Su nivel de bucin es *${percent}%*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

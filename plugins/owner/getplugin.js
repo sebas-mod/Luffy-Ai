@@ -1,20 +1,20 @@
 import fs from "fs";
 import path from "path";
 import config from "../../config.js";
-import { AIRich } from "../../src/lib/ourin-builder.js";
+import { AIRich } from "../../src/lib/luffy-builder.js";
 const pluginConfig = {
   name: "getplugin",
   alias: ["gp", "getcode", "plugincode", "sourcecode"],
   category: "owner",
-  description: "Dapatkan source code plugin",
-  usage: ".getplugin <nama plugin>",
+  description: "Obtener el código fuente de un plugin",
+  usage: ".getplugin <nombre del plugin>",
   example: ".getplugin menu",
   isOwner: true,
   isPremium: false,
   isGroup: false,
   isPrivate: false,
   cooldown: 5,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -103,13 +103,13 @@ async function handler(m, { sock }) {
 
   if (!pluginName) {
     return m.reply(
-      `Halo *${m.pushName}*, sepertinya kamu lupa memasukkan nama plugin yang ingin dicari.\n\n` +
-      `Silakan gunakan format berikut:\n` +
-      `- .getplugin <nama plugin>\n\n` +
-      `Contoh penggunaan:\n` +
+      `Hola *${m.pushName}*, parece que olvidaste poner el nombre del plugin que quieres buscar.\n\n` +
+      `Por favor usa el siguiente formato:\n` +
+      `- .getplugin <nombre del plugin>\n\n` +
+      `Ejemplos de uso:\n` +
       `- .getplugin menu\n` +
       `- .getplugin sticker\n` +
-      `- .getplugin game/tebakgambar`
+       `- .getplugin game/tebakhewan`
     );
   }
 
@@ -137,10 +137,10 @@ async function handler(m, { sock }) {
 
   if (!pluginInfo) {
     const similar = getSimilarPlugins(pluginName, pluginsDir);
-    let text = `Maaf ya *${m.pushName}*, plugin dengan nama *${pluginName}* tidak dapat ditemukan.\n\n`;
+    let text = `Lo siento *${m.pushName}*, no se pudo encontrar el plugin con el nombre *${pluginName}*.\n\n`;
 
     if (similar.length > 0) {
-      text += `Mungkin maksud kamu salah satu dari plugin ini:\n`;
+      text += `Tal vez quisiste decir uno de estos plugins:\n`;
       similar.forEach((s) => {
         text += `- ${s}\n`;
       });
@@ -152,13 +152,13 @@ async function handler(m, { sock }) {
   const code = fs.readFileSync(pluginInfo.path);
 
   return await sock.sendMessage(m.chat, {
-    text: "Langsung aja, pencet tombol dibawah",
+    text: "Aquí tienes, pulsa el botón de abajo",
     footer: config.bot.name,
     interactiveButtons: [
       {
         name: "cta_copy",
         buttonParamsJson: JSON.stringify({
-          display_text: "Salin Kode",
+          display_text: "Copiar Código",
           copy_code: code.toString("utf-8")
         })
       }

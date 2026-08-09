@@ -1,15 +1,15 @@
 import config from '../../config.js'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['unblock', 'unblocknomor'],
     alias: [],
     category: 'owner',
-    description: 'Buka blokir nomor WhatsApp',
-    usage: '.unblock <nomor/reply/mention>',
+    description: 'Desbloquear un número de WhatsApp',
+    usage: '.unblock <número/reply/mention>',
     example: '.unblock 628xxx',
     isOwner: true,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
         targetJid = m.quoted.sender || m.quoted.participant
     } else if (m.args[0]) {
         let num = m.args[0].replace(/[^0-9]/g, '')
-        if (!num) return m.reply('❌ Nomor tidak valid.')
+        if (!num) return m.reply('❌ Número no válido.')
         targetJid = num + '@s.whatsapp.net'
     } else if (!m.isGroup) {
         targetJid = m.chat
@@ -30,11 +30,11 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n' +
-            '> `.unblock 628xxx` — Unblock via nomor\n' +
-            '> `.unblock` (reply pesan) — Unblock pengirim\n' +
-            '> `.unblock @mention` — Unblock yang di-mention\n' +
-            '> `.unblock` (di private chat) — Unblock user ini'
+            '⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n\n' +
+            '> `.unblock 628xxx` — Desbloquear por número\n' +
+            '> `.unblock` (reply a un mensaje) — Desbloquear al remitente\n' +
+            '> `.unblock @mention` — Desbloquear al mencionado\n' +
+            '> `.unblock` (en chat privado) — Desbloquear a este usuario'
         )
     }
 
@@ -42,8 +42,8 @@ async function handler(m, { sock }) {
         await sock.updateBlockStatus(targetJid, 'unblock')
         await m.react('✅')
         return m.reply(
-            `✅ *ɴᴏᴍᴏʀ ᴅɪ-ᴜɴʙʟᴏᴄᴋ*\n\n` +
-            `> Target: @${targetJid.split('@')[0]}`,
+            `✅ *ɴúᴍᴇʀᴏ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴏ*\n\n` +
+            `> Objetivo: @${targetJid.split('@')[0]}`,
             { mentions: [targetJid] }
         )
     } catch (err) {

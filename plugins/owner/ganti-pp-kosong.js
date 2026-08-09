@@ -1,35 +1,35 @@
 import fs from 'fs'
 import path from 'path'
-import te from '../../src/lib/ourin-error.js'
-import { updateAssetUrl } from '../../src/lib/ourin-uploader.js'
+import te from '../../src/lib/luffy-error.js'
+import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
     name: 'ganti-pp-kosong.jpg',
     alias: ['gantippkosong', 'setppkosong'],
     category: 'owner',
-    description: 'Ganti gambar pp-kosong.jpg',
-    usage: '.ganti-pp-kosong.jpg (reply/kirim gambar)',
+    description: 'Cambiar la imagen pp-kosong.jpg',
+    usage: '.ganti-pp-kosong.jpg (responde/envía imagen)',
     example: '.ganti-pp-kosong.jpg',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
 async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
-    if (!isImage) return m.reply(`🖼️ *ɢᴀɴᴛɪ PP-KOSONG.JPG*\n\n> Kirim/reply gambar untuk mengganti\n> File: assets/images/pp-kosong.jpg`)
+    if (!isImage) return m.reply(`🖼️ *ᴄᴀᴍʙɪᴀʀ PP-KOSONG.JPG*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/pp-kosong.jpg`)
     try {
         let buffer = m.quoted && m.quoted.isMedia ? await m.quoted.download() : await m.download()
-        if (!buffer) return m.reply('❌ Gagal mendownload gambar')
-        await m.reply(`⏳ Sedang mengupload gambar...`)
+        if (!buffer) return m.reply('❌ Error al descargar la imagen')
+        await m.reply(`⏳ Subiendo la imagen...`)
         try {
             const newUrl = await updateAssetUrl('pp-kosong', buffer, 'pp-kosong.jpg')
-            m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Gambar pp-kosong.jpg telah diganti ke URL baru:\n> ${newUrl}\n> Config telah diupdate secara realtime!`)
+            m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen pp-kosong.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!`)
         } catch (e) {
-            m.reply(`❌ Gagal mengupload gambar: ${e.message}`)
+            m.reply(`❌ Error al subir la imagen: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

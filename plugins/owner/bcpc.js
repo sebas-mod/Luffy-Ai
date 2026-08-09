@@ -1,5 +1,5 @@
-import { getDatabase } from "../../src/lib/ourin-database.js";
-import { decodeAndNormalize } from "../../src/lib/ourin-lid.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import { decodeAndNormalize } from "../../src/lib/luffy-lid.js";
 import config from "../../config.js";
 
 const pluginConfig = {
@@ -13,7 +13,7 @@ const pluginConfig = {
   isGroup: false,
   isPrivate: false,
   cooldown: 10,
-  energi: 0,
+  carne: 0,
   isEnabled: true,
 };
 
@@ -41,19 +41,19 @@ async function handler(m, { sock }) {
   if (!input) {
     const jeda = db.setting("jedaBcpc") || 5000;
     return m.reply(
-      `📱 *BROADCAST PRIVATE CHAT*\n\n` +
-        `Jeda: ${jeda}ms (${(jeda / 1000).toFixed(1)}s)\n\n` +
-        `*PENGGUNAAN:*\n` +
-        `• \`${m.prefix}bcpc <pesan>\` — Kirim ke semua kontak\n` +
-        `• \`${m.prefix}bcpc (reply media)\` — Kirim dengan media\n\n` +
-        `⚠️ *Peringatan:* Bot akan mengirim pesan ke semua kontak yang tersimpan!\n\n` +
-        `ℹ️ *Note:* Kontak hanya terdeteksi jika mereka sudah pernah mengirim pesan ke bot. Kontak yang hanya disimpan tapi belum pernah chat tidak akan muncul.`,
+      `📱 *BROADCAST DE CHAT PRIVADO*\n\n` +
+        `Pausa: ${jeda}ms (${(jeda / 1000).toFixed(1)}s)\n\n` +
+        `*USO:*\n` +
+        `• \`${m.prefix}bcpc <mensaje>\` — Enviar a todos los contactos\n` +
+        `• \`${m.prefix}bcpc (responde media)\` — Enviar con media\n\n` +
+        `⚠️ *Advertencia:* El bot enviará el mensaje a todos los contactos guardados!\n\n` +
+        `ℹ️ *Nota:* Los contactos solo se detectan si ya enviaron un mensaje al bot. Los contactos guardados que nunca hablaron con el bot no aparecerán.`,
     );
   }
 
   if (global.statusBcpc) {
     return m.reply(
-      `❌ Broadcast private sedang berjalan.\nKetik \`${m.prefix}stopbcpc\` untuk menghentikan.`,
+      `❌ El broadcast privado está en curso.\nEscribe \`${m.prefix}stopbcpc\` para detenerlo.`,
     );
   }
 
@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
     if (privateJids.size === 0) {
       m.react("❌");
       return m.reply(
-        "❌ Tidak ada kontak ditemukan.\n\nPastikan bot sudah pernah menerima pesan dari kontak tersebut.",
+        "❌ No se encontraron contactos.\n\nAsegúrate de que el bot ya haya recibido un mensaje de ese contacto.",
       );
     }
 
@@ -128,15 +128,15 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n` +
-          `┃ 📝 ᴘᴇsᴀɴ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
-          `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "Tidak"}\`\n` +
-          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` kontak\n` +
-          `┃ ⏱️ ᴊᴇᴅᴀ: \`${jeda}ms\`\n` +
-          `┃ 📊 ᴇsᴛɪᴍᴀsɪ: \`${Math.ceil((filtered.length * jeda) / 60000)} menit\`\n` +
+          `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴅᴏ*\n\n` +
+          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+          `┃ 📝 ᴍᴇɴsᴀᴊᴇ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
+          `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "No"}\`\n` +
+          `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` contactos\n` +
+          `┃ ⏱️ ᴘᴀᴜsᴀ: \`${jeda}ms\`\n` +
+          `┃ 📊 ᴇsᴛɪᴍᴀᴄɪóɴ: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
           `╰┈┈⬡\n\n` +
-          `> Memulai broadcast...`,
+          `> Iniciando broadcast...`,
         contextInfo: ctx,
       },
       { quoted: m },
@@ -174,10 +174,10 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴛᴇ sᴇʟᴇsᴀɪ*\n\n` +
-          `╭┈┈⬡「 📊 *ʜᴀsɪʟ* 」\n` +
-          `┃ ✅ ʙᴇʀʜᴀsɪʟ: \`${success}\`\n` +
-          `┃ ❌ ɢᴀɢᴀʟ: \`${failed}\`\n` +
+          `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
+          `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+          `┃ ✅ ᴇxɪᴛᴏsᴏs: \`${success}\`\n` +
+          `┃ ❌ ғᴀʟʟɪᴅᴏs: \`${failed}\`\n` +
           `┃ 📊 ᴛᴏᴛᴀʟ: \`${filtered.length}\`\n` +
           `╰┈┈⬡`,
         contextInfo: ctx,
@@ -187,7 +187,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     delete global.statusBcpc;
     m.react("❌");
-    m.reply("Gagal: " + e.message);
+    m.reply("Falló: " + e.message);
   }
 }
 

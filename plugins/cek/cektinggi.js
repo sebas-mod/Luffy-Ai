@@ -2,15 +2,15 @@ const pluginConfig = {
     name: 'cektinggi',
     alias: ['tinggi', 'tall'],
     category: 'cek',
-    description: 'Cek tinggi badan random',
-    usage: '.cektinggi <nama>',
+    description: 'Comprueba la altura al azar',
+    usage: '.cektinggi <nombre>',
     example: '.cektinggi Budi',
     isOwner: false,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,23 +21,23 @@ async function handler(m) {
     
     let desc = ''
     if (tinggi >= 190) {
-        desc = 'TINGGI BANGET! Model basketball! 🏀'
+        desc = '¡MUY ALTO! ¡Modelo de baloncesto! 🏀'
     } else if (tinggi >= 175) {
-        desc = 'Tinggi ideal! 😎'
+        desc = '¡Altura ideal! 😎'
     } else if (tinggi >= 165) {
-        desc = 'Lumayan tinggi 👍'
+        desc = 'Bastante alto 👍'
     } else if (tinggi >= 155) {
-        desc = 'Standard kok 🙂'
+        desc = 'Estándar 🙂'
     } else {
-        desc = 'Imut dan mungil! 🥺'
+        desc = '¡Pequeño y adorable! 🥺'
     }
     
-    let txt = mentioned === m.sender ? `Hai @${mentioned.split('@')[0]}
+    let txt = mentioned === m.sender ? `Hola @${mentioned.split('@')[0]}
     
-Tinggi badan kamu *${tinggi} cm*
-\`\`\`${desc}\`\`\`` : `Kamu ingin ngecek tingkat ketinggian @${mentioned.split('@')[0]} yak? 
+Tu altura es *${tinggi} cm*
+\`\`\`${desc}\`\`\`` : `¿Quieres comprobar la altura de @${mentioned.split('@')[0]}? 
     
-Tinggi badan dia sebesar *${tinggi} cm*
+Su altura es *${tinggi} cm*
 \`\`\`${desc}\`\`\``
     
     await m.reply(txt, { mentions: [mentioned] })

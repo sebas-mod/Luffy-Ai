@@ -1,19 +1,19 @@
 import fs from 'fs'
 import path from 'path'
-import te from '../../src/lib/ourin-error.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'ganti-namabot',
     alias: ['setnamabot', 'setnamebot', 'gantibot'],
     category: 'owner',
-    description: 'Ganti nama bot di config.js',
-    usage: '.ganti-namabot <nama baru>',
-    example: '.ganti-namabot Ourin MD',
+    description: 'Cambiar el nombre del bot en config.js',
+    usage: '.ganti-namabot <nombre nuevo>',
+    example: '.ganti-namabot Luffy MD',
     isOwner: true,
     isPremium: false,
     isGroup: false,
     isPrivate: false,
     cooldown: 5,
-    energi: 0,
+    carne: 0,
     isEnabled: true
 }
 
@@ -21,7 +21,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
     
     if (!newName) {
-        return m.reply(`🤖 *ɢᴀɴᴛɪ ɴᴀᴍᴀ ʙᴏᴛ*\n\n> Nama saat ini: *${config.bot?.name || '-'}*\n\n*Penggunaan:*\n\`${m.prefix}ganti-namabot <nama baru>\``)
+        return m.reply(`🤖 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ʙᴏᴛ*\n\n> Nombre actual: *${config.bot?.name || '-'}*\n\n*Uso:*\n\`${m.prefix}ganti-namabot <nombre nuevo>\``)
     }
     
     try {
@@ -37,7 +37,7 @@ async function handler(m, { sock, config }) {
         
         config.bot.name = newName
         
-        m.reply(`✅ *ʙᴇʀʜᴀsɪʟ*\n\n> Nama bot diganti ke: *${newName}*`)
+        m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del bot cambiado a: *${newName}*`)
         
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

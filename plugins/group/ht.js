@@ -1,17 +1,17 @@
-import { getParticipantJids } from '../../src/lib/ourin-lid.js'
-import te from '../../src/lib/ourin-error.js'
+import { getParticipantJids } from '../../src/lib/luffy-lid.js'
+import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: ['ht', 'hidetag'],
     category: 'group',
-    description: 'Hidetag dengan support reply pesan (teks/media)',
-    usage: '.ht [pesan] atau reply pesan',
-    example: '.ht atau reply pesan lalu .ht',
+    description: 'Hidetag con soporte de reply de mensajes (texto/media)',
+    usage: '.ht [mensaje] o responde un mensaje',
+    example: '.ht o responde un mensaje y escribe .ht',
     isOwner: false,
     isPremium: false,
     isGroup: true,
     isPrivate: false,
     cooldown: 30,
-    energi: 0,
+    carne: 0,
     isEnabled: true,
     isAdmin: true,
     isBotAdmin: false
@@ -125,7 +125,7 @@ async function handler(m, { sock }) {
             const finalText = text || quotedText
 
             if (!finalText) {
-                return m.reply('❌ *Pesan kosong*')
+                return m.reply('❌ *Mensaje vacío*')
             }
 
             return sock.sendMessage(m.chat, {
@@ -136,9 +136,9 @@ async function handler(m, { sock }) {
         if (!text) {
             return m.reply(
                 `📢 *HIDETAG*\n\n` +
-                `• Reply pesan lalu ketik \`${m.prefix}ht\`\n` +
-                `• Atau ketik \`${m.prefix}ht <pesan>\`\n\n` +
-                `Support: teks, gambar, video, sticker, audio, dokumen`
+                `• Responde un mensaje y escribe \`${m.prefix}ht\`\n` +
+                `• O escribe \`${m.prefix}ht <mensaje>\`\n\n` +
+                `Soporta: texto, imagen, video, sticker, audio, documentos`
             )
         }
 
