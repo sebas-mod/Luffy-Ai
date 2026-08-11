@@ -20,7 +20,7 @@ const pluginConfig = {
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`🎵 *ᴘʟᴀʏ ᴄᴀʟʟ*\n\n> Ingresa el título de la canción\n\`Ejemplo: ${m.prefix}playcall surat cinta untuk starla\``);
+    return m.reply(`🎵 *ᴘʟᴀʏ ᴄᴀʟʟ*\n\n> Ingresa el título de la canción\n\`Ejemplo: ${m.prefix}playcall despacito\``);
 
   if (!global.voipClient) {
     return m.reply("La función de llamada de voz no está activada (VoipClient aún no está listo).");

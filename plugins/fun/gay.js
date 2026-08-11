@@ -18,10 +18,10 @@ async function handler(m, { sock }) {
     const groupMetadata = m.groupMetadata;
     const participants = groupMetadata.participants;
     const member = participants.map(u => u.jid);
-    const orang1 = member[Math.floor(Math.random() * member.length)];
-    const orang2 = member[Math.floor(Math.random() * member.length)];
-    const text = `@${orang1.split('@')[0]} *está gay con* @${orang2.split('@')[0]}`;
-    await m.reply(text, { mentions: [orang1, orang2] })
+    const persona1 = member[Math.floor(Math.random() * member.length)];
+    const persona2 = member[Math.floor(Math.random() * member.length)];
+    const text = `@${persona1.split('@')[0]} *está gay con* @${persona2.split('@')[0]}`;
+    await m.reply(text, { mentions: [persona1, persona2] })
 }
 
 export { pluginConfig as config, handler }

@@ -184,7 +184,7 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         premiumList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         premiumList[existing].name = name || premiumList[existing].name
         savePremium(premiumList)
-        return { success: true, message: `Premium diperpanjang ${days} hari`, expiredAt: premiumList[existing].expiredAt }
+        return { success: true, message: `Premium extendido por ${days} días`, expiredAt: premiumList[existing].expiredAt }
     }
 
     premiumList.push({
@@ -195,7 +195,7 @@ function addPremium(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePremium(premiumList)
-    return { success: true, message: `Berhasil ditambahkan sebagai premium ${days} hari`, expiredAt }
+    return { success: true, message: `Se añadió como premium por ${days} días`, expiredAt }
 }
 
 function removePremium(jid) {
@@ -222,7 +222,7 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         partnerList[existing].expiredAt = new Date(baseTime.getTime() + (days * 24 * 60 * 60 * 1000)).toISOString()
         partnerList[existing].name = name || partnerList[existing].name
         savePartners(partnerList)
-        return { success: true, message: `Partner diperpanjang ${days} hari`, expiredAt: partnerList[existing].expiredAt }
+        return { success: true, message: `Partner extendido por ${days} días`, expiredAt: partnerList[existing].expiredAt }
     }
 
     partnerList.push({
@@ -233,7 +233,7 @@ function addPartner(jid, days = 30, name = 'Unknown') {
         expiredAt
     })
     savePartners(partnerList)
-    return { success: true, message: `Berhasil ditambahkan sebagai partner ${days} hari`, expiredAt }
+    return { success: true, message: `Se añadió como partner por ${days} días`, expiredAt }
 }
 
 function removePartner(jid) {

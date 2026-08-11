@@ -3,7 +3,7 @@ import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'chords',
-    alias: ['chord', 'kunci', 'kuncigitar'],
+    alias: ['chord', 'clave', 'clave_guitarra'],
     category: 'search',
     description: 'Buscar acordes de guitarra de canciones',
     usage: '.chords <judul lagu>',

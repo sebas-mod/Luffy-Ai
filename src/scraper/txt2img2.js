@@ -60,7 +60,7 @@ async function getResult(sessionHash, eventId) {
       if (done) return;
       done = true;
       res.data.destroy();
-      reject(new Error("Timeout menunggu hasil"));
+      reject(new Error("Tiempo de espera agotado"));
     }, 180000);
 
     res.data.on("data", (chunk) => {
@@ -117,7 +117,7 @@ async function getResult(sessionHash, eventId) {
       if (done) return;
       done = true;
       clearTimeout(timer);
-      reject(new Error("Stream selesai tanpa hasil"));
+      reject(new Error("La transmisión terminó sin resultados"));
     });
   });
 }
@@ -151,7 +151,7 @@ async function Txt2Img2(prompt) {
     }
 
     if (check.rateLimited) {
-      return { status: false, code: 429, prompt, error: "Rate limited, coba lagi nanti" };
+      return { status: false, code: 429, prompt, error: "Límite de velocidad alcanzado, inténtalo de nuevo más tarde" };
     }
 
     const sessionHash = crypto.randomBytes(8).toString("hex");

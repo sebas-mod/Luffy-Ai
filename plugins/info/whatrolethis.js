@@ -3,7 +3,7 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const config = {
   name: "whatrolethis",
-  alias: ["whatrole", "cekrole", "cekakses"],
+  alias: ["whatrole", "ver_rol", "ver_acceso"],
   category: "info",
   description: "Revisa los requisitos de acceso de muchas funciones a la vez",
   usage: ".whatrolethis <nombre_función1> <nombre_función2> ...",

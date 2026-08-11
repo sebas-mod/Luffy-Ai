@@ -8,7 +8,7 @@ const pluginConfig = {
     alias: [],
     category: 'fun',
     description: 'Comprueba la compatibilidad de almas con alguien',
-    usage: '.soulmatch nama1|nama2',
+    usage: '.soulmatch nombre1|nombre2',
     example: '.soulmatch Raiden|Mei',
     isOwner: false,
     isPremium: false,
@@ -71,9 +71,9 @@ async function handler(m, { sock }) {
         )
     }
     
-    const [nama1, nama2] = text.split('|').map(n => n.trim())
+    const [nombre1, nombre2] = text.split('|').map(n => n.trim())
     
-    if (!nama1 || !nama2) {
+    if (!nombre1 || !nombre2) {
         return m.reply(`❌ Ingresa 2 nombres con el formato: \`${m.prefix}soulmatch nombre1|nombre2\``)
     }
     
@@ -81,19 +81,19 @@ async function handler(m, { sock }) {
     
     const seed1 = Date.now() % 100
     const seed2 = (Date.now() + 50) % 100
-    const soul1 = generateSoulData(nama1, seed1)
-    const soul2 = generateSoulData(nama2, seed2)
-    const combined = nama1.toLowerCase() + nama2.toLowerCase()
+    const soul1 = generateSoulData(nombre1, seed1)
+    const soul2 = generateSoulData(nombre2, seed2)
+    const combined = nombre1.toLowerCase() + nombre2.toLowerCase()
     const baseScore = Array.from(combined).reduce((a, c) => a + c.charCodeAt(0), 0)
     const compatibility = (baseScore % 51) + 50 
     let txt = `╭═══❯ *💫 SOUL MATCH* ❮═══\n`
     txt += `│\n`
-    txt += `│ 👤 *${nama1}*\n`
+    txt += `│ 👤 *${nombre1}*\n`
     txt += `│ ├ 🔮 Soul: ${soul1.soulType}\n`
     txt += `│ ├ 🌟 Element: ${soul1.element}\n`
     txt += `│ └ 🎯 Zodiac: ${soul1.zodiac}\n`
     txt += `│\n`
-    txt += `│ 👤 *${nama2}*\n`
+    txt += `│ 👤 *${nombre2}*\n`
     txt += `│ ├ 🔮 Soul: ${soul2.soulType}\n`
     txt += `│ ├ 🌟 Element: ${soul2.element}\n`
     txt += `│ └ 🎯 Zodiac: ${soul2.zodiac}\n`

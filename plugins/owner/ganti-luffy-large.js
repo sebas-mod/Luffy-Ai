@@ -3,7 +3,7 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'luffy-large',
-    alias: ['setluffylarge', 'gantiluffylarge'],
+    alias: ["configurar_luffy_grande", "gantiluffylarge"],
     category: 'owner',
     description: 'Preset: cambiar la imagen luffy.jpg, y también de luffy-v7 hasta luffy-v11.jpg a la vez',
     usage: '.luffy-large (responde/envía imagen)',

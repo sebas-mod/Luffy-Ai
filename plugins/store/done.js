@@ -3,7 +3,7 @@ import config from "../../config.js";
 
 const pluginConfig = {
   name: "done",
-  alias: ["selesai", "kirim", "confirm"],
+  alias: ["terminado", "enviar", "confirm"],
   category: "store",
   description:
     "✅ Confirmar transacción completada y enviar datos al comprador (responde el mensaje del comprador)",
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         `• Enviará los datos del producto al número del comprador 📤\n` +
         `• Marcará la transacción como completada ✅\n` +
         `• Enviará notificación al comprador 🔔\n\n` +
-        `🧾 *El número de transacción* se obtiene cuando el comprador usa \`${m.prefix}beli <numero_producto>\`\n\n` +
+        `🧾 *El número de transacción* se obtiene cuando el comprador usa \`${m.prefix}comprar <numero_producto>\`\n\n` +
         `⚠️ _Asegúrate de haber recibido el comprobante de pago antes de confirmar_ 📸`,
     );
   }
@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `❌ *Transacción \`${trxId}\` no encontrada.*\n\n` +
         `📭 No hay transacciones pendientes actualmente.\n\n` +
-        `_El comprador puede hacer un pedido con \`${m.prefix}beli <numero_producto>\`_ 🛒`,
+        `_El comprador puede hacer un pedido con \`${m.prefix}comprar <numero_producto>\`_ 🛒`,
     );
   }
 

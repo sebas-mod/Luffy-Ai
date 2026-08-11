@@ -9,7 +9,7 @@ const pluginConfig = {
   alias: ["guracanvas"],
   category: "canvas",
   description: "Crea un efecto canvas Gura a partir de tu foto",
-  usage: ".gura (reply/kirim foto)",
+  usage: ".gura (responde/envía foto)",
   example: ".gura",
   isOwner: false,
   isPremium: false,

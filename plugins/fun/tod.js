@@ -37,17 +37,17 @@ const truths = [
 
 const dares = [
   "¡Envía una selfie con la peor pose ahora mismo al grupo!",
-  "Envía una nota de voz cantando el estribillo de la canción 'Balonku Ada Lima' pero cambiando todas las vocales por 'O'.",
-  "Escríbele a tu ex ahora, dile 'Aku masih sayang' (todavía te quiero), haz captura y envíala al grupo!",
+  "Envía una nota de voz cantando el estribillo de la canción 'Mis Cinco Globos' pero cambiando todas las vocales por 'O'.",
+  "Escríbele a tu ex ahora, dile 'todavía te quiero', haz captura y envíala al grupo!",
   "¡Usa tu peor foto de perfil durante 1 hora completa!",
-  "Escribe en tu estado de WhatsApp 'Aku sayang banget sama [etiqueta a 1 miembro del grupo]' y déjalo 30 minutos. ¡Captura y envía al grupo!",
+  "Escribe en tu estado de WhatsApp 'te quiero muchísimo [etiqueta a 1 miembro del grupo]' y déjalo 30 minutos. ¡Captura y envía al grupo!",
   "Envía una nota de voz diciendo 'Mewing mewing sigma skibidi' con tono serio al grupo.",
   "Envía al grupo 5 stickers de los más absurdos/raros que tengas.",
   "Etiqueta a un admin del grupo y dile 'Hoy estás muy feo/a'.",
-  "Cambia tu bio de WhatsApp a 'Saya badut ancol' durante 1 día.",
+  "Cambia tu bio de WhatsApp a 'Soy un payaso de circo' durante 1 día.",
   "¡Envíale la frase de ligue más cursi a un miembro del sexo opuesto de este grupo!",
   "Escribe un poema cursi sobre pollo frito y léelo en una nota de voz.",
-  "Escribe 'Aku ini sebenernya alien' (en realidad soy un alien) y etiqueta a 3 personas al azar del grupo.",
+  "Escribe 'en realidad soy un alien' y etiqueta a 3 personas al azar del grupo.",
   "¡Di tu nombre completo gritando en una nota de voz!",
   "Elige un número al azar de tus contactos, envíale 'P' 10 veces y haz captura aquí.",
   "Usa la foto de perfil de este bot como tu foto de perfil de WhatsApp durante 30 minutos."

@@ -42,13 +42,13 @@ async function handler(m) {
     txt += `💰 *Cómo Ser Partner*\n`
     txt += `├ Contacta al capitán: ${config.owner?.name || 'Capitán'}\n`
     txt += `├ Duración: 30/60/90 días\n`
-    txt += `└ Comando: \`${prefix}addpartner\` (solo capitán)\n\n`
+    txt += `└ Comando: \`${prefix}agregar_socio\` (solo capitán)\n\n`
 
     txt += `📋 *Comandos del Partner*\n`
-    txt += `├ \`${prefix}cekpartner\` — Revisa el estado de partner\n`
-    txt += `├ \`${prefix}cekprem\` — Revisa el estado premium\n`
-    txt += `├ \`${prefix}cekowner\` — Revisa el rol del usuario\n`
-    txt += `└ \`${prefix}listpartner\` — Lista de partners\n\n`
+    txt += `├ \`${prefix}ver_socio\` — Revisa el estado de partner\n`
+    txt += `├ \`${prefix}ver_premium\` — Revisa el estado premium\n`
+    txt += `├ \`${prefix}ver_dueno\` — Revisa el rol del usuario\n`
+    txt += `└ \`${prefix}lista_socios\` — Lista de partners\n\n`
 
     txt += `> _Contacta al capitán para más información_`
 

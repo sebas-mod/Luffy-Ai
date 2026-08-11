@@ -2,7 +2,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
   name: 'custompayment',
-  alias: ['setpayment', 'setpaytext'],
+  alias: ["configurar_pago", "configurar_texto_pago"],
   category: 'owner',
   description: 'Configurar el texto personalizado de .payment con placeholders',
   usage: '.custompayment <texto> / .custompayment reset',

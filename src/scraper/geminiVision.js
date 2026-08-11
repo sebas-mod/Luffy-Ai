@@ -15,7 +15,7 @@ function buildMessage({ message, history = [], imageBuffer = null }) {
       .join("\n");
 
     if (historyText) {
-      parts.push(`Riwayat percakapan:\n${historyText}`);
+      parts.push(`Historial de la conversación:\n${historyText}`);
     }
   }
 

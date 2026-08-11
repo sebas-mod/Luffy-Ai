@@ -3,7 +3,7 @@ import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "pixiv",
-  alias: ["pixivsearch", "caripixiv"],
+  alias: ["pixivsearch", "buscar_pixiv"],
   category: "search",
   description: "Busca ilustraciones en Pixiv",
   usage: ".pixiv <query>",

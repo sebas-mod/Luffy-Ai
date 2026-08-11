@@ -1,0 +1,62 @@
+import { getAllPlugins } from "../../src/lib/luffy-plugins.js";
+import { getDatabase } from "../../src/lib/luffy-database.js";
+
+const config = {
+  name: "funciones_premium",
+  alias: ["listprem", "listpremium", "fiturprem"],
+  category: "info",
+  description: "Ver la lista de todas las funciones premium del bot",
+  usage: ".fiturpremium",
+  example: ".fiturpremium",
+  isOwner: false,
+  isPremium: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 5,
+  carne: 0,
+  isEnabled: true,
+};
+
+async function handler(m, { sock }) {
+  await m.react("🕕");
+
+  const db = getDatabase();
+  const overrides = db.setting("capprem") || {};
+  const allPlugins = getAllPlugins();
+  
+  let premiumFeatures = [];
+  
+  for (const plugin of allPlugins) {
+    if (plugin && plugin.config && plugin.config.name) {
+      const isPremium = overrides[plugin.config.name] !== undefined 
+        ? overrides[plugin.config.name] 
+        : plugin.config.isPremium;
+        
+      if (isPremium) {
+        premiumFeatures.push(plugin.config.name);
+      }
+    }
+  }
+  
+  if (premiumFeatures.length === 0) {
+    await m.react("✅");
+    return m.reply(
+      `📝 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+      `Actualmente no hay funciones registradas como premium exclusivas.`
+    );
+  }
+  
+  premiumFeatures.sort(); // Urutkan sesuai abjad
+  
+  let listText = premiumFeatures.map((f) => `- ${f}`).join("\n");
+  
+  await m.react("✅");
+  return m.reply(
+    `💎 *LISTA DE FUNCIONES PREMIUM*\n\n` +
+    `Esta es la lista completa de funciones exclusivas a las que solo pueden acceder los miembros con estado Premium:\n\n` +
+    `${listText}\n\n` +
+    `_Para suscribirte a premium, por favor contacta al capitán._`
+  );
+}
+
+export { config, handler };

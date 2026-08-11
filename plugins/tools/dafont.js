@@ -36,7 +36,7 @@ function clearSession(jid) {
 
 const pluginConfig = {
   name: "dafont",
-  alias: ["font", "daffont", "carifont"],
+  alias: ["font", "daffont", "buscar_fuente"],
   category: "tools",
   description: "Busca y descarga fuentes de DaFont",
   usage: ".dafont <nombre de fuente>",

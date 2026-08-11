@@ -20,12 +20,12 @@ const pluginConfig = {
 
 const sessions = {};
 
-const systemPrompt = `Kamu adalah asisten AI yang cerdas dan canggih (Luffy AI).
+const systemPrompt = `Eres un asistente de IA inteligente y avanzado (Luffy AI).
 Usa el formato markdown estrictamente:
 1. Si haces una lista comparativa o un conjunto de datos, usa SIEMPRE el formato de tabla markdown (inicia y termina con '|').
-2. Jika memberikan kode pemrograman, SELALU bungkus dengan markdown code block (\`\`\`bahasa ... \`\`\`).
-3. Usa formato de texto en negrita (*texto*) para enfatizar algo, o hashtag (#) para títulos / explicaciones grandes.
-Pastikan semua respon terstruktur dengan baik agar sistem AIRich dapat merendernya dengan cantik.`;
+2. Si das código de programación, SIEMPRE envuélvelo con un bloque de código markdown (\`\`\`lenguaje ... \`\`\`).
+3. Usa el formato de texto en negrita (*texto*) para enfatizar algo, o hashtag (#) para títulos / explicaciones grandes.
+Asegúrate de que todas las respuestas estén bien estructuradas para que el sistema AIRich pueda renderizarlas de forma bonita.`;
 
 async function handler(m, { sock }) {
     const text = m.text?.trim();

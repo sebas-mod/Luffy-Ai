@@ -1,0 +1,203 @@
+import { getDatabase } from "../../src/lib/luffy-database.js";
+import ms from "ms";
+const pluginConfig = {
+  name: "acceso",
+  alias: [
+    "addakses",
+    "delakses",
+    "listakses",
+    "addaccess",
+    "delaccess",
+    "listaccess",
+  ],
+  category: "owner",
+  description: "Otorgar acceso temporal/permanente a comandos a los usuarios",
+  usage: ".addakses <cmd> <duration> <user>",
+  example: ".addakses addowner 30d @user",
+  isOwner: true,
+  isPremium: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 0,
+  carne: 0,
+  isEnabled: true,
+};
+
+async function handler(m, { sock, plugins }) {
+  const db = getDatabase();
+  const cmd = m.command.toLowerCase();
+  const isAdd = ["addakses", "addaccess"].includes(cmd);
+  const isDel = ["delakses", "delaccess"].includes(cmd);
+  const isList = ["listakses", "listaccess"].includes(cmd);
+  let target = m.mentionedJid?.[0];
+  if (!target && m.quoted) target = m.quoted.sender;
+  if (!target && m.args.length > 0) {
+    for (const arg of m.args) {
+      if (/^\d{5,15}$/.test(arg)) {
+        target = arg + "@s.whatsapp.net";
+        break;
+      } else if (/^@\d+/.test(arg)) {
+        target = arg.replace("@", "") + "@s.whatsapp.net";
+        break;
+      }
+    }
+  }
+  let commandTarget = null;
+  let durationTarget = null;
+  if (isAdd) {
+    if (!target)
+      return m.reply(
+        `❌ *Target inválido*\n\nEtiqueta al usuario / Responde al chat / Escribe el número del target`,
+      );
+    const cleanArgs = m.args.filter(
+      (a) => !a.includes("@") && !/^\d{10,}$/.test(a),
+    );
+    if (cleanArgs.length < 2) {
+      return m.reply(
+        `⚠️ *Formato incorrecto*\n\n` +
+          `Formato: \`${m.prefix}addakses <comando> <duración> <target>\`\n\n` +
+          `*Ejemplo:*\n` +
+          `> \`${m.prefix}addakses addowner 30d @user\` (30 días)\n` +
+          `> \`${m.prefix}addakses unban permanent @user\` (Para siempre)\n\n` +
+          `*Duraciones soportadas:* 1h, 1d, 30d, 1y`,
+      );
+    }
+    commandTarget = cleanArgs[0].toLowerCase();
+    durationTarget = cleanArgs[1].toLowerCase();
+  }
+
+  const user = db.getUser(target) || {};
+  if (!user.access) user.access = [];
+  if (isList) {
+    if (!target) target = m.sender;
+    const targetData = db.getUser(target) || {};
+    const accessList = targetData.access || [];
+    const now = Date.now();
+    const activeAccess = accessList.filter(
+      (a) => a.expired === null || a.expired > now,
+    );
+    if (activeAccess.length !== accessList.length) {
+      targetData.access = activeAccess;
+      db.setUser(target, targetData);
+    }
+
+    if (activeAccess.length === 0) {
+      return m.reply(
+        `📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\nTarget: @${target.split("@")[0]}\nEstado: *Sin acceso especial*`,
+        {
+          mentions: sock.parseMention(`@${target.split("@")[0]}`),
+        },
+      );
+    }
+
+    let txt = `📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\n`;
+    txt += `Target: @${target.split("@")[0]}\n`;
+    txt += `Total: *${activeAccess.length}* comandos\n`;
+    txt += `━━━━━━━━━━━━━━━\n\n`;
+
+    activeAccess.forEach((acc, i) => {
+      let expiredTxt = "♾️ Permanente";
+      if (acc.expired) {
+        const timeLeft = acc.expired - now;
+        if (timeLeft > 0) {
+          expiredTxt = "🕕 " + ms(timeLeft, { long: true });
+        } else {
+          expiredTxt = "🔴 Caducado";
+        }
+      }
+
+      txt += `${i + 1}. *${acc.cmd}*\n`;
+      txt += `   └ ${expiredTxt}\n`;
+    });
+
+    return m.reply(txt, { mentions: [target] });
+  }
+  if (isAdd) {
+    let expiredTime = null;
+    if (durationTarget !== "permanent" && durationTarget !== "perm") {
+      try {
+        const durationMs = ms(durationTarget);
+        if (!durationMs)
+          return m.reply(`❌ ¡Formato de duración incorrecto! Usa: 1h, 1d, 30d`);
+        expiredTime = Date.now() + durationMs;
+      } catch {
+        return m.reply(`❌ ¡Formato de duración no reconocido!`);
+      }
+    }
+
+    const existingIdx = user.access.findIndex((a) => a.cmd === commandTarget);
+    if (existingIdx !== -1) {
+      user.access[existingIdx].expired = expiredTime;
+      db.setUser(target, user);
+      return m.reply(
+        `✅ *ᴀᴄᴄᴇsᴏ ʀᴇɴᴏᴠᴀᴅᴏ*\n\n` +
+          `Comando: \`${commandTarget}\`\n` +
+          `Duración: *${durationTarget}*\n` +
+          `Target: @${target.split("@")[0]}`,
+      );
+    }
+    user.access.push({
+      cmd: commandTarget,
+      expired: expiredTime,
+    });
+
+    // console.log('[DEBUG AddAccess] Saving user with access:', JSON.stringify(user.access))
+    db.setUser(target, user);
+    // console.log('[DEBUG AddAccess] After save:', JSON.stringify(db.getUser(target)?.access))
+
+    await m.reply(
+      `✅ *ᴀᴄᴄᴇsᴏ ᴏᴛᴏʀɢᴀᴅᴏ*\n\n` +
+        `┃ 🔑 ᴄᴏᴍᴀɴᴅᴏ: \`${commandTarget}\`\n` +
+        `┃ ⏱️ ᴅᴜʀᴀᴄɪóɴ: *${durationTarget}*\n` +
+        `┃ 👤 ᴛᴀʀɢᴇᴛ: @${target.split("@")[0]}\n`,
+      { mentions: [target] },
+    );
+  }
+  if (isDel) {
+    if (!target) return m.reply(`❌ Etiqueta al usuario al que le quieres quitar el acceso!`);
+    const now = Date.now();
+    const activeAccess = user.access.filter(
+      (a) => a.expired === null || a.expired > now,
+    );
+    let specificCmd = m.args.find((a) => !a.includes("@") && !/^\d+$/.test(a));
+    if (specificCmd) {
+      specificCmd = specificCmd.toLowerCase();
+      const idx = user.access.findIndex((a) => a.cmd === specificCmd);
+      if (idx === -1)
+        return m.reply(`❌ El usuario no tiene acceso al comando \`${specificCmd}\``);
+
+      user.access.splice(idx, 1);
+      db.setUser(target, user);
+      return m.reply(
+        `✅ El acceso \`${specificCmd}\` se retiró con éxito de @${target.split("@")[0]}`,
+      );
+    }
+
+    if (activeAccess.length === 0) {
+      return m.reply(`⚠️ Este usuario no tiene acceso a ningún comando.`);
+    }
+    const rows = activeAccess.map((acc) => {
+      const exp = acc.expired ? ms(acc.expired - now) : "Permanente";
+      return {
+        title: `Eliminar: ${acc.cmd}`,
+        description: `Duración restante: ${exp}`,
+        id: `${m.prefix}delakses ${acc.cmd} ${target}`,
+      };
+    });
+    const listMessage = {
+      text: `🔓 *RETIRAR ACCESO*\n\nSelecciona el comando que quieres eliminar de @${target.split("@")[0]}`,
+      title: "Administrar acceso",
+      buttonText: "ELEGIR COMANDO",
+      sections: [
+        {
+          title: "Lista de accesos activos",
+          rows: rows,
+        },
+      ],
+    };
+
+    return sock.sendMessage(m.chat, listMessage, { quoted: m });
+  }
+}
+
+export { pluginConfig as config, handler };

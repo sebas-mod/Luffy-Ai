@@ -240,7 +240,7 @@ async function notifyAndSend(sock, groupIds, linkObj, meta) {
             })
             coverBuffer = Buffer.from(res.data)
         } catch (e) {
-            console.log(`[AutoAnime-Winbu] ⚠️ Cover gagal: ${e.message}`)
+            console.log(`[AutoAnime-Winbu] ⚠️ Portada fallida: ${e.message}`)
         }
     }
 
@@ -300,7 +300,7 @@ async function runCheck() {
     }
 
     if (animeList.length === 0) {
-        console.log('[AutoAnime-Winbu] Tidak ada anime')
+        console.log('[AutoAnime-Winbu] No hay anime')
         return
     }
 

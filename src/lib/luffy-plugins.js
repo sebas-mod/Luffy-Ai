@@ -8,7 +8,7 @@ import { theme, chalk, logger } from "./luffy-logger.js";
  * @property {string} category - Kategori plugin (owner, main, utility, fun, dll)
  * @property {string} description - Deskripsi singkat command
  * @property {string} usage - Cara penggunaan command
- * @property {string} example - Contoh penggunaan command
+ * @property {string} example - Ejemplo de uso del comando
  * @property {boolean} isOwner - Apakah command khusus owner
  * @property {boolean} isPremium - Apakah command khusus premium user
  * @property {boolean} isGroup - Apakah command hanya untuk group

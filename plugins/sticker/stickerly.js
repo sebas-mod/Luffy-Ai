@@ -91,7 +91,7 @@ async function stickerlyAnswerHandler(m, sock) {
 
     const text = m.body.trim().toLowerCase();
 
-    if (text === "batal" || text === "cancel") {
+    if (text === "cancelar" || text === "cancel") {
         delete user.stickerly_session;
         db.save();
         await m.reply(`🚪 Búsqueda de stickerly cancelada.`);

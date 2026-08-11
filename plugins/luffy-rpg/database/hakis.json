@@ -1,0 +1,30 @@
+[
+  {
+    "id": "haki_observacion",
+    "nombre": "Kenbunshoku Haki (Observación)",
+    "emoji": "🔮",
+    "nivelMin": 20,
+    "precio": 5000,
+    "efecto": "Aumenta la velocidad y permite predecir ataques enemigos (+15 VEL).",
+    "velocidad": 15
+  },
+  {
+    "id": "haki_armadura",
+    "nombre": "Busoshoku Haki (Armadura)",
+    "emoji": "🛡️",
+    "nivelMin": 25,
+    "precio": 6000,
+    "efecto": "Recubre tu cuerpo de armadura invisible (+20 DEF).",
+    "defensa": 20
+  },
+  {
+    "id": "haki_rey",
+    "nombre": "Haoshoku Haki (Rey Conquistador)",
+    "emoji": "👑",
+    "nivelMin": 40,
+    "precio": 15000,
+    "efecto": "El haki de los que nacen para reinar (+35 ATK, +15 VEL).",
+    "ataque": 35,
+    "velocidad": 15
+  }
+]

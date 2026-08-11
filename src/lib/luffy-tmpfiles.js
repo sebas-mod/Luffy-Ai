@@ -5,7 +5,7 @@ const termaiKey = 'AIzaBj7z2z3xBjsk'
 const termaiDomain = 'https://c.termai.cc'
 
 async function uploadTo0x0(buffer, opts) {
-  if (!Buffer.isBuffer(buffer)) throw new Error("buffer harus Buffer");
+  if (!Buffer.isBuffer(buffer)) throw new Error("el buffer debe ser un Buffer");
   
   const filename = opts?.filename || 'image.jpg'
   const form = new FormData();

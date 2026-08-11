@@ -314,7 +314,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
   const authPath = getJadibotAuthPath(userJid);
 
   if (jadibotSessions.has(id)) {
-    throw new Error("Jadibot sudah aktif untuk nomor ini!");
+    throw new Error("¡Jadibot ya está activo para este número!");
   }
 
   if (!fs.existsSync(authPath)) {
@@ -420,8 +420,8 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
             image: qrBuffer,
             caption:
               `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴄᴏᴅᴇ*\n\n` +
-              `Scan kode QR ini untuk menjadi bot.\n\n` +
-              `> ⏱️ Expired dalam 20 detik\n` +
+              `Escanea este código QR para ser bot.\n\n` +
+              `> ⏱️ Caduca en 20 segundos\n` +
               `> 📊 QR Count: ${qrCount}/3`,
           },
           { quoted: m },
@@ -689,25 +689,25 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
         logger.info("Jadibot", `Pairing Code for ${id}: ${pairingCode}`);
       }
     } catch (e) {
-      logger.error("Jadibot", "Failed to get pairing code: " + e.message);
+      logger.error("Jadibot", "Error al obtener el código de emparejamiento: " + e.message);
 
-      let errorMsg = "Gagal mendapatkan pairing code";
+      let errorMsg = "Error al obtener el código de emparejamiento";
       if (
         e.message?.includes("rate") ||
         e.message?.includes("limit") ||
         e.message?.includes("428")
       ) {
-        errorMsg = "Rate limited! Tunggu 5-10 menit.";
+        errorMsg = "¡Límite de velocidad alcanzado! Espera 5-10 minutos.";
       } else if (
         e.message?.includes("banned") ||
         e.message?.includes("blocked")
       ) {
-        errorMsg = "Nomor mungkin dibanned WhatsApp.";
+        errorMsg = "El número podría estar baneado en WhatsApp.";
       } else if (
         e.message?.includes("Connection Closed") ||
         e.message?.includes("closed")
       ) {
-        errorMsg = "Koneksi terputus. Coba lagi.";
+        errorMsg = "Conexión interrumpida. Inténtalo de nuevo.";
       }
 
       await safeSend(sock, m?.chat, {

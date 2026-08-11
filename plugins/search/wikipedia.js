@@ -126,7 +126,7 @@ async function getFullArticle(title) {
   $(".mw-parser-output > section").each((_, section) => {
     const heading = cleanText($(section).find("h2, h3").first().text());
 
-    if (!heading || heading.toLowerCase() === "daftar isi") return;
+    if (!heading || heading.toLowerCase() === "tabla de contenidos" || heading.toLowerCase() === "daftar isi") return;
 
     const texts = [];
 

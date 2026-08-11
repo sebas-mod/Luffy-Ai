@@ -53,7 +53,7 @@ const initSession = async () => {
         });
         sessionInitialized = true;
     } catch (e) {
-        console.log("⚠️ Gagal init session, mencoba lanjut...");
+        console.log("⚠️ Fallo al iniciar sesión, intentando continuar...");
     }
 };
 
@@ -179,7 +179,7 @@ const mconverter = {
                 }
 
                 if (status === 'finished') {
-                    process.stdout.write('✅ Selesai!\n');
+                    process.stdout.write('✅ ¡Completado!\n');
 
                     const dlParams = new URLSearchParams({
                         token: token,

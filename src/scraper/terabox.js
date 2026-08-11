@@ -54,7 +54,7 @@ async function TeraBoxDL(url) {
       };
     }
 
-    return { status: false, error: "Tidak ada data ditemukan" };
+    return { status: false, error: "No se encontraron datos" };
   } catch (e) {
     return { status: false, error: e.message };
   }

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "gomu_gomu",
+    "nombre": "Gomu Gomu no Mi (Hito Hito no Mi, Modelo: Nika)",
+    "emoji": "🍅",
+    "tipo": "zoan",
+    "precio": 5000,
+    "raro": "legendario",
+    "ataque": 30,
+    "velocidad": 20,
+    "descripcion": "Cuerpo de goma. Transforma la voluntad en libertad. +30 ATK, +20 VEL.",
+    "especial": "gear"
+  },
+  {
+    "id": "mera_mera",
+    "nombre": "Mera Mera no Mi",
+    "emoji": "🔥",
+    "tipo": "logia",
+    "precio": 4000,
+    "raro": "legendario",
+    "ataque": 40,
+    "velocidad": 5,
+    "descripcion": "Cuerpo de fuego. +40 ATK, +5 VEL.",
+    "especial": "logia"
+  },
+  {
+    "id": "goro_goro",
+    "nombre": "Goro Goro no Mi",
+    "emoji": "⚡",
+    "tipo": "logia",
+    "precio": 4200,
+    "raro": "legendario",
+    "ataque": 35,
+    "velocidad": 35,
+    "descripcion": "Cuerpo de rayo. +35 ATK, +35 VEL.",
+    "especial": "logia"
+  },
+  {
+    "id": "opi_opi",
+    "nombre": "Ope Ope no Mi",
+    "emoji": "💠",
+    "tipo": "paramecia",
+    "precio": 4500,
+    "raro": "legendario",
+    "ataque": 25,
+    "velocidad": 15,
+    "descripcion": "Crea una sala donde todo es posible. +25 ATK, +15 VEL.",
+    "especial": "room"
+  },
+  {
+    "id": "tori_tori",
+    "nombre": "Tori Tori no Mi, Modelo: Fénix",
+    "emoji": "🦅",
+    "tipo": "zoan",
+    "precio": 3500,
+    "raro": "epico",
+    "ataque": 25,
+    "velocidad": 25,
+    "descripcion": "Flames azules regenerativas. +25 ATK, +25 VEL.",
+    "especial": "regeneracion"
+  },
+  {
+    "id": "hito_hito",
+    "nombre": "Hito Hito no Mi",
+    "emoji": "🐻",
+    "tipo": "zoan",
+    "precio": 2000,
+    "raro": "epico",
+    "ataque": 20,
+    "velocidad": 10,
+    "descripcion": "Forma humanoide. +20 ATK, +10 VEL.",
+    "especial": "zoan"
+  },
+  {
+    "id": "ushi_ushi",
+    "nombre": "Ushi Ushi no Mi, Modelo: Jirafa",
+    "emoji": "🦒",
+    "tipo": "zoan",
+    "precio": 1500,
+    "raro": "raro",
+    "ataque": 15,
+    "velocidad": 5,
+    "descripcion": "Cuello de jirafa. +15 ATK, +5 VEL.",
+    "especial": "zoan"
+  },
+  {
+    "id": "sube_sube",
+    "nombre": "Sube Sube no Mi",
+    "emoji": "🧴",
+    "tipo": "paramecia",
+    "precio": 1000,
+    "raro": "raro",
+    "ataque": 5,
+    "velocidad": 10,
+    "descripcion": "Piel deslizante. +5 ATK, +10 VEL.",
+    "especial": "paramecia"
+  },
+  {
+    "id": "bara_bara",
+    "nombre": "Bara Bara no Mi",
+    "emoji": "🍊",
+    "tipo": "paramecia",
+    "precio": 1200,
+    "raro": "raro",
+    "ataque": 10,
+    "velocidad": 10,
+    "descripcion": "Desmembramiento. +10 ATK, +10 VEL.",
+    "especial": "paramecia"
+  },
+  {
+    "id": "ito_ito",
+    "nombre": "Ito Ito no Mi",
+    "emoji": "🧵",
+    "tipo": "paramecia",
+    "precio": 3800,
+    "raro": "legendario",
+    "ataque": 30,
+    "velocidad": 20,
+    "descripcion": "Hilos controlables. +30 ATK, +20 VEL.",
+    "especial": "hilos"
+  }
+]

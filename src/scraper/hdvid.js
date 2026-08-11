@@ -91,7 +91,7 @@ async function pollEnhanceTask(
         const terminalError = new Error(
           payload?.message ||
             payload?.data?.message ||
-            `HD video gagal dengan status ${status}`,
+            `El video HD falló con el estado ${status}`,
         );
         terminalError.isTerminal = true;
         throw terminalError;
@@ -99,7 +99,7 @@ async function pollEnhanceTask(
 
       if (!payload?.status && !PENDING_STATUSES.has(normalizedStatus)) {
         const terminalError = new Error(
-          payload?.message || "Polling HD video gagal",
+          payload?.message || "Error al consultar el video HD",
         );
         terminalError.isTerminal = true;
         throw terminalError;
@@ -113,7 +113,7 @@ async function pollEnhanceTask(
         throw new Error(
           error?.response?.data?.message ||
             error?.message ||
-            "Polling HD video gagal",
+            "Error al consultar el video HD",
         );
       }
     }
@@ -121,7 +121,7 @@ async function pollEnhanceTask(
     await delay(pollIntervalMs);
   }
 
-  throw new Error(lastPayload?.message || "Timeout menunggu hasil HD video");
+  throw new Error(lastPayload?.message || "Tiempo de espera agotado para el video HD");
 }
 
 async function videoenhancer(

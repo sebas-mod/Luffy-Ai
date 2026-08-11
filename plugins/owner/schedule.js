@@ -24,7 +24,7 @@ const pluginConfig = {
   description: "Crear recordatorios o agendas libres con texto personalizado",
   usage:
     ".schedule <add/edit/list/kategori/preset/detail/del/status> [options]",
-  example: ".schedule preset sekolah 06:30",
+  example: ".schedule preset escuela 06:30",
   isOwner: true,
   isPremium: false,
   isGroup: false,

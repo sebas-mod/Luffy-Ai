@@ -6,7 +6,7 @@ const pluginConfig = {
     alias: ['aaw', 'autoanime'],
     category: 'anime',
     description: 'Auto subida de anime & donghua en curso de winbu.net (720p Pixeldrain)',
-    usage: '.autoanimewinbu <start|stop|status|cek|list|reset|addgrup|delgrup>',
+    usage: '.autoanimewinbu <start|stop|status|verificar|list|reset|addgrup|delgrup>',
     example: '.autoanimewinbu start',
     isOwner: true,
     isPremium: false,
@@ -96,7 +96,7 @@ async function handler(m, { sock, args }) {
             return sock.sendMessage(m.chat, { text: txt }, { quoted: m })
         }
 
-        case 'cek':
+        case 'verificar':
         case 'check': {
             if (!isRunning()) {
                 startAutoCheck(sock, state.interval || 5)
@@ -209,7 +209,7 @@ async function handler(m, { sock, args }) {
                     `> \`${m.prefix}aaw start\` — Iniciar auto-check\n` +
                     `> \`${m.prefix}aaw stop\` — Detener\n` +
                     `> \`${m.prefix}aaw status\` — Ver estado\n` +
-                    `> \`${m.prefix}aaw cek\` — Verificación manual ahora\n` +
+                        `> \`${m.prefix}aaw verificar\` — Verificación manual ahora\n` +
                     `> \`${m.prefix}aaw list\` — Lista de anime recientes\n` +
                     `> \`${m.prefix}aaw addgrup\` — Agregar grupo objetivo\n` +
                     `> \`${m.prefix}aaw delgrup\` — Eliminar grupo objetivo\n` +

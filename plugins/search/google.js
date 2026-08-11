@@ -6,7 +6,7 @@ const pluginConfig = {
   category: "search",
   description: "Buscar noticias en Google News",
   usage: ".google <query>",
-  example: ".google gempa hari ini",
+  example: ".google terremoto de hoy",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -27,7 +27,7 @@ async function handler(m) {
         `*USO:*\n` +
         `> *${m.prefix}google <tema>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}google gempa hari ini*\n` +
+        `> *${m.prefix}google terremoto de hoy*\n` +
         `> *${m.prefix}google teknologi terbaru*`,
     );
   }

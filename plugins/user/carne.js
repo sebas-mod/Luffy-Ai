@@ -2,7 +2,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'carne',
-    alias: ['cekcarne', 'mycarne'],
+    alias: ["ver_carne", "mycarne"],
     category: 'user',
     description: 'Ver carne del usuario',
     usage: '.carne [@user]',

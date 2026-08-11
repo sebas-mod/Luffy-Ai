@@ -56,7 +56,7 @@ class Database {
 
     logger.info(
       "database",
-      `migrasi ${oldFiles.length} file dari src/database ke ${path.relative(process.cwd(), this.dbPath)}/`,
+      `migración de ${oldFiles.length} archivos de src/database a ${path.relative(process.cwd(), this.dbPath)}/`,
     );
     this.ensureDir();
 
@@ -66,10 +66,10 @@ class Database {
       try {
         fs.copyFileSync(src, dest);
       } catch (e) {
-        logger.error("database", `gagal migrasi ${file}: ${e.message}`);
+        logger.error("database", `fallo al migrar ${file}: ${e.message}`);
       }
     }
-    logger.success("database", "migrasi path selesai");
+    logger.success("database", "migración de rutas completada");
   }
 
   async init() {
@@ -161,7 +161,7 @@ class Database {
       );
       return this;
     } catch (error) {
-      logger.error("database", `gagal inisialisasi: ${error.message}`);
+      logger.error("database", `fallo de inicialización: ${error.message}`);
       this.db = {
         data: {
           users: {},
@@ -311,10 +311,10 @@ class Database {
       fs.renameSync(oldFile, backupPath);
       logger.success(
         "database",
-        `migrasi dari carnes.json selesai, backup: ${path.basename(backupPath)}`,
+        `migración de carnes.json completada, respaldo: ${path.basename(backupPath)}`,
       );
     } catch (e) {
-      logger.error("database", `gagal migrasi carnes.json: ${e.message}`);
+      logger.error("database", `fallo al migrar carnes.json: ${e.message}`);
     }
   }
 
@@ -323,7 +323,7 @@ class Database {
       this.flushAll();
       return true;
     } catch (error) {
-      logger.error("database", `gagal menyimpan: ${error.message}`);
+      logger.error("database", `fallo al guardar: ${error.message}`);
       return false;
     }
   }
@@ -712,7 +712,7 @@ async function initDatabase(dbPath) {
 function getDatabase() {
   if (!dbInstance) {
     throw new Error(
-      "Database belum diinisialisasi. Panggil initDatabase terlebih dahulu.",
+      "La base de datos no está inicializada. Llama a initDatabase primero.",
     );
   }
   return dbInstance;

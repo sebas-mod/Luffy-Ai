@@ -384,7 +384,7 @@ function applyJackpotReward(db, fischUser, sender, result) {
         user.isPremium = true;
         db.markDirty("users");
       }
-      applied = { desc: `Premium ${days} Hari!`, type };
+      applied = { desc: `Premium ${days} Días!`, type };
       break;
     }
     case "partner_7d":
@@ -402,7 +402,7 @@ function applyJackpotReward(db, fischUser, sender, result) {
         user.isPartner = true;
         db.markDirty("users");
       }
-      applied = { desc: `Partner ${days} Hari!`, type };
+      applied = { desc: `Partner ${days} Días!`, type };
       break;
     }
     case "unlimited_carne": {

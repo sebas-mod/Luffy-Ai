@@ -8,7 +8,7 @@ const pluginConfig = {
   alias: ["canvasstarboy", "efekstarboy"],
   category: "canvas",
   description: "Crea una imagen con efecto Starboy desde una foto",
-  usage: ".starboy <reply/kirim foto>",
+  usage: ".starboy <responde/envía foto>",
   example: ".starboy",
   isOwner: false,
   isPremium: false,

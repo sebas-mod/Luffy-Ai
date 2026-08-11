@@ -1,7 +1,7 @@
 import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'slowmode',
-    alias: ['slow', 'setslowmode'],
+    alias: ["slow", "configurar_modo_lento"],
     category: 'group',
     description: 'Slowmode del grupo — limita la velocidad de mensajes de los miembros',
     usage: '.slowmode <on/off/onlycommand> [segundos]',

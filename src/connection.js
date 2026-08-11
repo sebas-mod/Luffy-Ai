@@ -133,7 +133,7 @@ const store = {
  * @property {boolean} isConnected - Status koneksi
  * @property {Object|null} sock - Socket instance
  * @property {number} reconnectAttempts - Jumlah percobaan reconnect
- * @property {Date|null} connectedAt - Waktu koneksi berhasil
+ * @property {Date|null} connectedAt - Momento de conexión exitosa
  */
 
 /**
@@ -149,7 +149,7 @@ const connectionState = {
 };
 
 /**
- * Logger instance dengan level minimal
+ * Logger instance con nivel mínimo
  * @type {Object}
  */
 const logger = pino({
@@ -290,7 +290,7 @@ async function startConnection(options = {}) {
 
     if (!phoneNumber || phoneNumber === "") {
       console.log("");
-      colors.logger.warn("pairing", "nomor pairing belum diatur di config");
+      colors.logger.warn("pairing", "número de pairing no configurado en config");
       console.log("");
       phoneNumber = await askQuestion(
         colors.chalk.cyan(
@@ -324,7 +324,7 @@ async function startConnection(options = {}) {
       );
       console.log("");
     } catch (error) {
-      colors.logger.error("pairing", `gagal: ${error.message}`);
+      colors.logger.error("pairing", `error: ${error.message}`);
     }
   }
 
@@ -421,7 +421,7 @@ async function startConnection(options = {}) {
         } else {
           colors.logger.error(
             "whatsapp",
-            `gagal sambung ulang setelah ${m} percobaan`,
+            `error al reconectar después de ${m} intentos`,
           );
         }
       } else {
@@ -439,7 +439,7 @@ async function startConnection(options = {}) {
         await sock.uploadPreKeys();
         colors.logger.success("session", "Listo, las pre-keys ya se enviaron al servidor");
       } catch (e) {
-        colors.logger.warn("session", `gagal upload pre-keys: ${e.message}`);
+        colors.logger.warn("session", `error al subir pre-keys: ${e.message}`);
       }
 
       const n = sock.user?.id?.split(":")[0] || sock.user?.id?.split("@")[0];
@@ -468,7 +468,7 @@ async function startConnection(options = {}) {
           await global.voipClient.connectWithSocket(sock);
           colors.logger.success("voip", "Motor VoIP activo (socket compartido)");
         } catch (e) {
-          colors.logger.warn("voip", `gagal init VoIP: ${e.message}`);
+          colors.logger.warn("voip", `error al iniciar VoIP: ${e.message}`);
         }
       }
 
@@ -657,10 +657,10 @@ async function startConnection(options = {}) {
             : "seseorang";
           const prefix = config.command?.prefix || ".";
 
-          let groupName = "grup ini";
+          let groupName = "este grupo";
           try {
             const meta = await sock.groupMetadata(event.id);
-            groupName = meta.subject || "grup ini";
+            groupName = meta.subject || "este grupo";
           } catch { }
 
           const saluranId =
@@ -807,7 +807,7 @@ async function startConnection(options = {}) {
         if (protocolMessage?.type === 30 && protocolMessage?.memberLabel) {
           try {
             const { handleLabelChange } =
-              await import("../plugins/group/notifgantitag.js");
+              await import("../plugins/group/notif_cambiar_tag.js");
             if (handleLabelChange) {
               await handleLabelChange(msg, currentSock);
             }
@@ -1092,7 +1092,7 @@ async function startConnection(options = {}) {
       sock.ev.on("call", async (calls) => {
         for (const call of calls) {
           if (call.status === "offer") {
-            colors.logger.warn("Call", `Menolak panggilan dari ${call.from}`);
+            colors.logger.warn("Call", `Rechazando llamada de ${call.from}`);
             await sock.rejectCall(call.id, call.from);
 
             await sock.sendMessage(call.from, {
@@ -1112,13 +1112,13 @@ async function startConnection(options = {}) {
                     targetJid = pn;
                     colors.logger.info(
                       "Call",
-                      `Berhasil resolve @lid ke PN: ${targetJid}`,
+                      `Se resolvió @lid a PN: ${targetJid}`,
                     );
                   }
                 } catch (e) {
                   colors.logger.warn(
                     "Call",
-                    `Gagal resolve LID ke PN: ${e.message}`,
+                    `Error al resolver LID a PN: ${e.message}`,
                   );
                 }
               }
@@ -1135,24 +1135,24 @@ async function startConnection(options = {}) {
                     );
                     colors.logger.info(
                       "Call",
-                      `Berhasil memblokir penelpon di WA & Bot: ${sanitizedJid}`,
+                      `Se bloqueó al llamante en WA y el Bot: ${sanitizedJid}`,
                     );
                   } catch (waErr) {
                     colors.logger.warn(
                       "Call",
-                      `Diblokir di DB Bot, tapi gagal di WA Server (${sanitizedJid}): ${waErr.message}`,
+                      `Bloqueado en la DB del Bot, pero falló en el servidor de WA (${sanitizedJid}): ${waErr.message}`,
                     );
                   }
                 } catch (e) {
                   colors.logger.error(
                     "Call",
-                    `Gagal memblokir di DB: ${e.message}`,
+                    `Error al bloquear en la DB: ${e.message}`,
                   );
                 }
               } else {
                 colors.logger.warn(
                   "Call",
-                  `Melewati blokir karena gagal mendapatkan nomor asli dari @lid: ${targetJid}`,
+                  `Se omitió el bloqueo porque no se pudo obtener el número real del @lid: ${targetJid}`,
                 );
               }
             }
@@ -1190,7 +1190,7 @@ async function startConnection(options = {}) {
 
 /**
  * Mendapatkan status koneksi
- * @returns {ConnectionState} State koneksi saat ini
+ * @returns {ConnectionState} Estado de conexión actual
  */
 function getConnectionState() {
   return connectionState;

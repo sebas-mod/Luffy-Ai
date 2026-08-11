@@ -229,7 +229,7 @@ const schedulerRegistry = {
   sewaChecker: {
     name: "Sewa Checker",
     key: "sewaChecker",
-    description: "Cek expired sewa setiap 10 menit",
+    description: "Comprobar vencimiento de alquiler cada 10 minutos",
   },
   scheduledMessages: {
     name: "Schedule Planner",
@@ -463,7 +463,7 @@ async function startGroupScheduleChecker(sock) {
                 "not_announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔓 *ᴀᴜᴛᴏ ᴀʙɪʀ*\n\n> El grupo se abrió automáticamente según el horario.\n> Hora: ${currentTime} WIB`,
+                text: `🔓 *ᴀᴜᴛᴏ ᴀʙɪʀ*\n\n> El grupo se abrió automáticamente según el horario.\n> Hora: ${currentTime} (hora local)`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(
@@ -477,7 +477,7 @@ async function startGroupScheduleChecker(sock) {
               ) {
                 logger.warn(
                   "GroupSchedule",
-                  `Bot bukan admin di ${groupId}, tidak bisa buka grup`,
+                  `El bot no es admin en ${groupId}, no puede abrir el grupo`,
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
@@ -501,7 +501,7 @@ async function startGroupScheduleChecker(sock) {
                 "announcement",
               );
               await groupScheduleSock.sendMessage(groupId, {
-                text: `🔒 *ᴀᴜᴛᴏ ᴄɪᴇʀʀᴇ*\n\n> El grupo se cerró automáticamente según el horario.\n> Hora: ${currentTime} WIB`,
+                text: `🔒 *ᴀᴜᴛᴏ ᴄɪᴇʀʀᴇ*\n\n> El grupo se cerró automáticamente según el horario.\n> Hora: ${currentTime} (hora local)`,
               });
               notifiedGroups.add(notifyKey);
               logger.success(
@@ -515,7 +515,7 @@ async function startGroupScheduleChecker(sock) {
               ) {
                 logger.warn(
                   "GroupSchedule",
-                  `Bot bukan admin di ${groupId}, tidak bisa tutup grup`,
+                  `El bot no es admin en ${groupId}, no puede cerrar el grupo`,
                 );
                 try {
                   await groupScheduleSock.sendMessage(groupId, {
@@ -546,7 +546,7 @@ async function startGroupScheduleChecker(sock) {
   activeCronJobs.set("groupSchedule", job);
   logger.info(
     "Scheduler",
-    "Cek jadwal grup nyala (tiap menit)",
+    "Comprobar horario de grupo encendido (cada minuto)",
   );
 }
 

@@ -26,32 +26,7 @@ import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 
 const pluginConfig = {
   name: "jpm",
-  alias: [
-    "jasher",
-    "jaser",
-    "jpmht",
-    "jpmhidetag",
-    "jpmch",
-    "jpmchannel",
-    "autojpm",
-    "autojasher",
-    "stopjpm",
-    "stopjasher",
-    "setdelayjpm",
-    "delayjpm",
-    "jedajpm",
-    "setjedajpm",
-    "jpmupdate",
-    "updatejpm",
-    "broadcastupdate",
-    "blacklistjpm",
-    "bljpm",
-    "jpmbl",
-    "jpmblacklist",
-    "blautojpm",
-    "blacklistautojpm",
-    "autojpmbl",
-  ],
+  alias: ["jasher", "jaser", "jpmht", "jpmhidetag", "jpmch", "jpmchannel", "autojpm", "autojasher", "stopjpm", "stopjasher", "configurar_pausa_jpm", "delayjpm", "pausa_jpm", "jpmupdate", "updatejpm", "broadcastupdate", "blacklistjpm", "bljpm", "jpmbl", "jpmblacklist", "blautojpm", "blacklistautojpm", "autojpmbl"],
   category: "jpm",
   description:
     "Sistema JPM completo: broadcast, hidetag, channel, auto, blacklist, delay, update",
@@ -518,10 +493,9 @@ async function handler(m, { sock }) {
   }
 
   if (
-    command === "setdelayjpm" ||
+    command === "configurar_pausa_jpm" ||
     command === "delayjpm" ||
-    command === "jedajpm" ||
-    command === "setjedajpm"
+    command === "pausa_jpm"
   ) {
     return handleSetDelay(m, sock, db, input);
   }

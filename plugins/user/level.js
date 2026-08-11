@@ -4,7 +4,7 @@ const EXP_PER_LEVEL = 10000;
 
 const pluginConfig = {
   name: "level",
-  alias: ["lvl", "ceklevel"],
+  alias: ["lvl", "ver_nivel"],
   category: "user",
   description: "Ver el nivel del usuario",
   usage: ".level [@user]",

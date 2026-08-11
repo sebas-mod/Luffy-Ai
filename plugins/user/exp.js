@@ -3,7 +3,7 @@ import { calculateLevel, getRole } from '../../src/lib/luffy-level.js'
 
 const pluginConfig = {
     name: 'exp',
-    alias: ['cekexp', 'myexp', 'xp'],
+    alias: ["ver_exp", "myexp", "xp"],
     category: 'user',
     description: 'Ver exp del usuario',
     usage: '.exp [@user]',

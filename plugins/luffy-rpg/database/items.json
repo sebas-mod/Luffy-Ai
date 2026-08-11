@@ -1,0 +1,128 @@
+[
+  {
+    "id": "carne_asada",
+    "nombre": "Carne Asada",
+    "emoji": "🍖",
+    "tipo": "comida",
+    "precio": 50,
+    "descripcion": "Recupera 30 de Carne (energía).",
+    "efecto": { "carne": 30 }
+  },
+  {
+    "id": "bola_de_arroz",
+    "nombre": "Bola de Arroz",
+    "emoji": "🍙",
+    "tipo": "comida",
+    "precio": 30,
+    "descripcion": "Recupera 20 de Carne (energía).",
+    "efecto": { "carne": 20 }
+  },
+  {
+    "id": "pescado",
+    "nombre": "Pescado a la Parrilla",
+    "emoji": "🐟",
+    "tipo": "comida",
+    "precio": 80,
+    "descripcion": "Recupera 45 de Carne (energía).",
+    "efecto": { "carne": 45 }
+  },
+  {
+    "id": "pocion_menor",
+    "nombre": "Poción Menor",
+    "emoji": "🧪",
+    "tipo": "pocion",
+    "precio": 100,
+    "descripcion": "Restaura 50 de Salud.",
+    "efecto": { "salud": 50 }
+  },
+  {
+    "id": "pocion_mayor",
+    "nombre": "Poción Mayor",
+    "emoji": "⚗️",
+    "tipo": "pocion",
+    "precio": 250,
+    "descripcion": "Restaura 120 de Salud.",
+    "efecto": { "salud": 120 }
+  },
+  {
+    "id": "elixir",
+    "nombre": "Elixir Pirata",
+    "emoji": "🍶",
+    "tipo": "pocion",
+    "precio": 500,
+    "descripcion": "Restaura el 100% de la Salud y 50 de Carne.",
+    "efecto": { "salud": 9999, "carne": 50 }
+  },
+  {
+    "id": "espada_kodachi",
+    "nombre": "Espada Kodachi",
+    "emoji": "🗡️",
+    "tipo": "arma",
+    "precio": 300,
+    "descripcion": "+5 de ataque permanente.",
+    "efecto": { "ataque": 5 }
+  },
+  {
+    "id": "sable_gatling",
+    "nombre": "Sable Gatling",
+    "emoji": "⚔️",
+    "tipo": "arma",
+    "precio": 800,
+    "descripcion": "+12 de ataque permanente.",
+    "efecto": { "ataque": 12 }
+  },
+  {
+    "id": "escudo_madeira",
+    "nombre": "Escudo de Madera",
+    "emoji": "🛡️",
+    "tipo": "escudo",
+    "precio": 350,
+    "descripcion": "+6 de defensa permanente.",
+    "efecto": { "defensa": 6 }
+  },
+  {
+    "id": "chaleco_armado",
+    "nombre": "Chaleco Armado",
+    "emoji": "🦺",
+    "tipo": "escudo",
+    "precio": 900,
+    "descripcion": "+14 de defensa permanente.",
+    "efecto": { "defensa": 14 }
+  },
+  {
+    "id": "mapa_tesoro",
+    "nombre": "Mapa del Tesoro",
+    "emoji": "🗺️",
+    "tipo": "especial",
+    "precio": 150,
+    "descripcion": "Objeto de colección y misiones.",
+    "efecto": {}
+  },
+  {
+    "id": "cofre_madera",
+    "nombre": "Cofre de Madera",
+    "emoji": "📦",
+    "tipo": "cofre",
+    "precio": 200,
+    "descripcion": "Cofre de tesoro básico.",
+    "efecto": {}
+  },
+  {
+    "id": "cofre_plata",
+    "nombre": "Cofre de Plata",
+    "emoji": "🎁",
+    "tipo": "cofre",
+    "precio": 500,
+    "descripcion": "Cofre de tesoro de plata.",
+    "efecto": {}
+  },
+  {
+    "id": "cofre_oro",
+    "nombre": "Cofre de Oro",
+    "emoji": "🏆",
+    "tipo": "cofre",
+    "precio": 1200,
+    "descripcion": "Cofre de tesoro de oro.",
+    "efecto": {}
+  }
+]

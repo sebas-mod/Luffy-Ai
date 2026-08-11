@@ -18,7 +18,7 @@ const configLayout = {
   foto: { a: 136, b: 912, c: 38, d: 860, radius: 20 },
   edgeBlur: { width: 3, blur: 10 },
   pp: { x: 110, y: 82, size: 80 },
-  namaTeks: { x: 170, y: 58, fontSize: 25, maxWidth: 500, minFontSize: 16, color: '#feffff' },
+  nombreTxt: { x: 170, y: 58, fontSize: 25, maxWidth: 500, minFontSize: 16, color: '#feffff' },
   usernameTeks: { x: 170, y: 90, fontSize: 17, color: '#8c8d91' }
 }
 
@@ -179,7 +179,7 @@ function resolveFontSize(ctx, cfg, text, fontFamily) {
   return Math.max(size, minFontSize)
 }
 
-function drawTeksNama(ctx, cfg, text, fontFamily) {
+function dibujarTextoNombre(ctx, cfg, text, fontFamily) {
   ctx.save()
   const size = resolveFontSize(ctx, cfg, text, fontFamily)
   ctx.font = `${size}px ${fontFamily}`
@@ -200,7 +200,7 @@ function drawTeks(ctx, cfg, text, fontFamily) {
   ctx.restore()
 }
 
-async function generateIgimg(photoBuffer, ppBuffer, nama, username, outPath) {
+async function generateIgimg(photoBuffer, ppBuffer, nombre, username, outPath) {
   await setup()
   const canvas = createCanvas(BG_W, BG_H)
   const ctx = canvas.getContext('2d')
@@ -211,7 +211,7 @@ async function generateIgimg(photoBuffer, ppBuffer, nama, username, outPath) {
   await drawFoto(ctx, photoImg, configLayout.foto)
   await drawEdgeBlur(ctx, photoImg, configLayout.foto, configLayout.edgeBlur)
   await drawPP(ctx, ppImg, configLayout.pp)
-  drawTeksNama(ctx, configLayout.namaTeks, nama, 'InterSemiBold')
+  dibujarTextoNombre(ctx, configLayout.nombreTxt, nombre, 'InterSemiBold')
   drawTeks(ctx, configLayout.usernameTeks, username, 'InterRegular')
   await writeFile(outPath, await canvas.encode('png'))
   return outPath
@@ -255,7 +255,7 @@ async function handler(m, { sock }) {
             ppBuffer = targetImgBuffer;
         }
 
-        const nama = m.pushName || 'Someone';
+        const nombre = m.pushName || 'Someone';
         const username = '@' + m.sender.split('@')[0];
 
         const tempDir = join(process.cwd(), 'temp');
@@ -263,7 +263,7 @@ async function handler(m, { sock }) {
         
         const outPath = join(tempDir, `igstory_${Date.now()}.png`);
         
-        await generateIgimg(targetImgBuffer, ppBuffer, nama, username, outPath);
+        await generateIgimg(targetImgBuffer, ppBuffer, nombre, username, outPath);
 
         await sock.sendMessage(m.chat, { image: { url: outPath } }, { quoted: m });
 

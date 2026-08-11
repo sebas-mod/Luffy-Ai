@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
 
   text += `*Rareza:* ${rarityColors[reward.rarity]}\n`;
   text += `*Premio:* ${typeEmoji} ${rewardText}\n\n`;
-  text += `_Cooldown: 5 menit_`;
+  text += `_Cooldown: 5 minutos_`;
 
   await m.reply(text);
 }

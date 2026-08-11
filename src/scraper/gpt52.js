@@ -543,7 +543,7 @@ export class ChatGPT {
     return { width: 0, height: 0 };
   }
 }
-const client = new ChatGPT({ lang: "id-ID" });
+const client = new ChatGPT({ lang: "es-ES" });
 
 function buildPrompt({ message, instruction = "", history = [] }) {
   const parts = [];
@@ -551,13 +551,13 @@ function buildPrompt({ message, instruction = "", history = [] }) {
   if (instruction?.trim()) {
     parts.push(
       [
-        "IKUTI INSTRUKSI SISTEM BERIKUT SECARA KETAT.",
+        "SIGUE LAS INSTRUCCIONES DEL SISTEMA SIGUIENTES ESTRICTAMENTE.",
         "No resumas, no ignores y no cambies el formato de las etiquetas solicitadas.",
         "Si la instrucción del sistema pide etiquetas como [ACTION:...] o [RICH:...], emite exactamente ese formato.",
         "No envuelvas la respuesta en bloques de código markdown salvo que sea el contenido RICH:CODE solicitado.",
         "No expliques las reglas. Responde directamente según la instrucción.",
         "",
-        "SYSTEM INSTRUCTION:",
+        "INSTRUCCIÓN DEL SISTEMA:",
         instruction.trim(),
       ].join("\n"),
     );
@@ -575,20 +575,20 @@ function buildPrompt({ message, instruction = "", history = [] }) {
       .join("\n");
 
     if (formattedHistory) {
-      parts.push(`RIWAYAT PERCAKAPAN:\n${formattedHistory}`);
+      parts.push(`HISTORIAL DE LA CONVERSACIÓN:\n${formattedHistory}`);
     }
   }
 
   parts.push(
     [
-      "PESAN USER SAAT INI:",
+      "MENSAJE ACTUAL DEL USUARIO:",
       String(message || "").trim(),
       "",
-      "ATURAN OUTPUT:",
-      "- Pertahankan format tag spesial secara persis bila dibutuhkan.",
-      "- Jangan ubah [ACTION:TYPE param=value] menjadi variasi lain.",
-      "- Jangan ubah [RICH:TYPE]...[/RICH:TYPE] menjadi markdown biasa.",
-      "- Jangan tambahkan pagar kode ``` di awal atau akhir jawaban.",
+      "REGLAS DE SALIDA:",
+      "- Mantén el formato de las etiquetas especiales exactamente cuando sea necesario.",
+      "- No conviertas [ACTION:TYPE param=value] en otra variación.",
+      "- No conviertas [RICH:TYPE]...[/RICH:TYPE] en markdown normal.",
+      "- No agregues bloques de código ``` al inicio o al final de la respuesta.",
     ].join("\n"),
   );
 

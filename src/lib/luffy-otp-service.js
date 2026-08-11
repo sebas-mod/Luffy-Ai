@@ -10,7 +10,7 @@ let serviceCacheTime = {}
 
 function getApiKey() {
     const key = config.jasaotp?.apiKey
-    if (!key) throw new Error('JasaOTP API key belum dikonfigurasi di config.js')
+    if (!key) throw new Error('La API key de JasaOTP no está configurada en config.js')
     return key
 }
 

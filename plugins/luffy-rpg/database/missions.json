@@ -1,0 +1,65 @@
+[
+  {
+    "id": "mision_novato",
+    "nombre": "Primer Día como Pirata",
+    "tipo": "derrotar",
+    "objetivo": 5,
+    "frecuencia": "diaria",
+    "recompensa": { "exp": 100, "berrys": 200, "items": [{ "id": "carne_asada", "cantidad": 2 }] },
+    "descripcion": "Derrota 5 enemigos en cualquier isla."
+  },
+  {
+    "id": "mision_tesoro",
+    "nombre": "Cazador de Tesoros",
+    "tipo": "recoger",
+    "objetivo": 3,
+    "frecuencia": "diaria",
+    "recompensa": { "exp": 150, "berrys": 300 },
+    "descripcion": "Recoge 3 tesoros explorando."
+  },
+  {
+    "id": "mision_geografia",
+    "nombre": "Explorador del Mar",
+    "tipo": "viajar",
+    "objetivo": 2,
+    "frecuencia": "diaria",
+    "recompensa": { "exp": 120, "berrys": 250 },
+    "descripcion": "Viaja a 2 islas diferentes."
+  },
+  {
+    "id": "mision_gloton",
+    "nombre": "Glotón",
+    "tipo": "carne",
+    "objetivo": 100,
+    "frecuencia": "diaria",
+    "recompensa": { "exp": 80, "berrys": 150 },
+    "descripcion": "Acumula 100 de Carne de energía."
+  },
+  {
+    "id": "mision_semanal_marines",
+    "nombre": "Azote de la Marina",
+    "tipo": "derrotar",
+    "objetivo": 20,
+    "frecuencia": "semanal",
+    "recompensa": { "exp": 800, "berrys": 2000, "items": [{ "id": "cofre_plata", "cantidad": 2 }] },
+    "descripcion": "Derrota 20 enemigos en total esta semana."
+  },
+  {
+    "id": "mision_semanal_rico",
+    "nombre": "El Tesoro de Grand Line",
+    "tipo": "berrys",
+    "objetivo": 5000,
+    "frecuencia": "semanal",
+    "recompensa": { "exp": 500, "berrys": 5000 },
+    "descripcion": "Acumula 5000 Berrys ganados esta semana."
+  },
+  {
+    "id": "mision_semanal_coleccionista",
+    "nombre": "Coleccionista",
+    "tipo": "coleccionar",
+    "objetivo": 5,
+    "frecuencia": "semanal",
+    "recompensa": { "exp": 600, "berrys": 1500, "items": [{ "id": "cofre_oro", "cantidad": 1 }] },
+    "descripcion": "Colecciona 5 personajes."
+  }
+]

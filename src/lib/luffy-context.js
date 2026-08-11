@@ -22,16 +22,16 @@ for (const [key, setter] of keys) {
 }
 
 const FAST_ANSWER_PRAISES = [
-  "⚡ Kilat banget! Kamu jenius!",
-  "🚀 Super cepat! Otak encer!",
-  "🔥 Wuih monster! Jawab secepat kilat!",
-  "💫 Luar biasa! Kamu the flash!",
-  "🎯 Precision tinggi! Langsung tepat!",
-  "⭐ Bintang! Refleks dewa!",
-  "🏆 Legend! Kecepatan maximal!",
-  "💎 Premium player! Gak ada lawan!",
-  "🦅 Tajam seperti elang!",
-  "🧠 Big brain! IQ tinggi detected!",
+  "⚡ ¡Relampagueante! ¡Eres un genio!",
+  "🚀 ¡Súper rápido! ¡Mente brillante!",
+  "🔥 ¡Uau, monstruo! ¡Respondiste rapidísimo!",
+  "💫 ¡Increíble! ¡Eres el flash!",
+  "🎯 ¡Precisión alta! ¡Directo al punto!",
+  "⭐ ¡Estrella! ¡Reflejos de dios!",
+  "🏆 ¡Leyenda! ¡Velocidad máxima!",
+  "💎 ¡Jugador premium! ¡Sin rival!",
+  "🦅 ¡Afilado como un águila!",
+  "🧠 ¡Gran cerebro! ¡IQ alto detectado!",
 ];
 
 const FAST_ANSWER_THRESHOLD = 4000;
@@ -91,7 +91,7 @@ async function sendGamePreview(sock, jid, text, title, body, options) {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
       title: title || "🎮 Luffy-Ai GAMES",
-      description: body || "Have fun playing!",
+      description: body || "¡A divertirse jugando!",
       jpegThumbnail: gameThumbBuffer,
       previewType: 0,
     },
@@ -106,7 +106,7 @@ async function sendWinnerPreview(sock, jid, text, title, body, options) {
     {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
-      title: title || "🏆 WINNER!",
+      title: title || "🏆 ¡GANADOR!",
       description: body || "¡Felicidades, ganaste!",
       jpegThumbnail: winnerThumbBuffer || gameThumbBuffer,
       previewType: 0,
@@ -123,7 +123,7 @@ async function sendRpgPreview(sock, jid, text, title, body, options) {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
       title: title || "⚔️ Luffy-Ai RPG",
-      description: body || "Adventure awaits!",
+      description: body || "¡La aventura te espera!",
       jpegThumbnail: rpgThumbBuffer,
       previewType: 0,
     },
@@ -139,7 +139,7 @@ async function sendToolsPreview(sock, jid, text, title, body, options) {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
       title: title || "🛠️ Luffy-Ai TOOLS",
-      description: body || "Utility & tools",
+      description: body || "Utilidades y herramientas",
       jpegThumbnail: gameThumbBuffer,
       previewType: 0,
     },
@@ -179,7 +179,7 @@ function createFakeQuoted(botName = "Luffy-Ai", verified = true) {
     message: {
       contactMessage: {
         displayName: verified ? `✅ ${botName}` : botName,
-        vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:${botName}\nORG:${verified ? "Verified Bot" : "Bot"}\nEND:VCARD`,
+        vcard: `BEGIN:VCARD\nVERSION:3.0\nFN:${botName}\nORG:${verified ? "Bot verificado" : "Bot"}\nEND:VCARD`,
       },
     },
   };

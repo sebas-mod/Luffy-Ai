@@ -34,14 +34,14 @@ async function handler(m, { sock }) {
             `*USO:*\n` +
             `• *${m.prefix}warn @user <razón>* — Dar una advertencia\n` +
             `• *${m.prefix}warn max <número>* — Cambiar el límite máximo de advertencias\n` +
-            `• *${m.prefix}listwarn* — Ver la lista de miembros problemáticos\n` +
-            `• *${m.prefix}resetwarn @user* — Eliminar todas las advertencias de un miembro\n\n` +
+            `• *${m.prefix}lista_advertencias* — Ver la lista de miembros problemáticos\n` +
+            `• *${m.prefix}resetear_advertencias @user* — Eliminar todas las advertencias de un miembro\n\n` +
             `*EXPLICACIÓN DEL FLUJO DE USO:*\n` +
             `1. Cuando un miembro cometa su primera falta, dale una ADVERTENCIA: *${m.prefix}warn @user Spam de mensajes*\n` +
             `2. El bot registrará "Spam de mensajes" como su advertencia número 1.\n` +
             `3. Si vuelve a infringir, da una segunda advertencia con una nueva razón: *${m.prefix}warn @user Lenguaje grosero*\n` +
             `4. Si el total de advertencias del miembro alcanza el límite máximo (actualmente *${maxWarns}*), el bot expulsará (kick) automáticamente al miembro.\n` +
-            `5. El historial de faltas se puede ver completo escribiendo *${m.prefix}listwarn @user*.`
+            `5. El historial de faltas se puede ver completo escribiendo *${m.prefix}lista_advertencias @user*.`
         )
     }
     if (args[0]?.toLowerCase() === 'max') {

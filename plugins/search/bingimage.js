@@ -4,7 +4,7 @@ import te from "../../src/lib/luffy-error.js";
 import ourinApi from "../../src/lib/luffy-apimanager.js";
 const pluginConfig = {
   name: "bingimage",
-  alias: ["imagesearch", "carigambar", "bingimg"],
+  alias: ["imagesearch", "buscar_imagen", "bingimg"],
   category: "search",
   description: "Buscar imágenes por keyword",
   usage: ".carigambar <query>",

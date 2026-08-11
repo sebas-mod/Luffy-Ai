@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'open',
-    alias: ['buka', 'opengroup', 'bukagroup'],
+    alias: ["abrir", "opengroup", "abrir_grupo"],
     category: 'group',
     description: 'Abrir el grupo para que todos los miembros puedan chatear',
     usage: '.open',

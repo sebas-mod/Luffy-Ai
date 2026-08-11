@@ -6,7 +6,7 @@ const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 
 const pluginConfig = {
     name: 'senja',
-    alias: ['katacinta', 'romanticquotes'],
+    alias: ["palabras_amor", "romanticquotes"],
     category: 'fun',
     description: 'Palabras románticas aleatorias (senja)',
     usage: '.senja',

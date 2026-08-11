@@ -4,7 +4,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "searchthatsong",
-  alias: ["sts", "carilagu"],
+  alias: ["sts", "buscar_cancion"],
   category: "search",
   description: "Busca los detalles de una canción por su letra o fragmento",
   usage: ".searchthatsong <potongan lirik>",

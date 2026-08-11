@@ -124,7 +124,7 @@ try {
   handleBuyerDone = (await import("../plugins/store/done.js")).handleBuyerDone;
 } catch { }
 try {
-  registrationAnswerHandler = (await import("../plugins/user/daftar.js"))
+  registrationAnswerHandler = (await import("../plugins/user/registrar.js"))
     .registrationAnswerHandler;
 } catch { }
 try {
@@ -148,13 +148,13 @@ try {
     .dafontAnswerHandler;
 } catch { }
 try {
-  gantiAssetAnswerHandler = (await import("../plugins/owner/ganti-asset.js"))
+  gantiAssetAnswerHandler = (await import("../plugins/owner/cambiar_asset.js"))
     .gantiAssetAnswerHandler;
   srtAnswerHandler = (await import("../plugins/owner/srt.js"))
     .srtAnswerHandler;
 } catch (e) { }
 try {
-  resepAnswerHandler = (await import("../plugins/search/resep.js"))
+  resepAnswerHandler = (await import("../plugins/search/receta.js"))
     .resepAnswerHandler;
 } catch { }
 try {
@@ -177,11 +177,11 @@ try {
   isMuted = (await import("../plugins/group/mute.js")).isMuted;
 } catch { }
 try {
-  isMutedMember = (await import("../plugins/group/mutemember.js"))
+  isMutedMember = (await import("../plugins/group/silenciar_miembro.js"))
     .isMutedMember;
 } catch { }
 try {
-  isMutegc = (await import("../plugins/group/mutegc.js")).isMutegc;
+  isMutegc = (await import("../plugins/group/silenciar_grupo.js")).isMutegc;
 } catch { }
 try {
   detectBot = (await import("../plugins/group/antibot.js")).detectBot;
@@ -213,7 +213,7 @@ try {
   confessPlugin = await import("../plugins/fun/confess.js");
 } catch { }
 try {
-  sulapPlugin = await import("../plugins/fun/sulap.js");
+  sulapPlugin = await import("../plugins/fun/magia.js");
 } catch { }
 try {
   handleAutoAI = (await import("./lib/luffy-auto-ai.js")).handleAutoAI;
@@ -264,7 +264,7 @@ try {
 let isToxic = null,
   handleToxicMessage = null;
 try {
-  const m = await import("../plugins/group/antitoxic.js");
+  const m = await import("../plugins/group/antitoxico.js");
   isToxic = m.isToxic;
   handleToxicMessage = m.handleToxicMessage;
 } catch { }
@@ -322,7 +322,7 @@ async function handleGameAnswer(m, sock) {
       if (handled) return true;
     }
 
-    const utPlugin = cachedGamePlugins.get('ulartangga');
+    const utPlugin = cachedGamePlugins.get('serpientes_escaleras');
     if (utPlugin?.answerHandler) {
       if (await utPlugin.answerHandler(m, sock)) return true;
     }
@@ -332,7 +332,7 @@ async function handleGameAnswer(m, sock) {
       if (await tttPlugin.answerHandler(m, sock)) return true;
     }
 
-    const suitPlugin = cachedGamePlugins.get('suitpvp');
+    const suitPlugin = cachedGamePlugins.get('piedra_papel_pvp');
     if (suitPlugin?.answerHandler) {
       if (await suitPlugin.answerHandler(m, sock)) return true;
     }
@@ -667,7 +667,7 @@ async function messageHandler(msg, sock, options = {}) {
           sender: m.sender,
           message: m.body,
           messageType: m.type,
-          device: deviceHint || "Unknown",
+          device: deviceHint || "Desconocido",
           isForwarded: m.message?.[m.type]?.contextInfo?.isForwarded || false,
           isNewsletter:
             m.isNewsletter ||
@@ -1515,19 +1515,19 @@ async function messageHandler(msg, sock, options = {}) {
         ];
         const jadibotBlockedCommands = [
           "sewa",
-          "sewabot",
+          "rentar_bot",
           "sewalist",
-          "listsewa",
-          "addsewa",
-          "delsewa",
+          "lista_rentas",
+          "agregar_renta",
+          "quitar_renta",
           "extendsewa",
-          "checksewa",
+          "ver_renta",
           "sewainfo",
           "sewagroup",
           "stopsewa",
-          "jadibot",
-          "listjadibot",
-          "addowner",
+          "ser_bot",
+          "lista_bots",
+          "agregar_dueno",
           "delowner",
           "ownerlist",
           "listowner",
@@ -1583,7 +1583,7 @@ async function messageHandler(msg, sock, options = {}) {
       if (
         m.command !== "botmode" &&
         m.command !== "menu" &&
-        m.command !== "menucat"
+        m.command !== "menu_categoria"
       ) {
         let isBlocked = false;
 
@@ -1652,7 +1652,7 @@ async function messageHandler(msg, sock, options = {}) {
         await m.reply(
           `📝 *ʀᴇɢɪsᴛʀᴏ ᴏʙʟɪɢᴀᴛᴏʀɪᴏ*\n\n` +
           `Debes registrarte primero, nakama!\n\n` +
-          `> Escribe: \`${m.prefix}daftar\`\n\n` +
+          `> Escribe: \`${m.prefix}registrar\`\n\n` +
           `*Luego responde las preguntas del bot hasta terminar*`,
         );
         return;
@@ -1701,7 +1701,7 @@ async function messageHandler(msg, sock, options = {}) {
               ? premiumCarne
               : defaultCarne);
         if (currentCarne < pluginCarneCost) {
-          await m.reply(config.messages?.carneExceeded || "⚡ Carne habis!");
+          await m.reply(config.messages?.carneExceeded || "⚡ ¡Te quedaste sin Carne!");
           return;
         }
         db.updateCarne(m.sender, -pluginCarneCost);
@@ -1913,7 +1913,7 @@ async function groupHandler(update, sock) {
           emoji: "🎉",
           label: "PROMOTE",
           text: (p, a) =>
-            `🌿 @${p} sekarang menjadi admin baru 💕\nPromoted by: @${a}`,
+            `🌿 @${p} ahora es admin nuevo 💕\nPromovido por: @${a}`,
         },
         demote: {
           notifKey: "notifDemote",
@@ -2006,10 +2006,10 @@ async function groupHandler(update, sock) {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
                         text: action === "promote" ? `¡Felicidades! 🎉` : `¡Sigue con todo! 📉`,
-                        url: "Hai",
+                        url: "Opciones",
                         expiration_time: Date.now() + 1000000
                       },
-                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2], list_title: "Opsi", button_title: "🍙 Lihat Opsi" },
+                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2], list_title: "Opciones", button_title: "🍙 Ver Opciones" },
                       tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                     }),
                     buttons: action === "promote" ? promoteButtons : demoteButtons

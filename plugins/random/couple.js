@@ -4,7 +4,7 @@ import fs from 'fs'
 import { default as axios } from 'axios'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
-    name: 'ppcouple',
+    name: 'pp_pareja',
     alias: ['cp', 'ppcp'],
     category: 'random',
     description: 'Imagen aleatoria de foto de perfil de pareja',

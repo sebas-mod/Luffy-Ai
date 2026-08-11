@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
                 return m.reply(
                     `⚔️ *LA SESIÓN DE MAZMORRA SIGUE ACTIVA*\n\n` +
                     `¡Estás en medio de una exploración!\n` +
-                    `> Responde al último chat del bot para cancelar (escribe \`batal\`) o continuar la acción (escribe \`serang\` / \`lari\`).`,
+                    `> Responde al último chat del bot para cancelar (escribe \`cancelar\`) o continuar la acción (escribe \`atacar\` / \`huir\`).`,
                 );
             }
         }
@@ -179,7 +179,7 @@ async function handler(m, { sock }) {
         }
 
         user.rpg.dungeon_session = {
-            stage: "lobi",
+            stage: "lobby",
             time: Date.now(),
         };
         db.save();
@@ -197,7 +197,7 @@ async function handler(m, { sock }) {
                 txt += `> 🔒 *${d.id}.* ${d.name} (Necesita Lv ${d.levelReq})\n`;
             }
         }
-        txt += `\n> 💡 Responde a este mensaje con el *número* de la ubicación 🔓 (ejemplo: \`1\`) o escribe \`batal\` para salir.`;
+        txt += `\n> 💡 Responde a este mensaje con el *número* de la ubicación 🔓 (ejemplo: \`1\`) o escribe \`cancelar\` para salir.`;
 
         return m.reply(txt);
     } catch (error) {
@@ -228,14 +228,14 @@ async function dungeonAnswerHandler(m, sock) {
     const text = m.body.trim().toLowerCase();
     const userLevel = user.level || 1;
 
-    if (text === "batal" || text === "cancel" || text === "keluar" || text === "cancelar" || text === "salir" || text === "abortar") {
+    if (text === "cancelar" || text === "cancel" || text === "salir" || text === "abortar") {
         delete user.rpg.dungeon_session;
         db.save();
         await m.reply(`🚪 Saliste del Lobby de la Mazmorra sano y salvo.`);
         return true;
     }
 
-    if (session.stage === "lobi") {
+    if (session.stage === "lobby") {
         const choiceId = parseInt(text);
         if (isNaN(choiceId)) return false;
 
@@ -263,7 +263,7 @@ async function dungeonAnswerHandler(m, sock) {
                 `⚡ *STAMINA INSUFICIENTE*\n\n` +
                 `Necesitas al menos *${staminaCost} de stamina* para entrar.\n` +
                 `Tu stamina restante es solo *${user.rpg.stamina}*.\n\n` +
-                `> 💡 *Tip:* Usa el comando \`.rest\` o cancela primero (escribe \`batal\`).`,
+                `> 💡 *Tip:* Usa el comando \`.rest\` o cancela primero (escribe \`cancelar\`).`,
             );
             return true;
         }
@@ -274,7 +274,7 @@ async function dungeonAnswerHandler(m, sock) {
         const monsterPower = dungeon.levelReq * 10 + Math.floor(Math.random() * 30);
 
         user.rpg.dungeon_session = {
-            stage: "encounter",
+            stage: "encuentro",
             dungeonId: dungeon.id,
             dungeonName: dungeon.name,
             levelReq: dungeon.levelReq,
@@ -294,14 +294,14 @@ async function dungeonAnswerHandler(m, sock) {
         txt += `> ⚡ Stamina reducida *${staminaCost}*\n\n`;
         txt += `De repente, un *👹 ${monster}* surge de la oscuridad y bloquea tu camino!\n\n`;
         txt += `*⚔️ ¿QUÉ QUIERES HACER?*\n`;
-        txt += `> Responde a este mensaje con \`serang\` para pelear\n`;
-        txt += `> Responde a este mensaje con \`lari\` para huir (arriesgado)`;
+        txt += `> Responde a este mensaje con \`atacar\` para pelear\n`;
+        txt += `> Responde a este mensaje con \`huir\` para huir (arriesgado)`;
 
         await m.reply(txt);
         return true;
     }
 
-    if (session.stage === "encounter") {
+    if (session.stage === "encuentro") {
         if (text === "serang" || text === "attack" || text === "lawan" || text === "atacar" || text === "ataco" || text === "pelear") {
             const userPower =
                 (user.rpg.attack || 10) +
@@ -390,9 +390,9 @@ async function dungeonAnswerHandler(m, sock) {
         } else {
             await m.reply(
                 `❓ *OPCIÓN NO RECONOCIDA*\n\n` +
-                `> Responde con \`serang\` para luchar contra el monstruo.\n` +
-                `> Responde con \`lari\` para huir.\n` +
-                `> Responde con \`batal\` si realmente te rindes.`,
+                `> Responde con \`atacar\` para luchar contra el monstruo.\n` +
+                `> Responde con \`huir\` para huir.\n` +
+                `> Responde con \`cancelar\` si realmente te rindes.`,
             );
             return true;
         }

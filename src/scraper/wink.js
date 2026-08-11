@@ -198,13 +198,13 @@ async function uploadToQiniu(policy, filePath) {
 
   if (res.status >= 400) {
     throw new Error(
-      `upload qiniu gagal HTTP ${res.status}: ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`,
+      `error de subida a qiniu HTTP ${res.status}: ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`,
     );
   }
 
   if (!res.data?.url && !res.data?.data) {
     throw new Error(
-      `upload qiniu response tidak valid: ${JSON.stringify(res.data)}`,
+      `respuesta de subida a qiniu no válida: ${JSON.stringify(res.data)}`,
     );
   }
 
@@ -461,7 +461,7 @@ async function waitResult(firstMsgId, maxTry = 120, delayMs = 5000) {
     await sleep(delayMs);
   }
 
-  throw new Error(`result belum selesai: ${JSON.stringify(last)}`);
+  throw new Error(`resultado aún no listo: ${JSON.stringify(last)}`);
 }
 
 async function winkEnhance(video, { filename } = {}) {
@@ -502,7 +502,7 @@ async function winkEnhance(video, { filename } = {}) {
 
     if (!firstMsgId) {
       throw new Error(
-        `delivery tidak mengembalikan msg_id: ${JSON.stringify(task.raw)}`,
+        `la entrega no devolvió msg_id: ${JSON.stringify(task.raw)}`,
       );
     }
 

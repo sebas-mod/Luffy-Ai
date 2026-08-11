@@ -76,22 +76,22 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    const [nama,nominal] = m.text?.split(',')
-    if (!nama || !nominal) {
+    const [nombre,monto] = m.text?.split(',')
+    if (!nombre || !monto) {
         return m.reply(`*FAKE BANK*\n\n> Ingresa el texto para el chat\n\n\`Ejemplo: ${m.prefix}fakebank Zann,10000\``)
     }
-    if(isNaN(nominal)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO*`)
+    if(isNaN(monto)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO*`)
     m.react('🕕')
     
     try {
-        const saldo = Number(nominal.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
+        const saldo = Number(monto.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
         const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: '2-digit', hour12: false })
         const h = Number(hour)
-        let waktu = 'Buenas noches'
-        if (h >= 4 && h < 11) waktu = 'Buenos días'
-        else if (h >= 11 && h < 15) waktu = 'Buenas tardes'
-        else if (h >= 15 && h < 18) waktu = 'Buenas tardes'
-        const fake = await generateImage(saldo, `${waktu}, ${nama}`)
+        let saludo = 'Buenas noches'
+        if (h >= 4 && h < 11) saludo = 'Buenos días'
+        else if (h >= 11 && h < 15) saludo = 'Buenas tardes'
+        else if (h >= 15 && h < 18) saludo = 'Buenas tardes'
+        const fake = await generateImage(saldo, `${saludo}, ${nombre}`)
         await sock.sendMedia(m.chat, fake, null, m, {
             type: 'image',
         })

@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 async function scrapeHokCharacter(name) {
-    if (!name) throw new Error("Nama karakter kosong");
+    if (!name) throw new Error("Nombre de personaje vacío");
 
     const url = `https://honor-of-kings.fandom.com/wiki/${encodeURIComponent(name)}`;
 

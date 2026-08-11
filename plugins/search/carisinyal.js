@@ -2,11 +2,11 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 
 const pluginConfig = {
-    name: 'spekhp',
+    name: 'especs_movil',
     alias: ['spek', 'spesifikasi'],
     category: 'search',
     description: 'Busca especificaciones completas de smartphones desde Carisinyal.',
-    usage: '.spekhp <nama hp>',
+    usage: '.spekhp <nombre del móvil>',
     example: '.spekhp oppo a3s',
     isOwner: false,
     isPremium: false,
@@ -134,8 +134,8 @@ async function handler(m, { sock, text }) {
             `📱 *BUSCADOR DE ESPECIFICACIONES DE MÓVILES*\n\n` +
             `Esta función te ayuda a buscar las especificaciones completas de un *smartphone* usando la base de datos confiable de Carisinyal.\n\n` +
             `*CÓMO USAR:*\n` +
-            `- Escribe \`${m.prefix}spekhp <nombre del movil>\`\n` +
-            `- Ejemplo: \`${m.prefix}spekhp oppo a3s\`\n\n` +
+            `- Escribe \`${m.prefix}especs_movil <nombre del movil>\`\n` +
+            `- Ejemplo: \`${m.prefix}especs_movil oppo a3s\`\n\n` +
             `_El sistema buscará automáticamente el móvil más adecuado según tu palabra clave y mostrará sus especificaciones completas con su imagen!_`
         );
     }

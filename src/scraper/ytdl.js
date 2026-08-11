@@ -89,7 +89,7 @@ async function ytdl(url, format = "mp3") {
     if (!init?.convertURL) {
       return {
         status: false,
-        mess: "Gagal menginisialisasi server (Init failed).",
+        mess: "Error al iniciar el servidor (Init failed).",
       };
     }
 
@@ -104,7 +104,7 @@ async function ytdl(url, format = "mp3") {
     if (!convert?.progressURL || !convert?.downloadURL) {
       return {
         status: false,
-        mess: "Gagal mendapatkan data konversi.",
+        mess: "Error al obtener los datos de conversión.",
       };
     }
 

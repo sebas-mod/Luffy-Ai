@@ -114,7 +114,7 @@ async function handler(m, { sock }) {
 
       m.react("✅");
     } catch (albumErr) {
-      console.log("[Pins] Album gagal, kirim satu-satu:", albumErr.message);
+      console.log("[Pins] Álbum fallido, enviar uno a uno:", albumErr.message);
 
       const saluranId = config.saluran?.id || "120363400911374213@newsletter";
       const saluranName =

@@ -32,7 +32,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
   if (!pollUrl) {
     return {
       status: false,
-      error: start.data?.error || "Gagal memulai proses img2img",
+      error: start.data?.error || "Error al iniciar el proceso img2img",
     };
   }
 
@@ -59,7 +59,7 @@ async function Img2Img(prompt, imageBuffer, filename = "upload.png") {
   }
 
   if (!result) {
-    return { status: false, error: "Timeout menunggu hasil" };
+    return { status: false, error: "Tiempo de espera agotado" };
   }
 
   return { status: true, prompt, imageUrl, result };

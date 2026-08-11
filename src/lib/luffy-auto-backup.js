@@ -162,9 +162,9 @@ function parseInterval(str) {
 
 function formatInterval(ms) {
   if (ms >= 24 * 60 * 60 * 1000)
-    return `${Math.floor(ms / (24 * 60 * 60 * 1000))} hari`;
-  if (ms >= 60 * 60 * 1000) return `${Math.floor(ms / (60 * 60 * 1000))} jam`;
-  return `${Math.floor(ms / (60 * 1000))} menit`;
+    return `${Math.floor(ms / (24 * 60 * 60 * 1000))} días`;
+  if (ms >= 60 * 60 * 1000) return `${Math.floor(ms / (60 * 60 * 1000))} horas`;
+  return `${Math.floor(ms / (60 * 1000))} minutos`;
 }
 
 function intervalToCron(ms) {
@@ -262,7 +262,7 @@ async function sendBackupToOwner(backupInfo) {
     const caption =
       `🗂️ *ᴀᴜᴛᴏ ʙᴀᴄᴋᴜᴘ*\n\n` +
       `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
-      `┃ 📅 Waktu: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} WIB\n` +
+      `┃ 📅 Tiempo: ${timeHelper.formatDateTime("DD MMMM YYYY HH:mm:ss")} (hora local)\n` +
       `┃ 📦 Size: ${sizeInMB} MB\n` +
       `┃ 📁 Files: ${backupInfo.fileCount}\n` +
       `┃ ⏱️ Interval: ${formatInterval(state.intervalMs)}\n` +

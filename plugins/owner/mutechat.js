@@ -3,7 +3,7 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Silenciar/activar chat',
-    usage: '.mutechat <número/reply> o .mutechat buka <número>',
+    usage: '.mutechat <número/reply> o .mutechat abrir <número>',
     example: '.mutechat 628xxx',
     isOwner: true,
     cooldown: 3,
@@ -16,7 +16,7 @@ async function handler(m, { sock }) {
     let targetJid = null
     let mute = true
 
-    if (action === 'buka' || action === 'unmute') {
+    if (action === 'abrir' || action === 'unmute') {
         mute = false
         const num = (m.args[1] || '').replace(/[^0-9]/g, '')
         if (num) targetJid = num + '@s.whatsapp.net'
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
             '🔇 *sɪʟᴇɴᴄɪᴀʀ ᴄʜᴀᴛ*\n\n' +
             '> `.mutechat 628xxx` — Silenciar chat\n' +
             '> `.mutechat` (en chat privado) — Silenciar este chat\n' +
-            '> `.mutechat buka 628xxx` — Quitar silencio'
+            '> `.mutechat abrir 628xxx` — Quitar silencio'
         )
     }
 

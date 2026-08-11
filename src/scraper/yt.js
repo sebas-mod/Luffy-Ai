@@ -71,7 +71,7 @@ const ssyoutube = {
             const data = response.data;
 
             if (!data || !data.url) {
-                return { error: 'Gagal mengambil data. Server mungkin memblokir request.' };
+                return { error: 'Error al obtener los datos. El servidor puede estar bloqueando la solicitud.' };
             }
 
             const result = {

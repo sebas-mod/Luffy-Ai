@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         header: `Font ${f.name}`,
         title: f.info,
         description: `Version: ${f.version}`,
-        id: `${m.prefix}nerdfont-ambil ${f.name}`,
+        id: `${m.prefix}nerdfont_obtener ${f.name}`,
       };
     });
     await sock.sendMessage(

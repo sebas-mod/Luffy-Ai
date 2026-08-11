@@ -3,7 +3,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 
 const pluginConfig = {
     name: 'botmode',
-    alias: ['setmode', 'mode'],
+    alias: ["modo_bot", "mode"],
     category: 'owner',
     description: 'Configurar el modo del bot (md/store/all)',
     usage: '.botmode <mode>',

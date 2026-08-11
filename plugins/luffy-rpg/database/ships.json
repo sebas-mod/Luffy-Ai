@@ -1,0 +1,52 @@
+[
+  {
+    "id": "barco_velero",
+    "nombre": "Velero",
+    "emoji": "⛵",
+    "precio": 500,
+    "defensa": 5,
+    "saludBonus": 20,
+    "velocidad": 10,
+    "descripcion": "Un barco sencillo para empezar tu viaje."
+  },
+  {
+    "id": "barco_going_merry",
+    "nombre": "Going Merry",
+    "emoji": "🚢",
+    "precio": 2500,
+    "defensa": 12,
+    "saludBonus": 50,
+    "velocidad": 20,
+    "descripcion": "El barco de los Sombrero de Paja. Un amigo más de la tripulación."
+  },
+  {
+    "id": "barco_thousand_sunny",
+    "nombre": "Thousand Sunny",
+    "emoji": "🌊",
+    "precio": 8000,
+    "defensa": 25,
+    "saludBonus": 100,
+    "velocidad": 35,
+    "descripcion": "El barco de Franky. Con Soldado de Combate integrado."
+  },
+  {
+    "id": "barco_moby_dick",
+    "nombre": "Moby Dick",
+    "emoji": "🐋",
+    "precio": 20000,
+    "defensa": 40,
+    "saludBonus": 200,
+    "velocidad": 30,
+    "descripcion": "El barco legendario de los Piratas de Barbablanca."
+  },
+  {
+    "id": "barco_red_force",
+    "nombre": "Red Force",
+    "emoji": "🚩",
+    "precio": 50000,
+    "defensa": 60,
+    "saludBonus": 350,
+    "velocidad": 50,
+    "descripcion": "La nave insignia del Emperador Shanks."
+  }
+]

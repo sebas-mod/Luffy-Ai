@@ -130,28 +130,28 @@ async function sendWaifuMessage(m, sock, waifu, textContent, customButtons = nul
   if (!buttons) {
     if (waifu.affection < 80) {
       buttons = [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🚶‍♂️ Paseo", id: `${m.prefix}waifuaction jalanjalan` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Ir al Café", id: `${m.prefix}waifuaction kafe` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎬 Cine", id: `${m.prefix}waifuaction bioskop` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛍️ Compras", id: `${m.prefix}waifuaction belanja` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🚶‍♂️ Paseo", id: `${m.prefix}waifuaction pasear` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Ir al Café", id: `${m.prefix}waifuaction cafe` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎬 Cine", id: `${m.prefix}waifuaction cine` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛍️ Compras", id: `${m.prefix}waifuaction comprar` }) },
       ];
     } else if (waifu.affection < 100) {
       buttons = [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazo", id: `${m.prefix}waifuaction peluk` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Beso", id: `${m.prefix}waifuaction cium` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛏️ Dormir Juntos", id: `${m.prefix}waifuaction tidur` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Bañarse Juntos", id: `${m.prefix}waifuaction mandi` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazo", id: `${m.prefix}waifuaction abrazar` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Beso", id: `${m.prefix}waifuaction besar` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛏️ Dormir Juntos", id: `${m.prefix}waifuaction dormir` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Bañarse Juntos", id: `${m.prefix}waifuaction banarse` }) },
       ];
     } else {
       if (!waifu.married) {
         buttons = [
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Cásate con Ella", id: `${m.prefix}waifuaction nikah` }) },
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💝 Pedir Regalo", id: `${m.prefix}waifuaction hadiah` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Cásate con Ella", id: `${m.prefix}waifuaction casarse` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💝 Pedir Regalo", id: `${m.prefix}waifuaction regalo` }) },
         ];
       } else {
         buttons = [
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👨‍👩‍👦 Cariños", id: `${m.prefix}waifuaction mesra` }) },
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💌 Halaga a tu Esposa", id: `${m.prefix}waifuaction rayu` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👨‍👩‍👦 Cariños", id: `${m.prefix}waifuaction carino` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💌 Halaga a tu Esposa", id: `${m.prefix}waifuaction halagar` }) },
         ];
       }
     }
@@ -198,13 +198,13 @@ async function handler(m, { sock }) {
     }
     m.react("🕕");
     const waifu = user.waifu;
-    let statusPernikahan = waifu.married ? "Casada 💍" : "En Conquista 💖";
+    let statusPercasarsean = waifu.married ? "Casada 💍" : "En Conquista 💖";
     const textContent = `📸 *ESTADO DE TU WAIFU* 📸\n\n` +
       `💖 *Nombre Completo:* ${waifu.name}\n` +
       `🎂 *Edad:* ${waifu.age} años\n` +
       `💎 *Tier:* ${waifu.tier}\n` +
       `💞 *Affection:* ${waifu.affection}/100\n` +
-      `💍 *Estado:* ${statusPernikahan}\n\n` +
+      `💍 *Estado:* ${statusPercasarsean}\n\n` +
       `¡Continúa la interacción eligiendo una de las acciones de cita de abajo!`;
 
     m.react("✅");
@@ -238,20 +238,20 @@ async function handler(m, { sock }) {
   if (cmd === "gachawaifu" || cmd === "gachaistri") {
     if (user.waifu) {
       m.react("😡");
-      let pesanStatus = user.waifu.married ? "¡Ya es tu esposa!" : "¡Te quiere muchísimo!";
+      let mensajeEstado = user.waifu.married ? "¡Ya es tu esposa!" : "¡Te quiere muchísimo!";
       return m.reply(
         `⚠️ *¡Ya tienes una waifu!*\n\n` +
         `Nombre: *${user.waifu.name}*\n` +
         `Tier: *${user.waifu.tier}*\n` +
         `Affection: *${user.waifu.affection}/100*\n\n` +
-        `¡No seas codicioso! Cuida la waifu que tienes. ${pesanStatus} Escribe *${m.prefix}waifuku* para interactuar con ella.`
+        `¡No seas codicioso! Cuida la waifu que tienes. ${mensajeEstado} Escribe *${m.prefix}waifuku* para interactuar con ella.`
       );
     }
 
     const sub = (m.args[0] || "").toLowerCase();
 
     if (sub !== "start") {
-      const panduan = `💕 *SISTEMA GACHA DE WAIFU* 💕\n\n` +
+      const guia = `💕 *SISTEMA GACHA DE WAIFU* 💕\n\n` +
         `Simulación interactiva de citas virtuales. ¡Consigue la waifu de tus sueños, conquista su corazón y cásate con ella!\n\n` +
         `*USO DE COMANDOS:*\n` +
         `• *${m.prefix}gachawaifu* — Abre este menú de guía\n` +
@@ -269,7 +269,7 @@ async function handler(m, { sock }) {
           message: {
             messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 },
             interactiveMessage: {
-              body: { text: panduan },
+              body: { text: guia },
               footer: { text: "¡Pulsa el botón de abajo para empezar a buscar a tu media naranja!" },
               nativeFlowMessage: {
                 buttons: [
@@ -324,28 +324,28 @@ async function handler(m, { sock }) {
     let waifu = user.waifu;
     let responseText = "";
     let affectionChange = 0;
-    if (action === "jalanjalan") {
+    if (action === "pasear") {
       return sendWaifuMessage(m, sock, waifu, `Invitas a *${waifu.name}* a pasear contigo. ¿A dónde quieres ir hoy?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🌳 Al Parque", id: `${m.prefix}waifuaction kencan_taman` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🏢 Al Mall", id: `${m.prefix}waifuaction kencan_mall` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🌳 Al Parque", id: `${m.prefix}waifuaction cita_parque` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🏢 Al Mall", id: `${m.prefix}waifuaction cita_centro` }) }
       ]);
     }
-    if (action === "kafe") {
+    if (action === "cafe") {
       return sendWaifuMessage(m, sock, waifu, `Van a un café de moda en la ciudad. ¿Qué bebida quieres pedirle?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Café Amargo", id: `${m.prefix}waifuaction kencan_kopi` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🍵 Matcha Latte", id: `${m.prefix}waifuaction kencan_matcha` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Café Amargo", id: `${m.prefix}waifuaction cita_cafe` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🍵 Matcha Latte", id: `${m.prefix}waifuaction cita_matcha` }) }
       ]);
     }
-    if (action === "bioskop") {
+    if (action === "cine") {
       return sendWaifuMessage(m, sock, waifu, `Están frente a la taquilla del cine. ¿De qué género quieres la película?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💞 Romántica", id: `${m.prefix}waifuaction kencan_romantis` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👻 Terror", id: `${m.prefix}waifuaction kencan_horor` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💞 Romántica", id: `${m.prefix}waifuaction cita_romantica` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👻 Terror", id: `${m.prefix}waifuaction cita_terror` }) }
       ]);
     }
-    if (action === "belanja") {
+    if (action === "comprar") {
       return sendWaifuMessage(m, sock, waifu, `Recorren un centro comercial exclusivo. ¿Qué regalo quieres comprarle?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👗 Ropa Bonita", id: `${m.prefix}waifuaction kencan_baju` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💎 Joyas", id: `${m.prefix}waifuaction kencan_perhiasan` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👗 Ropa Bonita", id: `${m.prefix}waifuaction cita_ropa` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💎 Joyas", id: `${m.prefix}waifuaction cita_joyas` }) }
       ]);
     }
     const rejectIntimate = async () => {
@@ -355,99 +355,99 @@ async function handler(m, { sock }) {
       await processAffection(outText, waifu.affection);
     };
 
-    if (["peluk", "cium", "tidur", "mandi"].includes(action) && waifu.affection < 80) {
+    if (["abrazar", "besar", "dormir", "banarse"].includes(action) && waifu.affection < 80) {
       return await rejectIntimate();
     }
 
-    if (action === "peluk") {
+    if (action === "abrazar") {
       return sendWaifuMessage(m, sock, waifu, `Miras a *${waifu.name}* que está distraída. ¿Cómo la abrazarás?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🤗 Por Detrás", id: `${m.prefix}waifuaction intim_belakang` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💑 De Frente", id: `${m.prefix}waifuaction intim_depan` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🤗 Por Detrás", id: `${m.prefix}waifuaction intimo_detras` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💑 De Frente", id: `${m.prefix}waifuaction intimo_frente` }) }
       ]);
     }
-    if (action === "cium") {
+    if (action === "besar") {
       return sendWaifuMessage(m, sock, waifu, `Sus caras están muy cerca, su respiración se siente en tu rostro. ¿Dónde la besarás?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "😚 La Frente", id: `${m.prefix}waifuaction intim_kening` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Los Labios", id: `${m.prefix}waifuaction intim_bibir` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "😚 La Frente", id: `${m.prefix}waifuaction intimo_mejilla` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Los Labios", id: `${m.prefix}waifuaction intimo_labios` }) }
       ]);
     }
-    if (action === "tidur") {
+    if (action === "dormir") {
       return sendWaifuMessage(m, sock, waifu, `Se recuestan en la cama suave. Tu corazón late fuerte. ¿Qué harás?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazarla Dormir", id: `${m.prefix}waifuaction intim_kelon` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🔥 Calentando", id: `${m.prefix}waifuaction intim_panas` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazarla Dormir", id: `${m.prefix}waifuaction intimo_pecho` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🔥 Calentando", id: `${m.prefix}waifuaction intimo_pasion` }) }
       ]);
     }
-    if (action === "mandi") {
+    if (action === "banarse") {
       return sendWaifuMessage(m, sock, waifu, `*${waifu.name}* se baña en la tina. Tú entras también. ¿Qué parte quieres restregar?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 La Espalda", id: `${m.prefix}waifuaction intim_punggung` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🧼 Los Hombros", id: `${m.prefix}waifuaction intim_bahu` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 La Espalda", id: `${m.prefix}waifuaction intimo_espalda` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🧼 Los Hombros", id: `${m.prefix}waifuaction intimo_hombros` }) }
       ]);
     }
-    if (action === "kencan_taman") {
+    if (action === "cita_parque") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🌳 El ambiente del parque es muy fresco. *${waifu.name}* disfruta del paisaje y sonríe feliz tomándote fuerte del brazo!`;
     }
-    else if (action === "kencan_mall") {
+    else if (action === "cita_centro") {
       affectionChange = Math.floor(Math.random() * 5) + 5;
       responseText = `🏢 El ambiente del mall es ruidoso y concurrido. Solo recorren mirando cosas, pero ella valora el tiempo contigo.`;
     }
-    else if (action === "kencan_kopi") {
+    else if (action === "cita_cafe") {
       affectionChange = -(Math.floor(Math.random() * 10) + 5);
       responseText = `☕ Ups, a *${waifu.name}* no le gusta mucho el café negro amargo! Hace una mueca al beberlo. Su ánimo baja un poco.`;
     }
-    else if (action === "kencan_matcha") {
+    else if (action === "cita_matcha") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `🍵 A *${waifu.name}* le encanta el Matcha Latte dulce que le pediste! Se ve muy feliz y no deja de sonreírte. ¡Buena elección!`;
     }
-    else if (action === "kencan_romantis") {
+    else if (action === "cita_romantica") {
       affectionChange = Math.floor(Math.random() * 15) + 5;
       responseText = `💞 Ver una película romántica derrite el ambiente entre ambos. Durante toda la película, apoya su cabeza en tu hombro.`;
     }
-    else if (action === "kencan_horor") {
+    else if (action === "cita_terror") {
       affectionChange = Math.floor(Math.random() * 10) + 15;
       responseText = `👻 *¡SUSTO!* Por el miedo, *${waifu.name}* grita y automáticamente te abraza del brazo muy fuerte durante toda la película. ¡Se acercan más!`;
     }
-    else if (action === "kencan_baju") {
+    else if (action === "cita_ropa") {
       affectionChange = Math.floor(Math.random() * 15) + 5;
       responseText = `👗 Le compras un vestido muy hermoso. Se lo pone de inmediato y te lo presume con las mejillas rojas!`;
     }
-    else if (action === "kencan_perhiasan") {
+    else if (action === "cita_joyas") {
       affectionChange = Math.floor(Math.random() * 20) + 10;
       responseText = `💎 ¡Le compras joyas caras! Sus ojos brillan de felicidad y valora mucho tu regalo lujoso!`;
     }
-    else if (action === "intim_belakang") {
+    else if (action === "intimo_detras") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🤗 La abrazas fuerte por detrás. *${waifu.name}* se sorprende un poco, pero se siente segura y cómoda en tus brazos.`;
     }
-    else if (action === "intim_depan") {
+    else if (action === "intimo_frente") {
       affectionChange = Math.floor(Math.random() * 15) + 5;
       responseText = `💑 Se miran de frente. La tomas de la cintura suavemente y se miran con mucho cariño.`;
     }
-    else if (action === "intim_kening") {
+    else if (action === "intimo_mejilla") {
       affectionChange = Math.floor(Math.random() * 10) + 5;
       responseText = `😚 Le das un beso en la frente con mucha ternura. Es un beso sincero que la hace sentirse muy querida.`;
     }
-    else if (action === "intim_bibir") {
+    else if (action === "intimo_labios") {
       affectionChange = Math.floor(Math.random() * 15) + 15;
       responseText = `💋 Besas sus labios con suavidad pero con pasión. Ella responde a tu beso con un pequeño suspiro. La noche se siente muy larga.`;
     }
-    else if (action === "intim_kelon") {
+    else if (action === "intimo_pecho") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🫂 Solo la abrazas y le das palmaditas en la espalda hasta que se duerme profundamente. Una sonrisa tranquila se dibuja en su lindo rostro.`;
     }
-    else if (action === "intim_panas") {
+    else if (action === "intimo_pasion") {
       affectionChange = Math.floor(Math.random() * 20) + 15;
       responseText = `🔥 Comienzas un calentamiento suave, besas su cuello y haces que su cara se ponga roja. Ella susurra, "Sé suave esta noche..."`;
     }
-    else if (action === "intim_punggung") {
+    else if (action === "intimo_espalda") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🛁 Le restriegas suavemente la espalda suave. Suspira aliviada porque se siente relajada tras un largo día.`;
     }
-    else if (action === "intim_bahu") {
+    else if (action === "intimo_hombros") {
       affectionChange = Math.floor(Math.random() * 15) + 15;
       responseText = `🧼 Le restriegas los hombros y sus zonas sensibles. *${waifu.name}* gime bajito, avergonzada pero disfrutando tu tacto en el agua tibia.`;
     }
-    else if (action === "nikah") {
+    else if (action === "casarse") {
       if (waifu.affection < 100) return m.reply(`⚠️ ¡El affection aún no llega a 100! ¡No te apresures a proponer!`);
       if (waifu.married) return m.reply(`⚠️ ¡Ya están casados!`);
 
@@ -460,16 +460,16 @@ async function handler(m, { sock }) {
       user.fun.pasangan = waifuJid;
       db.setUser(waifuJid, { fun: { pasangan: m.sender }, name: waifu.name });
 
-      responseText = `💍 *¡TE CASAS OFICIALMENTE CON ${waifu.name.toUpperCase()}!* 💍\n\nTe arrodillas bajo las estrellas y le entregas un anillo de diamantes. Ella llora de emoción y dice "Sí, quiero ser tuya para siempre!"\n\nComo regalo de bodas (dote), obtienes:\n- ⚡ 5000 Limit/Energía\n- 💰 100,000 Saldo/Berry\n\nTu estado en la función \`.cekpacar\` ahora oficialmente está emparejado con ella!`;
+      responseText = `💍 *¡TE CASAS OFICIALMENTE CON ${waifu.name.toUpperCase()}!* 💍\n\nTe arrodillas bajo las estrellas y le entregas un anillo de diamantes. Ella llora de emoción y dice "Sí, quiero ser tuya para siempre!"\n\nComo regalo de bodas (dote), obtienes:\n- ⚡ 5000 Limit/Energía\n- 💰 100,000 Saldo/Berry\n\nTu estado en la función \`.ver_pareja\` ahora oficialmente está emparejado con ella!`;
       affectionChange = 0;
     }
-    else if (action === "hadiah") {
+    else if (action === "regalo") {
       if (waifu.affection < 100) return m.reply(`⚠️ ¡Ella aún no te quiere lo suficiente para darte un regalo!`);
       affectionChange = 0;
       user.limit = (user.limit || 0) + 500;
       responseText = `💝 *${waifu.name}* con una sonrisa feliz te trae un delicioso almuerzo de amor!\n¡Obtienes ⚡ 500 Limit/Energía!`;
     }
-    else if (["mesra", "rayu"].includes(action)) {
+    else if (["carino", "halagar"].includes(action)) {
       if (!waifu.married) return m.reply(`¡Esta acción es solo para parejas casadas!`);
       affectionChange = 0;
       responseText = `👨‍👩‍👦 Disfrutan de dulces días tranquilos como pareja armoniosa. ¡Su amor por ti durará para siempre!`;

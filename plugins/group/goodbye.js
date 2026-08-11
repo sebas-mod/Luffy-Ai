@@ -470,7 +470,7 @@ async function handler(m, { sock }) {
       `✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ᴀᴄᴛɪᴠᴀ*\n\n` +
       `> El mensaje de despedida se activó correctamente!\n` +
       `> Los miembros que salgan recibirán un mensaje.\n\n` +
-      `_Usa \`${m.prefix}setgoodbye\` para personalizar el mensaje._`,
+      `_Usa \`${m.prefix}configurar_despedida\` para personalizar el mensaje._`,
     );
   }
   if (sub === "off") {
@@ -497,8 +497,8 @@ async function handler(m, { sock }) {
     `> \`${m.prefix}goodbye off\` → Desactivar\n` +
     `> \`${m.prefix}goodbye on all\` → Global ON (owner)\n` +
     `> \`${m.prefix}goodbye off all\` → Global OFF (owner)\n` +
-    `> \`${m.prefix}setgoodbye\` → Personalizar mensaje\n` +
-    `> \`${m.prefix}resetgoodbye\` → Restablecer predeterminado`,
+    `> \`${m.prefix}configurar_despedida\` → Personalizar mensaje\n` +
+    `> \`${m.prefix}resetear_despedida\` → Restablecer predeterminado`,
   );
 }
 export { pluginConfig as config, handler, sendGoodbyeMessage };

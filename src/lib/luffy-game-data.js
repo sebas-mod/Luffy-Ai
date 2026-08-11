@@ -140,7 +140,9 @@ function isSurrender(text) {
     const surrenderWords = [
         'nyerah', 'aku nyerah', 'gw nyerah', 'gue nyerah', 'menyerah',
         'aku menyerah', 'gw menyerah', 'skip', 'lewat', 'ga tau',
-        'gatau', 'gak tau', 'tidak tau', 'nggak tau', 'give up'
+        'gatau', 'gak tau', 'tidak tau', 'nggak tau', 'give up',
+        'me rindo', 'rindo', 'me doy por vencido', 'abandono',
+        'no sé', 'no se', 'no lo sé', 'no lo se'
     ];
     const normalized = text.toLowerCase().trim();
     return surrenderWords.some(word => normalized === word);
@@ -217,8 +219,8 @@ function getRemainingTime(chatId) {
 }
 
 function formatRemainingTime(seconds) {
-    if (seconds <= 0) return '0 detik';
-    if (seconds < 60) return `${seconds} detik`;
+    if (seconds <= 0) return '0 segundos';
+    if (seconds < 60) return `${seconds} segundos`;
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${mins}m ${secs}s`;

@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio'
 async function scrapeWutheringWavesCharacter(name) {
-    if (!name) throw new Error("Nama karakter kosong");
+    if (!name) throw new Error("Nombre de personaje vacío");
 
     const slug = name.trim().replace(/\s+/g, "_");
     const url = `https://wutheringwaves.fandom.com/wiki/${encodeURIComponent(slug)}`;

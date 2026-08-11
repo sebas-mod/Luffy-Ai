@@ -152,7 +152,7 @@ async function handler(m, { sock }) {
                 return m.reply(
                     `⚔️ *MISIÓN SHINOBI SIGUE ACTIVA*\n\n` +
                     `¡Aún estás en el campo de batalla!\n` +
-                    `> Responde al último mensaje del bot con (\`serang\` / \`lari\`) o cancela la misión (escribe \`batal\`).`,
+                    `> Responde al último mensaje del bot con (\`atacar\` / \`huir\`) o cancela la misión (escribe \`cancelar\`).`,
                 );
             }
         }
@@ -165,7 +165,7 @@ async function handler(m, { sock }) {
         }
 
         user.rpg.kyubigame_session = {
-            stage: "lobi",
+            stage: "lobby",
             time: Date.now(),
         };
         db.save();
@@ -183,7 +183,7 @@ async function handler(m, { sock }) {
                 txt += `> 🔒 *${d.id}.* ${d.name} (Necesita Lv ${d.levelReq})\n`;
             }
         }
-        txt += `\n> 💡 Responde a este mensaje con el *número* de la ubicación de misión (ejemplo: \`1\`) o escribe \`batal\` para salir.`;
+        txt += `\n> 💡 Responde a este mensaje con el *número* de la ubicación de misión (ejemplo: \`1\`) o escribe \`cancelar\` para salir.`;
 
         return m.reply(txt);
     } catch (error) {
@@ -214,14 +214,14 @@ async function kyubigameAnswerHandler(m, sock) {
     const text = m.body.trim().toLowerCase();
     const userLevel = user.level || 1;
 
-    if (text === "batal" || text === "cancel" || text === "keluar" || text === "cancelar" || text === "salir" || text === "abortar") {
+    if (text === "cancelar" || text === "cancel" || text === "salir" || text === "abortar") {
         delete user.rpg.kyubigame_session;
         db.save();
         await m.reply(`🚪 Cancelaste la misión y volviste a la aldea sano y salvo.`);
         return true;
     }
 
-    if (session.stage === "lobi") {
+    if (session.stage === "lobby") {
         const choiceId = parseInt(text);
         if (isNaN(choiceId)) return false;
 
@@ -249,7 +249,7 @@ async function kyubigameAnswerHandler(m, sock) {
                 `⚡ *CHAKRA/STAMINA INSUFICIENTE*\n\n` +
                 `Necesitas al menos *${staminaCost} de stamina* para entrar.\n` +
                 `Tu stamina restante es solo *${user.rpg.stamina}*.\n\n` +
-                `> 💡 *Tip:* Usa el comando \`.rest\` o cancela primero (escribe \`batal\`).`,
+                `> 💡 *Tip:* Usa el comando \`.rest\` o cancela primero (escribe \`cancelar\`).`,
             );
             return true;
         }
@@ -260,7 +260,7 @@ async function kyubigameAnswerHandler(m, sock) {
         const monsterPower = location.levelReq * 10 + Math.floor(Math.random() * 30);
 
         user.rpg.kyubigame_session = {
-            stage: "encounter",
+            stage: "encuentro",
             locationId: location.id,
             locationName: location.name,
             levelReq: location.levelReq,
@@ -280,14 +280,14 @@ async function kyubigameAnswerHandler(m, sock) {
         txt += `> ⚡ Stamina reducida *${staminaCost}*\n\n`;
         txt += `De repente, un *👹 ${monster}* se abalanza desde la oscuridad y bloquea tu camino!\n\n`;
         txt += `*⚔️ ¿QUÉ QUIERES HACER?*\n`;
-        txt += `> Responde a este mensaje con \`serang\` para pelear\n`;
-        txt += `> Responde a este mensaje con \`lari\` para retroceder (arriesgado)`;
+        txt += `> Responde a este mensaje con \`atacar\` para pelear\n`;
+        txt += `> Responde a este mensaje con \`huir\` para retroceder (arriesgado)`;
 
         await m.reply(txt);
         return true;
     }
 
-    if (session.stage === "encounter") {
+    if (session.stage === "encuentro") {
         if (text === "serang" || text === "attack" || text === "lawan" || text === "atacar" || text === "ataco" || text === "pelear") {
             const userPower =
                 (user.rpg.attack || 10) +
@@ -376,9 +376,9 @@ async function kyubigameAnswerHandler(m, sock) {
         } else {
             await m.reply(
                 `❓ *COMANDO NO RECONOCIDO*\n\n` +
-                `> Responde con \`serang\` para luchar contra el enemigo.\n` +
-                `> Responde con \`lari\` para huir.\n` +
-                `> Responde con \`batal\` si quieres cancelar la misión.`,
+                `> Responde con \`atacar\` para luchar contra el enemigo.\n` +
+                `> Responde con \`huir\` para huir.\n` +
+                `> Responde con \`cancelar\` si quieres cancelar la misión.`,
             );
             return true;
         }

@@ -3,7 +3,7 @@ import config from "../../config.js";
 
 const pluginConfig = {
   name: "nikparser",
-  alias: ["nik", "ceknik"],
+  alias: ["nik", "ver_nik"],
   category: "tools",
   description: "Analiza y valida NIK KTP",
   usage: ".nikparser <NIK de 16 dígitos>",

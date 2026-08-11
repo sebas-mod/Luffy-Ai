@@ -7,7 +7,7 @@ const pluginConfig = {
     alias: ['addban', 'block'],
     category: 'owner',
     description: 'Bloquear al usuario para que no use el bot',
-    usage: '.ban <nomor/@tag>',
+    usage: '.ban <numero/@tag>',
     example: '.ban 6281234567890',
     isOwner: true,
     isPremium: false,

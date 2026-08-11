@@ -15,7 +15,7 @@ const pluginConfig = {
   alias: [],
   category: "random",
   description: "Imagen aleatoria de anime/reacción (Fuente Nexray)",
-  usage: ".<nama> (lihat daftar di bawah)",
+  usage: ".<nombre> (ver la lista abajo)",
   example: ".waifu",
   isOwner: false,
   isPremium: false,

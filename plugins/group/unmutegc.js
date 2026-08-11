@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     `🔊 *Mute GC Desactivado*\n\n` +
       `> Grupo: *${groupName}*\n` +
       `> Los miembros ahora pueden usar comandos del bot de nuevo\n\n` +
-      `_Escribe *${m.prefix}mutegc* para volver a bloquear_`,
+      `_Escribe *${m.prefix}silenciar_grupo* para volver a bloquear_`,
     { contextInfo: ctx }
   );
 }

@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'close',
-    alias: ['tutup', 'closegroup', 'tutupgroup'],
+    alias: ["cerrar", "closegroup", "cerrar_grupo"],
     category: 'group',
     description: 'Cerrar el grupo para que solo los admins puedan escribir',
     usage: '.close',

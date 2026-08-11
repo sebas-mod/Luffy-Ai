@@ -369,7 +369,7 @@ function doSmelt(mcUser) {
 
 function doCraft(mcUser, recipeKey) {
   const recipe = CRAFT_RECIPES[recipeKey];
-  if (!recipe) return { error: "🛠️ Resep tidak ada!" };
+  if (!recipe) return { error: "🛠️ ¡La receta no existe!" };
   if ((mcUser.level || 1) < recipe.requiredLevel)
     return { error: `⬆️ ¡Nivel insuficiente! Necesitas Nv.${recipe.requiredLevel}` };
 
@@ -386,7 +386,7 @@ function doCraft(mcUser, recipeKey) {
     }
     if (found < count)
       return {
-        error: `🧪 Bahan kurang! ${ingName} butuh ${count}, punya ${found}`,
+        error: `🧪 ¡Faltan materiales! ${ingName} necesita ${count}, tienes ${found}`,
       };
   }
 
@@ -480,7 +480,7 @@ function applyJackpotReward(db, mcUser, sender, result) {
         user.isPremium = true;
         db.markDirty("users");
       }
-      applied = { desc: `👑 Premium ${days} Hari!`, type };
+      applied = { desc: `👑 Premium ${days} Días!`, type };
       break;
     }
     case "partner_7d":
@@ -498,7 +498,7 @@ function applyJackpotReward(db, mcUser, sender, result) {
         user.isPartner = true;
         db.markDirty("users");
       }
-      applied = { desc: `🤝 Partner ${days} Hari!`, type };
+      applied = { desc: `🤝 Partner ${days} Días!`, type };
       break;
     }
     case "unlimited_carne": {
@@ -538,7 +538,7 @@ function applyJackpotReward(db, mcUser, sender, result) {
         db.markDirty("users");
       }
       applied = {
-        desc: `🔥 OWNER REWARD! Premium+Partner 1 Tahun + UNLIMITED!`,
+        desc: `🔥 RECOMPENSA DE OWNER! Premium+Partner 1 Año + ILIMITADO!`,
         type,
       };
       break;
@@ -561,9 +561,9 @@ function getAvailableMobs(mcUser) {
 
 function healPlayer(mcUser) {
   const cost = Math.floor((mcUser.maxHp - mcUser.hp) * 500);
-  if (mcUser.hp >= mcUser.maxHp) return { error: "❤️ HP sudah penuh!" };
+  if (mcUser.hp >= mcUser.maxHp) return { error: "❤️ ¡HP ya está lleno!" };
   if ((mcUser.money || 0) < cost)
-    return { error: `💸 Uang kurang! Butuh ${formatMoney(cost)}` };
+    return { error: `💸 ¡Dinero insuficiente! Necesitas ${formatMoney(cost)}` };
   mcUser.money -= cost;
   mcUser.hp = mcUser.maxHp;
   return { success: true, cost, hp: mcUser.hp };

@@ -1,0 +1,86 @@
+import { getDatabase } from '../../src/lib/luffy-database.js'
+import config from '../../config.js'
+const pluginConfig = {
+    name: 'configurar_cumpleanos',
+    alias: ["setbday", "configurar_fecha"],
+    category: 'user',
+    description: 'Configurar fecha de cumpleaños',
+    usage: '.setbirthday <DD-MM>',
+    example: '.setbirthday 25-12',
+    isOwner: false,
+    isPremium: false,
+    isGroup: false,
+    isPrivate: false,
+    cooldown: 10,
+    carne: 0,
+    isEnabled: true
+}
+
+async function handler(m) {
+    const db = getDatabase()
+    const input = m.args?.[0]?.trim()
+    const userJid = m.sender
+    const cleanJid = userJid.replace(/@.+/g, '')
+    
+    if (!input) {
+        const user = db.getUser(userJid)
+        const currentBday = user?.birthday
+        
+        let text = `🎂 *sᴇᴛ ʙɪʀᴛʜᴅᴀʏ*\n\n`
+        
+        if (currentBday) {
+            text += `> Tu cumpleaños: *${currentBday}*\n\n`
+        }
+        
+        text += `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n`
+        text += `┃ ${m.prefix}configurar_cumpleanos DD-MM\n`
+        text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+        text += `*Ejemplo:*\n`
+        text += `> ${m.prefix}configurar_cumpleanos 25-12\n`
+        text += `> ${m.prefix}configurar_cumpleanos 01-01`
+        
+        return m.reply(text)
+    }
+    
+    const dateRegex = /^(\d{1,2})[-\/](\d{1,2})$/
+    const match = input.match(dateRegex)
+    
+    if (!match) {
+        return m.reply(`❌ ¡Formato incorrecto! Usa: DD-MM\n\n> Ejemplo: ${m.prefix}configurar_cumpleanos 25-12`)
+    }
+    
+    const day = parseInt(match[1])
+    const month = parseInt(match[2])
+    
+    if (month < 1 || month > 12) {
+        return m.reply(`❌ ¡Mes no válido! (1-12)`)
+    }
+    
+    const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    if (day < 1 || day > daysInMonth[month - 1]) {
+        return m.reply(`❌ ¡Fecha no válida para el mes ${month}!`)
+    }
+    
+    const formattedDate = `${day.toString().padStart(2, '0')}-${month.toString().padStart(2, '0')}`
+    
+    db.setUser(m.sender, { 
+        birthday: formattedDate 
+    })
+    
+    await db.save()
+    
+    const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    
+    await m.reply(
+        `✅ *ʙɪʀᴛʜᴅᴀʏ ɢᴜᴀʀᴅᴀᴅᴏ!*\n\n` +
+        `╭┈┈⬡「 🎂 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `┃ 📅 Fecha: *${day} ${months[month - 1]}*\n` +
+        `┃ 👤 Usuario: @${cleanJid}\n` +
+        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `> El bot te felicitará\n` +
+        `> por tu cumpleaños en tu día especial! 🎉`,
+        { mentions: [userJid] }
+    )
+}
+
+export { pluginConfig as config, handler }

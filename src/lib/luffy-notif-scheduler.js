@@ -125,7 +125,7 @@ async function processEntry(entry, jam, type, key, db, dateStr) {
 
         await new Promise(r => setTimeout(r, 300))
     } catch (err) {
-        logger.error('NotifScheduler', `Gagal ngirim alarm ${type} ke ${entry.chatJid}: ${err.message}`)
+        logger.error('NotifScheduler', `Fallo al enviar la alarma ${type} a ${entry.chatJid}: ${err.message}`)
     }
 }
 
@@ -226,7 +226,7 @@ function initNotifScheduler(socketInstance) {
     }, null, true, TZ)
 
     buildCronJobs()
-    logger.info('NotifScheduler', 'Sistem alarm makan & tidur otomatis udah jalan mantap')
+    logger.info('NotifScheduler', 'Sistema de alarma de comer y dormir automático ya funcionando')
 }
 
 function stopNotifScheduler() {

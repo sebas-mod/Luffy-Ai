@@ -156,6 +156,7 @@ function getSortedCategories(m, botMode) {
     "tools",
     "fun",
     "game",
+    "rpg",
     "download",
     "search",
     "sticker",
@@ -276,6 +277,7 @@ async function buildMenuText(
     "tools",
     "fun",
     "game",
+    "rpg",
     "download",
     "search",
     "sticker",
@@ -338,7 +340,7 @@ async function buildMenuText(
     categoryLines.push(`${prefix}menucat ${category} ${emoji}`);
   }
   if (categoryLines.length > 0) {
-    txt += ` ✦ DAFTAR MENU ✦\n`;
+    txt += ` ✦ LISTA DE MENÚ ✦\n`;
     txt += `╭   • ${categoryLines[0]}\n`;
     for (let i = 1; i < categoryLines.length; i++) {
       txt += `┆   • ${categoryLines[i]}\n`;
@@ -458,8 +460,8 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     const zann_pengin_rehat = categories.sorted.map(({ cat, cmds, emoji }) => {
       return {
         title: `${emoji} ${toMonoUpperBold(cat)}`,
-        description: `Command ini memiliki  (${cmds.length}) Perintah`,
-        id: `${m.prefix}menucat ${cat}`,
+        description: `Contiene ${cmds.length} comandos`,
+        id: `${m.prefix}menu_categoria ${cat}`,
       };
     });
     switch (menuVariant) {
@@ -637,7 +639,7 @@ ${readmore}${s}`
                       {
                         name: "cta_url",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍫 Owner Kami",
+                          display_text: "🍫 Nuestro Owner",
                           url: `https://wa.me/${botConfig.owner?.number?.[0]}`,
                           merchant_url: `https://wa.me/${config.owner?.number?.[0]}`,
                         })
@@ -645,7 +647,7 @@ ${readmore}${s}`
                       {
                         name: "quick_reply",
                         buttonParamsJson: JSON.stringify({
-                          display_text: "🍛 Dapatkan Script ( Gratis )",
+                          display_text: "🍛 Obtener Script ( Gratis )",
                           id: `${m.prefix}sc`
                         })
                       }
@@ -672,7 +674,7 @@ ${readmore}${s}`
                 type: 1,
               },
               {
-                buttonId: `${m.prefix}allmenu`,
+                buttonId: `${m.prefix}menu_todo`,
                 buttonText: {
                   displayText: '💐 Allmenu',
                 },
@@ -682,7 +684,7 @@ ${readmore}${s}`
             locationMessage: {
               jpegThumbnail: await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 170).toBuffer(),
               name: config.bot.name,
-              address: `Versi saat ini: ${config.bot.version}`
+              address: `Versión actual: ${config.bot.version}`
             },
             contentText: `🥞 *Hello Brother*
 
@@ -845,7 +847,7 @@ Disfruta su uso, hermano.`
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} h ${m} min ${s} s`;
         }
 
         const weatherCode = {
@@ -1010,7 +1012,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           const m = Math.floor(seconds % 3600 / 60);
           const s = Math.floor(seconds % 60);
 
-          return `${d} Jam ${m} Menit ${s} Detik`;
+          return `${d} h ${m} min ${s} s`;
         }
 
         const weatherCode = {
@@ -1065,7 +1067,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           }
           topCmdText += `╰➤------------------------------\n`
         } else {
-          topCmdText += `╭   • Belum ada command\n╰➤------------------------------\n`
+          topCmdText += `╭   • Aún no hay comandos\n╰➤------------------------------\n`
         }
 
         const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
@@ -1148,13 +1150,13 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
         function runtimeStr(seconds) {
           seconds = Number(seconds);
           const d = Math.floor(seconds / (3600 * 24));
-          if (d > 0) return `${d} hari`;
+          if (d > 0) return `${d} días`;
           const h = Math.floor((seconds % (3600 * 24)) / 3600);
           if (h > 0) return `${h} jam`;
           const m = Math.floor((seconds % 3600) / 60);
-          if (m > 0) return `${m} menit`;
+          if (m > 0) return `${m} minutos`;
           const s = Math.floor(seconds % 60);
-          return `${s} detik`;
+          return `${s} segundos`;
         }
 
         const toMathSansBold = (text) => {
@@ -1201,7 +1203,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `╭╮ \`✧ ${toMathSansBold("MENU CATEGORY")}\`\n`;
         const { sorted } = getSortedCategories(m, botMode);
         for (const cat of sorted) {
-          case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} fitur\n`;
+          case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
         }
         case7Text += `╰╯`;
 
@@ -1304,13 +1306,13 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         function runtimeStr(seconds) {
           seconds = Number(seconds);
           const d = Math.floor(seconds / (3600 * 24));
-          if (d > 0) return `${d} hari`;
+          if (d > 0) return `${d} días`;
           const h = Math.floor((seconds % (3600 * 24)) / 3600);
           if (h > 0) return `${h} jam`;
           const m = Math.floor((seconds % 3600) / 60);
-          if (m > 0) return `${m} menit`;
+          if (m > 0) return `${m} minutos`;
           const s = Math.floor(seconds % 60);
-          return `${s} detik`;
+          return `${s} segundos`;
         }
 
         const toMathSansBold = (text) => {
@@ -1344,7 +1346,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         const userJabatan = m.isOwner ? "[ Owner ]" : (m.isPremium ? "[ Premium ]" : "[ User ]");
         const userBerry = dbUser?.berry || 0;
         const userExp = dbUser?.exp || 0;
-        const hariKe = dbUser?.activeDays || 0;
+        const diasActivos = dbUser?.activeDays || 0;
 
         let case7Text = `*YOUR STATUS*\n`;
         case7Text += `❑ Role: ${userJabatan}\n`;
@@ -1353,7 +1355,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `❑ Coin: ${userBerry}\n`;
         case7Text += `❑ Exp: ${userExp}\n`;
         case7Text += `❑ Carne: ${userLimit}\n\n`;
-        case7Text += `Hello, my friend *"${m.pushName}"*!\nHow are you today? You're feeling well, right?\n\nYou've been online for *${hariKe} days*\n\n`;
+        case7Text += `Hello, my friend *"${m.pushName}"*!\nHow are you today? You're feeling well, right?\n\nYou've been online for *${diasActivos} days*\n\n`;
 
 case7Text += `Website Buy Panel & Sewabot\n`;
 case7Text += `fallxdstore.zone.id\n\n`;

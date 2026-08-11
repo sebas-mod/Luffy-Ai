@@ -1,9 +1,9 @@
 const pluginConfig = {
     name: 'delete',
-    alias: ['del', 'hapus', 'd'],
+    alias: ["del", "quitar", "d"],
     category: 'group',
     description: 'Eliminar mensaje con reply',
-    usage: '.delete (reply pesan)',
+    usage: '.delete (reply al mensaje)',
     example: '.delete',
     isOwner: false,
     isPremium: false,

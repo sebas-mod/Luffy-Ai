@@ -3,7 +3,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "pddikti",
-  alias: ["dikti", "carimahasiswa"],
+  alias: ["dikti", "buscar_estudiante"],
   category: "search",
   description: "Busca datos de estudiantes, docentes, instituciones y programas de PDDIKTI",
   usage: ".pddikti <mode> <query>",

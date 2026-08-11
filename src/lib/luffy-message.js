@@ -63,7 +63,7 @@ async function sendReply(sock, jid, text, quoted) {
  * @param {Object} sock - Socket connection
  * @param {string} jid - JID tujuan
  * @param {Buffer|string} image - Buffer gambar atau URL
- * @param {string} [caption=''] - Caption gambar
+ * @param {string} [caption=''] - Leyenda de la imagen
  * @param {MessageOptions} [options={}] - Opsi pesan
  * @returns {Promise<Object>} Sent message
  * @example

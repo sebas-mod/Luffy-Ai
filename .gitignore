@@ -6,3 +6,9 @@ temp/
 tmp/
 *.log
 .env
+
+# RPG: mantener contenido estático, ignorar estado de runtime
+!plugins/luffy-rpg/database/
+!plugins/luffy-rpg/database/*.json
+plugins/luffy-rpg/database/users.json
+plugins/luffy-rpg/database/crews.json

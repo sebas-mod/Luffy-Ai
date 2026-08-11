@@ -14,7 +14,7 @@ async function fetchLyrics(judul) {
 }
 
 const pluginConfig = {
-    name: 'lirik',
+    name: 'letra',
     alias: ['lyric', 'lyrics', 'liriklagu'],
     category: 'search',
     description: 'Buscar letras de canciones',
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     if (!query) {
         return m.reply(
             `¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n\n` +
-            `Intenta escribir el comando así: *${m.prefix}lirik sempurna andra and the backbone* 🎶\n\n` +
+            `Intenta escribir el comando así: *${m.prefix}letra sempurna andra and the backbone* 🎶\n\n` +
             `¡Escribe el título para que podamos cantar juntos! 🎤🔥`
         )
     }

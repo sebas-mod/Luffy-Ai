@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 const pluginConfig = {
     name: 'stalkml',
-    alias: ['mlstalk', 'ceknickml', 'nickml'],
+    alias: ["mlstalk", "ver_nick_ml", "nickml"],
     category: 'stalker',
     description: 'Saber el nombre/nickname de la cuenta de Mobile Legends por ID y Server.',
     usage: '.stalkml <id> | <server>',

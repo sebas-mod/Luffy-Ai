@@ -28,7 +28,7 @@ const pluginConfig = {
 class StickerAPI {
   async search(query, page = 1) {
     try {
-      if (!query) throw new Error("Query kosong");
+      if (!query) throw new Error("Consulta vacía");
       const res = await axios
         .post("https://getstickerpack.com/api/v1/stickerdb/search", {
           query,

@@ -4,7 +4,7 @@ import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js"
 
 const pluginConfig = {
     name: "rules",
-    alias: ["aturanbot", "botrules", "peraturanbot"],
+    alias: ["reglas_bot", "botrules", "reglas_reglas"],
     category: "main",
     description: "Mostrar las reglas y normas de uso del bot",
     usage: ".rules",

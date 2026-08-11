@@ -3,7 +3,7 @@ import config from '../../config.js'
 import * as timeHelper from './luffy-time.js'
 /**
  * @typedef {Object} DashboardData
- * @property {string} userName - Nama user
+ * @property {string} userName - Nombre de usuario
  * @property {string} userStatus - Status user (Owner/Premium/Free)
  * @property {string} mode - Mode bot (Public/Self)
  * @property {number} totalUsers - Total pengguna bot
@@ -12,8 +12,8 @@ import * as timeHelper from './luffy-time.js'
 
 /**
  * @typedef {Object} BotInfoData
- * @property {string} botName - Nama bot
- * @property {string} developer - Nama developer
+ * @property {string} botName - Nombre del bot
+ * @property {string} developer - Nombre del developer
  * @property {string} version - Versi bot
  * @property {string} uptime - Uptime bot
  * @property {number} totalFeatures - Total fitur
@@ -23,7 +23,7 @@ import * as timeHelper from './luffy-time.js'
 
 /**
  * @typedef {Object} UserProfileData
- * @property {string} name - Nama user
+ * @property {string} name - Nombre de usuario
  * @property {string} number - Nomor user
  * @property {string} status - Status (Owner/Premium/Free)
  * @property {number} limit - Limit tersisa
@@ -32,7 +32,7 @@ import * as timeHelper from './luffy-time.js'
 
 /**
  * @typedef {Object} MenuCategory
- * @property {string} name - Nama kategori
+ * @property {string} name - Nombre de categoría
  * @property {string} emoji - Emoji kategori
  * @property {string} description - Deskripsi kategori
  * @property {string[]} commands - Array command dalam kategori
@@ -171,7 +171,7 @@ function formatFileSize(bytes) {
 /**
  * Buat garis horizontal
  * @param {number} length - Panjang garis
- * @param {string} [char='─'] - Karakter untuk garis
+ * @param {string} [char='─'] - Carácter para la línea
  * @returns {string} String garis
  */
 function createLine(length = 20, char = CHARS.horizontal) {
@@ -221,7 +221,7 @@ function createBodyLine(text, prefix = CHARS.vertical, bullet = CHARS.bullet) {
  * @param {string} value - Nilai
  * @returns {string} Formatted line dengan arrow
  * @example
- * createArrowLine('Nama', 'Luffy-Ai'); // "│ ➣ Nama: Luffy-Ai"
+ * createArrowLine('Nombre', 'Luffy-Ai'); // "│ ➣ Nombre: Luffy-Ai"
  */
 function createArrowLine(label, value) {
   return `${CHARS.vertical} ${CHARS.arrow} ${label}: ${value}`;
@@ -244,10 +244,10 @@ function createDashboard(data) {
   const lines = [
     `${CHARS.cornerTopLeft}${CHARS.horizontal}「 ${EMOJIS.dashboard} DASHBOARD 」${CHARS.horizontal}`,
     `${CHARS.vertical}`,
-    createArrowLine("Nama", userName),
+    createArrowLine("Nombre", userName),
     createArrowLine("Status User", userStatus),
     createArrowLine("Mode", mode),
-    createArrowLine("Pengguna", totalUsers.toString()),
+    createArrowLine("Usuarios", totalUsers.toString()),
     createArrowLine("Limit", userLimit.toString()),
     `${CHARS.vertical}`,
     `${CHARS.cornerBottomLeft}${createLine(24)}`,
@@ -257,8 +257,8 @@ function createDashboard(data) {
 }
 
 /**
- * Buat info bot
- * @param {BotInfoData} data - Data info bot
+ * Crea info del bot
+ * @param {BotInfoData} data - Datos de info del bot
  * @returns {string} Formatted bot info string
  */
 function createBotInfo(data) {
@@ -273,14 +273,14 @@ function createBotInfo(data) {
   } = data;
 
   const lines = [
-    `${CHARS.horizontal} *Informasi Bot* ${CHARS.horizontal}`,
+    `${CHARS.horizontal} *Información del Bot* ${CHARS.horizontal}`,
     ``,
-    `${CHARS.dot} Nama-Bot : ${botName} 🌿`,
+    `${CHARS.dot} Nombre-Bot : ${botName} 🌿`,
     `${CHARS.dot} Developer : ${developer}`,
     `${CHARS.dot} Mode : ${mode.charAt(0).toUpperCase() + mode.slice(1)}`,
     `${CHARS.dot} Version : ${version}`,
     `${CHARS.dot} Uptime : ${uptime}`,
-    `${CHARS.dot} Total-Fitur : ${totalFeatures}`,
+    `${CHARS.dot} Total-Funciones : ${totalFeatures}`,
     `${CHARS.dot} Platform : ${platform}`,
     ``,
   ];
@@ -311,15 +311,15 @@ function createUserProfile(data) {
 
   const lines = [
     `【 USER PROFILE 】`,
-    `${EMOJIS.name} Nama   : ${name}`,
-    `${EMOJIS.number} Nomor  : ${formatNumber(number)}`,
+    `${EMOJIS.name} Nombre : ${name}`,
+    `${EMOJIS.number} Número : ${formatNumber(number)}`,
     `${statusEmoji} Status : ${status}`,
     `${EMOJIS.limit} Limit  : ${limit}`,
     ``,
   ];
 
   if (registeredAt) {
-    lines.splice(5, 0, `${EMOJIS.time} Daftar : ${registeredAt}`);
+    lines.splice(5, 0, `${EMOJIS.time} Registrado : ${registeredAt}`);
   }
 
   return lines.join("\n");
@@ -345,8 +345,8 @@ function createBotStatus(data) {
     `${EMOJIS.bot} Bot      : ${botName}`,
     `${EMOJIS.uptime} Uptime   : ${uptime}`,
     `${EMOJIS.mode} Mode     : ${mode}`,
-    `${EMOJIS.commands} Commands : ${totalCommands} fitur`,
-    `${EMOJIS.user} Pengguna : ${totalUsers} users`,
+    `${EMOJIS.commands} Commands : ${totalCommands} funciones`,
+    `${EMOJIS.user} Usuarios  : ${totalUsers} users`,
     `${EMOJIS.speed} Speed    : ${speed}`,
     ``,
   ];
@@ -439,8 +439,8 @@ function createMainMenu(data) {
 }
 
 /**
- * Buat command list untuk kategori tertentu
- * @param {string} categoryName - Nama kategori
+ * Crea una lista de comandos para una categoría específica
+ * @param {string} categoryName - Nombre de categoría
  * @param {string[]} commands - Array command
  * @param {string} prefix - Prefix command
  * @returns {string} Formatted command list
@@ -464,29 +464,29 @@ function createCommandList(categoryName, commands, prefix = ".") {
 }
 
 /**
- * Buat pesan wait/loading
- * @param {string} [message='Tunggu sebentar...'] - Pesan loading
- * @returns {string} Formatted wait message
+ * Crea el mensaje de espera/carga
+ * @param {string} [message='Espera un momento...'] - Mensaje de carga
+ * @returns {string} Mensaje de espera formateado
  */
-function createWaitMessage(message = "Tunggu sebentar...") {
+function createWaitMessage(message = "Espera un momento...") {
   return `${EMOJIS.loading} *${message}*`;
 }
 
 /**
- * Buat pesan sukses
- * @param {string} [message='Berhasil!'] - Pesan sukses
- * @returns {string} Formatted success message
+ * Crea el mensaje de éxito
+ * @param {string} [message='¡Éxito!'] - Mensaje de éxito
+ * @returns {string} Mensaje de éxito formateado
  */
-function createSuccessMessage(message = "Berhasil!") {
+function createSuccessMessage(message = "¡Éxito!") {
   return `${EMOJIS.success} *${message}*`;
 }
 
 /**
- * Buat pesan error
- * @param {string} [message='Terjadi kesalahan!'] - Pesan error
- * @returns {string} Formatted error message
+ * Crea el mensaje de error
+ * @param {string} [message='¡Ocurrió un error!'] - Mensaje de error
+ * @returns {string} Mensaje de error formateado
  */
-function createErrorMessage(message = "Terjadi kesalahan!") {
+function createErrorMessage(message = "¡Ocurrió un error!") {
   return `${EMOJIS.error} *${message}*`;
 }
 

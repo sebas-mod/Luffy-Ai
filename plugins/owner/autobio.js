@@ -32,7 +32,7 @@ async function handler(m, { sock, db }) {
       `> Texto de la bio: ${text}\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}autobio on/off* — Activar/desactivar la función\n` +
-      `- *${m.prefix}autobio ganti_setiap <tiempo>* — Configurar el intervalo. Ejemplo: \`.autobio ganti_setiap 30 segundos\` o \`1 hora\`\n` +
+      `- *${m.prefix}autobio cambiar_cada <tiempo>* — Configurar el intervalo. Ejemplo: \`.autobio cambiar_cada 30 segundos\` o \`1 hora\`\n` +
       `- *${m.prefix}autobio <texto>* — Configurar el texto de la bio\n\n` +
       `*PLACEHOLDERS DISPONIBLES:*\n` +
       `- \`{clock}\` — Muestra la hora actual\n` +
@@ -60,21 +60,21 @@ async function handler(m, { sock, db }) {
     return m.reply(`❌ *AUTO BIO DESACTIVADO*\n\nLa bio de WhatsApp del bot ya no se actualizará.`);
   }
 
-  if (option.startsWith("ganti_setiap")) {
-    const timeStr = arg.replace(/ganti_setiap/i, "").trim().toLowerCase();
+  if (option.startsWith("cambiar_cada")) {
+    const timeStr = arg.replace(/cambiar_cada/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio ganti_setiap 30 detik` o `1 jam`");
+      return m.reply("❌ *Formato incorrecto*\n\nEjemplo: `.autobio cambiar_cada 30 segundos` o `1 hora`");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("❌ *Formato incorrecto*\n\nIntroduce un número válido. Ejemplo: `.autobio ganti_setiap 30 detik`");
+      return m.reply("❌ *Formato incorrecto*\n\nIntroduce un número válido. Ejemplo: `.autobio cambiar_cada 30 segundos`");
     }
 
-    if (timeStr.includes("d") || timeStr.includes("detik")) ms = value * 1000;
-    else if (timeStr.includes("m") || timeStr.includes("menit")) ms = value * 60000;
-    else if (timeStr.includes("j") || timeStr.includes("jam")) ms = value * 3600000;
+    if (timeStr.includes("s") || timeStr.includes("segundo")) ms = value * 1000;
+    else if (timeStr.includes("min") || timeStr.includes("minuto")) ms = value * 60000;
+    else if (timeStr.includes("h") || timeStr.includes("hora")) ms = value * 3600000;
     else ms = value * 60000; // default to minutes
 
     if (ms < 10000) {

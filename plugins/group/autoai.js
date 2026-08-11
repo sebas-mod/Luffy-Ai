@@ -90,16 +90,16 @@ async function handler(m) {
 
   const subcmd = args[0]?.toLowerCase();
 
-  if (subcmd === "tambahpersona") {
+  if (subcmd === "agregar_persona") {
     if (!m.isOwner)
       return m.reply(`❌ ¡Solo el owner puede agregar personas!`);
     const personaArgs = fullArgs
-      .replace(/^tambahpersona\s*/i, "")
+      .replace(/^agregar_persona\s*/i, "")
       .split("|")
       .map((s) => s.trim());
     if (personaArgs.length < 2 || !personaArgs[0] || !personaArgs[1])
       return m.reply(
-        `❌ ¡Formato incorrecto!\n\n> .autoai tambahpersona nombre | instruction\n\n> Ejemplo: .autoai tambahpersona nexa | eres nexa ai, ...`,
+        `❌ ¡Formato incorrecto!\n\n> .autoai agregar_persona nombre | instruction\n\n> Ejemplo: .autoai agregar_persona nexa | eres nexa ai, ...`,
       );
     const pName = personaArgs[0].toLowerCase().replace(/\s+/g, "_");
     const pInstruction = personaArgs.slice(1).join("|").trim();
@@ -119,17 +119,17 @@ async function handler(m) {
     );
   }
 
-  if (subcmd === "hapuspersona") {
+  if (subcmd === "eliminar_persona") {
     if (!m.isOwner)
       return m.reply(`❌ ¡Solo el owner puede eliminar personas!`);
     const pKey = (args[1] || "").toLowerCase().trim();
     if (!pKey)
       return m.reply(
-        `❌ ¡Formato incorrecto!\n\n> .autoai hapuspersona <nombre>\n\n> Ejemplo: .autoai hapuspersona nexa`,
+        `❌ ¡Formato incorrecto!\n\n> .autoai eliminar_persona <nombre>\n\n> Ejemplo: .autoai eliminar_persona nexa`,
       );
     if (!db.db.data.autoai_personas[pKey])
       return m.reply(
-        `❌ ¡La persona "${pKey}" no fue encontrada!\n\n> Escribe .autoai listpersona para ver la lista`,
+        `❌ ¡La persona "${pKey}" no fue encontrada!\n\n> Escribe .autoai lista_personas para ver la lista`,
       );
     delete db.db.data.autoai_personas[pKey];
     db.save();
@@ -184,7 +184,7 @@ async function handler(m) {
     );
   }
 
-  if (subcmd === "listpersona") {
+  if (subcmd === "lista_personas") {
     const builtIn = Object.entries(characters)
       .map(([k, v]) => `  ▸ ${k} - ${v.name}`)
       .join("\n");
@@ -202,8 +202,8 @@ async function handler(m) {
     txt += `*Personalizadas:*\n${custom}\n\n`;
     txt += `*Global:* ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}\n\n`;
     txt += `> .autoai on --luffymode=<key>\n`;
-    txt += `> .autoai tambahpersona nama | logic\n`;
-    txt += `> .autoai hapuspersona nama\n`;
+    txt += `> .autoai agregar_persona nombre | logic\n`;
+    txt += `> .autoai eliminar_persona nombre\n`;
     txt += `> .autoai global on/off`;
     return m.reply(txt);
   }
@@ -316,9 +316,9 @@ async function handler(m) {
     txt += `*Uso:*\n`;
     txt += `> .autoai on --luffymode=<personaje|custom> --type=<text|voice> --mode=<onlychat|assistant>\n`;
     txt += `> .autoai off\n`;
-    txt += `> .autoai tambahpersona nombre | logic\n`;
-    txt += `> .autoai hapuspersona nombre\n`;
-    txt += `> .autoai listpersona\n`;
+    txt += `> .autoai agregar_persona nombre | logic\n`;
+    txt += `> .autoai eliminar_persona nombre\n`;
+    txt += `> .autoai lista_personas\n`;
     txt += `> .autoai global on/off\n`;
     txt += `> .autoai enablecommand / disablecommand\n\n`;
     txt += `*Personajes integrados:*\n${charList}\n`;
@@ -333,7 +333,7 @@ async function handler(m) {
     txt += `*Ejemplos:*\n`;
     txt += `> .autoai on --luffymode=furina --type=text\n`;
     txt += `> .autoai on --luffymode=custom --logic=eres nexa ai\n`;
-    txt += `> .autoai tambahpersona nexa | eres nexa ai\n`;
+    txt += `> .autoai agregar_persona nexa | eres nexa ai\n`;
     txt += `> .autoai global on --luffymode=furina`;
     return m.reply(txt);
   }

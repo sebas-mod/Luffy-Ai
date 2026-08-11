@@ -313,7 +313,7 @@ function buildManifest(frames, framePaths) {
 
 async function encodeVideo(concatPath, outputPath, configObj) {
   if (configObj.outputFormat !== "mp4") {
-    throw new Error("Saat ini output hanya support mp4");
+    throw new Error("Por ahora la salida solo soporta mp4");
   }
 
   const args = [
@@ -336,7 +336,7 @@ async function encodeVideo(concatPath, outputPath, configObj) {
 async function createBratVideo(text, template) {
   const frames = buildRevealFrames(text, VIDEO_CONFIG);
   if (!frames.length) {
-    throw new Error("Teks kosong");
+    throw new Error("Texto vacío");
   }
 
   const tmpDir = await fsp.mkdtemp(path.join(os.tmpdir(), "bratvid-"));

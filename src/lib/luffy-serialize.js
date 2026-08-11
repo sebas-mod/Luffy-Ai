@@ -119,69 +119,69 @@ const PP_CACHE_TTL = 5 * 60 * 1000;
 
 /**
  * @typedef {Object} ContextInfo
- * @property {string} stanzaId - ID pesan yang di-quote
- * @property {string} participant - JID participant yang di-quote
- * @property {Object} quotedMessage - Pesan yang di-quote
- * @property {string[]} mentionedJid - Array JID yang di-mention
- * @property {boolean} isForwarded - Apakah pesan forwarded
- * @property {number} forwardingScore - Skor forwarding
+ * @property {string} stanzaId - ID del mensaje citado
+ * @property {string} participant - JID del participante citado
+ * @property {Object} quotedMessage - Mensaje citado
+ * @property {string[]} mentionedJid - Array de JID mencionados
+ * @property {boolean} isForwarded - Si el mensaje fue reenviado
+ * @property {number} forwardingScore - Puntuación de reenvío
  * @property {Object} externalAdReply - External ad reply (thumbnail)
  */
 
 /**
  * @typedef {Object} SerializedMessage
- * @property {string} id - ID unik pesan
- * @property {string} chat - JID chat/group
- * @property {string} sender - JID pengirim
- * @property {string} senderNumber - Nomor pengirim tanpa @s.whatsapp.net
- * @property {string} pushName - Nama display pengirim
- * @property {boolean} fromMe - Apakah pesan dari bot sendiri
- * @property {boolean} isGroup - Apakah pesan dari group
- * @property {boolean} isOwner - Apakah pengirim adalah owner
- * @property {boolean} isPremium - Apakah pengirim adalah premium user
- * @property {boolean} isBanned - Apakah pengirim dibanned
- * @property {boolean} isBot - Apakah pengirim adalah bot
- * @property {string} type - Tipe pesan
- * @property {string} body - Isi pesan text
- * @property {string} command - Command tanpa prefix
- * @property {string} prefix - Prefix yang digunakan
- * @property {string[]} args - Array argumen
- * @property {string} text - Text setelah command
- * @property {boolean} isCommand - Apakah pesan adalah command
- * @property {boolean} isMedia - Apakah ada media
- * @property {boolean} isImage - Apakah gambar
- * @property {boolean} isVideo - Apakah video
- * @property {boolean} isAudio - Apakah audio
- * @property {boolean} isSticker - Apakah sticker
- * @property {boolean} isDocument - Apakah dokumen
- * @property {boolean} isContact - Apakah kontak
- * @property {boolean} isLocation - Apakah lokasi
- * @property {boolean} isQuoted - Apakah ada pesan yang di-quote
- * @property {Object} quoted - Objek pesan yang di-quote
- * @property {string[]} mentionedJid - Array JID yang di-mention
- * @property {Object} groupMetadata - Metadata group (jika di group)
- * @property {boolean} isAdmin - Apakah pengirim admin group
- * @property {boolean} isBotAdmin - Apakah bot adalah admin
- * @property {Function} reply - Fungsi reply text
- * @property {Function} replyWithMentions - Fungsi reply dengan mentions
- * @property {Function} replyImage - Fungsi reply gambar
- * @property {Function} replyVideo - Fungsi reply video
- * @property {Function} replyAudio - Fungsi reply audio
- * @property {Function} replySticker - Fungsi reply sticker
- * @property {Function} replyDocument - Fungsi reply dokumen
- * @property {Function} replyContact - Fungsi reply kontak
- * @property {Function} replyLocation - Fungsi reply lokasi
- * @property {Function} replyWithQuote - Fungsi reply dengan fake quote
- * @property {Function} react - Fungsi react emoji
- * @property {Function} download - Fungsi download media
- * @property {Function} delete - Fungsi delete pesan
- * @property {Function} forward - Fungsi forward pesan
+ * @property {string} id - ID único del mensaje
+ * @property {string} chat - JID del chat/grupo
+ * @property {string} sender - JID del remitente
+ * @property {string} senderNumber - Número del remitente sin @s.whatsapp.net
+ * @property {string} pushName - Nombre de display del remitente
+ * @property {boolean} fromMe - Si el mensaje es del propio bot
+ * @property {boolean} isGroup - Si el mensaje es de grupo
+ * @property {boolean} isOwner - Si el remitente es el owner
+ * @property {boolean} isPremium - Si el remitente es usuario premium
+ * @property {boolean} isBanned - Si el remitente está baneado
+ * @property {boolean} isBot - Si el remitente es un bot
+ * @property {string} type - Tipo de mensaje
+ * @property {string} body - Contenido del mensaje de texto
+ * @property {string} command - Comando sin prefijo
+ * @property {string} prefix - Prefijo utilizado
+ * @property {string[]} args - Array de argumentos
+ * @property {string} text - Texto después del comando
+ * @property {boolean} isCommand - Si el mensaje es un comando
+ * @property {boolean} isMedia - Si hay media
+ * @property {boolean} isImage - Si es imagen
+ * @property {boolean} isVideo - Si es video
+ * @property {boolean} isAudio - Si es audio
+ * @property {boolean} isSticker - Si es sticker
+ * @property {boolean} isDocument - Si es documento
+ * @property {boolean} isContact - Si es contacto
+ * @property {boolean} isLocation - Si es ubicación
+ * @property {boolean} isQuoted - Si hay mensaje citado
+ * @property {Object} quoted - Objeto del mensaje citado
+ * @property {string[]} mentionedJid - Array de JID mencionados
+ * @property {Object} groupMetadata - Metadata del grupo (si está en grupo)
+ * @property {boolean} isAdmin - Si el remitente es admin del grupo
+ * @property {boolean} isBotAdmin - Si el bot es admin
+ * @property {Function} reply - Función de responder texto
+ * @property {Function} replyWithMentions - Función de responder con menciones
+ * @property {Function} replyImage - Función de responder imagen
+ * @property {Function} replyVideo - Función de responder video
+ * @property {Function} replyAudio - Función de responder audio
+ * @property {Function} replySticker - Función de responder sticker
+ * @property {Function} replyDocument - Función de responder documento
+ * @property {Function} replyContact - Función de responder contacto
+ * @property {Function} replyLocation - Función de responder ubicación
+ * @property {Function} replyWithQuote - Función de responder con cita falsa
+ * @property {Function} react - Función de reaccionar con emoji
+ * @property {Function} download - Función de descargar media
+ * @property {Function} delete - Función de eliminar mensaje
+ * @property {Function} forward - Función de reenviar mensaje
  */
 
 /**
- * Decode JID menjadi format yang lebih bersih
- * @param {string} jid - JID yang akan di-decode
- * @returns {string|null} JID yang sudah di-decode atau null
+ * Decodificar JID a un formato más limpio
+ * @param {string} jid - JID que será decodificado
+ * @returns {string|null} JID ya decodificado o null
  */
 function decodeJid(jid) {
   if (!jid) return null;
@@ -210,7 +210,7 @@ function getMessageType(message) {
 /**
  * Mendapatkan text/body dari berbagai tipe pesan
  * @param {Object} message - Objek pesan WhatsApp
- * @param {string} type - Tipe pesan
+ * @param {string} type - Tipo de mensaje
  * @returns {string} Text/body pesan
  */
 function getMessageBody(message, type) {
@@ -326,7 +326,7 @@ function parseCommand(body, prefix) {
 /**
  * Serialize quoted message dengan full context
  * @param {Object} message - Objek pesan utama
- * @param {string} type - Tipe pesan
+ * @param {string} type - Tipo de mensaje
  * @param {Object} sock - Socket connection
  * @param {Object[]} participants - Group participants for LID resolution
  * @param {Object} originalMsgKey - Original message key containing participantAlt
@@ -454,7 +454,7 @@ async function serializeQuotedMessage(
 
 /**
  * Membuat context info untuk fake reply
- * @param {string} jid - JID pengirim palsu
+ * @param {string} jid - JID del remitente palsu
  * @param {string} text - Text pesan palsu
  * @param {string} [title] - Title/judul
  * @param {string} [body] - Body tambahan
@@ -847,7 +847,7 @@ async function serialize(sock, msg, store = {}) {
     const formatUptime = (uptime) => {
       const hours = Math.floor((uptime % 86400) / 3600);
       const minutes = Math.floor((uptime % 3600) / 60);
-      return `${hours} JAM ${minutes} MENIT`;
+      return `${hours} H ${minutes} MIN`;
     };
 
     const db = getDatabase();

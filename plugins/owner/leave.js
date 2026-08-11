@@ -2,7 +2,7 @@ import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "leave",
-  alias: ["leavegrup", "leavegroup", "keluar", "bye"],
+  alias: ["leavegrup", "leavegroup", "salir", "bye"],
   category: "owner",
   description: "El bot sale del grupo",
   usage: ".leave [link]",

@@ -3,7 +3,7 @@ import config from "../../config.js";
 
 const pluginConfig = {
   name: "list",
-  alias: ["liststore", "daftar", "info"],
+  alias: ["liststore", "info"],
   category: "store",
   description: "📋 Ver la lista de información de la tienda",
   usage: ".list o .list <numero>",

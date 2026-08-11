@@ -30,24 +30,24 @@ try {
 } catch { }
 
 const WIN_MESSAGES = [
-  "🌟 *GG WP! Otakmu encer!*",
-  "✨ *KEREN ABIS! Lu emang pinter!*",
-  "🎉 *MANTAPPPP! Jawaban sempurna!*",
-  "💫 *EPIC! Gak ada lawan lu!*",
-  "🏆 *NGERI! Otak lu kayak Google!*",
-  "🔥 *LEGEND! Jawab kek gak ada beban!*",
+  "🌟 *¡GG WP! ¡Tu mente es brillante!*",
+  "✨ *¡INCREÍBLE! ¡Eres muy listo!*",
+  "🎉 *¡RESPUESTA PERFECTA!*",
+  "💫 *¡ÉPICO! ¡No tienes rival!*",
+  "🏆 *¡IMPRESIONANTE! Tu cerebro es como Google!*",
+  "🔥 *¡LEGENDARIO! ¡Respondiste sin esfuerzo!*",
 ];
 
 const TIMEOUT_MESSAGES = [
-  "⏱️ *Yah telat, waktu habis!*",
-  "⏱️ *WAKTU HABIS!*",
-  "⏱️ *Telat bro, waktu dah abis!*",
+  "⏱️ *Ay, llegaste tarde, se acabó el tiempo!*",
+  "⏱️ *¡SE ACABÓ EL TIEMPO!*",
+  "⏱️ *¡Tarde amigo, el tiempo se acabó!*",
 ];
 
 const SURRENDER_MESSAGES = [
-  "🏳️ *Yahhh nyerah deh...*",
-  "🏳️ *MENYERAH!*",
-  "🏳️ *Yah sayang banget nyerah...*",
+  "🏳️ *Bueno, se rindió...*",
+  "🏳️ *¡SE RINDIÓ!*",
+  "🏳️ *Qué pena que se rindió...*",
 ];
 
 function pick(arr) {
@@ -93,13 +93,13 @@ class LuffyGames {
         if (session && session.gameType === gameType) {
           const remaining = getRemainingTime(chatId);
           const answer = session.question[cfg.answerField];
-          let text = `⚠️ *Eh ada game jalan nih, jawab dulu!*\n\n`;
+          let text = `⚠️ *¡Oye, hay un juego en curso, responde primero!*\n\n`;
           if (cfg.questionField && session.question[cfg.questionField]) {
             text += `\`\`\`${session.question[cfg.questionField]}\`\`\`\n\n`;
           }
-          text += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-          text += `⏱️ Sisa: *${formatRemainingTime(remaining)}*\n\n`;
-          text += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+          text += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
+          text += `⏱️ Restante: *${formatRemainingTime(remaining)}*\n\n`;
+          text += `_Responde directo o escribe "rendirse"\nPor cada fallo, la pista aumenta_`;
           await sock.sendPreview(
             m.chat,
             {
@@ -118,7 +118,7 @@ class LuffyGames {
       const question = getRandomItem(cfg.dataFile);
       if (!question) {
         await m.reply(
-          "❌ *ᴅᴀᴛᴀ ᴛɪᴅᴀᴋ ᴛᴇʀsᴇᴅɪᴀ*\n\n> Data game tidak tersedia!",
+          "❌ *ᴅᴀᴛᴏꜱ ɴᴏ ᴅɪꜱᴘᴏɴɪʙʟᴇꜱ*\n\n> ¡Los datos del juego no están disponibles!",
         );
         return;
       }
@@ -131,7 +131,7 @@ class LuffyGames {
         try {
           imageBuffer = await fetchBuffer(question[cfg.imageField]);
         } catch {
-          await m.reply("❌ *ɢᴀɢᴀʟ ᴍᴇᴍᴜᴀᴛ ɢᴀᴍʙᴀʀ*\n\n> Coba lagi nanti!");
+          await m.reply("❌ *ᴇʀʀᴏʀ ᴀʟ ᴄᴀʀɢᴀʀ ʟᴀ ɪᴍᴀɢᴇɴ*\n\n> ¡Inténtalo de nuevo más tarde!");
           return;
         }
 
@@ -139,10 +139,10 @@ class LuffyGames {
         if (cfg.questionField && question[cfg.questionField]) {
           caption += `> ${question[cfg.questionField]}\n`;
         }
-        caption += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-        caption += `⏱️ Waktu: *${cfg.timeout / 1000} detik*\n`;
-        caption += `🎁 Hadiah: *Limit, Berry, EXP (random)*\n\n`;
-        caption += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+        caption += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
+        caption += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
+        caption += `🎁 Premio: *Limit, Berry, EXP (aleatorio)*\n\n`;
+        caption += `_Responde directo o escribe "rendirse"\nPor cada fallo, la pista aumenta_`;
 
         sentMsg = await sock.sendMessage(
           chatId,
@@ -158,17 +158,17 @@ class LuffyGames {
         if (cfg.questionField && question[cfg.questionField]) {
           text += `\`\`\`${question[cfg.questionField]}\`\`\`\n\n`;
         }
-        text += `💡 Hint: *${getHint(answer, cfg.hintCount)}*\n`;
-        text += `⏱️ Waktu: *${cfg.timeout / 1000} detik*\n`;
-        text += `🎁 Hadiah: *Limit, Berry, EXP (random)*\n\n`;
-        text += `_Jawab langsung atau ketik "nyerah"\nSetiap salah, hint akan bertambah_`;
+        text += `💡 Pista: *${getHint(answer, cfg.hintCount)}*\n`;
+        text += `⏱️ Tiempo: *${cfg.timeout / 1000} segundos*\n`;
+        text += `🎁 Premio: *Limit, Berry, EXP (aleatorio)*\n\n`;
+        text += `_Responde directo o escribe "rendirse"\nPor cada fallo, la pista aumenta_`;
 
         sentMsg = await sendGamePreview(
           sock,
           chatId,
           text,
           `${cfg.emoji} ${cfg.title}`,
-          "Jawab pertanyaan!",
+          "¡Responde la pregunta!",
           { quoted: m },
         );
       }
@@ -177,8 +177,8 @@ class LuffyGames {
 
       setSessionTimer(chatId, async () => {
         let text = `${pick(TIMEOUT_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n\n`;
-        text += `_Gak ada yang bisa jawab nih~_`;
+        text += `Respuesta: *${answer}*\n\n`;
+        text += `_Nadie pudo responder~_`;
         await m.reply(text);
       });
     };
@@ -196,8 +196,8 @@ class LuffyGames {
         endSession(chatId);
         const answer = session.question[cfg.answerField];
         let text = `${pick(SURRENDER_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n\n`;
-        text += `_@${m.sender.split("@")[0]} menyerah_`;
+        text += `Respuesta: *${answer}*\n\n`;
+        text += `_@${m.sender.split("@")[0]} se rindió_`;
         await m.reply(text, { mentions: [m.sender] });
         return true;
       }
@@ -243,7 +243,7 @@ class LuffyGames {
           totalLimit += fastResult.bonus.limit;
           totalBalance += fastResult.bonus.berry;
           totalExp += fastResult.bonus.exp;
-          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS KILAT:* +${fastResult.bonus.limit} Limit, +${fastResult.bonus.berry} Berry\n⏱️ Waktu: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
+          bonusText = `\n\n${fastResult.praise}\n⚡ *BONUS RÁPIDO:* +${fastResult.bonus.limit} Limit, +${fastResult.bonus.berry} Berry\n⏱️ Tiempo: *${(fastResult.elapsed / 1000).toFixed(1)}s*`;
         }
 
         if (totalLimit > 0) db.updateCarne(m.sender, totalLimit);
@@ -256,9 +256,9 @@ class LuffyGames {
         db.save();
 
         let text = `${pick(WIN_MESSAGES)}\n\n`;
-        text += `Jawaban: *${answer}*\n`;
+        text += `Respuesta: *${answer}*\n`;
         text += `Ganador: *@${m.sender.split("@")[0]}*\n`;
-        text += `Percobaan: *${session.attempts}x*\n\n`;
+        text += `Intentos: *${session.attempts}x*\n\n`;
 
         if (totalLimit > 0 || totalBalance > 0 || totalExp > 0) {
           let parts = [];
@@ -278,7 +278,7 @@ class LuffyGames {
         const percent = Math.round(result.similarity * 100);
         await m.react("🔥");
         await m.reply(
-          `🔥 *Hampir!* Jawabanmu *${percent}%* mirip!\n_Sisa waktu: *${formatRemainingTime(remaining)}*_`,
+          `🔥 *¡Cerca!* Tu respuesta es *${percent}%* similar!\n_Tiempo restante: *${formatRemainingTime(remaining)}*_`,
         );
         return false;
       }
@@ -288,7 +288,7 @@ class LuffyGames {
         await m.react("❌");
         const hint = getProgressiveHint(answer, session.attempts);
         await m.reply(
-          `❌ Belum bener! Hint: *${hint}*\n_Sisa: *${formatRemainingTime(remaining)}*_`,
+          `❌ ¡No es correcto! Pista: *${hint}*\n_Restante: *${formatRemainingTime(remaining)}*_`,
         );
       }
 

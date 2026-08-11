@@ -121,28 +121,28 @@ async function sendHusbuMessage(m, sock, husbu, textContent, customButtons = nul
   if (!buttons) {
     if (husbu.affection < 80) {
       buttons = [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🚶‍♀️ Paseo", id: `${m.prefix}husbuaction jalanjalan` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Quedar en un Café", id: `${m.prefix}husbuaction kafe` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎬 Cine", id: `${m.prefix}husbuaction bioskop` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛍️ Comprar Ropa", id: `${m.prefix}husbuaction belanja` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🚶‍♀️ Paseo", id: `${m.prefix}husbuaction pasear` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Quedar en un Café", id: `${m.prefix}husbuaction cafe` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎬 Cine", id: `${m.prefix}husbuaction cine` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛍️ Comprar Ropa", id: `${m.prefix}husbuaction comprar` }) },
       ];
     } else if (husbu.affection < 100) {
       buttons = [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazarlo por la Espalda", id: `${m.prefix}husbuaction peluk` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Besar su Mejilla", id: `${m.prefix}husbuaction cium` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛏️ Dormir Juntos", id: `${m.prefix}husbuaction tidur` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Bañarse Juntos", id: `${m.prefix}husbuaction mandi` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Abrazarlo por la Espalda", id: `${m.prefix}husbuaction abrazar` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Besar su Mejilla", id: `${m.prefix}husbuaction besar` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛏️ Dormir Juntos", id: `${m.prefix}husbuaction dormir` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Bañarse Juntos", id: `${m.prefix}husbuaction banarse` }) },
       ];
     } else {
       if (!husbu.married) {
         buttons = [
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Aceptar su Propuesta", id: `${m.prefix}husbuaction nikah` }) },
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💝 Pedir Dinero para Compras", id: `${m.prefix}husbuaction hadiah` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Aceptar su Propuesta", id: `${m.prefix}husbuaction casarse` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💝 Pedir Dinero para Compras", id: `${m.prefix}husbuaction regalo` }) },
         ];
       } else {
         buttons = [
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👨‍👩‍👦 Pasar Tiempo Juntos", id: `${m.prefix}husbuaction mesra` }) },
-          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💌 Halaga a tu Marido", id: `${m.prefix}husbuaction rayu` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👨‍👩‍👦 Pasar Tiempo Juntos", id: `${m.prefix}husbuaction carino` }) },
+          { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💌 Halaga a tu Marido", id: `${m.prefix}husbuaction halagar` }) },
         ];
       }
     }
@@ -189,13 +189,13 @@ async function handler(m, { sock }) {
     }
     m.react("🕕");
     const husbu = user.husbu;
-    let statusPernikahan = husbu.married ? "Casado 💍" : "En Conquista 💖";
+    let statusPercasarsean = husbu.married ? "Casado 💍" : "En Conquista 💖";
     const textContent = `📸 *ESTADO DE TU HUSBU* 📸\n\n` +
       `💖 *Nombre Completo:* ${husbu.name}\n` +
       `🎂 *Edad:* ${husbu.age} años\n` +
       `💎 *Tier:* ${husbu.tier}\n` +
       `💞 *Affection:* ${husbu.affection}/100\n` +
-      `💍 *Estado:* ${statusPernikahan}\n\n` +
+      `💍 *Estado:* ${statusPercasarsean}\n\n` +
       `¡Continúa la interacción eligiendo una de las acciones de cita de abajo!`;
 
     m.react("✅");
@@ -229,20 +229,20 @@ async function handler(m, { sock }) {
   if (cmd === "gachahusbu" || cmd === "gachasuami") {
     if (user.husbu) {
       m.react("😡");
-      let pesanStatus = user.husbu.married ? "¡Ya es tu esposo!" : "¡Está tratando de ganarse tu corazón!";
+      let mensajeEstado = user.husbu.married ? "¡Ya es tu esposo!" : "¡Está tratando de ganarse tu corazón!";
       return m.reply(
         `⚠️ *¡Ya tienes un Husbu!*\n\n` +
         `Nombre: *${user.husbu.name}*\n` +
         `Tier: *${user.husbu.tier}*\n` +
         `Affection: *${user.husbu.affection}/100*\n\n` +
-        `¡No seas codiciosa! Cuida al husbu que ya tienes. ${pesanStatus} Escribe *${m.prefix}husbuku* para interactuar con él.`
+        `¡No seas codiciosa! Cuida al husbu que ya tienes. ${mensajeEstado} Escribe *${m.prefix}husbuku* para interactuar con él.`
       );
     }
 
     const sub = (m.args[0] || "").toLowerCase();
 
     if (sub !== "start") {
-      const panduan = `💕 *SISTEMA GACHA HUSBU* 💕\n\n` +
+      const guia = `💕 *SISTEMA GACHA HUSBU* 💕\n\n` +
         `¡Simulación de citas virtuales interactivas para conseguir a tu chico anime soñado! ¡Gana su atención, hazlo enamorarse y cásate con él!\n\n` +
         `*USO DE COMANDOS:*\n` +
         `• *${m.prefix}gachahusbu* — Abre este menú de guía\n` +
@@ -260,7 +260,7 @@ async function handler(m, { sock }) {
           message: {
             messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 },
             interactiveMessage: {
-              body: { text: panduan },
+              body: { text: guia },
               footer: { text: "¡Pulsa el botón de abajo para invocar a tu futuro esposo!" },
               nativeFlowMessage: {
                 buttons: [
@@ -315,28 +315,28 @@ async function handler(m, { sock }) {
     let husbu = user.husbu;
     let responseText = "";
     let affectionChange = 0;
-    if (action === "jalanjalan") {
+    if (action === "pasear") {
       return sendHusbuMessage(m, sock, husbu, `Estás yendo a dar un paseo con *${husbu.name}*. Parece aburrido. ¿A dónde quieres llevarlo?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🌳 A un Picnic", id: `${m.prefix}husbuaction kencan_taman` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎢 Al Parque de Diversiones", id: `${m.prefix}husbuaction kencan_mall` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🌳 A un Picnic", id: `${m.prefix}husbuaction cita_parque` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🎢 Al Parque de Diversiones", id: `${m.prefix}husbuaction cita_centro` }) }
       ]);
     }
-    if (action === "kafe") {
+    if (action === "cafe") {
       return sendHusbuMessage(m, sock, husbu, `*${husbu.name}* te invita a su café favorito. Al pedir el café, te pregunta qué bebida prefieres.`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Café Amargo", id: `${m.prefix}husbuaction kencan_kopi` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🍓 Fresa con Leche", id: `${m.prefix}husbuaction kencan_matcha` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "☕ Café Amargo", id: `${m.prefix}husbuaction cita_cafe` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🍓 Fresa con Leche", id: `${m.prefix}husbuaction cita_matcha` }) }
       ]);
     }
-    if (action === "bioskop") {
+    if (action === "cine") {
       return sendHusbuMessage(m, sock, husbu, `Van juntos al cine. Él te pide que elijas la película. ¿Qué película eliges?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💥 De Acción", id: `${m.prefix}husbuaction kencan_romantis` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👻 De Terror", id: `${m.prefix}husbuaction kencan_horor` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💥 De Acción", id: `${m.prefix}husbuaction cita_romantica` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👻 De Terror", id: `${m.prefix}husbuaction cita_terror` }) }
       ]);
     }
-    if (action === "belanja") {
+    if (action === "comprar") {
       return sendHusbuMessage(m, sock, husbu, `Van al centro comercial. *${husbu.name}* se ofrece a comprarte algo. ¿Qué le pides?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👕 Chaqueta Genial en Pareja", id: `${m.prefix}husbuaction kencan_baju` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Un Anillo Elegante", id: `${m.prefix}husbuaction kencan_perhiasan` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "👕 Chaqueta Genial en Pareja", id: `${m.prefix}husbuaction cita_ropa` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💍 Un Anillo Elegante", id: `${m.prefix}husbuaction cita_joyas` }) }
       ]);
     }
     const rejectIntimate = async () => {
@@ -346,100 +346,100 @@ async function handler(m, { sock }) {
       await processAffection(outText, husbu.affection);
     };
 
-    if (["peluk", "cium", "tidur", "mandi"].includes(action) && husbu.affection < 80) {
+    if (["abrazar", "besar", "dormir", "banarse"].includes(action) && husbu.affection < 80) {
       return await rejectIntimate();
     }
 
-    if (action === "peluk") {
+    if (action === "abrazar") {
       return sendHusbuMessage(m, sock, husbu, `Ves la espalda ancha de *${husbu.name}*. Una buena oportunidad, ¡lo abrazas! ¿Por dónde?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🤗 Abrazarlo por la Cintura", id: `${m.prefix}husbuaction intim_belakang` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💪 Tomarle la Mano con Fuerza", id: `${m.prefix}husbuaction intim_depan` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🤗 Abrazarlo por la Cintura", id: `${m.prefix}husbuaction intimo_detras` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💪 Tomarle la Mano con Fuerza", id: `${m.prefix}husbuaction intimo_frente` }) }
       ]);
     }
-    if (action === "cium") {
+    if (action === "besar") {
       return sendHusbuMessage(m, sock, husbu, `Su rostro está muy cerca mirándote con intensidad. Te atreves a besarlo. ¿Dónde?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "😚 Besar su Mejilla", id: `${m.prefix}husbuaction intim_kening` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Besar sus Labios", id: `${m.prefix}husbuaction intim_bibir` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "😚 Besar su Mejilla", id: `${m.prefix}husbuaction intimo_mejilla` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "💋 Besar sus Labios", id: `${m.prefix}husbuaction intimo_labios` }) }
       ]);
     }
-    if (action === "tidur") {
+    if (action === "dormir") {
       return sendHusbuMessage(m, sock, husbu, `Es tarde, están a solas en la habitación. Él te atrae hacia su abrazo. ¿Cuál es tu reacción?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Recostarte en su Pecho", id: `${m.prefix}husbuaction intim_kelon` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🔥 Responder con Pasión", id: `${m.prefix}husbuaction intim_panas` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🫂 Recostarte en su Pecho", id: `${m.prefix}husbuaction intimo_pecho` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🔥 Responder con Pasión", id: `${m.prefix}husbuaction intimo_pasion` }) }
       ]);
     }
-    if (action === "mandi") {
+    if (action === "banarse") {
       return sendHusbuMessage(m, sock, husbu, `*${husbu.name}* te atrae al baño contigo. Su rostro sonríe con picardía. ¿Qué haces?`, [
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Lavar su Espalda", id: `${m.prefix}husbuaction intim_punggung` }) },
-        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🧼 Acariciar su Pecho", id: `${m.prefix}husbuaction intim_bahu` }) }
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🛁 Lavar su Espalda", id: `${m.prefix}husbuaction intimo_espalda` }) },
+        { name: "quick_reply", buttonParamsJson: JSON.stringify({ display_text: "🧼 Acariciar su Pecho", id: `${m.prefix}husbuaction intimo_hombros` }) }
       ]);
     }
 
-    if (action === "kencan_taman") {
+    if (action === "cita_parque") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🌳 *${husbu.name}* disfruta mucho de la brisa fresca y pasa el tiempo recostado en tu regazo en el parque.`;
     }
-    else if (action === "kencan_mall") {
+    else if (action === "cita_centro") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `🎢 ¡Jugar en el parque de diversiones resultó muy divertido para él! *${husbu.name}* gana un gran osito de peluche y te lo regala.`;
     }
-    else if (action === "kencan_kopi") {
+    else if (action === "cita_cafe") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `☕ "Una elección elegante", te elogia. Toman café amargo mientras charlan animadamente; se le ve muy a gusto conversando contigo.`;
     }
-    else if (action === "kencan_matcha") {
+    else if (action === "cita_matcha") {
       affectionChange = -(Math.floor(Math.random() * 10) + 5);
       responseText = `🍓 Te compra una bebida dulce, pero al parecer su conversación no conecta mucho. Se le ve algo aburrido y se queda callado.`;
     }
-    else if (action === "kencan_romantis") {
+    else if (action === "cita_romantica") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `💥 ¡Ver películas de acción es su favorito! Durante toda la película te sostiene la mano con fuerza por lo emocionante que es.`;
     }
-    else if (action === "kencan_horor") {
+    else if (action === "cita_terror") {
       affectionChange = Math.floor(Math.random() * 5) + 5;
       responseText = `👻 *¡SUSTO!* Por reflejo saltas y lo abrazas. Él se ríe un poco, pero luego te abraza para protegerte del miedo.`;
     }
-    else if (action === "kencan_baju") {
+    else if (action === "cita_ropa") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `👕 Te compra una chaqueta de pareja que le queda perfecta! Sonríe con orgullo al verte vistiendo ropa a juego con él.`;
     }
-    else if (action === "kencan_perhiasan") {
+    else if (action === "cita_joyas") {
       affectionChange = -(Math.floor(Math.random() * 10) + 10);
       responseText = `💍 "Mi dinero no alcanza tanto este mes", se queja suspirando profundamente. Se niega a comprarlo y siente que eres demasiado materialista.`;
     }
-    else if (action === "intim_belakang") {
+    else if (action === "intimo_detras") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🤗 Se sorprende cuando lo abrazas por la cintura desde atrás, pero sus orejas se ponen rojas. Acaricia tu mano suavemente.`;
     }
-    else if (action === "intim_depan") {
+    else if (action === "intimo_frente") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `💪 Tomas su mano con firmeza. Él sonríe con ternura y te devuelve el gesto apretando tu mano mientras te mira fijamente a los ojos.`;
     }
-    else if (action === "intim_kening") {
+    else if (action === "intimo_mejilla") {
       affectionChange = Math.floor(Math.random() * 10) + 5;
       responseText = `😚 Besas su mejilla. Él ríe bajito y te devuelve el beso en la frente con mucho cariño.`;
     }
-    else if (action === "intim_bibir") {
+    else if (action === "intimo_labios") {
       affectionChange = Math.floor(Math.random() * 20) + 10;
       responseText = `💋 Lo besas en los labios de repente. Él abre los ojos sorprendido por un instante antes de tomarte de la cintura y devolverte el beso con fiereza.`;
     }
-    else if (action === "intim_kelon") {
+    else if (action === "intimo_pecho") {
       affectionChange = Math.floor(Math.random() * 15) + 10;
       responseText = `🫂 Recuestas tu cabeza sobre su pecho firme. Él acaricia tu cabello lentamente mientras te susurra lo mucho que significas para él.`;
     }
-    else if (action === "intim_panas") {
+    else if (action === "intimo_pasion") {
       affectionChange = Math.floor(Math.random() * 20) + 15;
       responseText = `🔥 Lo miras a los ojos con deseo. Él sonríe con picardía, "Tú lo pediste..." dice con una voz ronca y sensual antes de abalanzarse sobre ti.`;
     }
-    else if (action === "intim_punggung") {
+    else if (action === "intimo_espalda") {
       affectionChange = Math.floor(Math.random() * 10) + 10;
       responseText = `🛁 Le lavas la espalda lentamente. El tacto de tus manos lo relaja y exhala aliviado con los ojos cerrados.`;
     }
-    else if (action === "intim_bahu") {
+    else if (action === "intimo_hombros") {
       affectionChange = Math.floor(Math.random() * 15) + 15;
       responseText = `🧼 Cuando acaricias su pecho, inhala profundamente y toma tu mano. "Estás provocándome a propósito, ¿eh?" susurra.`;
     }
-    else if (action === "nikah") {
+    else if (action === "casarse") {
       if (husbu.affection < 100) return m.reply(`⚠️ ¡Los puntos de affection aún no llegan a 100! ¡Espera a que realmente te pida matrimonio!`);
       if (husbu.married) return m.reply(`⚠️ ¡Pero si ya están casados!`);
 
@@ -452,16 +452,16 @@ async function handler(m, { sock }) {
       user.fun.pasangan = husbuJid;
       db.setUser(husbuJid, { fun: { pasangan: m.sender }, name: husbu.name });
 
-      responseText = `💍 *¡ACEPTASTE LA PROPUESTA DE ${husbu.name.toUpperCase()}!* 💍\n\nSe arrodilla frente a ti y te ofrece un hermoso anillo de diamantes, "¿Quieres ser mi esposa para siempre?" pregunta. Cuando asientes, ¡de inmediato te carga y te besa lleno de felicidad!\n\nComo primer manutención de su parte, obtienes:\n- ⚡ 5000 Límite/Energía\n- 💰 100,000 Saldo/Berry\n\nTu estado en la función \`.cekpacar\` ahora está oficialmente emparejado con él!`;
+      responseText = `💍 *¡ACEPTASTE LA PROPUESTA DE ${husbu.name.toUpperCase()}!* 💍\n\nSe arrodilla frente a ti y te ofrece un hermoso anillo de diamantes, "¿Quieres ser mi esposa para siempre?" pregunta. Cuando asientes, ¡de inmediato te carga y te besa lleno de felicidad!\n\nComo primer manutención de su parte, obtienes:\n- ⚡ 5000 Límite/Energía\n- 💰 100,000 Saldo/Berry\n\nTu estado en la función \`.ver_pareja\` ahora está oficialmente emparejado con él!`;
       affectionChange = 0;
     }
-    else if (action === "hadiah") {
+    else if (action === "regalo") {
       if (husbu.affection < 100) return m.reply(`⚠️ ¡Tu esposo está ocupado trabajando, no lo molestes!`);
       affectionChange = 0;
       user.berry = (user.berry || 0) + 5000;
       responseText = `💝 *${husbu.name}* te da su tarjeta de crédito sonriendo, "Gasta lo que quieras, cariño."\n¡Recibiste 💰 5,000 Berry de tu esposo!`;
     }
-    else if (["mesra", "rayu"].includes(action)) {
+    else if (["carino", "halagar"].includes(action)) {
       if (!husbu.married) return m.reply(`¡Esta acción es solo para parejas casadas!`);
       affectionChange = 0;
       responseText = `👨‍👩‍👦 Ambos disfrutan de una tranquila y romántica cena. Su mirada de amor no se desvanece; está muy agradecido de tenerte como su esposa.`;

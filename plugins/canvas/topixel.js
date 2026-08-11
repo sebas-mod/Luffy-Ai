@@ -7,7 +7,7 @@ const pluginConfig = {
   alias: ["pixelate", "pixelart"],
   category: "canvas",
   description: "Convierte tu foto en una imagen pixel art genial",
-  usage: ".topixel [level] (reply/kirim foto)",
+  usage: ".topixel [level] (responde/envía foto)",
   example: ".topixel 30",
   isOwner: false,
   isPremium: false,
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("⚠️ Kak, tolong reply ke pesan gambar ya!");
+      return m.reply("⚠️ Por favor, responde a un mensaje de imagen.");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {

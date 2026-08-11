@@ -427,7 +427,7 @@ async function handler(m, { sock }) {
       `✅ *ʙɪᴇɴᴠᴇɴɪᴅᴀ ᴀᴄᴛɪᴠᴀ*\n\n` +
       `> El mensaje de bienvenida se activó correctamente!\n` +
       `> Los nuevos miembros serán recibidos automáticamente.\n\n` +
-      `_Usa \`${m.prefix}setwelcome\` para personalizar el mensaje._`,
+      `_Usa \`${m.prefix}configurar_bienvenida\` para personalizar el mensaje._`,
     );
   }
   if (sub === "off") {
@@ -454,8 +454,8 @@ async function handler(m, { sock }) {
     `> \`${m.prefix}welcome off\` → Desactivar\n` +
     `> \`${m.prefix}welcome on all\` → Global ON (owner)\n` +
     `> \`${m.prefix}welcome off all\` → Global OFF (owner)\n` +
-    `> \`${m.prefix}setwelcome\` → Personalizar mensaje\n` +
-    `> \`${m.prefix}resetwelcome\` → Restablecer predeterminado`,
+    `> \`${m.prefix}configurar_bienvenida\` → Personalizar mensaje\n` +
+    `> \`${m.prefix}resetear_bienvenida\` → Restablecer predeterminado`,
   );
 }
 export { pluginConfig as config, handler, sendWelcomeMessage };

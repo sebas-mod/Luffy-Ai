@@ -26,8 +26,8 @@ async function handler(m, { sock }) {
         if (target === m.sender) {
             return m.reply(
                 `❌ ¡Aún no has configurado tu cumpleaños!\n\n` +
-                `> Usa: ${m.prefix}setbirthday DD-MM\n` +
-                `> Ejemplo: ${m.prefix}setbirthday 25-12`
+                `> Usa: ${m.prefix}configurar_cumpleanos DD-MM\n` +
+                `> Ejemplo: ${m.prefix}configurar_cumpleanos 25-12`
             )
         }
         return m.reply(`❌ ¡El usuario no ha configurado su cumpleaños!`)

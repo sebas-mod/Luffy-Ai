@@ -4,7 +4,7 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'removebg',
-    alias: ['rmbg', 'nobg', 'hapusbg'],
+    alias: ["rmbg", "nobg", "quitar_fondo"],
     category: 'tools',
     description: 'Elimina el fondo de una imagen',
     usage: '.removebg (responde una imagen)',

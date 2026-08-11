@@ -59,8 +59,8 @@ function refreshSessionTimeout(sessionKey) {
 
 function normalizeAction(action, fallback = "remove") {
   const value = String(action || fallback).toLowerCase();
-  if (["kick", "remove", "delete", "hapus"].includes(value)) {
-    return value === "delete" || value === "hapus" ? "remove" : value;
+  if (["kick", "remove", "delete", "eliminar"].includes(value)) {
+    return value === "delete" || value === "eliminar" ? "remove" : value;
   }
   return fallback;
 }
@@ -211,12 +211,12 @@ async function handler(m, { sock }) {
     return;
   }
 
-  if (sub === "add" || sub === "baru" || sub === "new" || sub === "buat") {
+  if (sub === "add" || sub === "nuevo" || sub === "new" || sub === "crear") {
     await startWizard(m, sock, mode);
     return;
   }
 
-  if (sub === "cancel" || sub === "batal") {
+  if (sub === "cancel" || sub === "cancelar") {
     if (!global.anticustomSessions.has(sessionKey)) {
       await m.reply("⚠️ No hay ninguna sesión AntiCustom en curso.");
       return;
@@ -357,7 +357,7 @@ async function replyHandler(m, { sock }) {
         `${session.patterns.map((item, index) => `${index + 1}. \`${item}\``).join("\n")}\n\n` +
         `> Tipo de detección: *${session.type}*\n\n` +
         `Listo, si el mensaje de un miembro contiene esas palabras, ¿quieres que *elimine el mensaje* o que lo *expulse* directamente?\n\n` +
-        `*Responde a este mensaje con:* \`hapus\` o \`kick\``,
+        `*Responde a este mensaje con:* \`eliminar\` o \`kick\``,
     );
     return true;
   }
@@ -365,7 +365,7 @@ async function replyHandler(m, { sock }) {
   if (session.step === "action") {
     const action = normalizeAction(text, "");
     if (!action) {
-      await m.reply("❌ Responde con `hapus` o `kick`.");
+      await m.reply("❌ Responde con `eliminar` o `kick`.");
       return true;
     }
 
@@ -378,23 +378,23 @@ async function replyHandler(m, { sock }) {
         `Listo, estos son los detalles que quieres:\n\n` +
         `${buildSummary(session)}\n\n` +
         `¿Todo correcto?\n\n` +
-        `*Responde a este mensaje con:* \`ya\` para guardar o \`batal\` para cancelar`,
+        `*Responde a este mensaje con:* \`si\` para guardar o \`cancelar\` para cancelar`,
     );
     return true;
   }
 
   if (session.step === "confirm") {
-    if (/^(batal|cancel|tidak|nggak|ga|gak|no)$/i.test(text)) {
+    if (/^(cancelar|cancel|no|nop|tidak|nggak|ga|gak)$/i.test(text)) {
       clearSession(sessionKey);
       await m.reply(
-        "✅ Listo, sesión AntiCustom cancelada. Si quieres empezar de nuevo, escribe `.anticustom add`.",
+        "✅ Listo, sesión AntiCustom cancelada. Si quieres empezar de nuevo, escribe `.anticustom nuevo`.",
       );
       return true;
     }
 
-    if (!/^(ya|iya|y|yes|oke|ok|setuju|gas|lanjut|sip|siap)$/i.test(text)) {
+    if (!/^(si|s|yes|y|oke|ok|setuju|gas|lanjut|sip|siap)$/i.test(text)) {
       await m.reply(
-        "❌ Responde con `ya` para guardar o `batal` para cancelar.",
+        "❌ Responde con `si` para guardar o `cancelar` para cancelar.",
       );
       return true;
     }

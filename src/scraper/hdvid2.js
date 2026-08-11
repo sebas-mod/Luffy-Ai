@@ -172,7 +172,7 @@ async function waitJob(jobId, maxTry = 80, delayMs = 5000) {
     await sleep(delayMs);
   }
 
-  throw new Error(`Job belum selesai: ${JSON.stringify(last)}`);
+  throw new Error(`Trabajo aún no listo: ${JSON.stringify(last)}`);
 }
 
 async function videoEnhancer(video, { filename } = {}) {
@@ -201,7 +201,7 @@ async function videoEnhancer(video, { filename } = {}) {
 
     if (put.status >= 400) {
       throw new Error(
-        `Upload file gagal HTTP ${put.status}: ${typeof put.data === "string" ? put.data : JSON.stringify(put.data)}`,
+        `Error al subir el archivo HTTP ${put.status}: ${typeof put.data === "string" ? put.data : JSON.stringify(put.data)}`,
       );
     }
 

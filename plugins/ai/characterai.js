@@ -136,7 +136,7 @@ async function caiAnswerHandler(m, sock) {
 
     const text = m.body.trim().toLowerCase();
 
-    if (text === "batal" || text === "cancel") {
+    if (text === "cancelar" || text === "cancel") {
         delete user.cai_search_session;
         db.save();
         await m.reply(`🚪 Búsqueda de personaje cancelada.`);

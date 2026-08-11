@@ -1,0 +1,79 @@
+[
+  {
+    "id": "isla_foosha",
+    "nombre": "Isla Foosha",
+    "emoji": "🏝️",
+    "nivelMin": 1,
+    "orden": 1,
+    "descripcion": "El pueblo natal de Luffy. Un lugar tranquilo donde empezó la aventura.",
+    "enemigos": ["en_pirata_okama", "en_bandido", "en_oso_polar", "en_higurama"],
+    "jefe": "en_alvida",
+    "tesoros": ["cofre_madera", "mapa_tesoro"]
+  },
+  {
+    "id": "isla_shells",
+    "nombre": "Isla Shells Town",
+    "emoji": "🏛️",
+    "nivelMin": 3,
+    "orden": 2,
+    "descripcion": "Base de la Marina al este de East Blue.",
+    "enemigos": ["en_marine", "en_bandido", "en_pirata_okama"],
+    "jefe": "en_morgan",
+    "tesoros": ["cofre_madera", "cofre_plata"]
+  },
+  {
+    "id": "isla_orangetown",
+    "nombre": "Orange Town",
+    "emoji": "🍊",
+    "nivelMin": 5,
+    "orden": 3,
+    "descripcion": "El pueblo del circo. Buggy dejó su huella aquí.",
+    "enemigos": ["en_marine", "en_oso_polar", "en_bandido"],
+    "jefe": "en_buggy",
+    "tesoros": ["cofre_plata", "bara_bara"]
+  },
+  {
+    "id": "isla_syrup",
+    "nombre": "Villa Syrup",
+    "emoji": "🍀",
+    "nivelMin": 7,
+    "orden": 4,
+    "descripcion": "Un valle tranquilo donde Usopp contaba historias.",
+    "enemigos": ["en_bandido", "en_oso_polar", "en_king_kong"],
+    "jefe": "en_king_kong",
+    "tesoros": ["cofre_plata", "mapa_tesoro"]
+  },
+  {
+    "id": "isla_baratie",
+    "nombre": "Baratie",
+    "emoji": "🚢",
+    "nivelMin": 9,
+    "orden": 5,
+    "descripcion": "El restaurante flotante en el mar. Sanji cocina aquí.",
+    "enemigos": ["en_marine", "en_don_krieg", "en_bandido"],
+    "jefe": "en_don_krieg",
+    "tesoros": ["cofre_plata", "cofre_oro"]
+  },
+  {
+    "id": "isla_arlong",
+    "nombre": "Parque Arlong",
+    "emoji": "🦈",
+    "nivelMin": 13,
+    "orden": 6,
+    "descripcion": "El territorio de los hombres-pez.",
+    "enemigos": ["en_marine", "en_arlong", "en_tony_chopper"],
+    "jefe": "en_arlong",
+    "tesoros": ["cofre_oro", "sable_gatling"]
+  },
+  {
+    "id": "isla_loguetown",
+    "nombre": "Loguetown",
+    "emoji": "⚡",
+    "nivelMin": 18,
+    "orden": 7,
+    "descripcion": "El pueblo donde nació y murió Gol D. Roger.",
+    "enemigos": ["en_marine", "en_bandido", "en_arlong"],
+    "jefe": "en_buggy",
+    "tesoros": ["cofre_oro", "mapa_tesoro"]
+  }
+]
