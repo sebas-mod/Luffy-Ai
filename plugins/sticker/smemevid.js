@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
         const metadata = await getMetadata(inputVideo)
         const videoStream = metadata.streams.find(s => s.codec_type === 'video')
-        if (!videoStream) throw new Error('Stream video tidak ditemukan')
+        if (!videoStream) throw new Error('No se encontró el stream del video')
 
         const size = 512
 

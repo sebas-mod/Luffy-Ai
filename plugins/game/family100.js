@@ -18,7 +18,7 @@ const pluginConfig = {
   name: "family100",
   alias: ["f100", "survei"],
   category: "game",
-  description: "Survey says! Adivina las respuestas más populares de la encuesta",
+  description: "¡La encuesta dice! Adivina las respuestas más populares de la encuesta",
   usage: ".family100",
   example: ".family100",
   isOwner: false,

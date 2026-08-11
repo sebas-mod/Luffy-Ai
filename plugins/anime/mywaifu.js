@@ -47,7 +47,7 @@ async function handler(m, { sock, args }) {
 
         const res = await fetch(`https://api.waifu.im/images?${params}`);
         if (!res.ok) {
-            throw new Error(`Gagal mengambil data dari API (Status: ${res.status})`);
+            throw new Error(`Error al obtener datos de la API (Estado: ${res.status})`);
         }
 
         const data = await res.json();

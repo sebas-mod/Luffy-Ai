@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "boss",
   alias: ["raidboss", "bigboss"],
   category: "rpg",
-  description: "Lawan boss untuk hadiah besar",
+  description: "Pelear contra jefes para grandes recompensas",
   usage: ".boss",
   example: ".boss",
   isOwner: false,

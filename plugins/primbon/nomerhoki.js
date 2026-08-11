@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'nomerhoki',
     alias: ['nomorhoki', 'ceknomor'],
     category: 'primbon',
-    description: 'Cek keberuntungan nomor HP',
+    description: 'Comprobar la suerte de un número de celular',
     usage: '.nomerhoki <nomor>',
     example: '.nomerhoki 6281234567890',
     isOwner: false,
@@ -19,7 +19,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     let nomor = m.args.join('').replace(/[^0-9]/g, '')
     if (!nomor) {
-        return m.reply(`🍀 *ɴᴏᴍᴏʀ ʜᴏᴋɪ*\n\n> Masukkan nomor HP\n\n\`Contoh: ${m.prefix}nomerhoki 6281234567890\``)
+        return m.reply(`🍀 *ɴᴏᴍᴇʀ ʜᴏᴋɪ*\n\n> Ingresa el número de celular\n\n\`Ejemplo: ${m.prefix}nomerhoki 6281234567890\``)
     }
     
     m.react('🍀')
@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal menganalisa nomor`)
+            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> No se pudo analizar el número`)
         }
         
         const r = data.data
@@ -39,18 +39,18 @@ async function handler(m, { sock }) {
         
         const response = `🍀 *ɴᴏᴍᴏʀ ʜᴏᴋɪ*\n\n` +
             `> Nomor: *${r.nomor}*\n\n` +
-            `📊 *ᴀɴɢᴋᴀ ʙᴀɢᴜᴀ:* ${r.angka_bagua_shuzi.value}%\n\n` +
-            `✅ *ᴇɴᴇʀɢɪ ᴘᴏꜱɪᴛɪꜰ:* ${r.carne_positif.total}%\n` +
+            `📊 *ɴÚᴍᴇʀᴏ ᴅᴇ ʙᴀɢᴜᴀ:* ${r.angka_bagua_shuzi.value}%\n\n` +
+            `✅ *ᴇɴᴇʀɢíᴀ ᴘᴏꜱɪᴛɪᴠᴀ:* ${r.carne_positif.total}%\n` +
             `├ Kekayaan: ${ep.kekayaan}\n` +
             `├ Kesehatan: ${ep.kesehatan}\n` +
             `├ Cinta: ${ep.cinta}\n` +
             `└ Kestabilan: ${ep.kestabilan}\n\n` +
-            `❌ *ᴇɴᴇʀɢɪ ɴᴇɢᴀᴛɪꜰ:* ${r.carne_negatif.total}%\n` +
+            `❌ *ᴇɴᴇʀɢíᴀ ɴᴇɢᴀᴛɪᴠᴀ:* ${r.carne_negatif.total}%\n` +
             `├ Perselisihan: ${en.perselisihan}\n` +
             `├ Kehilangan: ${en.kehilangan}\n` +
             `├ Malapetaka: ${en.malapetaka}\n` +
             `└ Kehancuran: ${en.kehancuran}\n\n` +
-            `> Status: ${r.analisis.status ? '✅ HOKI' : '❌ TIDAK HOKI'}`
+            `> Status: ${r.analisis.status ? '✅ CON SUERTE' : '❌ SIN SUERTE'}`
         
         m.react('✅')
         await m.reply(response)

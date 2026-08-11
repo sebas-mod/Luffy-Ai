@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "nambalban",
   alias: ["tambal", "bengkel"],
   category: "rpg",
-  description: "Buka jasa tambal ban, awas ban meledak!",
+  description: "Abre un servicio de parcheo de llantas, ¡cuidado con las explosiones!",
   usage: ".nambalban",
   example: ".nambalban",
   isOwner: false,

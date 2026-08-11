@@ -10,7 +10,7 @@ const config = {
 
   owner: {
     name: "Sebas-MD", // Nombre del owner
-    number: ["573170512292"], // Formato: 549xxx (sin + ni 0)
+    number: ["5491138403093"], // Formato: 549xxx (sin + ni 0)
   },
 
   session: {

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "arena",
   alias: ["pvp", "battle", "fight"],
   category: "rpg",
-  description: "Bertarung di arena PvP",
+  description: "Pelear en la arena PvP",
   usage: ".arena <@user>",
   example: ".arena @user",
   isOwner: false,

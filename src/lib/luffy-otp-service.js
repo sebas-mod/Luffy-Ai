@@ -32,7 +32,7 @@ async function getBalance() {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal cek saldo')
+    if (!data.success) throw new Error(data.message || 'Error al consultar el saldo')
     return data.data.saldo
 }
 
@@ -44,7 +44,7 @@ async function getCountries() {
 
     const { data } = await axios.get(`${BASE_URL}/negara.php`, { timeout: 15000 })
 
-    if (!data.success) throw new Error(data.message || 'Gagal ambil daftar negara')
+    if (!data.success) throw new Error(data.message || 'Error al obtener la lista de países')
 
     countryCache = data.data
     countryCacheTime = now
@@ -67,7 +67,7 @@ async function getServices(countryId) {
     const services = data[cacheKey] || data.data?.[cacheKey] || data[countryId] || {}
 
     if (Object.keys(services).length === 0) {
-        throw new Error('Tidak ada layanan tersedia untuk negara ini')
+        throw new Error('No hay servicios disponibles para este país')
     }
 
     serviceCache[cacheKey] = services
@@ -81,7 +81,7 @@ async function getOperators(countryId) {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal ambil daftar operator')
+    if (!data.success) throw new Error(data.message || 'Error al obtener la lista de operadores')
 
     const operators = data.data?.[String(countryId)] || data.data || []
     return Array.isArray(operators) ? operators : Object.values(operators)
@@ -98,7 +98,7 @@ async function createOrder(countryId, service, operator) {
         timeout: 30000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal membuat pesanan OTP')
+    if (!data.success) throw new Error(data.message || 'Error al crear la orden OTP')
 
     return {
         orderId: data.data.order_id,
@@ -128,7 +128,7 @@ async function cancelOrder(orderId) {
         timeout: 15000
     })
 
-    if (!data.success) throw new Error(data.message || 'Gagal membatalkan pesanan')
+    if (!data.success) throw new Error(data.message || 'Error al cancelar la orden')
 
     return {
         orderId: data.data?.order_id,

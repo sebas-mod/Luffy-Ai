@@ -4,7 +4,7 @@ const pluginConfig = {
   name: 'bcpcjeda',
   alias: ['delaybcpc', 'jedabcpc', 'setjedabcpc'],
   category: 'owner',
-  description: 'Atur jeda broadcast private chat',
+  description: 'Configurar el intervalo del broadcast de chat privado',
   usage: '.bcpcjeda <tiempo> (ejemplo: 5s, 2m, 1h)',
   isOwner: true,
   isPremium: false,

@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'linesticker',
     alias: ['linepack', 'line'],
     category: 'sticker',
-    description: 'Download sticker pack LINE',
+    description: 'Descargar sticker pack de LINE',
     usage: '.linesticker <url>',
     example: '.linesticker https://store.line.me/stickershop/product/9801/en',
     isOwner: false,

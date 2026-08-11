@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "adventure",
   alias: ["adv", "petualangan"],
   category: "rpg",
-  description: "Berpetualang untuk mendapat Exp dan hadiah",
+  description: "Aventúrate para obtener Exp y premios",
   usage: ".adventure",
   example: ".adventure",
   isOwner: false,

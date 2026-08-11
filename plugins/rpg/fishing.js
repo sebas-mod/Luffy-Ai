@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "fishing",
   alias: ["rpgfish", "mancing"],
   category: "rpg",
-  description: "Memancing untuk mendapatkan ikan (RPG)",
+  description: "Pesca para obtener peces (RPG)",
   usage: ".fishing",
   example: ".fishing",
   isOwner: false,

@@ -306,7 +306,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
   if (usePairing) {
     const lastAttempt = rateLimit.get(id) || 0;
     if (Date.now() - lastAttempt < 60000) {
-      throw new Error("Tunggu 1 menit sebelum mencoba lagi.");
+      throw new Error("Espera 1 minuto antes de intentarlo de nuevo.");
     }
     rateLimit.set(id, Date.now());
   }
@@ -388,7 +388,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
       qrCount++;
       if (qrCount > 3) {
         await safeSend(sock, m?.chat, {
-          text: "❌ QR Code expired! Silakan coba lagi.",
+          text: "❌ El código QR expiró. Inténtalo de nuevo.",
         });
         if (lastQRMsg?.key) {
           await safeSend(sock, m?.chat, { delete: lastQRMsg.key });

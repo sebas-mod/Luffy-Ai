@@ -34,7 +34,7 @@ async function uploadTo0x0(buffer, filename) {
     },
   );
 
-  if (!res.data?.status ? res.data.path : "") throw new Error("Upload gagal");
+  if (!res.data?.status ? res.data.path : "") throw new Error("Error al subir");
   return res.data;
 }
 

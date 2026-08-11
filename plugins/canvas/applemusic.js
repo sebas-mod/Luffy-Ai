@@ -31,7 +31,7 @@ async function uploadImage(buffer) {
       return response.data.files[0].url;
   }
   
-  throw new Error('Upload gagal');
+  throw new Error('Error al subir la imagen');
 }
 
 async function handler(m, { sock, text }) {

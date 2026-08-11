@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "daily",
   alias: ["harian", "claim"],
   category: "rpg",
-  description: "Klaim hadiah harian",
+  description: "Reclama tu recompensa diaria",
   usage: ".daily",
   example: ".daily",
   isOwner: false,

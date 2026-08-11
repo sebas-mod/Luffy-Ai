@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "anticall",
   alias: ["antitelpon", "antitelp", "rejectcall"],
   category: "owner",
-  description: "Auto tolak panggilan masuk",
+  description: "Rechazar automáticamente las llamadas entrantes",
   usage: ".anticall on/off",
   example: ".anticall on",
   isOwner: true,

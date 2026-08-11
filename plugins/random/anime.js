@@ -14,7 +14,7 @@ const pluginConfig = {
   name: ["loli", ...nexrayTypes],
   alias: [],
   category: "random",
-  description: "Random gambar anime/reaction (Nexray Source)",
+  description: "Imagen aleatoria de anime/reacción (Fuente Nexray)",
   usage: ".<nama> (lihat daftar di bawah)",
   example: ".waifu",
   isOwner: false,
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
             },
             interactiveMessage: {
               body: { text: `✨ *ʀᴀɴᴅᴏᴍ ${cmd.toUpperCase()}*` },
-              footer: { text: "Tekan tombol di bawah untuk memuat gambar lain" },
+              footer: { text: "Pulsa el botón de abajo para cargar otra imagen" },
               header: {
                 hasMediaAttachment: true,
                 ...(isGif ? { videoMessage: media.videoMessage } : { imageMessage: media.imageMessage })
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
                   {
                     name: "quick_reply",
                     buttonParamsJson: JSON.stringify({
-                      display_text: "Lanjut Cari Lagi?",
+                      display_text: "¿Buscar de nuevo?",
                       id: `${m.prefix}${cmd}`
                     })
                   }

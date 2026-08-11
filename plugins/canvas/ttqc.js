@@ -67,7 +67,7 @@ async function prepareAssets() {
         const buffer = await fetchBuffer(font.url);
         GlobalFonts.register(buffer, font.name);
       } catch (err) {
-        console.error(`[TTQC] Gagal load font ${font.name}:`, err.message);
+        console.error(`[TTQC] Error al cargar la fuente ${font.name}:`, err.message);
       }
     }));
     global.ttqcCache.fontsLoaded = true;

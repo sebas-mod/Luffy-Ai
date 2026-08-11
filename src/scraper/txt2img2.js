@@ -84,7 +84,7 @@ async function getResult(sessionHash, eventId) {
 
           if (json.msg === "process_completed") {
             const url = extractUrl(json.output);
-            if (!url) throw new Error("URL hasil tidak ditemukan");
+            if (!url) throw new Error("No se encontró la URL del resultado");
 
             done = true;
             clearTimeout(timer);
@@ -94,7 +94,7 @@ async function getResult(sessionHash, eventId) {
           }
 
           if (json.msg === "process_failed") {
-            throw new Error("Generate gagal");
+            throw new Error("Error al generar");
           }
         } catch (err) {
           done = true;

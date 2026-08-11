@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "rob",
   alias: ["rampok", "mug"],
   category: "rpg",
-  description: "Rampok uang player lain (berisiko)",
+  description: "Asaltar el dinero de otro jugador (arriesgado)",
   usage: ".rob @user",
   example: ".rob @user",
   isOwner: false,

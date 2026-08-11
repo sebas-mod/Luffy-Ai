@@ -129,7 +129,7 @@ const mconverter = {
 
             if (resInit.data.error) throw new Error(resInit.data.error.message);
             const token = resInit.data.token;
-            if (!token) throw new Error("Gagal dapet token upload");
+            if (!token) throw new Error("Error al obtener el token de subida");
 
             let startByte = 1;
             const CHUNK_SIZE = 10 * 1024 * 1024;

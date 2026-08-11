@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "merchant",
   alias: ["npc", "toko", "tokoku"],
   category: "rpg",
-  description: "Jual beli item ke NPC merchant",
+  description: "Comprar y vender objetos al mercader NPC",
   usage: ".merchant <buy/sell> <item> <qty>",
   example: ".merchant buy potion 5",
   isOwner: false,

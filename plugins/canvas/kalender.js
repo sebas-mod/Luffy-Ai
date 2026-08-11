@@ -106,7 +106,7 @@ function unduhFile(url, tujuan) {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         return unduhFile(res.headers.location, tujuan).then(resolve).catch(reject);
       }
-      if (res.statusCode !== 200) return reject(new Error(`Gagal unduh ${url}: ${res.statusCode}`));
+      if (res.statusCode !== 200) return reject(new Error(`Error al descargar ${url}: ${res.statusCode}`));
       const file = fs.createWriteStream(tujuan);
       res.pipe(file);
       file.on("finish", () => file.close(resolve));

@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "transfer",
   alias: ["tf", "kirim", "pay"],
   category: "rpg",
-  description: "Transfer uang atau item ke user lain",
+  description: "Transferir dinero u objetos a otro usuario",
   usage: ".transfer <money/nama_item> <jumlah> @user",
   example: ".transfer money 10000 @tag",
   isOwner: false,

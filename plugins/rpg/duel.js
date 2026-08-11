@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "duel",
   alias: ["pvp", "fight"],
   category: "rpg",
-  description: "Duel PvP dengan player lain",
+  description: "Duelo PvP contra otro jugador",
   usage: ".duel @user <bet>",
   example: ".duel @user 5000",
   isOwner: false,

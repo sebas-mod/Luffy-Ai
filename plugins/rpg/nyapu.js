@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "nyapu",
   alias: ["cleaning", "bersih"],
   category: "rpg",
-  description: "Nyapu jalan, siapa tau nemu barang jatuh!",
+  description: "Barre la calle, ¡quién sabe si encuentras algo caído!",
   usage: ".nyapu",
   example: ".nyapu",
   isOwner: false,

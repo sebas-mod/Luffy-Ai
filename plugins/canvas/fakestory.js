@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "fakestory",
   alias: ["fstory", "fakeinsta", "igstory"],
   category: "canvas",
-  description: "Membuat fake Instagram story dengan 2 gambar",
+  description: "Crea una historia falsa de Instagram con 2 imágenes",
   usage: ".fakestory <nombre>",
   example: ".fakestory Misaki (responde 2 imágenes)",
   isOwner: false,
@@ -199,7 +199,7 @@ async function getAvatarBuffer(sock, jid) {
   if (fs.existsSync(DEFAULT_PP_PATH)) {
     return fs.readFileSync(DEFAULT_PP_PATH);
   }
-  throw new Error("Tidak dapat mengambil foto profil");
+  throw new Error("No se pudo obtener la foto de perfil");
 }
 async function handler(m, { sock }) {
   const username = m.args.join(" ").trim() || m.pushName || "User";

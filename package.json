@@ -4,7 +4,7 @@
   "description": "WhatsApp Multi-Device Bot dengan sistem plugin modular",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development node index.js",
+    "start": "NODE_ENV=development nodemon index.js --ignore storage/ --ignore database/ --ignore node_modules/ --ext js,json",
     "dev": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint plugins/"
@@ -30,6 +30,7 @@
     "@hapi/boom": "^10.0.1",
     "@microlink/mql": "^0.16.1",
     "@napi-rs/canvas": "^0.1.88",
+    "@roamhq/wrtc": "^0.10.0",
     "@sptzx/request": "^1.0.0-rc.1",
     "@vitalets/google-translate-api": "^9.2.1",
     "@vreden/youtube_scraper": "^1.2.8",

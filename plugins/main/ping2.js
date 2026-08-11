@@ -9,7 +9,7 @@ const pluginConfig = {
     name: 'ping2',
     alias: ['speed2', 'p2', 'latency2', 'sys2', 'status2'],
     category: 'main',
-    description: 'Cek performa dan status sistem bot secara real-time',
+    description: 'Revisar el rendimiento y el estado del sistema del bot en tiempo real',
     usage: '.ping2',
     example: '.ping2',
     isOwner: false,
@@ -107,8 +107,8 @@ async function handler(m, { sock }) {
 
         const tableData = [
             ['WA Roundtrip', `${waRoundtrip} ms`],
-            ['Kecepatan Respon bot mu', `${totalExec} ms`],
-            ['Status', 'Online'],
+            ['Velocidad de respuesta del bot', `${totalExec} ms`],
+            ['Estado', 'En línea'],
             ['Hostname', os.hostname()],
             ['Platform', `${os.platform()} ${os.arch()}`],
             ['Node', process.version],
@@ -128,13 +128,13 @@ async function handler(m, { sock }) {
 
         await sock.sendTable(
             m.chat,
-            '⚡ System Performance',
-            ['Metric', 'Value'],
+            '⚡ Rendimiento del Sistema',
+            ['Métrica', 'Valor'],
             tableData,
             m,
             {
-                headerText: `${config.bot?.name || 'Luffy-Ai'} *STATUS*\n\n- 🎄 Dibawah ini adalah statistik bot kita`,
-                footer: '🍃 Realtime Monitoring'
+                headerText: `${config.bot?.name || 'Luffy-Ai'} *ESTADO*\n\n- 🎄 Lo siguiente son las estadísticas de nuestro bot`,
+                footer: '🍃 Monitoreo en tiempo real'
             }
         )
 

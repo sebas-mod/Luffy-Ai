@@ -8,9 +8,9 @@ const pluginConfig = {
   name: "pindl",
   alias: ["pinterestdl", "pindownload", "pintdl"],
   category: "download",
-  description: "Descarga imágenes/videos de Pinterest",
-  usage: ".pindl <url>",
-  example: ".pindl https://pin.it/xxx",
+  description: "Busca y descarga imágenes/videos de Pinterest",
+  usage: ".pindl <query>",
+  example: ".pindl zhao lusi",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -20,39 +20,32 @@ const pluginConfig = {
   isEnabled: true,
 };
 async function handler(m, { sock }) {
-  const url = m.text?.trim();
-  if (!url) {
+  const query = m.text?.trim();
+  if (!query) {
     return m.reply(
-      `📌 *ᴘɪɴᴛᴇʀᴇsᴛ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-        `> ¡Descarga imágenes/videos de Pinterest!\n\n` +
+      `📌 *ᴘɪɴᴛᴇʀᴇsᴛ*\n\n` +
+        `> Busca y descarga imágenes/videos de Pinterest!\n\n` +
         `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
-        `> \`${m.prefix}pindl https://pin.it/xxx\`\n` +
-        `> \`${m.prefix}pindl https://pinterest.com/pin/xxx\``,
+        `> \`${m.prefix}pindl zhao lusi\``,
     );
-  }
-  if (!url.includes("pinterest") && !url.includes("pin.it")) {
-    return m.reply("❌ URL no válida. Usa un enlace de Pinterest.");
   }
   m.react("🕕");
   try {
-    const res = await axios.get(`https://api.azbry.com/api/download/pinterest?url=${encodeURIComponent(url)}`);
-    if (!res.data || !res.data.status || !res.data.result) {
-      throw new Error("Error al obtener los datos de la API de Pinterest.");
+    const res = await axios.get(
+      `https://apiyosoyyo-ofc.onrender.com/api/pinterest?q=${encodeURIComponent(query)}&limite=3&apiKey=Sebas-api2026`,
+      { timeout: 60000 }
+    );
+    if (!res.data || !res.data.status || !res.data.result || res.data.result.length === 0) {
+      throw new Error("Error al obtener los datos de Pinterest.");
     }
 
-    const data = res.data.result;
     const mediaList = [];
-
-    if (data.type === 'video') {
-        const vidUrl = data.videos?.[0]?.url || data.download;
-        if (vidUrl) mediaList.push({ type: 'video', url: vidUrl });
-    }
-
-    if (data.images && data.images.length > 0) {
-        const orig = data.images.find(img => img.name === 'orig') || data.images[data.images.length - 1];
-        if (orig && orig.url) mediaList.push({ type: 'image', url: orig.url });
-    } else if (data.type === 'image' && data.download) {
-        mediaList.push({ type: 'image', url: data.download });
+    for (const item of res.data.result) {
+      if (item.tipo === "video") {
+        mediaList.push({ type: "video", url: item.descarga });
+      } else if (item.descarga) {
+        mediaList.push({ type: "image", url: item.descarga });
+      }
     }
 
     if (mediaList.length === 0) {

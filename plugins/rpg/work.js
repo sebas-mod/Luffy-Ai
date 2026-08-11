@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "work",
   alias: ["kerja", "job"],
   category: "rpg",
-  description: "Bekerja untuk mendapatkan uang",
+  description: "Trabaja para ganar dinero",
   usage: ".work",
   example: ".work",
   isOwner: false,

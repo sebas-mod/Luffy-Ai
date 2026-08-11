@@ -118,7 +118,7 @@ async function download(url) {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36'
     }
   });
-  if (!res.ok) throw new Error(`Gagal download ${url}: ${res.status} ${res.statusText}`);
+  if (!res.ok) throw new Error(`Error al descargar ${url}: ${res.status} ${res.statusText}`);
   return Buffer.from(await res.arrayBuffer());
 }
 
@@ -233,7 +233,7 @@ function drawUsernameText(ctx, text, x, y, opts, fontSize, maxWidth) {
 
 async function drawScene(bgId, quoteText, usernameStr, outFile) {
   const bg = BACKGROUNDS[bgId];
-  if (!bg) throw new Error(`Background nomor ${bgId} tidak ditemukan`);
+  if (!bg) throw new Error(`Fondo número ${bgId} no encontrado`);
 
   const bgBuffer = await setupEnv(bg);
 

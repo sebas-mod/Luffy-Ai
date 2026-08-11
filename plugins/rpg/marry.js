@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "marry",
   alias: ["nikah", "wedding", "propose"],
   category: "rpg",
-  description: "Menikahi player lain",
+  description: "Casarse con otro jugador",
   usage: ".marry @user",
   example: ".marry @user",
   isOwner: false,

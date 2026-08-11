@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "challenge",
   alias: ["daily", "dailychallenge", "tantangan"],
   category: "rpg",
-  description: "Daily challenge untuk hadiah spesial",
+  description: "Desafío diario para premios especiales",
   usage: ".challenge",
   example: ".challenge",
   isOwner: false,

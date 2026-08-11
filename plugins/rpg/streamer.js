@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "streamer",
   alias: ["live", "vtuber"],
   category: "rpg",
-  description: "Live streaming game dapet donasi besar tapi resiko dibanned platform!",
+  description: "Haz streaming de juegos para donaciones grandes, ¡pero riesgo de baneo!",
   usage: ".streamer",
   example: ".streamer",
   isOwner: false,

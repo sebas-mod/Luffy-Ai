@@ -45,7 +45,7 @@ async function tiktokSearchVideo(query) {
     })
 
     if (!data?.status || !Array.isArray(data?.result)) {
-        throw new Error(data?.message || 'TikTok search gagal')
+        throw new Error(data?.message || 'Error en la búsqueda de TikTok')
     }
 
     return data.result.map(normalizeItem).filter((item) => item.link)

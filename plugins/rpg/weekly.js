@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "weekly",
   alias: ["mingguan"],
   category: "rpg",
-  description: "Claim hadiah mingguan (lebih besar dari daily)",
+  description: "Reclama la recompensa semanal (más grande que la diaria)",
   usage: ".weekly",
   example: ".weekly",
   isOwner: false,

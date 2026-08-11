@@ -36,7 +36,7 @@ export class ChatGPT {
   }
 
   async send(message, opts = {}) {
-    if (!message?.trim()) throw new Error("Pesan tidak boleh kosong.");
+    if (!message?.trim()) throw new Error("El mensaje no puede estar vacío.");
 
     const {
       conversationId = null,
@@ -98,7 +98,7 @@ export class ChatGPT {
 
   async _uploadImage(filePath, ctx = {}) {
     if (!fs.existsSync(filePath)) {
-      throw new Error(`File tidak ditemukan: ${filePath}`);
+      throw new Error(`Archivo no encontrado: ${filePath}`);
     }
 
     const fileBuffer = fs.readFileSync(filePath);
@@ -121,7 +121,7 @@ export class ChatGPT {
 
     const { upload_url, file_id } = registerRes;
     if (!upload_url || !file_id) {
-      throw new Error(`Gagal mendaftar file: ${JSON.stringify(registerRes)}`);
+      throw new Error(`Error al registrar el archivo: ${JSON.stringify(registerRes)}`);
     }
 
     const uploadRes = await _fetch(upload_url, {
@@ -135,7 +135,7 @@ export class ChatGPT {
     });
 
     if (!uploadRes.ok) {
-      throw new Error(`Upload blob gagal: HTTP ${uploadRes.status}`);
+      throw new Error(`Error al subir el blob: HTTP ${uploadRes.status}`);
     }
 
     const processBody = {

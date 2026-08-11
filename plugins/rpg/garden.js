@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "garden",
   alias: ["kebun", "farm", "tanam"],
   category: "rpg",
-  description: "Berkebun dan panen tanaman",
+  description: "Cultivar y cosechar plantas",
   usage: ".garden <plant/harvest/status>",
   example: ".garden plant carrot",
   isOwner: false,

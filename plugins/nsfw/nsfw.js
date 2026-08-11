@@ -74,14 +74,14 @@ const pluginConfig = {
 
 async function fetchFromApi(endpoint) {
   const res = await axios.get(`https://api.waifu.pics/nsfw/${endpoint}`, { timeout: 15000 })
-  if (!res.data?.url) throw new Error("Gagal mengambil gambar dari API")
+  if (!res.data?.url) throw new Error("Error al obtener la imagen de la API")
   const imgRes = await axios.get(res.data.url, { responseType: "arraybuffer", timeout: 30000 })
   return Buffer.from(imgRes.data)
 }
 
 async function fetchFromJson(filename) {
   const urls = loadJsonUrls(filename)
-  if (urls.length === 0) throw new Error("Data gambar kosong atau file tidak ditemukan")
+  if (urls.length === 0) throw new Error("Datos de imagen vacíos o archivo no encontrado")
   const url = getRandomItem(urls)
   const res = await axios.get(url, { responseType: "arraybuffer", timeout: 30000 })
   return Buffer.from(res.data)

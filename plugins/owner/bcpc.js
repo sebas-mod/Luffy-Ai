@@ -10,7 +10,7 @@ const pluginConfig = {
   name: "bcpc",
   alias: ["broadcastpc", "bcprivate"],
   category: "owner",
-  description: "Broadcast pesan ke semua kontak private chat",
+  description: "Transmitir un mensaje a todos los contactos de chat privado",
   usage: ".bcpc <pesan>",
   isOwner: true,
   isPremium: false,

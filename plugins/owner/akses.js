@@ -11,7 +11,7 @@ const pluginConfig = {
     "listaccess",
   ],
   category: "owner",
-  description: "Grant temporary/permanent command access to users",
+  description: "Otorgar acceso temporal/permanente a comandos a los usuarios",
   usage: ".addakses <cmd> <duration> <user>",
   example: ".addakses addowner 30d @user",
   isOwner: true,

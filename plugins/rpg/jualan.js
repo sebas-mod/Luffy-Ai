@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "jualan",
   alias: ["dagang", "pedagang"],
   category: "rpg",
-  description: "Dagang asongan keliling",
+  description: "Vende mercancía por la calle",
   usage: ".jualan",
   example: ".jualan",
   isOwner: false,

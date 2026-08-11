@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "mulung",
   alias: ["scavenge", "kumpulsampah"],
   category: "rpg",
-  description: "Memulung untuk mengumpulkan barang",
+  description: "Recoge chatarra para juntar objetos",
   usage: ".mulung",
   example: ".mulung",
   isOwner: false,

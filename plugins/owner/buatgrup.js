@@ -4,7 +4,7 @@ const pluginConfig = {
     name: ['buatgrup', 'creategroup', 'newgroup'],
     alias: [],
     category: 'owner',
-    description: 'Buat grup baru',
+    description: 'Crear un grupo nuevo',
     usage: '.buatgrup <nama>|<nomor1,nomor2,...>|<durasi_menit>',
     example: '.buatgrup Grup Baru|628xxx,628yyy|60',
     isOwner: true,

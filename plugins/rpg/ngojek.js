@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ngojek",
   alias: ["ojek", "gojek", "ojol"],
   category: "rpg",
-  description: "Ngojek untuk mendapat uang",
+  description: "Ser mototaxista para ganar dinero",
   usage: ".ngojek",
   example: ".ngojek",
   isOwner: false,

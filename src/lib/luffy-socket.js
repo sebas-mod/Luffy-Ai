@@ -76,7 +76,7 @@ async function imageToWebp(buffer) {
       .webp({ quality: 80 })
       .toBuffer();
   } catch (error) {
-    throw new Error("Failed to convert image to webp: " + error.message);
+    throw new Error("Error al convertir la imagen a webp: " + error.message);
   }
 }
 
@@ -241,7 +241,7 @@ async function extendSocket(sock) {
           .webp({ quality: 80 })
           .toBuffer();
       } catch (err) {
-        throw new Error("Failed to convert image: " + err.message);
+        throw new Error("Error al convertir la imagen: " + err.message);
       }
     }
     try {

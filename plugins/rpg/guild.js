@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "guild",
   alias: ["clan", "team", "kelompok"],
   category: "rpg",
-  description: "Sistem guild/clan",
+  description: "Sistema de guild/clan",
   usage: ".guild <create/join/leave/info>",
   example: ".guild create DragonSlayers",
   isOwner: false,

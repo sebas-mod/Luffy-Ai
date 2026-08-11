@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'kecocokannamapasangan',
     alias: ['cocoknama', 'matchname'],
     category: 'primbon',
-    description: 'Cek kecocokan nama pasangan',
+    description: 'Revisar la compatibilidad de nombres de pareja',
     usage: '.kecocokannamapasangan <nama1> <nama2>',
     example: '.kecocokannamapasangan putu keyla',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (m.args.length < 2) {
-        return m.reply(`💕 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ ɴᴀᴍᴀ*\n\n> Format: nama1 nama2\n\n\`Contoh: ${m.prefix}kecocokannamapasangan putu keyla\``)
+        return m.reply(`💕 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ ᴅᴇ ɴᴏᴍʙʀᴇs*\n\n> Formato: nombre1 nombre2\n\n\`Ejemplo: ${m.prefix}kecocokannamapasangan putu keyla\``)
     }
     
     const [nama1, nama2] = m.args
@@ -31,15 +31,15 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal menganalisa`)
+            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Error al analizar`)
         }
         
         const result = data.data
-        const response = `💕 *ᴋᴇᴄᴏᴄᴏᴋᴀɴ ɴᴀᴍᴀ ᴘᴀsᴀɴɢᴀɴ*\n\n` +
+        const response = `💕 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ ᴅᴇ ɴᴏᴍʙʀᴇs ᴅᴇ ᴘᴀʀᴇᴊᴀ*\n\n` +
             `> 👤 ${result.nama_anda}\n` +
             `> 💑 ${result.nama_pasangan}\n\n` +
-            `✅ *ꜱɪꜱɪ ᴘᴏꜱɪᴛɪꜰ:*\n${result.sisi_positif}\n\n` +
-            `❌ *ꜱɪꜱɪ ɴᴇɢᴀᴛɪꜰ:*\n${result.sisi_negatif}\n\n` +
+            `✅ *ᴀsᴘᴇᴄᴛᴏ ᴘᴏsɪᴛɪᴠᴏ:*\n${result.sisi_positif}\n\n` +
+            `❌ *ᴀsᴘᴇᴄᴛᴏ ɴᴇɢᴀᴛɪᴠᴏ:*\n${result.sisi_negatif}\n\n` +
             `> _${result.catatan}_`
         
         m.react('✅')

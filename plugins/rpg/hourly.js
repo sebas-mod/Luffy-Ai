@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "hourly",
   alias: ["jam", "perjam"],
   category: "rpg",
-  description: "Klaim hadiah per jam",
+  description: "Reclama tu recompensa cada hora",
   usage: ".hourly",
   example: ".hourly",
   isOwner: false,

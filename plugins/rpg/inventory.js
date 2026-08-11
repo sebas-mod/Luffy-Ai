@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "inventory",
   alias: ["inv", "tas", "bag"],
   category: "rpg",
-  description: "Melihat isi inventory RPG",
+  description: "Ver el contenido del inventario RPG",
   usage: ".inventory",
   example: ".inventory",
   isOwner: false,

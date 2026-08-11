@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "tts",
   alias: ["say"],
   category: "tts",
-  description: "Google Text To Speech",
+  description: "Texto a voz de Google",
   usage: ".tts <text>",
   example: ".tts halo semua",
   cooldown: 10,

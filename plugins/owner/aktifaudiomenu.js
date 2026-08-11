@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'aktifaudiomenu',
     alias: ['audiomenu', 'setaudiomenu', 'toggleaudiomenu'],
     category: 'owner',
-    description: 'Toggle audio saat menampilkan menu',
+    description: 'Activar/desactivar el audio al mostrar el menú',
     usage: '.aktifaudiomenu ya/gak',
     example: '.aktifaudiomenu ya',
     isOwner: true,

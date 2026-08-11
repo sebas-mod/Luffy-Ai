@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "donasi",
   alias: ["donate", "donation", "support", "saweria", "trakteer"],
   category: "main",
-  description: "Informasi donasi untuk mendukung bot dengan QRIS",
+  description: "Información de donación para apoyar al bot con QRIS",
   usage: ".donasi",
   example: ".donasi",
   isOwner: false,
@@ -29,16 +29,16 @@ async function handler(m, { sock }) {
   const links = donasiConfig.links || [];
   const qrisUrl = donasiConfig.qris || "";
   const benefits = donasiConfig.benefits || [
-    "Mendukung development",
-    "Server lebih stabil",
-    "Fitur baru lebih cepat",
-    "Priority support",
+    "Apoyar el desarrollo",
+    "Servidor más estable",
+    "Nuevas funciones más rápido",
+    "Soporte prioritario",
   ];
 
-  let text = `DONASI KE OWNER ${botName} 🙏`;
+  let text = `DONA AL OWNER ${botName} 🙏`;
 
   if (payments.length > 0 || links.length > 0) {
-    text += `Pembayaran\n`;
+    text += `Pagos\n`;
     for (const pay of payments) {
       text += `🏦 *${pay.name
         ?.toLowerCase()
@@ -62,25 +62,25 @@ async function handler(m, { sock }) {
   } else {
     text += `╭┈┈⬡「 💳 *ᴘᴀʏᴍᴇɴᴛ* 」\n`;
     text += `┃\n`;
-    text += `┃ > Belum dikonfigurasi\n`;
-    text += `┃ > Edit config.donasi\n`;
+    text += `┃ > Aún no configurado\n`;
+    text += `┃ > Edita config.donasi\n`;
     text += `┃\n`;
     text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
   }
 
-  text += `🎁 *ʙᴇɴᴇꜰɪᴛ*\n`;
+  text += `🎁 *ʙᴇɴᴇꜰɪᴄɪᴏꜱ*\n`;
   for (const benefit of benefits) {
     text += `◦ ${benefit}\n`;
   }
   text += `\n`;
 
-  text += `_Donasi berapapun sangat berharga_\n`;
-  text += `Contact: @${config.owner?.number?.[0] || "owner"}`;
+  text += `_Cualquier donación es muy valiosa_\n`;
+  text += `Contacto: @${config.owner?.number?.[0] || "owner"}`;
 
   const copyButtons = payments.map((pay) => ({
     name: "cta_copy",
     buttonParamsJson: JSON.stringify({
-      display_text: `📋 Copy No. ${pay.name}`,
+      display_text: `📋 Copiar Nº ${pay.name}`,
       copy_code: pay.number,
     }),
   }));

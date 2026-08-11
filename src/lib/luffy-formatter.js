@@ -508,10 +508,10 @@ function createWarningMessage(message) {
 function getTimeGreeting() {
   const hour = timeHelper.getHour();
 
-  if (hour >= 4 && hour < 10) return "Selamat Pagi 🌅";
-  if (hour >= 10 && hour < 15) return "Selamat Siang ☀️";
-  if (hour >= 15 && hour < 18) return "Selamat Sore 🌇";
-  return "Selamat Malam 🌙";
+  if (hour >= 4 && hour < 10) return "Buenos días 🌅";
+  if (hour >= 10 && hour < 15) return "Buenas tardes ☀️";
+  if (hour >= 15 && hour < 18) return "Buenas tardes 🌇";
+  return "Buenas noches 🌙";
 }
 
 /**

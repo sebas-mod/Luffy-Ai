@@ -1,6 +1,6 @@
 function cekfemboy(nama) {
     try {
-        if (!nama) throw new Error('Masukkan nama dulu dong!');
+        if (!nama) throw new Error('¡Ingresa tu nombre primero!');
         
         const percent = Math.floor(Math.random() * 101);
         let desc = '';

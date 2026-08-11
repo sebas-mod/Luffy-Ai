@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'potensipenyakit',
     alias: ['cekpenyakit', 'penyakit'],
     category: 'primbon',
-    description: 'Cek potensi penyakit berdasarkan tanggal lahir',
+    description: 'Revisar la posible enfermedad según la fecha de nacimiento',
     usage: '.potensipenyakit <tgl> <bln> <thn>',
     example: '.potensipenyakit 12 05 1998',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (m.args.length < 3) {
-        return m.reply(`🏥 *ᴘᴏᴛᴇɴsɪ ᴘᴇɴʏᴀᴋɪᴛ*\n\n> Format: tgl bln thn\n\n\`Contoh: ${m.prefix}potensipenyakit 12 05 1998\``)
+        return m.reply(`🏥 *ᴘᴏsɪʙʟᴇ ᴇɴꜰᴇʀᴍᴇᴅᴀᴅ*\n\n> Formato: día mes año\n\n\`Ejemplo: ${m.prefix}potensipenyakit 12 05 1998\``)
     }
     
     const [tgl, bln, thn] = m.args
@@ -31,14 +31,14 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal menganalisa`)
+            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Error al analizar`)
         }
         
         const result = data.data
-        const response = `🏥 *ᴘᴏᴛᴇɴsɪ ᴘᴇɴʏᴀᴋɪᴛ*\n\n` +
-            `> Tanggal: *${tgl}-${bln}-${thn}*\n\n` +
-            `📊 *ᴇʟᴇᴍᴇɴ:*\n${result.sektor}\n\n` +
-            `⚠️ *ᴘᴏᴛᴇɴsɪ:*\n${result.elemen}\n\n` +
+        const response = `🏥 *ᴘᴏsɪʙʟᴇ ᴇɴꜰᴇʀᴍᴇᴅᴀᴅ*\n\n` +
+            `> Fecha: *${tgl}-${bln}-${thn}*\n\n` +
+            `📊 *sᴇᴄᴛᴏʀ:*\n${result.sektor}\n\n` +
+            `⚠️ *ᴘᴏᴛᴇɴᴄɪᴀʟ:*\n${result.elemen}\n\n` +
             `> _${result.catatan}_`
         
         m.react('✅')

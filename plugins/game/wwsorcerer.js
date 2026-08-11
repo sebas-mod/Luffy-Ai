@@ -3,7 +3,7 @@ const pluginConfig = {
     name: 'wwsorcerer',
     alias: ['sorcerer', 'wws'],
     category: 'game',
-    description: 'Sorcerer night action - Check if target is Seer',
+    description: 'Acción nocturna del hechicero - Comprobar si el objetivo es el Vidente',
     usage: '.wwsorcerer <número>',
     example: '.wwsorcerer 3',
     isOwner: false,

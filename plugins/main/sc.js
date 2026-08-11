@@ -5,7 +5,7 @@ const pluginConfig = {
     name: "sc",
     alias: ["script"],
     category: "main",
-    description: "Link script bot wa terbaru",
+    description: "Enlace del script del bot WA más reciente",
     usage: ".sc",
     example: ".sc",
     isPremium: false,
@@ -21,7 +21,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     return await sock.sendMessage(m.chat, {
         image: getAssetBuffer("luffy"),
-        caption: `🌾 Halo kak *${m.pushName}*
+        caption: `🌾 Hola, *${m.pushName}*
         
 El original de este bot lo consigues mediante el enlace; luego solo busca la palabra clave *Luffy-Ai MD*`,
         footer: "💬 Este enlace te llevará al Youtube *Zanspiw*",
@@ -29,7 +29,7 @@ El original de este bot lo consigues mediante el enlace; luego solo busca la pal
             {
                 name: "cta_url",
                 buttonParamsJson: JSON.stringify({
-                    display_text: "🥐 Kunjungi Youtube Zanspiw",
+                    display_text: "🥐 Visita el canal de Youtube Zanspiw",
                     url: "https://youtube.com/@JanpiwWok",
                     merchant_url: "https://youtube.com/@JanpiwWok"
                 })

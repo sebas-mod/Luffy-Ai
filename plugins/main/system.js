@@ -7,7 +7,7 @@ const pluginConfig = {
     name: 'system',
     alias: ['ram', 'cpu', 'disk', 'latency', 'ping'],
     category: 'main',
-    description: 'Menampilkan informasi sistem (RAM, CPU, Disk, Latency)',
+    description: 'Mostrar información del sistema (RAM, CPU, Disco, Latencia)',
     usage: '.ram | .cpu | .disk | .ping',
     isGroup: false,
     isBotAdmin: false,
@@ -36,7 +36,7 @@ async function getDiskUsage() {
                     const free = parseInt(parts[1]);
                     const size = parseInt(parts[2]);
                     const used = size - free;
-                    return `💿 *Drive ${caption}*\nTotal: ${formatSize(size)}\nUsed: ${formatSize(used)}\nFree: ${formatSize(free)}\n`;
+                    return `💿 *Unidad ${caption}*\nTotal: ${formatSize(size)}\nUsado: ${formatSize(used)}\nLibre: ${formatSize(free)}\n`;
                 }
                 return null;
             }).filter(Boolean).join('\n');
@@ -44,10 +44,10 @@ async function getDiskUsage() {
             const { stdout } = await execAsync('df -h /');
             const lines = stdout.trim().split('\n');
             const parts = lines[1].replace(/\s+/g, ' ').split(' ');
-            return `💿 *Disk Usage*\nTotal: ${parts[1]}\nUsed: ${parts[2]}\nFree: ${parts[3]}\nUse%: ${parts[4]}`;
+            return `💿 *Uso de Disco*\nTotal: ${parts[1]}\nUsado: ${parts[2]}\nLibre: ${parts[3]}\nUso%: ${parts[4]}`;
         }
     } catch (e) {
-        return '❌ Gagal mengambil info disk';
+        return '❌ Error al obtener la información del disco';
     }
 }
 
@@ -61,11 +61,11 @@ async function handler(m, { sock }) {
                 const freeMem = os.freemem();
                 const usedMem = totalMem - freeMem;
                 
-                const text = `💻 *RAM USAGE*\n\n` +
+                const text = `💻 *USO DE RAM*\n\n` +
                              `Total: ${formatSize(totalMem)}\n` +
-                             `Used: ${formatSize(usedMem)}\n` +
-                             `Free: ${formatSize(freeMem)}\n` +
-                             `Platform: ${os.platform()} (${os.arch()})`;
+                             `Usado: ${formatSize(usedMem)}\n` +
+                             `Libre: ${formatSize(freeMem)}\n` +
+                             `Plataforma: ${os.platform()} (${os.arch()})`;
                 m.reply(text);
             }
             break;
@@ -76,17 +76,17 @@ async function handler(m, { sock }) {
                 const speed = cpus[0].speed;
                 const cores = cpus.length;
                 
-                const text = `🖥️ *CPU INFO*\n\n` +
-                             `Model: ${model}\n` +
-                             `Speed: ${speed} MHz\n` +
-                             `Cores: ${cores} Core(s)\n` +
-                             `Uptime: ${formatSize(os.uptime())} (Wrong format, raw seconds)`; 
+                const text = `🖥️ *INFO DE CPU*\n\n` +
+                             `Modelo: ${model}\n` +
+                             `Velocidad: ${speed} MHz\n` +
+                             `Núcleos: ${cores} Núcleo(s)\n` +
+                             `Uptime: ${formatSize(os.uptime())} (Formato incorrecto, segundos crudos)`; 
                 const uptime = os.uptime();
                 const hours = Math.floor(uptime / 3600);
                 const minutes = Math.floor((uptime % 3600) / 60);
                 const seconds = Math.floor(uptime % 60);
                 const uptimeStr = `${hours}h ${minutes}m ${seconds}s`;
-                m.reply(`🖥️ *CPU INFO*\n\nModel: ${model}\nSpeed: ${speed} MHz\nCores: ${cores}\nServer Uptime: ${uptimeStr}`);
+                m.reply(`🖥️ *INFO DE CPU*\n\nModelo: ${model}\nVelocidad: ${speed} MHz\nNúcleos: ${cores}\nUptime del Servidor: ${uptimeStr}`);
             }
             break;
 
@@ -101,17 +101,17 @@ async function handler(m, { sock }) {
                 const now = Date.now();
                 const latency = now - timestamp;
                 let speed = '';
-                if (latency < 100) speed = '🚀 Fast';
-                else if (latency < 500) speed = '⚡ Good';
-                else if (latency < 1000) speed = '🐢 Oke';
-                else speed = '🐌 Slow';
-                m.reply(`📶 *Pong!*\nLatency: ${latency}ms\nResponse: ${speed}`);
+                if (latency < 100) speed = '🚀 Rápido';
+                else if (latency < 500) speed = '⚡ Bueno';
+                else if (latency < 1000) speed = '🐢 Aceptable';
+                else speed = '🐌 Lento';
+                m.reply(`📶 *Pong!*\nLatencia: ${latency}ms\nRespuesta: ${speed}`);
             }
             break;
         }
     } catch (e) {
         console.error('System Plugin Error:', e);
-        m.reply('❌ Terjadi kesalahan mengambil data sistem.');
+        m.reply('❌ Ocurrió un error al obtener los datos del sistema.');
     }
 }
 

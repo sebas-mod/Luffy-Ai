@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "training",
   alias: ["train", "latihan", "workout"],
   category: "rpg",
-  description: "Latihan untuk meningkatkan stats",
+  description: "Entrena para mejorar tus estadísticas",
   usage: ".training <attack/defense/health>",
   example: ".training attack",
   isOwner: false,

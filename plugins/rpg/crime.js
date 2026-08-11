@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "crime",
   alias: ["curi", "jahat"],
   category: "rpg",
-  description: "Melakukan kejahatan membobol ATM (risiko tinggi)",
+  description: "Cometer un crimen robando un cajero (alto riesgo)",
   usage: ".crime",
   example: ".crime",
   isOwner: false,

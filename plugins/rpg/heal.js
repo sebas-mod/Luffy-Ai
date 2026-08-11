@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "heal",
   alias: ["sembuh", "recover"],
   category: "rpg",
-  description: "Pulihkan health dengan istirahat (gratis tapi lama)",
+  description: "Recuperar salud descansando (gratis pero lento)",
   usage: ".heal",
   example: ".heal",
   isOwner: false,

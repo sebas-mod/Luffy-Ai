@@ -36,7 +36,7 @@ async function createEnhanceTask(filePath, apiKey = DEFAULT_API_KEY) {
   const payload = response.data;
 
   if (!payload?.status || !payload?.data?.pollUrl) {
-    throw new Error(payload?.message || "Gagal membuat task HD video");
+    throw new Error(payload?.message || "Error al crear la tarea de video HD");
   }
 
   return {
@@ -75,7 +75,7 @@ async function pollEnhanceTask(
       if (normalizedStatus === "success") {
         const result = payload?.data?.result;
         if (!result?.res_url) {
-          throw new Error("HD video selesai tetapi url hasil tidak ditemukan");
+          throw new Error("El video HD terminó pero no se encontró la URL del resultado");
         }
 
         return {

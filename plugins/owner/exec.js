@@ -9,8 +9,8 @@ const pluginConfig = {
     name: 'exec',
     alias: ['>', 'run', 'execute'],
     category: 'owner',
-    description: 'Jalankan kode JS dari pesan yang di-reply (Owner Only)',
-    usage: '.> (reply pesan berisi kode)',
+    description: 'Ejecutar código JS desde el mensaje respondido (Solo Owner)',
+    usage: '.> (responde un mensaje con código)',
     example: '.> (reply)',
     isOwner: true,
     isPremium: false,
@@ -88,7 +88,7 @@ async function handler(m, { sock, store }) {
         output = output.slice(0, 3000) + '\n\n... (truncated)'
     }
 
-    const status = isError ? '❌ Error' : '✅ Success'
+    const status = isError ? '❌ Error' : '✅ Éxito'
     const type = isError ? result?.name || 'Error' : typeof result
 
     const codePreview = code.length > 100 ? code.slice(0, 100) + '...' : code

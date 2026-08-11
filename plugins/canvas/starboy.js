@@ -33,10 +33,10 @@ async function handler(m, { sock }) {
 
   try {
     const media = await q.download();
-    if (!media) throw new Error("Gagal mengunduh media");
+    if (!media) throw new Error("Error al descargar el medio");
 
     const imageUrl = await uploadImage(media);
-    if (!imageUrl) throw new Error("Gagal mengunggah gambar");
+    if (!imageUrl) throw new Error("Error al subir la imagen");
 
     const url = `https://api.cuki.biz.id/api/canvas/starboy?apikey=${config.APIkey.cuki}&image=${encodeURIComponent(imageUrl)}`;
     

@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "shop",
   alias: ["beli", "jual", "toko", "store", "buy", "sell"],
   category: "rpg",
-  description: "Beli dan jual item RPG",
+  description: "Compra y vende objetos RPG",
   usage: ".shop <buy/sell> <item> <jumlah>",
   example: ".shop buy potion 1",
   isOwner: false,

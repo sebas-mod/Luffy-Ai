@@ -68,7 +68,7 @@ const VIDEO_CONFIG = {
 async function downloadBuffer(url) {
   const res = await fetch(url);
   if (!res.ok) {
-    throw new Error(`Gagal download: ${res.status} ${res.statusText}`);
+    throw new Error(`Error al descargar: ${res.status} ${res.statusText}`);
   }
   return Buffer.from(await res.arrayBuffer());
 }
@@ -407,7 +407,7 @@ async function handler(m, { sock }) {
       template = TEMPLATES.vermeil;
       isVideo = true;
     } else {
-      throw new Error("Command tidak valid");
+      throw new Error("Comando no válido");
     }
 
     const inputText = normalizeText(text);

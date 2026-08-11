@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Ingresa un fragmento de la letra o el nombre de la canción que quieres buscar.\n\nEjemplo: `.sts ku menangis membayangkan`");
+    return m.reply("❌ Ingresa un fragmento de la letra o el nombre de la canción que quieres buscar.\n\nEjemplo: `.sts llorando al recordarte`");
   }
 
   await m.react("🕕");

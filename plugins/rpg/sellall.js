@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "sellall",
   alias: ["jualsemua", "quicksell"],
   category: "rpg",
-  description: "Jual semua item yang bisa dijual sekaligus",
+  description: "Vender todos los ítems que se puedan vender a la vez",
   usage: ".sellall",
   example: ".sellall",
   isOwner: false,

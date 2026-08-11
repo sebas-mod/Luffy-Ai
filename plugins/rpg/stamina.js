@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "stamina",
   alias: ["energy", "cekstamina"],
   category: "rpg",
-  description: "Cek dan pulihkan stamina",
+  description: "Revisa y recupera resistencia",
   usage: ".stamina / .stamina isi",
   example: ".stamina",
   isOwner: false,

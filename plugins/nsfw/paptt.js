@@ -5,7 +5,7 @@ const pluginConfig = {
     name: "paptt",
     alias: ["paptt"],
     category: "nsfw",
-    description: "Random paptt NSFW",
+    description: "Paptt NSFW aleatorio",
     usage: ".paptt",
     isOwner: false,
     isPremium: true,

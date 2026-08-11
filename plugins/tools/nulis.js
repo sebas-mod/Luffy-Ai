@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
           GlobalFonts.register(fontBuf, "Zahraaa");
         }
       } catch (err) {
-        console.error("Gagal load font:", err);
+        console.error("Error al cargar la fuente:", err);
       }
       _fontRegistered = true;
     }

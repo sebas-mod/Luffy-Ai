@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "kurir",
   alias: ["antar", "paket"],
   category: "rpg",
-  description: "Nganter paket orang, awas anjing galak!",
+  description: "Reparte los paquetes de la gente, ¡cuidado con los perros bravos!",
   usage: ".kurir",
   example: ".kurir",
   isOwner: false,

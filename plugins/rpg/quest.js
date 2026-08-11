@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "quest",
   alias: ["misi", "mission", "bounty"],
   category: "rpg",
-  description: "Ambil quest harian untuk reward bonus",
+  description: "Acepta misiones diarias para obtener recompensas extra",
   usage: ".quest",
   example: ".quest",
   isOwner: false,

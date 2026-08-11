@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "breeding",
   alias: ["breed", "kawin", "petbreed"],
   category: "rpg",
-  description: "Breeding pets untuk mendapat pet baru",
+  description: "Cruce de mascotas para obtener una mascota nueva",
   usage: ".breeding @user",
   example: ".breeding @user",
   isOwner: false,

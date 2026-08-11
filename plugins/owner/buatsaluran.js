@@ -2,7 +2,7 @@ const pluginConfig = {
   name: ["buatsaluran", "createsaluran", "createnewsletter"],
   alias: [],
   category: "owner",
-  description: "Buat saluran/newsletter baru",
+  description: "Crear un canal/newsletter nuevo",
   usage: ".buatsaluran <nama>|<deskripsi>",
   example: ".buatsaluran Info Bot|Update terbaru bot kami",
   isOwner: true,

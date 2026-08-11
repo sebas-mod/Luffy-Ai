@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "cook",
   alias: ["masak"],
   category: "rpg",
-  description: "Memasak makanan untuk menambah health",
+  description: "Cocina alimentos para recuperar HP",
   usage: ".cook",
   example: ".cook",
   isOwner: false,

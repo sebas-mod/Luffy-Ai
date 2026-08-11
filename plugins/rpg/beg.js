@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "beg",
   alias: ["ngemis", "minta"],
   category: "rpg",
-  description: "Mengemis untuk mendapatkan uang receh",
+  description: "Pedir limosna para conseguir dinero suelto",
   usage: ".beg",
   example: ".beg",
   isOwner: false,

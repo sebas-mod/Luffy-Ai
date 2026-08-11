@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'sifatusahabisnis',
     alias: ['usahabisnis', 'sifatbisnis'],
     category: 'primbon',
-    description: 'Cek sifat usaha/bisnis berdasarkan tanggal lahir',
+    description: 'Revisar la naturaleza del negocio según la fecha de nacimiento',
     usage: '.sifatusahabisnis <tgl> <bln> <thn>',
     example: '.sifatusahabisnis 1 1 2000',
     isOwner: false,
@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (m.args.length < 3) {
-        return m.reply(`💼 *sɪꜰᴀᴛ ᴜsᴀʜᴀ/ʙɪsɴɪs*\n\n> Format: tgl bln thn\n\n\`Contoh: ${m.prefix}sifatusahabisnis 1 1 2000\``)
+        return m.reply(`💼 *ɴᴀᴛᴜʀᴀʟᴇᴢᴀ ᴅᴇʟ ɴᴇɢᴏᴄɪᴏ*\n\n> Formato: día mes año\n\n\`Ejemplo: ${m.prefix}sifatusahabisnis 1 1 2000\``)
     }
     
     const [tgl, bln, thn] = m.args
@@ -31,13 +31,13 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data) {
             m.react('❌')
-            return m.reply(`❌ *ɢᴀɢᴀʟ*\n\n> Gagal menganalisa`)
+            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Error al analizar`)
         }
         
         const r = data.data
-        const response = `💼 *sɪꜰᴀᴛ ᴜsᴀʜᴀ/ʙɪsɴɪs*\n\n` +
-            `> Lahir: *${r.hari_lahir}*\n\n` +
-            `📊 *ᴀɴᴀʟɪsᴀ:*\n${r.usaha}\n\n` +
+        const response = `💼 *ɴᴀᴛᴜʀᴀʟᴇᴢᴀ ᴅᴇʟ ɴᴇɢᴏᴄɪᴏ*\n\n` +
+            `> Nacido: *${r.hari_lahir}*\n\n` +
+            `📊 *ᴀɴáʟɪsɪs:*\n${r.usaha}\n\n` +
             `> _${r.catatan}_`
         
         m.react('✅')

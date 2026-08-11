@@ -11,7 +11,7 @@ const pluginConfig = {
         'topcarne', 'topenergy'
     ],
     category: 'main',
-    description: 'Lihat leaderboard global (berry, exp, carne)',
+    description: 'Ver el ranking global (berry, exp, carne)',
     usage: '.leaderboard',
     example: '.topberry',
     isOwner: false,
@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
     }
     
     if (users.length === 0) {
-        return m.reply(`📊 *ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ*\n\n> Belum ada data user terdaftar di database.`)
+        return m.reply(`📊 *ʟᴇᴀᴅᴇʀʙᴏᴀʀᴅ*\n\n> Aún no hay datos de usuarios registrados en la base de datos.`)
     }
     
     const senderJid = m.sender.replace('@s.whatsapp.net', '')
@@ -88,8 +88,8 @@ async function handler(m, { sock }) {
             maxCarneUser.jid.includes('@') ? maxCarneUser.jid : maxCarneUser.jid + "@s.whatsapp.net"
         ]
         
-        const overviewText = `🏆 *LEADERBOARD OVERVIEW* 🏆\n\n` +
-            `_Pilih tombol di bawah untuk melihat ranking!_`
+        const overviewText = `🏆 *LEADERBOARD GLOBAL* 🏆\n\n` +
+            `_¡Elige un botón de abajo para ver el ranking!_`
             try {
                 await sock.sendButton(m.chat, fs.readFileSync(path.join(process.cwd(), 'assets', 'images', 'luffy.jpg')), overviewText, m, {
                     buttons: [
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
     const totalField = users.reduce((sum, u) => sum + (u[field] || 0), 0)
     
     let text = `🏆 *${title}* 🏆\n\n`
-    text += `Peringkat para penguasa tertinggi saat ini!\n\n`
+    text += `Ranking de los más poderosos del momento!\n\n`
     text += `╭┈┈⬡「 ${emoji} *RANKING* 」\n`
     
     const mentions = []

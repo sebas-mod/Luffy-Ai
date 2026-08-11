@@ -5,7 +5,7 @@ const pluginConfig = {
     name: 'bratvid2',
     alias: ['bratv2'],
     category: 'sticker',
-    description: 'Generate brat video v2',
+    description: 'Generar brat video v2',
     usage: '.bratvid2 <texto>',
     example: '.bratvid2 hello world',
     isOwner: false,

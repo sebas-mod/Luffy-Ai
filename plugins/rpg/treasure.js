@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "treasure",
   alias: ["chest", "peti", "openbox"],
   category: "rpg",
-  description: "Buka treasure chest untuk hadiah random",
+  description: "Abrir cofres del tesoro para recompensas aleatorias",
   usage: ".treasure",
   example: ".treasure",
   isOwner: false,

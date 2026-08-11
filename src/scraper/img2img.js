@@ -17,7 +17,7 @@ async function Uguu(buffer, filename) {
     return res.data.files[0].url;
   }
 
-  throw new Error("Upload ke Uguu gagal");
+  throw new Error("Error al subir a Uguu");
 }
 
 async function Img2Img(prompt, imageBuffer, filename = "upload.png") {

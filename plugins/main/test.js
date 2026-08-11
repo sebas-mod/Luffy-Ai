@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "test",
   alias: ["poll"],
   category: "test",
-  description: "Test Poll Menu Interaktif",
+  description: "Menú de encuesta interactivo de prueba",
   usage: ".poll",
   example: ".poll",
   isOwner: false,
@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     await m.reply("test")
     const msg = generateWAMessageFromContent(m.chat, {
       pollCreationMessageV6: {
-        name: "🔥 PILIH MENU INTERAKTIF 🔥",
+        name: "🔥 ELIGE MENÚ INTERACTIVO 🔥",
         options: [
           { optionName: "Anime" },
           { optionName: "Game" },
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
 
     await sock.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
   } catch (error) {
-    console.error("[TestPoll] Gagal:", error);
+    console.error("[TestPoll] Error:", error);
     m.reply("Error al crear el menú de encuesta.");
   }
 }

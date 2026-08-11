@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "enchant",
   alias: ["upgrade", "enhance", "tingkatkan"],
   category: "rpg",
-  description: "Upgrade equipment dengan enchantment",
+  description: "Mejorar el equipo con encantamientos",
   usage: ".enchant <item>",
   example: ".enchant sword",
   isOwner: false,

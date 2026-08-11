@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
 
     if (isJadibotActive(sender)) {
         return m.reply(
-            `⚠️ *ᴊᴀᴅɪʙᴏᴛ ꜱᴜᴅᴀʜ ᴀᴋᴛɪꜰ*\n\n` +
+            `⚠️ *ᴊᴀᴅɪʙᴏᴛ ʏᴀ ᴇsᴛá ᴀᴄᴛɪᴠᴏ*\n\n` +
             `> Tu número ya es un bot\n` +
             `> Escribe \`${m.prefix}stopjadibot\` para detenerlo`
         )
@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
 
     if (useQR) {
         await m.reply(
-            `🤖 *ᴊᴀᴅɪʙᴏᴛ — Qʀ ᴍᴏᴅᴇ*\n\n` +
-            `> Menyiapkan koneksi...\n` +
-            `> Scan QR Code yang akan dikirim`
+            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴍᴏᴅᴏ Qʀ*\n\n` +
+            `> Preparando conexión...\n` +
+            `> Escanea el QR Code que se enviará`
         )
     } else {
         await m.reply(
-            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴘᴀɪʀɪɴɢ ᴄᴏᴅᴇ*\n\n` +
-            `> Menyiapkan koneksi...`
+            `🤖 *ᴊᴀᴅɪʙᴏᴛ — ᴄóᴅɪɢᴏ ᴅᴇ ᴇᴍᴘᴀʀᴇᴊᴀᴍɪᴇɴᴛᴏ*\n\n` +
+            `> Preparando conexión...`
         )
     }
 
@@ -48,9 +48,9 @@ async function handler(m, { sock }) {
         await startJadibot(sock, m, sender, !useQR)
     } catch (e) {
         await m.reply(
-            `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ*\n\n` +
-            `> ${e.message || 'Terjadi kesalahan'}\n\n` +
-            `Coba lagi dalam beberapa menit.`
+            `❌ *ᴊᴀᴅɪʙᴏᴛ ꜰᴀʟʟᴏ*\n\n` +
+            `> ${e.message || 'Ocurrió un error'}\n\n` +
+            `Inténtalo de nuevo en unos minutos.`
         )
     }
 }

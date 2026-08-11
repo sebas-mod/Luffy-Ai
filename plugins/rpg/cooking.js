@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "cooking",
   alias: ["chef"],
   category: "rpg",
-  description: "Masak makanan untuk stamina dan HP",
+  description: "Cocinar comida para resistencia y HP",
   usage: ".cooking <recipe>",
   example: ".cooking friedrice",
   isOwner: false,

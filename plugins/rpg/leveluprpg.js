@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "leveluprpg",
   alias: ["lvluprpg", "rpglevelup"],
   category: "rpg",
-  description: "Toggle notifikasi level up RPG",
+  description: "Activar o desactivar la notificación de nivel RPG",
   usage: ".leveluprpg <on/off>",
   example: ".leveluprpg on",
   isOwner: false,

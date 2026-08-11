@@ -20,14 +20,14 @@ async function uploadTo0x0(buffer, opts) {
   })
 
   if (res.status < 200 || res.status >= 300) {
-    throw new Error(`Upload gagal (HTTP ${res.status}): ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`);
+    throw new Error(`Error de subida (HTTP ${res.status}): ${typeof res.data === "string" ? res.data : JSON.stringify(res.data)}`);
   }
   
   if (res.data?.status && res.data?.path) {
     return { url: res.data.path, directUrl: res.data.path }
   }
 
-  throw new Error("Response tidak ada data valid dari Termai");
+  throw new Error("La respuesta de Termai no tiene datos válidos");
 }
 
 // Map everything locally to termai wrapper, keeping exported name identical for compatibility

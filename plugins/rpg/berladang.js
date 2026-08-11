@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "berladang",
   alias: ["farm", "tanam", "berkebun"],
   category: "rpg",
-  description: "Berladang untuk mendapat hasil panen",
+  description: "Cultiva la tierra para obtener cosechas",
   usage: ".berladang",
   example: ".berladang",
   isOwner: false,

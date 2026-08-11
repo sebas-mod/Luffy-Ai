@@ -15,22 +15,17 @@ const pluginConfig = {
 
 
 async function getVideoDownloadUrl(url) {
+  const videoId = url.match(/(?:[?&]v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([\w-]{11})/)?.[1] || url;
   try {
     const { data } = await axios.get(
-      `https://my.izuka-api.xyz/api/downloader/ytmp4?url=${encodeURIComponent(url)}`
+      `https://apiyosoyyo-ofc.onrender.com/api/youtube?q=${encodeURIComponent(videoId)}&apiKey=Sebas-api2026`,
+      { timeout: 60000 }
     );
-
-    if (data?.status && data?.result?.video_normal) {
-      const videos = data.result.video_normal.filter(v => v.ext === "mp4");
-      if (videos.length > 0) {
-        videos.sort((a, b) => parseInt(b.quality) - parseInt(a.quality));
-        if (videos[0] && videos[0].url) {
-          return videos[0].url;
-        }
-      }
+    if (data?.status && data?.result?.length && data.result[0]?.download?.mp4) {
+      return data.result[0].download.mp4;
     }
   } catch (e) {
-    console.error("[YTMP4 Izuka API Error]", e.message);
+    console.error("[YTMP4 API Error]", e.message);
   }
 
   const fallback = await ytdl(url, "mp4");

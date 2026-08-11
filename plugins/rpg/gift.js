@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "gift",
   alias: ["kasih", "hadiah"],
   category: "rpg",
-  description: "Beri hadiah ke pasangan untuk meningkatkan love",
+  description: "Regala a tu pareja para aumentar el amor",
   usage: ".gift <item> <jumlah>",
   example: ".gift diamond 1",
   isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
 
   if (!itemKey) {
     return m.reply(
-      `🎁 *ɢɪꜰᴛ*\n\n` +
+      `🎁 *ʀᴇɢᴀʟᴏ*\n\n` +
         `*📋 *ᴜsᴏ:*
 \n` +
         `> > Elige el ítem para regalar\n` +

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "coinflip",
   alias: ["cf", "flip", "toss"],
   category: "rpg",
-  description: "Gambling coin flip",
+  description: "Lanza la moneda y apuesta (cara o cruz)",
   usage: ".coinflip <heads/tails> <bet>",
   example: ".coinflip heads 5000",
   isOwner: false,

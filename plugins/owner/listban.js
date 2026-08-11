@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'listban',
     alias: ['listbanned', 'banlist'],
     category: 'owner',
-    description: 'Melihat daftar banned user',
+    description: 'Ver la lista de usuarios baneados',
     usage: '.listban',
     example: '.listban',
     isOwner: true,

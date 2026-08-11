@@ -17,7 +17,7 @@ const pluginConfig = {
   name: "menucat",
   alias: ["mc", "category", "cat"],
   category: "main",
-  description: "Menampilkan commands dalam kategori tertentu",
+  description: "Mostrar los comandos de una categoría específica",
   usage: ".menucat <kategori>",
   example: ".menucat tools",
   isOwner: false,
@@ -245,7 +245,7 @@ async function handler(m, { sock, db }) {
                       text: txt,
                     },
                     footer: {
-                      text: "Pilih tombol dibawah untuk kembali ke menu utama",
+                      text: "Elige el botón de abajo para volver al menú principal",
                     },
                     contextInfo: {
                       isForwarded: true,
@@ -294,7 +294,7 @@ async function handler(m, { sock, db }) {
           }
 
           const weatherCode = {
-            0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+            0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
           }
 
           async function weatherMenu(city = "Jakarta") {
@@ -304,7 +304,7 @@ async function handler(m, { sock, db }) {
               if (!loc) return "Clima no disponible"
               const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
               const current = res.data.current
-              const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+              const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
               return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
             } catch {
               return "Clima no disponible"
@@ -338,7 +338,7 @@ async function handler(m, { sock, db }) {
                   nativeFlowMessage: {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
-                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
+                      bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Selecciona el menú", button_title: "🍙 Ver categoría" },
                       tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                     }),
                     buttons: [
@@ -379,7 +379,7 @@ async function handler(m, { sock, db }) {
   }
 
   if (matchedCat === "owner" && !m.isOwner) {
-    return m.reply(`❌ *AKSES DITOLAK*\n\n> Kategori ini hanya untuk owner.`);
+    return m.reply(`❌ *ACCESO DENEGADO*\n\n> Esta categoría es solo para el owner.`);
   }
 
   const pluginCommands = commandsByCategory[matchedCat] || [];
@@ -435,7 +435,7 @@ async function handler(m, { sock, db }) {
                     text: txt,
                   },
                   footer: {
-                    text: "Pilih tombol dibawah untuk kembali ke menu utama",
+                    text: "Elige el botón de abajo para volver al menú principal",
                   },
                   contextInfo: {
                     isForwarded: true,
@@ -491,7 +491,7 @@ async function handler(m, { sock, db }) {
         }
 
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -501,7 +501,7 @@ async function handler(m, { sock, db }) {
             if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
             return "Clima no disponible"
@@ -535,7 +535,7 @@ async function handler(m, { sock, db }) {
                 nativeFlowMessage: {
                   messageParamsJson: JSON.stringify({
                     limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
-                    bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
+                    bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Selecciona el menú", button_title: "🍙 Ver categoría" },
                     tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                   }),
                   buttons: [
@@ -560,7 +560,7 @@ async function handler(m, { sock, db }) {
       }
       case 6: {
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -570,7 +570,7 @@ async function handler(m, { sock, db }) {
             if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
             return "Clima no disponible"

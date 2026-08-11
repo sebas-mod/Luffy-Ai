@@ -9,8 +9,8 @@ const pluginConfig = {
     name: 'eval',
     alias: ['$', 'ev', 'evaluate', '=>'],
     category: 'owner',
-    description: 'Jalankan kode JavaScript (Owner Only)',
-    usage: '=> <code> atau .$ <code>',
+    description: 'Ejecutar código JavaScript (Solo Owner)',
+    usage: '=> <código> o .$ <código>',
     example: '=> m.chat',
     isOwner: true,
     isPremium: false,
@@ -72,7 +72,7 @@ async function handler(m, { sock, store }) {
         output = output.slice(0, 3000) + '\n\n... (truncated)'
     }
 
-    const status = isError ? '❌ Error' : '✅ Success'
+    const status = isError ? '❌ Error' : '✅ Éxito'
     const type = isError ? result?.name || 'Error' : typeof result
 
     await m.reply(

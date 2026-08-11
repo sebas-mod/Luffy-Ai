@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "meditation",
   alias: ["rest", "istirahat", "tidur", "sleep"],
   category: "rpg",
-  description: "Istirahat untuk pulihkan HP dan stamina",
+  description: "Descansa para recuperar HP y resistencia",
   usage: ".meditation",
   example: ".meditation",
   isOwner: false,
@@ -31,7 +31,7 @@ async function handler(m) {
 
   if (currentStamina >= maxStamina && currentHealth >= maxHealth && currentMana >= maxMana) {
     return m.reply(
-      `💤 *ʏᴀ ʟʟᴇɴᴏ*\n\n` +
+      `💤 *ʏᴀ ᴇsᴛás ʟʟᴇɴᴏ*\n\n` +
         `> ⚡ Resistencia: ${currentStamina}/${maxStamina}\n` +
         `> ❤️ Salud: ${currentHealth}/${maxHealth}\n` +
         `> 💙 Maná: ${currentMana}/${maxMana}\n\n` +

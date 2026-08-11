@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "parkir",
   alias: ["kangparkir", "markir"],
   category: "rpg",
-  description: "Jadi tukang parkir minimarket, waspada satpol PP!",
+  description: "Conviértete en aparcacoches de un supermercado, ¡cuidado con la inspección municipal!",
   usage: ".parkir",
   example: ".parkir",
   isOwner: false,

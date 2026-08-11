@@ -13,7 +13,7 @@ const pluginConfig = {
   name: "owner",
   alias: ["creator", "dev", "developer"],
   category: "main",
-  description: "Menampilkan kontak owner bot",
+  description: "Mostrar el contacto del owner del bot",
   usage: ".owner",
   example: ".owner",
   isOwner: false,
@@ -47,7 +47,7 @@ async function handler(m, { sock, config: botConfig }) {
       m.chat,
       {
         contacts: {
-          displayName: `Ini adalah owner kami`,
+          displayName: `Este es nuestro owner`,
           contacts,
         },
       },

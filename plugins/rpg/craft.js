@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "craft",
   alias: ["buat", "create"],
   category: "rpg",
-  description: "Craft item dari materials",
+  description: "Elaborar objetos a partir de materiales",
   usage: ".craft <item>",
   example: ".craft sword",
   isOwner: false,

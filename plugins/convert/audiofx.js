@@ -41,7 +41,7 @@ const pluginConfig = {
     name: [...EFFECT_NAMES],
     alias: [],
     category: 'convert',
-    description: 'Audio effects & voice changer',
+    description: 'Efectos de audio y cambiador de voz',
     usage: '.<effect>',
     example: '',
     isOwner: false,

@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "steal",
   alias: ["mencuri", "curi", "pickpocket"],
   category: "rpg",
-  description: "Mencuri dari NPC untuk gold",
+  description: "Roba a los NPC para ganar oro",
   usage: ".steal",
   example: ".steal",
   isOwner: false,

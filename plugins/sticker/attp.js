@@ -44,11 +44,11 @@ async function handler(m, { sock }) {
         const url = `https://api.neoxr.eu/api/attp3?text=${encodeURIComponent(text)}&color=${color}&apikey=${NEOXR_APIKEY}`
         const data = await f(url)
         if (!data?.status || !data?.data?.url) {
-            throw new Error('API tidak mengembalikan data yang valid')
+            throw new Error('La API no devolvió datos válidos')
         }
         const stickerUrl = data.data.url
         const stickerRes = await f(stickerUrl, 'buffer')
-        if (!stickerRes) throw new Error('Gagal mengunduh sticker dari server')
+        if (!stickerRes) throw new Error('Error al descargar el sticker del servidor')
         let finalSticker = stickerRes
         try {
             finalSticker = await addExifToWebp(stickerRes, {

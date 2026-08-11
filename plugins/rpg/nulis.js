@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "nulis",
   alias: ["author", "wattpad"],
   category: "rpg",
-  description: "Nulis cerpen atau artikel untuk dapet royalti",
+  description: "Escribir cuentos o artículos para ganar regalías",
   usage: ".nulis",
   example: ".nulis",
   isOwner: false,

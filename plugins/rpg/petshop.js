@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "petshop",
   alias: ["tokopet", "buypet", "belipet"],
   category: "rpg",
-  description: "Beli pet dari toko",
+  description: "Compra una mascota en la tienda",
   usage: ".petshop <buy> <pet>",
   example: ".petshop buy cat",
   isOwner: false,

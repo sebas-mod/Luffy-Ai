@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "autosambut",
   alias: ["sambutowner"],
   category: "group",
-  description: "Mengatur fitur sambutan otomatis saat owner muncul setelah lama idle",
+  description: "Configurar el saludo automático cuando el owner aparece tras mucho tiempo inactivo",
   usage: ".autosambut on/off/delay/add/del/list",
   example: ".autosambut on",
   isOwner: true,

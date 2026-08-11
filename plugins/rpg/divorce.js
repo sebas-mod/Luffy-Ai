@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "divorce",
   alias: ["cerai", "pisah"],
   category: "rpg",
-  description: "Bercerai dari pasangan",
+  description: "Divorciarte de tu pareja",
   usage: ".divorce",
   example: ".divorce",
   isOwner: false,

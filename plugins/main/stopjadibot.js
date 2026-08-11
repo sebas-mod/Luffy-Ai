@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
         )
     } catch (e) {
         await m.react('☢')
-        await m.reply(`❌ Gagal menghentikan jadibot: ${e.message}`)
+        await m.reply(`❌ Error al detener el jadibot: ${e.message}`)
     }
 }
 

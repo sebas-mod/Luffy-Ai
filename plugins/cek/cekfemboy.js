@@ -33,7 +33,7 @@ async function convertGifToMp4(buffer) {
     await queueFFmpeg(
       `ffmpeg -y -ignore_loop 0 -i "${gifPath}" -t 30 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -pix_fmt yuv420p -movflags faststart -preset ultrafast -an "${mp4Path}"`,
     );
-    if (!fs.existsSync(mp4Path)) throw new Error("Gagal convert GIF");
+    if (!fs.existsSync(mp4Path)) throw new Error("Error al convertir el GIF");
     return fs.readFileSync(mp4Path);
   } finally {
     try {

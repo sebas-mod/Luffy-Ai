@@ -19,7 +19,7 @@ const pluginConfig = {
   name: "allmenu",
   alias: ["fullmenu", "am", "allcommand", "semua"],
   category: "main",
-  description: "Menampilkan semua command lengkap per kategori",
+  description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",
   example: ".allmenu",
   isOwner: false,
@@ -121,17 +121,17 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   let txt = ``;
 
   const weatherCodeMap = {
-    0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+    0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
   };
 
-  let weatherText = "Merangin Cerah Berawan 22°C ☀️";
+  let weatherText = "Merangin Parcialmente nublado 22°C ☀️";
   try {
     const geo = await axios.get(`https://geocoding-api.open-meteo.com/v1/search?name=Merangin&count=1`);
     const loc = geo.data.results?.[0];
     if (loc) {
       const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`);
       const current = res.data.current;
-      const kondisi = weatherCodeMap[current.weather_code] || "Cerah Berawan";
+      const kondisi = weatherCodeMap[current.weather_code] || "Parcialmente nublado";
       weatherText = `Merangin ${kondisi} ${Math.round(current.temperature_2m)}°C`;
     }
   } catch (e) { }
@@ -252,7 +252,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `> Halo *${pushName}* 👋 Perkenalkan aku *${botName}*, buatan *${devName}* Saya siap membantu kebutuhanmu, mulai dari download video, main game, tanya jawab, nyari info/sesuatu, bikin sticker, dan lain-lain.\n\n`,
+                    text: `> Hola *${pushName}* 👋 Me presento, soy *${botName}*, creado por *${devName}*. Estoy listo para ayudarte con tus necesidades, desde descargar videos, jugar, hacer preguntas, buscar información/cosas, crear stickers y mucho más.\n\n`,
                   },
                   footer: {
                     text: txt
@@ -305,7 +305,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         }
 
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -315,7 +315,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
             if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
             return "Clima no disponible"
@@ -349,7 +349,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                 nativeFlowMessage: {
                   messageParamsJson: JSON.stringify({
                     limited_time_offer: { text: `${greeting}`, url: "Hai", expiration_time: Date.now() + 10000 },
-                    bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Please select the menu", button_title: "🍙 See Category" },
+                    bottom_sheet: { in_thread_buttons_limit: 2, divider_indices: [1, 2, 3, 4, 5, 999], list_title: "Selecciona el menú", button_title: "🍙 Ver categoría" },
                     tap_target_configuration: { title: " X ", description: "bomboclard", canonical_url: "https://https://example.com", domain: "shop.example.com", button_index: 0 },
                   }),
                   buttons: [
@@ -374,7 +374,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
       }
       case 6: {
         const weatherCode = {
-          0: "☀️ Cerah", 1: "🌤️ Cerah Berawan", 2: "⛅ Berawan", 3: "☁️ Mendung", 45: "🌫️ Berkabut", 48: "🌫️ Kabut Tebal", 51: "🌦️ Gerimis", 61: "🌧️ Hujan Ringan", 63: "🌧️ Hujan", 65: "⛈️ Hujan Lebat", 80: "🌦️ Hujan Lokal", 95: "⛈️ Badai Petir"
+          0: "☀️ Despejado", 1: "🌤️ Parcialmente nublado", 2: "⛅ Nublado", 3: "☁️ Cubierto", 45: "🌫️ Niebla", 48: "🌫️ Niebla densa", 51: "🌦️ Llovizna", 61: "🌧️ Lluvia ligera", 63: "🌧️ Lluvia", 65: "⛈️ Lluvia intensa", 80: "🌦️ Lluvia local", 95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -384,7 +384,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
             if (!loc) return "Clima no disponible"
             const res = await axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${loc.latitude}&longitude=${loc.longitude}&current=temperature_2m,weather_code`)
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
             return "Clima no disponible"

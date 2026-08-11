@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "alchemy",
   alias: ["potion", "brew", "ramuan"],
   category: "rpg",
-  description: "Buat potion dan ramuan dari herba",
+  description: "Elaborar pociones y remedios a partir de hierbas",
   usage: ".alchemy <potion>",
   example: ".alchemy healthpotion",
   isOwner: false,

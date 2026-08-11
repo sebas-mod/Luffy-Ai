@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "stats",
   alias: ["botstats", "status", "stat"],
   category: "main",
-  description: "Menampilkan statistik bot",
+  description: "Mostrar las estadísticas del bot",
   usage: ".stats",
   example: ".stats",
   isOwner: false,
@@ -77,16 +77,16 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
     };
 
     const table = [
-      "📊 Bot Statistics",
-      "Key | Value",
-      `Bot | ${statsObj.bot};;Version | ${statsObj.version};;Uptime | ${statsObj.uptime}`,
-      `Users | ${statsObj.database.users};;Premium | ${statsObj.database.premium};;Groups | ${statsObj.database.groups}`,
-      `Platform | ${statsObj.system.platform};;Node | ${statsObj.system.node};;CPU Load | ${statsObj.system.cpuLoad}`,
-      `RAM | ${statsObj.system.ram};;Heap | ${statsObj.system.heap};;Updated | ${statsObj.updated}`,
+      "📊 Estadísticas del Bot",
+      "Clave | Valor",
+      `Bot | ${statsObj.bot};;Versión | ${statsObj.version};;Uptime | ${statsObj.uptime}`,
+      `Usuarios | ${statsObj.database.users};;Premium | ${statsObj.database.premium};;Grupos | ${statsObj.database.groups}`,
+      `Plataforma | ${statsObj.system.platform};;Node | ${statsObj.system.node};;Carga CPU | ${statsObj.system.cpuLoad}`,
+      `RAM | ${statsObj.system.ram};;Heap | ${statsObj.system.heap};;Actualizado | ${statsObj.updated}`,
     ];
 
     await sock.sendTableV2(m.chat, table, m, {
-      title: "📊 Berikut ini adalah statistik dari bot kami",
+      title: "📊 Estas son las estadísticas de nuestro bot",
       footer: botConfig?.bot?.name,
     });
   } catch (error) {

@@ -538,7 +538,7 @@ async function hotReloadPlugin(filePath) {
   try {
     const plugin = await loadPlugin(filePath, true);
     if (!plugin) {
-      return { success: false, error: "Failed to load plugin" };
+      return { success: false, error: "Error al cargar el plugin" };
     }
 
     const names = normalizePluginNames(plugin.config.name);
@@ -556,7 +556,7 @@ async function hotReloadPlugin(filePath) {
       return { success: true, name: primaryName };
     }
 
-    return { success: false, error: "Failed to register plugin" };
+    return { success: false, error: "Error al registrar el plugin" };
   } catch (error) {
     logger.error("plugin", `hot reload error: ${error.message}`);
     return { success: false, error: error.message };

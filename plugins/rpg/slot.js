@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "slot",
   alias: ["slots", "mesin"],
   category: "rpg",
-  description: "Main slot machine gambling",
+  description: "Jugar a la máquina tragamonedas",
   usage: ".slot <bet>",
   example: ".slot 5000",
   isOwner: false,

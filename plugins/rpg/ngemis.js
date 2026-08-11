@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "ngemis",
   alias: ["minta", "gembel"],
   category: "rpg",
-  description: "Ngemis di jalanan dengan peluang dapat Nasi Bungkus (Tambah stamina)",
+  description: "Pide limosna en la calle con la posibilidad de conseguir un almuerzo gratis (aumenta resistencia)",
   usage: ".ngemis",
   example: ".ngemis",
   isOwner: false,

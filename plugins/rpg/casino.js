@@ -4,7 +4,7 @@ const pluginConfig = {
   name: "casino",
   alias: ["judi", "gamble"],
   category: "rpg",
-  description: "Bermain casino untuk judi",
+  description: "Jugar en el casino y apostar",
   usage: ".casino <jumlah>",
   example: ".casino 10000",
   isOwner: false,

@@ -10,7 +10,7 @@ async function scrapeWutheringWavesCharacter(name) {
     });
 
     if (!res.ok) {
-        throw new Error("Data tidak ditemukan");
+        throw new Error("Datos no encontrados");
     }
 
     const html = await res.text();
@@ -20,7 +20,7 @@ async function scrapeWutheringWavesCharacter(name) {
 
     const title = clean($("#firstHeading").text());
     if (!title) {
-        throw new Error("Halaman tidak valid");
+        throw new Error("Página no válida");
     }
 
     const bio = clean($(".mw-parser-output > p").first().text());

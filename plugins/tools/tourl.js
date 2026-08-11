@@ -52,7 +52,7 @@ async function uploadToCatbox(buffer, filename) {
 
   if (!res.ok) throw new Error("Catbox falló");
   const url = await res.text();
-  if (!url.startsWith("http")) throw new Error("Invalid response");
+  if (!url.startsWith("http")) throw new Error("Respuesta no válida");
   return { host: "Catbox", url, expires: "Permanent" };
 }
 
@@ -77,7 +77,7 @@ async function uploadToLitterbox(buffer, filename) {
 
   if (!res.ok) throw new Error("Litterbox falló");
   const url = await res.text();
-  if (!url.startsWith("http")) throw new Error("Invalid response");
+  if (!url.startsWith("http")) throw new Error("Respuesta no válida");
   return { host: "Litterbox", url, expires: "72 jam" };
 }
 
@@ -97,7 +97,7 @@ async function uploadTo0x0_alt(buffer, filename) {
 
   if (!res.ok) throw new Error("Uguu falló");
   const data = await res.json();
-  if (!data?.data?.url) throw new Error("Invalid response");
+  if (!data?.data?.url) throw new Error("Respuesta no válida");
 
   return { host: "Uguu", url: data.files[0].url, expires: "60 menit" };
 }
@@ -126,7 +126,7 @@ async function uploadToQuax(buffer, filename) {
   const data = await res.json();
 
   if (!data?.success || !Array.isArray(data.files) || !data.files[0]?.url) {
-    throw new Error("Invalid response");
+    throw new Error("Respuesta no válida");
   }
 
   return { host: "Qu.ax", url: data.files[0].url, expires: "Permanent" };
@@ -148,7 +148,7 @@ async function uploadToTermai(buffer) {
   const data = await res.json();
 
   if (!data?.status || !data?.path) {
-    throw new Error("Invalid response");
+    throw new Error("Respuesta no válida");
   }
 
   return { host: "Termai", url: data.path, expires: "Unknown" };
@@ -177,7 +177,7 @@ async function uploadToPone(buffer, filename) {
   if (!res.ok) throw new Error("Pone falló");
   const data = await res.json();
   const url = data?.files?.[0]?.url?.replaceAll("\\/", "/") || null;
-  if (!data?.success || !url) throw new Error("Invalid response");
+  if (!data?.success || !url) throw new Error("Respuesta no válida");
   return { host: "Pone", url, expires: "Permanent" };
 }
 
@@ -205,7 +205,7 @@ async function uploadToKappa(buffer, filename) {
   const raw = await res.text();
   const data = JSON.parse(raw);
   const url = data?.link || null;
-  if (!url) throw new Error("Invalid response");
+  if (!url) throw new Error("Respuesta no válida");
   return { host: "Kappa", url, expires: "Permanent" };
 }
 
@@ -340,7 +340,7 @@ async function uploadToUguu(buffer, filename) {
   if (!res.ok) throw new Error("Uguu falló");
   const data = await res.json();
   const url = data?.files?.[0]?.url || null;
-  if (!data?.success || !url) throw new Error("Invalid response");
+  if (!data?.success || !url) throw new Error("Respuesta no válida");
   return { host: "Uguu", url, expires: "48 jam" };
 }
 
@@ -459,7 +459,7 @@ async function uploadToTmpFiles(buffer, filename) {
   if (!res.ok) throw new Error("TmpFiles falló");
   const data = await res.json();
   const url = data?.data?.url || null;
-  if (data?.status !== "success" || !url) throw new Error("Invalid response");
+  if (data?.status !== "success" || !url) throw new Error("Respuesta no válida");
   return { host: "TmpFiles", url, expires: "6 jam" };
 }
 
@@ -533,7 +533,7 @@ async function uploadToUnggah(buffer, filename) {
 
   if (!res.ok) throw new Error("Subida falló");
   const data = await res.json();
-  if (!data?.url) throw new Error("Invalid response");
+  if (!data?.url) throw new Error("Respuesta no válida");
   
   return { host: "Unggah", url: data.url, expires: "Permanent" };
 }

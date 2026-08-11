@@ -41,7 +41,7 @@ async function fallbackToMp3Buffer(url) {
 
     const mp3Buffer = fs.readFileSync(outputPath);
     if (!mp3Buffer.length) {
-      throw new Error("Konversi fallback ke MP3 gagal");
+      throw new Error("Error al convertir a MP3 (fallback)");
     }
 
     return mp3Buffer;
@@ -168,7 +168,7 @@ class Youtube {
     const result = await ytdl(url, outputFormat);
 
     if (!result?.status || !result?.dl) {
-      throw new Error(result?.mess || "Gagal mengunduh konten YouTube");
+      throw new Error(result?.mess || "Error al descargar el contenido de YouTube");
     }
 
     return this.wrapResponse({

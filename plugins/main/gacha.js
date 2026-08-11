@@ -3,7 +3,7 @@ const pluginConfig = {
   name: "gacha",
   alias: ["spin", "pull", "lucky"],
   category: "rpg",
-  description: "Gacha untuk dapat hadiah random",
+  description: "Gacha para obtener premios aleatorios",
   usage: ".gacha",
   example: ".gacha",
   isOwner: false,
@@ -169,21 +169,21 @@ async function handler(m, { sock }) {
 
   db.save();
 
-  let text = `${createGachaAnimation()} *ɢᴀᴄʜᴀ ʀᴇsᴜʟᴛ*\n\n`;
+  let text = `${createGachaAnimation()} *ʀᴇꜱᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ɢᴀᴄʜᴀ*\n\n`;
   text += `╭─────────────╮\n`;
   text += `│  ${reward.emoji} ${reward.emoji} ${reward.emoji}  │\n`;
   text += `╰─────────────╯\n\n`;
 
   if (reward.rarity === "mythic") {
-    text += `🎊🎊🎊 *JACKPOT!* 🎊🎊🎊\n\n`;
+    text += `🎊🎊🎊 *¡JACKPOT!* 🎊🎊🎊\n\n`;
   } else if (reward.rarity === "legendary") {
-    text += `✨ *LEGENDARY PULL!* ✨\n\n`;
+    text += `✨ *¡TIRADA LEGENDARIA!* ✨\n\n`;
   } else if (reward.rarity === "epic") {
-    text += `💜 *EPIC PULL!* 💜\n\n`;
+    text += `💜 *¡TIRADA ÉPICA!* 💜\n\n`;
   }
 
-  text += `*Rarity:* ${rarityColors[reward.rarity]}\n`;
-  text += `*Hadiah:* ${typeEmoji} ${rewardText}\n\n`;
+  text += `*Rareza:* ${rarityColors[reward.rarity]}\n`;
+  text += `*Premio:* ${typeEmoji} ${rewardText}\n\n`;
   text += `_Cooldown: 5 menit_`;
 
   await m.reply(text);

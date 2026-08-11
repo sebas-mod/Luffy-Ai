@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "pet",
   alias: ["mypet", "hewanku", "peliharaan"],
   category: "rpg",
-  description: "Kelola pet/hewan peliharaan",
+  description: "Gestionar tu mascota/animal de compañía",
   usage: ".pet <feed/train/status>",
   example: ".pet status",
   isOwner: false,

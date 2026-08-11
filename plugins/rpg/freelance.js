@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "freelance",
   alias: ["desain", "koding"],
   category: "rpg",
-  description: "Mengerjakan project online klien bule",
+  description: "Trabajar en proyectos online para clientes extranjeros",
   usage: ".freelance",
   example: ".freelance",
   isOwner: false,

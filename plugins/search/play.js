@@ -33,12 +33,13 @@ async function handler(m, { sock, text }) {
     if (!search.videos.length) throw new Error("Video no encontrado");
     const video = search.videos[0];
 
-    const res = await axios.get(`https://api.azbry.com/api/download/ytmp3?url=${encodeURIComponent(video.url)}`, { timeout: 60000 });
+    const res = await axios.get(`https://apiyosoyyo-ofc.onrender.com/api/youtube/v2?url=${encodeURIComponent(video.url)}&format=mp3&apiKey=Sebas-api2026`, { timeout: 60000 });
     const data = res.data;
-    
-    if (!data.status || !data.result || !data.result.download) {
+
+    if (!data.status || !data.result?.results?.length) {
        throw new Error("Error al obtener el audio de la API");
     }
+    const downloadUrl = data.result.results[0].download;
 
     let info = `🎵 *SONANDO AHORA*\n\n`;
     info += `📌 *Título:* ${video.title}\n\n`;
@@ -70,7 +71,7 @@ async function handler(m, { sock, text }) {
       },
     );
 
-    const audioRes = await axios.get(data.result.download, { responseType: "arraybuffer", timeout: 60000 });
+    const audioRes = await axios.get(downloadUrl, { responseType: "arraybuffer", timeout: 60000 });
     const audioBuffer = Buffer.from(audioRes.data);
 
     await sock.sendMessage(

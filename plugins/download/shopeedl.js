@@ -29,7 +29,7 @@ async function extract(url) {
 
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   const data = await res.json();
-  if (!data.success) throw new Error(data.error || "Extraction failed");
+  if (!data.success) throw new Error(data.error || "Error al extraer el enlace");
   return data;
 }
 

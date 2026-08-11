@@ -112,7 +112,7 @@ async function sendWW(sock, jid, text, title, body, thumbBuffer, mentions) {
       caption: `${config.info.website} ${text}`,
       url: `${config.info.website}`,
       title: title || "🐺 WEREWOLF",
-      description: body || "Social deduction game!",
+      description: body || "¡Juego de deducción social!",
       jpegThumbnail: thumbBuffer || thumbWW,
       previewType: 0,
     },

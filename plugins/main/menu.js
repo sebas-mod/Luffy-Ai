@@ -28,7 +28,7 @@ const pluginConfig = {
   name: "menu",
   alias: ["help", "bantuan", "commands", "m"],
   category: "main",
-  description: "Menampilkan menu utama bot",
+  description: "Mostrar el menú principal del bot",
   usage: ".menu",
   example: ".menu",
   isOwner: false,
@@ -248,24 +248,24 @@ async function buildMenuText(
   const totalUsers = db.getUserCount();
   let txt = `${greeting}\n\n`;
   txt += `      ${m.pushName || "User"}\n\n`;
-  txt += `Halo Kawan 🌱\n`;
-  txt += `Perkenalkan aku ${botConfig.bot?.name || "Denia Al"}, buatan ${botConfig.bot?.developer || "Alesha"} Saya siap membantu\n`;
-  txt += `kebutuhanmu, mulai dari download\n`;
-  txt += `video, main game, tanya jawab, nyari\n`;
-  txt += `info/sesuatu, bikin sticker, dan lain-lain.\n\n`;
+  txt += `Hola Amigo 🌱\n`;
+  txt += `Me presento, soy ${botConfig.bot?.name || "Denia Al"}, creado por ${botConfig.bot?.developer || "Alesha"}. Estoy listo para ayudarte\n`;
+  txt += `con tus necesidades, desde descargar\n`;
+  txt += `videos, jugar, hacer preguntas, buscar\n`;
+  txt += `información/cosas, crear stickers y mucho más.\n\n`;
 
-  txt += `    ᯓ INFO USER\n`;
-  txt += `╭   • Nama : ${m.pushName || "User"}\n`;
-  txt += `┆   • Status : ${userRole}\n`;
-  txt += `┆   • Mode : ${(botConfig.mode || "public").toUpperCase()}\n`;
-  txt += `┆   • Nomor : ${m.sender.split("@")[0]}\n`;
-  txt += `┆   • Waktu : ${timeStr} WIB\n`;
+  txt += `    ᯓ INFO USUARIO\n`;
+  txt += `╭   • Nombre : ${m.pushName || "User"}\n`;
+  txt += `┆   • Estado : ${userRole}\n`;
+  txt += `┆   • Modo : ${(botConfig.mode || "public").toUpperCase()}\n`;
+  txt += `┆   • Número : ${m.sender.split("@")[0]}\n`;
+  txt += `┆   • Hora : ${timeStr} WIB\n`;
   txt += `╰➤------------------------------\n`;
 
-  txt += `    ᯓ INFO BOT\n`;
+  txt += `    ᯓ INFO DEL BOT\n`;
   txt += `╭  • Name : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
   txt += `┆  • Author : ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┆  • Versi : ${botConfig.bot?.version || "1.2.0"}\n`;
+  txt += `┆  • Versión : ${botConfig.bot?.version || "1.2.0"}\n`;
   txt += `┆  • Type script : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Uptime : ${uptimeFormatted}\n`;
   txt += `╰➤------------------------------\n`;
@@ -436,7 +436,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     imageBuffer = fs.readFileSync(botConfig.assets["luffy"])
     thumbBuffer = fs.readFileSync(botConfig.assets["luffy2"])
   } catch (e) {
-    console.error("Gagal load assets:", e.message);
+    console.error("Error al cargar assets:", e.message);
   }
   const prefix = botConfig.command?.prefix || ".";
   const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
@@ -470,18 +470,18 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
             caption: ``,
             footer: `Hai @${m.pushName} 👋
             
-🌿 Selamat datang di assistant ${config.bot?.name}
+🌿 Bienvenido al asistente ${config.bot?.name}
 
-╭┈┈⫹⫺ *INFORMASI BOT* ⫹⫺┈┈╮
-│ ◈ *Nama Bot* : *${config.bot?.name}*
-│ ◈ *Versi* : *${config.bot.version}*  
-│ ◈ *Pengembang* : *${config.bot.developer}*  
-│ ◈ *Pustaka* : \`luffy-baileys\`
+╭┈┈⫹⫺ *INFORMACIÓN DEL BOT* ⫹⫺┈┈╮
+│ ◈ *Nombre del Bot* : *${config.bot?.name}*
+│ ◈ *Versión* : *${config.bot.version}*  
+│ ◈ *Desarrollador* : *${config.bot.developer}*  
+│ ◈ *Librería* : \`luffy-baileys\`
 ╰┈┈┈┈┈┈┈┈
 
-╭┈┈⫹⫺ *INFORMASI PENGGUNA* ⫹⫺┈┈╮
-│ ◈ *Nama* : *${m.pushName}*
-│ ◈ *Member?* : *${m?.isOwner ? "Bukan, tapi Owner" : m?.isPremium ? "Bukan, tapi Premium" : "Iyapp"}*
+╭┈┈⫹⫺ *INFORMACIÓN DEL USUARIO* ⫹⫺┈┈╮
+│ ◈ *Nombre* : *${m.pushName}*
+│ ◈ *Member?* : *${m?.isOwner ? "No, pero eres el Owner" : m?.isPremium ? "No, pero eres Premium" : "Sí"}*
 │ ◈ *Level* : *${user.level || 0}*
 │ ◈ *Exp* : *${user.exp || 0}* 
 │ ◈ *Carne* : *${user.carne || 0}*
@@ -490,16 +490,16 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
 │ ◈ *Carne* : *${user.carne || 0}*
 ╰┈┈┈┈┈┈┈┈
 
-Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
+Toca el botón de abajo para más información y elegir la categoría
 `,
             interactiveButtons: [
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "🍃 Menu Utama",
+                  title: "🍃 Menú Principal",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Aquí están las opciones",
                       rows: zann_pengin_rehat
                     }
                   ],
@@ -512,21 +512,21 @@ Tekan tombol dibawah untuk info lebih lanjut dan untuk memilih kategori
                   title: "Selengkapnya",
                   sections: [
                     {
-                      title: "Berikut adalah pilihan nya",
+                      title: "Aquí están las opciones",
                       rows: [
                         {
-                          title: "🍔 Lihat semua menu yang ada di bot ini",
-                          description: "Silahkan tap lalu kirim",
+                          title: "🍔 Ver todos los menús de este bot",
+                          description: "Toca y envía",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🥰 Kamu mau samaan kayak bot ini?",
-                          description: "Silahkan tap lalu kirim, nanti bot akan mengirimkan sebuah link download",
+                          title: "🥰 ¿Quieres un bot igual a este?",
+                          description: "Toca y envía, luego el bot enviará un enlace de descarga",
                           id: `${m.prefix}sc`
                         },
                         {
-                          title: "🌾 Siapakah owner dari bot ini?",
-                          description: "Tap dan klik kirim untuk melanjutkan",
+                          title: "🌾 ¿Quién es el owner de este bot?",
+                          description: "Toca y presiona enviar para continuar",
                           id: `${m.prefix}owner`
                         },
                       ]
@@ -592,7 +592,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
 ${readmore}${s}`
                   },
                   footer: {
-                    text: "Pilih tombol dibawah untuk info lebih lanjut"
+                    text: "Elige el botón de abajo para más información"
                   },
                   contextInfo: {
                     isForwarded: true,
@@ -702,7 +702,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
 > 🥩 *Carne*: ${user.carne || 0}
 > 🎏 *Berry*: ${user.berry || 0}
 > 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
-            footerText: '🍔 Silahkan pilih dari salah satu tombol di bawah',
+            footerText: '🍔 Elige una de las opciones de abajo',
             headerType: 6,
           },
         };
@@ -744,7 +744,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
               title: `${cat.emoji} ${cat.cat} Menu`,
               sections: [
                 {
-                  title: "Please select the command",
+                  title: "Selecciona el comando",
                   highlight_label: config.bot.name,
                   rows: cat.cmds.map((cmd, i) => {
                     return {
@@ -783,9 +783,9 @@ Welcome to ${config.bot?.name}, Our bot will help you
 > 🥞 *Name*: ${config.bot?.name}
 > 🥩 *Version*: ${config.bot?.version}
 > 🍂 *Type*: \`Plugin x Cases\`
-> 🦴 *Mode*: *${config.mode === 'public' ? '🍕 Unlock for everyone' : '🥖 Only for Owner'}*
+> 🦴 *Mode*: *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
 
-Enjoy your use brother.`
+Disfruta su uso, hermano.`
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -802,8 +802,8 @@ Enjoy your use brother.`
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -849,18 +849,18 @@ Enjoy your use brother.`
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "☀️ Despejado",
+          1: "🌤️ Parcialmente nublado",
+          2: "⛅ Nublado",
+          3: "☁️ Cubierto",
+          45: "🌫️ Niebla",
+          48: "🌫️ Niebla densa",
+          51: "🌦️ Llovizna",
+          61: "🌧️ Lluvia ligera",
+          63: "🌧️ Lluvia",
+          65: "⛈️ Lluvia intensa",
+          80: "🌦️ Lluvia local",
+          95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -877,7 +877,7 @@ Enjoy your use brother.`
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
@@ -928,13 +928,13 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
 │ ◦ Author : @${config.bot.developer}
 │ ◦ Type Script : Case x Plugins
 │ ◦ Uptime : ${runtime(process.uptime())}
-└ ◦ Versi : ${config.bot.version}
+└ ◦ Versión : ${config.bot.version}
 
-*\`乂 I N F O - U S E R\`*
-┌ ◦ Nama : ${m.pushName}
-│ ◦ Status : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
-│ ◦ Mode : ${config.mode === "pblic" ? "Bisa digunakan semua" : "Hanya Owner :b"}
-│ ◦ Nomor : @${m.sender.split("@")[0]}
+*\`乂 I N F O - U S U A R I O\`*
+┌ ◦ Nombre : ${m.pushName}
+│ ◦ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
+│ ◦ Modo : ${config.mode === "pblic" ? "Pueden usarlo todos" : "Solo Owner :b"}
+│ ◦ Número : @${m.sender.split("@")[0]}
 └ ◦ ${greeting}
 `
                 },
@@ -959,8 +959,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1014,18 +1014,18 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
         }
 
         const weatherCode = {
-          0: "☀️ Cerah",
-          1: "🌤️ Cerah Berawan",
-          2: "⛅ Berawan",
-          3: "☁️ Mendung",
-          45: "🌫️ Berkabut",
-          48: "🌫️ Kabut Tebal",
-          51: "🌦️ Gerimis",
-          61: "🌧️ Hujan Ringan",
-          63: "🌧️ Hujan",
-          65: "⛈️ Hujan Lebat",
-          80: "🌦️ Hujan Lokal",
-          95: "⛈️ Badai Petir"
+          0: "☀️ Despejado",
+          1: "🌤️ Parcialmente nublado",
+          2: "⛅ Nublado",
+          3: "☁️ Cubierto",
+          45: "🌫️ Niebla",
+          48: "🌫️ Niebla densa",
+          51: "🌦️ Llovizna",
+          61: "🌧️ Lluvia ligera",
+          63: "🌧️ Lluvia",
+          65: "⛈️ Lluvia intensa",
+          80: "🌦️ Lluvia local",
+          95: "⛈️ Tormenta eléctrica"
         }
 
         async function weatherMenu(city = "Jakarta") {
@@ -1042,7 +1042,7 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
             )
 
             const current = res.data.current
-            const kondisi = weatherCode[current.weather_code] || "🌍 Tidak diketahui"
+            const kondisi = weatherCode[current.weather_code] || "🌍 Desconocido"
 
             return `${kondisi} | 🌡️ ${Math.round(current.temperature_2m)}°C\n📍 ${loc.name}`
           } catch {
@@ -1102,8 +1102,8 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     bottom_sheet: {
                       in_thread_buttons_limit: 2,
                       divider_indices: [1, 2, 3, 4, 5, 999],
-                      list_title: "Please select the menu",
-                      button_title: "🍙 See Category",
+                      list_title: "Selecciona el menú",
+                      button_title: "🍙 Ver categoría",
                     },
                     tap_target_configuration: {
                       title: " X ",
@@ -1255,7 +1255,7 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
                   }
                 },
                 body: { text: case7Text },
-                footer: { text: `Use: ${m?.prefix}menucat <category>\n\nIf you have any questions, please contact the owner.` },
+                footer: { text: `Usa: ${m?.prefix}menucat <categoría>\n\nSi tienes dudas, contacta con el owner.` },
                 contextInfo: {
                   mentionedJid: [m.sender],
                   isForwarded: true,
@@ -1404,7 +1404,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
         ];
         const randomTitle = randomTitles[Math.floor(Math.random() * randomTitles.length)];
 
-        let cuacaStr = "Cerah";
+        let cuacaStr = "Despejado";
         let suhuStr = "30°C";
         try {
           const { data } = await axios.get("https://wttr.in/Jakarta?format=%C|%t", { timeout: 3000 });

@@ -55,7 +55,7 @@ export default async function mediafire(url) {
   const images = $('meta[property="og:image"]').attr("content") || "";
   const description =
     $('meta[property="og:description"]').attr("content") ||
-    "not found description.";
+    "Descripción no encontrada";
   const link_download =
     $("#downloadButton").attr("href") ||
     $('a[aria-label="Download file"]').attr("href") ||

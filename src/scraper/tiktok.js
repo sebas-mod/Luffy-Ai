@@ -45,7 +45,7 @@ async function ttdownFromYuuLabs(url) {
   }
 
   if (downloads.length === 0) {
-    throw new Error("YuuLabs tidak mengembalikan link download");
+    throw new Error("YuuLabs no devolvió el enlace de descarga");
   }
 
   return {
@@ -118,7 +118,7 @@ async function ttdownFromMusicalDown(url) {
   });
 
   if (downloads.length === 0) {
-    throw new Error("MusicalDown tidak mengembalikan link download");
+    throw new Error("MusicalDown no devolvió el enlace de descarga");
   }
 
   return {
@@ -134,7 +134,7 @@ async function ttdownFromMusicalDown(url) {
 
 async function ttdown(url) {
   try {
-    if (!url.includes("tiktok.com")) throw new Error("Invalid url.");
+    if (!url.includes("tiktok.com")) throw new Error("URL no válida.");
     try {
       return await ttdownFromYuuLabs(url);
     } catch {

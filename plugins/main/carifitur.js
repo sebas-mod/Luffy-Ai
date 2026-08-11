@@ -11,7 +11,7 @@ const pluginConfig = {
   name: "carifitur",
   alias: ["searchcmd", "findcmd", "cari", "search", "cf"],
   category: "main",
-  description: "Mencari fitur berdasarkan keyword dengan detail lengkap",
+  description: "Busca funciones por palabra clave con detalle completo",
   usage: ".carifitur <keyword>",
   example: ".carifitur sticker",
   isOwner: false,
@@ -88,7 +88,7 @@ async function loadAllPlugins() {
                 : plugin.config.name,
               alias: plugin.config.alias || [],
               category: plugin.config.category || category,
-              description: plugin.config.description || "Tidak ada deskripsi",
+              description: plugin.config.description || "Sin descripción",
               usage: plugin.config.usage || "",
               example: plugin.config.example || "",
               isEnabled: plugin.config.isEnabled !== false,
@@ -111,9 +111,9 @@ async function loadAllPlugins() {
       listallplugin: ["lplugin", "pluginlist", "allplugin"],
     };
     const caseDescriptions = {
-      cping: "Cek ping case system",
-      listallcase: "Lihat daftar semua case commands",
-      listallplugin: "Lihat daftar semua plugin commands",
+      cping: "Revisar el ping del sistema case",
+      listallcase: "Ver la lista de todos los comandos case",
+      listallplugin: "Ver la lista de todos los comandos plugin",
     };
     for (const [category, commands] of Object.entries(caseCommands)) {
       for (const cmd of commands) {
@@ -121,7 +121,7 @@ async function loadAllPlugins() {
           name: cmd,
           alias: caseAliases[cmd] || [],
           category: category,
-          description: caseDescriptions[cmd] || "Case command",
+          description: caseDescriptions[cmd] || "Comando case",
           usage: `.${cmd}`,
           example: `.${cmd}`,
           isEnabled: true,
@@ -140,11 +140,11 @@ async function handler(m, { sock }) {
   const keyword = m.text;
   if (!keyword) {
     return m.reply(
-      `🔍 *ᴄᴀʀɪ ꜰɪᴛᴜʀ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ* 」\n` +
+      `🔍 *ʙᴜꜱᴄᴀʀ ꜰᴜɴᴄɪóɴ*\n\n` +
+      `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜꜱᴀʀ* 」\n` +
       `┃ \`${m.prefix}carifitur <keyword>\`\n` +
       `╰┈┈⬡\n\n` +
-      `> Contoh:\n` +
+      `> Ejemplo:\n` +
       `\`${m.prefix}carifitur sticker\`\n` +
       `\`${m.prefix}carifitur download\`\n` +
       `\`${m.prefix}carifitur game\``,
@@ -201,14 +201,14 @@ async function handler(m, { sock }) {
     if (matches.length === 0) {
       m.react("❌");
       return m.reply(
-        `🔍 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ*\n\n> Tidak ditemukan fitur dengan keyword \`${keyword}\``,
+        `🔍 *ʀᴇꜱᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ʙúꜱQᴜᴇᴅᴀ*\n\n> No se encontró ninguna función con la palabra clave \`${keyword}\``,
       );
     }
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
-    let text = `🔍 *ʜᴀsɪʟ ᴘᴇɴᴄᴀʀɪᴀɴ: "${keyword}"*\n`;
-    text += `> Ditemukan *${matches.length}* fitur\n`;
-    text += `> Pilih salah satu command di bawah:\n\n`;
+    let text = `🔍 *ʀᴇꜱᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ʙúꜱQᴜᴇᴅᴀ: "${keyword}"*\n`;
+    text += `> Se encontraron *${matches.length}* funciones\n`;
+    text += `> Elige uno de los comandos de abajo:\n\n`;
     const topMatches = matches.slice(0, 15);
     for (let i = 0; i < Math.min(5, topMatches.length); i++) {
       const p = topMatches[i];
@@ -216,14 +216,14 @@ async function handler(m, { sock }) {
       if (p.isPremium) badges.push("💎");
       if (p.isOwner) badges.push("👑");
       text += `*${i + 1}. ${m.prefix}${p.name}* ${badges.join("")}\n`;
-      text += `📁 Kategori: \`${p.category}\`\n`;
+      text += `📁 Categoría: \`${p.category}\`\n`;
       text += `📝 ${p.description.slice(0, 50)}${p.description.length > 50 ? "..." : ""}\n`;
-      if (p.usage) text += `💡 Usage: \`${p.usage}\`\n`;
+      if (p.usage) text += `💡 Uso: \`${p.usage}\`\n`;
       if (p.cooldown > 0) text += `⏱️ Cooldown: ${p.cooldown}s\n`;
       text += `\n`;
     }
     if (topMatches.length > 5) {
-      text += `_+${topMatches.length - 5} hasil lainnya tersedia_`;
+      text += `_+${topMatches.length - 5} resultados más disponibles_`;
     }
     const buttons = topMatches.slice(0, 10).map((p, i) => ({
       title: `${m.prefix}${p.name}`,
@@ -241,10 +241,10 @@ async function handler(m, { sock }) {
           {
             name: "single_select",
             buttonParamsJson: JSON.stringify({
-              title: "📋 Pilih Command",
+              title: "📋 Elegir Comando",
               sections: [
                 {
-                  title: `Hasil untuk "${keyword}"`,
+                  title: `Resultados para "${keyword}"`,
                   rows: buttons,
                 },
               ],

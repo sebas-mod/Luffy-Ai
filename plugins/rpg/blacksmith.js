@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "blacksmith",
   alias: ["tempa", "forge", "pandai"],
   category: "rpg",
-  description: "Tempa senjata dan armor dari material",
+  description: "Forjar armas y armaduras a partir de materiales",
   usage: ".blacksmith <item>",
   example: ".blacksmith sword",
   isOwner: false,

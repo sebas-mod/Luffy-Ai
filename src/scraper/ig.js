@@ -12,7 +12,7 @@ async function instagramDownloader(url) {
 
   const data = response.data;
   if (!data || !data.status || !Array.isArray(data.links) || data.links.length === 0) {
-    throw new Error("Gagal mengambil media dari API Instagram");
+    throw new Error("Error al obtener el medio de la API de Instagram");
   }
 
   const media = data.links.map((item) => {

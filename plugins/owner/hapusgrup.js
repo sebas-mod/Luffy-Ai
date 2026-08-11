@@ -2,7 +2,7 @@ const pluginConfig = {
     name: ['hapusgrup', 'deletegrup', 'delgrup'],
     alias: [],
     category: 'owner',
-    description: 'Keluar dari grup / hapus grup',
+    description: 'Salir del grupo / eliminar el grupo',
     usage: '.hapusgrup (di dalam grup) atau .hapusgrup <jid>',
     example: '.hapusgrup',
     isOwner: true,

@@ -41,7 +41,7 @@ async function handler(m) {
     const text = m.text?.trim();
     
     if (!text) {
-        return m.reply(`💪 *ʙɪsᴀᴋᴀʜ*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .bisakah aprobar el examen?`);
+        return m.reply(`💪 *¿ᴘᴜᴇᴅᴇs?*\n\n> ¡Ingresa una pregunta!\n\n*Ejemplo:*\n> .bisakah aprobar el examen?`);
     }
     
     const answer = answers[Math.floor(Math.random() * answers.length)];

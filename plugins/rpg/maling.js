@@ -6,7 +6,7 @@ const pluginConfig = {
   name: "maling",
   alias: ["copet", "pickpocket"],
   category: "rpg",
-  description: "Mencopet orang di pasar (lebih berisiko dari crime)",
+  description: "Carterear a la gente en el mercado (más arriesgado que el crimen)",
   usage: ".maling",
   example: ".maling",
   isOwner: false,
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
   }
 
   db.save();
-  await sendRpgPreview(sock, m.chat, txt, "🦹 RESULTADO DEL CARTERISTA", "Result!", { quoted: m });
+  await sendRpgPreview(sock, m.chat, txt, "🦹 RESULTADO DEL CARTERISTA", "¡Resultado!", { quoted: m });
 }
 
 export { pluginConfig as config, handler };

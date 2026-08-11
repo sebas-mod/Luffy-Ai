@@ -4,7 +4,7 @@ const pluginConfig = {
     name: 'wwsee',
     alias: ['seer', 'vision', 'wse'],
     category: 'game',
-    description: 'Seer night action - See target role',
+    description: 'Acción nocturna del vidente - Ver el rol del objetivo',
     usage: '.wwsee <número>',
     example: '.wwsee 1',
     isOwner: false,

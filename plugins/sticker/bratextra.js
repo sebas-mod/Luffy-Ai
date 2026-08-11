@@ -217,7 +217,7 @@ async function handler(m, { sock }) {
 
     const template = TEMPLATES[cmd];
     if (!template) {
-      throw new Error("Template tidak ditemukan");
+      throw new Error("Plantilla no encontrada");
     }
 
     if (!isFontLoaded) {

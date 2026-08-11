@@ -6,7 +6,7 @@ const pluginConfig = {
     name: 'tqto',
     alias: ['thanksto', 'credits', 'kredit'],
     category: 'main',
-    description: 'Menampilkan daftar kontributor bot',
+    description: 'Mostrar la lista de colaboradores del bot',
     usage: '.tqto',
     example: '.tqto',
     isOwner: false,
@@ -25,20 +25,20 @@ async function handler(m, { sock }) {
 
     const credits = [
         { name: 'hyuuOkkotsuX', role: 'Lead Staff', icon: '👨‍💻' },
-        { name: 'Zann', role: 'Creator Luffy MD dan APK Stardem Luffy', icon: '👨‍💻' },
+        { name: 'Zann', role: 'Creador de Luffy MD y del APK Stardem Luffy', icon: '👨‍💻' },
         { name: 'SenzOkkotsu', role: 'Developer', icon: '👨‍💻' },
         { name: 'Ell', role: 'Developer', icon: '👨‍💻' },
         { name: 'Aqell', role: 'Developer SC BUG Luffy Glitch', icon: '👨‍💻' },
         { name: 'Mobbc', role: 'Staff', icon: '👨‍💻' },
         { name: 'Raka', role: 'Staff', icon: '👨‍💻' },
-        { name: 'Sanxz', role: 'Tangan Kanan', icon: '👨‍💻' },
-        { name: 'Dinz', role: 'Tangan Kanan', icon: '👨‍💻' },
-        { name: 'Forone Store', role: 'Tangan Kanan', icon: '🛒' },
-        { name: 'Fahmi', role: 'Tangan Kanan', icon: '👨‍💻' },
-        { name: 'Sabila', role: 'Tangan Kanan', icon: '👩‍💻' },
-        { name: 'Syura Store', role: 'Tangan Kanan', icon: '👩‍💻' },
-        { name: 'Xero', role: 'Tangan Kanan', icon: '👩‍💻' },
-        { name: 'Aji', role: 'Tangan Kanan', icon: '👩‍💻' },
+        { name: 'Sanxz', role: 'Mano derecha', icon: '👨‍💻' },
+        { name: 'Dinz', role: 'Mano derecha', icon: '👨‍💻' },
+        { name: 'Forone Store', role: 'Mano derecha', icon: '🛒' },
+        { name: 'Fahmi', role: 'Mano derecha', icon: '👨‍💻' },
+        { name: 'Sabila', role: 'Mano derecha', icon: '👩‍💻' },
+        { name: 'Syura Store', role: 'Mano derecha', icon: '👩‍💻' },
+        { name: 'Xero', role: 'Mano derecha', icon: '👩‍💻' },
+        { name: 'Aji', role: 'Mano derecha', icon: '👩‍💻' },
         { name: 'Lyoraaa', role: 'Owner', icon: '👩‍💻' },
         { name: 'Danzzz', role: 'Owner', icon: '👨‍💻' },
         { name: 'Muzan', role: 'Owner', icon: '👨‍💻' },
@@ -82,13 +82,13 @@ async function handler(m, { sock }) {
         { name: 'Yann', role: 'Partner', icon: '🛒' },
         { name: 'Zanspiw', role: 'Youtuber', icon: '🌐' },
         { name: 'Danzz Nano', role: 'Youtuber', icon: '🌐' },
-        { name: 'Youtuber Lain yang udah review', role: 'Youtuber', icon: '🌐' },
-        { name: 'Kalian Semua', role: 'Best', icon: '🌐' },
-        { name: 'Open Source Community', role: 'Libraries & Tools', icon: '🌐' },
+        { name: 'Otros youtubers que ya reseñaron', role: 'Youtuber', icon: '🌐' },
+        { name: 'Todos ustedes', role: 'Los mejores', icon: '🌐' },
+        { name: 'Comunidad Open Source', role: 'Bibliotecas y herramientas', icon: '🌐' },
 
     ]
 
-    const headers = ['No', 'Nama', 'Role / Tier']
+    const headers = ['No', 'Nombre', 'Rol / Nivel']
     const rows = credits.map((c, i) => [i + 1, c.name, c.role])
 
     await m.reply(`🍟 *Estas son las personas que han contribuido al bot ${config.bot.name}*

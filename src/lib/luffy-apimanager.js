@@ -616,7 +616,7 @@ class LuffyApiManager {
    */
   provider(name) {
     if (!this.hasProvider(name)) {
-      throw new Error(`Provider tidak ditemukan: ${name}`);
+      throw new Error(`Proveedor no encontrado: ${name}`);
     }
     return this[name];
   }
@@ -628,7 +628,7 @@ class LuffyApiManager {
   getProviderConfig(name) {
     const cfg = this.providers[name];
     if (!cfg) {
-      throw new Error(`Provider tidak ditemukan: ${name}`);
+      throw new Error(`Proveedor no encontrado: ${name}`);
     }
     return cfg;
   }

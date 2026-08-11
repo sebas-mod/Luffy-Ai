@@ -7,7 +7,7 @@ const pluginConfig = {
   name: "dellevel",
   alias: ["kuranglevel", "removelevel", "dellvl"],
   category: "owner",
-  description: "Kurangi level user (via exp)",
+  description: "Restar nivel a un usuario (vía exp)",
   usage: ".dellevel <jumlah> @user",
   example: ".dellevel 5 @user",
   isOwner: true,

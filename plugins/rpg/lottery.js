@@ -5,7 +5,7 @@ const pluginConfig = {
   name: "lottery",
   alias: ["gacha", "spin", "undian"],
   category: "rpg",
-  description: "Gacha/lottery untuk hadiah random",
+  description: "Gacha/lotería para premios aleatorios",
   usage: ".lottery <1/10>",
   example: ".lottery 10",
   isOwner: false,

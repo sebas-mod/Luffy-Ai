@@ -35,7 +35,7 @@ async function uploadToCatbox(buffer, filename = "file.jpg") {
     timeout: 30000,
   });
 
-  if (!res.ok) throw new Error("Catbox gagal");
+  if (!res.ok) throw new Error("Error en Catbox");
   const url = await res.text();
   if (!url.startsWith("http")) throw new Error("Invalid response");
   return url;
