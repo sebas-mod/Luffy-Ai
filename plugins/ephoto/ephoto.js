@@ -19,7 +19,6 @@ const EFFECT_URLS = {
     logomaker: 'https://en.ephoto360.com/free-bear-logo-maker-online-673.html',
     cartoonstyle: 'https://en.ephoto360.com/create-a-cartoon-style-graffiti-text-effect-online-668.html',
     papercutstyle: 'https://en.ephoto360.com/multicolor-3d-paper-cut-style-text-effect-658.html',
-    watercolortext: 'https://en.ephoto360.com/create-a-watercolor-text-effect-online-655.html',
     effectclouds: 'https://en.ephoto360.com/write-text-effect-clouds-in-the-sky-online-619.html',
     blackpinklogo: 'https://en.ephoto360.com/create-blackpink-logo-online-free-607.html',
     gradienttext: 'https://en.ephoto360.com/create-3d-gradient-text-effect-online-600.html',
@@ -43,7 +42,7 @@ const pluginConfig = {
         'glitchtext', 'writetext', 'advancedglow', 'typographytext', 'pixelglitch',
         'neonglitch', 'flagtext', 'flag3dtext', 'deletingtext', 'blackpinkstyle',
         'glowingtext', 'underwatertext', 'logomaker', 'cartoonstyle', 'papercutstyle',
-        'watercolortext', 'effectclouds', 'blackpinklogo', 'gradienttext', 'summerbeach',
+        'effectclouds', 'blackpinklogo', 'gradienttext', 'summerbeach',
         'luxurygold', 'multicoloredneon', 'sandsummer', 'galaxywallpaper', '1917style',
         'makingneon', 'royaltext', 'freecreate', 'galaxystyle', 'amongustext',
         'rainytext', 'lighteffects'

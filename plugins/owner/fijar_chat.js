@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: ['fijar_chat', 'pin'],
+    name: ['fijar_chat'],
     alias: [],
     category: 'owner',
     description: 'Fijar/quitar fijado del chat',

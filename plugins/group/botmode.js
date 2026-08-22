@@ -1,11 +1,11 @@
 import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
-    name: 'botmode',
-    alias: ["modo_bot", "mode"],
+    name: 'modogrupo',
+    alias: ["modo_grupo", "groupmode"],
     category: 'group',
     description: 'Configurar el modo del bot para este grupo',
-    usage: '.botmode <md/store/otp/all>',
-    example: '.botmode store',
+    usage: '.modogrupo <md/store/otp/all>',
+    example: '.modogrupo store',
     isOwner: false,
     isPremium: false,
     isGroup: true,

@@ -157,8 +157,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
     const memberCount = groupMeta?.participants?.length || 0;
     const groupName = groupMeta?.subject || "Grupo";
     let userName = realParticipant?.split("@")[0] || "Usuario";
-    let ppUrl =
-      "https://cdn.gimita.id/download/pp%20kosong%20wa%20default%20(1)_1769506608569_52b57f5b.jpg";
+    let ppUrl = "https://files.catbox.moe/wmib77.jpg";
     try {
       ppUrl = await sock.profilePictureUrl(realParticipant, "image");
     } catch { }

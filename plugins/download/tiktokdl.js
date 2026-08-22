@@ -103,7 +103,7 @@ async function tiktokDl(url) {
 }
 
 const pluginConfig = {
-  name: ["tiktok", "tt", "ttmp4"],
+  name: ["tiktok", "tt"],
   alias: ["tiktokdl", "ttdown"],
   category: "download",
   description: "Descarga videos/diapositivas de TikTok sin marca de agua",

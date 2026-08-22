@@ -1,5 +1,5 @@
 const pluginConfig = {
-    name: ['mutechat', 'mute'],
+    name: ['mutechat'],
     alias: [],
     category: 'owner',
     description: 'Silenciar/activar chat',

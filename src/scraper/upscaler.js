@@ -1,5 +1,18 @@
 import axios from "axios";
 import fs from "fs";
+import CryptoJS from "crypto-js";
+
+const AES_KEY = CryptoJS.enc.Utf8.parse("ai-enhancer-web__aes-key");
+const AES_IV = CryptoJS.enc.Utf8.parse("aienhancer-aesiv");
+
+function enc(str) {
+  return CryptoJS.AES.encrypt(str, AES_KEY, {
+    iv: AES_IV,
+    mode: CryptoJS.mode.CBC,
+    padding: CryptoJS.pad.Pkcs7,
+  }).toString();
+}
+
 async function upscaler(path) {
   try {
     const img = fs.readFileSync(path).toString("base64");
@@ -15,11 +28,16 @@ async function upscaler(path) {
       "https://aienhancer.ai/api/v1/r/image-enhance/create",
       {
         model: 3,
-        image: `data:image/jpeg;base64,${img}`,
-        settings: "kRpBbpnRCD2nL2RxnnuoMo7MBc0zHndTDkWMl9aW+Gw=",
+        image: [`data:image/jpeg;base64,${img}`],
+        function: enc("enhancer-hd-upscale"),
+        settings: enc(JSON.stringify({ version: "v1.4", scale: 6 })),
       },
       { headers },
     );
+
+    if (create.data?.code && create.data.code !== 200) {
+      return { status: "error", msg: create.data.message || "create falló" };
+    }
 
     const id = create.data.data.id;
 
@@ -46,9 +64,5 @@ async function upscaler(path) {
     return { status: "error", msg: e.message };
   }
 }
-
-(async () => {
-  console.log(await upscaler("./z.png"));
-})();
 
 export default upscaler;

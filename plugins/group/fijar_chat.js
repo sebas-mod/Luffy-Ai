@@ -1,6 +1,6 @@
 const pluginConfig = {
-    name: 'fijar_chat',
-    alias: ['pinmsg', 'pinpesan'],
+    name: ['pinchat'],
+    alias: ['fijar_msj', 'pinmsg', 'pinpesan'],
     category: 'group',
     description: 'Fijar mensajes importantes en el grupo',
     usage: '.pinchat (responde un mensaje)',

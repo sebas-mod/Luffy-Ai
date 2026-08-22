@@ -6,8 +6,8 @@ const pluginConfig = {
     alias: ["fake-ovo", "fakeovo"],
     category: "canvas",
     description: "Crea canvas de fake ovo",
-    usage: ".fake-ovo <nombre>",
-    example: ".fake-ovo Jokowi",
+    usage: ".fake-ovo <numero>",
+    example: ".fake-ovo 081234567890",
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -18,11 +18,12 @@ const pluginConfig = {
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`Formato incorrecto!\n\n> Ejemplo: .fake-ovo Budi`);
-    
+    if (!text || !/^\d{6,15}$/.test(text.trim()))
+        return m.reply(`Formato incorrecto!\n\n> Envía un número de teléfono\n> Ejemplo: .fake-ovo 081234567890`);
+
     await m.react("🕕");
     try {
-        const url = `https://kyzznekoo.zone.id/api/canvas/fake-ovo?q=${encodeURIComponent(text)}`;
+        const url = `https://kyzznekoo.zone.id/api/canvas/fake-ovo?q=${encodeURIComponent(text.trim())}`;
         const res = await axios.get(url, {
             responseType: 'arraybuffer',
             headers: {

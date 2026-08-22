@@ -47,8 +47,8 @@ async function nerdfonts() {
   }
 }
 const pluginConfig = {
-  name: "dafont",
-  alias: ["nerdfont", "font"],
+  name: "nerdfont",
+  alias: [],
   category: "search",
   description: "Buscar fuentes en DaFont",
   usage: ".dafont <query>",

@@ -2,7 +2,7 @@ import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: [
         'tonto', 'estupido', 'viuda', 'virgen', 'cerdo', 'bobo', 'idiota',
-        'maldito', 'inteligente', 'listo', 'perro', 'mentecato', 'gay', 'lesbiana',
+        'maldito', 'inteligente', 'listo', 'perro', 'mentecato', 'lesbiana',
         'canalla', 'chucho', 'canino', 'rabioso', 'sabueso', 'cabron', 'bastardo',
         'mono', 'maestro', 'novato', 'desgraciado', 'maleante', 'caliente', 'fogoso',
         'baboso', 'excitado', 'otaku', 'demonio', 'diablo', 'lisiado', 'huerfano',
