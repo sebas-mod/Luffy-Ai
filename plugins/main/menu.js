@@ -247,29 +247,27 @@ async function buildMenuText(
   const greeting = getTimeGreeting();
   const uptimeFormatted = formatUptime(uptime);
   const totalUsers = db.getUserCount();
-  let txt = `${greeting}\n\n`;
-  txt += `      ${m.pushName || "User"}\n\n`;
-  txt += `Hola Amigo 🌱\n`;
-  txt += `Me presento, soy ${botConfig.bot?.name || "Denia Al"}, creado por ${botConfig.bot?.developer || "Alesha"}. Estoy listo para ayudarte\n`;
-  txt += `con tus necesidades, desde descargar\n`;
-  txt += `videos, jugar, hacer preguntas, buscar\n`;
-  txt += `información/cosas, crear stickers y mucho más.\n\n`;
+  let txt = `╭━━━〔 🏴‍☠️ 〕━━━╮\n`;
+  txt += `┃ ${greeting}, *${m.pushName || "User"}*\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `⚓ Soy *${botConfig.bot?.name || "Luffy-Ai"}*, tu bot pirata creado por ${botConfig.bot?.developer || "el Owner"}.\n`;
+  txt += `Puedo descargar videos, jugar contigo, responder preguntas, buscar información, crear stickers y mucho más.\n\n`;
 
-  txt += `    ᯓ INFO USUARIO\n`;
-  txt += `╭   • Nombre : ${m.pushName || "User"}\n`;
-  txt += `┆   • Estado : ${userRole}\n`;
-  txt += `┆   • Modo : ${(botConfig.mode || "public").toUpperCase()}\n`;
-  txt += `┆   • Número : ${m.sender.split("@")[0]}\n`;
-  txt += `┆   • Hora : ${timeStr} WIB\n`;
-  txt += `╰➤------------------------------\n`;
+  txt += `╭━━━〔 👑 INFO DEL USUARIO 〕━━━╮\n`;
+  txt += `┃ ╰┈➤ *Nombre* : ${m.pushName || "User"}\n`;
+  txt += `┃ ╰┈➤ *Estado* : ${roleEmoji} ${userRole}\n`;
+  txt += `┃ ╰┈➤ *Modo* : ${(botConfig.mode || "public").toUpperCase()}\n`;
+  txt += `┃ ╰┈➤ *Número* : ${m.sender.split("@")[0]}\n`;
+  txt += `┃ ╰┈➤ *Hora* : ${timeStr}\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
 
-  txt += `    ᯓ INFO DEL BOT\n`;
-  txt += `╭  • Nombre : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
-  txt += `┆  • Autor : ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┆  • Versión : ${botConfig.bot?.version || "1.2.0"}\n`;
-  txt += `┆  • Tipo de script : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┆  • Tiempo activo : ${uptimeFormatted}\n`;
-  txt += `╰➤------------------------------\n`;
+  txt += `╭━━━〔 🤖 INFO DEL BOT 〕━━━╮\n`;
+  txt += `┃ ╰┈➤ *Nombre* : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+  txt += `┃ ╰┈➤ *Autor* : ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `┃ ╰┈➤ *Versión* : ${botConfig.bot?.version || "1.2.0"}\n`;
+  txt += `┃ ╰┈➤ *Tipo de script* : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `┃ ╰┈➤ *Tiempo activo* : ${uptimeFormatted}\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
   const categoryOrder = [
     "owner",
     "main",
@@ -340,12 +338,12 @@ async function buildMenuText(
     categoryLines.push(`${prefix}menucat ${category} ${emoji}`);
   }
   if (categoryLines.length > 0) {
-    txt += ` ✦ LISTA DE MENÚ ✦\n`;
-    txt += `╭   • ${categoryLines[0]}\n`;
+    txt += `✦────〔 📜 LISTA DE MENÚ 〕────✦\n`;
+    txt += `┃ ${categoryLines[0]}\n`;
     for (let i = 1; i < categoryLines.length; i++) {
-      txt += `┆   • ${categoryLines[i]}\n`;
+      txt += `┃ ${categoryLines[i]}\n`;
     }
-    txt += `╰➤------------------------------\n`;
+    txt += `╰━━━━━━━━━━━━━━╯\n`;
   }
   return txt;
 }
@@ -470,27 +468,26 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           await sock.sendMessage(m.chat, {
             image: fs.readFileSync(config.assets["luffy"]),
             caption: ``,
-            footer: `Hai @${m.pushName} 👋
-            
-🌿 Bienvenido al asistente ${config.bot?.name}
+            footer: `¡Holaa ${m.pushName}! 👋
 
-╭┈┈⫹⫺ *INFORMACIÓN DEL BOT* ⫹⫺┈┈╮
-│ ◈ *Nombre del Bot* : *${config.bot?.name}*
-│ ◈ *Versión* : *${config.bot.version}*  
-│ ◈ *Desarrollador* : *${config.bot.developer}*  
-│ ◈ *Librería* : \`luffy-baileys\`
-╰┈┈┈┈┈┈┈┈
+⚓ Bienvenido a bordo de *${config.bot?.name}*
 
-╭┈┈⫹⫺ *INFORMACIÓN DEL USUARIO* ⫹⫺┈┈╮
-│ ◈ *Nombre* : *${m.pushName}*
-│ ◈ *Member?* : *${m?.isOwner ? "No, pero eres el Owner" : m?.isPremium ? "No, pero eres Premium" : "Sí"}*
-│ ◈ *Level* : *${user.level || 0}*
-│ ◈ *Exp* : *${user.exp || 0}* 
-│ ◈ *Carne* : *${user.carne || 0}*
-│ ◈ *Berry* : *${user.berry || 0}*
-│ ◈ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
-│ ◈ *Carne* : *${user.carne || 0}*
-╰┈┈┈┈┈┈┈┈
+╭━━━〔 🤖 INFORMACIÓN DEL BOT 〕━━━╮
+┃ ╰┈➤ *Nombre del Bot* : *${config.bot?.name}*
+┃ ╰┈➤ *Versión* : *${config.bot.version}*
+┃ ╰┈➤ *Desarrollador* : *${config.bot.developer}*
+┃ ╰┈➤ *Librería* : \`luffy-baileys\`
+╰━━━━━━━━━━━━━━╯
+
+╭━━━〔 👑 INFORMACIÓN DEL USUARIO 〕━━━╮
+┃ ╰┈➤ *Nombre* : *${m.pushName}*
+┃ ╰┈➤ *Rango* : *${m?.isOwner ? "👑 Owner" : m?.isPremium ? "💎 Premium" : "👤 Usuario"}*
+┃ ╰┈➤ *Nivel* : *${user.level || 0}*
+┃ ╰┈➤ *Exp* : *${user.exp || 0}*
+┃ ╰┈➤ *Carne* : *${user.carne || 0}*
+┃ ╰┈➤ *Berry* : *${user.berry || 0}*
+┃ ╰┈➤ *Registro* : *${user.isRegistered ? "Sí" : "No"}*
+╰━━━━━━━━━━━━━━╯
 
 Toca el botón de abajo para más información y elegir la categoría
 `,
@@ -548,11 +545,11 @@ Toca el botón de abajo para más información y elegir la categoría
       case 2:
         let s = ""
         categories.sorted.map(({ cat, cmds, emoji }) => {
-          s += `╭─☰ ${toMonoUpperBold(cat)}\n`
+          s += `╭━━━〔 ${emoji} ${toMonoUpperBold(cat)} 〕━━━╮\n`
           cmds.map((cmd) => {
-            s += `> ${m.prefix}${cmd}\n`
+            s += `┃ ╰┈➤ ${m.prefix}${cmd}\n`
           })
-          s += "╰─⬣\n\n"
+          s += "╰━━━━━━━━━━━━━━╯\n\n"
         });
         const media = await prepareWAMessageMedia({
           image: fs.readFileSync(config.assets["luffy"])
@@ -572,24 +569,24 @@ Toca el botón de abajo para más información y elegir la categoría
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `🥞 *Hola, hermano*
+                    text: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
 
-Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
+⚓ Bienvenido a bordo de *${config.bot?.name}*, tu bot pirata de confianza.
 
-🍅 *INFORMACIÓN DEL BOT*
-> 🤖 *Nombre*: ${config.bot?.name}
-> ⚙️ *Versión*: ${config.bot?.version}
-> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
-> 🧩 *Librería*: \`luffy-baileys\`
+⚡•──〔 🤖 INFORMACIÓN DEL BOT 〕──•⚡
+┃ 🤖 *Nombre* : ${config.bot?.name}
+┃ ⚙️ *Versión* : ${config.bot?.version}
+┃ 👨‍💻 *Desarrollador* : ${config.bot?.developer}
+┃ 🧩 *Librería* : \`luffy-baileys\`
 
-🍅 *INFORMACIÓN DEL USUARIO*
-> 🧑 *Nombre*: ${m.pushName}
-> 🥐 *Rango*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
-> 🧀 *Nivel*: ${user.level || 0}
-> 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Carne*: ${user.carne || 0}
-> 🎏 *Berry*: ${user.berry || 0}
-> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}
+⚡•──〔 👑 INFORMACIÓN DEL USUARIO 〕──•⚡
+┃ 🧑 *Nombre* : ${m.pushName}
+┃ 🥐 *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+┃ 🧀 *Nivel* : ${user.level || 0}
+┃ 🍗 *Exp* : ${user.exp || 0}
+┃ 🥩 *Carne* : ${user.carne || 0}
+┃ 🎏 *Berry* : ${user.berry || 0}
+┃ 🍬 *Registro* : ${user.isRegistered ? "Sí" : "No"}
 
 ${readmore}${s}`
                   },
@@ -619,7 +616,7 @@ ${readmore}${s}`
                         in_thread_buttons_limit: 2,
                         divider_indices: [1, 2, 3, 4, 5, 999],
                         list_title: "Por favor, elige el menú que quieras",
-                        button_title: "🍅 Selengkapnya",
+                        button_title: "🍅 Ver más",
                       },
                       tap_target_configuration: {
                         title: " X ",
@@ -676,7 +673,7 @@ ${readmore}${s}`
               {
                 buttonId: `${m.prefix}menu_todo`,
                 buttonText: {
-                  displayText: '💐 Allmenu',
+                  displayText: '💐 Menú Completo',
                 },
                 type: 1,
               },
@@ -686,25 +683,25 @@ ${readmore}${s}`
               name: config.bot.name,
               address: `Versión actual: ${config.bot.version}`
             },
-            contentText: `🥞 *Hola, hermano*
+            contentText: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
 
-Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
+⚓ Bienvenido a bordo de *${config.bot?.name}*, tu bot pirata de confianza.
 
-🍅 *INFORMACIÓN DEL BOT*
-> 🤖 *Nombre*: ${config.bot?.name}
-> ⚙️ *Versión*: ${config.bot?.version}
-> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
-> 🧩 *Librería*: \`luffy-baileys\`
+⚡•──〔 🤖 INFORMACIÓN DEL BOT 〕──•⚡
+┃ 🤖 *Nombre* : ${config.bot?.name}
+┃ ⚙️ *Versión* : ${config.bot?.version}
+┃ 👨‍💻 *Desarrollador* : ${config.bot?.developer}
+┃ 🧩 *Librería* : \`luffy-baileys\`
 
-🍅 *INFORMACIÓN DEL USUARIO*
-> 🧑 *Nombre*: ${m.pushName}
-> 🥐 *Rango*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
-> 🧀 *Nivel*: ${user.level || 0}
-> 🍗 *Exp*: ${user.exp || 0}
-> 🥩 *Carne*: ${user.carne || 0}
-> 🎏 *Berry*: ${user.berry || 0}
-> 🍬 *Registro*: ${user.isRegistered ? "Sí" : "No"}`,
-            footerText: '🍔 Elige una de las opciones de abajo',
+⚡•──〔 👑 INFORMACIÓN DEL USUARIO 〕──•⚡
+┃ 🧑 *Nombre* : ${m.pushName}
+┃ 🥐 *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+┃ 🧀 *Nivel* : ${user.level || 0}
+┃ 🍗 *Exp* : ${user.exp || 0}
+┃ 🥩 *Carne* : ${user.carne || 0}
+┃ 🎏 *Berry* : ${user.berry || 0}
+┃ 🍬 *Registro* : ${user.isRegistered ? "Sí" : "No"}`,
+            footerText: '⚓ Elige una de las opciones de abajo',
             headerType: 6,
           },
         };
@@ -776,18 +773,18 @@ Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
                   text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
-                  text: `*${greeting} ${m.pushName}*, 𝘔𝘺 𝘯𝘢𝘮𝘦 𝘪𝘴 ${config.bot.name}.
+                  text: `꧁༺ 🏴‍☠️ *${greeting} ${m.pushName}* ༻꧂
 
-  🏔 𝘐 𝘊𝘢𝘯 𝘩𝘦𝘭𝘱 𝘺𝘰𝘶 𝘸𝘪𝘵𝘩 𝘴𝘦𝘷𝘦𝘳𝘢𝘭 𝘵𝘩𝘪𝘯𝘨𝘴 𝘸𝘪𝘵𝘩𝘪𝘯 𝘞𝘩𝘢𝘵𝘴𝘈𝘱𝘱. 𝘈𝘯𝘥 𝘐 𝘢𝘮 𝘈𝘳𝘮𝘦𝘥 𝘢 *𝘑𝘢𝘷𝘢𝘴𝘤𝘳𝘪𝘱𝘵* 𝘗𝘳𝘰𝘨𝘳𝘢𝘮 𝘈𝘴𝘴𝘦𝘮𝘣𝘭𝘦𝘥 𝘣𝘺 𝘮𝘺 𝘤𝘳𝘦𝘢𝘵𝘰𝘳.
+⚓ Soy *${config.bot.name}*, tu bot pirata. Puedo ayudarte con muchas cosas dentro de WhatsApp con un script *Javascript* armado por mi creador.
 
-\`INFORMATION BOT\`
-> 🍛 *Creator*: ${config.bot?.developer}
-> 🥞 *Name*: ${config.bot?.name}
-> 🥩 *Version*: ${config.bot?.version}
-> 🍂 *Type*: \`Plugin x Cases\`
-> 🦴 *Mode*: *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
+⚡•──〔 🤖 INFO DEL BOT 〕──•⚡
+┃ 🍛 *Creador* : ${config.bot?.developer}
+┃ 🥞 *Nombre* : ${config.bot?.name}
+┃ 🥩 *Versión* : ${config.bot?.version}
+┃ 🍂 *Tipo* : \`Plugin x Cases\`
+┃ 🦴 *Modo* : *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
 
-Disfruta su uso, hermano.`
+Disfruta su uso, pirata. ⚓`
                 },
                 contextInfo: {
                   mentionedJid: [m.sender],
@@ -921,23 +918,23 @@ Disfruta su uso, hermano.`
                   text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
-                  text: `🍟 Hai *${m.pushName}* 
-                  
-_i am an automated system (WhatsApp bot) that can help to do something search and get data / information only through WhatsApp._
+                  text: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
 
-*\`乂 I N F O - B O T\`*
-┌ ◦ Name : ${config.bot.name}
-│ ◦ Author : @${config.bot.developer}
-│ ◦ Type Script : Case x Plugins
-│ ◦ Uptime : ${runtime(process.uptime())}
-└ ◦ Versión : ${config.bot.version}
+_Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos o información directamente desde WhatsApp._ ⚡
 
-*\`乂 I N F O - U S U A R I O\`*
-┌ ◦ Nombre : ${m.pushName}
-│ ◦ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
-│ ◦ Modo : ${config.mode === "pblic" ? "Pueden usarlo todos" : "Solo Owner :b"}
-│ ◦ Número : @${m.sender.split("@")[0]}
-└ ◦ ${greeting}
+⚡•──〔 🤖 I N F O - B O T 〕──•⚡
+┌ ╰┈➤ Nombre : ${config.bot.name}
+│ ╰┈➤ Autor : @${config.bot.developer}
+│ ╰┈➤ Tipo de Script : Case x Plugins
+│ ╰┈➤ Tiempo activo : ${runtime(process.uptime())}
+└ ╰┈➤ Versión : ${config.bot.version}
+
+⚡•──〔 👑 I N F O - U S U A R I O 〕──•⚡
+┌ ╰┈➤ Nombre : ${m.pushName}
+│ ╰┈➤ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
+│ ╰┈➤ Modo : ${config.mode === "pblic" ? "Pueden usarlo todos" : "Solo Owner :b"}
+│ ╰┈➤ Número : @${m.sender.split("@")[0]}
+└ ╰┈➤ ${greeting}
 `
                 },
                 contextInfo: {
@@ -980,14 +977,14 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Allmenu  𐦯",
+                        display_text: "𐔌 Menú Completo  𐦯",
                         id: `${prefix}allmenu`
                       })
                     },
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Peraturan  𐦯",
+                        display_text: "𐔌 Reglas  𐦯",
                         id: `${prefix}rules`
                       })
                     },
@@ -1059,15 +1056,15 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
           .sort((a, b) => b.count - a.count)
           .slice(0, 5)
 
-        let topCmdText = "\n ✦ History ✦\n"
+        let topCmdText = "\n✦────〔 📜 Historial 〕────✦\n"
         if (commandStats.length > 0) {
-          topCmdText += `╭   • ${m.prefix}${commandStats[0].name} (${commandStats[0].count}x)\n`
+          topCmdText += `┃ ╰┈➤ ${m.prefix}${commandStats[0].name} (${commandStats[0].count}x)\n`
           for (let i = 1; i < commandStats.length; i++) {
-            topCmdText += `┆   • ${m.prefix}${commandStats[i].name} (${commandStats[i].count}x)\n`
+            topCmdText += `┃ ╰┈➤ ${m.prefix}${commandStats[i].name} (${commandStats[i].count}x)\n`
           }
-          topCmdText += `╰➤------------------------------\n`
+          topCmdText += `╰━━━━━━━━━━━━━━╯\n`
         } else {
-          topCmdText += `╭   • Aún no hay comandos\n╰➤------------------------------\n`
+          topCmdText += `┃ ╰┈➤ Aún no hay comandos\n╰━━━━━━━━━━━━━━╯\n`
         }
 
         const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
@@ -1123,14 +1120,14 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Allmenu  𐦯",
+                        display_text: "𐔌 Menú Completo  𐦯",
                         id: `${prefix}allmenu`
                       })
                     },
                     {
                       name: "quick_reply",
                       buttonParamsJson: JSON.stringify({
-                        display_text: "𐔌 Peraturan  𐦯",
+                        display_text: "𐔌 Reglas  𐦯",
                         id: `${prefix}rules`
                       })
                     },
@@ -1178,34 +1175,34 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
         const dbUser = db.getUser(m.sender);
         const userLimit = (dbUser?.limit === Infinity || dbUser?.limit === null || dbUser?.limit === undefined) ? "unlimited" : dbUser.limit;
 
-        let case7Text = `¡Hola, *${m.pushName}*! ✨
+        let case7Text = `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
 
-Soy ${botName}, tu asistente inteligente creado por ${config.bot?.developer}. Ya sea que necesites información, entretenimiento o utilidades, siempre estoy listo para ayudarte.
+⚓ Soy *${botName}*, tu asistente inteligente creado por ${config.bot?.developer}. Ya sea información, entretenimiento o utilidades, siempre estoy listo para ayudarte.
 
 `
 
-        case7Text += `╭╮ \`✯ ${toMathSansBold("DETALLES DEL BOT")}\`\n`;
-        case7Text += `││  nombre : ${botName}\n`;
-        case7Text += `││  modo : ${botModeLower}\n`;
-        case7Text += `││  prefix : \`${botPrefix}\`\n`;
-        case7Text += `││  tiempo activo : ${runTime}\n`;
-        case7Text += `╰╯\n`;
+        case7Text += `╭━━━〔 🤖 DETALLES DEL BOT 〕━━━╮\n`;
+        case7Text += `┃ ╰┈➤ *nombre* : ${botName}\n`;
+        case7Text += `┃ ╰┈➤ *modo* : ${botModeLower}\n`;
+        case7Text += `┃ ╰┈➤ *prefix* : \`${botPrefix}\`\n`;
+        case7Text += `┃ ╰┈➤ *tiempo activo* : ${runTime}\n`;
+        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
 
-        case7Text += `╭╮ \`❀ ${toMathSansBold("DETALLES DEL USUARIO")}\`\n`;
-        case7Text += `││  nombre : _${userName}_\n`;
-        case7Text += `││  estado : ${userStatus}\n`;
-        case7Text += `││  rango : ${userRole}\n`;
-        case7Text += `││  carne : ${userLimit}\n`;
-        case7Text += `╰╯\n`;
+        case7Text += `╭━━━〔 ❀ DETALLES DEL USUARIO 〕━━━╮\n`;
+        case7Text += `┃ ╰┈➤ *nombre* : _${userName}_\n`;
+        case7Text += `┃ ╰┈➤ *estado* : ${userStatus}\n`;
+        case7Text += `┃ ╰┈➤ *rango* : ${userRole}\n`;
+        case7Text += `┃ ╰┈➤ *carne* : ${userLimit}\n`;
+        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
         case7Text += readmore + "";
-        case7Text += `╭╮ \`✧ ${toMathSansBold("MENÚ POR CATEGORÍAS")}\`\n`;
+        case7Text += `╭━━━〔 ✧ MENÚ POR CATEGORÍAS 〕━━━╮\n`;
         const { sorted } = getSortedCategories(m, botMode);
         for (const cat of sorted) {
-          case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
+          case7Text += `┃ ╰┈➤ ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
         }
-        case7Text += `╰╯`;
+        case7Text += `╰━━━━━━━━━━━━━━╯`;
 
 
         const { getAssetBuffer } = await import("../../src/lib/luffy-asset-manager.js");
@@ -1348,14 +1345,15 @@ Soy ${botName}, tu asistente inteligente creado por ${config.bot?.developer}. Ya
         const userExp = dbUser?.exp || 0;
         const diasActivos = dbUser?.activeDays || 0;
 
-        let case7Text = `*YOUR STATUS*\n`;
-        case7Text += `❑ Role: ${userJabatan}\n`;
-        case7Text += `❑ Rank: ${userRank}\n`;
-        case7Text += `❑ Level: ${userLevel}\n`;
-        case7Text += `❑ Coin: ${userBerry}\n`;
-        case7Text += `❑ Exp: ${userExp}\n`;
-        case7Text += `❑ Carne: ${userLimit}\n\n`;
-        case7Text += `¡Hola, mi amigo *"${m.pushName}"*!\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n\nLlevas activo desde hace *${diasActivos} días*\n\n`;
+        let case7Text = `╭━━━〔 👑 TU ESTADO 〕━━━╮\n`;
+        case7Text += `┃ ╰┈➤ *Rol* : ${userJabatan}\n`;
+        case7Text += `┃ ╰┈➤ *Rango* : ${userRank}\n`;
+        case7Text += `┃ ╰┈➤ *Nivel* : ${userLevel}\n`;
+        case7Text += `┃ ╰┈➤ *Berry* : ${userBerry}\n`;
+        case7Text += `┃ ╰┈➤ *Exp* : ${userExp}\n`;
+        case7Text += `┃ ╰┈➤ *Carne* : ${userLimit}\n`;
+        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
+        case7Text += `꧁༺ ¡Hola, mi amigo *"${m.pushName}"!* ༻꧂\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n⚓ Llevas activo desde hace *${diasActivos} días*\n\n`;
 
 case7Text += `Web de Panel y Alquiler del Bot\n`;
 case7Text += `fallxdstore.zone.id\n\n`;
@@ -1375,11 +1373,11 @@ case7Text += `fallxdstore.zone.id\n\n`;
 
         for (const cat of sorted) {
           const catName = catMap[cat.cat.toLowerCase()] || cat.cat.toUpperCase();
-          case7Text += `*${catName}*\n`;
+          case7Text += `╭━━━〔 ✦ ${catName} 〕━━━╮\n`;
           for (const cmd of cat.cmds) {
-            case7Text += `⇨ ${botPrefix}${cmd}\n`;
+            case7Text += `┃ ╰┈➤ ${botPrefix}${cmd}\n`;
           }
-          case7Text += `\n`;
+          case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
         }
         case7Text = case7Text.trimEnd();
 
@@ -1644,7 +1642,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
                   status: "INQUIRY",
                   surface: "CATALOG",
                   message: `★ ${config.bot.name}`,
-                  orderTitle: `📋 ${totalCmds} Commands`,
+                  orderTitle: `📋 ${totalCmds} Comandos`,
                   sellerJid: botConfig.botNumber
                     ? `${botConfig.botNumber}@s.whatsapp.net`
                     : m.sender,

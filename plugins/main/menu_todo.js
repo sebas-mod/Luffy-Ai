@@ -59,11 +59,11 @@ const CATEGORY_EMOJIS = {
 };
 
 function createBracketBox(emoji, title, lines = []) {
-  let text = `╭➤--「${title} MENU 」\n`;
+  let text = `╭━━━〔 ${emoji} ${title} 〕━━━╮\n`;
   for (const line of lines) {
-    text += `┆ ⇝ ${line}\n`;
+    text += `┃ ╰┈➤ ${line}\n`;
   }
-  text += `╰➤-------------------------------\n\n`;
+  text += `╰━━━━━━━━━━━━━━╯\n\n`;
   return text;
 }
 function getCommandSymbols(cmdName) {
@@ -143,22 +143,26 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const pushName = m.pushName || "User";
   const timeNow = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' }).replace(/\./g, ':');
 
-  txt += `✦ *Información del Usuario*\n`;
-  txt += `• Nombre : ${pushName}\n`;
-  txt += `• Status : ${userRole}\n`;
-  txt += `• Limit  : ${userLimit}\n\n`;
-  txt += `✦ *Información del Bot*\n`;
-  txt += `• Nombre : ${botName}\n`;
-  txt += `• Funciones  : ${totalFeatures} funciones\n`;
-  txt += `• Versión  : ${botVersion}\n`;
-  txt += `• Hora  : ${timeNow} (hora local)\n\n`;
-  txt += `✦ *Ventajas de Este Bot*\n`;
-  txt += `• Fast response\n`;
-  txt += `• Stable system\n`;
-  txt += `• Multi feature\n`;
-  txt += `• User friendly\n\n`;
-  txt += `Por favor, elige un menú a continuación.\n`;
-  txt += `Úsalo según tus necesidades y úsalo con responsabilidad.\n\n`;
+  txt += `꧁༺ 🏴‍☠️ *MENÚ COMPLETO* ༻꧂\n\n`;
+  txt += `╭━━━〔 👑 INFORMACIÓN DEL USUARIO 〕━━━╮\n`;
+  txt += `┃ ╰┈➤ *Nombre* : ${pushName}\n`;
+  txt += `┃ ╰┈➤ *Estado* : ${userRole}\n`;
+  txt += `┃ ╰┈➤ *Límite* : ${userLimit}\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `╭━━━〔 🤖 INFORMACIÓN DEL BOT 〕━━━╮\n`;
+  txt += `┃ ╰┈➤ *Nombre* : ${botName}\n`;
+  txt += `┃ ╰┈➤ *Funciones* : ${totalFeatures} funciones\n`;
+  txt += `┃ ╰┈➤ *Versión* : ${botVersion}\n`;
+  txt += `┃ ╰┈➤ *Hora* : ${timeNow} (hora local)\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `✦────〔 ⚡ VENTAJAS DE ESTE BOT 〕────✦\n`;
+  txt += `┃ ╰┈➤ Respuesta rápida 🚀\n`;
+  txt += `┃ ╰┈➤ Sistema estable 🛡️\n`;
+  txt += `┃ ╰┈➤ Multifunción 🧩\n`;
+  txt += `┃ ╰┈➤ Fácil de usar ✨\n`;
+  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `⚓ Por favor, elige un menú a continuación.\n`;
+  txt += `Úsalo según tus necesidades y con responsabilidad.\n\n`;
   const categoryOrder = [
     "owner",
     "main",
@@ -252,7 +256,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `> Hola *${pushName}* 👋 Me presento, soy *${botName}*, creado por *${devName}*. Estoy listo para ayudarte con tus necesidades, desde descargar videos, jugar, hacer preguntas, buscar información/cosas, crear stickers y mucho más.\n\n`,
+                    text: `꧁༺ 🏴‍☠️ *¡Hola, ${pushName}!* ༻꧂\n\n⚓ Soy *${botName}*, creado por *${devName}*. Estoy listo para ayudarte con tus necesidades: descargar videos, jugar, hacer preguntas, buscar información, crear stickers y mucho más.\n\n`,
                   },
                   footer: {
                     text: txt
@@ -563,7 +567,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   status: "INQUIRY",
                   surface: "CATALOG",
                   message: `★ ${config.bot.name}`,
-                  orderTitle: `📋 ${totalCmds} Commands`,
+                  orderTitle: `📋 ${totalCmds} Comandos`,
                   sellerJid: botConfig.botNumber
                     ? `${botConfig.botNumber}@s.whatsapp.net`
                     : m.sender,

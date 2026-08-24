@@ -94,11 +94,11 @@ function toSmallCaps(text) {
 }
 
 function createBracketBox(emoji, title, lines = []) {
-  let text = `╭─〔 ${emoji} \`${title}\`\n`;
+  let text = `╭━━━〔 ${emoji} ${title} 〕━━━╮\n`;
   for (const line of lines) {
-    text += `┃ *${toSmallCaps(line)}*\n`;
+    text += `┃ ╰┈➤ ${toSmallCaps(line)}\n`;
   }
-  text += `╰─⬣\n\n`;
+  text += `╰━━━━━━━━━━━━━━╯\n\n`;
   return text;
 }
 
@@ -401,7 +401,7 @@ async function handler(m, { sock, db }) {
 
   let txt = ``;
   txt += createBracketBox(emoji, categoryName, commandLines);
-  txt += `Total: \`${allCommands.length}\` commands`;
+  txt += `✦ Total: \`${allCommands.length}\` comandos`;
   if (caseCommands.length > 0) {
     txt += `\n(${pluginCommands.length} plugin + ${caseCommands.length} case)`;
   }
