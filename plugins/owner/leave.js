@@ -1,12 +1,12 @@
 import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
-  name: "leave",
-  alias: ["leavegrup", "leavegroup", "salir", "bye"],
+  name: "salir",
+  alias: ["salirgrupo", "salirgc"],
   category: "owner",
   description: "El bot sale del grupo",
-  usage: ".leave [link]",
-  example: ".leave",
+  usage: ".salir [link]",
+  example: ".salir",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -64,10 +64,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `🚪 *sᴀʟɪʀ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
         `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
-        `┃ ◦ En el grupo: \`.leave\`\n` +
-        `┃ ◦ Vía enlace: \`.leave <enlace>\`\n` +
+        `┃ ◦ En el grupo: \`.salir\`\n` +
+        `┃ ◦ Vía enlace: \`.salir <enlace>\`\n` +
         `╰┈┈⬡\n\n` +
-        `\`Ejemplo: ${m.prefix}leave https://chat.whatsapp.com/xxx\``,
+        `\`Ejemplo: ${m.prefix}salir https://chat.whatsapp.com/xxx\``,
     );
   }
 
