@@ -244,27 +244,27 @@ async function buildMenuText(
   const greeting = getTimeGreeting();
   const uptimeFormatted = formatUptime(uptime);
   const totalUsers = db.getUserCount();
-  let txt = `╭━━━〔 🏴‍☠️ 〕━━━╮\n`;
-  txt += `┃ ${greeting}, *${m.pushName || "User"}*\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
-  txt += `⚓ Soy *${botConfig.bot?.name || "Luffy-Ai"}*, tu bot pirata creado por ${botConfig.bot?.developer || "el Owner"}.\n`;
-  txt += `Puedo descargar videos, jugar contigo, responder preguntas, buscar información, crear stickers y mucho más.\n\n`;
+  let txt = `╔═══════════════════╗\n`;
+  txt += `║  🏴‍☠️ *${(botConfig.bot?.name || "Luffy-Ai").toUpperCase()}* 🏴‍☠️\n`;
+  txt += `╚═══════════════════╝\n\n`;
+  txt += `${greeting}, *${m.pushName || "User"}*! 👋\n`;
+  txt += `⚓ Tu bot pirata listo para ayudarte: descargas, juegos, búsquedas, stickers y mucho más.\n\n`;
 
-  txt += `╭━━━〔 👑 INFO DEL USUARIO 〕━━━╮\n`;
-  txt += `┃ ╰┈➤ *Nombre* : ${m.pushName || "User"}\n`;
-  txt += `┃ ╰┈➤ *Estado* : ${roleEmoji} ${userRole}\n`;
-  txt += `┃ ╰┈➤ *Modo* : ${(botConfig.mode || "public").toUpperCase()}\n`;
-  txt += `┃ ╰┈➤ *Número* : ${m.sender.split("@")[0]}\n`;
-  txt += `┃ ╰┈➤ *Hora* : ${timeStr}\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `╔══「 👑 𝗜𝗡𝗙𝗢 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 」\n`;
+  txt += `║ ▸ *Nombre* : ${m.pushName || "User"}\n`;
+  txt += `║ ▸ *Estado* : ${roleEmoji} ${userRole}\n`;
+  txt += `║ ▸ *Modo* : ${(botConfig.mode || "public").toUpperCase()}\n`;
+  txt += `║ ▸ *Número* : ${m.sender.split("@")[0]}\n`;
+  txt += `║ ▸ *Hora* : ${timeStr}\n`;
+  txt += `╚═══════════════════╝\n\n`;
 
-  txt += `╭━━━〔 🤖 INFO DEL BOT 〕━━━╮\n`;
-  txt += `┃ ╰┈➤ *Nombre* : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
-  txt += `┃ ╰┈➤ *Autor* : ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┃ ╰┈➤ *Versión* : ${botConfig.bot?.version || "1.2.0"}\n`;
-  txt += `┃ ╰┈➤ *Tipo de script* : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┃ ╰┈➤ *Tiempo activo* : ${uptimeFormatted}\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
+  txt += `╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」\n`;
+  txt += `║ ▸ *Nombre* : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+  txt += `║ ▸ *Autor* : ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `║ ▸ *Versión* : ${botConfig.bot?.version || "1.2.0"}\n`;
+  txt += `║ ▸ *Script* : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `║ ▸ *Activo* : ${uptimeFormatted}\n`;
+  txt += `╚═══════════════════╝\n\n`;
   const categoryOrder = [
     "owner",
     "main",
@@ -335,12 +335,12 @@ async function buildMenuText(
     categoryLines.push(`${prefix}menucat ${category} ${emoji}`);
   }
   if (categoryLines.length > 0) {
-    txt += `✦────〔 📜 LISTA DE MENÚ 〕────✦\n`;
-    txt += `┃ ${categoryLines[0]}\n`;
+    txt += `╔══「 📜 𝗟𝗜𝗦𝗧𝗔 𝗗𝗘 𝗠𝗘𝗡ú 」\n`;
+    txt += `║ ${categoryLines[0]}\n`;
     for (let i = 1; i < categoryLines.length; i++) {
-      txt += `┃ ${categoryLines[i]}\n`;
+      txt += `║ ${categoryLines[i]}\n`;
     }
-    txt += `╰━━━━━━━━━━━━━━╯\n`;
+    txt += `╚═══════════════════╝\n`;
   }
   return txt;
 }
@@ -542,11 +542,11 @@ Toca el botón de abajo para más información y elegir la categoría
       case 2:
         let s = ""
         categories.sorted.map(({ cat, cmds, emoji }) => {
-          s += `╭━━━〔 ${emoji} ${toMonoUpperBold(cat)} 〕━━━╮\n`
+          s += `╔══「 ${emoji} ${toMonoUpperBold(cat)} 」══╗\n`
           cmds.map((cmd) => {
-            s += `┃ ╰┈➤ ${m.prefix}${cmd}\n`
+            s += `║ ▸ ${m.prefix}${cmd}\n`
           })
-          s += "╰━━━━━━━━━━━━━━╯\n\n"
+          s += "╚═══════════════╝\n\n"
         });
         const media = await prepareWAMessageMedia({
           image: fs.readFileSync(config.assets["luffy"])
@@ -566,24 +566,28 @@ Toca el botón de abajo para más información y elegir la categoría
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
+                    text: `╔═══════════════════╗
+║  🏴‍☠️ *${(config.bot?.name || "LUFFY-AI").toUpperCase()}* 🏴‍☠️
+╚═══════════════════╝
 
-⚓ Bienvenido a bordo de *${config.bot?.name}*, tu bot pirata de confianza.
+¡Hola, *${m.pushName}*! 👋 Bienvenido a bordo ⚓
 
-⚡•──〔 🤖 INFORMACIÓN DEL BOT 〕──•⚡
-┃ 🤖 *Nombre* : ${config.bot?.name}
-┃ ⚙️ *Versión* : ${config.bot?.version}
-┃ 👨‍💻 *Desarrollador* : ${config.bot?.developer}
-┃ 🧩 *Librería* : \`luffy-baileys\`
+╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」
+║ ▸ *Nombre* : ${config.bot?.name}
+║ ▸ *Versión* : ${config.bot?.version}
+║ ▸ *Creador* : ${config.bot?.developer}
+║ ▸ *Librería* : \`luffy-baileys\`
+╚═══════════════════╝
 
-⚡•──〔 👑 INFORMACIÓN DEL USUARIO 〕──•⚡
-┃ 🧑 *Nombre* : ${m.pushName}
-┃ 🥐 *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
-┃ 🧀 *Nivel* : ${user.level || 0}
-┃ 🍗 *Exp* : ${user.exp || 0}
-┃ 🥩 *Carne* : ${user.carne || 0}
-┃ 🎏 *Berry* : ${user.berry || 0}
-┃ 🍬 *Registro* : ${user.isRegistered ? "Sí" : "No"}
+╔══「 👑 𝗧𝗨𝗦 𝗗𝗔𝗧𝗢𝗦 」
+║ ▸ *Nombre* : ${m.pushName}
+║ ▸ *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+║ ▸ *Nivel* : ${user.level || 0}
+║ ▸ *Exp* : ${user.exp || 0}
+║ ▸ *Carne* : ${user.carne || 0}
+║ ▸ *Berry* : ${user.berry || 0}
+║ ▸ *Registro* : ${user.isRegistered ? "Sí" : "No"}
+╚═══════════════════╝
 
 ${readmore}${s}`
                   },
@@ -680,24 +684,28 @@ ${readmore}${s}`
               name: config.bot.name,
               address: `Versión actual: ${config.bot.version}`
             },
-            contentText: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
+            contentText: `╔═══════════════════╗
+║  🏴‍☠️ *${(config.bot?.name || "LUFFY-AI").toUpperCase()}* 🏴‍☠️
+╚═══════════════════╝
 
-⚓ Bienvenido a bordo de *${config.bot?.name}*, tu bot pirata de confianza.
+¡Hola, *${m.pushName}*! 👋 Bienvenido a bordo ⚓
 
-⚡•──〔 🤖 INFORMACIÓN DEL BOT 〕──•⚡
-┃ 🤖 *Nombre* : ${config.bot?.name}
-┃ ⚙️ *Versión* : ${config.bot?.version}
-┃ 👨‍💻 *Desarrollador* : ${config.bot?.developer}
-┃ 🧩 *Librería* : \`luffy-baileys\`
+╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」
+║ ▸ *Nombre* : ${config.bot?.name}
+║ ▸ *Versión* : ${config.bot?.version}
+║ ▸ *Creador* : ${config.bot?.developer}
+║ ▸ *Librería* : \`luffy-baileys\`
+╚═══════════════════╝
 
-⚡•──〔 👑 INFORMACIÓN DEL USUARIO 〕──•⚡
-┃ 🧑 *Nombre* : ${m.pushName}
-┃ 🥐 *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
-┃ 🧀 *Nivel* : ${user.level || 0}
-┃ 🍗 *Exp* : ${user.exp || 0}
-┃ 🥩 *Carne* : ${user.carne || 0}
-┃ 🎏 *Berry* : ${user.berry || 0}
-┃ 🍬 *Registro* : ${user.isRegistered ? "Sí" : "No"}`,
+╔══「 👑 𝗧𝗨𝗦 𝗗𝗔𝗧𝗢𝗦 」
+║ ▸ *Nombre* : ${m.pushName}
+║ ▸ *Rango* : ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+║ ▸ *Nivel* : ${user.level || 0}
+║ ▸ *Exp* : ${user.exp || 0}
+║ ▸ *Carne* : ${user.carne || 0}
+║ ▸ *Berry* : ${user.berry || 0}
+║ ▸ *Registro* : ${user.isRegistered ? "Sí" : "No"}
+╚═══════════════════╝`,
             footerText: '⚓ Elige una de las opciones de abajo',
             headerType: 6,
           },
@@ -770,16 +778,19 @@ ${readmore}${s}`
                   text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
-                  text: `꧁༺ 🏴‍☠️ *${greeting} ${m.pushName}* ༻꧂
+                  text: `╔═══════════════════╗
+║  🏴‍☠️ *${(config.bot.name || "LUFFY-AI").toUpperCase()}* 🏴‍☠️
+╚═══════════════════╝
 
-⚓ Soy *${config.bot.name}*, tu bot pirata. Puedo ayudarte con muchas cosas dentro de WhatsApp con un script *Javascript* armado por mi creador.
+*${greeting} ${m.pushName}*! 👋 Listo para ayudarte en WhatsApp con un script *Javascript* armado por mi creador.
 
-⚡•──〔 🤖 INFO DEL BOT 〕──•⚡
-┃ 🍛 *Creador* : ${config.bot?.developer}
-┃ 🥞 *Nombre* : ${config.bot?.name}
-┃ 🥩 *Versión* : ${config.bot?.version}
-┃ 🍂 *Tipo* : \`Plugin x Cases\`
-┃ 🦴 *Modo* : *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
+╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」
+║ ▸ *Creador* : ${config.bot?.developer}
+║ ▸ *Nombre* : ${config.bot?.name}
+║ ▸ *Versión* : ${config.bot?.version}
+║ ▸ *Tipo* : \`Plugin x Cases\`
+║ ▸ *Modo* : *${config.mode === 'public' ? '🍕 Desbloqueado para todos' : '🥖 Solo para el Owner'}*
+╚═══════════════════╝
 
 Disfruta su uso, pirata. ⚓`
                 },
@@ -915,23 +926,27 @@ Disfruta su uso, pirata. ⚓`
                   text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
-                  text: `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
+                  text: `╔═══════════════════╗
+║  🏴‍☠️ *${(config.bot.name || "LUFFY-AI").toUpperCase()}* 🏴‍☠️
+╚═══════════════════╝
 
-_Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos o información directamente desde WhatsApp._ ⚡
+¡Hola, *${m.pushName}*! 👋 _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obtener datos o información directamente desde WhatsApp._
 
-⚡•──〔 🤖 I N F O - B O T 〕──•⚡
-┌ ╰┈➤ Nombre : ${config.bot.name}
-│ ╰┈➤ Autor : @${config.bot.developer}
-│ ╰┈➤ Tipo de Script : Case x Plugins
-│ ╰┈➤ Tiempo activo : ${runtime(process.uptime())}
-└ ╰┈➤ Versión : ${config.bot.version}
+╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」
+║ ▸ Nombre : ${config.bot.name}
+║ ▸ Autor : @${config.bot.developer}
+║ ▸ Tipo de Script : Case x Plugins
+║ ▸ Tiempo activo : ${runtime(process.uptime())}
+║ ▸ Versión : ${config.bot.version}
+╚═══════════════════╝
 
-⚡•──〔 👑 I N F O - U S U A R I O 〕──•⚡
-┌ ╰┈➤ Nombre : ${m.pushName}
-│ ╰┈➤ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
-│ ╰┈➤ Modo : ${config.mode === "pblic" ? "Pueden usarlo todos" : "Solo Owner :b"}
-│ ╰┈➤ Número : @${m.sender.split("@")[0]}
-└ ╰┈➤ ${greeting}
+╔══「 👑 𝗜𝗡𝗙𝗢 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 」
+║ ▸ Nombre : ${m.pushName}
+║ ▸ Estado : ${m.isPremium ? "💎 Premium" : m.isOwner ? "👑 Owner" : "🏷️ Free"}
+║ ▸ Modo : ${config.mode === "pblic" ? "Pueden usarlo todos" : "Solo Owner :b"}
+║ ▸ Número : @${m.sender.split("@")[0]}
+║ ▸ ${greeting}
+╚═══════════════════╝
 `
                 },
                 contextInfo: {
@@ -1053,15 +1068,15 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
           .sort((a, b) => b.count - a.count)
           .slice(0, 5)
 
-        let topCmdText = "\n✦────〔 📜 Historial 〕────✦\n"
+        let topCmdText = "\n╔══「 📜 𝗛𝗜𝗦𝗧𝗢𝗥𝗜𝗔𝗟 」\n"
         if (commandStats.length > 0) {
-          topCmdText += `┃ ╰┈➤ ${m.prefix}${commandStats[0].name} (${commandStats[0].count}x)\n`
+          topCmdText += `║ ▸ ${m.prefix}${commandStats[0].name} (${commandStats[0].count}x)\n`
           for (let i = 1; i < commandStats.length; i++) {
-            topCmdText += `┃ ╰┈➤ ${m.prefix}${commandStats[i].name} (${commandStats[i].count}x)\n`
+            topCmdText += `║ ▸ ${m.prefix}${commandStats[i].name} (${commandStats[i].count}x)\n`
           }
-          topCmdText += `╰━━━━━━━━━━━━━━╯\n`
+          topCmdText += `╚═══════════════╝\n`
         } else {
-          topCmdText += `┃ ╰┈➤ Aún no hay comandos\n╰━━━━━━━━━━━━━━╯\n`
+          topCmdText += `║ ▸ Aún no hay comandos\n╚═══════════════╝\n`
         }
 
         const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
@@ -1172,34 +1187,36 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
         const dbUser = db.getUser(m.sender);
         const userLimit = (dbUser?.limit === Infinity || dbUser?.limit === null || dbUser?.limit === undefined) ? "unlimited" : dbUser.limit;
 
-        let case7Text = `꧁༺ 🏴‍☠️ *¡Hola, ${m.pushName}!* ༻꧂
+        let case7Text = `╔═══════════════════╗
+║  🏴‍☠️ *¡HOLA, ${(m.pushName || "USER").toUpperCase()}!* 🏴‍☠️
+╚═══════════════════╝
 
-⚓ Soy *${botName}*, tu asistente inteligente creado por ${config.bot?.developer}. Ya sea información, entretenimiento o utilidades, siempre estoy listo para ayudarte.
+⚓ Soy *${botName}*, tu asistente inteligente creado por ${config.bot?.developer}. Información, entretenimiento o utilidades: siempre listo para ayudarte.
 
 `
 
-        case7Text += `╭━━━〔 🤖 DETALLES DEL BOT 〕━━━╮\n`;
-        case7Text += `┃ ╰┈➤ *nombre* : ${botName}\n`;
-        case7Text += `┃ ╰┈➤ *modo* : ${botModeLower}\n`;
-        case7Text += `┃ ╰┈➤ *prefix* : \`${botPrefix}\`\n`;
-        case7Text += `┃ ╰┈➤ *tiempo activo* : ${runTime}\n`;
-        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
+        case7Text += `╔══「 🤖 𝗗𝗘𝗧𝗔𝗟𝗟𝗘𝗦 𝗕𝗢𝗧 」\n`;
+        case7Text += `║ ▸ *nombre* : ${botName}\n`;
+        case7Text += `║ ▸ *modo* : ${botModeLower}\n`;
+        case7Text += `║ ▸ *prefix* : \`${botPrefix}\`\n`;
+        case7Text += `║ ▸ *tiempo activo* : ${runTime}\n`;
+        case7Text += `╚═══════════════════╝\n\n`;
 
-        case7Text += `╭━━━〔 ❀ DETALLES DEL USUARIO 〕━━━╮\n`;
-        case7Text += `┃ ╰┈➤ *nombre* : _${userName}_\n`;
-        case7Text += `┃ ╰┈➤ *estado* : ${userStatus}\n`;
-        case7Text += `┃ ╰┈➤ *rango* : ${userRole}\n`;
-        case7Text += `┃ ╰┈➤ *carne* : ${userLimit}\n`;
-        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
+        case7Text += `╔══「 ❀ 𝗗𝗘𝗧𝗔𝗟𝗟𝗘𝗦 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 」\n`;
+        case7Text += `║ ▸ *nombre* : _${userName}_\n`;
+        case7Text += `║ ▸ *estado* : ${userStatus}\n`;
+        case7Text += `║ ▸ *rango* : ${userRole}\n`;
+        case7Text += `║ ▸ *carne* : ${userLimit}\n`;
+        case7Text += `╚═══════════════════╝\n\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
         case7Text += readmore + "";
-        case7Text += `╭━━━〔 ✧ MENÚ POR CATEGORÍAS 〕━━━╮\n`;
+        case7Text += `╔══「 ✧ 𝗠𝗘𝗡ú 𝗣𝗢𝗥 𝗖𝗔𝗧𝗘𝗚𝗢𝗥í𝗔𝗦 」\n`;
         const { sorted } = getSortedCategories(m, botMode);
         for (const cat of sorted) {
-          case7Text += `┃ ╰┈➤ ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
+          case7Text += `║ ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
         }
-        case7Text += `╰━━━━━━━━━━━━━━╯`;
+        case7Text += `╚═══════════════════╝`;
 
 
         const { getAssetBuffer } = await import("../../src/lib/luffy-asset-manager.js");
@@ -1342,15 +1359,15 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
         const userExp = dbUser?.exp || 0;
         const diasActivos = dbUser?.activeDays || 0;
 
-        let case7Text = `╭━━━〔 👑 TU ESTADO 〕━━━╮\n`;
-        case7Text += `┃ ╰┈➤ *Rol* : ${userJabatan}\n`;
-        case7Text += `┃ ╰┈➤ *Rango* : ${userRank}\n`;
-        case7Text += `┃ ╰┈➤ *Nivel* : ${userLevel}\n`;
-        case7Text += `┃ ╰┈➤ *Berry* : ${userBerry}\n`;
-        case7Text += `┃ ╰┈➤ *Exp* : ${userExp}\n`;
-        case7Text += `┃ ╰┈➤ *Carne* : ${userLimit}\n`;
-        case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
-        case7Text += `꧁༺ ¡Hola, mi amigo *"${m.pushName}"!* ༻꧂\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n⚓ Llevas activo desde hace *${diasActivos} días*\n\n`;
+        let case7Text = `╔══「 👑 𝗧𝗨 𝗘𝗦𝗧𝗔𝗗𝗢 」════╗\n`;
+        case7Text += `║ ▸ *Rol* : ${userJabatan}\n`;
+        case7Text += `║ ▸ *Rango* : ${userRank}\n`;
+        case7Text += `║ ▸ *Nivel* : ${userLevel}\n`;
+        case7Text += `║ ▸ *Berry* : ${userBerry}\n`;
+        case7Text += `║ ▸ *Exp* : ${userExp}\n`;
+        case7Text += `║ ▸ *Carne* : ${userLimit}\n`;
+        case7Text += `╚═══════════════╝\n\n`;
+        case7Text += `¡Hola, mi amigo *"${m.pushName}"*!\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n⚓ Llevas activo desde hace *${diasActivos} días*\n\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
         case7Text += readmore + "";
@@ -1367,11 +1384,11 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
 
         for (const cat of sorted) {
           const catName = catMap[cat.cat.toLowerCase()] || cat.cat.toUpperCase();
-          case7Text += `╭━━━〔 ✦ ${catName} 〕━━━╮\n`;
+          case7Text += `╔══「 ✦ ${catName} 」══╗\n`;
           for (const cmd of cat.cmds) {
-            case7Text += `┃ ╰┈➤ ${botPrefix}${cmd}\n`;
+            case7Text += `║ ▸ ${botPrefix}${cmd}\n`;
           }
-          case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
+          case7Text += `╚═════════════╝\n\n`;
         }
         case7Text = case7Text.trimEnd();
 

@@ -57,11 +57,11 @@ const CATEGORY_EMOJIS = {
 };
 
 function createBracketBox(emoji, title, lines = []) {
-  let text = `╭━━━〔 ${emoji} ${title} 〕━━━╮\n`;
+  let text = `╔══「 ${emoji} ${title} 」══╗\n`;
   for (const line of lines) {
-    text += `┃ ╰┈➤ ${line}\n`;
+    text += `║ ▸ ${line}\n`;
   }
-  text += `╰━━━━━━━━━━━━━━╯\n\n`;
+  text += `╚═══════════════╝\n\n`;
   return text;
 }
 function getCommandSymbols(cmdName) {
@@ -141,25 +141,27 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const pushName = m.pushName || "User";
   const timeNow = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' }).replace(/\./g, ':');
 
-  txt += `꧁༺ 🏴‍☠️ *MENÚ COMPLETO* ༻꧂\n\n`;
-  txt += `╭━━━〔 👑 INFORMACIÓN DEL USUARIO 〕━━━╮\n`;
-  txt += `┃ ╰┈➤ *Nombre* : ${pushName}\n`;
-  txt += `┃ ╰┈➤ *Estado* : ${userRole}\n`;
-  txt += `┃ ╰┈➤ *Límite* : ${userLimit}\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
-  txt += `╭━━━〔 🤖 INFORMACIÓN DEL BOT 〕━━━╮\n`;
-  txt += `┃ ╰┈➤ *Nombre* : ${botName}\n`;
-  txt += `┃ ╰┈➤ *Funciones* : ${totalFeatures} funciones\n`;
-  txt += `┃ ╰┈➤ *Versión* : ${botVersion}\n`;
-  txt += `┃ ╰┈➤ *Hora* : ${timeNow} (hora local)\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
-  txt += `✦────〔 ⚡ VENTAJAS DE ESTE BOT 〕────✦\n`;
-  txt += `┃ ╰┈➤ Respuesta rápida 🚀\n`;
-  txt += `┃ ╰┈➤ Sistema estable 🛡️\n`;
-  txt += `┃ ╰┈➤ Multifunción 🧩\n`;
-  txt += `┃ ╰┈➤ Fácil de usar ✨\n`;
-  txt += `╰━━━━━━━━━━━━━━╯\n\n`;
-  txt += `⚓ Por favor, elige un menú a continuación.\n`;
+  txt += `╔═══════════════════╗\n`;
+  txt += `║  🏴‍☠️ *MENÚ COMPLETO* 🏴‍☠️\n`;
+  txt += `╚═══════════════════╝\n\n`;
+  txt += `╔══「 👑 𝗜𝗡𝗙𝗢 𝗨𝗦𝗨𝗔𝗥𝗜𝗢 」\n`;
+  txt += `║ ▸ *Nombre* : ${pushName}\n`;
+  txt += `║ ▸ *Estado* : ${userRole}\n`;
+  txt += `║ ▸ *Límite* : ${userLimit}\n`;
+  txt += `╚═══════════════════╝\n\n`;
+  txt += `╔══「 🤖 𝗜𝗡𝗙𝗢 𝗕𝗢𝗧 」\n`;
+  txt += `║ ▸ *Nombre* : ${botName}\n`;
+  txt += `║ ▸ *Funciones* : ${totalFeatures} funciones\n`;
+  txt += `║ ▸ *Versión* : ${botVersion}\n`;
+  txt += `║ ▸ *Hora* : ${timeNow} (hora local)\n`;
+  txt += `╚═══════════════════╝\n\n`;
+  txt += `╔══「 ⚡ 𝗩𝗘𝗡𝗧𝗔𝗝𝗔𝗦 」\n`;
+  txt += `║ ▸ Respuesta rápida 🚀\n`;
+  txt += `║ ▸ Sistema estable 🛡️\n`;
+  txt += `║ ▸ Multifunción 🧩\n`;
+  txt += `║ ▸ Fácil de usar ✨\n`;
+  txt += `╚═══════════════════╝\n\n`;
+  txt += `⚓ Elige un menú a continuación.\n`;
   txt += `Úsalo según tus necesidades y con responsabilidad.\n\n`;
   const categoryOrder = [
     "owner",
@@ -254,7 +256,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `꧁༺ 🏴‍☠️ *¡Hola, ${pushName}!* ༻꧂\n\n⚓ Soy *${botName}*, creado por *${devName}*. Estoy listo para ayudarte con tus necesidades: descargar videos, jugar, hacer preguntas, buscar información, crear stickers y mucho más.\n\n`,
+                    text: `╔═══════════════════╗\n║  🏴‍☠️ *¡HOLA, ${(pushName || "USER").toUpperCase()}!* 🏴‍☠️\n╚═══════════════════╝\n\n⚓ Soy *${botName}*, creado por *${devName}*. Listo para ayudarte: descargar videos, jugar, hacer preguntas, buscar información, crear stickers y mucho más.\n\n`,
                   },
                   footer: {
                     text: txt

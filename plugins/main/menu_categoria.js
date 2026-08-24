@@ -92,11 +92,11 @@ function toSmallCaps(text) {
 }
 
 function createBracketBox(emoji, title, lines = []) {
-  let text = `╭━━━〔 ${emoji} ${title} 〕━━━╮\n`;
+  let text = `╔══「 ${emoji} ${title} 」══╗\n`;
   for (const line of lines) {
-    text += `┃ ╰┈➤ ${toSmallCaps(line)}\n`;
+    text += `║ ▸ ${toSmallCaps(line)}\n`;
   }
-  text += `╰━━━━━━━━━━━━━━╯\n\n`;
+  text += `╚═══════════════╝\n\n`;
   return text;
 }
 
