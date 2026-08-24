@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-pp-kosong.jpg',
-    alias: ["gantippkosong", "configurar_foto_vacia"],
+    name: 'cambiar_pp_vacio',
+    alias: ["configurar_foto_vacia"],
     category: 'owner',
     description: 'Cambiar la imagen pp-kosong.jpg',
-    usage: '.ganti-pp-kosong.jpg (responde/envía imagen)',
-    example: '.ganti-pp-kosong.jpg',
+    usage: '.cambiar_pp_vacio (responde/envía imagen)',
+    example: '.cambiar_pp_vacio',
     isOwner: true,
     isPremium: false,
     isGroup: false,

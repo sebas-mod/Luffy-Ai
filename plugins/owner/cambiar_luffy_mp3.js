@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy.mp3',
-    alias: ["gantiluffyaudio", "configurar_luffy_mp3"],
+    name: 'cambiar_luffy_mp3',
+    alias: ["configurar_luffy_mp3"],
     category: 'owner',
     description: 'Cambiar el audio luffy.mp3',
-    usage: '.ganti-luffy.mp3 (responde/envía audio)',
-    example: '.ganti-luffy.mp3',
+    usage: '.cambiar_luffy_mp3 (responde/envía audio)',
+    example: '.cambiar_luffy_mp3',
     isOwner: true,
     isPremium: false,
     isGroup: false,

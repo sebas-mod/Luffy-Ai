@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
   }
   text += `\nSolo tienes *120 segundos*! ⏱️\n`;
   text += `¿El premio? *EXP* & *Berry* aleatorios por cada respuesta correcta! 🎁💸\n\n`;
-  text += `Cómo jugar: simplemente *responde a este mensaje* con tu respuesta, o escribe la palabra *nyerah* / *me rindo* si ya estás harto 🏳️😂`;
+  text += `Cómo jugar: simplemente *responde a este mensaje* con tu respuesta, o escribe *me rindo* si ya estás harto 🏳️😂`;
 
   const sentMsg = await m.reply(text);
 

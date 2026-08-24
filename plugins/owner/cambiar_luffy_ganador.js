@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy-winner.jpg',
-    alias: ["gantiluffywinner", "configurar_luffy_ganador"],
+    name: 'cambiar_luffy_ganador',
+    alias: ["configurar_luffy_ganador"],
     category: 'owner',
     description: 'Cambiar la imagen luffy-winner.jpg (miniatura de ganador de juego)',
-    usage: '.ganti-luffy-winner.jpg (responde/envía imagen)',
-    example: '.ganti-luffy-winner.jpg',
+    usage: '.cambiar_luffy_ganador (responde/envía imagen)',
+    example: '.cambiar_luffy_ganador',
     isOwner: true,
     isPremium: false,
     isGroup: false,

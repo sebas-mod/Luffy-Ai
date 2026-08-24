@@ -9,7 +9,7 @@ const pluginConfig = {
   name: "agregar_renta",
   alias: ["sewaadd"],
   category: "owner",
-  description: "Añadir un grupo a la whitelist de sewa + auto join",
+  description: "Añadir un grupo a la lista blanca de alquiler + auto-unirse",
   usage: ".addsewa <link/id grup> <durasi>",
   example: ".addsewa https://chat.whatsapp.com/xxx 30d",
   isOwner: true,
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *AGREGAR SEWA*\n\n` +
+      `📝 *AGREGAR ALQUILER*\n\n` +
         `Formato: *${m.prefix}agregar_renta <link/id> <duración>*\n\n` +
         `*FORMATO DE DURACIÓN:*\n` +
         `• 30i = 30 minutos\n` +
@@ -179,7 +179,7 @@ async function handler(m, { sock }) {
       ? "Permanente"
       : timeHelper.fromTimestamp(expiredAt, "D MMMM YYYY HH:mm");
 
-    let text = `✅ *SEWA AÑADIDA CON ÉXITO*\n\n`;
+    let text = `✅ *ALQUILER AÑADIDO CON ÉXITO*\n\n`;
     text += `Grupo: *${groupName}*\n`;
     text += `ID: ${groupId.split("@")[0]}\n`;
     text += `Duración: *${formatDuration(durationStr)}*\n`;
@@ -193,7 +193,7 @@ async function handler(m, { sock }) {
         await new Promise((r) => setTimeout(r, 2000));
         await sock.sendText(
           groupId,
-          `👋 *¡Hola a todos!*, permítanme presentarme, soy ${config.bot?.name}\n\n- Período de sewa: *${formatDuration(durationStr)}*\n- Saldré el: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para ver las funciones de este bot.`,
+          `👋 *¡Hola a todos!*, permítanme presentarme, soy ${config.bot?.name}\n\n- Período de alquiler: *${formatDuration(durationStr)}*\n- Saldré el: *${expiredStr}*\n\nEscribe *${m.prefix}menu* para ver las funciones de este bot.`,
           null,
           {
             contextInfo: saluranCtx(),

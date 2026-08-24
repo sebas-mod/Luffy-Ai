@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy-levelup.jpg',
-    alias: ["gantiluffylevelup", "configurar_luffy_nivel"],
+    name: 'cambiar_luffy_nivel',
+    alias: ["configurar_luffy_nivel"],
     category: 'owner',
     description: 'Cambiar la imagen luffy-levelup.jpg',
-    usage: '.ganti-luffy-levelup.jpg (responde/envía imagen)',
-    example: '.ganti-luffy-levelup.jpg',
+    usage: '.cambiar_luffy_nivel (responde/envía imagen)',
+    example: '.cambiar_luffy_nivel',
     isOwner: true,
     isPremium: false,
     isGroup: false,

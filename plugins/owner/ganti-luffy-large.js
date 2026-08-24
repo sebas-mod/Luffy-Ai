@@ -3,7 +3,7 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'luffy-large',
-    alias: ["configurar_luffy_grande", "gantiluffylarge"],
+    alias: ["configurar_luffy_grande"],
     category: 'owner',
     description: 'Preset: cambiar la imagen luffy.jpg, y también de luffy-v7 hasta luffy-v11.jpg a la vez',
     usage: '.luffy-large (responde/envía imagen)',
@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🖼️ *ᴘʀᴇsᴇᴛ ᴏᴜʀɪɴ ɢʀᴀɴᴅᴇ*\n\n> Envía/responde una imagen para reemplazar el conjunto de fotos grandes (luffy.jpg, luffy-v8.jpg, luffy-v10.jpg) a la vez.\n> Asegúrate de que la proporción de la imagen sea la deseada.`)
+        return m.reply(`🖼️ *ᴘʀᴇsᴇᴛ ʟᴜꜰꜰʏ ɢʀᴀɴᴅᴇ*\n\n> Envía/responde una imagen para reemplazar el conjunto de fotos grandes (luffy.jpg, luffy-v8.jpg, luffy-v10.jpg) a la vez.\n> Asegúrate de que la proporción de la imagen sea la deseada.`)
     }
     
     await m.react('🕕')

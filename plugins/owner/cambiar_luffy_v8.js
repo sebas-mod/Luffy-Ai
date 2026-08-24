@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy-v8.jpg',
-    alias: ["gantiluffyv8", "configurar_luffy_v8"],
+    name: 'cambiar_luffy_v8',
+    alias: ["configurar_luffy_v8"],
     category: 'owner',
     description: 'Cambiar la imagen luffy-v8.jpg (miniatura de welcome)',
-    usage: '.ganti-luffy-v8.jpg (responde/envía imagen)',
-    example: '.ganti-luffy-welcome.jpg',
+    usage: '.cambiar_luffy_v8 (responde/envía imagen)',
+    example: '.cambiar_luffy_v8',
     isOwner: true,
     isPremium: false,
     isGroup: false,

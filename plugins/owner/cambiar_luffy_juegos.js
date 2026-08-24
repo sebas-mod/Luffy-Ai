@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy-games.jpg',
-    alias: ["gantigames", "configurar_luffy_juegos"],
+    name: 'cambiar_luffy_juegos',
+    alias: ["configurar_luffy_juegos"],
     category: 'owner',
     description: 'Cambiar la imagen luffy-games.jpg (miniatura de juegos)',
-    usage: '.ganti-luffy-games.jpg (responde/envía imagen)',
-    example: '.ganti-luffy-games.jpg',
+    usage: '.cambiar_luffy_juegos (responde/envía imagen)',
+    example: '.cambiar_luffy_juegos',
     isOwner: true,
     isPremium: false,
     isGroup: false,

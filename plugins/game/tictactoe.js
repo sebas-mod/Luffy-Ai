@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
     return safeReply(
       m,
       `❌ ¡Aún estás en una partida!\n\n` +
-        `> Termina tu partida o escribe *nyerah* / *rendirse* para abandonar.`,
+        `> Termina tu partida o escribe *me rindo* para abandonar.`,
     );
   }
 
@@ -193,7 +193,7 @@ async function handler(m, { sock }) {
       `${board}\n\n` +
       `> Turno de: @${room.game.currentTurn.split("@")[0]}\n` +
       `> Responde a este mensaje con un número del 1-9\n` +
-      `> Escribe *nyerah* / *rendirse* para abandonar`;
+      `> Escribe *me rindo* para abandonar`;
 
     await safeReact(m, "🎮");
     await safeReply(m, txt, {

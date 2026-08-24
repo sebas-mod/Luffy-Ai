@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy.mp4',
-    alias: ["gantiluffyvideo", "configurar_luffy_mp4"],
+    name: 'cambiar_luffy_mp4',
+    alias: ["configurar_luffy_mp4"],
     category: 'owner',
     description: 'Cambiar el video luffy.mp4',
-    usage: '.ganti-luffy.mp4 (responde/envía video)',
-    example: '.ganti-luffy.mp4',
+    usage: '.cambiar_luffy_mp4 (responde/envía video)',
+    example: '.cambiar_luffy_mp4',
     isOwner: true,
     isPremium: false,
     isGroup: false,

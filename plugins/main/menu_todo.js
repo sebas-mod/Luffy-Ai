@@ -273,7 +273,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                       limited_time_offer: {
                         text: `${greeting}`,
                         url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
                     }),
@@ -334,7 +334,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               messageContextInfo: {},
               interactiveMessage: {
                 header: { title: "", subtitle: "", hasMediaAttachment: true, videoMessage: media4.videoMessage },
-                footer: { text: `Please select the button in below` },
+                footer: { text: `Selecciona uno de los botones de abajo` },
                 body: { text: txt },
                 contextInfo: {
                   mentionedJid: [m.sender],

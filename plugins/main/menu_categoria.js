@@ -199,7 +199,7 @@ async function handler(m, { sock, db }) {
       "Ⓛ = Requiere limit",
       "Ⓐ = Solo para admin",
       "Ⓖ = Solo en grupo",
-      "Ⓟ = Hanya di private chat",
+      "Ⓟ = Solo en chat privado",
     ]);
 
     for (const cat of visibleCats) {
@@ -261,7 +261,7 @@ async function handler(m, { sock, db }) {
                         limited_time_offer: {
                           text: `${greeting}`,
                           url: "Hai",
-                          copy_code: "Dibuat oleh " + config.bot?.developer,
+                          copy_code: "Creado por " + config.bot?.developer,
                           expiration_time: Date.now() + 1000000,
                         },
                       }),
@@ -323,7 +323,7 @@ async function handler(m, { sock, db }) {
                 messageContextInfo: {},
                 interactiveMessage: {
                   header: { title: "", subtitle: "", hasMediaAttachment: true, videoMessage: media4.videoMessage },
-                  footer: { text: `Please select the button in below` },
+                  footer: { text: `Selecciona uno de los botones de abajo` },
                   body: { text: txt },
                   contextInfo: {
                     mentionedJid: [m.sender],
@@ -450,8 +450,8 @@ async function handler(m, { sock, db }) {
                     messageParamsJson: JSON.stringify({
                       limited_time_offer: {
                         text: `${greeting}`,
-                        url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        url: "Hola",
+                        copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
                     }),
@@ -520,7 +520,7 @@ async function handler(m, { sock, db }) {
               messageContextInfo: {},
               interactiveMessage: {
                 header: { title: "", subtitle: "", hasMediaAttachment: true, videoMessage: media4.videoMessage },
-                footer: { text: `Please select the button in below` },
+                footer: { text: `Selecciona uno de los botones de abajo` },
                 body: { text: txt },
                 contextInfo: {
                   mentionedJid: [m.sender],

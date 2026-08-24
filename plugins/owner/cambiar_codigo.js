@@ -5,11 +5,11 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "cambiar_codigo",
-  alias: ["replaceplugin", "updateplugin", "gantiplugin"],
+  alias: ["replaceplugin", "updateplugin"],
   category: "owner",
   description: "Cambiar el código de un plugin ya existente",
-  usage: ".ganticode [nombrearchivo] [carpeta]",
-  example: ".ganticode ping main",
+  usage: ".cambiar_codigo [nombrearchivo] [carpeta]",
+  example: ".cambiar_codigo ping main",
   isOwner: true,
   isPremium: false,
   isGroup: false,
@@ -56,9 +56,9 @@ async function handler(m, { sock }) {
     return m.reply(
       `Hola *${m.pushName}*, parece que aún no has respondido al nuevo código del plugin.\n\n` +
       `Responde al nuevo código del plugin con el comando:\n` +
-      `- .ganticode (detección automática)\n` +
-      `- .ganticode <nombre de archivo> (nombre personalizado)\n` +
-      `- .ganticode <nombre de archivo> <carpeta> (nombre y carpeta personalizados)\n\n` +
+      `- .cambiar_codigo (detección automática)\n` +
+      `- .cambiar_codigo <nombre de archivo> (nombre personalizado)\n` +
+      `- .cambiar_codigo <nombre de archivo> <carpeta> (nombre y carpeta personalizados)\n\n` +
       `Tranquilo, el código antiguo se respaldará automáticamente antes de ser reemplazado.`
     );
   }
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `Lo siento *${m.pushName}*, no pude detectar el nombre del plugin. Por favor usa el comando con el formato .ganticode <nombre de archivo>.`
+      `Lo siento *${m.pushName}*, no pude detectar el nombre del plugin. Por favor usa el comando con el formato .cambiar_codigo <nombre de archivo>.`
     );
   }
 

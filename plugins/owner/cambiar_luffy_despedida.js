@@ -3,12 +3,12 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 import { updateAssetUrl } from '../../src/lib/luffy-uploader.js'
 const pluginConfig = {
-    name: 'ganti-luffy-goodbye.jpg',
-    alias: ["gantigoodbye", "configurar_luffy_despedida"],
+    name: 'cambiar_luffy_despedida',
+    alias: ["configurar_luffy_despedida"],
     category: 'owner',
     description: 'Cambiar la imagen luffy-goodbye.jpg (miniatura de despedida)',
-    usage: '.ganti-luffy-goodbye.jpg (responde/envía imagen)',
-    example: '.ganti-luffy-goodbye.jpg',
+    usage: '.cambiar_luffy_despedida (responde/envía imagen)',
+    example: '.cambiar_luffy_despedida',
     isOwner: true,
     isPremium: false,
     isGroup: false,

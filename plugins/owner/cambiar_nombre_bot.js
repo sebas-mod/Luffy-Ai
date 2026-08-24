@@ -3,11 +3,11 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'cambiar_nombre_bot',
-    alias: ["configurar_nombre_bot", "gantibot"],
+    alias: ["configurar_nombre_bot"],
     category: 'owner',
     description: 'Cambiar el nombre del bot en config.js',
-    usage: '.ganti-namabot <nombre nuevo>',
-    example: '.ganti-namabot Luffy MD',
+    usage: '.cambiar_nombre_bot <nombre nuevo>',
+    example: '.cambiar_nombre_bot Luffy MD',
     isOwner: true,
     isPremium: false,
     isGroup: false,

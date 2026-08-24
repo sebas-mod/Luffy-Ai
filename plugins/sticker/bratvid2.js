@@ -7,7 +7,7 @@ const pluginConfig = {
     category: 'sticker',
     description: 'Generar brat video v2',
     usage: '.bratvid2 <texto>',
-    example: '.bratvid2 hello world',
+    example: '.bratvid2 hola mundo',
     isOwner: false,
     isPremium: false,
     isGroup: false,

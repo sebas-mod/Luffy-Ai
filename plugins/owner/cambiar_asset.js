@@ -4,11 +4,11 @@ import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
     name: 'cambiar_asset',
-    alias: ["gantiasset", "configurar_asset"],
+    alias: ["configurar_asset"],
     category: 'owner',
     description: 'Herramienta todo-en-uno para cambiar assets de forma interactiva',
-    usage: '.ganti-asset (responde a un medio)',
-    example: '.ganti-asset',
+    usage: '.cambiar_asset (responde a un medio)',
+    example: '.cambiar_asset',
     isOwner: true,
     isPremium: false,
     isGroup: false,

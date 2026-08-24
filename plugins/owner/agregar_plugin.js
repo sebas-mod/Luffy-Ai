@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
       await m.react("❌");
       return m.reply(
         `Lo siento *${m.pushName}*, el archivo ${fileName}.js ya existe en la carpeta ${folderName}.\n\n` +
-        `💡 Consejo: Usa el comando .ganticode ${fileName} ${folderName} si quieres reemplazar el código del plugin existente.`
+        `💡 Consejo: Usa el comando .cambiar_codigo ${fileName} ${folderName} si quieres reemplazar el código del plugin existente.`
       );
     }
 

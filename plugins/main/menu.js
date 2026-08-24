@@ -26,7 +26,7 @@ import axios from "axios";
 import sharp from "sharp";
 const pluginConfig = {
   name: "menu",
-  alias: ["help", "bantuan", "commands", "m"],
+  alias: ["help", "ayuda", "commands", "m"],
   category: "main",
   description: "Mostrar el menú principal del bot",
   usage: ".menu",
@@ -264,11 +264,11 @@ async function buildMenuText(
   txt += `╰➤------------------------------\n`;
 
   txt += `    ᯓ INFO DEL BOT\n`;
-  txt += `╭  • Name : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
-  txt += `┆  • Author : ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `╭  • Nombre : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+  txt += `┆  • Autor : ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `┆  • Versión : ${botConfig.bot?.version || "1.2.0"}\n`;
-  txt += `┆  • Type script : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
-  txt += `┆  • Uptime : ${uptimeFormatted}\n`;
+  txt += `┆  • Tipo de script : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `┆  • Tiempo activo : ${uptimeFormatted}\n`;
   txt += `╰➤------------------------------\n`;
   const categoryOrder = [
     "owner",
@@ -511,7 +511,7 @@ Toca el botón de abajo para más información y elegir la categoría
               {
                 name: "single_select",
                 buttonParamsJson: JSON.stringify({
-                  title: "Selengkapnya",
+                  title: "Ver más",
                   sections: [
                     {
                       title: "Aquí están las opciones",
@@ -572,20 +572,20 @@ Toca el botón de abajo para más información y elegir la categoría
                     imageMessage: media.imageMessage
                   },
                   body: {
-                    text: `🥞 *Hello Brother*
+                    text: `🥞 *Hola, hermano*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`luffy-baileys\`
+🍅 *INFORMACIÓN DEL BOT*
+> 🤖 *Nombre*: ${config.bot?.name}
+> ⚙️ *Versión*: ${config.bot?.version}
+> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
+> 🧩 *Librería*: \`luffy-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
+🍅 *INFORMACIÓN DEL USUARIO*
+> 🧑 *Nombre*: ${m.pushName}
+> 🥐 *Rango*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+> 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Carne*: ${user.carne || 0}
 > 🎏 *Berry*: ${user.berry || 0}
@@ -612,7 +612,7 @@ ${readmore}${s}`
                       limited_time_offer: {
                         text: `${greeting}`,
                         url: "Hai",
-                        copy_code: "Dibuat oleh " + config.bot?.developer,
+                        copy_code: "Creado por " + config.bot?.developer,
                         expiration_time: Date.now() + 1000000,
                       },
                       bottom_sheet: {
@@ -686,20 +686,20 @@ ${readmore}${s}`
               name: config.bot.name,
               address: `Versión actual: ${config.bot.version}`
             },
-            contentText: `🥞 *Hello Brother*
+            contentText: `🥞 *Hola, hermano*
 
-Welcome to ${config.bot?.name}, Our bot will help you
+Bienvenido a ${config.bot?.name}, nuestro bot te ayudará
 
-🍅 *BOT INFORMATION*
-> 🤖 *Name*: ${config.bot?.name}
-> ⚙️ *Version*: ${config.bot?.version}
-> 👨‍💻 *Developer*: ${config.bot?.developer}
-> 🧩 *Library*: \`luffy-baileys\`
+🍅 *INFORMACIÓN DEL BOT*
+> 🤖 *Nombre*: ${config.bot?.name}
+> ⚙️ *Versión*: ${config.bot?.version}
+> 👨‍💻 *Desarrollador*: ${config.bot?.developer}
+> 🧩 *Librería*: \`luffy-baileys\`
 
-🍅 *USER INFORMATION*
-> 🧑 *Name*: ${m.pushName}
-> 🥐 *Role*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 User"}
-> 🧀 *Level*: ${user.level || 0}
+🍅 *INFORMACIÓN DEL USUARIO*
+> 🧑 *Nombre*: ${m.pushName}
+> 🥐 *Rango*: ${m?.isOwner ? "🔥 Owner" : m?.isPremium ? "👑 Premium" : "😊 Usuario"}
+> 🧀 *Nivel*: ${user.level || 0}
 > 🍗 *Exp*: ${user.exp || 0}
 > 🥩 *Carne*: ${user.carne || 0}
 > 🎏 *Berry*: ${user.berry || 0}
@@ -751,7 +751,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
                   rows: cat.cmds.map((cmd, i) => {
                     return {
                       title: (i + 1).toString() + " " + cmd,
-                      description: "Select this command?",
+                      description: "¿Usar este comando?",
                       id: `${prefix}${cmd}`
                     }
                   })
@@ -773,7 +773,7 @@ Welcome to ${config.bot?.name}, Our bot will help you
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
                   text: `*${greeting} ${m.pushName}*, 𝘔𝘺 𝘯𝘢𝘮𝘦 𝘪𝘴 ${config.bot.name}.
@@ -918,7 +918,7 @@ Disfruta su uso, hermano.`
                   videoMessage: media4.videoMessage
                 },
                 footer: {
-                  text: `Please select the button in below`
+                  text: `Selecciona uno de los botones de abajo`
                 },
                 body: {
                   text: `🍟 Hai *${m.pushName}* 
@@ -1178,29 +1178,29 @@ _i am an automated system (WhatsApp bot) that can help to do something search an
         const dbUser = db.getUser(m.sender);
         const userLimit = (dbUser?.limit === Infinity || dbUser?.limit === null || dbUser?.limit === undefined) ? "unlimited" : dbUser.limit;
 
-        let case7Text = `Hey, *${m.pushName}*! ✨
+        let case7Text = `¡Hola, *${m.pushName}*! ✨
 
-I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. Whether you need information, entertainment, or utilities, I'm always ready to help.
+Soy ${botName}, tu asistente inteligente creado por ${config.bot?.developer}. Ya sea que necesites información, entretenimiento o utilidades, siempre estoy listo para ayudarte.
 
 `
 
-        case7Text += `╭╮ \`✯ ${toMathSansBold("BOT DETAIL")}\`\n`;
-        case7Text += `││  name : ${botName}\n`;
-        case7Text += `││  mode : ${botModeLower}\n`;
+        case7Text += `╭╮ \`✯ ${toMathSansBold("DETALLES DEL BOT")}\`\n`;
+        case7Text += `││  nombre : ${botName}\n`;
+        case7Text += `││  modo : ${botModeLower}\n`;
         case7Text += `││  prefix : \`${botPrefix}\`\n`;
-        case7Text += `││  runtime : ${runTime}\n`;
+        case7Text += `││  tiempo activo : ${runTime}\n`;
         case7Text += `╰╯\n`;
 
-        case7Text += `╭╮ \`❀ ${toMathSansBold("USER DETAIL")}\`\n`;
-        case7Text += `││  name : _${userName}_\n`;
-        case7Text += `││  status : ${userStatus}\n`;
-        case7Text += `││  role : ${userRole}\n`;
+        case7Text += `╭╮ \`❀ ${toMathSansBold("DETALLES DEL USUARIO")}\`\n`;
+        case7Text += `││  nombre : _${userName}_\n`;
+        case7Text += `││  estado : ${userStatus}\n`;
+        case7Text += `││  rango : ${userRole}\n`;
         case7Text += `││  carne : ${userLimit}\n`;
         case7Text += `╰╯\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
         case7Text += readmore + "";
-        case7Text += `╭╮ \`✧ ${toMathSansBold("MENU CATEGORY")}\`\n`;
+        case7Text += `╭╮ \`✧ ${toMathSansBold("MENÚ POR CATEGORÍAS")}\`\n`;
         const { sorted } = getSortedCategories(m, botMode);
         for (const cat of sorted) {
           case7Text += `││  ▸ ${cat.cat.toLowerCase()} : ${cat.cmds.length} funciones\n`;
@@ -1355,9 +1355,9 @@ I'm ${botName}, your intelligent assistant powered by ${config.bot?.developer}. 
         case7Text += `❑ Coin: ${userBerry}\n`;
         case7Text += `❑ Exp: ${userExp}\n`;
         case7Text += `❑ Carne: ${userLimit}\n\n`;
-        case7Text += `Hello, my friend *"${m.pushName}"*!\nHow are you today? You're feeling well, right?\n\nYou've been online for *${diasActivos} days*\n\n`;
+        case7Text += `¡Hola, mi amigo *"${m.pushName}"*!\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n\nLlevas activo desde hace *${diasActivos} días*\n\n`;
 
-case7Text += `Website Buy Panel & Sewabot\n`;
+case7Text += `Web de Panel y Alquiler del Bot\n`;
 case7Text += `fallxdstore.zone.id\n\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
@@ -1367,10 +1367,10 @@ case7Text += `fallxdstore.zone.id\n\n`;
 
         const catMap = {
           info: "INFO BOT",
-          jadibot: "JADI BOT",
-          economy: "EKONOMI",
-          main: "MAIN MENU",
-          owner: "OWNER MENU"
+          jadibot: "SUB-BOT",
+          economy: "ECONOMÍA",
+          main: "MENÚ PRINCIPAL",
+          owner: "MENÚ OWNER"
         };
 
         for (const cat of sorted) {
@@ -1395,14 +1395,14 @@ case7Text += `fallxdstore.zone.id\n\n`;
         const uploadFav = await prepareWAMessageMedia({ image: favBuf }, { upload: sock.waUploadToServer, mediaTypeOverride: "thumbnail-link" });
 
         const randomTitles = [
-          "Keep up the great work! 🌟",
-          "Don't forget to smile today 😊",
-          "Keep smiling and stay positive! ✨",
-          "What a beautiful day to create something 💻",
-          "Thank you for using this bot 🙏",
-          "Hope you have a wonderful day! 🌸",
-          "Don't forget to take a break 🍵",
-          "Start your day with a positive mindset 😇"
+          "¡Sigue con el gran trabajo! 🌟",
+          "No olvides sonreír hoy 😊",
+          "¡Sigue sonriendo y mantente positivo! ✨",
+          "Qué día tan hermoso para crear algo 💻",
+          "Gracias por usar este bot 🙏",
+          "¡Espero que tengas un día maravilloso! 🌸",
+          "No olvides tomar un descanso 🍵",
+          "Empieza tu día con una mentalidad positiva 😇"
         ];
         const randomTitle = randomTitles[Math.floor(Math.random() * randomTitles.length)];
 
@@ -1426,7 +1426,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
             text: config.info.website + " " + case7Text,
             matchedText: config.info.website,
             title: randomTitle,
-            description: `Hey ${m.pushName}, My name is ${botName}!`,
+            description: `¡Hola ${m.pushName}! Soy ${botName}`,
             jpegThumbnail: uploadMedia.imageMessage.jpegThumbnail || thumbBuf,
             previewType: 1,
             thumbnailWidth: uploadMedia.imageMessage.width || 512,

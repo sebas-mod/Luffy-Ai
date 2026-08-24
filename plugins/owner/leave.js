@@ -80,24 +80,11 @@ async function handler(m, { sock }) {
   try {
     global.sewaLeaving = true;
 
-    const saluranId = config.saluran?.id || "120363400911374213@newsletter";
-    const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
-
     if (m.isGroup && targetGroupJid === m.chat) {
       await sock.sendMessage(m.chat, {
-        text:
-          `👋 *ɢᴏᴏᴅʙʏᴇ*\n\n` +
-          `> El bot saldrá de este grupo.\n` +
-          `> ¡Gracias por usar el bot!`,
-        contextInfo: {
-          forwardingScore: 9999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: saluranId,
-            newsletterName: saluranName,
-            serverMessageId: 127,
-          },
-        },
+        text: `*🚪 El bot se saldrá del grupo, bye perras ✌️😂*
+
+_by mi creador_`,
       });
     }
 

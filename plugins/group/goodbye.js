@@ -80,7 +80,7 @@ async function buildGoodbyeMessage(
     `Hasta pronto`,
     `Bye bye`,
     `Adiós`,
-    `See you`,
+    `Nos vemos`,
     `Cuídate`,
     `Oyasumi~`,
   ];

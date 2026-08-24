@@ -3,11 +3,11 @@ import path from 'path'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'cambiar_nombre_dev',
-    alias: ["configurar_nombre_dev", "gantideveloper"],
+    alias: ["configurar_nombre_dev"],
     category: 'owner',
     description: 'Cambiar el nombre del developer en config.js',
-    usage: '.ganti-namadev <nombre nuevo>',
-    example: '.ganti-namadev Lucky Archz',
+    usage: '.cambiar_nombre_dev <nombre nuevo>',
+    example: '.cambiar_nombre_dev Sebas-MD',
     isOwner: true,
     isPremium: false,
     isGroup: false,

@@ -33,10 +33,10 @@ function isNoPrefix() {
 }
 
 const pluginConfig = {
-    name: ['addprefix', 'gantiprefix', 'setprefix', 'delprefix', 'listprefix', 'resetprefix'],
+    name: ['addprefix', 'setprefix', 'delprefix', 'listprefix', 'resetprefix'],
     alias: [],
     category: 'owner',
-    description: 'Manajemen prefix bot',
+    description: 'Gestión del prefijo del bot',
     usage: '.addprefix <prefix1> <prefix2>...',
     example: '.addprefix ! # $',
     isOwner: true,
@@ -104,8 +104,7 @@ function handler(m, { sock }) {
             break
         }
         
-        case 'setprefix':
-        case 'gantiprefix': {
+        case 'setprefix': {
             if (args.length === 0) {
                 return m.reply(
                     `🔄 *ᴄᴀᴍʙɪᴀʀ/cᴏɴғɪɢᴜʀᴀʀ ᴘʀᴇғɪᴊᴏ*\n\n` +

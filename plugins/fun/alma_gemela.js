@@ -36,7 +36,7 @@ const loveQuotes = [
   "Match made in heaven! ✨",
   "¡La química es muy fuerte! 🔥",
   "Son totalmente couple goals 💑",
-  "Destiny brought you together 🌟",
+  "El destino los unió 🌟",
   "Perfect match detected! 💘",
 ];
 

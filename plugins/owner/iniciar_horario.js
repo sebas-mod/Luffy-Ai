@@ -30,7 +30,7 @@ async function handler(m, { sock, args }) {
 *Programadores disponibles:*
 • \`limitreset\` - Reinicio diario del límite
 • \`groupschedule\` - Programación de grupos
-• \`sewa\` - Verificador de sewa
+• \`sewa\` - Verificador de alquiler
 • \`messages\` - Mensajes programados
 • \`all\` - Todos los programadores
 

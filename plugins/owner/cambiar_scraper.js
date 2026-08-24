@@ -6,11 +6,11 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "cambiar_scraper",
-  alias: ["replacescraper", "updatescraper", "gantiscrape"],
+  alias: ["replacescraper", "updatescraper"],
   category: "owner",
   description: "Cambiar el código de un scraper ya existente en src/scraper",
-  usage: ".gantiscraper [nombrearchivo]",
-  example: ".gantiscraper ig",
+  usage: ".cambiar_scraper [nombrearchivo]",
+  example: ".cambiar_scraper ig",
   isOwner: true,
   isPremium: false,
   isGroup: false,
