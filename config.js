@@ -187,7 +187,7 @@ const config = {
     carneExceeded:
       "🍖 *¡Te quedaste sin Carne!* No tienes suficiente carne. Espera el reinicio de mañana o hazte Premium.",
     carneDeducted:
-      "🍖 Se restó {amount} de carne. Carne restante: {sisa}",
+      "🍖 Se restó {amount} de carne. Carne restante: {restante}",
 
     banned:
       "🚫 *¡Estás Baneado!* No puedes usar este bot porque violaste las reglas.",
@@ -199,7 +199,7 @@ const config = {
   backup: { enabled: false, intervalHours: 24, retainDays: 7 },
   scheduler: { resetHour: 0, resetMinute: 0 },
 
-  // Dev mode settings (auto-enabled jika NODE_ENV=development)
+  // Dev mode settings (se activa automáticamente si NODE_ENV=development)
   dev: {
     enabled: process.env.NODE_ENV === "development",
     watchPlugins: true, // Hot reload plugins (SAFE)

@@ -2,11 +2,11 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 import * as timeHelper from '../../src/lib/luffy-time.js'
 const pluginConfig = {
     name: 'ver_renta',
-    alias: ["sisasewa"],
+    alias: ["rentarestante"],
     category: 'group',
-    description: 'Ver el tiempo restante del alquiler (sewa) del bot en este grupo',
-    usage: '.checksewa',
-    example: '.checksewa',
+    description: 'Ver el tiempo restante del alquiler del bot en este grupo',
+    usage: '.ver_renta',
+    example: '.ver_renta',
     isOwner: false,
     isPremium: false,
     isGroup: true,
@@ -19,7 +19,7 @@ const pluginConfig = {
 
 function formatCountdown(expiredAt) {
     const diff = expiredAt - Date.now()
-    if (diff <= 0) return { text: 'EXPIRED', expired: true }
+    if (diff <= 0) return { text: 'EXPIRADO', expired: true }
     const days = Math.floor(diff / 86400000)
     const hours = Math.floor((diff % 86400000) / 3600000)
     const minutes = Math.floor((diff % 3600000) / 60000)
@@ -38,13 +38,13 @@ function handler(m) {
     }
 
     if (!db.db.data.sewa.enabled) {
-        return m.reply(`ℹ️ El sistema de alquiler (sewa) está inactivo\n\nEste bot se puede usar en todos los grupos.`)
+        return m.reply(`ℹ️ El sistema de alquiler está inactivo\n\nEste bot se puede usar en todos los grupos.`)
     }
 
     const sewaData = db.db.data.sewa.groups[m.chat]
 
     if (!sewaData) {
-        return m.reply(`❌ Este grupo no está registrado en el sistema de alquiler (sewa)\n\nContacta al owner del bot para info sobre el alquiler.`)
+        return m.reply(`❌ Este grupo no está registrado en el sistema de alquiler\n\nContacta al owner del bot para info sobre el alquiler.`)
     }
 
     const groupName = sewaData.name || m.chat.split('@')[0]
@@ -53,7 +53,7 @@ function handler(m) {
     if (sewaData.isLifetime) {
         m.react('♾️')
         return m.reply(
-            `♾️ *ESTADO DEL ALQUILER (SEWA)*\n\n` +
+            `♾️ *ESTADO DEL ALQUILER*\n\n` +
             `Grupo: *${groupName}*\n` +
             `Estado: *Permanente* ♾️\n` +
             `Registrado desde: *${addedDate}*\n\n` +
@@ -66,7 +66,7 @@ function handler(m) {
 
     if (countdown.expired) {
         return m.reply(
-            `❌ *SEWA EXPIRADO*\n\n` +
+            `❌ *ALQUILER EXPIRADO*\n\n` +
             `Grupo: *${groupName}*\n` +
             `Termina: *${expiredStr}*\n\n` +
             `Contacta al owner del bot para renovar el alquiler.`
@@ -77,7 +77,7 @@ function handler(m) {
     const isAlmostExpired = diff <= 259200000
 
     m.react(isAlmostExpired ? '⚠️' : '⏱️')
-    let text = `⏱️ *ESTADO DEL ALQUILER (SEWA)*\n\n`
+    let text = `⏱️ *ESTADO DEL ALQUILER*\n\n`
     text += `Grupo: *${groupName}*\n`
     text += `Tiempo restante: *${countdown.text}*\n`
     text += `Termina: *${expiredStr}*\n`

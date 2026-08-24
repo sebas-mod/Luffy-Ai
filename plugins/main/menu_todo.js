@@ -535,7 +535,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                 participant: m.sender,
               },
               message: {
-                conversation: "setelin musiknya nya bang"
+                conversation: "pon la música, papá"
               }
             };
             await sock.sendMessage(m.chat, {

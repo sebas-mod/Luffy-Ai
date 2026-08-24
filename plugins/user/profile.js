@@ -212,8 +212,8 @@ async function handler(m, { sock }) {
   if (user.unlockedFeatures && user.unlockedFeatures.length > 0) {
       caption += `\n*〔 🔓 FUNCIONES PREMIUM DESBLOQUEADAS 〕*\n`;
       caption += `Funciones exclusivas que has comprado permanentemente:\n`;
-      user.unlockedFeatures.forEach(fitur => {
-          caption += `- *${fitur}*\n`;
+      user.unlockedFeatures.forEach(funcion => {
+          caption += `- *${funcion}*\n`;
       });
   }
 

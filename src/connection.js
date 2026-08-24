@@ -636,10 +636,10 @@ async function startConnection(options = {}) {
                 config.bot?.support || config.bot?.developer || "owner";
               await sock.sendMessage(event.id, {
                 text:
-                  `⛔ *sᴇᴡᴀʙᴏᴛ*\n\n` +
+                  `⛔ *ʙᴏᴛ ᴅᴇ ᴀʟǫᴜɪʟᴇʀ*\n\n` +
                   `> Este grupo no está registrado en el sistema de alquiler.\n` +
                   `> El bot abandonará este grupo.\n\n` +
-                  `_Contacta a ${ownerContact} para el alquiler (sewa) del bot._`,
+                  `_Contacta a ${ownerContact} para el alquiler del bot._`,
               });
               await new Promise((r) => setTimeout(r, 2000));
               await sock.groupLeave(event.id);

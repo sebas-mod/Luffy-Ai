@@ -3,11 +3,11 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const config = {
   name: "funciones_premium",
-  alias: ["listprem", "listpremium", "fiturprem"],
+  alias: ["listprem", "listpremium", "funcionesprem"],
   category: "info",
   description: "Ver la lista de todas las funciones premium del bot",
-  usage: ".fiturpremium",
-  example: ".fiturpremium",
+  usage: ".funciones_premium",
+  example: ".funciones_premium",
   isOwner: false,
   isPremium: false,
   isGroup: false,

@@ -26,7 +26,7 @@ import * as timeHelper from './luffy-time.js'
  * @property {string} name - Nombre de usuario
  * @property {string} number - Nomor user
  * @property {string} status - Status (Owner/Premium/Free)
- * @property {number} limit - Limit tersisa
+ * @property {number} limit - Limit restante
  * @property {string} registeredAt - Tanggal registrasi
  */
 

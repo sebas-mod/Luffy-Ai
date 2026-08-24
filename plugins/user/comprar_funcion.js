@@ -5,8 +5,8 @@ const pluginConfig = {
     alias: ["purchasefeature", "buyfeature"],
     category: 'user',
     description: 'Comprar función premium (1 función = 3000 berry)',
-    usage: '.buyfitur [nombre_funcion]',
-    example: '.buyfitur',
+    usage: '.comprar_funcion [nombre_funcion]',
+    example: '.comprar_funcion',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -65,7 +65,7 @@ async function handler(m, { sock }) {
         }
         
         text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
-        text += `> Usa: \`.buyfitur <id>\`\n`
+        text += `> Usa: \`.comprar_funcion <id>\`\n`
         text += `> O hazte *Premium* y desbloquea todo!`
         
         await m.reply(text)
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         return m.reply(
             `❌ *ᴇʀʀᴏʀ*\n\n` +
             `> La función \`${featureName}\` no fue encontrada\n` +
-            `> Escribe \`.buyfitur\` para ver la lista`
+            `> Escribe \`.comprar_funcion\` para ver la lista`
         )
     }
     

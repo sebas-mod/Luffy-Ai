@@ -1572,7 +1572,7 @@ case7Text += `fallxdstore.zone.id\n\n`;
                 participant: m.sender,
               },
               message: {
-                conversation: "setelin musiknya nya bang"
+                conversation: "pon la música, papá"
               }
             };
             await sock.sendMessage(m.chat, {

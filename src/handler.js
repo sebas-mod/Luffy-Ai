@@ -1697,8 +1697,8 @@ async function messageHandler(msg, sock, options = {}) {
         db.updateCarne(m.sender, -pluginCarneCost);
 
         if (db.setting("notifcarne")) {
-          let limitMsg = config.messages?.carneDeducted || "🍖 Se restó {amount} de carne. Carne restante: {sisa}";
-          limitMsg = limitMsg.replace("{amount}", pluginCarneCost.toString()).replace("{sisa}", (currentCarne - pluginCarneCost).toString());
+          let limitMsg = config.messages?.carneDeducted || "🍖 Se restó {amount} de carne. Carne restante: {restante}";
+          limitMsg = limitMsg.replace("{amount}", pluginCarneCost.toString()).replace("{restante}", (currentCarne - pluginCarneCost).toString());
           await m.reply(limitMsg);
         }
       }

@@ -1,108 +1,108 @@
 ===========================================================
-    TUTORIAL MEMBUAT PLUGIN GAME SENDIRI (REFACTORED V2)
+    TUTORIAL PARA CREAR TU PROPIO PLUGIN DE JUEGO (REFACTORIZADO V2)
 ===========================================================
-Sistem game sekarang sudah di-refactor menggunakan arsitektur "Self-Registering Plugins". Artinya, semua konfigurasi game cukup dilakukan di 1 file plugin di dalam folder \`plugins/game/\`.
+El sistema de juegos fue refactorizado usando la arquitectura de "Plugins Auto-registrados". Esto significa que toda la configuración del juego se hace en 1 solo archivo plugin dentro de la carpeta \`plugins/game/\`.
 
-Berikut adalah panduan lengkap, profesional, dan strict-type untuk membuat game baru.
-
------------------------------------------------------------
-1. STRUKTUR FILE
------------------------------------------------------------
-Untuk membuat game baru (misal: Tebak Kucing), kamu butuh 2 file:
-1. File Data: \`src/data/tebakkucing.json\`
-2. File Plugin: \`plugins/game/tebakkucing.js\`
-NOTE: wajib sama yak, nama filename nya
+Esta es la guía completa, profesional y con tipado estricto para crear un juego nuevo.
 
 -----------------------------------------------------------
-2. FILE DATA (JSON VALIDATION & FORMAT)
+1. ESTRUCTURA DE ARCHIVOS
 -----------------------------------------------------------
-File JSON harus berisi Array of Objects. Sistem memiliki fallback dan field yang bisa dikustomisasi, tapi secara default mengharapkan struktur berikut:
+Para crear un juego nuevo (ej: Adivina el Gato), necesitas 2 archivos:
+1. Archivo de datos: \`src/data/tebakkucing.json\`
+2. Archivo plugin: \`plugins/game/tebakkucing.js\`
+NOTA: el nombre del archivo debe ser igual en ambos, sí o sí.
 
-A. GAME TEKS (Standard)
+-----------------------------------------------------------
+2. ARCHIVO DE DATOS (VALIDACIÓN Y FORMATO JSON)
+-----------------------------------------------------------
+El archivo JSON debe contener un Array de Objects. El sistema tiene fallback y campos personalizables, pero por defecto espera la siguiente estructura:
+
+A. JUEGO DE TEXTO (Estándar)
 [
   {
     "index": 0,
-    "soal": "Kucing yang tidak memiliki bulu disebut?",
+    "soal": "¿Cómo se llama el gato que no tiene pelo?",
     "jawaban": "Sphynx"
   },
   {
     "index": 1,
-    "soal": "Kucing ras terbesar di dunia?",
+    "soal": "¿Cuál es la raza de gato más grande del mundo?",
     "jawaban": "Maine Coon"
   }
 ]
 
-B. GAME GAMBAR (Image Based)
+B. JUEGO DE IMÁGENES (Basado en imagen)
 [
   {
     "index": 0,
     "img": "https://domain.com/kucing1.jpg",
     "jawaban": "Anggora",
-    "deskripsi": "Berasal dari Turki" // Opsional, sebagai soal/keterangan tambahan
+    "deskripsi": "Proviene de Turquía" // Opcional, como pregunta/nota adicional
   }
 ]
 
-**Validasi & Syarat JSON:**
-- JSON harus Valid (tidak boleh ada koma berlebih di akhir array/object).
-- Pastikan encoding file adalah UTF-8 (tanpa BOM).
-- Field wajib default: \`soal\` (pertanyaan) dan \`jawaban\`. Jika menggunakan field lain, harus di-setting di konfigurasi (lihat bagian \`questionField\` dan \`answerField\`).
+**Validación y requisitos del JSON:**
+- El JSON debe ser válido (no se permiten comas sobrantes al final de arrays/objetos).
+- Asegúrate de que la codificación del archivo sea UTF-8 (sin BOM).
+- Campos obligatorios por defecto: \`soal\` (pregunta) y \`jawaban\`. Si usas otros campos, debes configurarlos en la configuración (ver las secciones \`questionField\` y \`answerField\`).
 
 -----------------------------------------------------------
-3. FILE PLUGIN (JAVASCRIPT)
+3. ARCHIVO PLUGIN (JAVASCRIPT)
 -----------------------------------------------------------
-Buat file \`plugins/game/tebakkucing.js\` lalu sertakan template kode ini:
+Crea el archivo \`plugins/game/tebakkucing.js\` e incluye esta plantilla de código:
 
 \`\`\`javascript
-import { games } from '../../src/lib/ourin-games.js'
+import { games } from '../../src/lib/luffy-games.js'
 
-// 1. REGISTRASI GAME KE ENGINE
+// 1. REGISTRO DEL JUEGO EN EL MOTOR
 games.register('tebakkucing', {
-    // === METADATA ===
-    alias: ['tkucing', 'guesscat'],       // (Array) Alternatif command
-    emoji: '🐱',                          // (String) Ikon game
-    title: 'TEBAK KUCING',                // (String) Judul kapital
-    description: 'Tebak jenis ras kucing',// (String) Deskripsi menu
+    // === METADATOS ===
+    alias: ['tkucing', 'guesscat'],       // (Array) Comandos alternativos
+    emoji: '🐱',                          // (String) Ícono del juego
+    title: 'TEBAK KUCING',                // (String) Título en mayúsculas
+    description: 'Adivina la raza de gato',// (String) Descripción para el menú
     
-    // === BEHAVIOR & TIMING ===
-    timeout: 60000,                       // (Number) Waktu jawab (MS). Default: 60000 (60 dtk)
-    cooldown: 5,                          // (Number) Jeda antar command (Detik). Default: 5
+    // === COMPORTAMIENTO Y TIEMPOS ===
+    timeout: 60000,                       // (Number) Tiempo para responder (MS). Default: 60000 (60 seg)
+    cooldown: 5,                          // (Number) Pausa entre comandos (Segundos). Default: 5
     
-    // === REWARDS (Hadiah Game) ===
-    // Opsional: Jika tidak diisi, otomatis pakai random reward.
-    // Jika diisi false (rewards: false), maka tidak ada hadiah sama sekali.
+    // === RECOMPENSAS (Premios del juego) ===
+    // Opcional: si no se llena, usa recompensa aleatoria automáticamente.
+    // Si se pone false (rewards: false), no hay recompensa alguna.
     rewards: {
-        carne: 5,                        // Atau bisa pakai key 'limit'
-        berry: 1000,                       // Atau bisa pakai key 'balance'
+        carne: 5,                        // También se puede usar la key 'limit'
+        berry: 1000,                       // También se puede usar la key 'balance'
         exp: 2000
     },
 
-    // === DATA CONFIGURATION ===
-    dataFile: 'tebakkucing.json',         // (String) Nama JSON. Default = <nama_game>.json
-    questionField: 'soal',                // (String) Key JSON untuk soal. Default = 'soal'
-    answerField: 'jawaban',               // (String) Key JSON untuk jawaban. Default = 'jawaban'
+    // === CONFIGURACIÓN DE DATOS ===
+    dataFile: 'tebakkucing.json',         // (String) Nombre del JSON. Default = <nombre_juego>.json
+    questionField: 'soal',                // (String) Key del JSON para la pregunta. Default = 'soal'
+    answerField: 'jawaban',               // (String) Key del JSON para la respuesta. Default = 'jawaban'
     
-    // === IMAGE CONFIGURATION (Jika game gambar) ===
-    hasImage: false,                      // (Boolean) Apakah ini game tebak gambar? Default: false
-    imageField: 'img',                    // (String) Key JSON URL gambar. Default = 'img'
+    // === CONFIGURACIÓN DE IMAGEN (Si el juego es de imágenes) ===
+    hasImage: false,                      // (Boolean) ¿Es un juego de adivinar imágenes? Default: false
+    imageField: 'img',                    // (String) Key del JSON con la URL de imagen. Default = 'img'
     
-    // === EKSTRA ===
-    hintCount: 3                          // (Number) Maksimal hint progresif
+    // === EXTRA ===
+    hintCount: 3                          // (Number) Máximo de pistas progresivas
 })
 
-// 2. EXPORT INSTANCE HANDLER (WAJIB STANDAR INI)
+// 2. EXPORTAR LA INSTANCIA DEL HANDLER (OBLIGATORIO ESTE ESTÁNDAR)
 const { config: pluginConfig, handler, answerHandler } = games.createPlugin('tebakkucing')
 export { pluginConfig as config, handler, answerHandler }
 \`\`\`
 
 -----------------------------------------------------------
-4. CARA ENGINE BEKERJA (Under The Hood)
+4. CÓMO FUNCIONA EL MOTOR (Under The Hood)
 -----------------------------------------------------------
-1. Saat Load: \`ourin-plugins.js\` memuat \`tebakkucing.js\`.
-2. Registrasi: Fungsi \`games.register\` menyimpan parameter config-mu ke dalam memori Registry sentral.
-3. Hooking: \`src/handler.js\` mendeteksi adanya eksport \`answerHandler\` lalu mencegat semua pesan text masuk untuk memvalidasi apakah user sedang dalam sesi 'tebakkucing' dan menjawab benar (menggunakan Levenshtein distance >= 85%).
-4. Reward: Diberikan secara otomatis menggunakan kalkulasi random dari \`getRandomReward()\` (EXP, Berry, Limit) + Level Up detector.
+1. Al cargar: \`luffy-plugins.js\` carga \`tebakkucing.js\`.
+2. Registro: La función \`games.register\` guarda los parámetros de tu config en la memoria del Registry central.
+3. Hooking: \`src/handler.js\` detecta la existencia del export \`answerHandler\` e intercepta todos los mensajes de texto entrantes para validar si el usuario está en una sesión de 'tebakkucing' y respondió correctamente (usando distancia Levenshtein >= 85%).
+4. Recompensa: Se otorga automáticamente mediante el cálculo aleatorio de \`getRandomReward()\` (EXP, Berry, Limit) + detector de subida de nivel.
 
-Tiga baris export di bawah sangat krusial, dilarang dihapus:
+Las tres líneas de export de abajo son cruciales, está prohibido eliminarlas:
 **\`export { pluginConfig as config, handler, answerHandler }\`**
 
-Selesai! Tidak perlu mengedit \`ourin-games.js\` atau \`handler.js\` lagi setiap menambah game baru!
+¡Listo! ¡No hace falta editar más \`luffy-games.js\` ni \`handler.js\` cada vez que agregues un juego nuevo!

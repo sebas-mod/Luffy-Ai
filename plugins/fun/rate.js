@@ -34,7 +34,7 @@ const ratings = [
     { score: '8.5/10', comment: 'Impressive!' },
     { score: '9.5/10', comment: 'Near perfection!' },
     { score: '-1/10', comment: 'No sé qué decir...' },
-    { score: '???/10', comment: 'Error 404: Rating not found.' }
+    { score: '???/10', comment: 'Error 404: Calificación no encontrada.' }
 ];
 
 async function handler(m) {

@@ -55,7 +55,7 @@ text += `*〔 💎 Estado 〕* ${isOwner || isPremium}\n`
 if (isSelf) {
   text += `\n*〔 🛒 TIENDA 〕*\n`
   text += `• \`.buycarne <cant>\` (1 = 100 berry)\n`
-  text += `• \`.buyfitur\` (1 = 3000 berry)\n`
+  text += `• \`.comprar_funcion\` (1 = 3000 berry)\n`
   text += `\n_🎮 ¡Juega para ganar berry!_`
 }
     

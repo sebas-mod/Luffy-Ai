@@ -4,11 +4,11 @@ import te from '../../src/lib/luffy-error.js'
 
 const pluginConfig = {
     name: 'total_funciones',
-    alias: ['totalfeature', 'totalcmd', 'countplugin', 'distribusi'],
+    alias: ['totalfeature', 'totalcmd', 'countplugin', 'distribucion'],
     category: 'main',
     description: 'Ver el total de funciones/comandos del bot',
-    usage: '.totalfitur',
-    example: '.totalfitur',
+    usage: '.total_funciones',
+    example: '.total_funciones',
     isOwner: false,
     isPremium: false,
     isGroup: false,

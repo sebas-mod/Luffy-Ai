@@ -2,7 +2,7 @@ import { getAllPlugins } from '../../src/lib/luffy-plugins.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'benefitowner',
-    alias: ['ownerbenefits', 'ownerfitur'],
+    alias: ['ownerbenefits', 'funcionesowner'],
     category: 'main',
     description: 'Ver la explicación y la lista de funciones especiales del Owner',
     usage: '.benefitowner',

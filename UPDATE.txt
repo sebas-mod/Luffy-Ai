@@ -2,61 +2,61 @@
 
 🌾 ¿Qué se actualizó?
 
-NOTE: aku enggak menjamin 100% work
+NOTE: no garantizo que funcione al 100%
 
-[ 🥐 *FITUR BARU* ]
-- reply variant 11 dab menu variant 8
-- goodbye dan welcome variant 8
-- *.wormgpt* - udah tau lah fungsinya
-- *.carigrup* - mencari suatu grup
-- *.watercolortext* - membuat gambar aestetic
-- *.starboy* - gambar dengan tulisan starboy
-- *.ttqc* - qc versi tiktok
-- *.playcall* - memutar musik, tapi lewat telpon
-- *.gachawaifu* - ajak jadian waifu hasil gacha mu
-- *.gachahusbu* - ajak jadian husbu hasil gacha mu
-- *.tod* - memutar botol truth or dare
-- *.amdl* - mendownload projek dari alight motionn
+[ 🥐 *FUNCIONES NUEVAS* ]
+- reply variant 11 y menu variant 8
+- goodbye y welcome variant 8
+- *.wormgpt* - ya sabes para qué sirve
+- *.carigrup* - busca un grupo
+- *.watercolortext* - crea imágenes aesthetic
+- *.starboy* - imagen con texto starboy
+- *.ttqc* - qc versión tiktok
+- *.playcall* - reproduce música, pero por llamada
+- *.gachawaifu* - invita a ser tu novia a la waifu que te salió en el gacha
+- *.gachahusbu* - invita a ser tu novio al husbu que te salió en el gacha
+- *.tod* - gira la botella de truth or dare
+- *.amdl* - descarga proyectos de alight motion
 - *.gag2watch* - gag2watch
-- *.topanime* - cek anime ter top saat ini
-- *.tiktokchat* - canvas tiktok chat
-- *.applemusic-canvas* - canvas apple music
-- *.character-ai* - chat dengan ai ( mirip autoai )
-- *.bandingkan-device* - membandingkan spesifikasi device
-- *.paptt* - random paptt nsfw
+- *.topanime* - consulta los animes más top del momento
+- *.tiktokchat* - canvas de chat de tiktok
+- *.applemusic-canvas* - canvas de apple music
+- *.character-ai* - chatea con una IA (parecido a autoai)
+- *.bandingkan-device* - compara especificaciones de dispositivos
+- *.paptt* - paptt nsfw aleatorio
 - *.fakegopay* - canvas fake gopay
-- *.profileig* - canvas profile ig
+- *.profileig* - canvas de perfil de IG
 - *.fake-ovo* - canvas fake ovo
-- *.attp2* - membuat stiker attp
-- *.smeme-animated* - membuat stiker meme versi animasi
-- *.countrystalk* - stalk suatu negara
-- *.playvid* - play versi video
-- *.hitungwrmlbb* - Hitung winrate mobile legends
-- *.phisingataubukan* - Cek link phising
+- *.attp2* - crea stickers attp
+- *.smeme-animated* - crea stickers meme versión animada
+- *.countrystalk* - stalk de un país
+- *.playvid* - play versión video
+- *.hitungwrmlbb* - calcula el winrate de mobile legends
+- *.phisingataubukan* - chequea si un link es phishing
 
-[ 🚧 *PERBAIKAN* ]
-- memperbaiki similarity yang agak ngawur nebaknya
-- memperbaiki *nanobanana*
-- memperbaiki *igdl*
-- memperbaiki *emojimix*
-- memperbaiki *gpt4o*
-- memperbaiki *hd*
-- memperbaiki *hd2*
-- memperbaiki *hd3*
-- memperbaiki *iqc*
-- memperbaiki *ytmp4*
-- memperbaiki *bratimg*
-- memperbaiki *balogo*
-- memperbaiki *spotplay*
-- memperbaiki *spotifysearch*
-- memperbaiki *spotifydl*
-- memperbaiki masalah sharp dan git
+[ 🚧 *CORRECCIONES* ]
+- se corrigió similarity que a veces adivinaba cualquier cosa
+- se corrigió *nanobanana*
+- se corrigió *igdl*
+- se corrigió *emojimix*
+- se corrigió *gpt4o*
+- se corrigió *hd*
+- se corrigió *hd2*
+- se corrigió *hd3*
+- se corrigió *iqc*
+- se corrigió *ytmp4*
+- se corrigió *bratimg*
+- se corrigió *balogo*
+- se corrigió *spotplay*
+- se corrigió *spotifysearch*
+- se corrigió *spotifydl*
+- se corrigió el problema de sharp y git
 
-[ 🚀 *PENINGKATAN / PERUBAHAN* ] 
-- sekarang fitur deploy sudah support dengan file zip dan juga file html
-- mengganti tampilan similarity
-- mengganti tampilan *tt* ( tiktok downloader )
-- mengganti tampilan *getplugin*
-- mengganti tampilan *ganticode*
-- mengganti tampilan *addplugin*
-- mengganti tampilan *delplugin*
+[ 🚀 *MEJORAS / CAMBIOS* ]
+- ahora la función deploy soporta archivos zip y también archivos html
+- se cambió la apariencia de similarity
+- se cambió la apariencia de *tt* (tiktok downloader)
+- se cambió la apariencia de *getplugin*
+- se cambió la apariencia de *ganticode*
+- se cambió la apariencia de *addplugin*
+- se cambió la apariencia de *delplugin*
