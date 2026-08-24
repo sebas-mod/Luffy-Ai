@@ -54,6 +54,7 @@ async function handler(m, { sock }) {
 
     if (!match) {
         return m.reply(
+            `╭━━〔 🛒 TIENDA 〕━━╮\n\n` +
             `✏️ *EDITAR INFORMACIÓN DE LA TIENDA*\n\n` +
             `📋 Formato: \`${m.prefix}editar_lista <numero> <campo> <valor>\`\n\n` +
             `📌 *Campos editables:*\n` +
@@ -66,7 +67,8 @@ async function handler(m, { sock }) {
             `\`${m.prefix}editar_lista 1 contenido Términos nuevos: blablabla;;Condiciones: blablabla\`\n` +
             `\`${m.prefix}editar_lista 1 nombre FAQ de Pago\`\n` +
             `\`${m.prefix}editar_lista 1 imagen\` (responde una imagen 🖼️)\n\n` +
-            `_Usa \`;;\` para nueva línea en el contenido_ ✍️`
+            `_Usa \`;;\` para nueva línea en el contenido_ ✍️\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 
@@ -137,12 +139,12 @@ async function handler(m, { sock }) {
     db.setting('storeLists', lists)
     await m.react('✅')
 
-    let reply = `✅ *INFORMACIÓN ACTUALIZADA*\n\n`
+    let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *INFORMACIÓN ACTUALIZADA*\n\n`
     reply += `🏷️ Nombre: *${item.name}*\n`
     if (field === 'contenido') reply += `📝 Contenido:\n${item.content}\n\n`
     if (field === 'imagen') reply += `🖼️ Imagen: ✅\n`
     if (field === 'video') reply += `🎬 Video: ✅\n`
-    reply += `\n👀 _Ver los cambios: \`${m.prefix}list\`_`
+    reply += `\n╰━━━━━━━━━━━━╯\n\n👀 _Ver los cambios: \`${m.prefix}list\`_`
 
     return m.reply(reply)
 }

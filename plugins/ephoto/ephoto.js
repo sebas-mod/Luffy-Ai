@@ -124,7 +124,7 @@ async function handler(m, { sock }) {
     }
     
     if (!text) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n> *Ejemplo:* ${m.prefix}${command} Luffy-Ai`)
+        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n╰┈➤ *Ejemplo:* ${m.prefix}${command} Luffy-Ai`)
     }
     
     const effectUrl = EFFECT_URLS[command]

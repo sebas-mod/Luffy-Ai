@@ -45,7 +45,10 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `Hola *${m.pushName}*, parece que olvidaste poner el nombre del plugin que quieres eliminar.\n\n` +
+      `╭━〔 ⚙️ SISTEMA 〕━━━╮\n` +
+      `┃ Hola *${m.pushName}*, parece que olvidaste\n` +
+      `┃ poner el nombre del plugin a eliminar 📝\n` +
+      `╰━━━━━━━━━━━━╯\n\n` +
       `Por favor usa el siguiente formato de comando:\n` +
       `- .delplugin <nombre del plugin>\n\n` +
       `Ejemplo de uso:\n` +
@@ -61,7 +64,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`Lo siento *${m.pushName}*, no se encontró el plugin con el nombre ${name}.`);
+      return m.reply(`╰┈➤ ❌ Lo siento *${m.pushName}*, no se encontró el plugin con el nombre *${name}*.`);
     }
 
     let unloadResult = { success: false };
@@ -73,11 +76,14 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     let replyText =
-      `¡Proceso completado! El plugin se eliminó correctamente del sistema.\n\n` +
+      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+      `┃ ¡Proceso completado! El plugin\n` +
+      `┃ se eliminó correctamente 🗑️\n` +
+      `╰━━━━━━━━━━━━╯\n\n` +
       `- Archivo: ${found.file}\n` +
       `- Carpeta: ${found.folder}\n` +
       `- Estado de descarga: ${unloadResult.success ? "Exitoso" : "Pendiente"}\n\n` +
-      `El plugin ya fue eliminado y ya no está activo.`;
+      `✦ El plugin ya fue eliminado y ya no está activo.`;
 
     return m.reply(replyText);
   } catch (error) {

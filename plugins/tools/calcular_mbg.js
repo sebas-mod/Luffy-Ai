@@ -87,12 +87,13 @@ function formatoRupias(numero) {
 
 async function handler(m, { args }) {
   if (!args[0]) {
-    let txt = `🧮 *CALCULADORA MBG (Makan Bergizi Gratis)* 🧮\n\n`;
-    txt += `¡Hola! ¿Tienes curiosidad por saber cuánto tiempo puede financiar tu dinero el programa Makan Bergizi Gratis de Indonesia?\n\n`;
-    txt += `*Cómo Usar:*\n`;
-    txt += `👉 \`${m.prefix}calcular_mbg <cantidad de dinero>\`\n\n`;
-    txt += `*Ejemplo:*\n`;
-    txt += `\`${m.prefix}calcular_mbg 1000000000\``;
+    let txt = `╭━━━〔 🧮 CALCULADORA MBG 〕━━━╮\n\n`;
+    txt += `╰┈➤ ¡Hola! ¿Tienes curiosidad por saber cuánto tiempo puede financiar tu dinero el programa Makan Bergizi Gratis de Indonesia?\n\n`;
+    txt += `✦ *Cómo Usar:*\n`;
+    txt += `╰┈➤ 👉 \`${m.prefix}calcular_mbg <cantidad de dinero>\`\n\n`;
+    txt += `✦ *Ejemplo:*\n`;
+    txt += `╰┈➤ \`${m.prefix}calcular_mbg 1000000000\`\n`;
+    txt += `╰━━━━━━━━━━━━╯`;
     return m.reply(txt);
   }
 
@@ -101,39 +102,43 @@ async function handler(m, { args }) {
   try {
     const dinero = Number(args[0].replace(/[^0-9]/g, ''));
     if (isNaN(dinero) || dinero <= 0) {
-      return m.reply("❌ ¡Por favor, ingresa una cantidad de dinero válida! (Solo números, por ejemplo 500000)");
+      return m.reply(`❌ ¡Por favor, ingresa una cantidad de dinero válida!\n──────────\n╰┈➤ (Solo números, por ejemplo 500000)`);
     }
 
     const data = calcularMBG(dinero);
 
     let contentTxt = `💰 *Dinero :* ${formatoRupias(dinero)}\n\n`;
     contentTxt += `⏳ *Duración MBG:*\n`;
-    contentTxt += `${data.duracion.anios} AÑOS, ${data.duracion.meses} MESES, ${data.duracion.dias} DÍAS\n`;
-    contentTxt += `${data.duracion.horas} HORAS, ${data.duracion.minutos} MINUTOS, ${data.duracion.segundos} SEGUNDOS\n`;
+    contentTxt += `╰┈➤ ${data.duracion.anios} AÑOS, ${data.duracion.meses} MESES, ${data.duracion.dias} DÍAS\n`;
+    contentTxt += `╰┈➤ ${data.duracion.horas} HORAS, ${data.duracion.minutos} MINUTOS, ${data.duracion.segundos} SEGUNDOS\n`;
     contentTxt += `_(Según un gasto de ~Rp ${(data.gasto / 1000000000).toFixed(1)} mil millones/día)_\n\n`;
-    
+    contentTxt += `──────────\n\n`;
+
     contentTxt += `🍱 *Equivalente en Porciones de Comida:*\n`;
-    contentTxt += `${data.porciones.toLocaleString('id-ID')} porciones (@ Rp 15.000/porción)\n\n`;
+    contentTxt += `╰┈➤ ${data.porciones.toLocaleString('id-ID')} porciones (@ Rp 15.000/porción)\n\n`;
 
+    contentTxt += `──────────\n\n`;
     contentTxt += `📊 *Comparación de Salarios en Indonesia:*\n`;
-    contentTxt += `🏢 UMR DKI Jakarta (Rp 5,4 Millones/mes): ${data.salariosIndonesia.dki}\n`;
-    contentTxt += `🏭 UMR Java Central (Rp 2,04 Millones/mes): ${data.salariosIndonesia.jateng}\n`;
-    contentTxt += `👨‍🏫 Salario Maestro Honorario (Rp 300mil/mes): ${data.salariosIndonesia.guru}\n\n`;
+    contentTxt += `╰┈➤ 🏢 UMR DKI Jakarta (Rp 5,4 Millones/mes): ${data.salariosIndonesia.dki}\n`;
+    contentTxt += `╰┈➤ 🏭 UMR Java Central (Rp 2,04 Millones/mes): ${data.salariosIndonesia.jateng}\n`;
+    contentTxt += `╰┈➤ 👨‍🏫 Salario Maestro Honorario (Rp 300mil/mes): ${data.salariosIndonesia.guru}\n\n`;
 
+    contentTxt += `──────────\n\n`;
     contentTxt += `⚽ *Comparación de Salarios de Futbolistas:*\n`;
     for (let p of data.jugadores) {
-      contentTxt += `🏆 ${p.nombre}\n`;
-      contentTxt += `💵 ${formatoRupias(p.salario)}/año\n`;
-      contentTxt += `📈 Porcentaje: ${p.porcentaje}\n\n`;
+      contentTxt += `╰┈➤ 🏆 ${p.nombre}\n`;
+      contentTxt += `╰┈➤ 💵 ${formatoRupias(p.salario)}/año\n`;
+      contentTxt += `╰┈➤ 📈 Porcentaje: ${p.porcentaje}\n\n`;
     }
 
-    let txt = `🍽️ *RESULTADO DEL CÁLCULO MBG* 🍽️\n\n`;
+    let txt = `╭━━━〔 🍽️ RESULTADO DEL CÁLCULO MBG 〕━━━╮\n\n`;
     txt += contentTxt.trim().split("\n").map(line => line.trim() ? `${line}` : ``).join("\n");
+    txt += `\n╰━━━━━━━━━━━━╯`;
 
     await m.reply(txt);
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Lo siento, ocurrió un error al calcular! 😭\nError: ${e.message}`);
+    m.reply(`╰┈➤ ❌ Lo siento, ocurrió un error al calcular! 😭\n──────────\nError: ${e.message}`);
   }
 }
 

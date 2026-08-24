@@ -88,31 +88,31 @@ async function fetchFromJson(filename) {
 }
 
 function buildCategoryList(prefix) {
-  let text = `🔞 *NSFW MENU*\n\n`
-  text += `Colección de imágenes de anime NSFW de varias categorías.\n`
-  text += `Esta función es solo para usuarios mayores de *18 años*.\n\n`
+  let text = `୨୧ ────────── ୨୧\n🔞 *NSFW MENU*\n୨୧ ────────── ୨୧\n\n`
+  text += `✧ Colección de imágenes de anime NSFW de varias categorías.\n`
+  text += `✧ Esta función es solo para usuarios mayores de *18 años*.\n\n`
   text += `*📂 CATEGORÍAS DISPONIBLES:*\n\n`
 
   text += `*— Desde la base de datos local —*\n`
   for (const [cmd, info] of Object.entries(JSON_CATEGORIES)) {
     const count = loadJsonUrls(info.file).length
-    text += `- ${info.emoji} *${prefix}${cmd}* — ${info.label} (${count} imágenes)\n`
+    text += `❀ ${info.emoji} *${prefix}${cmd}* — ${info.label} (${count} imágenes)\n`
   }
 
   text += `\n*— Desde la API en línea —*\n`
   for (const [cmd, info] of Object.entries(API_CATEGORIES)) {
-    text += `- ${info.emoji} *${prefix}${cmd}* — ${info.label}\n`
+    text += `❀ ${info.emoji} *${prefix}${cmd}* — ${info.label}\n`
   }
 
   text += `\n*⚙️ AJUSTES DEL GRUPO:*\n`
-  text += `- *${prefix}nsfwon* — Activa la función NSFW en este grupo\n`
-  text += `- *${prefix}nsfwoff* — Desactiva la función NSFW en este grupo\n`
+  text += `✦ *${prefix}nsfwon* — Activa la función NSFW en este grupo\n`
+  text += `✦ *${prefix}nsfwoff* — Desactiva la función NSFW en este grupo\n`
 
   text += `\n*📌 NOTA IMPORTANTE:*\n`
-  text += `- Esta función se puede usar directamente en el *chat privado* del bot\n`
-  text += `- Para grupos, el admin debe activarla primero con *${prefix}nsfwon*\n`
-  text += `- Úsala con prudencia y responsabilidad\n`
-  text += `- Este contenido es solo para usuarios *18+*`
+  text += `✧ Esta función se puede usar directamente en el *chat privado* del bot\n`
+  text += `✧ Para grupos, el admin debe activarla primero con *${prefix}nsfwon*\n`
+  text += `✧ Úsala con prudencia y responsabilidad\n`
+  text += `──────────\n✧ Este contenido es solo para usuarios *18+*`
 
   return text
 }
@@ -216,8 +216,8 @@ async function sendNsfwImage(m, sock, category) {
             deviceListMetadataVersion: 2,
           },
           interactiveMessage: {
-            body: { text: `${info.emoji} *${info.label.toUpperCase()}*` },
-            footer: { text: "🔞 Este contenido es solo para 18+ — Úsalo con prudencia" },
+            body: { text: `୨୧ ✧ ${info.emoji} *${info.label.toUpperCase()}* ✧ ୨୧` },
+            footer: { text: "❀ 🔞 Este contenido es solo para 18+ — Úsalo con prudencia" },
             header: {
               hasMediaAttachment: true,
               imageMessage: media.imageMessage,

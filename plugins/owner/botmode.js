@@ -67,8 +67,10 @@ async function handler(m, { sock }) {
 
     if (!VALID_MODES.includes(mode)) {
         return m.reply(
-            `❌ *ᴍᴏᴅᴏ ɴᴏ ᴠáʟɪᴅᴏ*\n\n` +
-            `> Modos disponibles: \`${VALID_MODES.join(', ')}\``
+            `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+            `┃ ❌ *ᴍᴏᴅᴏ ɴᴏ ᴠáʟɪᴅᴏ*\n` +
+            `╰━━━━━━━━╯\n\n` +
+            `╰┈➤ Modos disponibles: \`${VALID_MODES.join(', ')}\``
         )
     }
 
@@ -99,12 +101,14 @@ async function handler(m, { sock }) {
     }
 
     await m.reply(
-        `✅ *ᴍᴏᴅᴏ ᴄᴀᴍʙɪᴀᴅᴏ*\n\n` +
-        `> Mode: *${mode.toUpperCase()}*\n` +
-        `> ${MODE_DESCRIPTIONS[mode]}\n` +
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `┃ ✅ *ᴍᴏᴅᴏ ᴄᴀᴍʙɪᴀᴅᴏ*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
+        `› Mode: *${mode.toUpperCase()}*\n` +
+        `› ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +
         `\n\n` +
-        (m.isGroup ? `> _El modo de este grupo también cambió._` : `> _El modo global cambió._`)
+        (m.isGroup ? `› _El modo de este grupo también cambió._` : `› _El modo global cambió._`)
     )
 
     console.log(`[BotMode] Changed to ${mode.toUpperCase()} by ${m.pushName} (${m.sender})`)

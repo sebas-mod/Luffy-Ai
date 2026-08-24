@@ -252,7 +252,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `💬 *ǫᴜᴏᴛᴇ ᴛɪᴋᴛᴏᴋ*\n\n> Ingresa un texto o responde un mensaje que quieras convertir en quote.\n\n\`Ejemplo: ${m.prefix}ttqc Hola Mundo\``,
+      `💬 *ǫᴜᴏᴛᴇ ᴛɪᴋᴛᴏᴋ*\n\n> Ingresa un texto o responde un mensaje que quieras convertir en quote.\n\n\`╰┈➤ Ejemplo: ${m.prefix}ttqc Hola Mundo\``,
     );
   }
 
@@ -271,7 +271,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendMessage(m.chat, { 
       image: imageBuffer, 
-      caption: `💬 *TikTok Quote*` 
+      caption: `✦ • ─── • ✦\n💬 *TikTok Quote*` 
     }, { quoted: m });
   } catch (error) {
     console.error(error);

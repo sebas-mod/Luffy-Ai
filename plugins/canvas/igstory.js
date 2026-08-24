@@ -265,7 +265,7 @@ async function handler(m, { sock }) {
 
         if (!targetImgBuffer) {
             return m.reply(
-                `📸 *FUNCIÓN IG STORY POST*\n\n` +
+                `✦ • ─── • ✦\n📸 *FUNCIÓN IG STORY POST*\n──────────\n` +
                 `Este sistema creará una simulación de imagen de publicación de Instagram Story usando la foto que envíes.\n\n` +
                 `*CÓMO USARLO:*\n` +
                 `- Envía una imagen directamente con caption \`${m.prefix}igstory\`\n` +
@@ -313,7 +313,7 @@ async function handler(m, { sock }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo siento, ocurrió un error al intentar crear la imagen de IG Story. Asegúrate de que la imagen enviada sea válida e inténtalo de nuevo en unos momentos.`);
+        m.reply(`✦ • ─── • ✦\n❌ *NO SE PUDO PROCESAR LA IMAGEN*\n\nLo siento, ocurrió un error al intentar crear la imagen de IG Story. Asegúrate de que la imagen enviada sea válida e inténtalo de nuevo en unos momentos.\n──────────`);
     }
 }
 

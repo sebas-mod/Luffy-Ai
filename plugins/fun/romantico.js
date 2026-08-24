@@ -23,7 +23,9 @@ async function handler(m) {
         return;
     }
     
-    await m.reply(`\`\`\`"${quote}"\`\`\`\n\n`);
+    await m.reply(`꧁༺ 💘 ROMÁNTICO ༻꧂
+──────────
+\`\`\`"${quote}"\`\`\`\n\n`);
 }
 
 export { pluginConfig as config, handler }

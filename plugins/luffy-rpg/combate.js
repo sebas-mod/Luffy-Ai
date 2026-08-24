@@ -66,7 +66,8 @@ function handler(m, { sock }) {
   const statsJugador = getStats(user);
   const resultado = resolverTurno(user, enemigo, statsJugador);
 
-  let txt = `⚔️ *BATALLA:* Tú vs ${enemigo.emoji} ${enemigo.nombre}\n`;
+  let txt = `꧁༺ ☠︎ BATALLA ༻꧂\n`;
+  txt += `⚔️ Tú vs ${enemigo.emoji} ${enemigo.nombre}\n`;
   txt += `━━━━━━━━━━━━━━━\n`;
   txt += resultado.log.join("\n");
   txt += `\n━━━━━━━━━━━━━━━\n`;
@@ -81,16 +82,16 @@ function handler(m, { sock }) {
       return u;
     });
     txt += `🎉 *¡VICTORIA!*\n`;
-    txt += `✨ *EXP:* +${recompensa.expBase}\n`;
+    txt += `🏆 ✨ *EXP:* +${recompensa.expBase}\n`;
     txt += `💰 *Berrys:* +${recompensa.berryGanado}\n`;
     if (recompensa.drops.length) {
       txt += `🎁 *Botín:* ${recompensa.drops.join(", ")}\n`;
     }
     if (recompensa.resultado?.subio) {
-      txt += `\n🎉 *¡SUBISTE DE NIVEL! Ahora eres nivel ${recompensa.resultado.nivel}!*\n`;
+      txt += `\n👑 *¡SUBISTE DE NIVEL! Ahora eres nivel ${recompensa.resultado.nivel}!*\n`;
     }
     txt += `\n❤️ *Salud restante:* ${resultado.saludJugador}/${statsJugador.saludMax}\n`;
-    txt += `> Recupérate con *${m.prefix}usar pocion_menor*`;
+    txt += `╰┈➤ Recupérate con *${m.prefix}usar pocion_menor*`;
   } else {
     updateUser(m.sender, (u) => {
       u.salud = Math.max(1, resultado.saludJugador);
@@ -98,9 +99,9 @@ function handler(m, { sock }) {
       return u;
     });
     txt += `💀 *¡DERROTA!*\n`;
-    txt += `${enemigo.nombre} fue demasiado fuerte.\n`;
+    txt += `🌊 ${enemigo.nombre} fue demasiado fuerte.\n`;
     txt += `\n❤️ *Salud restante:* ${Math.max(1, resultado.saludJugador)}/${statsJugador.saludMax}\n`;
-    txt += `> Recupérate con *${m.prefix}usar pocion_menor* o *${m.prefix}diario*.`;
+    txt += `╰┈➤ Recupérate con *${m.prefix}usar pocion_menor* o *${m.prefix}diario*.`;
   }
 
   return m.reply(txt);

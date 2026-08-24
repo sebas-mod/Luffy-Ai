@@ -43,12 +43,13 @@ async function handler(m, { sock }) {
     const level = calculateLevel(user.exp || 0)
     const title = getRole(level)
     
-    let text = `*〔 ⭐ INFO EXP 〕*\n\n`
+    let text = `╭━━━〔 ⭐ EXP 〕━━━╮\n\n`
 
-text += `*〔 👤 Usuario 〕* ${targetName}\n`
-text += `*〔 ⭐ Exp 〕* ${expDisplay}\n`
-text += `*〔 🏆 Level 〕* ${level}\n`
-text += `*〔 🎖️ Título 〕* ${title}\n`
+text += `┃ 👤 Usuario: ${targetName}\n`
+text += `┃ ⭐ Exp: ${expDisplay}\n`
+text += `┃ 🏆 Level: ${level}\n`
+text += `┃ 🎖️ Título: ${title}\n`
+text += `╰━━━━━━━━━━━━╯`
     
     await m.reply(text)
 }

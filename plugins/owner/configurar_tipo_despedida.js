@@ -48,7 +48,9 @@ async function handler(m, { sock, db }) {
     db.setting("goodbyeType", id);
     await db.save();
     await m.reply(
-      `✅ *TIPO DE GOODBYE CAMBIADO*\n\n` +
+      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `┃ ✅ *TIPO DE GOODBYE CAMBIADO*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
         `${VARIANTS[id].emoji} *V${id} — ${VARIANTS[id].name}*\n` +
         `_${VARIANTS[id].desc}_`,
     );

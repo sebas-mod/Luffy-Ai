@@ -32,16 +32,18 @@ async function handler(m, { sock }) {
         }
         const currentMode = config.mode;
         if (currentMode === 'self') {
-            return await m.reply('ℹ️ El bot ya está en modo *self*');
+            return await m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ℹ️ El bot ya está en modo *self*\n╰━━━━━━━━╯');
         }
         config.mode = 'self';
         const db = getDatabase();
         db.setting('botMode', 'self');
         
         const responseText = `🔒 *ᴍᴏᴅᴏ sᴇʟꜰ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
-            `> El bot ahora solo responde:\n` +
-            `> • Al owner del bot\n` +
-            `> • Al propio bot (fromMe)\n\n` +
+            `╭━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `┃ El bot ahora solo responde:\n` +
+            `┃ • Al owner del bot 👑\n` +
+            `┃ • Al propio bot (fromMe)\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
             `_Usa .public para abrir el acceso_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to SELF by ${m.pushName} (${m.sender})`);

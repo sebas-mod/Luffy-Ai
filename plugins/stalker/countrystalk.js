@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        return m.reply(`🌍 ¡Por favor, ingresa el nombre de un país!\nEjemplo: \`${m.prefix}${m.command} indonesia\``);
+        return m.reply(`╰┈➤ 🌍 ¡Por favor, ingresa el nombre de un país!\nEjemplo: \`${m.prefix}${m.command} indonesia\``);
     }
 
     await m.react("🕕");
@@ -31,7 +31,7 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data) {
             await m.react("❌");
-            return m.reply(`Lo siento, no se encontraron datos del país "${text}".`);
+            return m.reply(`╰┈➤ Lo siento, no se encontraron datos del país "${text}".`);
         }
 
         const c = data.data;
@@ -44,18 +44,18 @@ async function handler(m, { sock, text }) {
         const languages = c.languages && c.languages.length > 0 ? c.languages.map(l => l.name).join(", ") : "-";
         const timezones = c.timezones && c.timezones.length > 0 ? c.timezones.join(", ") : "-";
 
-        let txt = `🌍 *INFORMACIÓN DEL PAÍS: ${name.toUpperCase()}* 🌍\n\n`;
-        txt += `🏢 *Capital:* ${capitals}\n`;
-        txt += `📜 *Nombre Oficial:* ${officialName}\n`;
-        txt += `🗺️ *Región:* ${c.region || "-"} (${c.subregion || "-"})\n`;
-        txt += `🗣️ *Idiomas Oficiales:* ${languages}\n`;
-        txt += `👥 *Población:* ${population} habitantes\n`;
-        txt += `💰 *Moneda:* ${currencies}\n`;
-        txt += `🕰️ *Zona Horaria:* ${timezones}\n`;
-        txt += `🚗 *Lado de Conducción:* ${c.cars?.driving_side || "-"}\n`;
+        let txt = `╭━━━〔 🌍 INFORMACIÓN DEL PAÍS 〕━━━╮\n\n╰┈➤ 🌐 *${name.toUpperCase()}*\n──────────\n`;
+        txt += `╰┈➤ 🏢 *Capital:* ${capitals}\n`;
+        txt += `╰┈➤ 📜 *Nombre Oficial:* ${officialName}\n`;
+        txt += `╰┈➤ 🗺️ *Región:* ${c.region || "-"} (${c.subregion || "-"})\n`;
+        txt += `╰┈➤ 🗣️ *Idiomas Oficiales:* ${languages}\n`;
+        txt += `╰┈➤ 👥 *Población:* ${population} habitantes\n`;
+        txt += `╰┈➤ 💰 *Moneda:* ${currencies}\n`;
+        txt += `╰┈➤ 🕰️ *Zona Horaria:* ${timezones}\n`;
+        txt += `╰┈➤ 🚗 *Lado de Conducción:* ${c.cars?.driving_side || "-"}\n`;
 
         if (c.flag?.emoji) {
-            txt += `\n*Bandera:* ${c.flag.emoji}`;
+            txt += `\n──────────\n✦ *Bandera:* ${c.flag.emoji}\n\n╰━━━━━━━━━━━━╯`;
         }
 
         await m.react("✅");

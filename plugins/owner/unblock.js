@@ -30,11 +30,13 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            '⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n\n' +
-            '> `.unblock 628xxx` — Desbloquear por número\n' +
-            '> `.unblock` (reply a un mensaje) — Desbloquear al remitente\n' +
-            '> `.unblock @mention` — Desbloquear al mencionado\n' +
-            '> `.unblock` (en chat privado) — Desbloquear a este usuario'
+            `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+            `┃ ⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n` +
+            `╰━━━━━━━━╯\n\n` +
+            `› \`.unblock 628xxx\` — Desbloquear por número\n` +
+            `› \`.unblock\` (reply a un mensaje) — Desbloquear al remitente\n` +
+            `› \`.unblock @mention\` — Desbloquear al mencionado\n` +
+            `› \`.unblock\` (en chat privado) — Desbloquear a este usuario`
         )
     }
 
@@ -42,8 +44,10 @@ async function handler(m, { sock }) {
         await sock.updateBlockStatus(targetJid, 'unblock')
         await m.react('✅')
         return m.reply(
-            `✅ *ɴúᴍᴇʀᴏ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴏ*\n\n` +
-            `> Objetivo: @${targetJid.split('@')[0]}`,
+            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `┃ ✅ *ɴúᴍᴇʀᴏ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴏ*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `🎯 Objetivo: @${targetJid.split('@')[0]}`,
             { mentions: [targetJid] }
         )
     } catch (err) {

@@ -27,12 +27,12 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const isVideo = m.isVideo || (m.quoted && m.quoted.isVideo) || (m.quoted && m.quoted.type === 'videoMessage')
     if (!isVideo) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Responde o envía un video con el caption\n\n\`Ejemplo: ${m.prefix}smemevid Arriba|Abajo\``)
+        return m.reply(`✦ • ─── • ✦\n🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Responde o envía un video con el caption\n\n\`╰┈➤ Ejemplo: ${m.prefix}smemevid Arriba|Abajo\``)
     }
 
     const input = m.args.join(' ')
     if (!input || !input.includes('|')) {
-        return m.reply(`🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Formato: superior|inferior\n\n\`Ejemplo: ${m.prefix}smemevid WIDTH OR HEIGHT|WHY NOT BOTH?\``)
+        return m.reply(`✦ • ─── • ✦\n🎬 *ᴍᴇᴍᴇ ᴠɪᴅᴇᴏ*\n\n> Formato: superior|inferior\n\n\`╰┈➤ Ejemplo: ${m.prefix}smemevid WIDTH OR HEIGHT|WHY NOT BOTH?\``)
     }
 
     const [top, bottom] = input.split('|').map(s => s.trim().toUpperCase())
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
         if (!mediaBuffer) {
             m.react('❌')
-            return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el video`)
+            return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el video`)
         }
 
         const tempId = Date.now()
@@ -143,7 +143,7 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         m.react('☢')
-        m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> Ocurrió un error al procesar el video`)
+        m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> Ocurrió un error al procesar el video`)
     }
 }
 

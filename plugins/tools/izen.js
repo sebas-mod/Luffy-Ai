@@ -35,7 +35,7 @@ async function handler(m, { args, sock }) {
     const json = await res.json();
     
     if (!json.data?.result?.result) {
-       return m.reply("❌ ¡Vaya, no se pudo omitir el enlace! Intenta con otro enlace.");
+       return m.reply(`╰┈➤ ❌ ¡Vaya, no se pudo omitir el enlace! Intenta con otro enlace.`);
     }
     
     let txt = `✅ *¡ENLACE OMITIDO CON ÉXITO!* ✅\n\n`;
@@ -48,7 +48,7 @@ async function handler(m, { args, sock }) {
     await m.reply(txt);
     await m.react("✅");
   } catch (e) {
-    m.reply(`❌ Lo siento, ocurrió un error del sistema! 😭\nError: ${e.message}`);
+    m.reply(`╰┈➤ ❌ Lo siento, ocurrió un error del sistema! 😭\n──────────\nError: ${e.message}`);
   }
 }
 

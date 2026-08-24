@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
   const cost = parseInt(rawCost);
   
   if (isNaN(cost) || cost < 0) {
-    return m.reply(`❌ *ERROR*\n\nLa cantidad de energía (en el último argumento) debe ser un número 0 o mayor.`);
+    return m.reply(`👑•─────•👑\n❌ *ERROR*\n\nLa cantidad de energía (en el último argumento) debe ser un número 0 o mayor.\n✦────────✦`);
   }
 
   const commands = m.args.slice(0, -1);

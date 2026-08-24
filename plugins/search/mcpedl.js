@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`🧱 *BÚSQUEDA DE MCPEDL*\n\n> Ejemplo:\n\`${m.prefix}mcpe survival\``)
+        return m.reply(`╰┈➤ 🧱 *BÚSQUEDA DE MCPEDL*\n\n> Ejemplo:\n\`${m.prefix}mcpe survival\``)
     }
 
     m.react('🔍')
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
 
         if (items.length === 0) {
             m.react('❌')
-            return m.reply(`❌ No se encontraron resultados de MCPEDL para: ${query}`)
+            return m.reply(`╰┈➤ ❌ No se encontraron resultados de MCPEDL para: ${query}`)
         }
 
         let caption = '🧱 *BÚSQUEDA DE MCPEDL*\n\n'
@@ -67,9 +67,9 @@ async function handler(m, { sock }) {
         caption += `🌐 *Source:* ${result.source || 'mcpedl.org'}\n\n`
 
         items.forEach((item, index) => {
-            caption += `*${index + 1}.* ${trimText(item.title)}\n`
-            caption += `   ├ ⭐ Calificación: ${item.rating || '-'}\n`
-            caption += `   ├ ${item.link}\n\n`
+            caption += `╰┈➤ *${index + 1}.* ${trimText(item.title)}\n`
+            caption += `› ⭐ Calificación: ${item.rating || '-'}\n`
+            caption += `› ${item.link}\n\n`
         })
 
         const cover = items[0]?.image

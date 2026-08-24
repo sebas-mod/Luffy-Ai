@@ -51,10 +51,11 @@ async function handler(m, { sock }) {
           db.setting("storeProducts", products);
           await m.react("✅");
           return m.reply(
-            `📦 *STOCK FÍSICO AGREGADO*\n\n` +
+            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n📦 *STOCK FÍSICO AGREGADO*\n\n` +
               `🏷️ Producto: *${product.name}*\n` +
               `➕ Agregados: *${addCount} pcs*\n` +
               `📊 Stock total: *${product.stock} pcs*\n\n` +
+              `╰━━━━━━━━━━━━╯\n\n` +
               `_Agregar más: \`${m.prefix}agregar_stock ${productNo + 1} <cantidad>\`_`,
           );
         }
@@ -148,11 +149,12 @@ async function handler(m, { sock }) {
           db.setting("storeProducts", products);
           await m.react("✅");
           return m.reply(
-            `✅ *IMPORTACIÓN DE STOCK COMPLETADA*\n\n` +
+            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *IMPORTACIÓN DE STOCK COMPLETADA*\n\n` +
               `🏷️ Producto: *${product.name}*\n` +
               `➕ Agregados: *${added}* cuentas 🔑\n` +
               (skipped > 0 ? `⏭️ Duplicados omitidos: *${skipped}*\n` : "") +
               `\n📊 Stock total: *${product.stockItems.length}* cuentas\n\n` +
+              `╰━━━━━━━━━━━━╯\n\n` +
               `_Ver la lista de stock: \`${m.prefix}lista_stock ${productNo + 1}\`_`,
           );
         }
@@ -160,7 +162,8 @@ async function handler(m, { sock }) {
     }
 
     return m.reply(
-      `📦 *AGREGAR STOCK*\n\n` +
+      `╭━━〔 📦 STOCK 〕━━╮\n\n` +
+        `📦 *AGREGAR STOCK*\n\n` +
         `🔑 *Producto Digital* — Agregar datos de cuenta/key:\n` +
         `\`${m.prefix}agregar_stock <numero_producto>|<detalle>\`\n\n` +
         `📄 *Importar desde archivo .txt:*\n` +
@@ -174,7 +177,8 @@ async function handler(m, { sock }) {
         `• Usa \`;;\` para nueva línea en el detalle 🔑\n` +
         `• Cada línea del archivo .txt = 1 artículo de stock 📄\n` +
         `• Máximo 1.000 artículos por importación 📊\n\n` +
-        `_Los datos del stock digital son confidenciales 🔒 y solo se envían al comprador después de confirmar el pago_`,
+        `_Los datos del stock digital son confidenciales 🔒 y solo se envían al comprador después de confirmar el pago_\n\n` +
+        `╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -204,12 +208,13 @@ async function handler(m, { sock }) {
     product.stock = (product.stock === -1 ? 0 : product.stock) + addCount;
     db.setting("storeProducts", products);
     await m.react("✅");
-    return m.reply(
-      `📦 *STOCK FÍSICO AGREGADO*\n\n` +
-        `🏷️ Producto: *${product.name}*\n` +
-        `➕ Agregados: *${addCount} pcs*\n` +
-        `📊 Stock total: *${product.stock} pcs*`,
-    );
+  return m.reply(
+    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n📦 *STOCK FÍSICO AGREGADO*\n\n` +
+      `🏷️ Producto: *${product.name}*\n` +
+      `➕ Agregados: *${addCount} pcs*\n` +
+      `📊 Stock total: *${product.stock} pcs*\n\n` +
+      `╰━━━━━━━━━━━━╯`,
+  );
   }
 
   if (!detail || detail.length < 3) {
@@ -237,9 +242,10 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ *STOCK AGREGADO*\n\n` +
+    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *STOCK AGREGADO*\n\n` +
       `🏷️ Producto: *${product.name}*\n` +
       `🔑 Stock total actual: *${product.stockItems.length}* cuentas\n\n` +
+      `╰━━━━━━━━━━━━╯\n\n` +
       `_Agregar más: \`${m.prefix}agregar_stock ${productNo + 1}|<detalle>\`_`,
   );
 }

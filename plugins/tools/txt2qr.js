@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
     
     if (!text) {
-        return m.reply(`📱 *ᴛᴇxᴛᴏ ᴀ Qʀ*\n\n> Ingresa el texto/URL\n\n\`Ejemplo: ${m.prefix}txt2qr https://google.com\``)
+        return m.reply(`╰┈➤ 📱 *ᴛᴇxᴛᴏ ᴀ Qʀ*\n\n> Ingresa el texto/URL\n\n\`Ejemplo: ${m.prefix}txt2qr https://google.com\``)
     }
     
     m.react('📱')
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
         
         await sock.sendMessage(m.chat, {
             image: Buffer.from(res.data),
-            caption: `📱 *Qʀ ᴄᴏᴅᴇ*\n\n> ${text.substring(0, 100)}${text.length > 100 ? '...' : ''}`
+            caption: `╰┈➤ 📱 *Qʀ ᴄᴏᴅᴇ*\n\n> ${text.substring(0, 100)}${text.length > 100 ? '...' : ''}`
         }, { quoted: m })
         
     } catch (error) {

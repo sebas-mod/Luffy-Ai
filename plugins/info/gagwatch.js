@@ -30,7 +30,7 @@ async function handler(m) {
     const stock = data.data.stock;
     const weather = stock.weather;
 
-    let txt = `🌱 *MONITOR DE STOCK GAG2*\n\n`;
+    let txt = `╭━━━〔 🌱 GAG2 STOCK 〕━━━╮\n\n🌱 *MONITOR DE STOCK GAG2*\n\n`;
     txt += `*ESTADO:* ${stock.message || '-'}\n`;
     txt += `*REABASTECIMIENTO EN:* ${stock.restockInLabel || '-'}\n\n`;
 
@@ -42,25 +42,25 @@ async function handler(m) {
       txt += `\n`;
     }
 
-    txt += `*SEMILLAS:*\n`;
+    txt += `🌱 *SEMILLAS:*\n`;
     stock.seeds.forEach(s => {
       txt += `- ${s.name}: ${s.quantity}\n`;
     });
     txt += `\n`;
 
-    txt += `*EQUIPO:*\n`;
+    txt += `⚙️ *EQUIPO:*\n`;
     stock.gear.forEach(g => {
       txt += `- ${g.name}: ${g.quantity}\n`;
     });
     txt += `\n`;
 
-    txt += `*CAJAS:*\n`;
+    txt += `📦 *CAJAS:*\n`;
     stock.crates.forEach(c => {
       txt += `- ${c.name}: ${c.quantity}\n`;
     });
 
     await m.react("✅");
-    await m.reply(txt);
+    await m.reply(txt + "\n╰━━━━━━━━━━━━╯");
   } catch (error) {
     console.error("[GAG-WATCH Plugin Error]", error);
     await m.react("☢");

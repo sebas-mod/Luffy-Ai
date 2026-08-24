@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const username = m.text?.trim() || m.args[0];
 
   if (!username) {
-    return m.reply("❌ *Vaya, el username de Pinterest aún no se ha ingresado!*\n\nDebes escribir el username de Pinterest que quieres buscar. \n\nEjemplo: `.pintereststalk dims`");
+    return m.reply("╰┈➤ ❌ *Vaya, el username de Pinterest aún no se ha ingresado!*\n\nDebes escribir el username de Pinterest que quieres buscar. \n\nEjemplo: `.pintereststalk dims`");
   }
 
   await m.react("🕕");
@@ -38,31 +38,31 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`⚠️ *¡Búsqueda Fallida!*\n\nEl username *${username}* no fue encontrado en Pinterest. Asegúrate de que esté bien escrito.`);
+      return m.reply(`╰┈➤ ⚠️ *¡Búsqueda Fallida!*\n\nEl username *${username}* no fue encontrado en Pinterest. Asegúrate de que esté bien escrito.`);
     }
 
     const r = data.result;
     
-    let caption = `📌 *PINTEREST STALK - INFO DEL PERFIL* 📌\n\n`;
-    caption += `¡Hola! Estos son los resultados de la búsqueda del perfil del username *@${r.username}*:\n\n`;
+    let caption = `╭━━━〔 📌 PINTEREST STALK 〕━━━╮\n\n`;
+    caption += `╰┈➤ ¡Hola! Estos son los resultados de la búsqueda del perfil del username *@${r.username}*:\n──────────\n`;
     
     caption += `👤 *INFO DEL PERFIL*\n`;
-    caption += `  - Nombre completo: *${r.full_name || "-"}*\n`;
-    caption += `  - Username: @${r.username}\n`;
-    caption += `  - Bio: ${r.bio || "-"}\n`;
-    caption += `  - Tipo de cuenta: ${r.account_type || "-"}\n`;
-    caption += `  - Cuenta creada: ${r.created_at || "-"}\n\n`;
+    caption += `› Nombre completo: *${r.full_name || "-"}*\n`;
+    caption += `› Username: @${r.username}\n`;
+    caption += `› Bio: ${r.bio || "-"}\n`;
+    caption += `› Tipo de cuenta: ${r.account_type || "-"}\n`;
+    caption += `› Cuenta creada: ${r.created_at || "-"}\n\n`;
     
     caption += `📊 *ESTADÍSTICAS*\n`;
-    caption += `  - Seguidores: ${r.stats?.followers || 0}\n`;
-    caption += `  - Siguiendo: ${r.stats?.following || 0}\n`;
-    caption += `  - Total de pines: ${r.stats?.pins || 0}\n`;
-    caption += `  - Total de boards: ${r.stats?.boards || 0}\n\n`;
+    caption += `› Seguidores: ${r.stats?.followers || 0}\n`;
+    caption += `› Siguiendo: ${r.stats?.following || 0}\n`;
+    caption += `› Total de pines: ${r.stats?.pins || 0}\n`;
+    caption += `› Total de boards: ${r.stats?.boards || 0}\n\n`;
     
     caption += `🔗 *LINK DEL PERFIL*\n`;
-    caption += `  - ${r.profile_url}\n\n`;
+    caption += `› ${r.profile_url}\n\n`;
 
-    caption += `¿Te gusta coleccionar inspiración de Pinterest? ¡Muéstralo a tus amigos! 🚀`;
+    caption += `──────────\n╰┈➤ ¿Te gusta coleccionar inspiración de Pinterest? ¡Muéstralo a tus amigos! 🚀\n\n╰━━━━━━━━━━━━╯`;
 
     const imageUrl = r.image?.original || r.image?.large || r.image?.medium || r.image?.small;
 
@@ -80,7 +80,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Pinterest Stalk]", error.message);
     await m.react("☢");
-    m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo obtener los datos del servidor de Pinterest. Vuelve a intentarlo en unos momentos.");
+    m.reply("╰┈➤ 😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo obtener los datos del servidor de Pinterest. Vuelve a intentarlo en unos momentos.");
   }
 }
 

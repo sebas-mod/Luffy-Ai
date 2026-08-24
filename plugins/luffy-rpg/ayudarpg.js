@@ -15,7 +15,7 @@ const pluginConfig = {
 };
 
 function handler(m, { sock }) {
-  let txt = `🏴‍☠️ *Luffy RPG - Guía Pirata*\n\n`;
+  let txt = `꧁༺ ☠︎ LUFFY RPG - GUÍA PIRATA ༻꧂\n\n`;
   txt += `━━━ *⛵ INICIO* ━━━\n`;
   txt += `• *${m.prefix}iniciar* — Comenzar tu aventura\n`;
   txt += `• *${m.prefix}perfil* — Ver tu ficha de pirata\n\n`;
@@ -45,7 +45,8 @@ function handler(m, { sock }) {
   txt += `• *${m.prefix}tripulacion* — Gestionar tripulación\n`;
   txt += `• *${m.prefix}barco* — Comprar o ver barcos\n\n`;
   txt += `━━━ *🏆 COMPETENCIA* ━━━\n`;
-  txt += `• *${m.prefix}clasificacion* — Top piratas`;
+  txt += `• *${m.prefix}clasificacion* — Top piratas\n\n`;
+  txt += `╰┈➤ ¡Zarpa hacia la aventura! ⚔️ 🌊`;
 
   return m.reply(txt);
 }

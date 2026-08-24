@@ -16,7 +16,7 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply(`❌ Solo los admins del grupo pueden usar esta función`)
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Solo los admins del grupo pueden usar esta función`+"\n╰━━━━━━━━━━━━╯")
     }
     
     const args = m.args[0]?.toLowerCase()
@@ -24,7 +24,7 @@ function handler(m, { sock, db }) {
     
     if (!['on', 'off'].includes(args)) {
         const status = group.notifCloseGroup === true ? '✅ Activo' : '❌ Inactivo'
-        return m.reply(`🔒 *ɴᴏᴛɪꜰ ᴄʟᴏsᴇ ɢʀᴏᴜᴘ*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notif_cerrar_grupo on\` - Activar\n\`${m.prefix}notif_cerrar_grupo off\` - Desactivar`)
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🔒 *ɴᴏᴛɪꜰ ᴄʟᴏsᴇ ɢʀᴏᴜᴘ*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notif_cerrar_grupo on\` - Activar\n\`${m.prefix}notif_cerrar_grupo off\` - Desactivar`+"\n╰━━━━━━━━━━━━╯")
     }
     
     if (args === 'on') {
@@ -36,7 +36,7 @@ function handler(m, { sock, db }) {
     if (args === 'off') {
         group.notifCloseGroup = false
         db.setGroup(m.chat, group)
-        return m.reply(`❌ *ɴᴏᴛɪꜰ ᴄʟᴏsᴇ ɢʀᴏᴜᴘ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*`)
+        return m.reply("╰┈➤ "+`❌ *ɴᴏᴛɪꜰ ᴄʟᴏsᴇ ɢʀᴏᴜᴘ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*`)
     }
 }
 

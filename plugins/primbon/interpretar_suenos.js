@@ -34,12 +34,12 @@ async function handler(m, { sock }) {
         }
         
         const r = data.data
-        let response = `🌙 *ᴛᴀꜰsɪʀ ᴍɪᴍᴘɪ*\n\n`
-        response += `> Kata kunci: *${r.keyword}*\n`
-        response += `> Encontrados: *${r.total} resultados*\n\n`
-        
+        let response = `꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n🌙 *ᴛᴀꜰsɪʀ ᴍɪᴍᴘɪ*\n꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n\n`
+        response += `✧ Kata kunci: *${r.keyword}*\n`
+        response += `✧ Encontrados: *${r.total} resultados*\n\n`
+
         r.hasil.slice(0, 10).forEach((h, i) => {
-            response += `*${i+1}. ${h.mimpi}*\n> ${h.tafsir}\n\n`
+            response += `❀ *${i+1}. ${h.mimpi}*\n✦ ${h.tafsir}\n\n`
         })
         
         if (r.total > 10) {

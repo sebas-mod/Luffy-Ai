@@ -24,11 +24,11 @@ async function handler(m, { sock }) {
     
     if (!text) {
         return m.reply(
-            `🎸 *ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴀᴄᴏʀᴅᴇs*\n\n` +
+            `╭━━━〔 🎸 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴀᴄᴏʀᴅᴇs 〕━━━╮\n\n` +
             `> Buscar acordes de guitarra de canciones\n\n` +
             `> Ejemplo:\n` +
             `\`${m.prefix}chords komang\`\n` +
-            `\`${m.prefix}chord perjalanan terindah\``
+            `\`${m.prefix}chord perjalanan terindah\`\n\n╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.chord) {
             m.react('❌')
-            return m.reply(`❌ No se encontraron acordes para: \`${text}\``)
+            return m.reply(`╰┈➤ ❌ No se encontraron acordes para: \`${text}\``)
         }
         
         const chord = data.data.chord

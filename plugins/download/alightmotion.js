@@ -48,7 +48,7 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data || !data.data.url) {
             await m.react("❌");
-            return m.reply(`Lo siento, ese enlace de Alight Motion no es válido o el proyecto fue eliminado.`);
+            return m.reply(`╭━━━〔 ✦ 〕━━━╮\n❌ Lo siento, ese enlace de Alight Motion no es válido o el proyecto fue eliminado.\n╰━━━━━━━━━━━━╯`);
         }
 
         const downloadUrl = data.data.url;
@@ -57,7 +57,7 @@ async function handler(m, { sock, text }) {
             document: { url: downloadUrl },
             mimetype: "application/zip",
             fileName: `AlightMotion_${config.bot.name}.zip`,
-            caption: `✅ Preset de Alight Motion descargado con éxito!`
+            caption: `✦ • ─── • ✦\n✅ Preset de Alight Motion descargado con éxito!`
         }, { quoted: m });
 
         await m.react("✅");

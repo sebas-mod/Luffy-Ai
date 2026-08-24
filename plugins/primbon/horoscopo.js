@@ -37,15 +37,15 @@ async function handler(m, { sock }) {
         }
         
         const r = data.data
-        const response = `⭐ *ᴢᴏᴅɪᴀᴄᴏ ${zodiac.toUpperCase()}*\n\n` +
-            `${r.zodiak}\n\n` +
-            `🔢 *ɴúᴍᴇʀᴏ:* ${r.nomor_keberuntungan}\n` +
-            `🌸 *ꜰʟᴏʀ:* ${r.bunga_keberuntungan}\n` +
-            `🎨 *ᴄᴏʟᴏʀ:* ${r.warna_keberuntungan}\n` +
-            `💎 *ᴘɪᴇᴅʀᴀ:* ${r.batu_keberuntungan}\n` +
-            `🔥 *ᴇʟᴇᴍᴇɴᴛᴏ:* ${r.elemen_keberuntungan}\n` +
-            `🪐 *ᴘʟᴀɴᴇᴛᴀ:* ${r.planet_yang_mengitari}\n` +
-            `💕 *ᴘᴀʀᴇᴊᴀ:* ${r.pasangan_zodiak}`
+        const response = `୨୧ ────────── ୨୧\n⭐ *ᴢᴏᴅɪᴀᴄᴏ ${zodiac.toUpperCase()}*\n୨୧ ────────── ୨୧\n\n` +
+            `✧ ${r.zodiak}\n\n` +
+            `✦ 🔢 *ɴúᴍᴇʀᴏ:* ${r.nomor_keberuntungan}\n` +
+            `✦ 🌸 *ꜰʟᴏʀ:* ${r.bunga_keberuntungan}\n` +
+            `✦ 🎨 *ᴄᴏʟᴏʀ:* ${r.warna_keberuntungan}\n` +
+            `✦ 💎 *ᴘɪᴇᴅʀᴀ:* ${r.batu_keberuntungan}\n` +
+            `✦ 🔥 *ᴇʟᴇᴍᴇɴᴛᴏ:* ${r.elemen_keberuntungan}\n` +
+            `✦ 🪐 *ᴘʟᴀɴᴇᴛᴀ:* ${r.planet_yang_mengitari}\n` +
+            `✦ 💕 *ᴘᴀʀᴇᴊᴀ:* ${r.pasangan_zodiak}`
         
         m.react('✅')
         await m.reply(response)

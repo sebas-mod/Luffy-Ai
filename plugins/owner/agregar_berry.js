@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     await m.reply(
-        `✅ Exitoso, se añadió *${formatBerry(amount)}* berry a *@${targetJid.split('@')[0]}*`,
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${formatBerry(amount)}* berry a *@${targetJid.split('@')[0]}*\n╰━━━━━━━━━━━━╯`,
         { mentions: [targetJid] }
     )
 }

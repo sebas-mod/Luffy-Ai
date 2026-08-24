@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
     let num = m.quoted?.sender || m.mentionedJid?.[0] || text;
     console.log(num)
     if (!num) {
-        return m.reply(`Ejemplo: ${m.prefix}${m.command} @tag / 628xxx`);
+        return m.reply(`╰┈➤ Ejemplo: ${m.prefix}${m.command} @tag / 628xxx`);
     }
 
     num = num.replace(/\D/g, '') + '@s.whatsapp.net';

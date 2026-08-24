@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         const isPositive = positiveWords.includes(command)
         const emoji = isPositive ? '✨' : '😏'
         const label = isPositive ? 'El más' : 'El'
-        await m.reply(`*${label} ${command} de aquí es* @${randomMember.split('@')[0]}`, { mentions: [randomMember] })
+        await m.reply(`🎯┈┈┈┈┈┈┈┈┈┈\n╰┈➤ *${label} ${command} de aquí es* @${randomMember.split('@')[0]}`, { mentions: [randomMember] })
         m.react('✅')
     } catch (error) {
         m.react('☢')

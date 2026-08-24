@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   m.react("✅");
 
   await m.reply(
-    `✅ Despedida configurada correctamente como *${text}*\n¿Quieres restablecerla? Escribe ${m.prefix}resetear_despedida`,
+    "୨୧〔 ❀ DESPEDIDA 〕୨୧\n"+`✅ Despedida configurada correctamente como *${text}*\n¿Quieres restablecerla? Escribe ${m.prefix}resetear_despedida`+"\n♡ ────── ♡",
   );
 }
 

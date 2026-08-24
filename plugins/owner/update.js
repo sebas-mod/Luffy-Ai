@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
         if (changes.length === 0) {
             await m.react('✅')
-            return m.reply(`📦 *sɪɴ ᴄᴀᴍʙɪᴏs*\n\n> No hay cambios que confirmar en el repositorio.\n> El árbol de trabajo está limpio.`)
+            return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ 📦 *sɪɴ ᴄᴀᴍʙɪᴏs*\n╰━━━━━━━━╯\n\n╰┈➤ No hay cambios que confirmar en el repositorio.\n› El árbol de trabajo está limpio.`)
         }
 
         await runCmd('git add -A')
@@ -77,9 +77,10 @@ async function handler(m, { sock }) {
     } catch (error) {
         await m.react('☢')
         await m.reply(
-            `❌ *ғᴀʟʟɪᴅᴏ ᴇɴ ᴇʟ ᴄᴏᴍᴍɪᴛ*\n\n` +
-            `> ${error.stderr || error.message || 'Error desconocido'}\n\n` +
-            `> Comprueba la salida del comando para más detalles.`
+            `❌ *ғᴀʟʟɪᴅᴏ ᴇɴ ᴇʟ ᴄᴏᴍᴍɪᴛ*\n` +
+            `──────────\n\n` +
+            `╰┈➤ ${error.stderr || error.message || 'Error desconocido'}\n\n` +
+            `› Comprueba la salida del comando para más detalles.`
         )
     }
 }

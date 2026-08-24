@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     }
     const absen = global.absensi[chatId]
     if (absen.peserta.includes(m.sender)) {
-        return m.reply(`❌ ¡Ya estás registrado en la asistencia!`)
+        return m.reply("╰┈➤ "+`❌ ¡Ya estás registrado en la asistencia!`)
     }
     absen.peserta.push(m.sender)
     const now = moment().tz('Asia/Jakarta')

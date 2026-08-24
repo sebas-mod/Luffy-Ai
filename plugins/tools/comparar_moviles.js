@@ -125,12 +125,13 @@ async function fetchCompare(id1, id2) {
 async function handler(m, { sock, text }) {
     if (!text || !text.includes('|')) {
         return m.reply(
-            `⚖️ *FUNCIÓN DE COMPARACIÓN DE TELÉFONOS*\n\n` +
-            `Esta función te ayudará a comparar las especificaciones de dos *smartphones* directamente para que puedas elegir cuál es el mejor!\n\n` +
-            `*CÓMO USAR:*\n` +
-            `- Escribe \`${m.prefix}comparar_moviles <primer teléfono> | <segundo teléfono>\`\n` +
-            `- Ejemplo: \`${m.prefix}comparar_moviles iphone 13 | samsung s22\`\n\n` +
-            `_Asegúrate de usar la barra vertical (|) como separador entre los dos nombres de teléfono!_`
+            `╭━━━〔 ⚖️ COMPARADOR DE TELÉFONOS 〕━━━╮\n\n` +
+            `╰┈➤ Esta función te ayudará a comparar las especificaciones de dos *smartphones* directamente para que puedas elegir cuál es el mejor!\n\n` +
+            `✦ *CÓMO USAR:*\n` +
+            `╰┈➤ Escribe \`${m.prefix}comparar_moviles <primer teléfono> | <segundo teléfono>\`\n` +
+            `╰┈➤ Ejemplo: \`${m.prefix}comparar_moviles iphone 13 | samsung s22\`\n\n` +
+            `_Asegúrate de usar la barra vertical (|) como separador entre los dos nombres de teléfono!_\n\n` +
+            `╰━━━━━━━━━━━━╯`
         );
     }
 
@@ -140,7 +141,7 @@ async function handler(m, { sock, text }) {
         const [query1, query2] = text.split('|').map(v => v.trim());
         if (!query1 || !query2) {
             await m.react('❌');
-            return m.reply(`❌ *FORMATO INCORRECTO*\n\nAsegúrate de escribir los dos nombres de teléfonos separados con la barra vertical (|).`);
+            return m.reply(`╰┈➤ ❌ *FORMATO INCORRECTO*\n\nAsegúrate de escribir los dos nombres de teléfonos separados con la barra vertical (|).`);
         }
 
         const list = await getPhoneList();
@@ -149,10 +150,10 @@ async function handler(m, { sock, text }) {
 
         if (!phone1 || !phone2) {
             await m.react('❌');
-            let errStr = `❌ *TELÉFONO NO ENCONTRADO*\n\n`;
-            if (!phone1) errStr += `- *${query1}* no se encontró en la base de datos.\n`;
-            if (!phone2) errStr += `- *${query2}* no se encontró en la base de datos.\n`;
-            errStr += `\nPrueba con palabras clave diferentes.`;
+            let errStr = `❌ *TELÉFONO NO ENCONTRADO*\n──────────\n`;
+            if (!phone1) errStr += `╰┈➤ *${query1}* no se encontró en la base de datos.\n`;
+            if (!phone2) errStr += `╰┈➤ *${query2}* no se encontró en la base de datos.\n`;
+            errStr += `\n✧ Prueba con palabras clave diferentes.`;
             return m.reply(errStr);
         }
 
@@ -172,22 +173,22 @@ async function handler(m, { sock, text }) {
             }
         }
 
-        let caption = `⚖️ *COMPARACIÓN DE SMARTPHONES*\n\n`;
-        caption += `📱 *TELÉFONO 1:* ${phone1.title}\n`;
-        caption += `📱 *TELÉFONO 2:* ${phone2.title}\n\n`;
+        let caption = `╭━━━〔 ⚖️ COMPARACIÓN DE SMARTPHONES 〕━━━╮\n\n`;
+        caption += `╰┈➤ 📱 *TELÉFONO 1:* ${phone1.title}\n`;
+        caption += `╰┈➤ 📱 *TELÉFONO 2:* ${phone2.title}\n\n`;
 
         for (const sec of sections) {
-            caption += `✨ *${sec.section.toUpperCase()}*\n`;
+            caption += `✦────────✦\n✨ *${sec.section.toUpperCase()}*\n`;
             for (const row of sec.rows) {
                 if (!row.label) continue;
                 caption += `🔹 *${row.label}:*\n`;
-                caption += `  - *1:* ${row.value1}\n`;
-                caption += `  - *2:* ${row.value2}\n`;
+                caption += `╰┈➤ *1:* ${row.value1}\n`;
+                caption += `╰┈➤ *2:* ${row.value2}\n`;
             }
             caption += `\n`;
         }
 
-        caption += `🔗 *Fuente:* Carisinyal`;
+        caption += `──────────\n🔗 *Fuente:* Carisinyal`;
 
         await m.reply(caption);
 
@@ -236,7 +237,7 @@ async function handler(m, { sock, text }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *FALLO AL OBTENER LOS DATOS*\n\nLo siento, el sistema está teniendo problemas al comparar teléfonos desde *Carisinyal*. Inténtalo de nuevo más tarde.`);
+        m.reply(`❌ *FALLO AL OBTENER LOS DATOS*\n──────────\n╰┈➤ Lo siento, el sistema está teniendo problemas al comparar teléfonos desde *Carisinyal*. Inténtalo de nuevo más tarde.`);
     }
 }
 

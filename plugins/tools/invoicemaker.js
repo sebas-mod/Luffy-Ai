@@ -47,14 +47,14 @@ async function handler(m, { sock }) {
 
   if (parts.length < 6) {
     return m.reply(
-      `❌ ¡Formato incompleto! Se necesitan 6 parámetros (tienda|factura|fecha|estado|items|total)`,
+      `╰┈➤ ❌ ¡Formato incompleto!\n──────────\nSe necesitan 6 parámetros (tienda|factura|fecha|estado|items|total)`,
     );
   }
 
   const [store, invoice, date, status, itemsRaw, totalRaw] = parts;
 
   if (!["paid", "unpaid"].includes(status.toLowerCase())) {
-    return m.reply(`❌ ¡El estado debe ser 'paid' o 'unpaid'!`);
+    return m.reply(`╰┈➤ ❌ ¡El estado debe ser 'paid' o 'unpaid'!`);
   }
 
   const itemsArr = itemsRaw.split(",").map((item) => {
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
 
   if (itemsArr.length === 0 || itemsArr.some((i) => !i.name)) {
     return m.reply(
-      `❌ ¡Formato de items incorrecto! Usa: Nombre:unidad:precio (separa por comas para varios)`,
+      `╰┈➤ ❌ ¡Formato de items incorrecto!\n──────────\nUsa: Nombre:unidad:precio (separa por comas para varios)`,
     );
   }
 

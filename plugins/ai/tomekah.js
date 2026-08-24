@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🕋 *ᴍᴇᴋᴀʜ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}tomekah\``)
+        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n🕋 *ᴍᴇᴋᴀʜ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}tomekah\`\n\n╰━━━━━━━━━━━━╯`)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ No se pudo descargar la imagen`)
+            return m.reply(`✧ ❌ No se pudo descargar la imagen`)
         }
         
         const imageUrl = await uploadImage(buffer, 'image.jpg')

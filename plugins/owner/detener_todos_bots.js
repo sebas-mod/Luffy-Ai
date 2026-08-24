@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (active.length === 0) {
-        return m.reply(`❌ No hay jadibots activos`)
+        return m.reply(`╰┈➤ ❌ No hay jadibots activos`)
     }
 
     await m.react('🕕')

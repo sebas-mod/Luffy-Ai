@@ -208,7 +208,7 @@ async function handler(m, { sock }) {
         Math.min(Math.max(2000, 5000 - (pick.speed || 0) * 3000), 4000),
       ),
     );
-    let txt = `*⛏️ ¡RESULTADO DE LA MINERÍA!*\n\n`;
+    let txt = `╭━━〔 ⛏️ 〕━━╮\n *¡RESULTADO DE LA MINERÍA!* ⛏️\n╰━━━━━━━━━━╯\n\n`;
     for (const o of ores) {
       txt += `${rc(o.rarity)} *${o.name}*\n   _💰 ${formatMoney(o.price)} | 📦 x${o.stack}_\n`;
     }
@@ -245,7 +245,7 @@ async function handler(m, { sock }) {
     const rlu = addPickExp(mc, mc.usedPickaxe || "woodpick", te);
     const plu = addPlayerExp(mc, te);
     mc.miningPending = [];
-    let txt = `*📦 ¡RESULTADOS RECOGIDOS!*\n\n💰 +${formatMoney(tv)}\n⭐ +${te} EXP\n🧱 +${ores.length} menas\n`;
+    let txt = `📦 ──────────\n*¡RESULTADOS RECOGIDOS!* 📦\n\n💰 +${formatMoney(tv)}\n⭐ +${te} EXP\n🧱 +${ores.length} menas\n`;
     if (nf.length > 0) txt += `\n*🆕 Mena Nueva:* ${nf.join(", ")}`;
     if (rlu) txt += `\n\n${rlu}`;
     if (plu) txt += `\n*⬆️ ¡SUBISTE DE NIVEL! Nivel ${mc.level}*`;
@@ -562,7 +562,7 @@ async function handler(m, { sock }) {
     if (result.error) return m.reply(`_${result.error}_`);
     db.markDirty("users");
     if (result.won) {
-      let txt = `*🏆 ¡GANASTE!*\n\n⚔️ Contra *${result.mobName}*\n\n`;
+      let txt = `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n⚔️ Contra *${result.mobName}*\n\n`;
       for (const line of result.log) txt += `${line}\n`;
       txt += `\n*⭐ EXP:* +${result.expGain}`;
       if (result.drops.length > 0) {
@@ -572,7 +572,7 @@ async function handler(m, { sock }) {
       }
       return send(sock, m, txt, "🏆 ¡Victoria!", result.mobName);
     } else {
-      let txt = `*💀 ¡PERDISTE!*\n\n⚔️ Contra *${result.mobName}*\n\n`;
+      let txt = `☠︎━━━━━━☠︎\n⚔️ Contra *${result.mobName}*\n\n`;
       for (const line of result.log) txt += `${line}\n`;
       txt += `\n_❤️ HP restante: ${mc.hp}/${mc.maxHp}_\n\`.mct heal\` para ❤️ curarte`;
       return send(sock, m, txt, "💀 ¡Derrota!", result.mobName);
@@ -642,7 +642,7 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*🛠️ ¡CRAFTEO EXITOSO!*\n\n*${result.item}*\n_💰 Valor: ${formatMoney(result.value)}_`,
+      `🛠️ ──────────\n*¡CRAFTEO EXITOSO!* 🛠️\n\n*${result.item}*\n_💰 Valor: ${formatMoney(result.value)}_`,
       "🛠️ ¡Fabricado!",
       result.item,
     );
@@ -703,7 +703,7 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*🎁 ¡RECOMPENSA DIARIA!*\n\n*🔥 Racha:* ${mc.dailyStreak} días\n💰 +${formatMoney(rw.money)}\n🎟️ +${rw.tickets} Tickets de Gacha\n*🏦 Saldo:* ${formatMoney(mc.money)}`,
+      `🎁 ──────────\n*¡RECOMPENSA DIARIA!* 🎁\n\n*🔥 Racha:* ${mc.dailyStreak} días\n💰 +${formatMoney(rw.money)}\n🎟️ +${rw.tickets} Tickets de Gacha\n*🏦 Saldo:* ${formatMoney(mc.money)}`,
       "🎁 ¡Recompensa Diaria!",
       `🔥 Racha ${mc.dailyStreak}`,
     );
@@ -865,7 +865,7 @@ async function handler(m, { sock }) {
       return send(
         sock,
         m,
-        `*👑 ¡SUBISTE DE PRESTIGIO!*\n\n*🏷️ Título:* ${titles[mc.prestige]}\n*🪙 Tokens:* ${mc.prestigeTokens}\n\n_💸 Dinero -90%, contador de bloques reiniciado_`,
+        `👑 ──────────\n*¡SUBISTE DE PRESTIGIO!* 👑\n\n*🏷️ Título:* ${titles[mc.prestige]}\n*🪙 Tokens:* ${mc.prestigeTokens}\n\n_💸 Dinero -90%, contador de bloques reiniciado_`,
         "👑 ¡PRESTIGIO!",
         titles[mc.prestige],
       );
@@ -992,7 +992,7 @@ async function handler(m, { sock }) {
       "unlimited_limit",
       "owner_reward",
     ].includes(result.reward.type);
-    if (isBig) txt += `*💥 ¡GRAN JACKPOT!*\n\n`;
+    if (isBig) txt += `💥━━━━━━━━💥\n  *¡GRAN JACKPOT!* 💥\n\n`;
     txt += `${applied.desc}\n\n_💰 Costo: ${formatMoney(pool.cost)}_\n_🏦 Saldo: ${formatMoney(mc.money)}_`;
     return send(
       sock,
@@ -1022,7 +1022,7 @@ async function handler(m, { sock }) {
       if (b.blocksMined !== a.blocksMined) return b.blocksMined - a.blocksMined;
       return b.money - a.money;
     });
-    let txt = `*🏆 LEADERBOARD MINECRAFT*\n\n`;
+      `🏆 ──────────\n*LEADERBOARD MINECRAFT*\n🏆━━━━━━━━🏆\n\n`;
     const top = rankings.slice(0, 10);
     for (let i = 0; i < top.length; i++) {
       const p = top[i];

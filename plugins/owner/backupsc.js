@@ -97,7 +97,7 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇʟ sᴄʀɪᴘᴛ*\n\n> Procesando respaldo...\n> Por favor espera un momento...`,
+    `👑•─────•👑\n📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇʟ sᴄʀɪᴘᴛ*\n\n> Procesando respaldo...\n> Por favor espera un momento...\n✦────────✦`,
   );
   try {
     const projectRoot = process.cwd();

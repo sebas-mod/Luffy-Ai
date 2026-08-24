@@ -21,12 +21,12 @@ async function handler(m, { sock }) {
   const quoted = m.quoted;
   if (!quoted) {
     return m.reply(
-      `Responde un mensaje de una sola vista (view once) para abrirlo.\n\n\`Ejemplo: ${m.prefix}rvo\` (responde un mensaje view once)`,
+      `╭━〔 ⏱️ 〕━╮\n╰┈➤ Responde un mensaje de una sola vista (view once) para abrirlo.\n──────────\n\`Ejemplo: ${m.prefix}rvo\` (responde un mensaje view once)\n╰━━━━━╯`,
     );
   }
 
   if (!quoted.isViewOnce && !quoted.isMedia) {
-    return m.reply("❌ Responde un mensaje view once (de una sola vista) para abrirlo.");
+    return m.reply("╰┈➤ ❌ Responde un mensaje view once (de una sola vista) para abrirlo.");
   }
 
   m.react("⏱️");
@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
       msg =
         "El media caducó o ya fue eliminado del servidor de WhatsApp.\n\n_Los mensajes view once que son muy antiguos o que se abren con frecuencia suelen expirar automáticamente del sistema de WhatsApp y ya no pueden descargarse._";
     }
-    m.reply(`❌ *Fallo al abrir el View Once*\n\n> ${msg}`);
+    m.reply(`╰┈➤ ❌ *Fallo al abrir el View Once*\n\n> ${msg}`);
   }
 }
 

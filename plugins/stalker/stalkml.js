@@ -33,12 +33,12 @@ function getRegion(sid) {
 async function handler(m, { text }) {
     if (!text) {
         return m.reply(
-            `🎮 *STALKER MOBILE LEGENDS* 🎮\n\n` +
+            `╭━━━〔 🎮 STALKER MOBILE LEGENDS 〕━━━╮ 🎮\n\n` +
             `Esta función te ayudará a rastrear y saber el *nickname* o nombre de la cuenta de Mobile Legends de alguien solo con su *ID* y *Server*!\n\n` +
             `*CÓMO USARLO:*\n` +
             `- Escribe \`${m.prefix}stalkml <ID> | <Server>\`\n` +
             `- Ejemplo: \`${m.prefix}stalkml 1264042367 | 15139\`\n\n` +
-            `_También puedes separar el ID y el Server con un espacio o con el formato de paréntesis como 1264042367(15139)._`
+            `_También puedes separar el ID y el Server con un espacio o con el formato de paréntesis como 1264042367(15139)._\n\n╰━━━━━━━━━━━━╯`
         );
     }
 
@@ -82,7 +82,7 @@ async function handler(m, { text }) {
 
         if (!userId || !serverId) {
             await m.react('❌');
-            return m.reply(`❌ *FORMATO INCORRECTO*\n\nAsegúrate de ingresar el ID y el Server completos.\nEjemplo: \`${m.prefix}stalkml 1264042367 | 15139\``);
+            return m.reply(`╰┈➤ ❌ *FORMATO INCORRECTO*\n\nAsegúrate de ingresar el ID y el Server completos.\nEjemplo: \`${m.prefix}stalkml 1264042367 | 15139\``);
         }
 
         const res = await fetch(`https://api.isan.eu.org/nickname/ml?id=${userId}&server=${serverId}`, { 
@@ -95,7 +95,7 @@ async function handler(m, { text }) {
         if (json.success) {
             const region = getRegion(serverId);
             
-            let caption = `🎮 *MOBILE LEGENDS STALKER* 🎮\n\n`;
+            let caption = `╭━━━〔 🎮 MOBILE LEGENDS STALKER 〕━━━╮\n──────────\n`;
             caption += `¡Búsqueda exitosa! Estos son los detalles de la cuenta que rastreaste:\n\n`;
             caption += `👤 *Nickname:* ${json.name}\n`;
             caption += `🆔 *User ID:* ${userId}\n`;
@@ -106,12 +106,12 @@ async function handler(m, { text }) {
             await m.react('✅');
         } else {
             await m.react('❌');
-            return m.reply(`❌ *CUENTA NO ENCONTRADA*\n\nLo siento, el sistema no pudo encontrar la cuenta con ID *${userId}* y Server *${serverId}*. Asegúrate de que el ID y el Server estén escritos correctamente.`);
+            return m.reply(`╰┈➤ ❌ *CUENTA NO ENCONTRADA*\n\nLo siento, el sistema no pudo encontrar la cuenta con ID *${userId}* y Server *${serverId}*. Asegúrate de que el ID y el Server estén escritos correctamente.`);
         }
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *ERROR AL RASTREAR LA CUENTA*\n\nLo siento, el sistema está teniendo problemas al consultar la API para rastrear esa cuenta. Vuelve a intentarlo en unos momentos.`);
+        m.reply(`╰┈➤ ❌ *ERROR AL RASTREAR LA CUENTA*\n\nLo siento, el sistema está teniendo problemas al consultar la API para rastrear esa cuenta. Vuelve a intentarlo en unos momentos.`);
     }
 }
 

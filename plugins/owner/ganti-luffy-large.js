@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🖼️ *ᴘʀᴇsᴇᴛ ʟᴜꜰꜰʏ ɢʀᴀɴᴅᴇ*\n\n> Envía/responde una imagen para reemplazar el conjunto de fotos grandes (luffy.jpg, luffy-v8.jpg, luffy-v10.jpg) a la vez.\n> Asegúrate de que la proporción de la imagen sea la deseada.`)
+        return m.reply(`👑•─────•👑\n🖼️ *ᴘʀᴇsᴇᴛ ʟᴜꜰꜰʏ ɢʀᴀɴᴅᴇ*\n\n> Envía/responde una imagen para reemplazar el conjunto de fotos grandes (luffy.jpg, luffy-v8.jpg, luffy-v10.jpg) a la vez.\n> Asegúrate de que la proporción de la imagen sea la deseada.\n✦────────✦`)
     }
     
     await m.react('🕕')
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             await m.react('❌')
-            return m.reply(`❌ Error al descargar la imagen`)
+            return m.reply(`╰┈➤ ❌ Error al descargar la imagen`)
         }
         
         const targetImages = [
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
         }
         
         await m.react('✅')
-        m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> El bundle de imágenes *luffy-large* fue reemplazado masivamente.\n> Incluye: ${targetImages.join(', ')}\n> Reinicia el bot si la imagen no cambia de inmediato.`)
+        m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> El bundle de imágenes *luffy-large* fue reemplazado masivamente.\n> Incluye: ${targetImages.join(', ')}\n> Reinicia el bot si la imagen no cambia de inmediato.\n✦────────✦`)
         
     } catch (error) {
         await m.react('☢')

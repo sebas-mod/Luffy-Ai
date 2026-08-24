@@ -46,11 +46,12 @@ function handler(m, { sock }) {
     });
 
     return m.reply(
-      `🏴 *¡TRIPULACIÓN CREADA!*\n\n` +
+      `╭━━━🏴‍☠️━━━╮\n` +
+        `🏴 *¡TRIPULACIÓN CREADA!*\n` +
         `🎌 *${crew.nombre}*\n` +
         `👑 Capitán: *${user.nombre}*\n` +
-        `💰 Costo: ${PRECIO_CREAR} Berrys\n\n` +
-        `> Invita miembros con *${m.prefix}tripulacion unirse ${crew.nombre}*`,
+        `💰 Costo: ${PRECIO_CREAR} Berrys\n` +
+        `╰┈➤ Invita miembros con *${m.prefix}tripulacion unirse ${crew.nombre}*`,
     );
   }
 
@@ -67,10 +68,11 @@ function handler(m, { sock }) {
     });
 
     return m.reply(
-      `✅ *¡BIENVENIDO A LA TRIPULACIÓN!*\n\n` +
+      `⚔️ *¡BIENVENIDO A LA TRIPULACIÓN!*\n` +
+        `🏴 ⚔️ 🏴\n` +
         `🏴 *${crew.nombre}*\n` +
-        `👥 Miembros: *${crew.miembros.length}*\n\n` +
-        `> Ver info: *${m.prefix}tripulacion info*`,
+        `👥 Miembros: *${crew.miembros.length}*\n` +
+        `╰┈➤ Ver info: *${m.prefix}tripulacion info*`,
     );
   }
 
@@ -103,11 +105,12 @@ function handler(m, { sock }) {
   if (accion === "lista") {
     const crews = Object.values(getCrews());
     if (crews.length === 0) return m.reply(`No hay tripulaciones registradas.\n> Crea una con *${m.prefix}tripulacion crear <nombre>*`);
-    let txt = `🏴 *TRIPULACIONES REGISTRADAS*\n\n`;
+    let txt = `╭━━〔 🏴 TRIPULACIONES 〕━━╮\n`;
     for (const c of crews) {
-      txt += `• *${c.nombre}*\n`;
-      txt += `   👥 ${c.miembros.length} miembros · 👑 ${c.capitan}\n`;
+      txt += `┃ ⚑ *${c.nombre}*\n`;
+      txt += `┃   👥 ${c.miembros.length} miembros · 👑 ${c.capitan}\n`;
     }
+    txt += `╰━━━━━━━━━━╯`;
     return m.reply(txt);
   }
 
@@ -126,17 +129,17 @@ function handler(m, { sock }) {
   if (!crew) return m.reply(`❌ Tu tripulación no existe.`);
   const rol = rolEnCrew(crew, m.sender);
 
-  let txt = `🏴 *TRIPULACIÓN: ${crew.nombre}*\n\n`;
-  txt += `👑 *Capitán:* ${crew.capitan}\n`;
-  txt += `⭐ *Tu rol:* ${rol}\n`;
-  txt += `👥 *Miembros:* ${crew.miembros.length}\n`;
-  txt += `💰 *Tesoro:* ${crew.tesoro} Berrys\n`;
-  txt += `\n*Miembros:*\n`;
+  let txt = `╭━━〔 🏴 ${crew.nombre} 〕━━╮\n`;
+  txt += `┃ 👑 *Capitán:* ${crew.capitan}\n`;
+  txt += `┃ ⭐ *Tu rol:* ${rol}\n`;
+  txt += `┃ 👥 *Miembros:* ${crew.miembros.length}\n`;
+  txt += `┃ 💰 *Tesoro:* ${crew.tesoro} Berrys\n`;
+  txt += `┃\n┃ *Miembros:*\n`;
   for (const jid of crew.miembros) {
     const nom = jid === m.sender ? "tú" : jid.split("@")[0];
-    txt += `• ${nom}\n`;
+    txt += `┃ › ${nom}\n`;
   }
-  txt += `\n> Salir: *${m.prefix}tripulacion salir*`;
+  txt += `╰┈➤ Salir: *${m.prefix}tripulacion salir*`;
 
   return m.reply(txt);
 }

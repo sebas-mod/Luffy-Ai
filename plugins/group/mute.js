@@ -22,10 +22,10 @@ function handler(m, { sock }) {
     const group = db.getGroup(m.chat) || {}
     const groupName = m.groupMetadata.subject
 
-    if (group.mute) return m.reply('❌ El grupo ya está silenciado.')
+    if (group.mute) return m.reply("╰┈➤ "+'❌ El grupo ya está silenciado.')
 
     db.setGroup(m.chat, { ...group, mute: true })
-    m.reply(`✅ El grupo *${groupName}* fue silenciado por @${m.sender.split('@')[0]}\n\nSolo los admins pueden enviar mensajes.\nEscribe *${m.prefix}unmute* para abrirlo de nuevo.`, { mentions: [m.sender] })
+    m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ El grupo *${groupName}* fue silenciado por @${m.sender.split('@')[0]}\n\nSolo los admins pueden enviar mensajes.\nEscribe *${m.prefix}unmute* para abrirlo de nuevo.`+"\n╰━━━━━━━━━━━━╯", { mentions: [m.sender] })
 }
 
 function isMuted(groupJid, db) {

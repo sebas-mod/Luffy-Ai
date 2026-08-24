@@ -43,11 +43,11 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Error al obtener el contenido. Prueba con otro enlace.`);
+      return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el contenido. Prueba con otro enlace.`);
     }
 
     const isStory = url.includes("/stories/");
-    let caption = `📸 *Instagram ${isStory ? "Story" : "Downloader"}*\n\n`;
+    let caption = `✦ • ─── • ✦\n📸 *Instagram ${isStory ? "Story" : "Downloader"}*\n──────────\n`;
     if (result.username && result.username !== "-") {
       caption += `👤 *Author*: @${result.username}\n`;
     }

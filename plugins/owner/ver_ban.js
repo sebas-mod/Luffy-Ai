@@ -41,13 +41,15 @@ async function handler(m, { sock }) {
 
   let dbStatus = db.setting("bannedUsers");
 
-  await m.reply(`DEBUG BAN (${target})
-cleanNumber: ${cleanNumber}
-bannedList (config): ${JSON.stringify(bannedList)}
-savedBanned (db): ${JSON.stringify(savedBanned)}
-isBannedDirect: ${isBannedDirect}
-config.isBanned(): ${finalResult}
-isOwner(): ${config.isOwner(target)}`);
+  await m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮
+┃ 🐞 DEBUG BAN (${target})
+┃ cleanNumber: ${cleanNumber}
+┃ bannedList (config): ${JSON.stringify(bannedList)}
+┃ savedBanned (db): ${JSON.stringify(savedBanned)}
+┃ isBannedDirect: ${isBannedDirect}
+┃ config.isBanned(): ${finalResult}
+┃ isOwner(): ${config.isOwner(target)}
+╰━━━━━━━━╯`);
 }
 
 export { pluginConfig as config, handler };

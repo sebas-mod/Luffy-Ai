@@ -17,7 +17,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim() || m.quoted?.text?.trim();
 
   if (!text) {
-    return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
+    return m.reply(`✦ • ─── • ✦\n⚠️ ¡Ingresa el texto!\n╰┈➤ Ejemplo: \`${m.prefix}${m.command} Hola a todos\``);
   }
 
   await m.react('🕕');
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
 
     const response = await axios.get(apiUrl);
     if (!response.data.status || !response.data.data?.url) {
-      return m.reply('❌ No se pudo crear el sticker, posiblemente el límite de la API se agotó.');
+      return m.reply('✦ • ─── • ✦\n❌ No se pudo crear el sticker, posiblemente el límite de la API se agotó.');
     }
 
     const stickerUrl = response.data.data.url;

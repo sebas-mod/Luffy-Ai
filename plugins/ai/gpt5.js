@@ -22,6 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🤖 *GPT-4.1 Nano*\n\n` +
         `Pregúntale lo que sea a la IA, será respondido con el modelo GPT-4.1 Nano.\n\n` +
         `*USO:*\n` +
@@ -29,7 +30,8 @@ async function handler(m, { sock }) {
         `*EJEMPLO:*\n` +
         `> *${m.prefix}gpt5 ¿Qué es la computación cuántica?*\n` +
         `> *${m.prefix}gpt5 Crea un poema sobre Indonesia*\n\n` +
-        `_La respuesta puede tardar un poco, ten paciencia_`,
+        `_La respuesta puede tardar un poco, ten paciencia_\n\n` +
+      `╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -41,7 +43,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *Error de GPT-5*\n\n> ${result.error || "No se pudo obtener una respuesta"}`,
+        `❌ *Error de GPT-5*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`,
       );
     }
 

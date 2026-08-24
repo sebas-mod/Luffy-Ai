@@ -124,7 +124,7 @@ async function handler(m) {
         
         for (let i = 0; i < Math.min(articles.length, 7); i++) {
             const article = articles[i]
-            txt += `*${i + 1}. ${article.title}*\n`
+            txt += `*${String(i + 1).padStart(2, '0')} › ${article.title}*\n`
             if (article.description) {
                 txt += `${article.description?.trim()}...\n`
             }
@@ -136,7 +136,7 @@ async function handler(m) {
         }
         
         txt += `━━━━━━━━━━━━━━━\n`
-        txt += `_Total: ${articles.length} artículos disponibles_`
+        txt += `_Total: ${articles.length} artículos disponibles_ 📰✨`
         
         await m.reply(txt)
         m.react('📰')

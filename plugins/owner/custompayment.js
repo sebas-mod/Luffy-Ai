@@ -38,11 +38,11 @@ async function handler(m) {
 
   if (input.toLowerCase() === 'reset') {
     db.setting('customPaymentText', '')
-    return m.reply('✅ El texto de pago personalizado se reinició al predeterminado.')
+    return m.reply('╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ El texto de pago personalizado se reinició al predeterminado.\n╰━━━━━━━━━━━━╯')
   }
 
   db.setting('customPaymentText', input)
-  return m.reply(`✅ ¡Texto de pago personalizado guardado!\n\nVista previa:\n${input}`)
+  return m.reply(`👑•─────•👑\n✅ ¡Texto de pago personalizado guardado!\n\nVista previa:\n${input}\n✦────────✦`)
 }
 
 export { pluginConfig as config, handler }

@@ -131,12 +131,12 @@ async function detail(url) {
 async function handler(m, { sock, text }) {
     if (!text) {
         return m.reply(
-            `📱 *BUSCADOR DE ESPECIFICACIONES DE MÓVILES*\n\n` +
+            `╭━━━〔 📱 BUSCADOR DE ESPECIFICACIONES DE MÓVILES 〕━━━╮\n\n` +
             `Esta función te ayuda a buscar las especificaciones completas de un *smartphone* usando la base de datos confiable de Carisinyal.\n\n` +
             `*CÓMO USAR:*\n` +
             `- Escribe \`${m.prefix}especs_movil <nombre del movil>\`\n` +
             `- Ejemplo: \`${m.prefix}especs_movil oppo a3s\`\n\n` +
-            `_El sistema buscará automáticamente el móvil más adecuado según tu palabra clave y mostrará sus especificaciones completas con su imagen!_`
+            `_El sistema buscará automáticamente el móvil más adecuado según tu palabra clave y mostrará sus especificaciones completas con su imagen!_\n\n╰━━━━━━━━━━━━╯`
         );
     }
 
@@ -146,14 +146,14 @@ async function handler(m, { sock, text }) {
 
         if (!results || results.length === 0) {
             await m.react('❌');
-            return m.reply(`❌ *NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar un móvil con la palabra clave *${text}*. Intenta usar una marca o serie más específica.`);
+            return m.reply(`╰┈➤ ❌ *NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar un móvil con la palabra clave *${text}*. Intenta usar una marca o serie más específica.`);
         }
 
         const phone = results.find(r => (r.type || "").toLowerCase().includes("ponsel")) || results[0];
 
         const data = await detail(phone.url);
 
-        let caption = `📱 *SPESIFIKASI ${data.title.toUpperCase()}*\n\n`;
+        let caption = `╭━━━〔 📱 SPESIFIKASI ${data.title.toUpperCase()} 〕━━━╮\n──────────\n`;
         if (data.release) caption += `📅 *Lanzamiento:* ${data.release}\n`;
         if (data.network) caption += `📶 *Red:* ${data.network}\n`;
         caption += `\n`;
@@ -202,7 +202,7 @@ async function handler(m, { sock, text }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *ERROR AL OBTENER DATOS*\n\nLo siento, el sistema tuvo un problema al intentar obtener los datos de *Carisinyal*. Inténtalo de nuevo más tarde.`);
+        m.reply(`╰┈➤ ❌ *ERROR AL OBTENER DATOS*\n\nLo siento, el sistema tuvo un problema al intentar obtener los datos de *Carisinyal*. Inténtalo de nuevo más tarde.`);
     }
 }
 

@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split("@")[0];
 
     if (userWarnings.length === 0) {
-      await m.reply(`✅ @${targetName} no tiene advertencias.`, {
+      await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ @${targetName} no tiene advertencias.`+"\n╰━━━━━━━━━━━━╯", {
         mentions: [targetUser],
       });
       return;
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
     );
 
     if (usersWithWarnings.length === 0) {
-      await m.reply(`✅ No hay miembros con advertencias en este grupo.`);
+      await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ No hay miembros con advertencias en este grupo.`+"\n╰━━━━━━━━━━━━╯");
       return;
     }
 

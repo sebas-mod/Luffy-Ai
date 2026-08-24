@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     }
 
     if (!url.includes('sfile.mobi') && !url.includes('sfile.co')) {
-        return m.reply(`❌ La URL debe ser de sfile.mobi o sfile.co!`)
+        return m.reply(`✦ • ─── • ✦\n❌ La URL debe ser de sfile.mobi o sfile.co!`)
     }
 
     m.react('🕕')
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
         if (!data.url) {
             m.react('❌')
-            return m.reply(`❌ Error al obtener el enlace de descarga. Es posible que el archivo no esté disponible.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el enlace de descarga. Es posible que el archivo no esté disponible.`)
         }
 
         await sock.sendMedia(m.chat, data.url, null, m, {

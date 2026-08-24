@@ -21,8 +21,10 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     return await sock.sendMessage(m.chat, {
         image: getAssetBuffer("luffy"),
-        caption: `🌾 Hola, *${m.pushName}*
-        
+        caption: `╭━━━〔 🌾 SCRIPT 〕━━━╮\n\n🌾 Hola, *${m.pushName}*
+
+✦────────✦
+
 El original de este bot lo consigues mediante el enlace; luego solo busca la palabra clave *Luffy-Ai MD*`,
         footer: "💬 Este enlace te llevará al Youtube *Zanspiw*",
         interactiveButtons: [

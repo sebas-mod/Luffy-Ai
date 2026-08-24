@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
     const backgroundColor = COLORS[color]
     
     if (!backgroundColor) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no existe!\n> Usa uno de los colores disponibles.`)
+        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no existe!\n> Usa uno de los colores disponibles.`)
     }
     
     let message = args.slice(1).join(' ')
@@ -108,11 +108,11 @@ async function handler(m, { sock }) {
     }
     
     if (!message) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
+        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
     }
     
     if (message.length > 80) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
+        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
     }
     
     m.react('🕕')

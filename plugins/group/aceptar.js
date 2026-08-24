@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
         if (!pendingList?.length) {
             await m.react('📭')
-            return m.reply(`📭 No hay solicitudes de ingreso pendientes.`)
+            return m.reply("╰┈➤ "+`📭 No hay solicitudes de ingreso pendientes.`)
         }
 
         if (sub === 'list') {

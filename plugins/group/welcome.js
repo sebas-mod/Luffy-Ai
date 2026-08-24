@@ -187,7 +187,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       await sock.sendMessage(groupJid, {
         interactiveMessage: {
           body: {
-            text: `👋 Bienvenido *@${userName}*`,
+            text: "╰┈➤ "+`👋 Bienvenido *@${userName}*`,
           },
           footer: { text: config.bot?.name || "Luffy-Ai" },
           header: { title: "Bienvenida", hasMediaAttachment: false },
@@ -344,7 +344,7 @@ async function sendWelcomeMessage(sock, groupJid, participant, groupMeta) {
       });
     } else if (welcomeType === 8) {
       await sock.sendMessage(groupJid, {
-        text: `Hola @${userName}, bienvenido al grupo ${groupName}`,
+        text: "╰┈➤ "+`Hola @${userName}, bienvenido al grupo ${groupName}`,
         mentions: [realParticipant],
       });
     } else {

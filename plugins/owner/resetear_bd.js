@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`❌ ¡Tiempo agotado! Escribe *.resetdb* de nuevo para iniciar.`)
+        return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ ¡Tiempo agotado! ⏰\n┃ Escribe *.resetdb* de nuevo\n╰━━━━━━━━╯`)
     }
     
     delete global.resetDbPending[m.sender]

@@ -36,7 +36,7 @@ async function handler(m, { sock, db }) {
     const pending = global._swgcallPending?.get(m.sender);
     if (!pending) {
       return m.reply(
-        `⚠️ *No hay datos pendientes. Vuelve a enviar el medio + .swgcall*`,
+        `╰┈➤ ⚠️ *No hay datos pendientes. Vuelve a enviar el medio + .swgcall*`,
       );
     }
 
@@ -122,7 +122,7 @@ async function handler(m, { sock, db }) {
   if (source) {
     try {
       buffer = await source.download();
-      if (!buffer) return m.reply(`❌ Fallo al tomar el medio.`);
+      if (!buffer) return m.reply(`╰┈➤ ❌ Fallo al tomar el medio.`);
 
       const fileType = await fileTypeFromBuffer(buffer);
       ext = fileType?.ext || "bin";
@@ -171,7 +171,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      return m.reply(`⚠️ *El bot no está en ningún grupo.*`);
+      return m.reply(`╰┈➤ ⚠️ *El bot no está en ningún grupo.*`);
     }
 
     if (!global._swgcallPending) global._swgcallPending = new Map();
@@ -236,7 +236,7 @@ async function handler(m, { sock, db }) {
     });
   } catch (error) {
     await m.reply(
-      `❌ *ᴇʀʀᴏʀ*\n\n> Fallo al obtener la lista de grupos.\n> _${error.message}_`,
+      `👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Fallo al obtener la lista de grupos.\n> _${error.message}_\n✦────────✦`,
     );
     if (tempFile && fs.existsSync(tempFile)) {
       try {

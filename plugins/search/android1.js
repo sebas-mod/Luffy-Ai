@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`❌ No se encontraron resultados para: \`${text}\``);
+      return m.reply(`╰┈➤ ❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 10);
@@ -67,12 +67,12 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `📱 Resultados de la búsqueda de apk mod *${text}*\n`;
+    let caption = `╭━━━〔 📱 BÚSQUEDA: ${text} 〕━━━╮\n──────────\n`;
     caption += `*${apps.length}* aplicaciones encontradas\n\n`;
 
     apps.forEach((app, i) => {
-      caption += `*${i + 1}.* ${app.name}\n`;
-      caption += `   ├ 👤 ${app.developer}\n`;
+      caption += `╰┈➤ *${i + 1}.* ${app.name}\n`;
+      caption += `› 👤 ${app.developer}\n`;
       caption += `   └ ⭐ ${app.rating}/5\n\n`;
     });
 

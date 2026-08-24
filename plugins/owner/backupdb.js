@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
             `> El backup fue enviado al capitán principal.`
         )
     } else {
-        await m.reply(`❌ Backup fallido: ${result.error}`)
+        await m.reply(`╰┈➤ ❌ Backup fallido: ${result.error}`)
     }
 }
 

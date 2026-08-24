@@ -26,7 +26,7 @@ async function handler(m, { sock }) {
 
   try {
     const msg = q.message?.stickerMessage;
-    if (!msg) return m.reply("❌ Fallo al leer los datos del sticker");
+    if (!msg) return m.reply("╰┈➤ ❌ Fallo al leer los datos del sticker");
 
     const stickerMessage = proto.Message.StickerMessage.fromObject({
       url: msg.url,
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     console.error("[sprem]", err.message);
-    return m.reply(`❌ Fallo: ${err.message}`);
+    return m.reply(`╰┈➤ ❌ Fallo: ${err.message}`);
   }
 }
 

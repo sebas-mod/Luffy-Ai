@@ -491,7 +491,7 @@ async function handler(m, { sock, text }) {
         appleEmojiMap = null;
         console.error("[iqcpink error]:", error);
         await m.react('❌');
-        m.reply(`❌ *NO SE PUDO PROCESAR EL QUOTE*\n\nLo siento, ocurrió un error al intentar crear la imagen de quote rosa. Inténtalo de nuevo en unos momentos.`);
+        m.reply(`✦ • ─── • ✦\n❌ *NO SE PUDO PROCESAR EL QUOTE*\n\nLo siento, ocurrió un error al intentar crear la imagen de quote rosa. Inténtalo de nuevo en unos momentos.\n──────────`);
     }
 }
 

@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     const idx = parseInt(m.text?.trim()) - 1
 
     if (isNaN(idx) || idx < 0 || idx >= lists.length) {
-        let txt = `🗑️ *Elige la Información a Eliminar*\n\nEscribe \`${m.prefix}eliminar_lista <numero>\`\n\n`
+        let txt = `╭━━〔 🗑️ LISTA 〕━━╮\n\n🗑️ *Elige la Información a Eliminar*\n\nEscribe \`${m.prefix}eliminar_lista <numero>\`\n\n`
         for (let i = 0; i < lists.length; i++) {
             const l = lists[i]
             const mediaIcon = l.image ? '🖼️' : l.video ? '🎬' : '📝'
@@ -41,8 +41,9 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     return m.reply(
-        `🗑️ *INFORMACIÓN ELIMINADA*\n\n` +
+        `╭━━━〔 ✦ 〕━━━╮\n🗑️ *INFORMACIÓN ELIMINADA*\n\n` +
         `🏷️ Nombre: *${deleted.name}*\n\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
         `⚠️ _La información fue eliminada permanentemente y no se puede recuperar._`
     )
 }

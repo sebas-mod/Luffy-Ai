@@ -27,15 +27,17 @@ async function handler(m, { sock }) {
     
     if (command === 'mengkane' || !command.startsWith('mengkane')) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🎵 *ᴍᴇɴɢᴋᴀɴᴇ ᴍᴜsɪᴄ*\n\n` +
             `> Disponible: mengkane1 - mengkane52\n` +
-            `> Ejemplo: \`${m.prefix}mengkane1\``
+            `> Ejemplo: \`${m.prefix}mengkane1\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
     const num = parseInt(command.replace('mengkane', ''))
     if (isNaN(num) || num < 1 || num > 52) {
-        return m.reply(`❌ Selección inválida. Usa mengkane1 hasta mengkane52.`)
+        return m.reply(`✧ ❌ Selección inválida. Usa mengkane1 hasta mengkane52.`)
     }
     m.react('🕕')
     let sound

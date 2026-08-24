@@ -35,16 +35,16 @@ async function handler(m, { sock }) {
         }
         
         const r = data.data.result
-        let response = `💑 *ᴘʀᴇᴅɪᴄᴄɪóɴ ᴅᴇ ᴘᴀʀᴇᴊᴀ*\n\n`
-        response += `👤 *${r.orang_pertama.nama}*\n> ${r.orang_pertama.tanggal_lahir}\n\n`
-        response += `👤 *${r.orang_kedua.nama}*\n> ${r.orang_kedua.tanggal_lahir}\n\n`
+        let response = `𓆩♡𓆪 ────────── 𓆩♡𓆪\n💑 *ᴘʀᴇᴅɪᴄᴄɪóɴ ᴅᴇ ᴘᴀʀᴇᴊᴀ*\n𓆩♡𓆪 ────────── 𓆩♡𓆪\n\n`
+        response += `✧ 👤 *${r.orang_pertama.nama}*\n✦ ${r.orang_pertama.tanggal_lahir}\n\n`
+        response += `✧ 👤 *${r.orang_kedua.nama}*\n✦ ${r.orang_kedua.tanggal_lahir}\n\n`
         response += `📜 *ʀᴇsᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ᴘʀᴇᴅɪᴄᴄɪóɴ:*\n`
-        
+
         r.hasil_ramalan.forEach((h, i) => {
-            response += `${i+1}. ${h}\n\n`
+            response += `❀ ${i+1}. ${h}\n\n`
         })
-        
-        response += `> ⚠️ _${data.data.peringatan}_`
+
+        response += `──────────\n⚠️ _${data.data.peringatan}_`
         
         m.react('✅')
         await m.reply(response)

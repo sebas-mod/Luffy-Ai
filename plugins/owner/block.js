@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
         targetJid = m.quoted.sender || m.quoted.participant
     } else if (m.args[0]) {
         let num = m.args[0].replace(/[^0-9]/g, '')
-        if (!num) return m.reply('❌ Número no válido.')
+        if (!num) return m.reply('╰┈➤ ❌ Número no válido.')
         targetJid = num + '@s.whatsapp.net'
     } else if (!m.isGroup) {
         targetJid = m.chat
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     const botJid = sock.user?.id?.split(':')[0] + '@s.whatsapp.net'
     if (targetJid === botJid) {
-        return m.reply('❌ No puedes bloquear el número del propio bot.')
+        return m.reply('╰┈➤ ❌ No puedes bloquear el número del propio bot.')
     }
 
     try {

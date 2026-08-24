@@ -33,14 +33,14 @@ async function handler(m, { sock }) {
 
   if (!emoji) {
     return m.reply(
-      `🖼️ *ᴇᴍᴏᴊɪ ᴀ ɪᴍᴀɢᴇɴ*\n\n` +
+      `╭━━━〔 🖼️ ᴇᴍᴏᴊɪ ᴀ ɪᴍᴀɢᴇɴ 〕━━━╮\n\n` +
         `> Convierte emojis a imágenes HD\n\n` +
         `*Formato:*\n` +
         `> \`${m.prefix}emoji_a_imagen <emoji> [estilo]\`\n\n` +
         `*Ejemplo:*\n` +
         `> \`${m.prefix}emoji_a_imagen 😳 apple\`\n\n` +
         `*Estilos disponibles:*\n` +
-        `> ${STYLES.join(", ")}`,
+        `> ${STYLES.join(", ")}\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> Emoji no encontrado o error de API");
+      return m.reply("╭━〔 ❌ ᴇʀʀᴏʀ 〕━╮\n\n> Emoji no encontrado o error de API\n\n╰━━━━━╯");
     }
 
     const imgUrl = data.data.url;

@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> La cantidad de exp debe ser mayor a 0`)
+        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> La cantidad de exp debe ser mayor a 0\n✦────────✦`)
     }
     
     if (amount > MAX_EXP) {
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
     await m.react('✅')
     
     await m.reply(
-        `✅ Exitoso, se añadió *${formatNumber(amount)}* exp a *@${targetJid.split('@')[0]}*`,
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${formatNumber(amount)}* exp a *@${targetJid.split('@')[0]}*\n╰━━━━━━━━━━━━╯`,
         { mentions: [targetJid] }
     )
 }

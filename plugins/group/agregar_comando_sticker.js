@@ -47,12 +47,12 @@ async function handler(m, { sock }) {
     
     // Validasi reply sticker
     if (!m.quoted) {
-        return m.reply('⚠️ *Responde un sticker* que quieras convertir en comando!')
+        return m.reply("╰┈➤ "+'⚠️ *Responde un sticker* que quieras convertir en comando!')
     }
     
     const stickerHash = getQuotedStickerHash(m)
     if (!stickerHash) {
-        return m.reply('⚠️ El mensaje respondido no es un *sticker*!')
+        return m.reply("╰┈➤ "+'⚠️ El mensaje respondido no es un *sticker*!')
     }
     
     // Validasi command exists
@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
             `_¡Envía ese sticker para ejecutar el comando!_`
         )
     } else {
-        await m.reply('❌ No se pudo guardar el comando de sticker!')
+        await m.reply("╰┈➤ "+'❌ No se pudo guardar el comando de sticker!')
     }
 }
 

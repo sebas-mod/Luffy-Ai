@@ -51,11 +51,12 @@ async function handler(m) {
     const emblem = clan.emblem || '🏰'
 
     await m.reply(
-        `${emblem} *BIENVENIDO!*\n\n` +
-        `@${m.sender.split('@')[0]} se unió a *${clan.name}*\n\n` +
-        `Líder: @${clan.leader.split('@')[0]}\n` +
-        `Miembros: ${clan.members.length}/${MAX_MEMBERS}\n\n` +
-        `Ver info: *.claninfo*`,
+        `╭━━〔 ${emblem} BIENVENIDO! 〕━━╮\n` +
+        `┃ ⚔️ @${m.sender.split('@')[0]} se unió a *${clan.name}*\n` +
+        `┃\n` +
+        `┃ 👑 Líder: @${clan.leader.split('@')[0]}\n` +
+        `┃ 👥 Miembros: ${clan.members.length}/${MAX_MEMBERS}\n` +
+        `╰┈➤ Ver info: *.claninfo*`,
         { mentions: [m.sender, clan.leader] }
     )
 }

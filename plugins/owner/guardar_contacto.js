@@ -29,15 +29,15 @@ async function handler(m, { sock, args }) {
             if (chats[target]) {
                 groups.push(chats[target]);
             } else {
-                return m.reply("❌ Grupo no encontrado.");
+                return m.reply("╰┈➤ ❌ Grupo no encontrado.");
             }
         }
 
         if (groups.length === 0) {
-            return m.reply("❌ El bot no está en ningún grupo.");
+            return m.reply("╰┈➤ ❌ El bot no está en ningún grupo.");
         }
 
-        m.reply(`⏳ Extrayendo contactos de ${groups.length} grupos...`);
+        m.reply(`╰┈➤ ⏳ Extrayendo contactos de ${groups.length} grupos...`);
 
         let vcards = "";
         let count = 0;
@@ -69,7 +69,7 @@ async function handler(m, { sock, args }) {
         }
 
         if (count === 0) {
-            return m.reply("❌ No hay contactos para extraer.");
+            return m.reply("╰┈➤ ❌ No hay contactos para extraer.");
         }
 
         await sock.sendMessage(m.chat, {
@@ -94,7 +94,7 @@ async function handler(m, { sock, args }) {
     const groupList = Object.values(chats);
 
     if (groupList.length === 0) {
-        return m.reply("❌ El bot no está en ningún grupo.");
+        return m.reply("╰┈➤ ❌ El bot no está en ningún grupo.");
     }
 
     const sections = [

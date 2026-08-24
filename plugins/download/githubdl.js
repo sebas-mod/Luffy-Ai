@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
     }
     
     if (!repo) {
-        return m.reply(`❌ *ꜱᴇ ʀᴇǫᴜɪᴇʀᴇ ᴇʟ ʀᴇᴘᴏ*\n\n> Ingresa el nombre del repositorio`)
+        return m.reply(`✦ • ─── • ✦\n❌ *ꜱᴇ ʀᴇǫᴜɪᴇʀᴇ ᴇʟ ʀᴇᴘᴏ*\n\n╰┈➤ Ingresa el nombre del repositorio`)
     }
     
     await m.react('🕕')
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
         
         if (!repoInfo.ok) {
             await m.react('❌')
-            return m.reply(`❌ *ʀᴇᴘᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> \`${username}/${repo}\` no existe`)
+            return m.reply(`✦ • ─── • ✦\n❌ *ʀᴇᴘᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n╰┈➤ \`${username}/${repo}\` no existe`)
         }
         
         const repoData = await repoInfo.json()
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
         const checkRes = await fetch(zipUrl, { method: 'HEAD' })
         if (!checkRes.ok) {
             await m.react('❌')
-            return m.reply(`❌ *ʙʀᴀɴᴄʜ ɪɴᴇxɪsᴛᴇɴᴛᴇ*\n\n> La rama \`${branch}\` no se encontró\n> Default: \`${defaultBranch}\``)
+            return m.reply(`✦ • ─── • ✦\n❌ *ʙʀᴀɴᴄʜ ɪɴᴇxɪsᴛᴇɴᴛᴇ*\n\n╰┈➤ La rama \`${branch}\` no se encontró\n╰┈➤ Default: \`${defaultBranch}\``)
         }
         
         await sock.sendMedia(m.chat, zipUrl, null, m, {

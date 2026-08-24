@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     }
     
     if (!url.match(/videy\.co/i)) {
-        return m.reply(`❌ URL no válida. Usa un enlace de videy.co`)
+        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de videy.co`)
     }
     
     m.react('🕕')
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.url) {
             m.react('❌')
-            return m.reply(`❌ Error al obtener el video. Enlace no válido o caducado.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Enlace no válido o caducado.`)
         }
         
         const videoUrl = data.data.url

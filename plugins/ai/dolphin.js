@@ -51,6 +51,7 @@ async function handler(m, { sock }) {
     
     if (!text) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🐬 *ᴅᴏʟᴘʜɪɴ ᴀɪ*\n\n` +
             `> Chat con el Dolphin AI 24B Model\n\n` +
             `╭┈┈⬡「 📋 *ᴘʟᴀɴᴛɪʟʟᴀs* 」\n` +
@@ -62,7 +63,8 @@ async function handler(m, { sock }) {
             `╰┈┈┈┈┈┈┈┈⬡\n\n` +
             `> *Ejemplo:*\n` +
             `> ${m.prefix}dolphin ¿qué es la IA?\n` +
-            `> ${m.prefix}dolphin --creative crea un poema`
+            `> ${m.prefix}dolphin --creative crea un poema\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -78,7 +80,7 @@ async function handler(m, { sock }) {
     }
     
     if (!text) {
-        return m.reply(`❌ ¡Escribe una pregunta!`)
+        return m.reply(`✧ ❌ ¡Escribe una pregunta!`)
     }
     
     await m.react('🕕')

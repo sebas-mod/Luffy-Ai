@@ -42,7 +42,7 @@ async function handler(m) {
 
     const medals = ['🥇', '🥈', '🥉']
 
-    let txt = `🏰 *RANKING DE CLANES*\n\n`
+    let txt = `꧁༺ 🏰 RANKING DE CLANES ༻꧂\n\n`
 
     clans.slice(0, 10).forEach((clan, i) => {
         const medal = medals[i] || `${i + 1}.`
@@ -53,11 +53,11 @@ async function handler(m) {
         const emblem = clan.emblem || '🏰'
         const rank = getRankTitle(clan.level || 1)
 
-        txt += `${medal} ${emblem} *${clan.name}*\n`
+        txt += `${medal} ${emblem} ⚔️ *${clan.name}*\n`
         txt += `   ${rank} Lv.${clan.level || 1} · ${clan.wins || 0}W/${clan.losses || 0}L (${winRate}%) · 👥 ${clan.members.length}\n\n`
     })
 
-    txt += `Total: *${clans.length}* clanes registrados`
+    txt += `✦ Total: *${clans.length}* clanes registrados`
 
     await m.reply(txt)
 }

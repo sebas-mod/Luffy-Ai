@@ -71,7 +71,9 @@ async function handler(m, { sock }) {
 
   if (!normalizedArgs) {
     return m.reply(
-      `⚙️ *sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ*\n\n` +
+      `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+        `┃ ⚙️ *sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ*\n` +
+        `╰━━━━━━━━╯\n\n` +
         `Estado: ${currentStatus ? "✅ ON (Registro obligatorio)" : "❌ OFF"}\n\n` +
         `*Estadísticas:*\n` +
         `> Registrados totales: *${stats.totalRegistered}*\n` +
@@ -120,9 +122,11 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `✅ *¡sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ ᴀᴄᴛɪᴠᴀᴅᴏ!*\n\n` +
+          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+          `┃ ✅ *¡sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ ᴀᴄᴛɪᴠᴀᴅᴏ!*\n` +
+          `╰━━━━━━━━━━━━╯\n\n` +
           `¡Los usuarios ahora deben registrarse antes de usar los comandos!\n\n` +
-          `> Comando: \`${m.prefix}registrar\``,
+          `╰┈➤ Comando: \`${m.prefix}registrar\``,
         contextInfo: getRegistrationContextInfo(),
       },
       { quoted: m },
@@ -144,7 +148,9 @@ async function handler(m, { sock }) {
       m.chat,
       {
         text:
-          `❌ *¡sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ!*\n\n` +
+          `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+          `┃ ❌ *¡sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇɢɪsᴛʀᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ!*\n` +
+          `╰━━━━━━━━╯\n\n` +
           `Los usuarios ya no necesitan registrarse para usar los comandos.`,
         contextInfo: getRegistrationContextInfo(),
       },
@@ -156,7 +162,7 @@ async function handler(m, { sock }) {
   }
 
   return m.reply(
-    `❌ ¡Opción no válida!\n\n> Usa: \`on\`, \`off\` o \`stats\``,
+    `❌ ¡Opción no válida!\n\n╰┈➤ Usa: \`on\`, \`off\` o \`stats\``,
   );
 }
 

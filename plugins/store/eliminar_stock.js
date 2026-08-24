@@ -30,11 +30,13 @@ async function handler(m, { sock }) {
 
     if (args.length < 2 || isNaN(productNo) || isNaN(itemNo)) {
         return m.reply(
+            `╭━━〔 📦 STOCK 〕━━╮\n\n` +
             `🗑️ *ELIMINAR STOCK*\n\n` +
             `Formato: \`${m.prefix}eliminar_stock <numero_producto> <numero_item>\`\n\n` +
             `📝 *Ejemplo:*\n` +
             `\`${m.prefix}eliminar_stock 1 3\` — Eliminar el artículo 3 del producto 1\n\n` +
-            `📋 Ver el número de artículo: \`${m.prefix}lista_stock <numero_producto>\``
+            `📋 Ver el número de artículo: \`${m.prefix}lista_stock <numero_producto>\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 
@@ -59,10 +61,11 @@ async function handler(m, { sock }) {
             db.setting('storeProducts', products)
             await m.react('✅')
             return m.reply(
-                `📦 *STOCK FÍSICO REDUCIDO*\n\n` +
+                `╭━━━〔 ✦ ÉXITO 〕━━━╮\n📦 *STOCK FÍSICO REDUCIDO*\n\n` +
                 `🏷️ Producto: *${product.name}*\n` +
                 `➖ Reducidos: *${reduceCount} pcs*\n` +
-                `📊 Stock restante: *${product.stock} pcs*`
+                `📊 Stock restante: *${product.stock} pcs*\n\n` +
+                `╰━━━━━━━━━━━━╯`
             )
         }
         return m.reply(`♾️ *El stock unlimited no se puede reducir.*\n\nCambia el tipo de stock primero: \`${m.prefix}editar_producto ${productNo + 1} stok <cantidad>\``)
@@ -80,10 +83,11 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
     return m.reply(
-        `🗑️ *STOCK ELIMINADO*\n\n` +
+        `╭━━━〔 ✦ 〕━━━╮\n🗑️ *STOCK ELIMINADO*\n\n` +
         `🏷️ Producto: *${product.name}*\n` +
         `🔑 Artículo: \`${deleted.detail.replace(/\n/g, ' ').substring(0, 50)}\`\n` +
-        `📊 Stock restante: *${stockItems.length}* cuentas`
+        `📊 Stock restante: *${stockItems.length}* cuentas\n\n` +
+        `╰━━━━━━━━━━━━╯`
     )
 }
 

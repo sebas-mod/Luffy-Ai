@@ -43,7 +43,8 @@ async function handler(m, { sock }) {
   if (!input) {
     if (!m.isGroup) {
       return m.reply(
-        `📝 *ELIMINAR RENTA*\n\n` +
+        `📝 *ELIMINAR RENTA*\n` +
+          `──────────\n\n` +
           `Desde privado: *${m.prefix}quitar_renta <link/id>*\n` +
           `Desde el grupo: escribe *${m.prefix}quitar_renta* directamente en el grupo\n\n` +
           `Ejemplo:\n` +
@@ -56,17 +57,20 @@ async function handler(m, { sock }) {
   } else {
     const result = await resolveGroupId(sock, input);
     if (!result)
-      return m.reply(`❌ Enlace no válido o grupo no encontrado`);
+      return m.reply(`╰┈➤ ❌ Enlace no válido o grupo no encontrado`);
     groupId = result.id;
     groupName = result.name;
   }
 
-  if (!groupId) return m.reply(`❌ No se pudo determinar el grupo`);
+  if (!groupId) return m.reply(`╰┈➤ ❌ No se pudo determinar el grupo`);
 
   const sewaData = db.db.data.sewa.groups[groupId];
   if (!sewaData)
     return m.reply(
-      `❌ El grupo no está registrado en el sistema de alquiler\n\nConsulta la lista: *${m.prefix}lista_rentas*`,
+      `╭━〔 ⚙️ SISTEMA 〕━━━╮\n` +
+      `┃ ❌ El grupo no está registrado\n` +
+      `┃ en el sistema de alquiler\n` +
+      `╰━━━━━━━━━━━━╯\n\nConsulta la lista: *${m.prefix}lista_rentas*`,
     );
 
   groupName = groupName || sewaData.name || groupId.split("@")[0];
@@ -76,14 +80,14 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   await m.reply(
-    `✅ *RENTA ELIMINADA*\n\nGrupo: *${groupName}*\nID: ${groupId.split("@")[0]}`,
+    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *RENTA ELIMINADA*\n╰━━━━━━━━━━━━╯\n\nGrupo: *${groupName}*\nID: ${groupId.split("@")[0]}`,
   );
 
   if (db.db.data.sewa.enabled) {
     try {
       await sock.sendText(
         groupId,
-        `⛔ Este grupo ha sido eliminado de la lista blanca de alquiler.\nEl bot abandonará el grupo.\n\nContacta al owner para volver a alquilar.`,
+        `⛔ ──────────\nEste grupo ha sido eliminado de la lista blanca de alquiler.\nEl bot abandonará el grupo.\n──────────\n\nContacta al owner para volver a alquilar. 👑`,
         null,
         {
           contextInfo: saluranCtx(),

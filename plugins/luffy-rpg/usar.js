@@ -50,8 +50,9 @@ function handler(m, { sock }) {
   user.carne = clamp(user.carne ?? user.carneMax, 0, user.carneMax);
   saveUser(m.sender, user);
 
-  let txt = `✅ *OBJETO USADO*\n\n`;
-  txt += `${item.emoji} *${item.nombre}* x${cantidad}\n\n`;
+  let txt = `╭━━〔 🧪 OBJETO USADO 〕━━╮\n`;
+  txt += `┃ ${item.emoji} *${item.nombre}* x${cantidad}\n`;
+  txt += `┃\n┃ `;
   txt += efecto;
 
   return m.reply(txt);

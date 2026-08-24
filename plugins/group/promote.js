@@ -42,19 +42,19 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no está en el grupo.`)
+            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no está en el grupo.`+"\n╰━━━━━━━━━━━━╯")
             return
         }
 
         if (participant.admin) {
-            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario ya es admin.`)
+            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El usuario ya es admin.`+"\n╰━━━━━━━━━━━━╯")
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'promote')
 
         await m.reply(
-            `✅ @${target.split('@')[0]} ahora es admin.`,
+            "╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ @${target.split('@')[0]} ahora es admin.`+"\n╰━━━━━━━━━━━━╯",
             { mentions: [target] }
         )
 

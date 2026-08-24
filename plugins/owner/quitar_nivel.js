@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
 
   if (!targetJid || levels <= 0) {
     return m.reply(
-      `📊 *ʀᴇsᴛᴀʀ ɴɪᴠᴇʟ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴜsᴏ*\n` +
-        `┃ > \`.dellevel <cantidad>\` - a ti mismo\n` +
-        `┃ > \`.dellevel <cantidad> @user\` - a otra persona\n` +
+      `╭┈┈⬡「 📊 *ʀᴇsᴛᴀʀ ɴɪᴠᴇʟ* 」\n` +
+        `┃ 📋 *ᴜsᴏ*\n` +
+        `┃ › \`.dellevel <cantidad>\` - a ti mismo\n` +
+        `┃ › \`.dellevel <cantidad> @user\` - a otra persona\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `> Ejemplo: \`${m.prefix}quitar_nivel 5\``,
+        `╰┈➤ Ejemplo: \`${m.prefix}quitar_nivel 5\``,
     );
   }
 

@@ -129,13 +129,13 @@ async function handler(m, { sock }) {
     if (result.alreadyMember) {
       m.react("❌");
       return m.reply(
-        `❌ *Ya es Miembro*\n\n> El bot ya está unido al grupo *${result.subject}*`
+        `👑•─────•👑\n❌ *Ya es Miembro*\n\n> El bot ya está unido al grupo *${result.subject}*\n✦────────✦`
       );
     }
 
     if (!result.success) {
       m.react("❌");
-      return m.reply(`❌ *Error al Unirse*\n\n> ${result.error}`);
+      return m.reply(`👑•─────•👑\n❌ *Error al Unirse*\n\n> ${result.error}\n✦────────✦`);
     }
 
     m.react("✅");

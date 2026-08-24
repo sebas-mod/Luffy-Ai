@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     }
 
     if (!url.match(/capcut\.com/i)) {
-        return m.reply(`❌ URL no válida. Usa un enlace de CapCut.`)
+        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de CapCut.`)
     }
 
     await m.react('🕕')
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         const data = await capcut(url)
 
         if (!data?.status || !data?.originalVideoUrl) {
-            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Prueba con otro enlace.`)
         }
 
         await sock.sendMedia(m.chat, data.originalVideoUrl, null, m, {

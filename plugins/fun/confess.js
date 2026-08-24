@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
       global.confessData.delete(sentMsg.key.id);
     }, 24 * 60 * 60 * 1000);
 
-    let successTxt = `✅ *¡MENFESS ENVIADO CON ÉXITO!* ✅\n\n`;
+    let successTxt = `✅ ──────────\n*¡MENFESS ENVIADO CON ÉXITO!* ✅\n──────────\n\n`;
     successTxt += `> 📱 Enviado a: \`${targetNumber}\`\n`;
     successTxt += `> 🔒 ¡Tu identidad está a salvo!\n\n`;
     successTxt += `> _Si responde el mensaje, te lo haré llegar aquí. ¡Tranquilo!_ 😉`;

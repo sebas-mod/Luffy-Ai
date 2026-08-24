@@ -26,9 +26,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🎬 *ᴛᴏ ᴄᴀʀᴛᴏᴏɴ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo caricatura\n\n` +
-            `\`${m.prefix}tocartoon\``
+            `\`${m.prefix}tocartoon\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -44,7 +46,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ No se pudo descargar la imagen`)
+            return m.reply(`✧ ❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

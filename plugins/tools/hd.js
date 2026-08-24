@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
   if (!img) {
     return m.reply(
-      `*🪁 IMAGEN HD*\n> Responde la imagen que quieres mejorar\n\n\`\`\`${m.prefix}remini\`\`\``
+      `╭━〔 🪁 IMAGEN HD 〕━╮\n╰┈➤ Responde la imagen que quieres mejorar\n╰━━━━━╯\n\`\`\`${m.prefix}remini\`\`\``
     );
   }
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: enhancedBuffer,
-        caption: `✅ *EXITOSO*\n\n> La imagen fue mejorada (upscale) y aclarada exitosamente.`,
+        caption: `╰┈➤ ✅ *EXITOSO*\n\n> La imagen fue mejorada (upscale) y aclarada exitosamente.`,
       },
       { quoted: m }
     );
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[HD Error]", err);
     m.react("❌");
-    m.reply("Lo siento, ocurrió un error al procesar la imagen desde el scraper. Inténtalo de nuevo más tarde.");
+    m.reply(`╰┈➤ 😔 Lo siento, ocurrió un error al procesar la imagen desde el scraper. Inténtalo de nuevo más tarde.`);
   }
 }
 

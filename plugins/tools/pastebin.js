@@ -26,12 +26,12 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `📋 *sᴜʙɪʀ ᴀ ᴘᴀsᴛᴇʙɪɴ*\n\n` +
+      `╭━━━〔 📋 sᴜʙɪʀ ᴀ ᴘᴀsᴛᴇʙɪɴ 〕━━━╮\n\n` +
         `Envía texto para subirlo a Pastebin.\n\n` +
         `*Cómo usar:*\n` +
         `• \`${m.prefix}pastebin <texto>\`\n` +
         `• Responde un texto con \`${m.prefix}pastebin\`\n\n` +
-        `> Ejemplo: \`${m.prefix}pastebin console.log("Hello")\``,
+        `> Ejemplo: \`${m.prefix}pastebin console.log("Hello")\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     const url = res.data;
 
     if (url.startsWith("Bad API request")) {
-      return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ${url}`);
+      return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> ${url}`);
     }
 
     const responseText =

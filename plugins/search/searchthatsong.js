@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Ingresa un fragmento de la letra o el nombre de la canción que quieres buscar.\n\nEjemplo: `.sts llorando al recordarte`");
+    return m.reply("╰┈➤ ❌ Ingresa un fragmento de la letra o el nombre de la canción que quieres buscar.\n\nEjemplo: `.sts llorando al recordarte`");
   }
 
   await m.react("🕕");
@@ -125,10 +125,10 @@ async function handler(m, { sock }) {
 
     if (!result.song) {
       await m.react("❌");
-      return m.reply("⚠️ Canción no encontrada. Intenta usar una letra más específica.");
+      return m.reply("╰┈➤ ⚠️ Canción no encontrada. Intenta usar una letra más específica.");
     }
 
-    let caption = `🎵 *SEARCH THAT SONG* 🎵\n\n`;
+    let caption = `╭━━━〔 🎵 SEARCH THAT SONG 〕━━━╮\n\n`;
     caption += `*Título:* ${result.song}\n`;
     if (result.artist) caption += `*Artista:* ${result.artist}\n`;
     if (result.album) caption += `*Álbum:* ${result.album}\n`;
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SearchThatSong]", error.message);
     await m.react("☢");
-    m.reply("😔 Ocurrió un error al buscar la canción. El servidor puede estar teniendo problemas.");
+    m.reply("╰┈➤ 😔 Ocurrió un error al buscar la canción. El servidor puede estar teniendo problemas.");
   }
 }
 

@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
   }
 
   if (!url.startsWith("http")) {
-    return m.reply(`❌ URL no válida! Debe empezar con http/https`);
+    return m.reply(`✦ • ─── • ✦\n❌ URL no válida! Debe empezar con http/https`);
   }
 
   await m.react("🕕");
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`❌ Error al obtener el contenido. Asegúrate de que la URL sea válida.`);
+      return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el contenido. Asegúrate de que la URL sea válida.`);
     }
 
     const ctxInfo = saluranCtx();

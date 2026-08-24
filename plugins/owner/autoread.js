@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
   }
 
   return m.reply(
-    `❌ *Opción No Válida*\n\n> Usa *${m.prefix}autoread on* o *${m.prefix}autoread off*`
+    `👑•─────•👑\n❌ *Opción No Válida*\n\n> Usa *${m.prefix}autoread on* o *${m.prefix}autoread off*\n✦────────✦`
   );
 }
 

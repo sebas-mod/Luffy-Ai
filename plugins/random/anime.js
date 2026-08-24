@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
         m.chat,
         {
           image: { url: "https://api.nexray.web.id/random/loli" },
-          caption: `👧 *ʀᴀɴᴅᴏᴍ ʟᴏʟɪ*`,
+          caption: `୨୧ ────────── ୨୧\n👧 *ʀᴀɴᴅᴏᴍ ʟᴏʟɪ*\n୨୧ ────────── ୨୧`,
         },
         { quoted: m },
       );
@@ -62,8 +62,8 @@ async function handler(m, { sock }) {
               deviceListMetadataVersion: 2,
             },
             interactiveMessage: {
-              body: { text: `✨ *ʀᴀɴᴅᴏᴍ ${cmd.toUpperCase()}*` },
-              footer: { text: "Pulsa el botón de abajo para cargar otra imagen" },
+              body: { text: `୨୧ ✧ *ʀᴀɴᴅᴏᴍ ${cmd.toUpperCase()}* ✧ ୨୧` },
+              footer: { text: "✿ Pulsa el botón de abajo para cargar otra imagen" },
               header: {
                 hasMediaAttachment: true,
                 ...(isGif ? { videoMessage: media.videoMessage } : { imageMessage: media.imageMessage })

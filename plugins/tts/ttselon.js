@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
   if (!text)
     return m.reply(
-      `🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n> Usa: \`${m.prefix}ttselon <text>\``,
+      `╭━━━〔 ✦ 〕━━━╮\n\n🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n╰┈➤ Usa: \`${m.prefix}ttselon <text>\`\n\n╰━━━━━━━━━━━━╯`,
     );
 
   m.react("🚀");
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     const voice = res.data?.result?.find((v) => v.elon_musk && !v.error);
     if (!voice) {
       m.react("❌");
-      return m.reply(`❌ Error con la voz de Elon. Prueba otro TTS.`);
+      return m.reply(`✧ ❌ Error con la voz de Elon. Prueba otro TTS.`);
     }
 
     const tempDir = path.join(process.cwd(), "temp");

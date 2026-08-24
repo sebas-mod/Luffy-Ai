@@ -44,16 +44,16 @@ async function handler(m, { sock, args }) {
         const result = stopSchedulerByName(target);
         
         if (result.stopped) {
-            await m.reply(`🛑 *ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ ᴅᴇᴛᴇɴɪᴅᴏ*
+            await m.reply(`👑•─────•👑\n🛑 *ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ ᴅᴇᴛᴇɴɪᴅᴏ*
 
 > Programador: *${result.name}*
 > Estado: ❌ Detenido
 
-_Usa \`.startschedule ${target}\` para activarlo de nuevo_`);
+_Usa \`.startschedule ${target}\` para activarlo de nuevo_\n✦────────✦`);
         } else {
-            await m.reply(`❌ Programador no encontrado o ya está inactivo
+            await m.reply(`👑•─────•👑\n❌ Programador no encontrado o ya está inactivo
 
-Usa \`.stopschedule\` para ver la lista de programadores`);
+Usa \`.stopschedule\` para ver la lista de programadores\n✦────────✦`);
         }
     } catch (error) {
         console.error('[StopSchedule Error]', error);

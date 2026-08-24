@@ -43,15 +43,15 @@ async function handler(m, { sock }) {
 
     if (!videoBuffer || videoBuffer.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ *ERROR*\n\n¡Vaya, no se pudo descargar el video! Intenta enviarlo de nuevo.`);
+      return m.reply(`╰┈➤ ❌ *ERROR*\n\n¡Vaya, no se pudo descargar el video! Intenta enviarlo de nuevo.`);
     }
 
     if (videoBuffer.length > 50 * 1024 * 1024) {
       await m.react("❌");
-      return m.reply(`❌ *ARCHIVO DEMASIADO GRANDE*\n\nLo siento, el tamaño máximo del video es de solo 50MB.`);
+      return m.reply(`❌ *ARCHIVO DEMASIADO GRANDE*\n──────────\n╰┈➤ Lo siento, el tamaño máximo del video es de solo 50MB.`);
     }
 
-    await m.reply(`🎞️ *PROCESO DE MEJORA INICIADO* 🎞️\n\nEl video se está procesando para verse en HD! ✨\nEl tiempo estimado depende del tamaño del video, ¡ten paciencia!`);
+    await m.reply(`╰┈➤ 🎞️ *PROCESO DE MEJORA INICIADO* 🎞️\n\nEl video se está procesando para verse en HD! ✨\nEl tiempo estimado depende del tamaño del video, ¡ten paciencia!`);
 
     const tempDir = os.tmpdir();
     const inputPath = path.join(tempDir, `input-hd-${Date.now()}.mp4`);
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
 
     const resultBuffer = fs.readFileSync(outputPath);
 
-    await sock.sendMedia(m.chat, resultBuffer, `✨ *PROCESO TERMINADO* ✨\n\nAquí está el resultado del video, mucho más suave y en HD, ¿no? 😍`, m, {
+    await sock.sendMedia(m.chat, resultBuffer, `✦ ✨ *PROCESO TERMINADO* ✨\n╰┈➤ Aquí está el resultado del video, mucho más suave y en HD, ¿no? 😍`, m, {
       type: "video",
       mimetype: "video/mp4",
       fileName: `HDVID-${Date.now()}.mp4`,
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
     } catch (e) {}
   } catch (err) {
     await m.react("❌");
-    await m.reply(`❌ Lo siento, el proceso de mejora del video falló! 😭\n\nDetalles: ${err.message}`);
+    await m.reply(`╰┈➤ ❌ Lo siento, el proceso de mejora del video falló! 😭\n──────────\nDetalles: ${err.message}`);
   }
 }
 

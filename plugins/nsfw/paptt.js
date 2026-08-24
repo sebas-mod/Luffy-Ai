@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
                 "Content-Type": "application/json"
             }
         });
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "🔞 *PAPTT*" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "୨୧ ────────── ୨୧\n🔞 *PAPTT*\n୨୧ ────────── ୨୧" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[PAPTT Error]", e);

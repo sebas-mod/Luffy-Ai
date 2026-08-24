@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
 
     if (!text) {
-        return m.reply(`📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Escribe el problema de matemáticas\n\n\`Ejemplo: ${m.prefix}matematicas ¿cuánto es 2+2?\``)
+        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n📐 *ᴍᴀᴛʜ ɢᴘᴛ*\n\n> Escribe el problema de matemáticas\n\n\`Ejemplo: ${m.prefix}matematicas ¿cuánto es 2+2?\`\n\n╰━━━━━━━━━━━━╯`)
     }
 
     m.react('🕕')
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
         if (!data.status || !data.result) {
             await m.react('❌')
-            return m.reply("⚠️ No se pudo procesar el problema de matemáticas.")
+            return m.reply("✧ ⚠️ No se pudo procesar el problema de matemáticas.")
         }
 
         const answer = data.result

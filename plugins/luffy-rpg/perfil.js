@@ -49,29 +49,33 @@ async function handler(m, { sock }) {
   const inventario = getInventarioDetallado(targetJid);
   const isla = getIslaById(user.islaId);
 
-  let txt = `🏴‍☠️ *FICHA DE PIRATA*\n\n`;
-  txt += `👤 *${user.nombre}*\n`;
-  txt += `🎗️ *Rango:* ${user.rango}\n`;
-  txt += `🎖️ *Título:* ${titulo?.emoji || "🪙"} ${titulo?.nombre || "Novato"}\n`;
-  txt += `⬆️ *Nivel:* ${user.nivel} (${user.exp}/${getExpRequerida(user.nivel)} EXP)\n`;
-  if (proximo) txt += `🎯 *Próximo rango:* ${proximo.nombre} (Nv. ${proximo.nivel})\n\n`;
-  txt += `💰 *Berrys:* ${user.berrys}\n`;
-  txt += `🍖 *Carne:* ${s.carne}/${s.carneMax}\n`;
-  txt += `❤️ *Salud:* ${s.salud}/${s.saludMax}\n\n`;
-  txt += `⚔️ *Ataque:* ${s.ataque}\n`;
-  txt += `🛡️ *Defensa:* ${s.defensa}\n`;
-  txt += `💨 *Velocidad:* ${s.velocidad}\n\n`;
+  let txt = `╭━━〔 🏴‍☠️ FICHA DE PIRATA 〕━━╮\n`;
+  txt += `┃ 👤 *${user.nombre}*\n`;
+  txt += `┃ 🎗️ *Rango:* ${user.rango}\n`;
+  txt += `┃ 🎖️ *Título:* ${titulo?.emoji || "🪙"} ${titulo?.nombre || "Novato"}\n`;
+  txt += `┃ ⬆️ *Nivel:* ${user.nivel} (${user.exp}/${getExpRequerida(user.nivel)} EXP)\n`;
+  if (proximo) txt += `┃ 🎯 *Próximo rango:* ${proximo.nombre} (Nv. ${proximo.nivel})\n`;
+  txt += `┃\n`;
+  txt += `┃ 💰 *Berrys:* ${user.berrys}\n`;
+  txt += `┃ 🍖 *Carne:* ${s.carne}/${s.carneMax}\n`;
+  txt += `┃ ❤️ *Salud:* ${s.salud}/${s.saludMax}\n`;
+  txt += `┃\n`;
+  txt += `┃ ⚔️ *Ataque:* ${s.ataque}\n`;
+  txt += `┃ 🛡️ *Defensa:* ${s.defensa}\n`;
+  txt += `┃ 💨 *Velocidad:* ${s.velocidad}\n`;
+  txt += `┃\n`;
 
-  if (isla) txt += `📍 *Isla:* ${isla.emoji} ${isla.nombre}\n`;
-  if (tripulacion) txt += `🏴 *Tripulación:* ${tripulacion.nombre}\n`;
+  if (isla) txt += `┃ 📍 *Isla:* ${isla.emoji} ${isla.nombre}\n`;
+  if (tripulacion) txt += `┃ 🏴 *Tripulación:* ${tripulacion.nombre}\n`;
 
   const equipo = getEquipoStats(user.equipo || {});
   if (equipo.length) {
-    txt += `\n🎒 *Equipo:*\n` + equipo.map((e) => `  ${e}`).join("\n");
+    txt += `┃\n┃ 🎒 *Equipo:*\n` + equipo.map((e) => `┃ ${e}`).join("\n") + `\n`;
   }
 
-  txt += `\n🎒 *Objetos:* ${inventario.length} tipos\n`;
-  txt += `⭐ *Personajes:* ${user.personajes.length} coleccionados`;
+  txt += `┃ 🎒 *Objetos:* ${inventario.length} tipos\n`;
+  txt += `┃ ⭐ *Personajes:* ${user.personajes.length} coleccionados\n`;
+  txt += `╰━━━━━━━━━━╯`;
 
   return m.reply(txt);
 }

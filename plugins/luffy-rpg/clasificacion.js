@@ -49,7 +49,7 @@ function handler(m, { sock }) {
     victorias: "VICTORIAS",
   };
 
-  let txt = `🏆 *TOP 10 - ${titulos[key] || key.toUpperCase()}*\n\n`;
+  let txt = `꧁༺ 🏆 TOP 10 - ${titulos[key] || key.toUpperCase()} ༻꧂\n\n`;
 
   top.forEach((u, i) => {
     const medalla = ["🥇", "🥈", "🥉"][i] || `${i + 1}.`;
@@ -59,7 +59,7 @@ function handler(m, { sock }) {
         : key === "victorias"
           ? `${u.victorias || 0} victorias`
           : `${u[key] || 0}`;
-    txt += `${medalla} *${u.nombre}* — ${valor}\n`;
+    txt += `${medalla} ⚔️ *${u.nombre}* — ${valor}\n`;
   });
 
   return m.reply(txt);

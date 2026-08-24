@@ -47,7 +47,7 @@ async function handler(m, { sock, plugins }) {
   if (isAdd) {
     if (!target)
       return m.reply(
-        `❌ *Target inválido*\n\nEtiqueta al usuario / Responde al chat / Escribe el número del target`,
+        `👑•─────•👑\n❌ *Target inválido*\n\nEtiqueta al usuario / Responde al chat / Escribe el número del target\n✦────────✦`,
       );
     const cleanArgs = m.args.filter(
       (a) => !a.includes("@") && !/^\d{10,}$/.test(a),
@@ -83,7 +83,7 @@ async function handler(m, { sock, plugins }) {
 
     if (activeAccess.length === 0) {
       return m.reply(
-        `📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\nTarget: @${target.split("@")[0]}\nEstado: *Sin acceso especial*`,
+        `👑•─────•👑\n📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\nTarget: @${target.split("@")[0]}\nEstado: *Sin acceso especial*\n✦────────✦`,
         {
           mentions: sock.parseMention(`@${target.split("@")[0]}`),
         },
@@ -118,10 +118,10 @@ async function handler(m, { sock, plugins }) {
       try {
         const durationMs = ms(durationTarget);
         if (!durationMs)
-          return m.reply(`❌ ¡Formato de duración incorrecto! Usa: 1h, 1d, 30d`);
+          return m.reply(`╰┈➤ ❌ ¡Formato de duración incorrecto! Usa: 1h, 1d, 30d`);
         expiredTime = Date.now() + durationMs;
       } catch {
-        return m.reply(`❌ ¡Formato de duración no reconocido!`);
+        return m.reply(`╰┈➤ ❌ ¡Formato de duración no reconocido!`);
       }
     }
 
@@ -154,7 +154,7 @@ async function handler(m, { sock, plugins }) {
     );
   }
   if (isDel) {
-    if (!target) return m.reply(`❌ Etiqueta al usuario al que le quieres quitar el acceso!`);
+    if (!target) return m.reply(`╰┈➤ ❌ Etiqueta al usuario al que le quieres quitar el acceso!`);
     const now = Date.now();
     const activeAccess = user.access.filter(
       (a) => a.expired === null || a.expired > now,
@@ -164,17 +164,17 @@ async function handler(m, { sock, plugins }) {
       specificCmd = specificCmd.toLowerCase();
       const idx = user.access.findIndex((a) => a.cmd === specificCmd);
       if (idx === -1)
-        return m.reply(`❌ El usuario no tiene acceso al comando \`${specificCmd}\``);
+        return m.reply(`╰┈➤ ❌ El usuario no tiene acceso al comando \`${specificCmd}\``);
 
       user.access.splice(idx, 1);
       db.setUser(target, user);
       return m.reply(
-        `✅ El acceso \`${specificCmd}\` se retiró con éxito de @${target.split("@")[0]}`,
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ El acceso \`${specificCmd}\` se retiró con éxito de @${target.split("@")[0]}\n╰━━━━━━━━━━━━╯`,
       );
     }
 
     if (activeAccess.length === 0) {
-      return m.reply(`⚠️ Este usuario no tiene acceso a ningún comando.`);
+      return m.reply(`╰┈➤ ⚠️ Este usuario no tiene acceso a ningún comando.`);
     }
     const rows = activeAccess.map((acc) => {
       const exp = acc.expired ? ms(acc.expired - now) : "Permanente";

@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     }
     
     if (!url.match(/snackvideo\.com/i)) {
-        return m.reply(`❌ URL no válida. Usa un enlace de SnackVideo.`)
+        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de SnackVideo.`)
     }
     
     await m.react('🕕')
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
         const data = await snackvideo(url)
         
         if (!data?.status || !data?.result?.videoUrl) {
-            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Prueba con otro enlace.`)
         }
         
         const result = data.result

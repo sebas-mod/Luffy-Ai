@@ -20,8 +20,10 @@ const config = {
 async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
-      `💎 *SISTEMA CAP PREMIUM*\n\n` +
-      `Sistema exclusivo para cambiar el estado de acceso de varias funciones a la vez a Premium.\n\n` +
+      `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+      `┃ 💎 *SISTEMA CAP PREMIUM*\n` +
+      `╰━━━━━━━━━━━━╯\n\n` +
+      `╰┈➤ Sistema exclusivo para cambiar el estado de acceso de varias funciones a la vez a Premium.\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}limite_premium <nombre_función1> <nombre_función2> ...* — Pueden ser varias a la vez\n\n` +
       `*EJEMPLO DE USO:*\n` +
@@ -55,7 +57,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   
-  let msg = `✅ *ESTADO CAMBIADO CON ÉXITO*\n\n`;
+  let msg = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *ESTADO CAMBIADO CON ÉXITO*\n╰━━━━━━━━━━━━╯\n\n`;
   if (successList.length > 0) {
     msg += `*Exitosos (PREMIUM 💎):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
@@ -63,7 +65,8 @@ async function handler(m, { sock }) {
     msg += `*Fallidos (No encontrados):*\n${failedList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
   
-  msg += `_Las funciones de arriba (las exitosas) ahora solo pueden ser usadas por miembros Premium._`;
+  msg += `_Las funciones de arriba (las exitosas) ahora solo pueden ser usadas por miembros Premium._\n`;
+  msg += `✦────────✦`;
   
   return m.reply(msg.trim());
 }

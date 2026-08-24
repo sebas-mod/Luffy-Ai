@@ -62,13 +62,13 @@ async function handler(m, { sock }) {
 
         await sock.sendTable(
             m.chat,
-            'Distribución de Funciones',
+            '📊 Distribución de Funciones',
             ['Categoría', 'Cantidad', 'Porcentaje'],
             tableData,
             m,
             {
-                headerText: `Total: ${total} | Activos: ${enabled} | Categorías: ${sorted.length}`,
-                footer: `Total de ${total} funciones disponibles`
+                headerText: `╭━━━〔 📊 FUNCIONES 〕━━━╮\n\n✦ Total: ${total} ✦ Activos: ${enabled} ✦ Categorías: ${sorted.length}`,
+                footer: `ꕥ Un total de ${total} funciones disponibles`
             }
         )
 

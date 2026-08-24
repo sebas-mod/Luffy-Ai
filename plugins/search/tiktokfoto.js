@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`📸 *BÚSQUEDA DE FOTOS TIKTOK*\n\n> Ejemplo:\n\`${m.prefix}tiktokfoto cosplay\``)
+        return m.reply(`╰┈➤ 📸 *BÚSQUEDA DE FOTOS TIKTOK*\n\n> Ejemplo:\n\`${m.prefix}tiktokfoto cosplay\``)
     }
 
     m.react('🔍')
@@ -68,19 +68,19 @@ async function handler(m, { sock }) {
 
         if (!post || images.length === 0) {
             m.react('❌')
-            return m.reply(`❌ No se encontraron fotos de TikTok para: ${query}`)
+            return m.reply(`╰┈➤ ❌ No se encontraron fotos de TikTok para: ${query}`)
         }
 
         let caption = '📸 *BÚSQUEDA DE FOTOS TIKTOK*\n\n'
-        caption += `🔎 *Consulta:* ${result.query || query}\n`
-        caption += `📌 *Título:* ${trimText(post.title || post.description)}\n`
-        caption += `👤 *Autor:* ${post.author?.nickname || '-'}\n`
-        caption += `🌍 *Región:* ${post.region || '-'}\n`
-        caption += `🖼️ *Fotos:* ${post.image_count || images.length}\n`
-        caption += `❤️ *Like:* ${formatNumber(post.stats?.like)}\n`
-        caption += `💬 *Comment:* ${formatNumber(post.stats?.comment)}\n`
-        caption += `🔁 *Share:* ${formatNumber(post.stats?.share)}\n`
-        caption += `🆔 *ID:* ${post.id || '-'}\n\n`
+        caption += `╰┈➤ 🔎 *Consulta:* ${result.query || query}\n`
+        caption += `╰┈➤ 📌 *Título:* ${trimText(post.title || post.description)}\n`
+        caption += `╰┈➤ 👤 *Autor:* ${post.author?.nickname || '-'}\n`
+        caption += `╰┈➤ 🌍 *Región:* ${post.region || '-'}\n`
+        caption += `╰┈➤ 🖼️ *Fotos:* ${post.image_count || images.length}\n`
+        caption += `╰┈➤ ❤️ *Like:* ${formatNumber(post.stats?.like)}\n`
+        caption += `╰┈➤ 💬 *Comment:* ${formatNumber(post.stats?.comment)}\n`
+        caption += `╰┈➤ 🔁 *Share:* ${formatNumber(post.stats?.share)}\n`
+        caption += `──────────\n🆔 *ID:* ${post.id || '-'}\n\n`
         caption += `📝 ${trimText(post.description || post.title, 220)}`
 
         await m.reply(caption)

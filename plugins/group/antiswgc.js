@@ -40,17 +40,17 @@ async function handler(m, { db }) {
 
     if (action === 'on') {
         db.setGroup(m.chat, { ...group, antiswgc: 'on' })
-        await m.reply('✅ *AntiSWGC activo*\n\n> Las menciones tipo SW group se eliminarán automáticamente.')
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+'✅ *AntiSWGC activo*\n\n> Las menciones tipo SW group se eliminarán automáticamente.'+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...group, antiswgc: 'off' })
-        await m.reply('❌ *AntiSWGC inactivo*')
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ *AntiSWGC inactivo*'+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
-    await m.reply('❌ Usa: on u off')
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ Usa: on u off'+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler }

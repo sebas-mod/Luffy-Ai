@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`❌ No se encontraron videos para: ${query}`);
+      return m.reply(`╰┈➤ ❌ No se encontraron videos para: ${query}`);
     }
 
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];

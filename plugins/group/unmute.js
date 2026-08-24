@@ -22,10 +22,10 @@ function handler(m, { sock }) {
     const group = db.getGroup(m.chat) || {}
     const groupName = m.groupMetadata.subject
 
-    if (!group.mute) return m.reply('❌ El grupo no está silenciado.')
+    if (!group.mute) return m.reply("╰┈➤ "+'❌ El grupo no está silenciado.')
 
     db.setGroup(m.chat, { ...group, mute: false })
-    m.reply(`✅ El grupo *${groupName}* fue desilenciado por @${m.sender.split('@')[0]}\n\nTodos los miembros ahora pueden enviar mensajes.`, { mentions: [m.sender] })
+    m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ El grupo *${groupName}* fue desilenciado por @${m.sender.split('@')[0]}\n\nTodos los miembros ahora pueden enviar mensajes.`+"\n╰━━━━━━━━━━━━╯", { mentions: [m.sender] })
 }
 
 export { pluginConfig as config, handler }

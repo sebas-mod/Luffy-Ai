@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply(`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`)
+            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`+"\n╰━━━━━━━━━━━━╯")
         }
 
         let txt = `🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n╭┈┈⬡「 📋 *ʟɪsᴛᴀ* 」\n`
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} no está silenciado`, { mentions: [targetJid] })
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} no está silenciado`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)

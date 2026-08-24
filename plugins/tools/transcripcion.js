@@ -50,18 +50,18 @@ async function handler(m, { sock }) {
     const isAudio = quoted.type === 'audioMessage' || /audio/.test(quoted.mimetype || '');
     if (!isAudio) {
         return m.reply(
-            `🎤 *ᴛʀᴀɴsᴄʀɪᴘᴄɪᴏɴ*\n\n` +
+            `╭━━━〔 🎤 ᴛʀᴀɴsᴄʀɪᴘᴄɪᴏɴ 〕━━━╮\n\n` +
             `> Responde una nota de voz o audio para convertirlo a texto\n` +
-            `> Ejemplo: responde un VN → escribe \`${m.prefix}transcripcion\``
+            `> Ejemplo: responde un VN → escribe \`${m.prefix}transcripcion\`\n\n╰━━━━━━━━━━━━╯`
         );
     }
     const groqKey = config.APIkey?.groq;
     if (!groqKey) {
         return m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
             `> La API Key de Groq aún no está configurada\n` +
             `> Configúrala en config.js → APIkey.groq\n` +
-            `> Es gratuita en https://console.groq.com`
+            `> Es gratuita en https://console.groq.com\n\n╰━━━━━━━━━━━━╯`
         );
     }
     m.react('🎤');

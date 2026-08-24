@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
 
     if (!buffer) {
-      return m.reply("❌ Error al descargar el media. Inténtalo de nuevo.");
+      return m.reply("╰┈➤ ❌ Error al descargar el media. Inténtalo de nuevo.");
     }
 
     const fileType = await fileTypeFromBuffer(buffer);
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
         ptt: m.quoted?.ptt || m.ptt || false,
       };
     } else {
-      return m.reply("❌ Formato de media no soportado para SW GC.");
+      return m.reply("╰┈➤ ❌ Formato de media no soportado para SW GC.");
     }
   } else if (text) {
     rawContent = { text: text };
@@ -95,10 +95,10 @@ async function handler(m, { sock }) {
 
     if (groupIds.length === 0) {
       await m.react("❌");
-      return m.reply("❌ El bot no está en ningún grupo.");
+      return m.reply("╰┈➤ ❌ El bot no está en ningún grupo.");
     }
 
-    await m.reply(`⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.`);
+    await m.reply(`👑•─────•👑\n⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.\n✦────────✦`);
 
     let successCount = 0;
     let failCount = 0;

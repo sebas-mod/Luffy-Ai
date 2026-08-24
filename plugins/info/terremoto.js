@@ -32,17 +32,19 @@ async function handler(m, { sock }) {
       : null;
 
     const text =
+      `╭━━━〔 🌊 SISMO 〕━━━╮\n\n` +
       `🌍 *Info del Terremoto Reciente — BMKG*\n\n` +
-      `> 📅 Fecha: *${g.Tanggal}*\n` +
-      `> 🕐 Hora: *${g.Jam}*\n` +
-      `> 📐 Coordenadas: *${g.Coordinates}*\n` +
-      `> 📍 Latitud: *${g.Lintang}*\n` +
-      `> 📍 Longitud: *${g.Bujur}*\n` +
-      `> 💥 Magnitud: *${g.Magnitude}*\n` +
-      `> 🔽 Profundidad: *${g.Kedalaman}*\n` +
-      `> 🗺️ Zona: *${g.Wilayah}*\n` +
-      `> ⚠️ Potencial: *${g.Potensi}*\n` +
-      `> 🏠 Sentido: *${g.Dirasakan}*\n\n` +
+      `┃ 📅 Fecha: *${g.Tanggal}*\n` +
+      `┃ 🕐 Hora: *${g.Jam}*\n` +
+      `┃ 📐 Coordenadas: *${g.Coordinates}*\n` +
+      `┃ 📍 Latitud: *${g.Lintang}*\n` +
+      `┃ 📍 Longitud: *${g.Bujur}*\n` +
+      `┃ 💥 Magnitud: *${g.Magnitude}*\n` +
+      `┃ 🔽 Profundidad: *${g.Kedalaman}*\n` +
+      `┃ 🗺️ Zona: *${g.Wilayah}*\n` +
+      `┃ ⚠️ Potencial: *${g.Potensi}*\n` +
+      `┃ 🏠 Sentido: *${g.Dirasakan}*\n` +
+      `╰━━━━━━━━━━━━╯\n\n` +
       `_Fuente: BMKG Indonesia_`;
 
     await m.react("✅");

@@ -46,10 +46,10 @@ function handler(m) {
 
     if (subCmd === 'off') {
         db.setting('cmdVn', false)
-        return m.reply(`❌ CMD VN *desactivado*. Comandos por texto normal.`)
+        return m.reply(`╭━━━〔 👑 OWNER 〕━━━╮\n┃ ❌ CMD VN *desactivado*. Comandos por texto normal.\n╰━━━━━━━━━━━━╯`)
     }
 
-    return m.reply(`❌ Usa \`${m.prefix}cmdvn on\` o \`${m.prefix}cmdvn off\``)
+    return m.reply(`╭━━━〔 👑 OWNER 〕━━━╮\n┃ ❌ Usa \`${m.prefix}cmdvn on\` o \`${m.prefix}cmdvn off\`\n╰━━━━━━━━━━━━╯`)
 }
 
 export { pluginConfig as config, handler }

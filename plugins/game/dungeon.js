@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
         };
         db.save();
 
-        let txt = `🏰 *LOBBY DE LA MAZMORRA*\n\n`;
+        let txt = `╭━━━〔 🏰 〕━━━╮\n  *LOBBY DE LA MAZMORRA* 🏰\n╰━━━━━━━━━━━━╯\n\n`;
         txt += `📊 *Tus Estadísticas:*\n`;
         txt += `> Nivel: *${userLevel}*\n`;
         txt += `> Stamina: *${user.rpg.stamina ?? 100}/100*\n\n`;
@@ -289,7 +289,7 @@ async function dungeonAnswerHandler(m, sock) {
         db.save();
 
         await m.react("🚪");
-        let txt = `🚪 *ENTRANDO A LA MAZMORRA*\n\n`;
+        let txt = `┈┈┈┈┈┈┈┈┈┈\n🚪 *ENTRANDO A LA MAZMORRA* 🚪\n┈┈┈┈┈┈┈┈┈┈\n\n`;
         txt += `Te adentras lentamente en *${dungeon.name}*...\n`;
         txt += `> ⚡ Stamina reducida *${staminaCost}*\n\n`;
         txt += `De repente, un *👹 ${monster}* surge de la oscuridad y bloquea tu camino!\n\n`;
@@ -334,7 +334,7 @@ async function dungeonAnswerHandler(m, sock) {
 
                 reportText += `🎉 *¡VICTORIA GLORIOSA!*\n\n`;
                 reportText += `Con un ataque mortal, ¡lograste acabar con *${session.monster}*!\n\n`;
-                reportText += `*🎁 RECOMPENSAS OBTENIDAS:*\n`;
+                reportText += `*🎁 RECOMPENSAS OBTENIDAS:*\n⚡•───•⚡\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;
                 reportText += `> 💰 Berry: *+${goldReward.toLocaleString()}*\n`;
 
@@ -349,7 +349,7 @@ async function dungeonAnswerHandler(m, sock) {
                 user.berry = Math.max(0, (user.berry || 0) - goldLoss);
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - 40);
 
-                reportText += `💀 *¡DERROTA TRÁGICA!*\n\n`;
+                reportText += `☠︎━━━━━━☠︎\n💀 *¡DERROTA TRÁGICA!*\n\n`;
                 reportText += `¡Tu fuerza no es suficiente! *${session.monster}* te hizo retroceder de manera contundente.\n`;
                 reportText += `Lograste arrastrarte para salir con el cuerpo lleno de heridas.\n\n`;
                 reportText += `*💔 PÉRDIDAS:*\n`;

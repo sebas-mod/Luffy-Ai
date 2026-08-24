@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
   const isEnable = args === "on";
 
   if (group.rpg === isEnable) {
-    return m.reply(`⚔️ La función RPG ya está *${isEnable ? "ACTIVA" : "INACTIVA"}* en este grupo.`);
+    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`⚔️ La función RPG ya está *${isEnable ? "ACTIVA" : "INACTIVA"}* en este grupo.`+"\n╰━━━━━━━━━━━━╯");
   }
 
   group.rpg = isEnable;

@@ -340,7 +340,7 @@ async function handler(m, { sock }) {
 
       await m.react("🐺");
       await m.reply(
-        `🐺 *WEREWOLF GAME*\n\n` +
+        `╭━━━〔 🐺 〕━━━╮\n🐺 *WEREWOLF GAME* 🐺\n╰━━━━━━━━━━━━╯\n\n` +
           `¡Sala creada!\n\n` +
           `╭┈┈⬡「 📋 *INFO DE LA SALA* 」\n` +
           `┃ 👑 Host: @${m.sender.split("@")[0]}\n` +
@@ -480,7 +480,7 @@ async function handler(m, { sock }) {
 
       await m.react("🌙");
       await m.reply(
-        `🐺 *¡PARTIDA INICIADA!*\n\n` +
+        `🌙 ──────────\n🐺 *¡PARTIDA INICIADA!* 🌙\n\n` +
           `🌙 *Noche - Día 1*\n\n` +
           `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
           `${playerList
@@ -906,7 +906,7 @@ async function executeVote(chatId, sock, db, prefix) {
     }
   }
 
-  let resultText = `⚖️ *RESULTADO DE LA VOTACIÓN*\n\n`;
+  let resultText = `⚖️ ──────────\n*RESULTADO DE LA VOTACIÓN*\n──────────\n\n`;
 
   if (isTie || maxVotes === 0) {
     resultText += `🤷 ¡Nadie fue eliminado!\n`;
@@ -1028,7 +1028,7 @@ async function endGame(chatId, sock, db, winner) {
     .join("\n");
 
   const endText =
-    `🎉 *¡JUEGO TERMINADO!*\n\n` +
+    `꧁༺ 🏆 FIN DEL JUEGO ༻꧂\n──────────\n\n` +
     `${winner === "wolf" ? "🐺 *¡GANARON LOS WEREWOLF!*" : "👨‍🌾 *¡GANARON LOS VILLAGERS!*"}\n\n` +
     `╭┈┈⬡「 👥 *TODOS LOS JUGADORES* 」\n` +
     `${allPlayers

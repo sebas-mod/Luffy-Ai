@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `🎬 *Dailymotion Downloader*\n\n` +
+      `✦ • ─── • ✦\n🎬 *Dailymotion Downloader*\n──────────\n` +
         `Descarga videos de Dailymotion, se convierten automáticamente a MP4.\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}dailymotiondl <enlace>*\n\n` +
@@ -45,11 +45,11 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Dailymotion Falló*\n\n> ${result.error}`);
+      return m.reply(`✦ • ─── • ✦\n❌ *Dailymotion Falló*\n\n> ${result.error}`);
     }
 
     let caption =
-      `🎬 *Dailymotion*\n\n` +
+      `✦ • ─── • ✦\n🎬 *Dailymotion*\n──────────\n` +
       `> 📌 ${result.title}\n` +
       `> ⏱️ Duración: ${result.duration}\n` +
       `> 📺 Calidad: ${result.quality}`;
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Error al obtener los datos de Dailymotion, intenta de nuevo más tarde");
+    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de Dailymotion, intenta de nuevo más tarde");
   }
 }
 

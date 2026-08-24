@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
     const emojis = text.match(emojiRegex)
 
     if (!emojis || emojis.length < 2) {
-        return m.reply(`❌ ¡Ingresa al menos 2 emojis!\n\nEjemplo: ${m.prefix}emojimix 😂🔥`)
+        return m.reply(`✦ • ─── • ✦\n❌ ¡Ingresa al menos 2 emojis!\n──────────\n╰┈➤ Ejemplo: ${m.prefix}emojimix 😂🔥`)
     }
 
     const emoji1 = emojis[0]
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         const data = await f(apiUrl)
 
         if (!data.status || !data.data?.url) {
-            return m.reply(`❌ ¡No se encontró la combinación de emojis!\n\nPrueba con otros emojis.`)
+            return m.reply(`✦ • ─── • ✦\n❌ ¡No se encontró la combinación de emojis!\n\n╰┈➤ Prueba con otros emojis.`)
         }
 
         const imageUrl = data.data.url

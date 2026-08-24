@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ *Energía de @${targetJid.split('@')[0]} ahora ilimitada / sin límite*`,
+            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *Energía de @${targetJid.split('@')[0]} ahora ilimitada / sin límite*\n╰━━━━━━━━━━━━╯`,
             { mentions: [targetJid] }
         )
     } else {
@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `✅ Energía de *@${targetJid.split('@')[0]}* añadida con éxito por *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newCarne)}* de energía`,
+            `👑•─────•👑\n✅ Energía de *@${targetJid.split('@')[0]}* añadida con éxito por *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newCarne)}* de energía\n✦────────✦`,
             { mentions: [targetJid] }
         )
     }

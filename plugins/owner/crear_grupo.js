@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
     const durationStr = args[2] ? args[2].trim() : ''
 
     if (!name || name.length < 2) {
-        return m.reply('❌ ¡Vaya jefe, el nombre del grupo es muy corto! Mínimo 2 caracteres.')
+        return m.reply('╰┈➤ ❌ ¡Vaya jefe, el nombre del grupo es muy corto! Mínimo 2 caracteres.')
     }
 
     const participants = participantsStr
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         .map(n => n + '@s.whatsapp.net')
 
     if (participants.length === 0) {
-        return m.reply('❌ ¡Eh jefe, dónde están los números de los participantes? Introduce al menos 1 número.')
+        return m.reply('╰┈➤ ❌ ¡Eh jefe, dónde están los números de los participantes? Introduce al menos 1 número.')
     }
 
     let durationMs = 0
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
     } catch (err) {
         await m.react('❌')
-        return m.reply(`❌ ¡Lo siento jefe, falló la creación del grupo! 😭\nError: ${err.message}`)
+        return m.reply(`👑•─────•👑\n❌ ¡Lo siento jefe, falló la creación del grupo! 😭\nError: ${err.message}\n✦────────✦`)
     }
 }
 

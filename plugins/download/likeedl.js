@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
     }
     
     if (!url.match(/likee\.(video|com)/i)) {
-        return m.reply(`❌ URL no válida. Usa un enlace de Likee.`)
+        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de Likee.`)
     }
     
     await m.react('🕕')
@@ -38,13 +38,13 @@ async function handler(m, { sock }) {
         const data = await likee(url)
         
         if (!data) {
-            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Prueba con otro enlace.`)
         }
         
         const videoUrl = data.without_watermark || data.with_watermark
         
         if (!videoUrl) {
-            return m.reply(`❌ Video no encontrado.`)
+            return m.reply(`✦ • ─── • ✦\n❌ Video no encontrado.`)
         }
         
         await sock.sendMedia(m.chat, videoUrl, null, m, {

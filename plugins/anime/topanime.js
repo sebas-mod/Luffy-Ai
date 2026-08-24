@@ -29,20 +29,20 @@ async function handler(m, { sock }) {
 
     const list = data.result.result;
     
-    let txt = `🏆 *TOP ANIME CHARACTERS (WAIFU LIST)* 🏆\n\n`;
-    txt += `Esta es la lista de personajes más populares y queridos actualmente:\n\n`;
-    
+    let txt = `꒰ა ໒꒱ 🏆 *TOP ANIME CHARACTERS (WAIFU LIST)* ꒰ა ໒꒱\n\n`;
+    txt += `✿ Esta es la lista de personajes más populares y queridos actualmente:\n\n`;
+
     const maxItems = Math.min(list.length, 10);
-    
+
     for (let i = 0; i < maxItems; i++) {
       const char = list[i];
-      txt += `*${char.rank} - ${char.name}*\n`;
-      txt += `- *Japonés:* ${char.japanese}\n`;
-      txt += `- *Anime:* ${char.anime}\n`;
-      txt += `- *Favoritos:* ${char.favorites} | *Votos:* ${char.votes}\n\n`;
+      txt += `❀ *${char.rank} - ${char.name}*\n`;
+      txt += `✧ *Japonés:* ${char.japanese}\n`;
+      txt += `✧ *Anime:* ${char.anime}\n`;
+      txt += `✧ *Favoritos:* ${char.favorites} | *Votos:* ${char.votes}\n\n`;
     }
-    
-    txt += `_Mostrando los ${maxItems} personajes principales._`;
+
+    txt += `──────────\n_Mostrando los ${maxItems} personajes principales._`;
     
     await m.react("✅");
     

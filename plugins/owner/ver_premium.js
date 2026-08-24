@@ -45,13 +45,13 @@ async function handler(m) {
     const isConfigOwner = config.isOwner(targetNumber)
 
     if (!premData && !isConfigPrem && !isConfigOwner) {
-        return m.reply(`❌ @${targetNumber} no es premium`, { mentions: [jid] })
+        return m.reply(`╰┈➤ ❌ @${targetNumber} no es premium`, { mentions: [jid] })
     }
 
     const user = db.getUser(jid)
     const now = Date.now()
 
-    let txt = `💎 *DETALLES DEL PREMIUM*\n\n`
+    let txt = `╭━━━〔 💎 DETALLES DEL PREMIUM 〕━━━╮\n\n`
     txt += `👤 Usuario: @${targetNumber}\n`
 
     if (isConfigOwner) {
@@ -74,6 +74,7 @@ async function handler(m) {
         txt += `⭐ Exp: *${(user.exp ?? 0).toLocaleString('id-ID')}*\n`
         txt += `📊 Level: *${user.level ?? 1}*\n`
     }
+    txt += `\n💎•─────•💎\n`
 
     await m.reply(txt, { mentions: [jid] })
 }

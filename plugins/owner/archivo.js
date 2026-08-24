@@ -42,11 +42,11 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar todos a la vez (no hay lista de chats)`,
+        `👑•─────•👑\n📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar todos a la vez (no hay lista de chats)\n✦────────✦`,
       );
     } catch (err) {
       global.isFetchingGroups = false;
-      return m.reply(`❌ Falló: ${err.message}`);
+      return m.reply(`╰┈➤ ❌ Falló: ${err.message}`);
     }
   } else {
     if (m.mentionedJid?.length > 0) {
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
         : `📂 *ᴀʀᴄʜɪᴠᴏ ᴀʙɪᴇʀᴛᴏ*\n\n> Target: ${target}`,
     );
   } catch (err) {
-    return m.reply(`❌ Falló: ${err.message}`);
+    return m.reply(`╰┈➤ ❌ Falló: ${err.message}`);
   }
 }
 

@@ -42,7 +42,7 @@ async function handler(m) {
         db.save()
 
         const emblem = clan.emblem || '🏰'
-        return m.reply(`${emblem} El clan *${clan.name}* ha sido disuelto`)
+        return m.reply(`💥 ${emblem} El clan *${clan.name}* ha sido disuelto`)
     }
 
     clan.members = clan.members.filter(jid => jid !== m.sender)

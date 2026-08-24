@@ -96,7 +96,7 @@ function getSimilarPlugins(name, pluginsDir) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Owner Only!*");
+    return m.reply("╰┈➤ ❌ *Owner Only!*");
   }
 
   const pluginName = m.args?.[0]?.trim();

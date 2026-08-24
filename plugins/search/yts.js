@@ -22,7 +22,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
   if (!text) {
-    return m.reply("❌ *Vaya, la palabra clave está vacía!*\n\nDebes ingresar la palabra clave del título del video que quieres buscar. \n\nEjemplo de uso: `.yts lagu galau indonesia`");
+    return m.reply("╰┈➤ ❌ *Vaya, la palabra clave está vacía!*\n\nDebes ingresar la palabra clave del título del video que quieres buscar. \n\nEjemplo de uso: `.yts lagu galau indonesia`");
   }
 
   await m.react("🕕");
@@ -33,7 +33,7 @@ async function handler(m, { sock, text }) {
 
     if (!videos || videos.length === 0) {
       await m.react("❌");
-      return m.reply("⚠️ *Lo siento mucho, la búsqueda no encontró ningún resultado.* \n\nQuizás la palabra clave es demasiado específica. ¡Intenta con otra palabra clave más general!");
+      return m.reply("╰┈➤ ⚠️ *Lo siento mucho, la búsqueda no encontró ningún resultado.* \n\nQuizás la palabra clave es demasiado específica. ¡Intenta con otra palabra clave más general!");
     }
 
     const firstVideo = videos[0];
@@ -41,21 +41,25 @@ async function handler(m, { sock, text }) {
     const imageResponse = await axios.get(firstVideo.thumbnail, { responseType: "arraybuffer" });
     const thumbnailBuffer = await sharp(imageResponse.data).resize(300, 170).jpeg().toBuffer();
 
-    const contentText = `✨ *RESULTADOS DE BÚSQUEDA EN YOUTUBE* ✨
+    const contentText = `╭━━━〔 ✨ BÚSQUEDA EN YOUTUBE 〕━━━╮
 
-¡Hola! Este es el resultado principal que encontré con la palabra clave que diste. 
+╰┈➤ ¡Hola! Este es el resultado principal que encontré con la palabra clave que diste. 
 
+──────────
 🔎 *Palabra Clave de Búsqueda*: ${text}
-🎬 *Título del Video*: ${firstVideo.title}
-📺 *Nombre del Canal*: ${firstVideo.author.name}
-⏱️ *Duración del Video*: ${firstVideo.timestamp}
-👁️ *Número de Vistas*: ${firstVideo.views} vistas
-📅 *Fecha de Publicación*: ${firstVideo.ago}
-🔗 *Enlace del Video*: ${firstVideo.url}
+╰┈➤ 🎬 *Título del Video*: ${firstVideo.title}
+╰┈➤ 📺 *Nombre del Canal*: ${firstVideo.author.name}
+╰┈➤ ⏱️ *Duración del Video*: ${firstVideo.timestamp}
+╰┈➤ 👁️ *Número de Vistas*: ${firstVideo.views} vistas
+╰┈➤ 📅 *Fecha de Publicación*: ${firstVideo.ago}
+╰┈➤ 🔗 *Enlace del Video*: ${firstVideo.url}
 
+──────────
 *Nota Adicional*: La miniatura de este video ya está incrustada en la parte superior del mensaje (mapa de ubicación) según tu solicitud. ¿Genial, verdad? 😎
 
-¡Elige uno de los botones de abajo para descargar directamente el video o su audio!`;
+✧ ¡Elige uno de los botones de abajo para descargar directamente el video o su audio!
+
+╰━━━━━━━━━━━━╯`;
 
     const content = {
       buttonsMessage: {
@@ -92,7 +96,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error(error);
     await m.react("❌");
-    m.reply("😔 *Vaya, parece que hay un problema en mi sistema.* \n\nOcurrió un error al intentar buscar ese video en YouTube. Espera un momento e intenta de nuevo más tarde!");
+    m.reply("╰┈➤ 😔 *Vaya, parece que hay un problema en mi sistema.* \n\nOcurrió un error al intentar buscar ese video en YouTube. Espera un momento e intenta de nuevo más tarde!");
   }
 }
 

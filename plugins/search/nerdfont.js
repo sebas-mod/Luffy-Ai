@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
     await sock.sendMessage(
       m.chat,
       {
-        text: "Por favor elige la fuente que quieres descargar",
+        text: "✦────────✦\n╰┈➤ Por favor elige la fuente que quieres descargar\n✦────────✦",
         footer: "Haz clic en el botón de abajo",
         interactiveButtons: [
           {

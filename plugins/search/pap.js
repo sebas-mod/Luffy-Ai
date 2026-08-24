@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   const validTypes = ["cewe", "cowo", "femboy"];
 
   if (!arg || !validTypes.includes(arg)) {
-    return m.reply("❌ Elige uno de los tipos de pap disponibles: `cewe`, `cowo` o `femboy`.\n\nEjemplo: `.pap cewe`");
+    return m.reply("╰┈➤ ❌ Elige uno de los tipos de pap disponibles: `cewe`, `cowo` o `femboy`.\n\nEjemplo: `.pap cewe`");
   }
 
   await m.react("🕕");
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`❌ Vaya, no hay fotos de pap ${query} por ahora. Inténtalo de nuevo más tarde.`);
+      return m.reply(`╰┈➤ ❌ Vaya, no hay fotos de pap ${query} por ahora. Inténtalo de nuevo más tarde.`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("⚠️ Imagen no disponible.");
+      return m.reply("╰┈➤ ⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PAP Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Error al cargar el PAP. El servidor de Pinterest puede estar teniendo problemas.");
+    m.reply("╰┈➤ 😔 Error al cargar el PAP. El servidor de Pinterest puede estar teniendo problemas.");
   }
 }
 

@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
         const status = getFullSchedulerStatus();
         const db = getDatabase();
 
-        let text = `📊 *ᴇsᴛᴀᴅᴏ ᴅᴇʟ ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ*\n\n`;
+        let text = `╭━━━〔 ⚙️ SISTEMA 〕━━━╮\n┃ 📊 *ᴇsᴛᴀᴅᴏ ᴅᴇʟ ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ*\n╰━━━━━━━━━━━━╯\n\n`;
 
         for (const sched of status.schedulers) {
             const statusIcon = sched.running ? '✅' : '❌';
@@ -50,8 +50,8 @@ async function handler(m, { sock }) {
         text += `✅ Activos: ${status.summary.totalActive}\n`;
         text += `❌ Inactivos: ${status.summary.totalInactive}\n\n`;
 
-        text += `> Usa \`.stopschedule <key>\` para detener\n`;
-        text += `> Usa \`.startschedule <key>\` para iniciar`;
+        text += `╰┈➤ Usa \`.stopschedule <key>\` para detener\n`;
+        text += `╰┈➤ Usa \`.startschedule <key>\` para iniciar`;
 
         await m.reply(text);
     } catch (error) {

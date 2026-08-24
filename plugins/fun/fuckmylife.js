@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
             m.react('❌')
             return m.reply(`❌ Error al obtener la historia FML`)
         }    
-        await m.reply(data.data.text)
+        await m.reply(`💀 ──────────\n${data.data.text}\n──────────`)
         m.react('✅')
         
     } catch (err) {

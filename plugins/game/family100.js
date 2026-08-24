@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
       const answered = session.answered || [];
       const total = session.question.jawaban.length;
 
-      let text = `¡Vaya, la sesión de Family 100 sigue en curso! 😱✨\n\n`;
+      let text = `꧁༺ 👨‍👩‍👧‍👦 FAMILY 100 ༻꧂\n┈┈┈┈┈┈┈┈┈┈\n╰┈➤ ¡Vaya, la sesión sigue en curso! 😱✨\n\n`;
       text += `*${session.question.soal}*\n\n`;
       text += `Respondidas: *${answered.length} de ${total}*\n`;
       answered.forEach((ans, i) => {
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
 
   const total = question.jawaban.length;
 
-  let text = `¡Es hora de jugar *FAMILY 100*! 🎉✨\n\n`;
+  let text = `╭━━━〔 🎉 〕━━━╮\n  ¡Es hora de jugar *FAMILY 100*!\n╰━━━━━━━━━━━━╯\n\n`;
   text += `*Pregunta:* ${question.soal}\n\n`;
   text += `Total de Respuestas: *${total}* 📝\n`;
   for (let i = 0; i < total; i++) {
@@ -93,7 +93,7 @@ async function handler(m, { sock }) {
       (j) => !answered.includes(j.toLowerCase()),
     );
 
-    let timeoutText = `¡Qué pena, el tiempo se acabó! 😭😭⏱️\n\n`;
+    let timeoutText = `⏱️ ──────────\n¡Qué pena, el tiempo se acabó! 😭😭\n──────────\n\n`;
     timeoutText += `Acertaron *${answered.length}* de *${question.jawaban.length}* respuestas! ✨\n\n`;
     if (remaining.length > 0) {
       timeoutText += `Estas son las respuestas que se perdieron:\n`;
@@ -128,7 +128,7 @@ async function family100AnswerHandler(m, sock) {
       (j) => !answered.includes(j.toLowerCase()),
     );
 
-    let text = `¿O sea que se rinden? 🥺🏳️\n\n`;
+    let text = `🏳️ ──────────\n¿O sea que se rinden? 🥺\n\n`;
     text += `¡Pero ya habían acertado *${answered.length}* de *${session.question.jawaban.length}*! 👏\n\n`;
     if (remaining.length > 0) {
       text += `Te digo las respuestas restantes:\n`;
@@ -184,7 +184,7 @@ async function family100AnswerHandler(m, sock) {
         const participants = Object.values(session.answeredBy);
         const uniqueParticipants = [...new Set(participants)];
 
-        let text = `¡¡WOWWW INCREÍBLE! ¡Se acertaron todas las respuestas! 🎉🔥✨\n\n`;
+        let text = `꧁༺ 🏆 VICTORIA ༻꧂\n╰┈➤ ¡¡WOWWW INCREÍBLE! ¡Se acertaron todas las respuestas! 🎉🔥✨\n\n`;
         text += `*Pregunta:* ${session.question.soal}\n\n`;
         session.question.jawaban.forEach((ans, i) => {
           const who = session.answeredBy[ans.toLowerCase()];
@@ -197,7 +197,7 @@ async function family100AnswerHandler(m, sock) {
       }
 
       const total = session.question.jawaban.length;
-      let text = `¡Correctooooo! ✅🎉\n@${m.sender.split("@")[0]} gana *+${answerReward.exp} EXP* & *+${answerReward.berry} Berry*! 💸✨\n\n`;
+      let text = `✅ ──────────\n╰┈➤ ¡Correctooooo! 🎉\n@${m.sender.split("@")[0]} gana *+${answerReward.exp} EXP* & *+${answerReward.berry} Berry*! 💸✨\n\n`;
       text += `*Pregunta:* ${session.question.soal}\n\n`;
       session.question.jawaban.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());

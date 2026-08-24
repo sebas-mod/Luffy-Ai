@@ -385,7 +385,7 @@ async function runBroadcast(
       `> 👥 Destinos: *${groupIds.length}* ${mode === "channel" ? "canales" : "grupos"}\n` +
       `> ⏱️ Pausa: *${(jedaJpm / 1000).toFixed(1)} segundos*\n` +
       `> 📊 Estimado: *${Math.ceil((groupIds.length * jedaJpm) / 60000)} minutos*\n\n` +
-      `_Enviando a todos los destinos..._`,
+      `_Enviando a todos los destinos..._ 🚀`,
   );
 
   global.statusjpm = true;
@@ -446,7 +446,8 @@ async function runBroadcast(
   delete global.statusjpm;
   m.react("✅");
   await m.reply(
-    `✅ *JPM ${modeLabel} Terminado!*\n\n` +
+    `──────────\n✅ *JPM ${modeLabel} Terminado!*\n` +
+      `──────────\n` +
       `> ✅ Exitosos: *${successCount}*\n` +
       `> ❌ Fallidos: *${failedCount}*\n` +
       `> 📊 Total: *${groupIds.length}*`,
@@ -459,22 +460,22 @@ function showHelp(m) {
     `📢 *JPM — Sistema de Broadcast Masivo*\n\n` +
       `Sistema completo para enviar mensajes a todos los grupos, canales o destinos específicos de forma automática o manual.\n\n` +
       `*CÓMO USAR:*\n` +
-      `> Escribe *${p}jpm* para abrir el menú interactivo\n` +
-      `> Puedes responder/enviar texto, foto, audio o video y luego escribir *${p}jpm*\n` +
-      `> Elige el modo de envío en los botones que aparecen\n\n` +
+      `› Escribe *${p}jpm* para abrir el menú interactivo\n` +
+      `› Puedes responder/enviar texto, foto, audio o video y luego escribir *${p}jpm*\n` +
+      `› Elige el modo de envío en los botones que aparecen\n\n` +
       `*MODOS DE BROADCAST:*\n` +
-      `> 📢 *JPM Basic* — Envía el mensaje a todos los grupos sin etiqueta\n` +
-      `> 👁️ *JPM Hidetag* — Envía el mensaje a todos los grupos, etiqueta oculta\n` +
-      `> 📺 *JPM Channel* — Envía el mensaje a todos los canales de newsletter\n` +
-      `> 🚀 *JPM Update* — Transmite changelog/actualización a todos los grupos\n` +
-      `> 🔄 *Auto JPM* — Configura el horario de transmisión automática según intervalo\n\n` +
+      `› 📢 *JPM Basic* — Envía el mensaje a todos los grupos sin etiqueta\n` +
+      `› 👁️ *JPM Hidetag* — Envía el mensaje a todos los grupos, etiqueta oculta\n` +
+      `› 📺 *JPM Channel* — Envía el mensaje a todos los canales de newsletter\n` +
+      `› 🚀 *JPM Update* — Transmite changelog/actualización a todos los grupos\n` +
+      `› 🔄 *Auto JPM* — Configura el horario de transmisión automática según intervalo\n\n` +
       `*CONFIGURACIÓN:*\n` +
-      `> ⏱️ *Configurar Delay* — Pausa entre envíos por grupo\n` +
-      `> 🚫 *Blacklist JPM* — Administra los grupos excluidos de JPM\n` +
-      `> 🚫 *Blacklist AutoJPM* — Administra los grupos excluidos de AutoJPM\n` +
-      `> ⏹️ *Stop JPM* — Detiene el JPM en curso\n\n` +
+      `› ⏱️ *Configurar Delay* — Pausa entre envíos por grupo\n` +
+      `› 🚫 *Blacklist JPM* — Administra los grupos excluidos de JPM\n` +
+      `› 🚫 *Blacklist AutoJPM* — Administra los grupos excluidos de AutoJPM\n` +
+      `› ⏹️ *Stop JPM* — Detiene el JPM en curso\n\n` +
       `*FORMATO DE INTERVALO:*\n` +
-      `> *10m* (10 minutos) • *1h* (1 hora) • *2h30m* (2 horas 30 minutos) • *1d* (1 día)`,
+      `› *10m* (10 minutos) • *1h* (1 hora) • *2h30m* (2 horas 30 minutos) • *1d* (1 día)`,
   );
 }
 

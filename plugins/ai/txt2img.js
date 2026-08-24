@@ -23,11 +23,13 @@ async function handler(m, { sock }) {
     const input = m.args.join(' ')
     if (!input) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🎨 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n` +
             `> Genera imágenes desde texto con IA\n\n` +
             `\`Ejemplo: ${m.prefix}txt2img beautiful sunset | anime\`\n\n` +
             `🎭 *sᴛʏʟᴇs*\n` +
-            `> \`${STYLES.join(', ')}\``
+            `> \`${STYLES.join(', ')}\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 

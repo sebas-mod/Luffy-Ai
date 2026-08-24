@@ -105,7 +105,8 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `💔 *¡UY, TEN PACIENCIA!* @${shooterJid.split("@")[0]}\n\n` +
+    `☠︎━━━━━━☠︎
+💔 *¡UY, TEN PACIENCIA!* @${shooterJid.split("@")[0]}\n\n` +
       `@${m.sender.split("@")[0]} rechazó a @${shooterJid.split("@")[0]} como su pareja\n\n` +
       `¡Ten paciencia, quedan muchos más! 😢`,
     { contextInfo: ctx },

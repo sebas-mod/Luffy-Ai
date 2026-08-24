@@ -113,11 +113,11 @@ async function handler(m, { sock }) {
 
     if (!downloadFn) {
         return m.reply(
-            `❌ *ᴇʀʀᴏʀ*\n\n` +
+            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
             `> No se detectó ningún sticker!\n\n` +
             `*Cómo usar:*\n` +
             `> 1. Envía un sticker + caption \`${m.prefix}tovideo\`\n` +
-            `> 2. Responde un sticker con \`${m.prefix}tovideo\``
+            `> 2. Responde un sticker con \`${m.prefix}tovideo\`\n\n╰━━━━━━━━━━━━╯`
         )
     }
 
@@ -128,7 +128,7 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se pudo descargar el sticker.`)
+            return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo descargar el sticker.`)
         }
 
         const animated = isAnimatedWebp(buffer)
@@ -138,7 +138,7 @@ async function handler(m, { sock }) {
             const pngBuffer = await sharp(buffer).png().toBuffer()
             await sock.sendMessage(m.chat, {
                 image: pngBuffer,
-                caption: `✅ *ᴇxɪᴛᴏsᴏ*\n\n> Sticker estático → imagen`
+                caption: `╰┈➤ ✅ *ᴇxɪᴛᴏsᴏ*\n\n> Sticker estático → imagen`
             }, { quoted: m })
             await m.react('✅')
             return
@@ -146,14 +146,14 @@ async function handler(m, { sock }) {
         const gifBuffer = await webpToGif(buffer)
         if (!gifBuffer) {
             await m.react('❌')
-            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El sticker no se puede convertir (no está animado)`)
+            return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> El sticker no se puede convertir (no está animado)`)
         }
 
         const mp4Buffer = await gifToMp4(gifBuffer)
 
         if (!mp4Buffer || mp4Buffer.length < 100) {
             await m.react('❌')
-            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El video de salida está vacío`)
+            return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> El video de salida está vacío`)
         }
 
         await sock.sendMedia(m.chat, mp4Buffer, null, m, {

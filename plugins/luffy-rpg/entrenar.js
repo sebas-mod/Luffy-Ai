@@ -48,16 +48,16 @@ function handler(m, { sock }) {
   const res = addExp(m.sender, exp);
   registrarProgreso(m.sender, "entrenar", 1);
 
-  let txt = `💪 *ENTRENAMIENTO COMPLETADO*\n\n`;
-  txt += `Sudaste pero valió la pena!\n\n`;
-  txt += `✨ *EXP:* +${exp}\n`;
-  if (res.subio) txt += `🎉 *¡SUBISTE DE NIVEL! Ahora eres nivel ${res.nivel}!*\n`;
+  let txt = `꧁༺ 💪 ENTRENAMIENTO ༻꧂\n\n`;
+  txt += `╰┈➤ Sudaste pero valió la pena!\n\n`;
+  txt += `✦ ✨ *EXP:* +${exp}\n`;
+  if (res.subio) txt += `👑 *¡SUBISTE DE NIVEL! Ahora eres nivel ${res.nivel}!*\n`;
 
   const stats = getStats(getUser(m.sender));
   txt += `\n⚔️ *Ataque:* ${stats.ataque}\n`;
   txt += `🛡️ *Defensa:* ${stats.defensa}\n`;
   txt += `💨 *Velocidad:* ${stats.velocidad}\n`;
-  txt += `\n> Sigue con *${m.prefix}explorar* o *${m.prefix}combate*.`;
+  txt += `\n╰┈➤ Sigue con *${m.prefix}explorar* o *${m.prefix}combate*.`;
 
   return m.reply(txt);
 }

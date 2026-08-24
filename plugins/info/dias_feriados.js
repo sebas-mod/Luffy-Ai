@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
     }
 
     const r = data.result;
-    let caption = `📅 *PRÓXIMOS DÍAS FESTIVOS Y NACIONALES* 📅\n\n`;
+    let caption = `╭━━━〔 🎏 FERIADOS 〕━━━╮\n\n📅 *PRÓXIMOS DÍAS FESTIVOS Y NACIONALES* 📅\n\n`;
 
     if (r.mendatang.hari_libur && r.mendatang.hari_libur.length > 0) {
-      caption += `*Próximos Días Festivos*\n`;
+      caption += `✦ *Próximos Días Festivos*\n`;
       r.mendatang.hari_libur.slice(0, 5).forEach(item => {
         caption += `- ${item.date}: ${item.event} (${item.daysUntil} días restantes)\n`;
       });
@@ -46,13 +46,13 @@ async function handler(m, { sock }) {
     }
 
     if (r.mendatang.event_nasional && r.mendatang.event_nasional.length > 0) {
-      caption += `*Próximos Feriados Nacionales*\n`;
+      caption += `✦ *Próximos Feriados Nacionales*\n`;
       r.mendatang.event_nasional.slice(0, 5).forEach(item => {
         caption += `- ${item.date}: ${item.event} (${item.daysUntil} días restantes)\n`;
       });
     }
 
-    await m.reply(caption.trim());
+    await m.reply(caption.trim() + "\n\n╰━━━━━━━━━━━━╯");
     await m.react("✅");
 
   } catch (error) {

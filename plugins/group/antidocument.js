@@ -58,25 +58,25 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antidocument ? '✅ ON' : '❌ OFF'
-        await m.reply(`📄 *AntiDocumento*\n\n> Estado: *${status}*\n\n> \`.antidocument on/off\``)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`📄 *AntiDocumento*\n\n> Estado: *${status}*\n\n> \`.antidocument on/off\``+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'on') {
         db.setGroup(m.chat, { antidocument: true })
         m.react('✅')
-        await m.reply(`✅ *AntiDocumento activado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *AntiDocumento activado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { antidocument: false })
         m.react('❌')
-        await m.reply(`❌ *AntiDocumento desactivado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *AntiDocumento desactivado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
-    await m.reply(`❌ Usa \`.antidocument on\` o \`.antidocument off\``)
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Usa \`.antidocument on\` o \`.antidocument off\``+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler, checkAntidocument }

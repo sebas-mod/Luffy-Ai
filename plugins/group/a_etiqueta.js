@@ -33,7 +33,7 @@ async function handler(m, { sock }) {
         const participants = m.groupMembers || []
         
         if (!participants || participants.length === 0) {
-            return m.reply(`❌ Error al obtener los datos de los miembros del grupo`)
+            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Error al obtener los datos de los miembros del grupo`+"\n╰━━━━━━━━━━━━╯")
         }
         
         const users = participants

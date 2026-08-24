@@ -84,13 +84,13 @@ async function handler(m, { sock }) {
       `╭┈┈⬡「 🎵 *ᴅᴇsᴄᴀʀɢᴀ ᴛɪᴋᴛᴏᴋ* 」
 ┃ ㊗ ᴜsᴏ: \`${m.prefix}ttmp3 <url>\`
 ╰┈┈⬡
-
-> Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
+──────────
+╰┈➤ Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
     );
   }
 
   if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-    return m.reply("❌ URL no válida. Usa un enlace de TikTok.");
+    return m.reply("✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de TikTok.");
   }
 
   m.react("🕕");

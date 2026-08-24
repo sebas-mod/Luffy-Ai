@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         }
         
         const text = res.data.text
-        await m.reply(text)
+        await m.reply(`✒️ ──────────\n${text}\n──────────`)
         m.react('✅')
         
     } catch (err) {

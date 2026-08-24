@@ -17,7 +17,7 @@ function handler(m, { sock }) {
     const text = m.text;
     
     if (!text) {
-        return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola|Este texto está oculto\``);
+        return m.reply(`╰┈➤ ⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola|Este texto está oculto\``);
     }
     
     let [l, r] = text.split('|');

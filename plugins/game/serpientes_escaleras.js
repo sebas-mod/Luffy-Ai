@@ -124,7 +124,7 @@ async function handler(m, { sock }) {
       await sendUT(
         sock,
         m.chat,
-        `🐍🎲 *SERPIENTES Y ESCALERAS*\n\n` +
+        `╭━━〔 🎲 〕━━╮\n🐍🎲 *SERPIENTES Y ESCALERAS* 🎲\n╰━━━━━━━━━━╯\n\n` +
         `¡Sala creada con éxito!\n\n` +
         `╭┈┈⬡「 📋 *INFO DE LA SALA* 」\n` +
         `┃ 👑 Host: @${m.sender.split("@")[0]}\n` +
@@ -534,7 +534,7 @@ async function answerHandler(m, sock) {
       await sock.sendMessage(m.chat, {
         image: boardImage,
         caption:
-          `🎉 *¡GANADOR!*\n\n` +
+          `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
           `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
           `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
           `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
@@ -548,7 +548,7 @@ async function answerHandler(m, sock) {
       await sendUT(
         sock,
         m.chat,
-        `🎉 *¡GANADOR!*\n\n` +
+        `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
         `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
         `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
         `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +

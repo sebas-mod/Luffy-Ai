@@ -218,23 +218,23 @@ async function handler(m, { sock }) {
 
   if (sub === "cancel" || sub === "cancelar") {
     if (!global.anticustomSessions.has(sessionKey)) {
-      await m.reply("⚠️ No hay ninguna sesión AntiCustom en curso.");
+      await m.reply("╰┈➤ "+"⚠️ No hay ninguna sesión AntiCustom en curso.");
       return;
     }
     clearSession(sessionKey);
-    await m.reply("✅ Sesión AntiCustom cancelada.");
+    await m.reply("╰┈➤ "+"✅ Sesión AntiCustom cancelada.");
     return;
   }
 
   if (sub === "on") {
     db.setGroup(m.chat, { anticustom: "on" });
-    await m.reply("✅ *AntiCustom activado*");
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"✅ *AntiCustom activado*"+"\n╰━━━━━━━━━━━━╯");
     return;
   }
 
   if (sub === "off") {
     db.setGroup(m.chat, { anticustom: "off" });
-    await m.reply("❌ *AntiCustom desactivado*");
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"❌ *AntiCustom desactivado*"+"\n╰━━━━━━━━━━━━╯");
     return;
   }
 
@@ -242,24 +242,24 @@ async function handler(m, { sock }) {
     const action = normalizeAction(args[1], "");
     if (!action) {
       await m.reply(
-        "❌ Usa: `.anticustom metode kick` o `.anticustom metode remove`",
+        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"❌ Usa: `.anticustom metode kick` o `.anticustom metode remove`"+"\n╰━━━━━━━━━━━━╯",
       );
       return;
     }
     db.setGroup(m.chat, { anticustom: "on", anticustomMode: action });
     await m.reply(
-      `✅ *El modo predeterminado de AntiCustom ahora es ${action.toUpperCase()}*`,
+      "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`✅ *El modo predeterminado de AntiCustom ahora es ${action.toUpperCase()}*`+"\n╰━━━━━━━━━━━━╯",
     );
     return;
   }
 
   if (sub === "list") {
     if (rules.length === 0) {
-      await m.reply("📋 Aún no hay reglas AntiCustom en este grupo.");
+      await m.reply("╰┈➤ "+"📋 Aún no hay reglas AntiCustom en este grupo.");
       return;
     }
     await m.reply(
-      `📋 *ʟɪsᴛᴀ ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n${rules.map(formatRule).join("\n\n")}`,
+      "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`📋 *ʟɪsᴛᴀ ᴀɴᴛɪᴄᴜsᴛᴏᴍ*\n\n${rules.map(formatRule).join("\n\n")}`+"\n╰━━━━━━━━━━━━╯",
     );
     return;
   }
@@ -267,7 +267,7 @@ async function handler(m, { sock }) {
   if (sub === "del" || sub === "delete" || sub === "remove") {
     const name = args.slice(1).join(" ").trim().toLowerCase();
     if (!name) {
-      await m.reply("❌ Formato: `.anticustom del <título>`");
+      await m.reply("╰┈➤ "+"❌ Formato: `.anticustom del <título>`");
       return;
     }
 
@@ -282,17 +282,17 @@ async function handler(m, { sock }) {
     });
 
     if (nextRules.length === rules.length) {
-      await m.reply(`❌ No se encontró la regla con el título \`${name}\`.`);
+      await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ No se encontró la regla con el título \`${name}\`.`+"\n╰━━━━━━━━━━━━╯");
       return;
     }
 
     db.setGroup(m.chat, { anticustomRules: nextRules });
-    await m.reply(`✅ La regla con el título \`${name}\` fue eliminada.`);
+    await m.reply("╰┈➤ "+`✅ La regla con el título \`${name}\` fue eliminada.`);
     return;
   }
 
   await m.reply(
-    "❌ Subcomando no válido. Usa: on, off, list, add, del, metode, cancel",
+    "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"❌ Subcomando no válido. Usa: on, off, list, add, del, metode, cancel"+"\n╰━━━━━━━━━━━━╯",
   );
 }
 
@@ -315,7 +315,7 @@ async function replyHandler(m, { sock }) {
 
   if (session.step === "title") {
     if (text.length < 2 || text.length > 40) {
-      await m.reply("❌ El título debe tener entre 2 y 40 caracteres.");
+      await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"❌ El título debe tener entre 2 y 40 caracteres."+"\n╰━━━━━━━━━━━━╯");
       return true;
     }
 
@@ -365,7 +365,7 @@ async function replyHandler(m, { sock }) {
   if (session.step === "action") {
     const action = normalizeAction(text, "");
     if (!action) {
-      await m.reply("❌ Responde con `eliminar` o `kick`.");
+      await m.reply("╰┈➤ "+"❌ Responde con `eliminar` o `kick`.");
       return true;
     }
 
@@ -387,14 +387,14 @@ async function replyHandler(m, { sock }) {
     if (/^(cancelar|cancel|no|nop|tidak|nggak|ga|gak)$/i.test(text)) {
       clearSession(sessionKey);
       await m.reply(
-        "✅ Listo, sesión AntiCustom cancelada. Si quieres empezar de nuevo, escribe `.anticustom nuevo`.",
+        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"✅ Listo, sesión AntiCustom cancelada. Si quieres empezar de nuevo, escribe `.anticustom nuevo`."+"\n╰━━━━━━━━━━━━╯",
       );
       return true;
     }
 
     if (!/^(si|s|yes|y|oke|ok|setuju|gas|lanjut|sip|siap)$/i.test(text)) {
       await m.reply(
-        "❌ Responde con `si` para guardar o `cancelar` para cancelar.",
+        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+"❌ Responde con `si` para guardar o `cancelar` para cancelar."+"\n╰━━━━━━━━━━━━╯",
       );
       return true;
     }

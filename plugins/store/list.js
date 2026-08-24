@@ -56,16 +56,16 @@ async function handler(m, { sock }) {
     return m.reply(txt);
   }
 
-  let txt = `📋 *LISTA DE INFORMACIÓN DE LA TIENDA*\n\n`;
+  let txt = `╭━━━〔 📋 TIENDA 〕━━━╮\n\n📋 *LISTA DE INFORMACIÓN DE LA TIENDA*\n\n`;
   txt += `A continuación la información disponible actualmente 📝\n`;
   txt += `Escribe \`${m.prefix}list <numero>\` para ver el detalle.\n\n`;
 
   for (let i = 0; i < lists.length; i++) {
     const l = lists[i];
     const mediaIcon = l.image ? "🖼️" : l.video ? "🎬" : "📝";
-    txt += `*${i + 1}.* ${mediaIcon} *${l.name}*\n`;
+    txt += `*${String(i + 1).padStart(2, "0")} ›* ${mediaIcon} *${l.name}*\n`;
   }
-  txt += "\n";
+  txt += "\n╰━━━━━━━━━━━━╯\n";
 
   txt += `💡 _Escribe \`${m.prefix}list <numero>\` para leer el detalle de la información_`;
 

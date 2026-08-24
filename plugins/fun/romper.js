@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
     db.setUser(m.sender, senderData)
     await m.react('💔')
     await m.reply(
-        `💔 *¡ROMPIERON!*\n\n` +
+        `☠︎━━━━━━☠︎\n💔 *¡ROMPIERON!* 💔\n\n` +
         `@${m.sender.split('@')[0]} y @${exPartner.split('@')[0]} oficialmente terminaron su relación !!\n\n` +
         `¡Espero que encuentren algo mejor! 🙏`,
         { mentions: [m.sender, exPartner] }

@@ -22,14 +22,14 @@ async function handler(m, { sock }) {
         try {
             buffer = await m.quoted.download()
         } catch (e) {
-            await m.reply(`❌ Error al tomar la imagen.`)
+            await m.reply("╰┈➤ "+`❌ Error al tomar la imagen.`)
             return
         }
     } else if (m.isImage) {
         try {
             buffer = await m.download()
         } catch (e) {
-            await m.reply(`❌ Error al tomar la imagen.`)
+            await m.reply("╰┈➤ "+`❌ Error al tomar la imagen.`)
             return
         }
     }
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
     try {
         await sock.updateProfilePicture(m.chat, buffer)
         await m.reply(
-            `✅ La foto de perfil del grupo se actualizó correctamente!`
+            "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`✅ La foto de perfil del grupo se actualizó correctamente!`+"\n╰━━━━━━━━━━━━╯"
         )
     } catch (error) {
         await m.reply(

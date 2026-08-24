@@ -40,14 +40,14 @@ function handler(m, { sock }) {
   const accion = (args[0] || "tirar").toLowerCase();
 
   if (accion === "listar") {
-    let txt = `🎴 *PERSONAJES DISPONIBLES*\n\n`;
+    let txt = `╭━━〔 🎴 PERSONAJES DISPONIBLES 〕━━╮\n`;
     const chars = getCharacters();
     for (const c of chars) {
       const raro = RARIDAD_EMOJI[c.raro] || "🪙";
       const poseido = user.personajes.includes(c.id);
-      txt += `${poseido ? "✅" : "⬜"} ${raro} ${c.emoji} *${c.nombre}* — ${c.poder} poder\n`;
+      txt += `┃ ${poseido ? "✅" : "⬜"} ${raro} ${c.emoji} *${c.nombre}* — ${c.poder} poder\n`;
     }
-    txt += `\n> Tirar: *${m.prefix}personajes* (${PRECIO_TIRO} Berrys/tiro)`;
+    txt += `╰┈➤ Tirar: *${m.prefix}personajes* (${PRECIO_TIRO} Berrys/tiro)`;
     return m.reply(txt);
   }
 
@@ -79,17 +79,17 @@ function handler(m, { sock }) {
   });
   registrarProgreso(m.sender, "coleccionar", 1);
 
-  let txt = `🎴 *¡RESULTADO DEL GACHA!*\n\n`;
+  let txt = `꧁༺ 🎴 RESULTADO DEL GACHA ༻꧂\n\n`;
   txt += `${RARIDAD_EMOJI[personaje.raro] || "✨"} ${personaje.emoji} *${personaje.nombre}*\n`;
-  txt += `Poder: *${personaje.poder}*\n\n`;
-  txt += `${personaje.descripcion}\n\n`;
+  txt += `⚔️ Poder: *${personaje.poder}*\n\n`;
+  txt += `› _${personaje.descripcion}_\n\n`;
   if (repetido) {
     addBerrys(m.sender, 50);
     txt += `🔁 *¡Ya lo tenías!* Se convirtió en +50 Berrys.\n`;
   } else {
     txt += `🎉 *¡Nuevo personaje coleccionado!*\n`;
   }
-  txt += `\n> Ver colección: *${m.prefix}coleccion*`;
+  txt += `\n╰┈➤ Ver colección: *${m.prefix}coleccion*`;
 
   return m.reply(txt);
 }

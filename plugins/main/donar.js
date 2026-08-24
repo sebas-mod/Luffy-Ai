@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
     "Soporte prioritario",
   ];
 
-  let text = `DONA AL OWNER ${botName} 🙏`;
+  let text = `╭━━━〔 🙏 DONAR 〕━━━╮\n\nApoya el desarrollo de *${botName}* ✨\n\n`;
 
   if (payments.length > 0 || links.length > 0) {
-    text += `Pagos\n`;
+    text += `✦────────✦\n💳 *PAGOS*\n`;
     for (const pay of payments) {
       text += `🏦 *${pay.name
         ?.toLowerCase()
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
   }
   text += `\n`;
 
-  text += `_Cualquier donación es muy valiosa_\n`;
+  text += `✦────────✦\n_Cualquier donación es muy valiosa_\n`;
   text += `Contacto: @${config.owner?.number?.[0] || "owner"}`;
 
   const copyButtons = payments.map((pay) => ({

@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[TTP Maker]", err.message);
     await m.react("☢");
-    m.reply("😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de stickers. Inténtalo de nuevo en unos momentos.");
+    m.reply("✦ • ─── • ✦\n😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de stickers. Inténtalo de nuevo en unos momentos.\n──────────");
   }
 }
 

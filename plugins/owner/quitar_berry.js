@@ -44,21 +44,23 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `💰 *ʀᴇsᴛᴀʀ ʙᴇʀʀʏ*\n\n` +
-            `> \`.delberry <cantidad>\` - de ti mismo\n` +
-            `> \`.delberry <cantidad> @user\` - de un usuario\n\n` +
+            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `┃ 💰 *ʀᴇsᴛᴀʀ ʙᴇʀʀʏ*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `› \`.delberry <cantidad>\` - de ti mismo\n` +
+            `› \`.delberry <cantidad> @user\` - de un usuario\n\n` +
             `\`Ejemplo: ${m.prefix}quitar_berry 50000\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> La cantidad debe ser mayor que 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El usuario no existe en la base de datos`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ El usuario no existe en la base de datos`)
     }
     
     const newBerry = db.updateBerry(targetJid, -amount)

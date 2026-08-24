@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     );
   }
 
-  let txt = `🛍️ *LISTA DE PRODUCTOS*\n\n`;
+  let txt = `╭━━〔 💎 TIENDA 〕━━╮\n\n🛍️ *LISTA DE PRODUCTOS*\n\n`;
   txt += `Estos son los productos disponibles actualmente 🎉\n`;
   txt += `Para comprar, escribe \`${m.prefix}comprar <numero>\`\n\n`;
 
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
       ? `~~${formatPrice(p.originalPrice)}~~ `
       : "";
 
-    txt += `*${i + 1}.* ${typeIcon} ${p.name}\n`;
+    txt += `*${String(i + 1).padStart(2, "0")} ›* ${typeIcon} ${p.name}\n`;
     txt += `   💰 ${originalPriceStr}${priceStr}\n`;
     txt += `   📊 Stock: ${stockDisplay} ${statusIcon}\n`;
     txt += `   🏷️ Tipo: ${typeLabel}\n`;
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     txt += `\n`;
   }
 
-  txt += `💡 _Escribe \`${m.prefix}comprar <numero>\` para pedir el producto_`;
+  txt += `╰━━━━━━━━━━━━╯\n\n💡 _Escribe \`${m.prefix}comprar <numero>\` para pedir el producto_`;
 
   if (m.isGroup) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";

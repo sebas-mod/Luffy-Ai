@@ -21,9 +21,11 @@ function handler(m) {
     db.setting('botRules', null)
     
     m.reply(
-        `✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ʀᴇɪɴɪᴄɪᴀᴅᴀs*\n\n` +
-        `> ¡Las reglas del bot se reiniciaron al predeterminado!\n` +
-        `> Escribe \`${m.prefix}rules\` para verlas.`
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `┃ ✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ʀᴇɪɴɪᴄɪᴀᴅᴀs*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰┈➤ ¡Las reglas del bot se reiniciaron al predeterminado!\n` +
+        `› Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

@@ -20,16 +20,16 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
-    if (!isImage) return m.reply(`🖼️ *ᴄᴀᴍʙɪᴀʀ Luffy-Ai-PROMOTE.JPG*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/luffy-promote.jpg`)
+    if (!isImage) return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ Luffy-Ai-PROMOTE.JPG*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/luffy-promote.jpg\n✦────────✦`)
     try {
         let buffer = m.quoted && m.quoted.isMedia ? await m.quoted.download() : await m.download()
-        if (!buffer) return m.reply('❌ Error al descargar la imagen')
-        await m.reply(`⏳ Subiendo la imagen...`)
+        if (!buffer) return m.reply('╰┈➤ ❌ Error al descargar la imagen')
+        await m.reply(`╰┈➤ ⏳ Subiendo la imagen...`)
         try {
             const newUrl = await updateAssetUrl('luffy-promote', buffer, 'luffy-promote.jpg')
-            m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen luffy-promote.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!`)
+            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen luffy-promote.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n✦────────✦`)
         } catch (e) {
-            m.reply(`❌ Error al subir la imagen: ${e.message}`)
+            m.reply(`╰┈➤ ❌ Error al subir la imagen: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

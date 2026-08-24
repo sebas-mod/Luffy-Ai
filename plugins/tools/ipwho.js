@@ -22,20 +22,20 @@ async function handler(m, { sock }) {
 
   if (!ip) {
     return m.reply(
-      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
         `> \`${m.prefix}ipwho <ip>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}ipwho 8.8.8.8\``,
+        `> \`${m.prefix}ipwho 8.8.8.8\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) {
-    return m.reply(`❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`8.8.8.8\``);
+    return m.reply(`╰┈➤ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`8.8.8.8\``);
   }
 
   await m.react("🕕");
-  await m.reply(`🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇ ɪᴘ...*`);
+  await m.reply(`╰┈➤ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇ ɪᴘ...*`);
 
   try {
     const res = await fetch(`https://ipwho.is/${ip}`);
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (!data.success) {
       await m.react("❌");
-      return m.reply(`❌ *ɪᴘ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> IP ${ip} no válida`);
+      return m.reply(`╰┈➤ ❌ *ɪᴘ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> IP ${ip} no válida`);
     }
 
     if (data.latitude && data.longitude) {

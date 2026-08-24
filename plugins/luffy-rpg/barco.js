@@ -66,12 +66,14 @@ function handler(m, { sock }) {
 
     const stats = getStats(getUser(m.sender));
     return m.reply(
-      `🚢 *¡BARCO ADQUIRIDO!*\n\n` +
+      `╭━━━🚢━━━╮\n` +
+        `🚢 *¡BARCO ADQUIRIDO!*\n` +
         `${barco.emoji} *${barco.nombre}*\n` +
-        `_${barco.descripcion}_\n\n` +
+        `✦ _${barco.descripcion}_\n` +
+        `🌊 ⚓ 🌊\n` +
         `🛡️ *Tu defensa:* ${stats.defensa}\n` +
-        `❤️ *Tu salud máx:* ${stats.saludMax}\n\n` +
-        `¡Navega con *${m.prefix}viajar*!`,
+        `❤️ *Tu salud máx:* ${stats.saludMax}\n` +
+        `╰┈➤ ¡Navega con *${m.prefix}viajar*!`,
     );
   }
 

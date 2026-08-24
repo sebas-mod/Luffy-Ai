@@ -70,22 +70,22 @@ async function handler(m, { sock }) {
 
   if (!audioBuffer) {
     return m.reply(
-      `🎵 *¿ǫᴜᴇ ᴍᴜsɪᴄᴀ ᴇs ᴇsᴛᴀ?*\n\n` +
+      `╭━━━〔 🎵 ¿ǫᴜᴇ ᴍᴜsɪᴄᴀ ᴇs ᴇsᴛᴀ? 〕━━━╮\n\n` +
         `> Identifica la canción a partir del audio\n\n` +
         `*Cómo usar:*\n` +
         `> Responde un audio con \`${m.prefix}que_musica\`\n` +
-        `> O envía un audio + caption con el comando`,
+        `> O envía un audio + caption con el comando\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
   m.react("🎵");
 
   try {
-    await m.reply("🕕 *sᴜʙɪᴇɴᴅᴏ...*\n\n> Subiendo audio...");
+    await m.reply("╰┈➤ 🕕 *sᴜʙɪᴇɴᴅᴏ...*\n\n> Subiendo audio...");
 
     const audioUrl = await uploadTo0x0(audioBuffer, filename);
 
-    await m.reply("🔍 *ɪᴅᴇɴᴛɪғɪᴄᴀɴᴅᴏ...*\n\n> Buscando información de la canción...");
+    await m.reply("╰┈➤ 🔍 *ɪᴅᴇɴᴛɪғɪᴄᴀɴᴅᴏ...*\n\n> Buscando información de la canción...");
 
     const data = await ourinApi.neoxr.whatMusic(
       {
@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply("❌ *ᴇʀʀᴏʀ*\n\n> Canción no reconocida o error de API");
+      return m.reply("╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> Canción no reconocida o error de API");
     }
 
     const music = data.data;

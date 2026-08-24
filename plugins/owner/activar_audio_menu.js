@@ -33,25 +33,25 @@ async function handler(m, { sock, db }) {
 
     if (option === 'si' || option === 'on' || option === '1' || option === 'activo') {
         if (current) {
-            return m.reply(`⚠️ El audio del menú ya está activo!`)
+            return m.reply(`╰┈➤ ⚠️ El audio del menú ya está activo!`)
         }
         db.setting('audioMenu', true)
         await db.save()
         await m.react('✅')
-        return m.reply(`✅ Audio del menú *activado*!\n\n> Ahora cuando alguien escriba \`.menu\`, el audio aparecerá.`)
+        return m.reply(`👑•─────•👑\n✅ Audio del menú *activado*!\n\n> Ahora cuando alguien escriba \`.menu\`, el audio aparecerá.\n✦────────✦`)
     }
 
     if (option === 'no' || option === 'off' || option === '0' || option === 'inactivo') {
         if (!current) {
-            return m.reply(`⚠️ El audio del menú ya está inactivo!`)
+            return m.reply(`╰┈➤ ⚠️ El audio del menú ya está inactivo!`)
         }
         db.setting('audioMenu', false)
         await db.save()
         await m.react('✅')
-        return m.reply(`❌ Audio del menú *desactivado*!\n\n> Ahora \`.menu\` no tendrá audio.`)
+        return m.reply(`👑•─────•👑\n❌ Audio del menú *desactivado*!\n\n> Ahora \`.menu\` no tendrá audio.\n✦────────✦`)
     }
 
-    return m.reply(`❌ ¡Opción no válida!\n\nUsa: \`si\` o \`no\``)
+    return m.reply(`👑•─────•👑\n❌ ¡Opción no válida!\n\nUsa: \`si\` o \`no\`\n✦────────✦`)
 }
 
 export { pluginConfig as config, handler }

@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     }
     const dbPath = path.join(process.cwd(), 'database', 'db.json')
     if (!fs.existsSync(dbPath)) {
-        return m.reply(`❌ ¡El archivo de la base de datos no existe!`)
+        return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ ¡El archivo de la base\n┃ de datos no existe! 📁\n╰━━━━━━━━╯`)
     }
     try {
         const stats = fs.statSync(dbPath)

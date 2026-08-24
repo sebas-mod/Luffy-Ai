@@ -61,17 +61,20 @@ async function handler(m) {
     const bar = expBar(clan.exp || 0, clan.level || 1)
 
     await m.reply(
-        `${emblem} *${clan.name}*\n` +
-        `${rank} · Level ${clan.level || 1}\n\n` +
-        `EXP  ${bar}\n\n` +
-        `┌ 👑 Líder · @${clan.leader.split('@')[0]}\n` +
-        `├ 👥 Miembros · ${clan.members.length}/50\n` +
-        `├ 🔓 Estado · ${clan.isOpen ? 'Abierto' : 'Cerrado'}\n` +
-        `└ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n\n` +
-        `⚔️ *Estadísticas de guerra*\n` +
-        `${clan.wins || 0}W · ${clan.losses || 0}L · ${winRate}% WR\n\n` +
-        `_${clan.description || 'Sin descripción'}_\n\n` +
-        `ID: \`${clan.id}\``,
+        `╭━━〔 ${emblem} ${clan.name} 〕━━╮\n` +
+        `┃ ${rank} · Level ${clan.level || 1}\n` +
+        `┃ EXP  ${bar}\n` +
+        `┃\n` +
+        `┃ 👑 Líder · @${clan.leader.split('@')[0]}\n` +
+        `┃ 👥 Miembros · ${clan.members.length}/50\n` +
+        `┃ 🔓 Estado · ${clan.isOpen ? 'Abierto' : 'Cerrado'}\n` +
+        `┃ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n` +
+        `┃\n` +
+        `┃ ⚔️ *Estadísticas de guerra*\n` +
+        `┃ ⚔️ ${clan.wins || 0}W · 🛡️ ${clan.losses || 0}L · ✦ ${winRate}% WR\n` +
+        `╰━━━━━━━━━━╯\n\n` +
+        `✦ _${clan.description || 'Sin descripción'}_\n\n` +
+        `🆔 ID: \`${clan.id}\``,
         { mentions: [clan.leader] }
     )
 }

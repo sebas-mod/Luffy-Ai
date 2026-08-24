@@ -50,19 +50,19 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el archivo no se pudo descargar.`);
+      return m.reply(`╰┈➤ Lo siento *${m.pushName}*, el proceso falló porque el archivo no se pudo descargar.`);
     }
   }
 
   if (!code || code.length < 50) {
-    return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el código es demasiado corto o no válido.`);
+    return m.reply(`╰┈➤ Lo siento *${m.pushName}*, el proceso falló porque el código es demasiado corto o no válido.`);
   }
 
   const hasExport = code.includes("module.exports") || code.includes("export ");
   const hasConfig = code.includes("pluginConfig") || code.includes("config");
   if (!hasExport || !hasConfig) {
     return m.reply(
-      `Lo siento *${m.pushName}*, el proceso falló porque el código no tiene un formato de plugin válido. Asegúrate de que tenga export y config.`
+      `╰┈➤ Lo siento *${m.pushName}*, el proceso falló porque el código no tiene un formato de plugin válido. Asegúrate de que tenga export y config.`
     );
   }
 
@@ -74,7 +74,7 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `Lo siento *${m.pushName}*, no pude detectar el nombre del plugin. Por favor, usa el comando con el formato .addplugin <nombre de archivo>.`
+      `╰┈➤ Lo siento *${m.pushName}*, no pude detectar el nombre del plugin. Por favor, usa el comando con el formato .addplugin <nombre de archivo>.`
     );
   }
 
@@ -84,7 +84,7 @@ async function handler(m, { sock }) {
   folderName = folderName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`Lo siento *${m.pushName}*, el proceso falló porque el nombre del archivo no es válido.`);
+    return m.reply(`╰┈➤ Lo siento *${m.pushName}*, el proceso falló porque el nombre del archivo no es válido.`);
   }
 
   await m.react("🕕");

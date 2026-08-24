@@ -32,7 +32,7 @@ function sleep(ms) {
 async function handler(m, { sock }) {
     await m.react('🎩')
 
-    const sent = await m.reply(`🎩✨ *ᴇsᴘᴇᴄᴛᴀ́ᴄᴜʟᴏ ᴅᴇ ᴍᴀɢɪᴀ*\n\n` +
+    const sent = await m.reply(`╭━━━〔 🎩 〕━━━╮\n🎩✨ *ᴇsᴘᴇᴄᴛᴀ́ᴄᴜʟᴏ ᴅᴇ ᴍᴀɢɪᴀ* ✨\n╰━━━━━━━━━━━━╯\n\n` +
             `¿A quién quieres hacer desaparecer?\n\n` +
             `> Responde a este mensaje + menciona a la persona`)
 
@@ -113,7 +113,7 @@ async function replyHandler(m, sock) {
 
         const line = successLines[Math.floor(Math.random() * successLines.length)]
         await sock.sendMessage(m.chat, {
-            text: `${line}\n\n` +
+            text: `${line}\n⚡•───•⚡\n\n` +
                 `🎯 @${targetNumber} ha desaparecido!\n` +
                 `🎩 Mago: @${senderNumber}\n\n` +
                 `> _Espectáculo terminado~_ ✨`,

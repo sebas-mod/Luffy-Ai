@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
         };
         db.save();
 
-        let txt = `⛩️ *LOBBY SHINOBI*\n\n`;
+        let txt = `╭━━━〔 ⛩️ 〕━━━╮\n  *LOBBY SHINOBI* ⛩️\n╰━━━━━━━━━━━━╯\n\n`;
         txt += `📊 *Estadísticas del Shinobi:*\n`;
         txt += `> Nivel: *${userLevel}*\n`;
         txt += `> Stamina: *${user.rpg.stamina ?? 100}/100*\n\n`;
@@ -275,7 +275,7 @@ async function kyubigameAnswerHandler(m, sock) {
         db.save();
 
         await m.react("⛩️");
-        let txt = `⛩️ *ENTRANDO AL ÁREA DE LA MISIÓN*\n\n`;
+        let txt = `┈┈┈┈┈┈┈┈┈┈\n⛩️ *ENTRANDO AL ÁREA DE LA MISIÓN*\n┈┈┈┈┈┈┈┈┈┈\n\n`;
         txt += `Te desplazas lentamente hacia *${location.name}*...\n`;
         txt += `> ⚡ Stamina reducida *${staminaCost}*\n\n`;
         txt += `De repente, un *👹 ${monster}* se abalanza desde la oscuridad y bloquea tu camino!\n\n`;
@@ -318,9 +318,9 @@ async function kyubigameAnswerHandler(m, sock) {
                 user.berry = (user.berry || 0) + ryoReward;
                 await addExpWithLevelCheck(sock, m, db, user, expReward);
 
-                reportText += `🎉 *¡MISIÓN CUMPLIDA!*\n\n`;
+                reportText += `꧁༺ 🏆 VICTORIA ༻꧂\n╰┈➤ *¡MISIÓN CUMPLIDA!*\n\n`;
                 reportText += `Con un jutsu mortal, ¡lograste derrotar a *${session.monster}*!\n\n`;
-                reportText += `*🎁 RECOMPENSA POR COMPLETAR LA MISIÓN:*\n`;
+                reportText += `*🎁 RECOMPENSA POR COMPLETAR LA MISIÓN:*\n⚡•───•⚡\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;
                 reportText += `> 💰 Ryo (Berry): *+${ryoReward.toLocaleString()}*\n`;
 
@@ -335,7 +335,7 @@ async function kyubigameAnswerHandler(m, sock) {
                 user.berry = Math.max(0, (user.berry || 0) - ryoLoss);
                 user.rpg.health = Math.max(1, (user.rpg.health || 100) - 40);
 
-                reportText += `💀 *¡MISIÓN FALLIDA!*\n\n`;
+                reportText += `☠︎━━━━━━☠︎\n💀 *¡MISIÓN FALLIDA!*\n\n`;
                 reportText += `¡Tu fuerza no es suficiente! *${session.monster}* te hizo retroceder de manera contundente.\n`;
                 reportText += `Lograste usar el jutsu de sustitución y arrastrarte para salir con el cuerpo lleno de heridas.\n\n`;
                 reportText += `*💔 PÉRDIDAS:*\n`;

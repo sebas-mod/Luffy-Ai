@@ -189,7 +189,7 @@ async function handler(m, { sock }) {
   const query = m.args.join(" ") || m.text?.trim();
 
   if (!query) {
-    return m.reply("❌ Ingresa una palabra clave de búsqueda en Wikipedia.\n\nEjemplo: `.wikipedia Indonesia`");
+    return m.reply("╰┈➤ ❌ Ingresa una palabra clave de búsqueda en Wikipedia.\n\nEjemplo: `.wikipedia Indonesia`");
   }
 
   await m.react("🕕");
@@ -199,30 +199,30 @@ async function handler(m, { sock }) {
 
     if (!search.results.length) {
       await m.react("❌");
-      return m.reply(`⚠️ No se encontró ningún artículo sobre *${query}* en Wikipedia.`);
+      return m.reply(`╰┈➤ ⚠️ No se encontró ningún artículo sobre *${query}* en Wikipedia.`);
     }
 
     const first = search.results[0];
     const detail = await getFullArticle(first.title);
     const r = detail.article;
 
-    let text = `📚 *BÚSQUEDA EN WIKIPEDIA* 📚\n\n`;
-    text += `*Título:* ${r.Title}\n`;
-    if (r.Description) text += `*Descripción:* ${r.Description}\n`;
-    text += `\n*Resumen:*\n${r.Extract || "No hay resumen disponible."}\n\n`;
+    let text = `╭━━━〔 📚 BÚSQUEDA EN WIKIPEDIA 〕━━━╮\n\n`;
+    text += `╰┈➤ *Título:* ${r.Title}\n`;
+    if (r.Description) text += `╰┈➤ *Descripción:* ${r.Description}\n`;
+    text += `──────────\n*Resumen:*\n${r.Extract || "No hay resumen disponible."}\n\n`;
 
     if (Object.keys(r.Infobox).length > 0) {
-      text += `*Información Adicional:*\n`;
+      text += `──────────\n*Información Adicional:*\n`;
       let count = 0;
       for (const [key, val] of Object.entries(r.Infobox)) {
         if (count >= 5) break;
-        text += `- ${key}: ${val}\n`;
+        text += `╰┈➤ ${key}: ${val}\n`;
         count++;
       }
       text += `\n`;
     }
 
-    text += `\n🔗 *Más información:* ${r.Url}`;
+    text += `──────────\n🔗 *Más información:* ${r.Url}\n\n╰━━━━━━━━━━━━╯`;
 
     if (r.Images && r.Images.length > 0) {
       await sock.sendMessage(m.chat, {
@@ -238,7 +238,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Wikipedia Search]", error.message);
     await m.react("☢");
-    m.reply("😔 Ocurrió un error al buscar el artículo en Wikipedia.");
+    m.reply("╰┈➤ 😔 Ocurrió un error al buscar el artículo en Wikipedia.");
   }
 }
 

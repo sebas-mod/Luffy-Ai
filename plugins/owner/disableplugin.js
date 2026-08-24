@@ -67,13 +67,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`❌ ¡Plugin *${pluginName}* no encontrado!`);
+    return m.reply(`╰┈➤ ❌ ¡Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled === false) {
-    return m.reply(`⚠️ ¡El plugin *${pluginName}* ya está desactivado!`);
+    return m.reply(`╭━━━〔 👑 OWNER 〕━━━╮\n┃ ⚠️ ¡El plugin *${pluginName}* ya está desactivado!\n╰━━━━━━━━━━━━╯`);
   }
 
   try {

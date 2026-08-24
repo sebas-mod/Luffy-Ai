@@ -24,7 +24,7 @@ async function handler(m) {
   if (!option) {
     const saved = db.getUser(m.sender)?.tempmail;
     return m.reply(
-      `📧 *Temp Mail*\n\n` +
+      `╭━━━〔 📧 Temp Mail 〕━━━╮\n\n` +
         `Crea un email temporal que puede recibir mensajes, ideal para registrarte en cuentas sin dar tu email real.\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}tempmail create* — Crear un email nuevo\n` +
@@ -32,7 +32,7 @@ async function handler(m) {
         (saved
           ? `> Email activo: *${saved}*\n`
           : `> Aún no tienes email, escribe *${m.prefix}tempmail create* primero\n`) +
-        `\n_Este email es temporal y puede desaparecer en cualquier momento_`
+        `\n_Este email es temporal y puede desaparecer en cualquier momento_\n\n╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -42,7 +42,7 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Fallo al crear el email*\n\n> ${result.error}`);
+      return m.reply(`╰┈➤ ❌ *Fallo al crear el email*\n\n> ${result.error}`);
     }
 
     const userData = db.getUser(m.sender) || {};
@@ -51,11 +51,11 @@ async function handler(m) {
 
     m.react("✅");
     return m.reply(
-      `📧 *¡Email Temporal Creado!*\n\n` +
+      `╭━━━〔 📧 ¡Email Temporal Creado! 〕━━━╮\n\n` +
         `> 📬 Email: *${result.email}*\n\n` +
         `Ahora puedes usar este email para registrarte en lo que quieras.\n` +
         `Revisa los mensajes recibidos con *${m.prefix}tempmail inbox*\n\n` +
-        `_Este email es temporal, no lo uses para cosas importantes_`
+        `_Este email es temporal, no lo uses para cosas importantes_\n\n╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -64,9 +64,9 @@ async function handler(m) {
     if (!saved) {
       m.react("❌");
       return m.reply(
-        `❌ *No Hay Email*\n\n` +
+        `╭━━━〔 ❌ No Hay Email 〕━━━╮\n\n` +
           `Aún no has creado un email temporal.\n` +
-          `Escribe *${m.prefix}tempmail create* primero.`
+          `Escribe *${m.prefix}tempmail create* primero.\n\n╰━━━━━━━━━━━━╯`
       );
     }
 
@@ -75,15 +75,15 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *Fallo al revisar la bandeja de entrada*\n\n> ${result.error}`);
+      return m.reply(`╰┈➤ ❌ *Fallo al revisar la bandeja de entrada*\n\n> ${result.error}`);
     }
 
     if (result.count === 0) {
       m.react("📭");
       return m.reply(
-        `📭 *Bandeja de Entrada Vacía*\n\n` +
+        `╭━━━〔 📭 Bandeja de Entrada Vacía 〕━━━╮\n\n` +
           `> Email: *${saved}*\n\n` +
-          `Aún no hay mensajes. Intenta revisar más tarde.`
+          `Aún no hay mensajes. Intenta revisar más tarde.\n\n╰━━━━━━━━━━━━╯`
       );
     }
 
@@ -103,7 +103,7 @@ async function handler(m) {
   }
 
   return m.reply(
-    `❌ *Opción Inválida*\n\n> Usa *${m.prefix}tempmail create* o *${m.prefix}tempmail inbox*`
+    `╰┈➤ ❌ *Opción Inválida*\n──────────\n> Usa *${m.prefix}tempmail create* o *${m.prefix}tempmail inbox*`
   );
 }
 

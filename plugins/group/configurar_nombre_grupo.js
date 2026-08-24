@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
         await sock.groupUpdateSubject(m.chat, newName)
         
         await m.reply(
-            `✅ Se cambió el nombre del grupo a *${newName}*`
+            "╰┈➤ "+`✅ Se cambió el nombre del grupo a *${newName}*`
         )
     } catch (error) {
         await m.reply(

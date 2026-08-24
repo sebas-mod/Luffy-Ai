@@ -186,7 +186,7 @@ async function handler(m, { sock }) {
     const board = renderBoard(room.game.render());
 
     const txt =
-      `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
+      `꧁༺ 🎮 TIC TAC TOE ༻꧂\n──────────\n\n` +
       `¡Se encontró pareja!\n\n` +
       `❌ @${room.game.playerX.split("@")[0]}\n` +
       `⭕ @${room.game.playerO.split("@")[0]}\n\n` +
@@ -215,7 +215,7 @@ async function handler(m, { sock }) {
     await safeReact(m, "🕕");
     await safeReply(
       m,
-      `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
+      `꧁༺ 🎮 TIC TAC TOE ༻꧂\n──────────\n\n` +
         `¡Sala creada! Esperando pareja...\n\n` +
         `> Escribe \`.tictactoe${roomName ? " " + roomName : ""}\` para unirte\n` +
         `> La sala expirará en 5 minutos`,
@@ -262,7 +262,7 @@ async function answerHandler(m, sock) {
     await safeReact(m, "🏳️");
     await safeReply(
       m,
-      `🏳️ *¡SE RINDE!*\n\n` +
+      `🏳️ ──────────\n*¡SE RINDE!* 🏳️\n\n` +
         `@${loser.split("@")[0]} se rindió!\n` +
         `@${winner.split("@")[0]} gana! +Rp 500`,
       { mentions: [winner, loser] },
@@ -312,9 +312,9 @@ async function answerHandler(m, sock) {
     await safeReact(m, "🎉");
     await safeReply(
       m,
-      `🎉 *¡FIN DEL JUEGO!*\n\n` +
+      `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
         `${board}\n\n` +
-        `🏆 @${winner.split("@")[0]} gana! +Rp 1.000`,
+        `╰┈➤ 🏆 @${winner.split("@")[0]} gana! +Rp 1.000`,
       { mentions: [winner, loser] },
     );
 
@@ -326,7 +326,7 @@ async function answerHandler(m, sock) {
     await safeReact(m, "🤝");
     await safeReply(
       m,
-      `🤝 *¡EMPATE!*\n\n` + `${board}\n\n` + `> ¡No hay ganador!`,
+      `🤝 ──────────\n*¡EMPATE!* 🤝\n\n` + `${board}\n\n` + `> ¡No hay ganador!`,
       { mentions: [room.game.playerX, room.game.playerO] },
     );
 
@@ -337,7 +337,7 @@ async function answerHandler(m, sock) {
   // Continue game
   await safeReply(
     m,
-      `🎮 *ᴛɪᴄ ᴛᴀᴄ ᴛᴏᴇ*\n\n` +
+      `꧁༺ 🎮 TIC TAC TOE ༻꧂\n──────────\n\n` +
         `${board}\n\n` +
         `> Turno de: @${room.game.currentTurn.split("@")[0]}`,
     { mentions: [room.game.currentTurn] },

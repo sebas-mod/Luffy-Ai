@@ -49,7 +49,7 @@ function handler(m, { sock }) {
     
     if (option === 'on') {
         db.setGroup(m.chat, { antilinkgc: 'on' })
-        return m.reply(`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* activado!\n\n> Los enlaces de WhatsApp se eliminarán automáticamente.`)
+        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* activado!\n\n> Los enlaces de WhatsApp se eliminarán automáticamente.`+"\n╰━━━━━━━━━━━━╯")
     }
     
     if (option === 'off') {
@@ -61,26 +61,26 @@ function handler(m, { sock }) {
         const method = m.args?.[1]?.toLowerCase()
         if (method === 'kick') {
             db.setGroup(m.chat, { antilinkgc: 'on', antilinkgcMode: 'kick' })
-            return m.reply(`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo KICK activado!\n\n> El usuario que envíe un enlace de WhatsApp será expulsado.`)
+            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo KICK activado!\n\n> El usuario que envíe un enlace de WhatsApp será expulsado.`+"\n╰━━━━━━━━━━━━╯")
         } else if (method === 'remove' || method === 'delete') {
             db.setGroup(m.chat, { antilinkgc: 'on', antilinkgcMode: 'remove' })
-            return m.reply(`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo DELETE activado!\n\n> El mensaje con enlace de WhatsApp será eliminado.`)
+            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo DELETE activado!\n\n> El mensaje con enlace de WhatsApp será eliminado.`+"\n╰━━━━━━━━━━━━╯")
         } else {
-            return m.reply(`❌ ¡Método no válido! Usa: \`kick\` o \`remove\`\n\n> Ejemplo: \`${m.prefix}antienlace_grupo metode kick\``)
+            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ ¡Método no válido! Usa: \`kick\` o \`remove\`\n\n> Ejemplo: \`${m.prefix}antienlace_grupo metode kick\``+"\n╰━━━━━━━━━━━━╯")
         }
     }
     
     if (option === 'kick') {
         db.setGroup(m.chat, { antilinkgc: 'on', antilinkgcMode: 'kick' })
-        return m.reply(`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo KICK activado!\n\n> El usuario que envíe un enlace de WhatsApp será expulsado.`)
+        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo KICK activado!\n\n> El usuario que envíe un enlace de WhatsApp será expulsado.`+"\n╰━━━━━━━━━━━━╯")
     }
     
     if (option === 'remove' || option === 'delete') {
         db.setGroup(m.chat, { antilinkgc: 'on', antilinkgcMode: 'remove' })
-        return m.reply(`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo DELETE activado!\n\n> El mensaje con enlace de WhatsApp será eliminado.`)
+        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *ᴀɴᴛɪʟɪɴᴋ ᴡᴀ* modo DELETE activado!\n\n> El mensaje con enlace de WhatsApp será eliminado.`+"\n╰━━━━━━━━━━━━╯")
     }
     
-    return m.reply(`❌ ¡Opción no válida! Usa: \`on\`, \`off\`, \`metode kick\`, \`metode remove\``)
+    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ ¡Opción no válida! Usa: \`on\`, \`off\`, \`metode kick\`, \`metode remove\``+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler }

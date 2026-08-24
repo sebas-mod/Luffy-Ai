@@ -35,14 +35,14 @@ async function handler(m) {
         const berry = (memberUser?.berry || 0).toLocaleString('id-ID')
         mentions.push(jid)
 
-        const role = isLeader ? '👑' : '•'
-        return `${role} @${jid.split('@')[0]}  Lv.${level} · Rp ${berry}`
+        const role = isLeader ? '👑' : '⚔️'
+        return `${role} @${jid.split('@')[0]}  ✦ Lv.${level} · Rp ${berry}`
     })
 
     await m.reply(
-        `${emblem} *${clan.name}* — Miembros\n\n` +
+        `╭━━〔 ${emblem} ${clan.name} 〕━━╮\n` +
         memberLines.join('\n') +
-        `\n\n${clan.members.length}/50 miembros`,
+        `\n╰┈➤ 👥 ${clan.members.length}/50 miembros`,
         { mentions }
     )
 }

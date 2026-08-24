@@ -35,11 +35,11 @@ async function handler(m, { sock }) {
         }
         
         const result = data.data
-        const response = `🏥 *ᴘᴏsɪʙʟᴇ ᴇɴꜰᴇʀᴍᴇᴅᴀᴅ*\n\n` +
-            `> Fecha: *${tgl}-${bln}-${thn}*\n\n` +
+        const response = `✧ ────────── ✧\n🏥 *ᴘᴏsɪʙʟᴇ ᴇɴꜰᴇʀᴍᴇᴅᴀᴅ*\n✧ ────────── ✧\n\n` +
+            `✦ Fecha: *${tgl}-${bln}-${thn}*\n\n` +
             `📊 *sᴇᴄᴛᴏʀ:*\n${result.sektor}\n\n` +
             `⚠️ *ᴘᴏᴛᴇɴᴄɪᴀʟ:*\n${result.elemen}\n\n` +
-            `> _${result.catatan}_`
+            `──────────\n❀ _${result.catatan}_`
         
         m.react('✅')
         await m.reply(response)

@@ -386,7 +386,7 @@ async function createBratVideo(text, template) {
 async function handler(m, { sock }) {
   const text = m.text;
   if (!text) {
-    return m.reply(`⚠️ ¡Ingresa el texto!\nEjemplo: \`${m.prefix}${m.command} Hola a todos\``);
+    return m.reply(`✦ • ─── • ✦\n⚠️ ¡Ingresa el texto!\n╰┈➤ Ejemplo: \`${m.prefix}${m.command} Hola a todos\``);
   }
 
   await m.react("🕕");

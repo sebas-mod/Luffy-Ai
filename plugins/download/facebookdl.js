@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
     }
     
     if (!url.match(/facebook\.com|fb\.watch|fb\.com/i)) {
-        return m.reply(`❌ URL no válida. Usa un enlace de Facebook.`)
+        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de Facebook.`)
     }
     
     await m.react('🕕')
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.\n\n_Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.\n──────────\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
         // Find HD if available, else SD, else first item
@@ -50,10 +50,10 @@ async function handler(m, { sock }) {
         
         if (!video || !video.url) {
             await m.react('❌')
-            return m.reply(`❌ No se encontró ningún video en ese enlace.\n\n_Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(`❌ No se encontró ningún video en ese enlace.\n──────────\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
-        let caption = `🎥 *DESCARGADOR DE FACEBOOK*\n\n`
+        let caption = `✦ • ─── • ✦\n🎥 *DESCARGADOR DE FACEBOOK*\n──────────\n`
         caption += `*Título:* ${data.result.title || "Video de Facebook"}\n`
         caption += `*Calidad:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
         if (video.formattedSize) {

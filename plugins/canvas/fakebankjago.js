@@ -78,9 +78,9 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const [nombre,monto] = m.text?.split(',')
     if (!nombre || !monto) {
-        return m.reply(`*FAKE BANK*\n\n> Ingresa el texto para el chat\n\n\`Ejemplo: ${m.prefix}fakebank Zann,10000\``)
+        return m.reply(`✦ • ─── • ✦\n🏦 *FAKE BANK*\n\n> Ingresa el texto para el chat\n\n\`╰┈➤ Ejemplo: ${m.prefix}fakebank Zann,10000\``)
     }
-    if(isNaN(monto)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO*`)
+    if(isNaN(monto)) return m.reply(`✦ • ─── • ✦\n⚠️ *Por favor ingresa un número válido*\n──────────`)
     m.react('🕕')
     
     try {

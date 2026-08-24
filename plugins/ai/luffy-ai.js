@@ -21,12 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🤖 *Luffy AI*\n\n` +
         `> Asistente inteligente listo para ayudar\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}luffy-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}luffy-ai ¿Qué es Node.js?*`
+        `> *${m.prefix}luffy-ai ¿Qué es Node.js?*\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -37,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Error de Luffy AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
+      return m.reply(`❌ *Error de Luffy AI*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

@@ -47,7 +47,7 @@ async function handler(m, { sock, config }) {
     const newName = input.slice(1).join(" ").trim();
     if (!newName) {
       return m.reply(
-        `👤 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ ᴘʀɪɴᴄɪᴘᴀʟ*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}cambiar_nombre_owner main <nombre nuevo>\``,
+        `👑•─────•👑\n👤 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ ᴘʀɪɴᴄɪᴘᴀʟ*\n\n> Nombre actual: *${config.owner?.name || "-"}*\n\n\`${m.prefix}cambiar_nombre_owner main <nombre nuevo>\`\n✦────────✦`,
       );
     }
     try {
@@ -63,7 +63,7 @@ async function handler(m, { sock, config }) {
       fs.writeFileSync(configPath, configContent);
       config.owner.name = newName;
       return m.reply(
-        `✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner principal cambiado a: *${newName}*`,
+        `👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner principal cambiado a: *${newName}*\n✦────────✦`,
       );
     } catch (error) {
       return m.reply(te(m.prefix, m.command, m.pushName));
@@ -75,14 +75,14 @@ async function handler(m, { sock, config }) {
 
   if (!targetNumber || targetNumber.length < 10) {
     return m.reply(
-      `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Número no válido\n\n\`${m.prefix}cambiar_nombre_owner 628xxx NombreOwner\``,
+      `👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Número no válido\n\n\`${m.prefix}cambiar_nombre_owner 628xxx NombreOwner\`\n✦────────✦`,
     );
   }
 
   if (!newName) {
     const currentName = getOwnerName(targetNumber);
     return m.reply(
-      `👤 *ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}cambiar_nombre_owner ${targetNumber} <nombre nuevo>\``,
+      `👑•─────•👑\n👤 *ɴᴏᴍʙʀᴇ ᴅᴇʟ ᴏᴡɴᴇʀ*\n\n> ${targetNumber}: *${currentName}*\n\n\`${m.prefix}cambiar_nombre_owner ${targetNumber} <nombre nuevo>\`\n✦────────✦`,
     );
   }
 
@@ -91,7 +91,7 @@ async function handler(m, { sock, config }) {
   db.setting("ownerNames", nameMap);
 
   return m.reply(
-    `✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*`,
+    `👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del owner *${targetNumber}* cambiado a: *${newName}*\n✦────────✦`,
   );
 }
 

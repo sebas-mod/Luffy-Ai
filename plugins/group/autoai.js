@@ -77,11 +77,11 @@ async function handler(m) {
   const fullArgs = m.fullArgs || "";
 
   if (!m.isGroup) {
-    return m.reply(`❌ ¡Esta función es solo para grupos!`);
+    return m.reply("╰┈➤ "+`❌ ¡Esta función es solo para grupos!`);
   }
 
   if (!m.isAdmin && !m.isOwner) {
-    return m.reply(`❌ ¡Solo los admins pueden usar esta función!`);
+    return m.reply("╰┈➤ "+`❌ ¡Solo los admins pueden usar esta función!`);
   }
 
   if (!db.db.data.autoai) db.db.data.autoai = {};
@@ -92,20 +92,20 @@ async function handler(m) {
 
   if (subcmd === "agregar_persona") {
     if (!m.isOwner)
-      return m.reply(`❌ ¡Solo el owner puede agregar personas!`);
+      return m.reply("╰┈➤ "+`❌ ¡Solo el owner puede agregar personas!`);
     const personaArgs = fullArgs
       .replace(/^agregar_persona\s*/i, "")
       .split("|")
       .map((s) => s.trim());
     if (personaArgs.length < 2 || !personaArgs[0] || !personaArgs[1])
       return m.reply(
-        `❌ ¡Formato incorrecto!\n\n> .autoai agregar_persona nombre | instruction\n\n> Ejemplo: .autoai agregar_persona nexa | eres nexa ai, ...`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡Formato incorrecto!\n\n> .autoai agregar_persona nombre | instruction\n\n> Ejemplo: .autoai agregar_persona nexa | eres nexa ai, ...`+"\n╰━━━━━━━━━━━━╯",
       );
     const pName = personaArgs[0].toLowerCase().replace(/\s+/g, "_");
     const pInstruction = personaArgs.slice(1).join("|").trim();
     if (characters[pName])
       return m.reply(
-        `❌ El nombre "${pName}" ya lo usa una persona integrada!\n\n> Elige otro nombre`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ El nombre "${pName}" ya lo usa una persona integrada!\n\n> Elige otro nombre`+"\n╰━━━━━━━━━━━━╯",
       );
     db.db.data.autoai_personas[pName] = {
       name: personaArgs[0],
@@ -115,36 +115,36 @@ async function handler(m) {
     };
     db.save();
     return m.reply(
-      `✅ *Persona agregada*\n\n> Nombre: ${personaArgs[0]}\n> Key: ${pName}\n> Lógica: ${pInstruction.substring(0, 80)}${pInstruction.length > 80 ? "..." : ""}\n\n> Usa: .autoai on --luffymode=${pName}`,
+      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ *Persona agregada*\n\n> Nombre: ${personaArgs[0]}\n> Key: ${pName}\n> Lógica: ${pInstruction.substring(0, 80)}${pInstruction.length > 80 ? "..." : ""}\n\n> Usa: .autoai on --luffymode=${pName}`+"\n╰━━━━━━━━━━━━╯",
     );
   }
 
   if (subcmd === "eliminar_persona") {
     if (!m.isOwner)
-      return m.reply(`❌ ¡Solo el owner puede eliminar personas!`);
+      return m.reply("╰┈➤ "+`❌ ¡Solo el owner puede eliminar personas!`);
     const pKey = (args[1] || "").toLowerCase().trim();
     if (!pKey)
       return m.reply(
-        `❌ ¡Formato incorrecto!\n\n> .autoai eliminar_persona <nombre>\n\n> Ejemplo: .autoai eliminar_persona nexa`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡Formato incorrecto!\n\n> .autoai eliminar_persona <nombre>\n\n> Ejemplo: .autoai eliminar_persona nexa`+"\n╰━━━━━━━━━━━━╯",
       );
     if (!db.db.data.autoai_personas[pKey])
       return m.reply(
-        `❌ ¡La persona "${pKey}" no fue encontrada!\n\n> Escribe .autoai lista_personas para ver la lista`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ ¡La persona "${pKey}" no fue encontrada!\n\n> Escribe .autoai lista_personas para ver la lista`+"\n╰━━━━━━━━━━━━╯",
       );
     delete db.db.data.autoai_personas[pKey];
     db.save();
-    return m.reply(`✅ Persona "${pKey}" eliminada correctamente`);
+    return m.reply("╰┈➤ "+`✅ Persona "${pKey}" eliminada correctamente`);
   }
 
   if (subcmd === "enablecommand" || subcmd === "enablecmd") {
     if (!m.isAdmin && !m.isOwner)
-      return m.reply(`❌ ¡Solo los admins pueden configurar esto!`);
+      return m.reply("╰┈➤ "+`❌ ¡Solo los admins pueden configurar esto!`);
     const cfg = db.db.data.autoai[m.chat];
-    if (!cfg?.enabled) return m.reply(`❌ ¡AutoAI aún no está activo en este grupo!`);
+    if (!cfg?.enabled) return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡AutoAI aún no está activo en este grupo!`+"\n╰━━━━━━━━━━━━╯");
     if (cfg.enableCommands)
-      return m.reply(`ℹ️ *Comando habilitado*
+      return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`ℹ️ *Comando habilitado*
 
-> Los usuarios aún pueden usar comandos aunque AutoAI esté activo`);
+> Los usuarios aún pueden usar comandos aunque AutoAI esté activo`+"\n╰━━━━━━━━━━━━╯");
     cfg.enableCommands = true;
     db.save();
     return m.reply(
@@ -162,13 +162,13 @@ async function handler(m) {
 
   if (subcmd === "disablecommand" || subcmd === "disablecmd") {
     if (!m.isAdmin && !m.isOwner)
-      return m.reply(`❌ ¡Solo los admins pueden configurar esto!`);
+      return m.reply("╰┈➤ "+`❌ ¡Solo los admins pueden configurar esto!`);
     const cfg = db.db.data.autoai[m.chat];
-    if (!cfg?.enabled) return m.reply(`❌ ¡AutoAI aún no está activo en este grupo!`);
+    if (!cfg?.enabled) return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡AutoAI aún no está activo en este grupo!`+"\n╰━━━━━━━━━━━━╯");
     if (!cfg.enableCommands)
-      return m.reply(`ℹ️ *Comando deshabilitado*
+      return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`ℹ️ *Comando deshabilitado*
 
-> Todos los comandos (excepto owner) quedan bloqueados cuando AutoAI está activo`);
+> Todos los comandos (excepto owner) quedan bloqueados cuando AutoAI está activo`+"\n╰━━━━━━━━━━━━╯");
     cfg.enableCommands = false;
     db.save();
     return m.reply(
@@ -209,11 +209,11 @@ async function handler(m) {
   }
 
   if (subcmd === "global") {
-    if (!m.isOwner) return m.reply(`❌ ¡Solo el owner puede cambiar el modo global!`);
+    if (!m.isOwner) return m.reply("╰┈➤ "+`❌ ¡Solo el owner puede cambiar el modo global!`);
     const globalMode = (args[1] || "").toLowerCase();
     if (!["on", "off"].includes(globalMode))
       return m.reply(
-        `❌ ¡Formato incorrecto!\n\n> .autoai global on/off\n\n> Global actual: ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ ¡Formato incorrecto!\n\n> .autoai global on/off\n\n> Global actual: ${db.db.data.autoai_global.enabled ? "✅ Activo" : "❌ Inactivo"}`+"\n╰━━━━━━━━━━━━╯",
       );
     if (globalMode === "on") {
       const modeMatch = fullArgs.match(/--luffymode=(\w+)/i);
@@ -251,7 +251,7 @@ async function handler(m) {
           characterName = existingGlobal.characterName || "Global";
         } else {
           return m.reply(
-            `❌ ¡Aún no hay una persona global configurada!\n\n> .autoai global on --luffymode=furina\n> .autoai global on --luffymode=custom --logic=...`,
+            "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡Aún no hay una persona global configurada!\n\n> .autoai global on --luffymode=furina\n> .autoai global on --luffymode=custom --logic=...`+"\n╰━━━━━━━━━━━━╯",
           );
         }
       } else {
@@ -260,7 +260,7 @@ async function handler(m) {
           ...Object.keys(db.db.data.autoai_personas),
           "custom",
         ].join(", ");
-        return m.reply(`❌ ¡Personaje no válido!\n\n> Disponibles: ${charList}`);
+        return m.reply("╰┈➤ "+`❌ ¡Personaje no válido!\n\n> Disponibles: ${charList}`);
       }
 
       db.db.data.autoai_global = {
@@ -286,7 +286,7 @@ async function handler(m) {
       db.db.data.autoai_global.enabled = false;
       db.save();
       return m.reply(
-        `🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> AutoAI solo está activo en los grupos configurados`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🌐 *ᴀᴜᴛᴏ ᴀɪ ɢʟᴏʙᴀʟ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> AutoAI solo está activo en los grupos configurados`+"\n╰━━━━━━━━━━━━╯",
       );
     }
   }
@@ -345,7 +345,7 @@ async function handler(m) {
       ? `\n\n> ℹ️ El global sigue activo, pero este grupo optó por desactivarse\n> ℹ️ Escribe *.autoai global off* para apagar el global`
       : "";
     return m.reply(
-      `🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> Auto AI para este grupo ha sido desactivado\n> Todos los comandos vuelven a estar activos${globalStatus}`,
+      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🤖 *ᴀᴜᴛᴏ ᴀɪ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> Auto AI para este grupo ha sido desactivado\n> Todos los comandos vuelven a estar activos${globalStatus}`+"\n╰━━━━━━━━━━━━╯",
     );
   }
 
@@ -356,14 +356,14 @@ async function handler(m) {
       "custom",
     ].join(", ");
     return m.reply(
-      `❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --luffymode=furina --type=voice\n> Custom: .autoai on --luffymode=custom --logic=eres nexa ai`,
+      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --luffymode=furina --type=voice\n> Custom: .autoai on --luffymode=custom --logic=eres nexa ai`+"\n╰━━━━━━━━━━━━╯",
     );
   }
 
   if (charKey === "custom") {
     if (!customLogic) {
       return m.reply(
-        `❌ ¡El modo custom requiere --logic!\n\n> Ejemplo: .autoai on --luffymode=custom --logic=eres nexa ai, ...`,
+        "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ ¡El modo custom requiere --logic!\n\n> Ejemplo: .autoai on --luffymode=custom --logic=eres nexa ai, ...`+"\n╰━━━━━━━━━━━━╯",
       );
     }
     db.db.data.autoai[m.chat] = {
@@ -430,7 +430,7 @@ async function handler(m) {
       "custom",
     ].join(", ");
     return m.reply(
-      `❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --luffymode=furina --type=voice`,
+      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ ¡Personaje no válido!\n\n> Personajes disponibles: ${charList}\n\n> Ejemplo: .autoai on --luffymode=furina --type=voice`+"\n╰━━━━━━━━━━━━╯",
     );
   }
 

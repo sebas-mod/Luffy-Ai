@@ -141,7 +141,7 @@ async function pddikti(input) {
 async function handler(m, { args }) {
   if (args.length === 0) {
     return m.reply(
-      `🎓 *BÚSQUEDA PDDIKTI*\n\n` +
+      `╭━━━〔 🎓 BÚSQUEDA PDDIKTI 〕━━━╮\n\n` +
       `> Modos de búsqueda:\n` +
       `- \`.pddikti all <query>\`\n` +
       `- \`.pddikti mhs <nombre/NIM>\`\n` +
@@ -149,7 +149,7 @@ async function handler(m, { args }) {
       `- \`.pddikti pt <nombre_universidad>\`\n` +
       `- \`.pddikti prodi <nombre_programa>\`\n` +
       `- \`.pddikti detail <id_estudiante>\`\n\n` +
-      `*Ejemplo:* \`.pddikti mhs Gibran Rakabuming\``
+      `*Ejemplo:* \`.pddikti mhs Gibran Rakabuming\`\n\n╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -159,17 +159,17 @@ async function handler(m, { args }) {
     const mode = args[0].toLowerCase();
     
     if (mode === "detail") {
-      if (args.length < 2) return m.reply("❌ ¡Ingresa el ID del estudiante!");
+      if (args.length < 2) return m.reply("╰┈➤ ❌ ¡Ingresa el ID del estudiante!");
       const mhsId = args[1];
       const res = await pddikti({ mode: "detail", mahasiswaId: mhsId });
       
       if (!res.Status) {
         m.react("❌");
-        return m.reply(`❌ ${res.Error}`);
+        return m.reply(`╰┈➤ ❌ ${res.Error}`);
       }
       
       const r = res.Result;
-      let txt = `🎓 *DETALLE DEL ESTUDIANTE*\n\n`;
+      let txt = `╭━━━〔 🎓 DETALLE DEL ESTUDIANTE 〕━━━╮\n\n`;
       txt += `- 📝 Nombre         : *${r.nama}*\n`;
       txt += `- 🆔 NIM            : *${r.nim}*\n`;
       txt += `- 👤 Género         : *${r.jenisKelamin ?? "-"}*\n`;
@@ -186,16 +186,16 @@ async function handler(m, { args }) {
     
     // For other modes
     const query = args.slice(1).join(" ");
-    if (!query) return m.reply("❌ ¡Ingresa una palabra clave de búsqueda!");
+    if (!query) return m.reply("╰┈➤ ❌ ¡Ingresa una palabra clave de búsqueda!");
     
     const res = await pddikti({ mode, query });
     if (!res.Status) {
       m.react("❌");
-      return m.reply(`❌ ${res.Error}`);
+      return m.reply(`╰┈➤ ❌ ${res.Error}`);
     }
     
     const r = res.Result;
-    let txt = `*${r.message}*\n\n`;
+    let txt = `╰┈➤ *${r.message}*\n\n`;
     
     if (mode === "all") {
       const mh = r.mahasiswa.slice(0, 3);

@@ -19,7 +19,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text || !/^\d{6,15}$/.test(text.trim()))
-        return m.reply(`Formato incorrecto!\n\n> Envía un número de teléfono\n> Ejemplo: .fake-ovo 081234567890`);
+        return m.reply(`❖ Formato incorrecto!\n\n> Envía un número de teléfono\n╰┈➤ Ejemplo: .fake-ovo 081234567890`);
 
     await m.react("🕕");
     try {
@@ -31,7 +31,7 @@ async function handler(m, { sock, text }) {
                 "Content-Type": "application/json"
             }
         });
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✅ Fake ovo creado con éxito" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✦ • ─── • ✦\n✅ Fake ovo creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[FakeOvo Error]", e);

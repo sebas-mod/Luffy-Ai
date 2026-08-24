@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     const query = m.text?.trim()
 
     if (!query) {
-        return m.reply(`📚 *BÚSQUEDA DE MANGATOON*\n\n> Ejemplo:\n\`${m.prefix}mangatoon love\``)
+        return m.reply(`╰┈➤ 📚 *BÚSQUEDA DE MANGATOON*\n\n> Ejemplo:\n\`${m.prefix}mangatoon love\``)
     }
 
     m.react('🔍')
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
         if (items.length === 0) {
             m.react('❌')
-            return m.reply(`❌ No se encontraron cómics de Mangatoon para: ${query}`)
+            return m.reply(`╰┈➤ ❌ No se encontraron cómics de Mangatoon para: ${query}`)
         }
 
         let caption = '📚 *BÚSQUEDA DE MANGATOON*\n\n'
@@ -68,8 +68,8 @@ async function handler(m, { sock }) {
         caption += `🌐 *Source:* ${result.source || 'mangatoon.mobi'}\n\n`
 
         items.forEach((item, index) => {
-            caption += `*${index + 1}.* ${trimText(item.title)}\n`
-            caption += `   ├ ${item.link}\n\n`
+            caption += `╰┈➤ *${index + 1}.* ${trimText(item.title)}\n`
+            caption += `› ${item.link}\n\n`
         })
 
         const cover = items[0]?.image

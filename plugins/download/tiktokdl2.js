@@ -129,7 +129,7 @@ async function handler(m, { sock }) {
     }
 
     if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-        return m.reply('❌ URL no válida. Usa un enlace de TikTok.')
+        return m.reply('✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de TikTok.')
     }
 
     m.react('⏱️')
@@ -138,7 +138,7 @@ async function handler(m, { sock }) {
         const result = await savett(url)
 
         const caption =
-            `✅ *Listo*\n\n` +
+            `✦ • ─── • ✦\n✅ *Listo*\n──────────\n` +
             `👤 *${result.username || '-'}*\n` +
             `👁️ Vistas: ${result.views || '-'} | ❤️ Me gusta: ${result.likes || '-'}\n` +
             `� Comentarios: ${result.comments || '-'} | 🔗 Compartidos: ${result.shares || '-'}\n` +
@@ -169,7 +169,7 @@ async function handler(m, { sock }) {
         }
 
         if (result.type === 'photo' && result.slides.length > 0) {
-            await m.reply(`📸 *Enviando ${result.slides.length} diapositivas...*`)
+            await m.reply(`⏳ ──── Enviando ${result.slides.length} diapositivas ────`)
 
             const mediaList = []
             for (let i = 0; i < result.slides.length; i++) {

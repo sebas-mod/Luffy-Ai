@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     try {
         const isImage = m.isImage || (m.quoted && m.quoted.isImage);
         if (!isImage) {
-            return await m.reply('❌ *sᴇ ʀᴇǫᴜɪᴇʀᴇ ᴜɴᴀ ɪᴍᴀɢᴇɴ*\n\n> Responde o envía una imagen con el caption .imgtoprompt');
+            return await m.reply('╭━〔 ❌ sᴇ ʀᴇǫᴜɪᴇʀᴇ ᴜɴᴀ ɪᴍᴀɢᴇɴ 〕━╮\n\n╰┈➤ Responde o envía una imagen con el caption .imgtoprompt\n\n╰━━━━━╯');
         }
         
         await m.reply('🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ ɪᴍᴀɢᴇɴ...*\n\n> Analizando la imagen para generar un prompt');
@@ -37,11 +37,11 @@ async function handler(m, { sock }) {
         } else if (m.quoted && m.quoted.isImage && m.quoted.download) {
             mediaBuffer = await m.quoted.download();
         } else {
-            return await m.reply('❌ Error al descargar la imagen');
+            return await m.reply('╰┈➤ ❌ Error al descargar la imagen');
         }
         
         if (!mediaBuffer || !Buffer.isBuffer(mediaBuffer)) {
-            return await m.reply('❌ Buffer de imagen no válido');
+            return await m.reply('╰┈➤ ❌ Buffer de imagen no válido');
         }
         const tmpDir = path.join(process.cwd(), 'temp');
         if (!fs.existsSync(tmpDir)) {
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
             fs.unlinkSync(tmpFile);
         } catch (e) {}
         if (result.status === 'eror' || !result.prompt) {
-            return await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> ${result.msg || 'No se pudo generar un prompt a partir de esta imagen'}`);
+            return await m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> ${result.msg || 'No se pudo generar un prompt a partir de esta imagen'}`);
         }
         const responseText = `🎨 *ɪᴍᴀɢᴇɴ ᴀ ᴘʀᴏᴍᴘᴛ*\n\n` +
             `\`\`\`${result.prompt}\`\`\`\n\n` +

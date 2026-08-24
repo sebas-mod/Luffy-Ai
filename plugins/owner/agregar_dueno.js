@@ -140,7 +140,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbOwners = getJadibotOwners(jadibotId);
       if (jbOwners.length === 0) {
         return m.reply(
-          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.`,
+          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.\n✦────────✦`,
         );
       }
       let txt = `📋 *LISTA DE OWNERS JADIBOT* — ${jadibotId}\n\n`;
@@ -159,7 +159,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
       if (allOwners.length === 0) {
         return m.reply(
-          `📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Aún no hay owners de panel registrados.`,
+          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Aún no hay owners de panel registrados.\n✦────────✦`,
         );
       }
       let txt = `📋 *LISTA DE OWNERS DE PANEL*\n\n`;
@@ -183,7 +183,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const allOwners = [...new Set([...configOwners, ...dbOwners])];
 
       if (allOwners.length === 0) {
-        return m.reply(`📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.`);
+        return m.reply(`👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.\n✦────────✦`);
       }
       let txt = `📋 *LISTA DE OWNERS*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
@@ -220,7 +220,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido`);
+    return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido\n✦────────✦`);
   }
 
   if (isJadibot && jadibotId) {
@@ -228,21 +228,21 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (addJadibotOwner(jadibotId, targetNumber)) {
         await m.react("👑");
         return m.reply(
-          `✅ Exitoso, se añadió *${targetNumber}* como owner jadibot`,
+          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como owner jadibot\n╰━━━━━━━━━━━━╯`,
         );
       } else {
         return m.reply(
-          `❌ \`${targetNumber}\` ya es owner de este Jadibot.`,
+          `╰┈➤ ❌ \`${targetNumber}\` ya es owner de este Jadibot.`,
         );
       }
     } else if (isDel) {
       if (removeJadibotOwner(jadibotId, targetNumber)) {
         await m.react("✅");
         return m.reply(
-          `✅ Exitoso, se eliminó *${targetNumber}* de los owners jadibot`,
+          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los owners jadibot\n╰━━━━━━━━━━━━╯`,
         );
       } else {
-        return m.reply(`❌ \`${targetNumber}\` no es owner de este Jadibot.`);
+        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es owner de este Jadibot.`);
       }
     }
     return;
@@ -251,7 +251,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   if (isCpanelMode) {
     if (isAdd) {
       if (config.pterodactyl.ownerPanels.includes(targetNumber)) {
-        return m.reply(`❌ \`${targetNumber}\` ya es owner de panel.`);
+        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es owner de panel.`);
       }
 
       let roleChanged = "";
@@ -263,7 +263,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (savePanelConfig()) {
         await m.react("👑");
         return m.reply(
-          `✅ Exitoso, se añadió *${targetNumber}* como owner de panel${roleChanged}`,
+          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como owner de panel${roleChanged}\n╰━━━━━━━━━━━━╯`,
         );
       } else {
         config.pterodactyl.ownerPanels = config.pterodactyl.ownerPanels.filter(
@@ -278,7 +278,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       );
       if (!found) {
         return m.reply(
-          `❌ \`${targetNumber}\` no es owner de panel.\n\n> Lista actual: ${ownerList.join(", ") || "vacía"}`,
+          `👑•─────•👑\n❌ \`${targetNumber}\` no es owner de panel.\n\n> Lista actual: ${ownerList.join(", ") || "vacía"}\n✦────────✦`,
         );
       }
       config.pterodactyl.ownerPanels = ownerList.filter(
@@ -287,7 +287,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (savePanelConfig()) {
         await m.react("✅");
         return m.reply(
-          `✅ Exitoso, se eliminó *${targetNumber}* de los owners de panel`,
+          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los owners de panel\n╰━━━━━━━━━━━━╯`,
         );
       } else {
         return m.reply(`❌ Error al guardar en config.js`);
@@ -296,7 +296,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   } else {
     if (isAdd) {
       if (db.data.owner.includes(targetNumber)) {
-        return m.reply(`❌ \`${targetNumber}\` ya es full owner.`);
+        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es full owner.`);
       }
 
       let roleChanged = "";
@@ -320,12 +320,12 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const displayName = customName || getOwnerName(targetNumber);
       await m.react("👑");
       return m.reply(
-        `✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}${roleChanged}`,
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}${roleChanged}\n╰━━━━━━━━━━━━╯`,
       );
     } else if (isDel) {
       const index = db.data.owner.indexOf(targetNumber);
       if (index === -1) {
-        return m.reply(`❌ \`${targetNumber}\` no es full owner.`);
+        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es full owner.`);
       }
 
       db.data.owner.splice(index, 1);
@@ -335,7 +335,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       db.save();
 
       await m.react("✅");
-      return m.reply(`✅ Exitoso, se eliminó *${targetNumber}* de los full owners`);
+      return m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los full owners\n╰━━━━━━━━━━━━╯`);
     }
   }
 }

@@ -37,20 +37,20 @@ async function handler(m, { sock }) {
         const ep = r.carne_positif.details
         const en = r.carne_negatif.details
         
-        const response = `🍀 *ɴᴏᴍᴏʀ ʜᴏᴋɪ*\n\n` +
-            `> Nomor: *${r.nomor}*\n\n` +
+        const response = `꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n🍀 *ɴᴏᴍᴏʀ ʜᴏᴋɪ*\n꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n\n` +
+            `✧ Nomor: *${r.nomor}*\n\n` +
             `📊 *ɴÚᴍᴇʀᴏ ᴅᴇ ʙᴀɢᴜᴀ:* ${r.angka_bagua_shuzi.value}%\n\n` +
             `✅ *ᴇɴᴇʀɢíᴀ ᴘᴏꜱɪᴛɪᴠᴀ:* ${r.carne_positif.total}%\n` +
-            `├ Kekayaan: ${ep.kekayaan}\n` +
-            `├ Kesehatan: ${ep.kesehatan}\n` +
-            `├ Cinta: ${ep.cinta}\n` +
-            `└ Kestabilan: ${ep.kestabilan}\n\n` +
+            `✦ Kekayaan: ${ep.kekayaan}\n` +
+            `✦ Kesehatan: ${ep.kesehatan}\n` +
+            `✦ Cinta: ${ep.cinta}\n` +
+            `✦ Kestabilan: ${ep.kestabilan}\n\n` +
             `❌ *ᴇɴᴇʀɢíᴀ ɴᴇɢᴀᴛɪᴠᴀ:* ${r.carne_negatif.total}%\n` +
-            `├ Perselisihan: ${en.perselisihan}\n` +
-            `├ Kehilangan: ${en.kehilangan}\n` +
-            `├ Malapetaka: ${en.malapetaka}\n` +
-            `└ Kehancuran: ${en.kehancuran}\n\n` +
-            `> Status: ${r.analisis.status ? '✅ CON SUERTE' : '❌ SIN SUERTE'}`
+            `❀ Perselisihan: ${en.perselisihan}\n` +
+            `❀ Kehilangan: ${en.kehilangan}\n` +
+            `❀ Malapetaka: ${en.malapetaka}\n` +
+            `❀ Kehancuran: ${en.kehancuran}\n\n` +
+            `──────────\n✦ Status: ${r.analisis.status ? '✅ CON SUERTE' : '❌ SIN SUERTE'}`
         
         m.react('✅')
         await m.reply(response)

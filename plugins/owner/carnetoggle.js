@@ -24,8 +24,14 @@ async function handler(m) {
     await m.react(isEnable ? '⚡' : '🔌')
     return m.reply(
         isEnable
-            ? '⚡ *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> Cada comando ahora requiere energía.'
-            : '🔌 *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> Los comandos ya no requieren energía.'
+            ? '⚡ *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴀᴄᴛɪᴠᴀᴅᴏ* ✅\n\n' +
+              '╭━〔 ⚙️ SISTEMA 〕━╮\n' +
+              '┃ Cada comando ahora requiere energía.\n' +
+              '╰━━━━━━━━╯'
+            : '🔌 *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ* ❌\n\n' +
+              '╭━〔 ⚙️ SISTEMA 〕━╮\n' +
+              '┃ Los comandos ya no requieren energía.\n' +
+              '╰━━━━━━━━╯'
     )
 }
 

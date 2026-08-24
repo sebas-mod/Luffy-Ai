@@ -22,6 +22,7 @@ async function handler(m, { sock }) {
     
     if (!prompt) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🎨 *ᴀɴɪᴍᴇ ᴀʀᴛ ɢᴇɴᴇʀᴀᴛᴏʀ*\n\n` +
             `> ¡Genera imágenes de anime con IA a partir de un prompt!\n\n` +
             `*ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ:*\n` +
@@ -32,7 +33,8 @@ async function handler(m, { sock }) {
             `*ᴄᴏɴsᴇᴊᴏs:*\n` +
             `> • Usa inglés\n` +
             `> • Cuanto más detallado sea el prompt, mejor será el resultado\n` +
-            `> • Añade estilo: vibrant, dark, pastel, etc`
+            `> • Añade estilo: vibrant, dark, pastel, etc\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -46,7 +48,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.url) {
             m.react('❌')
-            return m.reply('❌ *ᴇʀʀᴏʀ*\n\n> Error al generar la imagen. ¡Inténtalo más tarde!')
+            return m.reply('❌ *ᴇʀʀᴏʀ*\n✧────────✧\n> Error al generar la imagen. ¡Inténtalo más tarde!')
         }
         
         const result = data.data  
@@ -57,7 +59,7 @@ async function handler(m, { sock }) {
     } catch (error) {
         m.react('☢')
         if (error.code === 'ECONNABORTED') {
-            m.reply('⏱️ *ᴛɪᴇᴍᴘᴏ ᴀɢᴏᴛᴀᴅᴏ*\n\n> La solicitud tardó demasiado. ¡Inténtalo de nuevo!')
+            m.reply('⏱️ *ᴛɪᴇᴍᴘᴏ ᴀɢᴏᴛᴀᴅᴏ*\n✧────────✧\n> La solicitud tardó demasiado. ¡Inténtalo de nuevo!')
         } else {
             m.reply(te(m.prefix, m.command, m.pushName))
         }

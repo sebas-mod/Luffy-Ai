@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
         await sock.removeProfilePicture(m.chat)
         
         await m.reply(
-            `✅ La foto de perfil del grupo ahora está pelona`
+            "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`✅ La foto de perfil del grupo ahora está pelona`+"\n╰━━━━━━━━━━━━╯"
         )
     } catch (error) {
         await m.reply(

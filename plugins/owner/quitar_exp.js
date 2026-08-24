@@ -43,21 +43,23 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⭐ *ʀᴇsᴛᴀʀ ᴇxᴘ*\n\n` +
-            `> \`.delexp <cantidad>\` - de ti mismo\n` +
-            `> \`.delexp <cantidad> @user\` - de un usuario\n\n` +
+            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `┃ ⭐ *ʀᴇsᴛᴀʀ ᴇxᴘ*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `› \`.delexp <cantidad>\` - de ti mismo\n` +
+            `› \`.delexp <cantidad> @user\` - de un usuario\n\n` +
             `\`Ejemplo: ${m.prefix}quitar_exp 5000\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> La cantidad debe ser mayor que 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El usuario no existe en la base de datos`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ El usuario no existe en la base de datos`)
     }
     
     const newExp = db.updateExp(targetJid, -amount)

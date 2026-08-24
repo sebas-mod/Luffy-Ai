@@ -34,9 +34,11 @@ async function handler(m, { sock, db }) {
         await db.save()
 
         await m.reply(
-            `✅ Tipo de owner cambiado a *V${id}*\n\n` +
-            `> *${VARIANTS[id].name}*\n` +
-            `> _${VARIANTS[id].desc}_`
+            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `┃ ✅ Tipo de owner cambiado a *V${id}*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `👑 *${VARIANTS[id].name}*\n` +
+            `✦ _${VARIANTS[id].desc}_`
         )
         return
     }

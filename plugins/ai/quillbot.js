@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ Ingresa el texto que quieres perfeccionar.\n\nEjemplo: `.quilbot Estoy comiendo arroz en casa`");
+    return m.reply("❌ Ingresa el texto que quieres perfeccionar.\n\n╰┈➤ Ejemplo: `.quilbot Estoy comiendo arroz en casa`");
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply("⚠️ Quillbot no pudo procesar el texto.");
+      return m.reply("✧ ⚠️ Quillbot no pudo procesar el texto.");
     }
 
     await m.reply(data.result);
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Quillbot]", error.message);
     await m.react("☢");
-    m.reply("😔 Ocurrió un error al procesar el texto con Quillbot.");
+    m.reply("╰┈➤ 😔 Ocurrió un error al procesar el texto con Quillbot.");
   }
 }
 

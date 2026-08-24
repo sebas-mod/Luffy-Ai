@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let text = `⚽ *ʜᴏʀᴀʀɪᴏ ᴅᴇ ᴘᴀʀᴛɪᴅᴏs*\n\n`;
+    let text = `╭━━━〔 ⚽ FÚTBOL 〕━━━╮\n\n⚽ *ʜᴏʀᴀʀɪᴏ ᴅᴇ ᴘᴀʀᴛɪᴅᴏs*\n\n`;
     if (filter) text += `> Filtro: \`${filter}\`\n\n`;
 
     for (const [date, games] of Object.entries(grouped)) {
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
       }
     }
 
-    text += `Total: *${matches.length}* partidos`;
+    text += `✦────────✦\n╰┈➤ Total: *${matches.length}* partidos ⚽`;
 
     m.react("✅");
 

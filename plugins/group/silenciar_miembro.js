@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
             return pJid === targetNumber && (p.admin === 'admin' || p.admin === 'superadmin')
         })
         if (isTargetAdmin) {
-            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se puede silenciar a un admin del grupo`)
+            return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se puede silenciar a un admin del grupo`+"\n╰━━━━━━━━━━━━╯")
         }
     }
 
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyMuted) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} ya está silenciado`, { mentions: [targetJid] })
+        return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} ya está silenciado`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
     }
 
     mutedMembers.push(targetJid)

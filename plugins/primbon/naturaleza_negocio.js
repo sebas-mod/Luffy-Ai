@@ -35,10 +35,10 @@ async function handler(m, { sock }) {
         }
         
         const r = data.data
-        const response = `💼 *ɴᴀᴛᴜʀᴀʟᴇᴢᴀ ᴅᴇʟ ɴᴇɢᴏᴄɪᴏ*\n\n` +
-            `> Nacido: *${r.hari_lahir}*\n\n` +
+        const response = `✧ ────────── ✧\n💼 *ɴᴀᴛᴜʀᴀʟᴇᴢᴀ ᴅᴇʟ ɴᴇɢᴏᴄɪᴏ*\n✧ ────────── ✧\n\n` +
+            `✦ Nacido: *${r.hari_lahir}*\n\n` +
             `📊 *ᴀɴáʟɪsɪs:*\n${r.usaha}\n\n` +
-            `> _${r.catatan}_`
+            `──────────\n❀ _${r.catatan}_`
         
         m.react('✅')
         await m.reply(response)

@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
             targetNumber = '62' + targetNumber.slice(1)
         }
         if (config.isOwner(targetNumber)) {
-            return m.reply(`⚠️ @${targetNumber} ya es owner!`, { mentions: [target] })
+            return m.reply(`╰┈➤ ⚠️ @${targetNumber} ya es owner!`, { mentions: [target] })
         }
         const existingIndex = db.data.partner.findIndex(p => p.id === targetNumber)
         const days = parseInt(m.args?.find(a => /^\d+$/.test(a) && a.length <= 4)) || 30
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
         const expDate = new Date(newExpired).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 
         await m.reply(
-            `✅ Exitoso, se ${existingIndex !== -1 ? 'renovó' : 'añadió'} el partner @${targetNumber} por *${days} días*\nCaduca: *${expDate}*`,
+            `👑•─────•👑\n✅ Exitoso, se ${existingIndex !== -1 ? 'renovó' : 'añadió'} el partner @${targetNumber} por *${days} días*\nCaduca: *${expDate}*\n✦────────✦`,
             { mentions: [target] }
         )
         return
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
     if (cmd === 'quitar_socio') {
         const target = await extractNumber(m)
         if (!target) {
-            return m.reply(`⚠️ Etiqueta o responde al usuario que quieres eliminar de partner.`)
+            return m.reply(`╰┈➤ ⚠️ Etiqueta o responde al usuario que quieres eliminar de partner.`)
         }
         let targetNumber = target.replace(/@.+/g, '')
         if (targetNumber.startsWith('08')) {
@@ -100,9 +100,9 @@ async function handler(m, { sock }) {
         
         if (db.data.partner.length < initialLength) {
             db.save()
-            await m.reply(`✅ Exitoso, se eliminó a @${targetNumber} de partner`, { mentions: [target] })
+            await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó a @${targetNumber} de partner\n╰━━━━━━━━━━━━╯`, { mentions: [target] })
         } else {
-            return m.reply(`⚠️ Ese usuario no es partner.`)
+            return m.reply(`╰┈➤ ⚠️ Ese usuario no es partner.`)
         }
         return
     }
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
     if (cmd === 'lista_socios') {
         const partners = db.data.partner
         if (!partners.length) {
-            return m.reply(`🤝 *ʟɪꜱᴛᴀ ᴅᴇ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay partners.`)
+            return m.reply(`👑•─────•👑\n🤝 *ʟɪꜱᴛᴀ ᴅᴇ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay partners.\n✦────────✦`)
         }
 
         let txt = `🤝 *LISTA DE PARTNERS*\n\n`

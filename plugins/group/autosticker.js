@@ -39,23 +39,23 @@ async function handler(m, { sock }) {
     
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está activo!`)
+            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está activo!`+"\n╰━━━━━━━━━━━━╯")
         }
         db.setGroup(m.chat, { autosticker: true })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ ¡Activado correctamente!\n> La imagen/video se convertirá automáticamente en sticker`)
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ✅ ¡Activado correctamente!\n> La imagen/video se convertirá automáticamente en sticker`+"\n╰━━━━━━━━━━━━╯")
     }
     
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está inactivo!`)
+            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ¡Ya está inactivo!`+"\n╰━━━━━━━━━━━━╯")
         }
         db.setGroup(m.chat, { autosticker: false })
         await db.save()
-        return m.reply(`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ ¡Desactivado correctamente!`)
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🖼️ *ᴀᴜᴛᴏsᴛɪᴄᴋᴇʀ*\n\n> ❌ ¡Desactivado correctamente!`+"\n╰━━━━━━━━━━━━╯")
     }
     
-    return m.reply(`❌ Usa: \`${m.prefix}autosticker on/off\``)
+    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ Usa: \`${m.prefix}autosticker on/off\``+"\n╰━━━━━━━━━━━━╯")
 }
 
 async function autoStickerHandler(m, sock) {

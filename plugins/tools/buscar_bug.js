@@ -19,7 +19,7 @@ async function handler(m, { args }) {
 
   if (!code) {
     return m.reply(
-      `*🐛 BUSCAR ERRORES*\n\nEnvía código o responde a un mensaje con código para buscar errores.\n\nEjemplo:\n\`${m.prefix}buscar_bug function test() {}\``
+      `╭━━━〔 🐛 BUSCAR ERRORES 〕━━━╮\n\n╰┈➤ Envía código o responde a un mensaje con código para buscar errores.\n\n✦ Ejemplo:\n\`${m.prefix}buscar_bug function test() {}\`\n\n╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -46,25 +46,26 @@ async function handler(m, { args }) {
     const meta = info.metadata;
     const bugInfo = info.bugsFound;
     
-    let text = `🐛 *RESULTADO DE ANÁLISIS DE ERRORES*\n\n`;
-    text += `*Lenguaje:* ${meta.detectedLanguage}\n`;
-    text += `*Nivel:* ${meta.severityInfo.level} ${meta.severityInfo.icon}\n`;
-    text += `*Errores Encontrados:* ${bugInfo.total}\n\n`;
-    
+    let text = `╭━━━〔 🐛 ANÁLISIS DE ERRORES 〕━━━╮\n\n`;
+    text += `╰┈➤ *Lenguaje:* ${meta.detectedLanguage}\n`;
+    text += `╰┈➤ *Nivel:* ${meta.severityInfo.level} ${meta.severityInfo.icon}\n`;
+    text += `╰┈➤ *Errores Encontrados:* ${bugInfo.total}\n\n`;
+
     if (bugInfo.summary) {
-      text += `*📝 Resumen:*\n${bugInfo.summary}\n\n`;
+      text += `✦────────✦\n*📝 Resumen:*\n${bugInfo.summary}\n\n`;
     }
-    
+
     if (info.codeAnalysis?.fixed?.code) {
-      text += `*✨ Código Corregido:*\n\`\`\`${meta.detectedLanguage}\n${info.codeAnalysis.fixed.code}\n\`\`\`\n\n`;
+      text += `✦────────✦\n*✨ Código Corregido:*\n\`\`\`${meta.detectedLanguage}\n${info.codeAnalysis.fixed.code}\n\`\`\`\n\n`;
     }
-    
+
     if (bugInfo.details && bugInfo.details.length > 0) {
-      text += `*📌 Detalles:* \n`;
+      text += `✦────────✦\n*📌 Detalles:* \n`;
       bugInfo.details.forEach((d, i) => {
-        text += `- ${d.type || d.description}\n`;
+        text += `╰┈➤ ${d.type || d.description}\n`;
       });
     }
+    text += `╰━━━━━━━━━━━━╯`;
 
     m.react("✅");
     await m.reply(text.trim());

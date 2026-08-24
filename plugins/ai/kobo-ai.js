@@ -21,12 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🌬️ *Kobo Kanaeru*\n\n` +
         `> VTuber Hololive Indonesia Gen 3\n> Chamán del viento alegre y le encanta hacer bromas!\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}kobo-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}kobo-ai Kobo, ¿qué haces?*`
+        `> *${m.prefix}kobo-ai Kobo, ¿qué haces?*\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -37,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Error de Kobo AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
+      return m.reply(`❌ *Error de Kobo AI*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

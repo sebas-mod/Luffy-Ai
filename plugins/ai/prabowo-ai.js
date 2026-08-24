@@ -21,12 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🇮🇩 *Pak Prabowo*\n\n` +
         `> El hombre de la palma — Presidente de Indonesia\n> Firme, patriótico y carismático\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}prabowo-ai Hermano, ¡debemos ser soberanos!*`
+        `> *${m.prefix}prabowo-ai Hermano, ¡debemos ser soberanos!*\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -37,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Error de Prabowo AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
+      return m.reply(`❌ *Error de Prabowo AI*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

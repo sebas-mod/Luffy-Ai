@@ -18,7 +18,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-  if (!m.fullArgs) return m.reply(`Por favor escribe un prompt.\nEjemplo: ${m.prefix + m.command} car`)
+  if (!m.fullArgs) return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n✧ Por favor escribe un prompt.\n╰┈➤ Ejemplo: ${m.prefix + m.command} car\n\n╰━━━━━━━━━━━━╯`)
 
   await m.react('🕕')
 

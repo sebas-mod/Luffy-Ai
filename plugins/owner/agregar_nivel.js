@@ -38,8 +38,10 @@ async function handler(m, { sock }) {
     
     if (!targetJid || levels <= 0) {
         return m.reply(
-            `📊 *AGREGAR NIVEL*\n\n` +
-            `Sistema para añadir nivel a un miembro de forma instantánea.\n\n` +
+            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `┃ 📊 *AGREGAR NIVEL*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰┈➤ Sistema para añadir nivel a un miembro de forma instantánea.\n\n` +
             `*USO:*\n` +
             `- *${m.prefix}agregar_nivel <cantidad>* — (a ti mismo)\n` +
             `- *${m.prefix}agregar_nivel <cantidad> @user* — (a otra persona)\n\n` +
@@ -70,8 +72,10 @@ async function handler(m, { sock }) {
     const finalLevel = addResult.newLevel || calculateLevel(user.exp)
     
     await m.reply(
-        `✅ *NIVEL AÑADIDO CON ÉXITO*\n\n` +
-        `Se añadieron *${levels} niveles* al nivel de *@${targetJid.split('@')[0]}*.\n\n` +
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `┃ ✅ *NIVEL AÑADIDO CON ÉXITO*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
+        `✦ Se añadieron *${levels} niveles* al nivel de *@${targetJid.split('@')[0]}*.\n\n` +
         `*Estadísticas actuales:*\n` +
         `- Nivel actual: *${finalLevel}*\n` +
         `- Rol actual: *${getRole(finalLevel)}*\n` +

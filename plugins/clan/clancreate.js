@@ -97,13 +97,15 @@ async function handler(m) {
     await db.save()
 
     await m.reply(
-        `${emblem} *CLAN CREADO*\n\n` +
-        `*${clanName}*\n` +
-        `Líder: @${m.sender.split('@')[0]}\n` +
-        `Estado: Abierto · 1/50 miembros\n\n` +
-        `_-Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}_\n\n` +
-        `Invita amigos: *.claninvite @user*\n` +
-        `O comparte el ID: *${clanId}*`,
+        `╭━━━${emblem}━━━╮\n` +
+        `${emblem} *CLAN CREADO*\n` +
+        `⚔️ *${clanName}*\n` +
+        `👑 Líder: @${m.sender.split('@')[0]}\n` +
+        `🔓 Estado: Abierto · 👥 1/50 miembros\n` +
+        `💰 _-Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}_\n` +
+        `╰━━━━━━━━━━╯\n\n` +
+        `› Invita amigos: *.claninvite @user*\n` +
+        `› O comparte el ID: *${clanId}*`,
         { mentions: [m.sender] }
     )
 }

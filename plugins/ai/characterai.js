@@ -23,19 +23,21 @@ const pluginConfig = {
 
 async function handler(m, { sock, args, text }) {
     if (!args || args.length === 0) {
-        return m.reply(`🤖 *CHARACTER AI*\n\n` +
+        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `🤖 *CHARACTER AI*\n\n` +
             `Usa los siguientes comandos:\n` +
             `> *.character-ai search <nombre>* (Buscar personaje)\n` +
             `> *.character-ai off* (Apagar Auto AI)\n` +
             `> *.character-ai reset* (Borrar memoria de la conversación)\n\n` +
-            `*Ejemplo:* .character-ai search gojo`);
+            `*Ejemplo:* .character-ai search gojo\n\n` +
+            `╰━━━━━━━━━━━━╯`);
     }
 
     const cmd = args[0].toLowerCase();
 
     if (cmd === "search") {
         const query = args.slice(1).join(" ");
-        if (!query) return m.reply(`¡Escribe el nombre del personaje que quieres buscar!\nEjemplo: .character-ai search yuji`);
+        if (!query) return m.reply(`✧ ¡Escribe el nombre del personaje que quieres buscar!\n╰┈➤ Ejemplo: .character-ai search yuji`);
 
         await m.react("🕕");
         try {
@@ -45,11 +47,11 @@ async function handler(m, { sock, args, text }) {
 
             if (!resData || !resData.status || !resData.data || resData.data.length === 0) {
                 await m.react("❌");
-                return m.reply(`No se encontró el personaje "${query}".`);
+                return m.reply(`✧ ❌ No se encontró el personaje "${query}".`);
             }
 
             const maxResults = Math.min(resData.data.length, 10);
-            let listTxt = `🤖 *RESULTADOS DE BÚSQUEDA DE PERSONAJE: ${query.toUpperCase()}*\n\n`;
+            let listTxt = `🤖 *RESULTADOS DE BÚSQUEDA DE PERSONAJE: ${query.toUpperCase()}*\n✧────────✧\n\n`;
             listTxt += `Elige uno de los personajes de abajo:\n\n`;
 
             const searchResults = [];
@@ -95,9 +97,9 @@ async function handler(m, { sock, args, text }) {
         if (db.db.data.characterai[m.chat]?.enabled) {
             delete db.db.data.characterai[m.chat];
             db.save();
-            m.reply(`✅ *Auto Character AI desactivado en este chat.*`);
+            m.reply(`✧ ✅ *Auto Character AI desactivado en este chat.*`);
         } else {
-            m.reply(`❌ No hay ningún Auto Character AI activo en este chat.`);
+            m.reply(`✧ ❌ No hay ningún Auto Character AI activo en este chat.`);
         }
     } else if (cmd === "reset") {
         const db = getDatabase();
@@ -107,12 +109,12 @@ async function handler(m, { sock, args, text }) {
         if (chatAi?.enabled) {
             chatAi.conversation_id = null;
             db.save();
-            m.reply(`✅ *Memoria de la conversación reiniciada exitosamente.*\n\nEl personaje "${chatAi.name}" ya no recuerda las conversaciones anteriores.`);
+            m.reply(`✅ *Memoria de la conversación reiniciada exitosamente.*\n✧────────✧\nEl personaje "${chatAi.name}" ya no recuerda las conversaciones anteriores.`);
         } else {
-            m.reply(`❌ No hay ningún Auto Character AI activo en este chat.`);
+            m.reply(`✧ ❌ No hay ningún Auto Character AI activo en este chat.`);
         }
     } else {
-        m.reply(`Comando no válido. Usa search, off o reset.`);
+        m.reply(`╰┈➤ Comando no válido. Usa search, off o reset.`);
     }
 }
 
@@ -130,7 +132,7 @@ async function caiAnswerHandler(m, sock) {
     if (Date.now() - session.time > SESSION_TIMEOUT) {
         delete user.cai_search_session;
         db.save();
-        await m.reply(`⏰ *SESIÓN EXPIRADA*\n\nLa sesión de búsqueda de personaje AI ha terminado.`);
+        await m.reply(`⏰ *SESIÓN EXPIRADA*\n✧────────✧\nLa sesión de búsqueda de personaje AI ha terminado.`);
         return true;
     }
 
@@ -139,7 +141,7 @@ async function caiAnswerHandler(m, sock) {
     if (text === "cancelar" || text === "cancel") {
         delete user.cai_search_session;
         db.save();
-        await m.reply(`🚪 Búsqueda de personaje cancelada.`);
+        await m.reply(`╰┈➤ 🚪 Búsqueda de personaje cancelada.`);
         return true;
     }
 
@@ -166,7 +168,7 @@ async function caiAnswerHandler(m, sock) {
 
     await m.react("✅");
     const nsfwWarning = selected.is_nsfw ? "\n⚠️ *ADVERTENCIA: Este personaje está etiquetado como NSFW.*" : "";
-    await m.reply(`🤖 *CHARACTER AI ACTIVADO*\n\n¡El personaje *${selected.name}* fue elegido! A partir de ahora, la IA responderá a todos los mensajes normales en este chat.\n\n> Escribe \`.character-ai off\` para apagarlo.${nsfwWarning}`);
+    await m.reply(`🤖 *CHARACTER AI ACTIVADO*\n✧────────✧\n\n¡El personaje *${selected.name}* fue elegido! A partir de ahora, la IA responderá a todos los mensajes normales en este chat.\n\n> Escribe \`.character-ai off\` para apagarlo.${nsfwWarning}`);
 
     return true;
 }

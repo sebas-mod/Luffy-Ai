@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
         const apikey = config.APIkey?.neoxr
         if (!apikey) {
             await m.react('❌')
-            return m.reply(`❌ ¡No se encontró la API Key de Neoxr en la config!`)
+            return m.reply(`✦ • ─── • ✦\n❌ ¡No se encontró la API Key de Neoxr en la config!`)
         }
         
         const apiUrl = `https://api.neoxr.eu/api/linesticker?url=${encodeURIComponent(url)}&apikey=${apikey}`
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             await m.react('❌')
-            return m.reply(`❌ ¡No se pudieron obtener los stickers de esa URL!`)
+            return m.reply(`✦ • ─── • ✦\n❌ ¡No se pudieron obtener los stickers de esa URL!`)
         }
         
         const data = res.data.data
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
         
         if (!stickerUrls.length) {
             await m.react('❌')
-            return m.reply(`❌ ¡No se encontraron stickers!`)
+            return m.reply(`✦ • ─── • ✦\n❌ ¡No se encontraron stickers!`)
         }
         
         await m.reply(
@@ -106,10 +106,10 @@ async function handler(m, { sock }) {
         
         if (sent > 0) {
             await m.react('✅')
-            await m.reply(`✅ Se enviaron ${sent}/${stickerUrls.length} stickers`)
+            await m.reply(`✦ • ─── • ✦\n✅ Se enviaron ${sent}/${stickerUrls.length} stickers ✨`)
         } else {
             await m.react('☢')
-            await m.reply(`❌ No se pudieron enviar los stickers`)
+            await m.reply(`✦ • ─── • ✦\n❌ No se pudieron enviar los stickers`)
         }
         
     } catch (error) {

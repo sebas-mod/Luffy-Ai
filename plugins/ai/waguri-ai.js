@@ -21,12 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `👓 *Waguri-san*\n\n` +
         `> La chica tímida de "The Girl I Like Forgot Her Glasses"\n> Dulce, atenta y a menudo se pone nerviosa~\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}waguri-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}waguri-ai ¡Waguri-san, hola!*`
+        `> *${m.prefix}waguri-ai ¡Waguri-san, hola!*\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -37,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Error de Waguri AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
+      return m.reply(`❌ *Error de Waguri AI*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

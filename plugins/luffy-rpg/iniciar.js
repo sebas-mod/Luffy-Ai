@@ -37,15 +37,17 @@ function handler(m, { sock }) {
   addItem(m.sender, "carne_asada", 3);
   addCarne(m.sender, 0);
 
-  let txt = `⛵ *¡BIENVENIDO A LA GRAN ERA DE LOS PIRATAS!*\n\n`;
-  txt += `¡${nombre}! Has decidido zarpar hacia la aventura.\n\n`;
+  let txt = `╭━━━🏴‍☠️━━━╮\n`;
+  txt += `⛵ *¡BIENVENIDO A LA GRAN ERA DE LOS PIRATAS!*\n`;
+  txt += `╰━━━━━━━━━━╯\n\n`;
+  txt += `⚓ ¡${nombre}! Has decidido zarpar hacia la aventura.\n\n`;
   txt += `👤 *Nombre:* ${user.nombre}\n`;
   txt += `🎗️ *Rango:* Pirata Novato\n`;
   txt += `📊 *Nivel:* 1\n`;
   txt += `💰 *Berrys:* ${user.berrys}\n`;
   txt += `🍖 *Carne:* ${user.carne}/${FORMULAS.carneMax(1)}\n\n`;
   txt += `🎁 *Regalo de inicio:* 3x Carne Asada 🍖\n\n`;
-  txt += `¿Qué sigue?\n`;
+  txt += `🧭 ¿Qué sigue?\n`;
   txt += `• *${m.prefix}perfil* — Ver tu ficha de pirata\n`;
   txt += `• *${m.prefix}explorar* — Buscar aventuras en tu isla\n`;
   txt += `• *${m.prefix}tienda* — Comprar suministros\n`;

@@ -28,9 +28,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `🎭 *ᴛᴏ ꜰɪɢᴜʀ 3*\n\n` +
             `> Envía/responde una imagen para convertirla a figurine/action figure\n\n` +
-            `\`${m.prefix}tofigure3\``
+            `\`${m.prefix}tofigure3\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -46,7 +48,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ No se pudo descargar la imagen`)
+            return m.reply(`✧ ❌ No se pudo descargar la imagen`)
         }
         
         

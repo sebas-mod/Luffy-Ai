@@ -35,7 +35,7 @@ function handler(m) {
     const antilinkList = groupData.antilinkList || []
     
     if (antilinkList.includes(link)) {
-        return m.reply(`⚠️ El enlace \`${link}\` ya está en la lista antilink!`)
+        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`⚠️ El enlace \`${link}\` ya está en la lista antilink!`+"\n╰━━━━━━━━━━━━╯")
     }
     
     antilinkList.push(link)

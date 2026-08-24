@@ -194,7 +194,7 @@ async function handler(m, { sock }) {
         Math.min(Math.max(2000, 5000 - (rod.speed || 0) * 3000), 4000),
       ),
     );
-    let txt = `*¡RESULTADO DE LA PESCA!*\n\n`;
+    let txt = `╭━━〔 🎣 〕━━╮\n *¡RESULTADO DE LA PESCA!* 🎣\n╰━━━━━━━━━━╯\n\n`;
     for (const c of catches) {
       txt += `${rc(c.rarity)} *${c.name}*\n   _${formatMoney(c.price)} | ${c.kg}kg_\n`;
       if (c.isMutated)
@@ -268,7 +268,7 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*¡PECES VENDIDOS!*\n\nCantidad: ${fc2}\nTotal: ${formatMoney(fv)}\nSaldo: ${formatMoney(f.money)}`,
+      `💰 ──────────\n*¡PECES VENDIDOS!* 💰\n\nCantidad: ${fc2}\nTotal: ${formatMoney(fv)}\nSaldo: ${formatMoney(f.money)}`,
       "¡Peces Vendidos!",
       formatMoney(fv),
     );
@@ -569,7 +569,7 @@ async function handler(m, { sock }) {
     return send(
       sock,
       m,
-      `*¡RECOMPENSA DIARIA!*\n\n*Racha:* ${f.dailyStreak} días\n+${formatMoney(rw.money)}\n+${rw.tickets} Tickets de Gacha\n*Saldo:* ${formatMoney(f.money)}`,
+      `🎁 ──────────\n*¡RECOMPENSA DIARIA!* 🎁\n\n*Racha:* ${f.dailyStreak} días\n+${formatMoney(rw.money)}\n+${rw.tickets} Tickets de Gacha\n*Saldo:* ${formatMoney(f.money)}`,
       "¡Recompensa Diaria!",
       `Racha ${f.dailyStreak}`,
     );
@@ -721,7 +721,7 @@ async function handler(m, { sock }) {
       return send(
         sock,
         m,
-        `*¡SUBISTE DE PRESTIGIO!*\n\n*Título:* ${titles[f.prestige]}\n*Tokens:* ${f.prestigeTokens}\n\n_Dinero -90%, contador de peces reiniciado_`,
+        `👑 ──────────\n*¡SUBISTE DE PRESTIGIO!* 👑\n\n*Título:* ${titles[f.prestige]}\n*Tokens:* ${f.prestigeTokens}\n\n_Dinero -90%, contador de peces reiniciado_`,
         "¡PRESTIGIO!",
         titles[f.prestige],
       );
@@ -846,7 +846,7 @@ async function handler(m, { sock }) {
       "unlimited_carne",
       "unlimited_limit",
     ].includes(result.reward.type);
-    if (isBig) txt += `*¡GRAN JACKPOT!*\n\n`;
+    if (isBig) txt += `💥━━━━━━━━💥\n  *¡GRAN JACKPOT!* 💥\n\n`;
     txt += `${applied.desc}\n\n_Costo: ${formatMoney(pool.cost)}_\n_Saldo: ${formatMoney(f.money)}_`;
     return send(
       sock,
@@ -876,7 +876,7 @@ async function handler(m, { sock }) {
       if (b.fishCaught !== a.fishCaught) return b.fishCaught - a.fishCaught;
       return b.money - a.money;
     });
-    let txt = `*TABLA DE CLASIFICACIÓN FISCHIT*\n\n`;
+    let txt = `🏆 ──────────\n*TABLA DE CLASIFICACIÓN FISCHIT*\n🏆━━━━━━━━🏆\n\n`;
     const top = rankings.slice(0, 10);
     for (let i = 0; i < top.length; i++) {
       const p = top[i];

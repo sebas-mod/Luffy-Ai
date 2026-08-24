@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendMessage(m.chat, { 
       image: imageBuffer, 
-      caption: `🌟 *S T A R B O Y*` 
+      caption: `✦ • ─── • ✦\n🌟 *S T A R B O Y*\n✦ • ─── • ✦` 
     }, { quoted: m });
   } catch (error) {
     console.log(error);

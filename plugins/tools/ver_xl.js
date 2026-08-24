@@ -36,21 +36,21 @@ async function handler(m, { sock }) {
 
     if (!input) {
         return m.reply(
-            `📱 *CONSULTA XL/AXIS*\n\n` +
+            `╭━━━〔 📱 CONSULTA XL/AXIS 〕━━━╮\n\n` +
             `Esta función se usa para consultar la información de paquetes y cuota disponibles en tu número XL o Axis de forma completa y detallada\n\n` +
             `*Cómo usar:*\n` +
             `> \`${m.prefix}ver_xl <número de teléfono>\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`${m.prefix}ver_xl 083150850721\`\n` +
             `> \`${m.prefix}ver_xl 6281234567890\`\n\n` +
-            `_El formato del número puede ser 08xx, 628xx, o sin prefijo_`
+            `_El formato del número puede ser 08xx, 628xx, o sin prefijo_\n\n╰━━━━━━━━━━━━╯`
         )
     }
 
     const cleanNum = cleanNumber(input)
 
     if (cleanNum.length < 10 || cleanNum.length > 15) {
-        return m.reply(`❌ El número que ingresaste no es válido, asegúrate de que sea un número XL o Axis correcto`)
+        return m.reply(`╰┈➤ ❌ El número que ingresaste no es válido, asegúrate de que sea un número XL o Axis correcto`)
     }
 
     m.react("🕕")
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
 
         if (!data || data.error || data.status === false) {
             m.react("❌")
-            return m.reply(`❌ No se pudo consultar el número *${cleanNum}*, asegúrate de que sea un número XL o Axis activo`)
+            return m.reply(`╰┈➤ ❌ No se pudo consultar el número *${cleanNum}*, asegúrate de que sea un número XL o Axis activo`)
         }
 
         let txt = `📱 *INFORMACIÓN XL/AXIS*\n\n`

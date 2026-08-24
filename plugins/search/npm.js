@@ -20,10 +20,10 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
         `> \`${m.prefix}npm <query>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}npm axios\``,
+        `> \`${m.prefix}npm axios\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -38,11 +38,11 @@ async function handler(m, { sock }) {
     if (!data.objects || data.objects.length === 0) {
       await m.react("❌");
       return m.reply(
-        `❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> Package "${query}" no encontrado`,
+        `╭━〔 ❌ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ 〕━╮\n\n> Package "${query}" no encontrado\n\n╰━━━━━╯`,
       );
     }
 
-    let text = `📦 *ɴᴘᴍ sᴇᴀʀᴄʜ*\n\n`;
+    let text = `╭━━━〔 📦 ɴᴘᴍ sᴇᴀʀᴄʜ 〕━━━╮\n──────────\n`;
     text += `> Consulta: \`${query}\`\n`;
     text += `> Encontrados: ${data.total} paquetes\n\n`;
 
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
       const pkg = item.package;
       const score = Math.round((item.score?.final || 0) * 100);
 
-      text += `${i + 1}. *${pkg.name}*\n`;
+      text += `╰┈➤ ${i + 1}. *${pkg.name}*\n`;
       text += `> 📌 v${pkg.version}\n`;
       if (pkg.description) {
         text += `> 📝 ${pkg.description.slice(0, 50)}${pkg.description.length > 50 ? "..." : ""}\n`;

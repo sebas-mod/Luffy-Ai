@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
   const url = m.text?.trim();
   
   if (!url || !/threads/i.test(url)) {
-    return m.reply("❌ *Vaya, ¿dónde está el enlace de Threads?!*\n\nDebes ingresar el enlace de la publicación de Threads que quieres descargar. Asegúrate de que el enlace sea correcto! \n\nEjemplo: `.tdl https://www.threads.net/@zuck/post/xxx`");
+    return m.reply("✦ • ─── • ✦\n❌ *Vaya, ¿dónde está el enlace de Threads?!*\n\nDebes ingresar el enlace de la publicación de Threads que quieres descargar. Asegúrate de que el enlace sea correcto! \n\nEjemplo: `.tdl https://www.threads.net/@zuck/post/xxx`");
   }
 
   await m.react("🕕");
@@ -94,15 +94,14 @@ async function handler(m, { sock }) {
       return m.reply(`⚠️ *Vaya, error al obtener los datos de Threads!*\n\nQuizás esta publicación es privada, fue eliminada, o el enlace que diste no es correcto.\n\nMotivo del sistema: ${data.message || data.error || "Desconocido"}`);
     }
 
-    const captionText = `✨ *DESCARGADOR DE THREADS* ✨
-
-¡Hola! Aquí está el resultado de la descarga de Threads que pediste:
-
+    const captionText = `✦ • ─── • ✦
+✨ *DESCARGADOR DE THREADS* ✨
+──────────
 👤 *Autor*: ${info.author || "Unknown"}
 📝 *Texto de la Publicación*: ${cleanText(info.title) || cleanText(info.description) || "No hay descripción."}
-📊 *Número de Archivos de Media*: ${result.length} archivos
-
-*¡Espero que te sea útil!* No olvides volver si quieres descargar más. 🚀`;
+📊 *Archivos*: ${result.length}
+──────────
+╰┈➤ ¡Vuelve cuando quieras descargar más! 🚀`;
 
     const mediaList = [];
     for (const item of result) {
@@ -127,7 +126,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[ThreadsDL]", err.message);
     await m.react("☢");
-    m.reply("😔 *Parece que hay una falla en mi sistema.* \n\nOcurrió un error fatal al intentar procesar ese enlace de Threads. ¡Intenta de nuevo más tarde!");
+    m.reply("✦ • ─── • ✦\n😔 *Parece que hay una falla en mi sistema.* \n\nOcurrió un error fatal al intentar procesar ese enlace de Threads. ¡Intenta de nuevo más tarde!\n──────────");
   }
 }
 

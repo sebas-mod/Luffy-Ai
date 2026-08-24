@@ -24,9 +24,9 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n` +
+            `╭━━━〔 🎮 ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ 〕━━━╮\n\n` +
             `> Ingresa el username a buscar\n\n` +
-            `\`${m.prefix}robloxplayer linkmon\``
+            `\`${m.prefix}robloxplayer linkmon\`\n\n╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -39,12 +39,12 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data?.length) {
             m.react('❌')
-            return m.reply(`❌ No se encontró ningún jugador con el username: ${query}`)
+            return m.reply(`╰┈➤ ❌ No se encontró ningún jugador con el username: ${query}`)
         }
         
         const players = res.data.data.slice(0, 10)
         
-        let text = `🎮 *ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ*\n\n`
+        let text = `╭━━━〔 🎮 ʀᴏʙʟᴏx ᴘʟᴀʏᴇʀ sᴇᴀʀᴄʜ 〕━━━╮\n\n`
         text += `> Búsqueda: \`${query}\`\n`
         text += `> Encontrados: *${players.length}* jugadores\n\n`
         

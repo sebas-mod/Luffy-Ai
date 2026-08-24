@@ -29,7 +29,7 @@ function handler(m, { sock }) {
   const s = getStats(user);
   const progreso = Math.min(100, Math.floor((info.exp / info.expSiguiente) * 100));
 
-  let txt = `📊 *PROGRESO DE PIRATA*\n\n`;
+  let txt = `꧁༺ 📊 PROGRESO DE PIRATA ༻꧂\n\n`;
   txt += `🎗️ *Rango:* ${info.rango}\n`;
   txt += `⬆️ *Nivel:* ${info.nivel}\n\n`;
   txt += `✨ *EXP:* ${info.exp} / ${info.expSiguiente}\n`;
@@ -46,7 +46,7 @@ function handler(m, { sock }) {
   txt += `🛡️ *Defensa:* ${s.defensa}\n`;
   txt += `❤️ *Salud:* ${s.salud}/${s.saludMax}\n`;
 
-  txt += `\n💡 Gana EXP con *${m.prefix}explorar*, *${m.prefix}combate* y *${m.prefix}entrenar*.`;
+  txt += `\n╰┈➤ 💡 Gana EXP con *${m.prefix}explorar*, *${m.prefix}combate* y *${m.prefix}entrenar*.`;
 
   return m.reply(txt);
 }

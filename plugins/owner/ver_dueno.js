@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     const ownerList = db.data.owner || []
     const isInOwnerDb = ownerList.includes(targetNumber)
 
-    let txt = `📋 *INFO DEL USUARIO*\n\n`
+    let txt = `╭━━━〔 👑 INFO DEL USUARIO 〕━━━╮\n\n`
     txt += `👤 Usuario: @${targetNumber}\n`
     txt += `🏷️ Rol: *${roles.join(' • ')}*\n`
     txt += `📊 BD Capitán: *${isInOwnerDb ? 'Sí' : 'No'}*\n`
@@ -60,6 +60,7 @@ async function handler(m, { sock }) {
         txt += `💰 Berry: *${user.berry === -1 ? '∞' : (user.berry ?? 0).toLocaleString('id-ID')}*\n`
         txt += `⭐ Level: *${user.level ?? 1}*\n`
     }
+    txt += `\n👑•─────•👑\n`
 
     await m.reply(txt, { mentions: [targetJid] })
 }

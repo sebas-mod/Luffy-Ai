@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
   if (!text) {
-    return m.reply("❌ *Vaya, ¿dónde está la palabra clave?*\n\nDebes ingresar el título de la canción o el nombre del artista que quieres buscar en Spotify. \n\nEjemplo de uso: `.spotify bruno mars`");
+    return m.reply("╰┈➤ ❌ *Vaya, ¿dónde está la palabra clave?*\n\nDebes ingresar el título de la canción o el nombre del artista que quieres buscar en Spotify. \n\nEjemplo de uso: `.spotify bruno mars`");
   }
 
   await m.react("🕕");
@@ -32,22 +32,22 @@ async function handler(m, { sock, text }) {
 
     if (!data.status || !data.result || data.result.length === 0) {
       await m.react("❌");
-      return m.reply(`⚠️ *Lo siento, no se encontró la canción!* \n\nBusqué con la palabra clave *${text}* pero no hay resultados en Spotify. Intenta usar un título más específico.`);
+      return m.reply(`╰┈➤ ⚠️ *Lo siento, no se encontró la canción!* \n\nBusqué con la palabra clave *${text}* pero no hay resultados en Spotify. Intenta usar un título más específico.`);
     }
 
     const results = data.result.slice(0, 5);
     const firstResult = results[0];
 
-    let contentText = `✨ *RESULTADOS DE BÚSQUEDA EN SPOTIFY* ✨\n\n¡Hola! Encontré varias canciones con la palabra clave *${text}*. Esta es la lista de las principales:\n\n`;
+    let contentText = `╭━━━〔 ✨ BÚSQUEDA EN SPOTIFY 〕━━━╮\n\n╰┈➤ ¡Hola! Encontré varias canciones con la palabra clave *${text}*. Esta es la lista de las principales:\n──────────\n`;
 
     results.forEach((t, i) => {
-      contentText += `*${i + 1}. ${t.title}*\n`;
-      contentText += `   🎤 Artista: ${t.artist}\n`;
-      contentText += `   ⏱️ Duración: ${t.duration}\n`;
-      contentText += `   🔗 Enlace: ${t.url}\n\n`;
+      contentText += `╰┈➤ *${i + 1}. ${t.title}*\n`;
+      contentText += `›  🎤 Artista: ${t.artist}\n`;
+      contentText += `›  ⏱️ Duración: ${t.duration}\n`;
+      contentText += `›  🔗 Enlace: ${t.url}\n\n`;
     });
 
-    contentText += `*Nota*: Puedes copiar el enlace de la canción de arriba y usar el comando \`.spdl <link>\` para descargarla directamente! O pulsa el botón de abajo para la primera canción. 🚀`;
+    contentText += `──────────\n*Nota*: Puedes copiar el enlace de la canción de arriba y usar el comando \`.spdl <link>\` para descargarla directamente! O pulsa el botón de abajo para la primera canción. 🚀\n\n╰━━━━━━━━━━━━╯`;
 
     let thumbnailBuffer = null;
     try {
@@ -88,7 +88,7 @@ async function handler(m, { sock, text }) {
   } catch (err) {
     console.error("[Spotify Search]", err.message);
     await m.react("☢");
-    m.reply("😔 *Vaya, parece que la API está fallando.* \n\nOcurrió un error fatal al intentar procesar la búsqueda de Spotify. ¡Intenta de nuevo más tarde!");
+    m.reply("╰┈➤ 😔 *Vaya, parece que la API está fallando.* \n\nOcurrió un error fatal al intentar procesar la búsqueda de Spotify. ¡Intenta de nuevo más tarde!");
   }
 }
 

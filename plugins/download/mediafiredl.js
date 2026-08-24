@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
   }
 
   if (!url.match(/mediafire\.com/i)) {
-    return m.reply(`❌ *URL no válida. Usa un enlace de MediaFire.*`);
+    return m.reply(`✦ • ─── • ✦\n❌ *URL no válida. Usa un enlace de MediaFire.*`);
   }
   await m.react("🕕");
 

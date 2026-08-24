@@ -25,14 +25,14 @@ async function handler(m, { sock }) {
 
   if (!userId) {
     return m.reply(
-      `🎮 *ᴅɪsᴄᴏʀᴅ sᴛᴀʟᴋ*\n\n` +
+      `╭━━━〔 🎮 ᴅɪsᴄᴏʀᴅ sᴛᴀʟᴋ 〕━━━╮\n\n` +
         `> Ingresa el User ID de Discord\n\n` +
-        `\`Ejemplo: ${m.prefix}discordstalk 297574907510784000\``,
+        `\`Ejemplo: ${m.prefix}discordstalk 297574907510784000\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
   if (!/^\d+$/.test(userId)) {
-    return m.reply(`❌ El User ID debe ser un número. Ejemplo: 297574907510784000`);
+    return m.reply(`╰┈➤ ❌ El User ID debe ser un número. Ejemplo: 297574907510784000`);
   }
 
   m.react("🔍");
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
     if (!res.data?.status || !res.data?.data) {
       m.react("❌");
-      return m.reply(`❌ User ID *${userId}* no fue encontrado`);
+      return m.reply(`╰┈➤ ❌ User ID *${userId}* no fue encontrado`);
     }
 
     const d = res.data.data;

@@ -26,17 +26,17 @@ function handler(m, { sock }) {
     asignarMisionesDiarias(m.sender);
     const activas = getMisionesActivas(m.sender);
 
-    let txt = `🎯 *MISIONES ACTIVAS*\n\n`;
+    let txt = `╭━━〔 🎯 MISIONES ACTIVAS 〕━━╮\n`;
     if (activas.length === 0) {
-      txt += `No tienes misiones activas.\n`;
-      txt += `> Usa *${m.prefix}mision asignar <id>* para tomar una.`;
+      txt += `┃ No tienes misiones activas.\n`;
+      txt += `╰┈➤ Usa *${m.prefix}mision asignar <id>* para tomar una.`;
     } else {
       activas.forEach(({ mision, progreso }, i) => {
-        txt += `\`${i + 1}\` *${mision.emoji || "🎯"} ${mision.nombre}*\n`;
-        txt += `   📝 ${mision.descripcion}\n`;
-        txt += `   ⏳ Progreso: *${progreso.progreso}/${progreso.objetivo}*\n`;
-        txt += `   💰 ${mision.recompensa?.berrys || 0} Berrys • ✨ ${mision.recompensa?.exp || 0} EXP\n`;
-        txt += `   > \`${m.prefix}mision completar ${mision.id}\`\n\n`;
+        txt += `┃\`${i + 1}\` ${mision.emoji || "🎯"} *${mision.nombre}*\n`;
+        txt += `┃    📝 ${mision.descripcion}\n`;
+        txt += `┃    ⏳ Progreso: *${progreso.progreso}/${progreso.objetivo}*\n`;
+        txt += `┃    💰 ${mision.recompensa?.berrys || 0} Berrys • ✨ ${mision.recompensa?.exp || 0} EXP\n`;
+        txt += `┃    › \`${m.prefix}mision completar ${mision.id}\`\n`;
       });
     }
 
@@ -79,7 +79,7 @@ function handler(m, { sock }) {
           : `❌ Misión \`${id}\` no encontrada.`,
       );
     }
-    let txt = `🎉 *¡MISIÓN COMPLETADA!*\n\n`;
+    let txt = `꧁༺ 🎉 MISIÓN COMPLETADA ༻꧂\n\n`;
     txt += `🎯 *${mision.nombre}*\n\n`;
     txt += `✨ *EXP:* +${resultado.expGanado}\n`;
     txt += `💰 *Berrys:* +${resultado.berryGanado}\n`;
@@ -87,7 +87,7 @@ function handler(m, { sock }) {
       txt += `🎒 *Objetos:* ${resultado.items.join(", ")}\n`;
     }
     if (resultado.resultado?.subio) {
-      txt += `\n🎉 *¡SUBISTE DE NIVEL! Ahora eres nivel ${resultado.resultado.nivel}!*\n`;
+      txt += `\n👑 *¡SUBISTE DE NIVEL! Ahora eres nivel ${resultado.resultado.nivel}!*\n`;
     }
     return m.reply(txt);
   }

@@ -43,12 +43,14 @@ async function handler(m, { sock, args }) {
             saveState({ ...state, enabled: true })
 
             return sock.sendMessage(m.chat, {
-                text: `✅ *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ sᴛᴀʀᴛᴇᴅ*\n\n` +
+                text: `✅ *ᴀᴜᴛᴏ ᴀɴɪᴍᴇ sᴛᴀʀᴛᴇᴅ* ✧\n\n` +
+                    `୨୧ ────────── ୨୧\n` +
                     `> 📲 Grupo objetivo: *${groups.length}*\n` +
                     `> ⏱️ Intervalo: *${interval} min*\n` +
                     `> 🎞️ Filter: *Pixeldrain 720p+*\n` +
-                    `> ⏰ Edad máxima: *24 h*\n\n` +
-                    `La primera verificación está comenzando...`,
+                    `> ⏰ Edad máxima: *24 h*\n` +
+                    `୨୧ ────────── ୨୧\n\n` +
+                    `✿ La primera verificación está comenzando...`,
                 interactiveButtons: [
                     {
                         name: 'quick_reply',
@@ -116,12 +118,13 @@ async function handler(m, { sock, args }) {
                 const list = await getOngoingAnimeList()
                 if (list.length === 0) return m.reply('❌ No se encontraron animes')
 
-                let txt = `📺 *ʟɪꜱᴛᴀ ᴅᴇ ᴀɴɪᴍᴇ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀ*\n\n`
-                txt += `> Total: *${list.length}* anime\n\n`
+                let txt = `📺 *ʟɪꜱᴛᴀ ᴅᴇ ᴀɴɪᴍᴇ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀ* ✧\n\n`
+                txt += `❀ Total: *${list.length}* anime\n`
+                txt += `──────────\n\n`
                 list.slice(0, 15).forEach((a, i) => {
                     txt += `*${i + 1}.* ${a.title}\n`
                 })
-                if (list.length > 15) txt += `\n> ...y ${list.length - 15} más`
+                if (list.length > 15) txt += `\n✧ ...y ${list.length - 15} más`
 
                 return sock.sendMessage(m.chat, { text: txt }, { quoted: m })
             } catch (e) {

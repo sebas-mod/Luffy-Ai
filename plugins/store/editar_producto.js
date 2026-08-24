@@ -54,6 +54,7 @@ async function handler(m, { sock }) {
 
     if (!match) {
         return m.reply(
+            `╭━━〔 🛒 TIENDA 〕━━╮\n\n` +
             `✏️ *EDITAR PRODUCTO*\n\n` +
             `📋 Formato: \`${m.prefix}editar_producto <numero> <campo> <valor>\`\n\n` +
             `📌 *Campos editables:*\n` +
@@ -73,7 +74,8 @@ async function handler(m, { sock }) {
             `\`${m.prefix}editar_producto 1 nombre Netflix Premium\`\n` +
             `\`${m.prefix}editar_producto 1 descripcion Cuenta compartida 1 mes\`\n` +
             `\`${m.prefix}editar_producto 1 imagen\` (responde una imagen 🖼️)\n\n` +
-            `🏷️ _El precio de descuento se mostrará como ~~precio original~~ en el catálogo_`
+            `🏷️ _El precio de descuento se mostrará como ~~precio original~~ en el catálogo_\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 
@@ -184,7 +186,7 @@ async function handler(m, { sock }) {
     const typeIcon = product.type === 'fisik' ? '📦' : '🔑'
     const typeLabel = product.type === 'fisik' ? 'Físico' : 'Digital'
 
-    let reply = `✅ *PRODUCTO ACTUALIZADO*\n\n`
+    let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *PRODUCTO ACTUALIZADO*\n\n`
     reply += `🏷️ Nombre: *${product.name}*\n`
     reply += `💰 Precio: *Rp ${product.price.toLocaleString('id-ID')}*`
     if (product.originalPrice) reply += ` ~~Rp ${product.originalPrice.toLocaleString('id-ID')}~~`
@@ -193,7 +195,7 @@ async function handler(m, { sock }) {
     reply += `📊 Stock: *${product.stock === -1 ? '♾️ Unlimited' : product.stock}*\n`
     if (field === 'imagen') reply += `🖼️ Imagen: ✅\n`
     if (field === 'video') reply += `🎬 Video: ✅\n`
-    reply += `\n👀 _Ver los cambios: \`${m.prefix}lista_productos\`_`
+    reply += `\n╰━━━━━━━━━━━━╯\n\n👀 _Ver los cambios: \`${m.prefix}lista_productos\`_`
 
     return m.reply(reply)
 }

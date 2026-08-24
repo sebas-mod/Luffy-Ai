@@ -45,13 +45,14 @@ function handler(m, { sock }) {
   if (accion === "info") {
     const fruta = getFrutaById(args[1]);
     if (!fruta) return m.reply(`❌ Fruta \`${args[1]}\` no encontrada.`);
-    let txt = `${RARIDAD_EMOJI[fruta.raro] || "🪙"} ${fruta.emoji} *${fruta.nombre}*\n\n`;
-    txt += `${fruta.descripcion}\n\n`;
+    let txt = `꧁༺ 🍎 FRUTA DEL DIABLO ༻꧂\n\n`;
+    txt += `${RARIDAD_EMOJI[fruta.raro] || "🪙"} ${fruta.emoji} *${fruta.nombre}*\n\n`;
+    txt += `› _${fruta.descripcion}_\n\n`;
     txt += `🪶 Tipo: *${fruta.tipo}*\n`;
     txt += `⚔️ Ataque: *+${fruta.ataque || 0}*\n`;
     txt += `💨 Velocidad: *+${fruta.velocidad || 0}*\n`;
     txt += `💰 Precio: *${fruta.precio} Berrys*\n\n`;
-    txt += `> Para comerla: *${m.prefix}fruta comer ${fruta.id}*`;
+    txt += `╰┈➤ Para comerla: *${m.prefix}fruta comer ${fruta.id}*`;
     return m.reply(txt);
   }
 
@@ -81,12 +82,14 @@ function handler(m, { sock }) {
       return u;
     });
 
-    let txt = `🍎 *¡COMISTE LA FRUTA DEL DIABLO!*\n\n`;
+    let txt = `╭━━━🍎━━━╮\n`;
+    txt += `🍎 *¡COMISTE LA FRUTA DEL DIABLO!*\n`;
     txt += `${RARIDAD_EMOJI[fruta.raro] || "🪙"} ${fruta.emoji} *${fruta.nombre}*\n\n`;
-    txt += `${fruta.descripcion}\n\n`;
+    txt += `› _${fruta.descripcion}_\n\n`;
     txt += `⚔️ *Ataque:* +${fruta.ataque || 0}\n`;
     txt += `💨 *Velocidad:* +${fruta.velocidad || 0}\n\n`;
-    txt += `⚠️ *No puedes comer otra fruta.*`;
+    txt += `⚠️ *No puedes comer otra fruta.*\n`;
+    txt += `╰━━━━━━━━━━╯`;
     return m.reply(txt);
   }
 

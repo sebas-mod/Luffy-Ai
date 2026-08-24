@@ -42,24 +42,24 @@ async function handler(m, { sock }) {
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === target)
 
         if (!participant) {
-            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no está en el grupo.`)
+            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no está en el grupo.`+"\n╰━━━━━━━━━━━━╯")
             return
         }
 
         if (!participant.admin) {
-            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no es admin.`)
+            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El usuario no es admin.`+"\n╰━━━━━━━━━━━━╯")
             return
         }
 
         if (participant.admin === 'superadmin') {
-            await m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se puede degradar al creador del grupo.`)
+            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se puede degradar al creador del grupo.`+"\n╰━━━━━━━━━━━━╯")
             return
         }
 
         await sock.groupParticipantsUpdate(m.chat, [target], 'demote')
 
         await m.reply(
-            `@${target.split('@')[0]} ya no es admin.`,
+            "╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`@${target.split('@')[0]} ya no es admin.`+"\n╰━━━━━━━━━━━━╯",
             { mentions: [target] }
         )
 

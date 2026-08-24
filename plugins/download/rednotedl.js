@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `📕 *RedNote Downloader*\n\n` +
+      `✦ • ─── • ✦\n📕 *RedNote Downloader*\n──────────\n` +
         `Descarga videos o fotos de XiaoHongShu (RedNote).\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}rednotedl <enlace>*\n\n` +
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *RedNote Falló*\n\n> ${result.error}`);
+      return m.reply(`✦ • ─── • ✦\n❌ *RedNote Falló*\n\n> ${result.error}`);
     }
 
     if (result.type === "video" && result.results?.[0]) {
@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
       }
       if (result.results.length > 5) {
         await m.reply(
-          `_Aún quedan ${result.results.length - 5} fotos más, máximo 5_`,
+          `✦ • ─── • ✦\n⏳ _Aún quedan ${result.results.length - 5} fotos más, máximo 5_`,
         );
       }
     }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Error al obtener los datos de RedNote, intenta de nuevo más tarde");
+    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de RedNote, intenta de nuevo más tarde");
   }
 }
 

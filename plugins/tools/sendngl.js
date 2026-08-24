@@ -21,11 +21,11 @@ async function handler(m, { sock }) {
   const [link, kata] = text;
   if (!link)
     return m.reply(
-      `*¿DÓNDE ESTÁ EL ENLACE NGL??*\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
+      `╰┈➤ *¿DÓNDE ESTÁ EL ENLACE NGL??*\n──────────\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   if (!kata)
     return m.reply(
-      `*¿Y EL MENSAJE??*\n\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
+      `╰┈➤ *¿Y EL MENSAJE??*\n──────────\nEjemplo: \`${m?.prefix}sendngl https://ngl.link/xxxx | hola`,
     );
   m.react("🎴");
 

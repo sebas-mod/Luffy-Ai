@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `🎵 *Douyin Downloader*\n\n` +
+      `✦ • ─── • ✦\n🎵 *Douyin Downloader*\n──────────\n` +
         `Descarga videos o audio de Douyin (TikTok chino).\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}douyindl <enlace>*\n\n` +
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     const data = await douyinFetch(text);
     const result = data.result;
 
-    let caption = `🎵 *${result.platform || "Douyin"}*\n\n${result.title || ""}`;
+    let caption = `✦ • ─── • ✦\n🎵 *${result.platform || "Douyin"}*\n──────────\n${result.title || ""}`;
 
     if (result.video) {
       await sock.sendMedia(m.chat, result.video, caption, m, {
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Error al obtener los datos de Douyin, intenta de nuevo más tarde");
+    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de Douyin, intenta de nuevo más tarde");
   }
 }
 

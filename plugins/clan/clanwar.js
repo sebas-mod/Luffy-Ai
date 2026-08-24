@@ -147,20 +147,20 @@ async function handler(m) {
     const winnerE = isWin ? myE : enE
     const r = isWin ? myR : myR
 
-    let txt = `⚔️ *RESULTADO DE GUERRA*\n\n`
-    txt += `${myE} *${myClan.name}*  vs  *${enemyClan.name}* ${enE}\n`
-    txt += `💪 ${myPower.toLocaleString('id-ID')}  vs  ${enemyPower.toLocaleString('id-ID')}\n`
+    let txt = `꧁༺ ☠︎ RESULTADO DE GUERRA ༻꧂\n\n`
+    txt += `${myE} *${myClan.name}*  ⚔️  *${enemyClan.name}* ${enE}\n`
+    txt += `💪 ${myPower.toLocaleString('id-ID')}  ⚡ vs ⚡  ${enemyPower.toLocaleString('id-ID')}\n`
     txt += `${bar}\n\n`
-    txt += `${winnerE} *${winnerClan.name} GANA!*\n\n`
+    txt += `${winnerE} 🏆 *${winnerClan.name} GANA!*\n\n`
 
     if (isWin) {
-        txt += `🎁 Recompensa por miembro:\n`
-        txt += `+Rp ${myR.berryWin.toLocaleString('id-ID')} · +${myR.expWin.toLocaleString('id-ID')} EXP · +${myR.carneWin} Energía\n`
-        txt += `+${REWARDS.clanExpWin.toLocaleString('id-ID')} Clan EXP`
+        txt += `🎁 ✦ Recompensa por miembro:\n`
+        txt += `💰 +Rp ${myR.berryWin.toLocaleString('id-ID')} · ✨ +${myR.expWin.toLocaleString('id-ID')} EXP · 🍖 +${myR.carneWin} Energía\n`
+        txt += `🏰 +${REWARDS.clanExpWin.toLocaleString('id-ID')} Clan EXP`
     } else {
-        txt += `😔 Consolación por miembro:\n`
-        txt += `+Rp ${myR.berryLose.toLocaleString('id-ID')} · +${myR.expLose.toLocaleString('id-ID')} EXP · +${myR.carneLose} Energía\n`
-        txt += `+${REWARDS.clanExpLose.toLocaleString('id-ID')} Clan EXP`
+        txt += `😔 ✦ Consolación por miembro:\n`
+        txt += `💰 +Rp ${myR.berryLose.toLocaleString('id-ID')} · ✨ +${myR.expLose.toLocaleString('id-ID')} EXP · 🍖 +${myR.carneLose} Energía\n`
+        txt += `🏰 +${REWARDS.clanExpLose.toLocaleString('id-ID')} Clan EXP`
     }
 
     await m.reply(txt)

@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
   const input = m.text?.trim();
 
   if (!input) {
-    return m.reply(`⚠️ ¡Ingresa un texto!\nEjemplo: \`${m.prefix}${m.command} yo | FEO | muchísimo\``);
+    return m.reply(`✦ • ─── • ✦\n⚠️ ¡Ingresa un texto!\n╰┈➤ Ejemplo: \`${m.prefix}${m.command} yo | FEO | muchísimo\``);
   }
 
   const parts = input.split('|').map(v => v.trim());

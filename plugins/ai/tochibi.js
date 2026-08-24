@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía/responde una imagen para convertirla a estilo Chibi\n\n\`${m.prefix}tochibi\``)
+        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía/responde una imagen para convertirla a estilo Chibi\n\n\`${m.prefix}tochibi\`\n\n╰━━━━━━━━━━━━╯`)
     }
     
     m.react('🕕')
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ No se pudo descargar la imagen`)
+            return m.reply(`✧ ❌ No se pudo descargar la imagen`)
         }
 
         const PROMPT = `Transform into chibi style, big head and small body proportions, cute expression, big sparkling eyes, smooth shading, soft lighting, highly detailed, high quality`

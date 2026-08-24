@@ -16,7 +16,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text || !/open\.spotify\.com\/track/i.test(text)) {
-    return m.reply("❌ *Vaya, ¿dónde está el enlace de Spotify o no es correcto?!*\n\nDebes ingresar un enlace válido de una canción de Spotify. Asegúrate de que sea un enlace a un track/canción! \n\nEjemplo: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
+    return m.reply("✦ • ─── • ✦\n❌ *Vaya, ¿dónde está el enlace de Spotify o no es correcto?!*\n\nDebes ingresar un enlace válido de una canción de Spotify. Asegúrate de que sea un enlace a un track/canción! \n\nEjemplo: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
   }
 
   await m.react("🕕");
@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result || !data.result.url) {
       await m.react("❌");
-      return m.reply("⚠️ *¡Error al obtener la canción!* \n\nEl servidor no respondió con un enlace de descarga válido.");
+      return m.reply("✦ • ─── • ✦\n⚠️ *¡Error al obtener la canción!* \n\nEl servidor no respondió con un enlace de descarga válido.");
     }
 
     const { title, artist, url } = data.result;
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Spotify DL Error]", error);
     await m.react("❌");
-    m.reply("😔 *Ocurrió un error del sistema al procesar ese enlace de Spotify.* ¡Intenta de nuevo más tarde!");
+    m.reply("✦ • ─── • ✦\n😔 *Ocurrió un error del sistema al procesar ese enlace de Spotify.* ¡Intenta de nuevo más tarde!");
   }
 }
 

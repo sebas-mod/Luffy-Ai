@@ -88,7 +88,7 @@ async function handler(m, { text, sock }) {
 
         if (!teksAsli) {
             await m.react('❌');
-            return m.reply(`❌ *TEXTO VACÍO*\n\nNo olvides escribir el texto que quieres convertir después de la barra vertical.\nEjemplo: \`${m.prefix}estilo_texto Cursive | Hola Mundo\``);
+            return m.reply(`╰┈➤ ❌ *TEXTO VACÍO*\n\nNo olvides escribir el texto que quieres convertir después de la barra vertical.\nEjemplo: \`${m.prefix}estilo_texto Cursive | Hola Mundo\``);
         }
 
         let hasil = "";
@@ -117,7 +117,7 @@ async function handler(m, { text, sock }) {
 
         if (!found) {
             await m.react('❌');
-            return m.reply(`❌ *FUENTE NO ENCONTRADA*\n\nEl estilo de fuente *${parts[0].trim()}* no está registrado.\nPor favor, escribe \`${m.prefix}estilo_texto\` para ver la lista de fuentes disponibles.`);
+            return m.reply(`╰┈➤ ❌ *FUENTE NO ENCONTRADA*\n\nEl estilo de fuente *${parts[0].trim()}* no está registrado.\nPor favor, escribe \`${m.prefix}estilo_texto\` para ver la lista de fuentes disponibles.`);
         }
 
         await sock.sendMessage(m.chat, {
@@ -139,7 +139,7 @@ async function handler(m, { text, sock }) {
     } catch (e) {
         console.error(e);
         await m.react('❌');
-        m.reply(`❌ *FALLO AL CONVERTIR EL TEXTO*\n\nLo siento, el sistema está teniendo problemas al intentar cambiar el estilo de tu texto.`);
+        m.reply(`╰┈➤ ❌ *FALLO AL CONVERTIR EL TEXTO*\n\nLo siento, el sistema está teniendo problemas al intentar cambiar el estilo de tu texto.`);
     }
 }
 

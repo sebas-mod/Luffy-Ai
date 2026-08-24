@@ -24,10 +24,10 @@ async function handler(m, { sock }) {
         
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se pudieron obtener los datos de los miembros del grupo`)
+            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se pudieron obtener los datos de los miembros del grupo`+"\n╰━━━━━━━━━━━━╯")
         }
         
-        await m.reply(`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`)
+        await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`+"\n╰━━━━━━━━━━━━╯")
         
         const presences = {}
         

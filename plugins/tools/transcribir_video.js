@@ -101,7 +101,7 @@ async function handler(m, { args }) {
 
   if (!url) {
     return m.reply(
-      `*📝 TRANSCRIPCIÓN DE VIDEO*\n\n\`\`\`${m.prefix}video-transcribe <url_del_video> [idioma]\`\`\`\n\nEjemplo:\n\`${m.prefix}video-transcribe https://youtu.be/... id\``
+      `╭━━━〔 📝 TRANSCRIPCIÓN DE VIDEO 〕━━━╮\n\n\`\`\`${m.prefix}video-transcribe <url_del_video> [idioma]\`\`\`\n\nEjemplo:\n\`${m.prefix}video-transcribe https://youtu.be/... id\``
     );
   }
 
@@ -125,7 +125,7 @@ async function handler(m, { args }) {
   } catch (err) {
     console.error("[VideoTranscribe]", err.message);
     m.react("☢");
-    m.reply(`❌ *Error:* ${err.message || "No se pudo procesar el video"}`);
+    m.reply(`╰┈➤ ❌ *Error:* ${err.message || "No se pudo procesar el video"}`);
   }
 }
 

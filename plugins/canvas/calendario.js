@@ -580,14 +580,14 @@ async function handler(m, { sock, text }) {
             await renderTahun(outputPath);
             await sock.sendMessage(m.chat, { 
                 image: { url: outputPath }, 
-                caption: `📅 *CALENDARIO DE INDONESIA 2026*\n\nAquí está el calendario completo del año 2026, con todos los días festivos nacionales y días libres conjuntos.`
+                caption: `✦ • ─── • ✦\n📅 *CALENDARIO DE INDONESIA 2026*\n──────────\nAquí está el calendario completo del año 2026, con todos los días festivos nacionales y días libres conjuntos.`
             }, { quoted: m });
         } else {
             await renderBulan(nomorBulan, outputPath);
             const namaBulanProper = namaBulanStr.charAt(0).toUpperCase() + namaBulanStr.slice(1);
             await sock.sendMessage(m.chat, { 
                 image: { url: outputPath }, 
-                caption: `📅 *CALENDARIO ${namaBulanProper.toUpperCase()} 2026*\n\nAquí está el calendario del mes de ${namaBulanProper} del año 2026, con la lista de días festivos.`
+                caption: `✦ • ─── • ✦\n📅 *CALENDARIO ${namaBulanProper.toUpperCase()} 2026*\n──────────\nAquí está el calendario del mes de ${namaBulanProper} del año 2026, con la lista de días festivos.`
             }, { quoted: m });
         }
 
@@ -597,7 +597,7 @@ async function handler(m, { sock, text }) {
     } catch (error) {
         console.error(error);
         await m.react('❌');
-        m.reply(`❌ *NO SE PUDO CREAR EL CALENDARIO*\n\nLo siento, el sistema tuvo un problema al intentar crear la imagen del calendario. Inténtalo de nuevo más tarde.`);
+        m.reply(`✦ • ─── • ✦\n❌ *NO SE PUDO CREAR EL CALENDARIO*\n\nLo siento, el sistema tuvo un problema al intentar crear la imagen del calendario. Inténtalo de nuevo más tarde.\n──────────`);
     }
 }
 

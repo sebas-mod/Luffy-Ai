@@ -51,9 +51,9 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const nominal = m.text
     if (!nominal) {
-        return m.reply(`*FAKE DANA*\n\n\`Ejemplo: ${m.prefix}fakedana 10000\``)
+        return m.reply(`✦ • ─── • ✦\n💙 *FAKE DANA*\n\n\`╰┈➤ Ejemplo: ${m.prefix}fakedana 10000\``)
     }
-    if(isNaN(nominal)) return m.reply(`*POR FAVOR INGRESA UN NÚMERO*`)
+    if(isNaN(nominal)) return m.reply(`✦ • ─── • ✦\n⚠️ *Por favor ingresa un número válido*\n──────────`)
     m.react('🕕')
     
     try {

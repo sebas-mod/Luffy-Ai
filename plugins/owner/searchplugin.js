@@ -85,11 +85,13 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `🔍 *ʙᴜsᴄᴀʀ ᴘʟᴜɢɪɴ*\n\n` +
-        `> Busca y muestra la info de un plugin\n\n` +
+      `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+        `┃ 🔍 *ʙᴜsᴄᴀʀ ᴘʟᴜɢɪɴ*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰┈➤ Busca y muestra la info de un plugin\n\n` +
         `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
-        `> \`${m.prefix}splugin sticker\`\n` +
-        `> \`${m.prefix}splugin menu\``,
+        `› \`${m.prefix}splugin sticker\`\n` +
+        `› \`${m.prefix}splugin menu\``,
     );
   }
 
@@ -106,17 +108,18 @@ async function handler(m, { sock }) {
     if (!info) {
       await m.react("❌");
       return m.reply(
-        `❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n> El plugin \`${name}\` no fue encontrado`,
+        `╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n╰━━━━━━━━╯\n\n╰┈➤ El plugin \`${name}\` no fue encontrado`,
       );
     }
 
     if (info.error) {
       await m.react("⚠️");
       return m.reply(
-        `⚠️ *ᴇʀʀᴏʀ ᴅᴇ ᴘʟᴜɢɪɴ*\n\n` +
-          `> Archivo: \`${info.file}\`\n` +
-          `> Carpeta: \`${info.folder}\`\n` +
-          `> Error: \`${info.error}\``,
+        `⚠️ *ᴇʀʀᴏʀ ᴅᴇ ᴘʟᴜɢɪɴ*\n` +
+          `──────────\n\n` +
+          `› Archivo: \`${info.file}\`\n` +
+          `› Carpeta: \`${info.folder}\`\n` +
+          `› Error: \`${info.error}\``,
       );
     }
 

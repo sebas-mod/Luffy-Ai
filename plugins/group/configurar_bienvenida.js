@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
   m.react("✅");
 
   await m.reply(
-    `✅ Bienvenida configurada correctamente como *${text}*\n¿Quieres restablecerla? Escribe ${m.prefix}resetear_bienvenida`,
+    "୨୧〔 ✿ BIENVENIDA 〕୨୧\n"+`✅ Bienvenida configurada correctamente como *${text}*\n¿Quieres restablecerla? Escribe ${m.prefix}resetear_bienvenida`+"\n♡ ────── ♡",
   );
 }
 

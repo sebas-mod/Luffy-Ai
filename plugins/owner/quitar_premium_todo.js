@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No hay miembros en este grupo`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ No hay miembros en este grupo`)
         }
         
         await m.react('🕕')

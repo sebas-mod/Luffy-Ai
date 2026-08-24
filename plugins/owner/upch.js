@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
         if (!isMedia && caption) {
             await sock.sendMessage(chId, { text: caption })
             await m.react("✅")
-            return m.reply(`✅ Texto enviado con éxito al canal`)
+            return m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Texto enviado al canal 📝\n╰━━━━━━━━━━━━╯`)
         }
 
         const mediaBuf = await downloadMediaMessage(quoted, "buffer", {})
@@ -94,7 +94,7 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Imagen enviada con éxito al canal")
+            return m.reply("╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Imagen enviada al canal 🖼️\n╰━━━━━━━━━━━━╯")
         }
 
         if (isVideo) {
@@ -103,7 +103,7 @@ async function handler(m, { sock }) {
                 caption: caption || undefined
             })
             await m.react("✅")
-            return m.reply("✅ Video enviado con éxito al canal")
+            return m.reply("╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Video enviado al canal 🎥\n╰━━━━━━━━━━━━╯")
         }
 
         if (isAudio) {
@@ -117,10 +117,10 @@ async function handler(m, { sock }) {
                 waveform: Array.from(waveform)
             })
             await m.react("✅")
-            return m.reply("✅ Audio enviado con éxito al canal")
+            return m.reply("╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Audio enviado al canal 🎵\n╰━━━━━━━━━━━━╯")
         }
 
-        m.reply("❌ Tipo de media no soportado")
+        m.reply("╰┈➤ ❌ Tipo de media no soportado")
     } catch (e) {
         console.error("[UpCh]", e)
         await m.react("☢")

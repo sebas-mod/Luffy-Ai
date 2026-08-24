@@ -79,12 +79,12 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let text = `🏆 *ɪɴꜰᴏ ᴅᴇ ᴛᴏʀɴᴇᴏ ᴍᴏʙɪʟᴇ ʟᴇɢᴇɴᴅs*\n\n`;
+    let text = `╭━━━〔 🏆 TORNEO ML 〕━━━╮\n\n🏆 *ɪɴꜰᴏ ᴅᴇ ᴛᴏʀɴᴇᴏ ᴍᴏʙɪʟᴇ ʟᴇɢᴇɴᴅs*\n\n`;
     text += `> 5 Torneos Más Recientes\n\n`;
 
     for (let i = 0; i < tournaments.length; i++) {
       const t = tournaments[i];
-      text += `${i + 1}. *${t.title}*\n`;
+      text += `${String(i + 1).padStart(2, "0")} › *${t.title}*\n`;
       text += `📅 ${t.datePublished || "N/A"}\n`;
       if (t.description) text += `📝 ${t.description}\n`;
       if (t.info) text += `⚠️ ${t.info}\n`;

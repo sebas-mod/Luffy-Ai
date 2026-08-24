@@ -95,7 +95,7 @@ function parseHeaders(headerArgs) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("❌ *Solo Owner!*");
+    return m.reply("╰┈➤ ❌ *Solo Owner!*");
   }
 
   let input = m.fullArgs?.trim() || m.text?.trim();
@@ -146,7 +146,7 @@ async function handler(m, { sock }) {
   ];
   if (!validMethods.includes(method)) {
     return m.reply(
-      `❌ Método inválido: ${method}. Válidos: ${validMethods.join(", ")}`,
+      `╰┈➤ ❌ Método inválido: ${method}. Válidos: ${validMethods.join(", ")}`,
     );
   }
 
@@ -157,7 +157,7 @@ async function handler(m, { sock }) {
       jsonBody = JSON.parse(jsonMatch[1]);
       input = input.replace(/--json\s+\{[\s\S]*?\}/i, "").trim();
     } catch (e) {
-      return m.reply(`❌ Cuerpo JSON inválido: ${e.message}`);
+      return m.reply(`╰┈➤ ❌ Cuerpo JSON inválido: ${e.message}`);
     }
   }
 
@@ -185,16 +185,16 @@ async function handler(m, { sock }) {
   }
 
   if (isBlockedUrl(url)) {
-    return m.reply("❌ Dirección localhost / interna / de metadata bloqueada");
+    return m.reply("╰┈➤ ❌ Dirección localhost / interna / de metadata bloqueada");
   }
 
   try {
     new URL(url);
   } catch {
-    return m.reply("❌ URL inválida");
+    return m.reply("╰┈➤ ❌ URL inválida");
   }
 
-  await m.reply(`🕕 ${method} ${url} ...`);
+  await m.reply(`╰┈➤ 🕕 ${method} ${url} ...`);
 
   try {
     const startTime = Date.now();
@@ -371,7 +371,7 @@ async function handler(m, { sock }) {
       );
     }
   } catch (e) {
-    await m.reply(`❌ *REQUEST FALLIDO*\n\n> ${e.message}`);
+    await m.reply(`👑•─────•👑\n❌ *REQUEST FALLIDO*\n\n> ${e.message}\n✦────────✦`);
   }
 }
 

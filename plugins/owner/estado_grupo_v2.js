@@ -56,7 +56,7 @@ async function handler(m, { sock, db }) {
 
     if (!pendingData) {
       await m.reply(
-        `⚠️ *No hay datos pendientes. Envía de nuevo el media + .swgcv2*`,
+        `╰┈➤ ⚠️ *No hay datos pendientes. Envía de nuevo el media + .swgcv2*`,
       );
       return;
     }
@@ -175,7 +175,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.quoted.download();
       if (!buffer) {
-        await m.reply(`❌ Error al obtener el media.`);
+        await m.reply(`╰┈➤ ❌ Error al obtener el media.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -208,7 +208,7 @@ async function handler(m, { sock, db }) {
     try {
       buffer = await m.download();
       if (!buffer) {
-        await m.reply(`❌ Error al obtener el media.`);
+        await m.reply(`╰┈➤ ❌ Error al obtener el media.`);
         return;
       }
       const fileType = await fileTypeFromBuffer(buffer);
@@ -258,7 +258,7 @@ async function handler(m, { sock, db }) {
     const groupList = Object.entries(groups);
 
     if (groupList.length === 0) {
-      await m.reply(`⚠️ *El bot no está en ningún grupo.*`);
+      await m.reply(`╰┈➤ ⚠️ *El bot no está en ningún grupo.*`);
       return;
     }
 

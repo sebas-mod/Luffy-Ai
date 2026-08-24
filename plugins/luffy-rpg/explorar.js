@@ -53,36 +53,41 @@ function handler(m, { sock }) {
   setCooldown(m.sender, "explorar");
 
   const roll = randomInt(1, 100);
-  let txt = `🧭 *EXPLORANDO ${isla.emoji} ${isla.nombre}*\n\n`;
+  let txt = `╭━━〔 🌊 AVENTURA 〕━━╮\n`;
+  txt += `┃ 🧭 *EXPLORANDO ${isla.emoji} ${isla.nombre}*\n`;
+  txt += `┃\n`;
 
   if (roll <= 45) {
     const tesoro = randomInt(1, 3);
     const berrys = 50 + user.nivel * 15;
     addBerrys(m.sender, berrys);
     registrarProgreso(m.sender, "recoger", tesoro);
-    txt += `💰 *¡Encontraste un tesoro!*\n`;
-    txt += `+${berrys} Berrys\n\n`;
+    txt += `┃ 💰 *¡Encontraste un tesoro!*\n`;
+    txt += `┃ +${berrys} Berrys\n`;
     if (chance(30)) {
       const drop = isla.tesoros[randomInt(0, isla.tesoros.length - 1)];
       addItem(m.sender, drop, 1);
-      txt += `🎁 ¡Botín extra! Obtuviste un cofre: \`${drop}\`\n`;
+      txt += `┃ 🎁 ¡Botín extra! Obtuviste un cofre: \`${drop}\`\n`;
     }
+    txt += `┃\n`;
   } else if (roll <= 75) {
     const enemigo = randomInt(1, 3);
     const exp = 20 + user.nivel * 5;
     const res = addExp(m.sender, exp);
     registrarProgreso(m.sender, "derrotar", 0);
-    txt += `⚔️ *¡Te enfrentaste a un enemigo!*\n`;
-    txt += `+${exp} EXP\n`;
-    if (res.subio) txt += `\n🎉 *¡Subiste de nivel! Ahora eres nivel ${res.nivel}!*\n`;
+    txt += `┃ ⚔️ *¡Te enfrentaste a un enemigo!*\n`;
+    txt += `┃ +${exp} EXP\n`;
+    if (res.subio) txt += `┃ 👑 *¡Subiste de nivel! Ahora eres nivel ${res.nivel}!*\n`;
+    txt += `┃\n`;
   } else {
     const res = addExp(m.sender, 15 + user.nivel * 4);
-    txt += `🧘 *Entrenaste contra muñecos de paja*\n`;
-    txt += `+${15 + user.nivel * 4} EXP\n`;
-    if (res.subio) txt += `\n🎉 *¡Subiste de nivel! Ahora eres nivel ${res.nivel}!*\n`;
+    txt += `┃ 🧘 *Entrenaste contra muñecos de paja*\n`;
+    txt += `┃ +${15 + user.nivel * 4} EXP\n`;
+    if (res.subio) txt += `┃ 👑 *¡Subiste de nivel! Ahora eres nivel ${res.nivel}!*\n`;
+    txt += `┃\n`;
   }
 
-  txt += `\n💡 Ve a pelear con *${m.prefix}combate* o cambia de isla con *${m.prefix}viajar*.`;
+  txt += `╰┈➤ 💡 Ve a pelear con *${m.prefix}combate* o cambia de isla con *${m.prefix}viajar*.`;
 
   return m.reply(txt);
 }

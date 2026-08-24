@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
   if (!isImage) {
     return m.reply(
-      `🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}toblack\``,
+      `╭━━━〔 ✦ 〕━━━╮\n\n🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}toblack\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       m.react("❌");
-      return m.reply(`❌ No se pudo descargar la imagen`);
+      return m.reply(`✧ ❌ No se pudo descargar la imagen`);
     }
 
     const result = await live3d(buffer, PROMPT);

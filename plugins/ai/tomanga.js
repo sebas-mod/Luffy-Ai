@@ -27,9 +27,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
+            `╭━━━〔 ✦ 〕━━━╮\n\n` +
             `📖 *ᴛᴏ ᴍᴀɴɢᴀ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo manga\n\n` +
-            `\`${m.prefix}tomanga\``
+            `\`${m.prefix}tomanga\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
     
@@ -45,7 +47,7 @@ async function handler(m, { sock }) {
         
         if (!buffer) {
             m.react('❌')
-            return m.reply(`❌ No se pudo descargar la imagen`)
+            return m.reply(`✧ ❌ No se pudo descargar la imagen`)
         }
         
         const result = await live3d(buffer, PROMPT)

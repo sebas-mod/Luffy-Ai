@@ -29,7 +29,7 @@ function handler(m) {
             ? (existing.enabled ? '✅ Activo' : '❌ Inactivo')
             : '⚪ Sin configurar'
 
-        let info = `🍽️ *RECORDATORIO DE COMIDA*\n\n`
+        let info = `╭━━━〔 🍖 COMIDA 〕━━━╮\n\n🍽️ *RECORDATORIO DE COMIDA*\n\n`
         info += `📌 *Estado:* ${status}\n`
 
         if (existing) {
@@ -37,13 +37,14 @@ function handler(m) {
             if (existing.menu) info += `🍴 *Menú:* _${existing.menu}_\n`
         }
 
-        info += `\n*📋 Cómo Usar:*\n`
+        info += `\n✦────────✦\n\n*📋 Cómo Usar:*\n`
         info += `> \`${m.prefix}notif_comer on 07.00,12.00,19.00\`\n`
         info += `> \`${m.prefix}notif_comer on 07.00,12.00 Tortilla\`\n`
         info += `> \`${m.prefix}notif_comer edit 08.00,13.00\`\n`
         info += `> \`${m.prefix}notif_comer off\`\n`
         info += `\n> 💡 _La hora puede ser con punto o dos puntos (07.00 / 07:00)_\n`
-        info += `> 💡 _Pueden ser varias horas, sepáralas con comas_`
+        info += `> 💡 _Pueden ser varias horas, sepáralas con comas_\n\n`
+        info += `╰━━━━━━━━━━━━╯`
 
         return m.reply(info)
     }
@@ -79,14 +80,14 @@ function handler(m) {
         const menu = args.slice(2).join(' ').trim()
         setNotifMakan(sender, chatJid, jadwal, menu)
 
-        let reply = `✅ *¡Recordatorio de comida activo!* 🔔\n\n`
+        let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *¡Recordatorio de comida activo!* 🔔\n\n`
         reply += `⏰ *Horario:*\n`
         for (const j of jadwal) {
             const label = getMealLabel(j)
             reply += `> 🕐 *${j}* (hora local) _(${label})_\n`
         }
         if (menu) reply += `\n🍴 *Menú:* _${menu}_`
-        reply += `\n\n> 💡 _La notificación se enviará a este chat todos los días_`
+        reply += `\n\n> 💡 _La notificación se enviará a este chat todos los días_\n\n╰━━━━━━━━━━━━╯`
 
         return m.reply(reply)
     }
@@ -109,7 +110,7 @@ function handler(m) {
         const menu = args.slice(2).join(' ').trim() || existing.menu || ''
         setNotifMakan(sender, chatJid, jadwal, menu)
 
-        let reply = `✅ *¡Horario de comida actualizado!* ✏️\n\n`
+        let reply = `╭━━━〔 ✦ ACTUALIZADO 〕━━━╮\n✅ *¡Horario de comida actualizado!* ✏️\n\n`
         reply += `⏰ *Nuevo horario:*\n`
         for (const j of jadwal) {
             const label = getMealLabel(j)

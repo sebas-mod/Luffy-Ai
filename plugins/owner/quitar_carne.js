@@ -41,21 +41,23 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `⚡ *ʀᴇsᴛᴀʀ ᴇɴᴇʀɢɪ́ᴀ*\n\n` +
-            `> \`.delcarne <cantidad>\` - de ti mismo\n` +
-            `> \`.delcarne <cantidad> @user\` - de un usuario\n\n` +
+            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `┃ ⚡ *ʀᴇsᴛᴀʀ ᴇɴᴇʀɢɪ́ᴀ*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `› \`.delcarne <cantidad>\` - de ti mismo\n` +
+            `› \`.delcarne <cantidad> @user\` - de un usuario\n\n` +
             `\`Ejemplo: ${m.prefix}quitar_carne 50\``
         )
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> La cantidad debe ser mayor que 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> El usuario no existe en la base de datos`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ El usuario no existe en la base de datos`)
     }
     
     if (user.carne === -1) {

@@ -24,7 +24,8 @@ async function handler(m, { sock }) {
   
   if (!mode || (mode !== "on" && mode !== "off")) {
     return m.reply(
-      `🎛️ *CONTROL DEL SISTEMA DE CARNE*\n\n` +
+      `🎛️ *CONTROL DEL SISTEMA DE CARNE*\n` +
+      `──────────\n\n` +
       `Función de control principal para activar o desactivar todo el sistema de consumo de carne del bot de forma global.\n\n` +
       `*ESTADO ACTUAL:*\n` +
       `- Modo: *${currentStatus ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +
@@ -45,7 +46,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `✅ *ESTADO DEL SISTEMA DE CARNE CAMBIADO CON ÉXITO*\n\n` +
+    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ ESTADO DEL SISTEMA\n┃ DE CARNE CAMBIADO\n╰━━━━━━━━━━━━╯\n\n` +
     `El sistema de carne se ha *${isEnabled ? "ACTIVADO" : "DESACTIVADO"}* correctamente.\n\n` +
     `*Estado actual:*\n` +
     `- Modo: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +

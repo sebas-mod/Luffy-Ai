@@ -54,8 +54,9 @@ async function handler(m, { sock }) {
     if (isMutual) {
         await m.react('💕')
         await m.reply(
-            `💕 *ᴇsᴛᴀᴅᴏ ᴅᴇ ʟᴀ ʀᴇʟᴀᴄɪᴏ́ɴ*\n\n` +
-            `*${nombre}* está de novio/a con @${partnerJid.split('@')[0]}! 🥳`,
+            `꧁༺ 💕 ༻꧂
+──────────
+*${nombre}* está de novio/a con @${partnerJid.split('@')[0]}! 🥳`,
             { mentions: [targetJid, partnerJid] }
         )
     } else {

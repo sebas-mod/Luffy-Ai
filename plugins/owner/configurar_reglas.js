@@ -21,8 +21,10 @@ function handler(m) {
     
     if (!text) {
         return m.reply(
-            `📝 *ᴇsᴛᴀʙʟᴇᴄᴇʀ ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ*\n\n` +
-            `> Escribe el nuevo texto de las reglas\n\n` +
+            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `┃ 📝 *ᴇsᴛᴀʙʟᴇᴄᴇʀ ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ*\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰┈➤ Escribe el nuevo texto de las reglas\n\n` +
             `\`Ejemplo:\`\n` +
             `\`${m.prefix}configurar_reglas 1. No spamear\\n2. Respetar a los demás\``
         )
@@ -31,9 +33,11 @@ function handler(m) {
     db.setting('botRules', text)
     
     m.reply(
-        `✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀs*\n\n` +
-        `> ¡Las reglas del bot se cambiaron con éxito!\n` +
-        `> Escribe \`${m.prefix}rules\` para verlas.`
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `┃ ✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ᴀᴄᴛᴜᴀʟɪᴢᴀᴅᴀs*\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰┈➤ ¡Las reglas del bot se cambiaron con éxito!\n` +
+        `› Escribe \`${m.prefix}rules\` para verlas.`
     )
 }
 

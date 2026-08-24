@@ -25,16 +25,16 @@ function handler(m, { sock }) {
   const hakis = loadData("hakis") || [];
 
   if (accion === "listar") {
-    let txt = `🌊 *HAKI*\n\n`;
-    txt += `El Haki es la voluntad latente en todo ser vivo.\n\n`;
+    let txt = `꧁༺ 🌊 HAKI ༻꧂\n\n`;
+    txt += `_El Haki es la voluntad latente en todo ser vivo._\n\n`;
     for (const h of hakis) {
       const nivel = h.nivelMin || 20;
-      txt += `${h.emoji} *${h.nombre}*\n`;
+      txt += `${h.emoji} ⚡ *${h.nombre}*\n`;
       txt += `   \`${h.id}\` · Requiere Nv. ${nivel} · 💰 ${h.precio}\n`;
-      txt += `   _${h.efecto}_\n`;
+      txt += `   ✦ _${h.efecto}_\n`;
     }
-    txt += `\n> Despertar: *${m.prefix}haki despertar <id>*\n`;
-    txt += `> Tu nivel: *${user.nivel}*`;
+    txt += `\n╰┈➤ Despertar: *${m.prefix}haki despertar <id>*\n`;
+    txt += `╰┈➤ Tu nivel: *${user.nivel}*`;
     return m.reply(txt);
   }
 
@@ -68,9 +68,9 @@ function handler(m, { sock }) {
       return u;
     });
 
-    let txt = `🌊 *¡HAKI DESPERTADO!*\n\n`;
+    let txt = `꧁༺ 🌊 HAKI DESPERTADO ༻꧂\n\n`;
     txt += `${h.emoji} *${h.nombre}*\n\n`;
-    txt += `${h.efecto}\n\n`;
+    txt += `✦ _${h.efecto}_\n\n`;
     txt += `💵 Pagado: *${h.precio} Berrys*`;
     return m.reply(txt);
   }

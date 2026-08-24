@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
 
   if (!domain) {
     return m.reply(
-      `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
+      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
         `> \`${m.prefix}lookup <dominio>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}lookup google.com\``,
+        `> \`${m.prefix}lookup google.com\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -34,11 +34,11 @@ async function handler(m, { sock }) {
   if (
     !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]?(\.[a-zA-Z]{2,})+$/.test(domain)
   ) {
-    return m.reply(`❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`google.com\``);
+    return m.reply(`╰┈➤ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`google.com\``);
   }
 
   await m.react("🕕");
-  await m.reply(`🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇʟ ᴅᴏᴍɪɴɪᴏ...*`);
+  await m.reply(`╰┈➤ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇʟ ᴅᴏᴍɪɴɪᴏ...*`);
 
   try {
     const [dnsRes, whoisRes] = await Promise.allSettled([
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
     if (!dnsData && !whoisData) {
       await m.react("❌");
-      return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> No se pudo procesar el dominio`);
+      return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo procesar el dominio`);
     }
 
     let text = `🔍 *ᴅɴs ʟᴏᴏᴋᴜᴘ*\n\n`;

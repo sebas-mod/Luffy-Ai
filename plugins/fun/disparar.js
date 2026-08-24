@@ -186,7 +186,7 @@ async function answerHandler(m, sock) {
 
     await m.react("💕");
     await m.reply(
-      `💕 *¡OOH LA LA, ACEPTADO!* @${sessData.shooter.split("@")[0]}\n\n` +
+      `╭━━━〔 💕 〕━━━╮\n💕 *¡OOH LA LA, ACEPTADO!* @${sessData.shooter.split("@")[0]}\n╰━━━━━━━━━━━━╯\n\n` +
         `@${m.sender.split("@")[0]} y @${sessData.shooter.split("@")[0]} oficialmente son pareja\n\n` +
         `¡Que dure y sean felices! 💍`,
       { mentions: [m.sender, sessData.shooter] },
@@ -213,7 +213,7 @@ async function answerHandler(m, sock) {
 
     await m.react("💔");
     await m.reply(
-      `💔 *¡UY, TEN PACIENCIA!* @${sessData.shooter.split("@")[0]}\n\n` +
+      `☠︎━━━━━━☠︎\n💔 *¡UY, TEN PACIENCIA!* @${sessData.shooter.split("@")[0]}\n\n` +
         `@${m.sender.split("@")[0]} rechazó a @${sessData.shooter.split("@")[0]} como su pareja\n\n` +
         `¡Ten paciencia, quedan muchos más! 😢`,
       { mentions: [m.sender, sessData.shooter] },

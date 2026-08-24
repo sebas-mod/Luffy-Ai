@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `🎨 *ᴡᴀᴛᴇʀᴄᴏʟᴏʀ ᴛᴇxᴛ*\n\n> Ingresa el texto que quieres convertir en imagen\n\n\`Ejemplo: ${m.prefix}watercolortext Luffy-Ai\``,
+      `🎨 *ᴡᴀᴛᴇʀᴄᴏʟᴏʀ ᴛᴇxᴛ*\n\n> Ingresa el texto que quieres convertir en imagen\n\n\`╰┈➤ Ejemplo: ${m.prefix}watercolortext Luffy-Ai\``,
     );
   }
 
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     m.react("✅");
     await sock.sendMessage(m.chat, { 
       image: imageBuffer, 
-      caption: `🎨 *Water Color Text*\n\nTexto: ${text}` 
+      caption: `✦ • ─── • ✦\n🎨 *Water Color Text*\n──────────\nTexto: ${text}` 
     }, { quoted: m });
   } catch (error) {
     console.log(error);

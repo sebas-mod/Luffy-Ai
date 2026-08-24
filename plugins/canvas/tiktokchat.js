@@ -45,7 +45,7 @@ async function handler(m, { sock, text }) {
 
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`Lo siento, el sistema no pudo descargar la imagen de avatar que enviaste.`);
+      return m.reply(`╭━━━〔 ✦ 〕━━━╮\n😔 Lo siento, el sistema no pudo descargar la imagen de avatar que enviaste.\n╰━━━━━━━━━━━━╯`);
     }
 
     const form = new FormData();
@@ -65,7 +65,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error("[TIKTOKCHAT Plugin Error]", error);
     await m.react("❌");
-    m.reply(`Lo siento, no se pudo crear el canvas de TikTok Chat esta vez. Inténtalo de nuevo en unos momentos.`);
+    m.reply(`╭━━━〔 ✦ 〕━━━╮\n😔 Lo siento, no se pudo crear el canvas de TikTok Chat esta vez. Inténtalo de nuevo en unos momentos.\n╰━━━━━━━━━━━━╯`);
   }
 }
 

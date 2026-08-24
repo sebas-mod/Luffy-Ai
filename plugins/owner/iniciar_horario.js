@@ -48,16 +48,16 @@ async function handler(m, { sock, args }) {
         const result = startSchedulerByName(target, sock);
         
         if (result.started) {
-            await m.reply(`▶️ *ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ ɪɴɪᴄɪᴀᴅᴏ*
+            await m.reply(`👑•─────•👑\n▶️ *ᴘʀᴏɢʀᴀᴍᴀᴅᴏʀ ɪɴɪᴄɪᴀᴅᴏ*
 
 > Programador: *${result.name}*
 > Estado: ✅ Activo
 
-_El programador se ha reiniciado_`);
+_El programador se ha reiniciado_\n✦────────✦`);
         } else {
-            await m.reply(`❌ Programador no encontrado o ya está activo
+            await m.reply(`👑•─────•👑\n❌ Programador no encontrado o ya está activo
 
-Usa \`.startschedule\` para ver la lista de programadores`);
+Usa \`.startschedule\` para ver la lista de programadores\n✦────────✦`);
         }
     } catch (error) {
         console.error('[StartSchedule Error]', error);

@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
         const pending = pendingReset.get(m.sender)
         if (!pending || Date.now() - pending > 60000) {
             pendingReset.delete(m.sender)
-            return m.reply(`❌ No hay una solicitud de reinicio activa.\n\n> Escribe \`${m.prefix}eliminar_datos\` primero`)
+            return m.reply(`👑•─────•👑\n❌ No hay una solicitud de reinicio activa.\n\n> Escribe \`${m.prefix}eliminar_datos\` primero\n✦────────✦`)
         }
 
         pendingReset.delete(m.sender)
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     }
 
     if (existing.length === 0) {
-        return m.reply(`❌ No se encontraron datos en la base de datos`)
+        return m.reply(`╰┈➤ ❌ No se encontraron datos en la base de datos`)
     }
 
     pendingReset.set(m.sender, Date.now())

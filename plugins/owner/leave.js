@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     const inviteCode = await extractInviteCode(input);
 
     if (!inviteCode) {
-      return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Enlace de invitación no válido`);
+      return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Enlace de invitación no válido\n✦────────✦`);
     }
 
     try {
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
       groupName = groupInfo.subject || "Unknown";
     } catch (error) {
       return m.reply(
-        `❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudo obtener la info del grupo desde el enlace`,
+        `👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudo obtener la info del grupo desde el enlace\n✦────────✦`,
       );
     }
   } else {
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
   }
 
   if (!targetGroupJid) {
-    return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Grupo no encontrado`);
+    return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Grupo no encontrado\n✦────────✦`);
   }
 
   await m.react("🕕");

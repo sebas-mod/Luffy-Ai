@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
     const groupData = db.getGroup(m.chat)
     
     if (!groupData?.goodbyeMsg) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n> El mensaje de despedida ya está en el predeterminado`)
+        return m.reply("୨୧〔 ❀ DESPEDIDA 〕୨୧\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El mensaje de despedida ya está en el predeterminado`+"\n♡ ────── ♡")
     }
     
     db.setGroup(m.chat, { goodbyeMsg: null })
     
     m.react('✅')
     
-    await m.reply(`✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\nVuelve al mensaje predeterminado`)
+    await m.reply("╰┈➤ "+`✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\nVuelve al mensaje predeterminado`)
 }
 
 export { pluginConfig as config, handler }

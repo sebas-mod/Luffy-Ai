@@ -21,12 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🏛️ *Pak Jokowi*\n\n` +
         `> El hombre de Solo — Expresidente de Indonesia\n> Sencillo, sabio y le gusta andar de gira\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}jokowi-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
-        `> *${m.prefix}jokowi-ai Pak, ¿cómo está?*`
+        `> *${m.prefix}jokowi-ai Pak, ¿cómo está?*\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -37,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       await m.react("☢");
-      return m.reply(`❌ *Error de Jokowi AI*\n\n> ${result.error || "No se pudo obtener una respuesta"}`);
+      return m.reply(`❌ *Error de Jokowi AI*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`);
     }
 
     await m.react("✅");

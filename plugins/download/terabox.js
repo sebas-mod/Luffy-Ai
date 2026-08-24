@@ -46,11 +46,11 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`❌ *TeraBox Falló*\n\n> ${result.error}`);
+      return m.reply(`✦ • ─── • ✦\n❌ *TeraBox Falló*\n\n> ${result.error}`);
     }
 
     let caption =
-      `📦 *TeraBox*\n\n` +
+      `✦ • ─── • ✦\n📦 *TeraBox*\n──────────\n` +
       `> 📌 ${result.file_name}\n` +
       `> 📏 Tamaño: ${result.file_size}\n` +
       `> ⏱️ Duración: ${result.duration}`;
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("❌ Error al obtener los datos de TeraBox, intenta de nuevo más tarde");
+    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de TeraBox, intenta de nuevo más tarde");
   }
 }
 

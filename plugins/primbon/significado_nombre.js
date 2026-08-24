@@ -34,10 +34,10 @@ async function handler(m, { sock }) {
         }
         
         const result = data.data
-        const response = `📛 *ᴀʀᴛɪ ɴᴀᴍᴀ*\n\n` +
-            `> Nama: *${result.nama}*\n\n` +
-            `${result.arti}\n\n` +
-            `> _${result.catatan}_`
+        const response = `꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n📛 *ᴀʀᴛɪ ɴᴀᴍᴀ*\n꒰ა ໒꒱ ────────── ꒰ა ໒꒱\n\n` +
+            `✧ Nama: *${result.nama}*\n\n` +
+            `✿ ${result.arti}\n\n` +
+            `──────────\n❀ _${result.catatan}_`
         
         m.react('✅')
         await m.reply(response)

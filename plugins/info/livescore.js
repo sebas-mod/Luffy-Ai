@@ -74,10 +74,10 @@ async function handler(m, { text }) {
         
         if (!formateado || formateado.length === 0) {
             await m.react('❌');
-            return m.reply(`⚽ *MARCADOR EN VIVO DE FÚTBOL* ⚽\n\nActualmente no hay partidos en curso ni programados.`);
+            return m.reply(`╭━━━〔 ⚽ LIVESCORE 〕━━━╮\n\n⚽ No hay partidos en curso ni programados.\n\n╰━━━━━━━━━━━━╯`);
         }
         
-        let caption = `⚽ *MARCADOR EN VIVO DE HOY* ⚽\n\n`;
+        let caption = `╭━━━〔 ⚽ LIVESCORE 〕━━━╮\n\n⚽ *MARCADOR EN VIVO DE HOY* ⚽\n\n`;
         
         let count = 0;
         for (const grupo of formateado) {
@@ -102,7 +102,7 @@ async function handler(m, { text }) {
             count++;
         }
         
-        caption += `_Fuente: Goal.com_`;
+        caption += `✦────────✦\n⚽ _Fuente: Goal.com_`;
         
         await m.reply(caption.trim());
         await m.react('✅');

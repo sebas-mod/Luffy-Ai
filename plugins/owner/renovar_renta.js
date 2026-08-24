@@ -79,7 +79,8 @@ async function handler(m, { sock }) {
   const args = m.args;
   if (args.length < 2) {
     return m.reply(
-      `📝 *RENOVAR ALQUILER*\n\n` +
+      `📝 *RENOVAR ALQUILER*\n` +
+        `──────────\n\n` +
         `Formato: *${m.prefix}renovar_renta <link/id> <duración>*\n\n` +
         `*FORMATO DE DURACIÓN:*\n` +
         `• 30i = 30 min\n` +
@@ -101,7 +102,7 @@ async function handler(m, { sock }) {
 
   if (!durationMs)
     return m.reply(
-      `❌ Formato de duración no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
+      `╰┈➤ ❌ Formato de duración no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -110,7 +111,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`❌ Grupo no encontrado`);
+      return m.reply(`╰┈➤ ❌ Grupo no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -119,7 +120,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `❌ Grupo no registrado\nUsa *${m.prefix}agregar_renta* para agregarlo`,
+        `╭━〔 ⚙️ SISTEMA 〕━━━╮\n┃ ❌ Grupo no registrado\n╰━━━━━━━━━━━━╯\nUsa *${m.prefix}agregar_renta* para agregarlo`,
       );
     }
 
@@ -129,7 +130,7 @@ async function handler(m, { sock }) {
     } else {
       if (existing.isLifetime) {
         await m.react("❌");
-        return m.reply(`❌ Este grupo ya es Permanente, no es necesario renovarlo`);
+        return m.reply(`╰┈➤ ❌ Este grupo ya es Permanente, no es necesario renovarlo`);
       }
       const baseTime =
         existing.expiredAt > Date.now() ? existing.expiredAt : Date.now();
@@ -149,7 +150,8 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let text = `✅ *ALQUILER RENOVADO*\n\n`;
+    let text = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *ALQUILER RENOVADO*\n╰━━━━━━━━━━━━╯\n\n`;
+    text += `👑•─────•👑\n`;
     text += `Grupo: *${groupName}*\n`;
     text += `Extensión: *${formatDuration(durationStr)}*\n`;
     text += `Nueva expiración: *${expiredStr}*`;
@@ -157,7 +159,7 @@ async function handler(m, { sock }) {
     try {
       await sock.sendText(
         groupId,
-        `📢 ¡El alquiler del bot ha sido renovado!\n\nExtensión: *${formatDuration(durationStr)}*\nNueva expiración: *${expiredStr}*`,
+        `📢 ──────────\n¡El alquiler del bot ha sido renovado! 🎉\n\nExtensión: *${formatDuration(durationStr)}*\nNueva expiración: *${expiredStr}*\n──────────`,
         null,
         {
           contextInfo: saluranCtx(),

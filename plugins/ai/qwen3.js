@@ -22,6 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
       `🔵 *Qwen3 80B*\n\n` +
         `Pregúntale lo que sea al AI Qwen3 — modelo grande de Alibaba que domina cualquier idioma.\n\n` +
         `*USO:*\n` +
@@ -29,7 +30,8 @@ async function handler(m, { sock }) {
         `*EJEMPLO:*\n` +
         `> *${m.prefix}qwen3 ¿Qué es machine learning?*\n` +
         `> *${m.prefix}qwen3 Crea una receta de cocina indonesia*\n\n` +
-        `_Modelo 80B, tarda un poco pero sus respuestas son excelentes_`
+        `_Modelo 80B, tarda un poco pero sus respuestas son excelentes_\n\n` +
+      `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -41,7 +43,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *Error de Qwen3*\n\n> ${result.error || "No se pudo obtener una respuesta"}`
+        `❌ *Error de Qwen3*\n✧────────✧\n> ${result.error || "No se pudo obtener una respuesta"}`
       );
     }
 

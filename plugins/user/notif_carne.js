@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
     const newStatus = db.setting("notifcarne") ? "ACTIVADO ✅" : "APAGADO ❌";
 
-    await m.reply(`*NOTIFICACIÓN DE CARNE (GLOBAL)*\n\nEstado actual: *${newStatus}*\n\n> Cuando está activo, el bot siempre notificará la carne restante de TODOS LOS USUARIOS cada vez que haya un descuento al usar las funciones del bot.`);
+    await m.reply(`╭━━━〔 🔔 NOTIFICACIÓN 〕━━━╮\n\n*NOTIFICACIÓN DE CARNE (GLOBAL)*\n\n✦────────✦\n\nEstado actual: *${newStatus}*\n\n> Cuando está activo, el bot siempre notificará la carne restante de TODOS LOS USUARIOS cada vez que haya un descuento al usar las funciones del bot.\n\n╰━━━━━━━━━━━━╯`);
 }
 
 export { pluginConfig as config, handler };

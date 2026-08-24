@@ -92,8 +92,8 @@ function handler(m, { sock }) {
 
     const stats = getStats(getUser(m.sender));
     return m.reply(
-      `💥 *¡GEAR ACTIVADO!*\n\n` +
-        `${gear.nombre}\n${gear.desc}\n\n` +
+      `꧁༺ 💥 GEAR ACTIVADO ༻꧂\n\n` +
+        `⚡ ${gear.nombre}\n✦ _${gear.desc}_\n\n` +
         `⚔️ *Tu ataque ahora es:* ${stats.ataque}\n` +
         `⏳ Cooldown de cambio: 1 hora`,
     );

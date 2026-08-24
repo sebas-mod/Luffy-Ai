@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   const query = args.slice(1).join(" ");
 
   if (!no || !query) {
-    return m.reply(`❌ Formato: \`${m.prefix}apkmod-get <no> <query>\``);
+    return m.reply(`╰┈➤ ❌ Formato: \`${m.prefix}apkmod-get <no> <query>\``);
   }
 
   m.react("🕕");

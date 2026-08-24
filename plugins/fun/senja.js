@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
             m.react('❌')
             return m.reply(`❌ Error al obtener las palabras románticas`)
         }
-        await m.reply(res.data.text)
+        await m.reply(`🌆 ──────────\n${res.data.text}\n──────────`)
         m.react('✅')
     } catch (err) {
         m.react('☢')

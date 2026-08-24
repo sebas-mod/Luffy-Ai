@@ -32,14 +32,16 @@ async function handler(m, { sock }) {
         }
         const currentMode = config.mode;
         if (currentMode === 'public') {
-            return await m.reply('ℹ️ El bot ya está en modo *public*');
+            return await m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ℹ️ El bot ya está en modo *public*\n╰━━━━━━━━╯');
         }
         config.mode = 'public';
         const db = getDatabase();
         db.setting('botMode', 'public');
         
         const responseText = `🌐 *ᴍᴏᴅᴏ ᴘᴜʙʟɪᴄ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
-            `> ¡El bot ahora responde a todos los usuarios!\n\n` +
+            `╭━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `┃ ¡El bot ahora responde a todos los usuarios! 📢\n` +
+            `╰━━━━━━━━━━━━╯\n\n` +
             `_Usa .self para cerrar el acceso_`;
         await m.reply(responseText);
         console.log(`[Mode] Changed to PUBLIC by ${m.pushName} (${m.sender})`);

@@ -58,25 +58,25 @@ async function handler(m, { sock }) {
 
     if (!action) {
         const status = groupData.antisticker ? '✅ ON' : '❌ OFF'
-        await m.reply(`🎭 *AntiSticker*\n\n> Estado: *${status}*\n\n> \`.antisticker on/off\``)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`🎭 *AntiSticker*\n\n> Estado: *${status}*\n\n> \`.antisticker on/off\``+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'on') {
         db.setGroup(m.chat, { antisticker: true })
         m.react('✅')
-        await m.reply(`✅ *AntiSticker activado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *AntiSticker activado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { antisticker: false })
         m.react('❌')
-        await m.reply(`❌ *AntiSticker desactivado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *AntiSticker desactivado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
-    await m.reply(`❌ Usa \`.antisticker on\` o \`.antisticker off\``)
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Usa \`.antisticker on\` o \`.antisticker off\``+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler, checkAntisticker }

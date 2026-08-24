@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const prompt = m.text?.trim() || m.args.join(" ");
 
   if (!prompt) {
-    return m.reply("❌ Ingresa la descripción del logo que quieres crear.\n\nEjemplo: `.sologo robot genial color rojo`");
+    return m.reply("❌ Ingresa la descripción del logo que quieres crear.\n\n╰┈➤ Ejemplo: `.sologo robot genial color rojo`");
   }
 
   await m.react("🕕");
@@ -38,16 +38,16 @@ async function handler(m, { sock }) {
     const data = res.data;
     if (!data.status || !data.result || data.result.length === 0) {
       await m.react("❌");
-      return m.reply("⚠️ La IA no pudo crear el logo. Prueba con otro prompt (descripción).");
+      return m.reply("✧ ⚠️ La IA no pudo crear el logo. Prueba con otro prompt (descripción).");
     }
 
     const logo = data.result[0];
 
-    const caption = `🎨 *SOLOGO AI* 🎨\n\n` +
+    const caption = `╭━〔 🎨 *SOLOGO AI* 〕━╮\n\n` +
       `*Prompt:* ${prompt}\n` +
       `*Título:* ${logo.title}\n` +
       `*Descripción:* ${logo.desc}\n` +
-      `*Tipo:* ${logo.logo_type || "origin"}`;
+      `*Tipo:* ${logo.logo_type || "origin"}\n\n╰━━━━━━╯`;
 
     await sock.sendMessage(m.chat, {
       image: { url: logo.thumbnail },
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SoLogo AI]", error.message);
     await m.react("☢");
-    m.reply("😔 Ocurrió un error al procesar la solicitud hacia la IA.");
+    m.reply("╰┈➤ 😔 Ocurrió un error al procesar la solicitud hacia la IA.");
   }
 }
 

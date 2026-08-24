@@ -263,7 +263,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.isImage);
     if (!isImage) {
       m.react("❌");
-      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> ¡Responde una imagen para crear el fake story!`);
+      return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> ¡Responde una imagen para crear el fake story!`);
     }
     let imageBuffer;
     if (m.isImage && m.download) {
@@ -273,7 +273,7 @@ async function handler(m, { sock }) {
     }
     if (!imageBuffer) {
       m.react("❌");
-      return m.reply(`❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
+      return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
     }
     const resultBuffer = await createFakeStory(
       username,
@@ -287,7 +287,7 @@ async function handler(m, { sock }) {
       m.chat,
       {
         image: resultBuffer,
-        caption: `📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n\n> ᴜꜱᴜᴀʀɪᴏ: \`${username}\``,
+        caption: `✦ • ─── • ✦\n📷 *ꜰᴀᴋᴇ sᴛᴏʀʏ*\n╰┈➤ ᴜꜱᴜᴀʀɪᴏ: \`${username}\``,
       },
       { quoted: m },
     );

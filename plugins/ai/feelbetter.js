@@ -22,6 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
+        `╭━━━〔 ✦ 〕━━━╮\n\n` +
         `💚 *FeelBetterBot*\n\n` +
         `Una IA lista para escuchar tu desahogo — sin juzgar, con calidez y empatía.\n\n` +
         `*USO:*\n` +
@@ -29,7 +30,8 @@ async function handler(m, { sock }) {
         `*EJEMPLO:*\n` +
         `> *${m.prefix}feelbetter estoy triste ahora*\n` +
         `> *${m.prefix}feelbetter estoy muy agotado últimamente*\n\n` +
-        `_Este bot no reemplaza a un profesional, pero puede ser un lugar seguro para desahogarse_`
+        `_Este bot no reemplaza a un profesional, pero puede ser un lugar seguro para desahogarse_\n\n` +
+        `╰━━━━━━━━━━━━╯`
     );
   }
 
@@ -41,7 +43,7 @@ async function handler(m, { sock }) {
     if (!result.status) {
       await m.react("☢");
       return m.reply(
-        `❌ *FeelBetter falló*\n\n> ${result.error || "Error al obtener la respuesta"}`
+        `❌ *FeelBetter falló*\n✧────────✧\n> ${result.error || "Error al obtener la respuesta"}`
       );
     }
 

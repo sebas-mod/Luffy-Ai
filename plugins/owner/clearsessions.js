@@ -21,7 +21,7 @@ async function handler(m)  {
     const sessionsPath = path.join(process.cwd(), 'storage', 'sessions')
     
     if (!fs.existsSync(sessionsPath)) {
-        return m.reply(`❌ ¡La carpeta de sessions no existe!`)
+        return m.reply(`╰┈➤ ❌ ¡La carpeta de sessions no existe!`)
     }
     
     await m.react('🗑️')
@@ -30,7 +30,7 @@ async function handler(m)  {
         const files = fs.readdirSync(sessionsPath)
         
         if (files.length === 0) {
-            return m.reply(`📁 ¡La carpeta de sessions ya está vacía!`)
+            return m.reply(`╰┈➤ 📁 ¡La carpeta de sessions ya está vacía!`)
         }
         
         let deleted = 0

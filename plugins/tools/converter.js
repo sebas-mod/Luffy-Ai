@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
 
   if (!m.quoted && !m.isMedia) {
     return m.reply(
-      `🔄 *ᴄᴏɴᴠᴇʀᴛᴇʀ*\n\n` +
+      `╭━━━〔 🔄 ᴄᴏɴᴠᴇʀᴛᴇʀ 〕━━━╮\n\n` +
         `> Responde un archivo con el formato deseado\n\n` +
         `*Formato:*\n` +
         `> \`${m.prefix}converter <formato>\`\n\n` +
@@ -35,13 +35,13 @@ async function handler(m, { sock }) {
         `> \`${m.prefix}converter png\`\n\n` +
         `*Cómo usar:*\n` +
         `> 1. Responde el archivo que quieres convertir\n` +
-        `> 2. Escribe \`${m.prefix}converter <formato>\``,
+        `> 2. Escribe \`${m.prefix}converter <formato>\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 
   if (!targetFormat) {
     return m.reply(
-      `❌ ¡Ingresa el formato deseado!\n\n> Ejemplo: \`${m.prefix}converter mp3\``,
+      `❌ ¡Ingresa el formato deseado!\n──────────\n> Ejemplo: \`${m.prefix}converter mp3\``,
     );
   }
 
@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
   }
 
   if (!mediaMessage) {
-    return m.reply(`❌ ¡Responde el archivo que quieres convertir!`);
+    return m.reply(`╰┈➤ ❌ ¡Responde el archivo que quieres convertir!`);
   }
 
   m.react("🕕");
-  await m.reply(`🕕 *ᴅᴇsᴄᴀʀɢᴀɴᴅᴏ ᴀʀᴄʜɪᴠᴏ...*`);
+  await m.reply(`╰┈➤ 🕕 *ᴅᴇsᴄᴀʀɢᴀɴᴅᴏ ᴀʀᴄʜɪᴠᴏ...*`);
 
   try {
     const stream = await downloadContentFromMessage(
@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
     const tempFile = path.join(tempDir, `convert_${Date.now()}.${ext}`);
     fs.writeFileSync(tempFile, buffer);
 
-    await m.reply(`🔄 *ᴄᴏɴᴠᴇʀᴛɪᴇɴᴅᴏ...*\n\n> ${ext} → ${targetFormat}`);
+    await m.reply(`╰┈➤ 🔄 *ᴄᴏɴᴠᴇʀᴛɪᴇɴᴅᴏ...*\n\n> ${ext} → ${targetFormat}`);
 
     const result = await mconverter.convert(tempFile, targetFormat);
 
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
 
     if (result.error) {
       m.react("❌");
-      return m.reply(`❌ *ᴇʀʀᴏʀ ᴅᴇ ᴄᴏɴᴠᴇʀsɪᴏɴ*\n\n> ${result.error}`);
+      return m.reply(`╭━〔 ❌ ᴇʀʀᴏʀ ᴅᴇ ᴄᴏɴᴠᴇʀsɪᴏɴ 〕━╮\n\n> ${result.error}\n\n╰━━━━━╯`);
     }
 
     const saluranId = config.saluran?.id || "120363400911374213@newsletter";

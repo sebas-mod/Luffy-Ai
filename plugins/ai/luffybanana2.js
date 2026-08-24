@@ -20,9 +20,11 @@ async function handler(m, { sock }) {
   const prompt = m.text;
   if (!prompt) {
     return m.reply(
-      `🍌 *Luffy-Ai BANANA SUPER 2*\n\n` +
+      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+        `🍌 *Luffy-Ai BANANA SUPER 2*\n\n` +
         `> Crea imágenes con IA\n\n` +
-        `\`Ejemplo: ${m.prefix}luffybanana2 make a cat\``,
+        `\`Ejemplo: ${m.prefix}luffybanana2 make a cat\`\n\n` +
+        `╰━━━━━━━━━━━━╯`,
     );
   }
 
@@ -46,9 +48,11 @@ async function handler(m, { sock }) {
       error.message ||
       "Ocurrió un error";
     m.reply(`🍀 *Uy, parece que hubo un problema*
+✧────────✧
 
 ${msg}
 
+✧────────✧
 Intenta de nuevo más tarde, por favor no hagas spam`);
   }
 }

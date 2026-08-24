@@ -73,7 +73,7 @@ function handler(m, { sock }) {
     }
 
     if (!Object.keys(MODES).includes(mode)) {
-        return m.reply(`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``)
+        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``+"\n╰━━━━━━━━━━━━╯")
     }
 
 

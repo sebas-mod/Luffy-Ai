@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `🧠 *ɢᴘᴛ-4ᴏ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}gpt4o Hola, ¿cómo estás?\``,
+      `╭━━━〔 ✦ 〕━━━╮\n\n🧠 *ɢᴘᴛ-4ᴏ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}gpt4o Hola, ¿cómo estás?\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 

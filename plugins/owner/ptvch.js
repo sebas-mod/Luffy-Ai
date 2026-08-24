@@ -23,13 +23,13 @@ async function handler(m, { sock }) {
         try {
             video = await m.quoted.download()
         } catch (e) {
-            return m.reply(`❌ Fallo al descargar el video citado.`)
+            return m.reply(`╰┈➤ ❌ Fallo al descargar el video citado.`)
         }
     } else if (m.isVideo) {
         try {
             video = await m.download()
         } catch (e) {
-            return m.reply(`❌ Fallo al descargar el video.`)
+            return m.reply(`╰┈➤ ❌ Fallo al descargar el video.`)
         }
     }
     
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
         })
         
         await m.react('✅')
-        return m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> Video enviado al canal como PTV.`)
+        return m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n╭━〔 ✦ ÉXITO 〕━╮\n┃ Video enviado al canal como PTV 📺\n╰━━━━━━━━╯`)
         
     } catch (err) {
         return m.reply(te(m.prefix, m.command, m.pushName))

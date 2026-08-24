@@ -19,10 +19,10 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const text = m.text?.split('|')
     const [ link, kata, jumlah ] = text
-    if(!link) return m.reply(`*¿DÓNDE ESTÁ EL ENLACE NGL??*\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
-    if(!kata) return m.reply(`*¿Y EL MENSAJE??*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
-    if(!jumlah) return m.reply(`*¿Y LA CANTIDAD??*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
-    if(isNaN(jumlah)) return m.reply(`*LA CANTIDAD DEBE SER UN NÚMERO*\n\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(!link) return m.reply(`╰┈➤ *¿DÓNDE ESTÁ EL ENLACE NGL??*\n──────────\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(!kata) return m.reply(`╰┈➤ *¿Y EL MENSAJE??*\n──────────\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(!jumlah) return m.reply(`╰┈➤ *¿Y LA CANTIDAD??*\n──────────\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
+    if(isNaN(jumlah)) return m.reply(`╰┈➤ *LA CANTIDAD DEBE SER UN NÚMERO*\n──────────\nEjemplo: \`${m?.prefix}spamngl https://ngl.link/xxxx | hola | 10`)
     m.react('🎴')
     
     try {

@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
         }
 
         if (!textToQuote && !mainMsg.isMedia) {
-            return m.reply(`❌ *FORMATO INCORRECTO*\n\nEnvía el comando \`.qwa <texto>\` o responde el mensaje de otra persona con \`.qwa\`.`)
+            return m.reply(`╰┈➤ ❌ *FORMATO INCORRECTO*\n\nEnvía el comando \`.qwa <texto>\` o responde el mensaje de otra persona con \`.qwa\`.`)
         }
         await m.react('🕕')
         const msgTime = mainMsg.messageTimestamp ? new Date(mainMsg.messageTimestamp * 1000) : new Date()
@@ -119,14 +119,14 @@ async function handler(m, { sock }) {
         })
         await sock.sendMessage(m.chat, {
             image: Buffer.from(res.data),
-            caption: `✅ Cita/quote de WhatsApp creada con éxito!`
+            caption: `╰┈➤ ✅ Cita/quote de WhatsApp creada con éxito!`
         }, { quoted: m })
 
         await m.react('✅')
     } catch (error) {
         console.error("Error QWA:", error)
         await m.react('❌')
-        m.reply(`❌ *FALLO AL CREAR LA CITA/QUOTE*\n\n> Se produjo un error o la API no está funcionando.`)
+        m.reply(`╰┈➤ ❌ *FALLO AL CREAR LA CITA/QUOTE*\n\n> Se produjo un error o la API no está funcionando.`)
     }
 }
 

@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Escribe el texto\n\n\`Ejemplo: ${m.prefix}text2img Crea una imagen a partir de texto\``,
+      `╭━━━〔 ✦ 〕━━━╮\n\n📿 *ᴛᴇxᴛ ᴛᴏ ɪᴍᴀɢᴇ*\n\n> Escribe el texto\n\n\`Ejemplo: ${m.prefix}text2img Crea una imagen a partir de texto\`\n\n╰━━━━━━━━━━━━╯`,
     );
   }
 

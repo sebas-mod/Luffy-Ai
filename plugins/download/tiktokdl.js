@@ -125,7 +125,7 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `📌 Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
+      `╰┈➤ Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
     );
   }
   m.react("🕕");
@@ -146,7 +146,7 @@ async function handler(m, { sock }) {
       ) || result.data[0];
 
       const caption =
-        `🎵 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n\n` +
+        `✦ • ─── • ✦\n🎵 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n──────────\n` +
         `- Autor: *${result.author.nickname}* (${result.author.fullname})\n` +
         `- Descripción: ${result.title || "-"}\n` +
         `- Música: ${result.music_info.title} - ${result.music_info.author}\n` +
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
       });
     } else {
       const caption =
-        `📸 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n\n` +
+        `✦ • ─── • ✦\n📸 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n──────────\n` +
         `- Autor: *${result.author.nickname}* (${result.author.fullname})\n` +
         `- Descripción: ${result.title || "-"}\n` +
         `- Música: ${result.music_info.title} - ${result.music_info.author}\n` +
@@ -191,7 +191,7 @@ async function handler(m, { sock }) {
         { quoted: m },
       );
 
-      await sock.sendButton(m.chat, null, `📸 ¡Diapositivas enviadas con éxito!\nPulsa el botón de abajo para tomar la música.`, m, {
+      await sock.sendButton(m.chat, null, `✦ • ─── • ✦\n📸 ¡Diapositivas enviadas con éxito!\n╰┈➤ Pulsa el botón de abajo para tomar la música.`, m, {
         buttons: [musicButton],
       });
     }
@@ -199,7 +199,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("❌");
-    m.reply("Inténtalo de nuevo más tarde, o prueba " + m.prefix + "tt2");
+    m.reply("✦ • ─── • ✦\n❌ Inténtalo de nuevo más tarde, o prueba " + m.prefix + "tt2");
   }
 }
 

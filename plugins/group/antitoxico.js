@@ -142,40 +142,40 @@ async function handler(m, { sock }) {
     if (subCommand === 'on') {
         db.setGroup(m.chat, { antitoxic: true })
         m.react('✅')
-        await m.reply(`✅ *Antitoxic activado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *Antitoxic activado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (subCommand === 'off') {
         db.setGroup(m.chat, { antitoxic: false })
         m.react('❌')
-        await m.reply(`❌ *Antitoxic desactivado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *Antitoxic desactivado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (subCommand === 'warn') {
         const count = parseInt(args[1])
         if (!count || count < 1 || count > 10) {
-            return m.reply(`❌ Ingresa un número del 1 al 10\n> Ejemplo: \`.antitoxic warn 5\``)
+            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Ingresa un número del 1 al 10\n> Ejemplo: \`.antitoxic warn 5\``+"\n╰━━━━━━━━━━━━╯")
         }
         db.setGroup(m.chat, { toxicMaxWarn: count })
         m.react('✅')
-        await m.reply(`✅ Máximo de avisos cambiado a *${count}*`)
+        await m.reply("╰┈➤ "+`✅ Máximo de avisos cambiado a *${count}*`)
         return
     }
 
     if (subCommand === 'metode' || subCommand === 'method' || subCommand === 'mode') {
         const method = args[1]?.toLowerCase()
         if (!method || !['kick', 'delete'].includes(method)) {
-            return m.reply(`❌ Elige el método: *kick* o *delete*\n> Ejemplo: \`.antitoxic metode kick\``)
+            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Elige el método: *kick* o *delete*\n> Ejemplo: \`.antitoxic metode kick\``+"\n╰━━━━━━━━━━━━╯")
         }
         db.setGroup(m.chat, { toxicMethod: method })
         m.react('✅')
-        await m.reply(`✅ Método cambiado a *${method}*`)
+        await m.reply("╰┈➤ "+`✅ Método cambiado a *${method}*`)
         return
     }
 
-    await m.reply(`❌ Subcomando no reconocido.\n> Escribe \`.antitoxic\` para ver la lista de comandos.`)
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Subcomando no reconocido.\n> Escribe \`.antitoxic\` para ver la lista de comandos.`+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler, isToxic, handleToxicMessage, DEFAULT_TOXIC_WORDS }

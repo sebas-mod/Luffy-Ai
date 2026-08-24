@@ -37,13 +37,15 @@ async function handler(m, { sock }) {
 
     if (firstPipe === -1) {
         return m.reply(
+            `╭━━〔 📦 STOCK 〕━━╮\n\n` +
             `✏️ *EDITAR STOCK*\n\n` +
             `📋 Formato: \`${m.prefix}editar_stock <numero_producto> <numero_item>|<detalle_nuevo>\`\n\n` +
             `📝 *Ejemplo:*\n` +
             `\`${m.prefix}editar_stock 1 3|Email: nuevo@mail.com;;Password: newpass\`\n\n` +
             `• Usa \`;;\` para nueva línea en el detalle 🔑\n` +
             `📋 Ver el número de artículo: \`${m.prefix}lista_stock <numero_producto>\`\n\n` +
-            `⚠️ _El stock ya enviado al comprador no cambiará_ 🔒`
+            `⚠️ _El stock ya enviado al comprador no cambiará_ 🔒\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 
@@ -87,11 +89,12 @@ async function handler(m, { sock }) {
     await m.react('✅')
 
     return m.reply(
-        `✅ *STOCK ACTUALIZADO*\n\n` +
+        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *STOCK ACTUALIZADO*\n\n` +
         `🏷️ Producto: *${product.name}*\n` +
         `🔑 Artículo #${itemNo + 1}\n\n` +
         `❌ Antes:\n\`${oldDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
         `✅ Después:\n\`${newDetail.replace(/\n/g, ' ').substring(0, 50)}\`\n\n` +
+        `╰━━━━━━━━━━━━╯\n\n` +
         `⚠️ _El cambio solo aplica a los artículos aún no enviados al comprador_ 🔒`
     )
 }

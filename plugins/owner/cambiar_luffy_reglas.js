@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`🖼️ *ᴄᴀᴍʙɪᴀʀ ᴏᴜʀɪɴ-ʀᴜʟᴇs.ᴊᴘɢ*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/luffy-rules.jpg`)
+        return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ ᴏᴜʀɪɴ-ʀᴜʟᴇs.ᴊᴘɢ*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/luffy-rules.jpg\n✦────────✦`)
     }
     
     try {
@@ -34,15 +34,15 @@ async function handler(m, { sock }) {
         }
         
         if (!buffer) {
-            return m.reply(`❌ Error al descargar la imagen`)
+            return m.reply(`╰┈➤ ❌ Error al descargar la imagen`)
         }
         
-        await m.reply(`⏳ Subiendo la imagen...`)
+        await m.reply(`╰┈➤ ⏳ Subiendo la imagen...`)
         try {
             const newUrl = await updateAssetUrl('luffy-rules', buffer, 'luffy-rules.jpg')
-            m.reply(`✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen luffy-rules.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!`)
+            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen luffy-rules.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n✦────────✦`)
         } catch (e) {
-            m.reply(`❌ Error al subir la imagen: ${e.message}`)
+            m.reply(`╰┈➤ ❌ Error al subir la imagen: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

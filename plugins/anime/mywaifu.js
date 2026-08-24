@@ -59,7 +59,7 @@ async function handler(m, { sock, args }) {
 
         const imageUrls = data.items.map(item => item.url);
 
-        const captionText = `🌸 *COLECCIÓN WAIFU (${mode.toUpperCase()})* 🌸\n\n¡El sistema obtuvo *${imageUrls.length}* imágenes de waifu especiales para ti! Revisa el álbum de abajo para ver la colección completa. ✨`;
+        const captionText = `୨୧ ────────────── ୨୧\n🌸 *COLECCIÓN WAIFU (${mode.toUpperCase()})* 🌸\n୨୧ ────────────── ୨୧\n\n✧ ¡El sistema obtuvo *${imageUrls.length}* imágenes de waifu especiales para ti! Revisa el álbum de abajo para ver la colección completa. 𓆩♡𓆪`;
         await m.reply(captionText);
 
         const opener = generateWAMessageFromContent(

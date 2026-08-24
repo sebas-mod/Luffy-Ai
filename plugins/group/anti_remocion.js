@@ -33,18 +33,18 @@ async function handler(m, { sock, db }) {
     if (action === 'on') {
         db.setGroup(m.chat, { ...group, antiremove: 'on' })
         m.react('✅')
-        await m.reply(`✅ *AntiRemove activado*\n> Los mensajes eliminados se reenviarán de nuevo.`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *AntiRemove activado*\n> Los mensajes eliminados se reenviarán de nuevo.`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
     if (action === 'off') {
         db.setGroup(m.chat, { ...group, antiremove: 'off' })
         m.react('❌')
-        await m.reply(`❌ *AntiRemove desactivado*`)
+        await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *AntiRemove desactivado*`+"\n╰━━━━━━━━━━━━╯")
         return
     }
 
-    await m.reply(`❌ Usa \`.antiremove on\` o \`.antiremove off\``)
+    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Usa \`.antiremove on\` o \`.antiremove off\``+"\n╰━━━━━━━━━━━━╯")
 }
 
 export { pluginConfig as config, handler }

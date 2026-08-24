@@ -62,13 +62,14 @@ async function handler(m, { sock }) {
 
     if (!text) {
         return m.reply(
-            `🖥️ *CARBON CODE*\n\n` +
-            `Esta función convierte el texto de código en una imagen bonita estilo Carbon\n\n` +
-            `*Cómo usar:*\n` +
-            `> \`${m.prefix}carbon <código>\`\n` +
-            `> O puedes responder a un mensaje que contenga código\n\n` +
-            `*Ejemplo:*\n` +
-            `> \`${m.prefix}carbon console.log("Hola")\``
+            `╭━━━〔 🛠️ CARBON CODE 〕━━━╮\n\n` +
+            `╰┈➤ Esta función convierte el texto de código en una imagen bonita estilo Carbon\n\n` +
+            `✦ *Cómo usar:*\n` +
+            `╰┈➤ \`${m.prefix}carbon <código>\`\n` +
+            `╰┈➤ O puedes responder a un mensaje que contenga código\n\n` +
+            `✦ *Ejemplo:*\n` +
+            `╰┈➤ \`${m.prefix}carbon console.log("Hola")\`\n\n` +
+            `╰━━━━━━━━━━━━╯`
         )
     }
 
