@@ -29,11 +29,6 @@ async function handler(m) {
     txt += `├ Acceso a ciertos comandos del capitán\n`
     txt += `└ Soporte prioritario\n\n`
 
-    txt += `📦 *Panel Pterodactyl*\n`
-    txt += `├ Puedes crear tu propio servidor\n`
-    txt += `├ Acceso al panel de gestión\n`
-    txt += `└ Puedes vender paneles (reseller)\n\n`
-
     txt += `💎 *Bonos*\n`
     txt += `├ +200.000 EXP al activar\n`
     txt += `├ +20.000 Berry al activar\n`

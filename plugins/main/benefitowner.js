@@ -38,7 +38,6 @@ async function handler(m, { sock }) {
         `┃ ✦ \`\`\`Bypass de todos los cooldowns\`\`\`\n` +
         `┃ ✦ \`\`\`Control total del sistema del bot\`\`\`\n` +
         `┃ ✦ \`\`\`Gestión de usuarios y grupos\`\`\`\n` +
-        `┃ ✦ \`\`\`Acceso al panel y al servidor\`\`\`\n` +
         `╰┈┈┈┈┈┈┈┈⬡\n\n` +
         `╭┈┈⬡「 ⚙️ *ᴄóᴍᴏ ꜰᴜɴᴄɪᴏɴᴀ* 」\n` +
         `┃ \`El Owner se agrega mediante:\`\n` +

@@ -5,15 +5,12 @@ import {
   removeJadibotOwner,
   getJadibotOwners,
 } from "../../src/lib/luffy-jadibot-database.js";
-import fs from "fs";
-import path from "path";
 import {
   isLid,
   lidToJid,
   resolveAnyLidToJid,
   isLidConverted,
 } from "../../src/lib/luffy-lid.js";
-import { getGroupMode } from "../group/botmode.js";
 const pluginConfig = {
   name: "agregar_dueno",
   alias: ["addown", "setowner", "delowner", "dedown", "ownerlist", "listowner"],
@@ -69,52 +66,6 @@ function extractNumber(m) {
   return targetNumber;
 }
 
-function savePanelConfig() {
-  try {
-    const configPath = path.join(process.cwd(), "config.js");
-    let content = fs.readFileSync(configPath, "utf8");
-
-    const ownerPanelsStr = JSON.stringify(config.pterodactyl.ownerPanels || []);
-    content = content.replace(
-      /ownerPanels:\s*\[.*?\]/s,
-      `ownerPanels: ${ownerPanelsStr}`,
-    );
-
-    const sellersStr = JSON.stringify(config.pterodactyl.sellers || []);
-    content = content.replace(/sellers:\s*\[.*?\]/s, `sellers: ${sellersStr}`);
-
-    fs.writeFileSync(configPath, content, "utf8");
-    return true;
-  } catch (e) {
-    console.error("[AddOwner] Failed to save panel config:", e.message);
-    return false;
-  }
-}
-
-function removeFromSellers(targetNumber) {
-  if (!config.pterodactyl.sellers) return false;
-  const idx = config.pterodactyl.sellers.findIndex(
-    (s) => String(s).trim() === String(targetNumber).trim(),
-  );
-  if (idx !== -1) {
-    config.pterodactyl.sellers.splice(idx, 1);
-    return true;
-  }
-  return false;
-}
-
-function removeFromOwnerPanels(targetNumber) {
-  if (!config.pterodactyl.ownerPanels) return false;
-  const idx = config.pterodactyl.ownerPanels.findIndex(
-    (s) => String(s).trim() === String(targetNumber).trim(),
-  );
-  if (idx !== -1) {
-    config.pterodactyl.ownerPanels.splice(idx, 1);
-    return true;
-  }
-  return false;
-}
-
 function toMentionJid(value) {
   const number = String(value || "").replace(/[^0-9]/g, "");
   return number ? `${number}@s.whatsapp.net` : null;
@@ -123,16 +74,11 @@ function toMentionJid(value) {
 async function handler(m, { sock, jadibotId, isJadibot }) {
   const db = getDatabase();
   const cmd = m.command.toLowerCase();
-  const groupMode = m.isGroup ? getGroupMode(m.chat, db) : "private";
-  const isCpanelMode = m.isGroup && groupMode === "cpanel";
 
   const isAdd = ["agregar_dueno", "addown", "setowner"].includes(cmd);
   const isDel = ["delowner", "dedown"].includes(cmd);
   const isList = ["ownerlist", "listowner"].includes(cmd);
 
-  if (!config.pterodactyl) config.pterodactyl = {};
-  if (!config.pterodactyl.ownerPanels) config.pterodactyl.ownerPanels = [];
-  if (!config.pterodactyl.sellers) config.pterodactyl.sellers = [];
   if (!db.data.owner) db.data.owner = [];
 
   if (isList) {
@@ -151,31 +97,6 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
         txt += `${i + 1}. 👑 @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
       });
       txt += `\nTotal: *${jbOwners.length}* owners`;
-      return m.reply(txt, { mentions });
-    } else if (isCpanelMode) {
-      const panelOwners = config.pterodactyl.ownerPanels || [];
-      const fullOwners = db.data.owner || [];
-      const allOwners = [...new Set([...panelOwners, ...fullOwners])];
-
-      if (allOwners.length === 0) {
-        return m.reply(
-          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴘᴀɴᴇʟ*\n\n> Aún no hay owners de panel registrados.\n✦────────✦`,
-        );
-      }
-      let txt = `📋 *LISTA DE OWNERS DE PANEL*\n\n`;
-      const mentions = allOwners.map(toMentionJid).filter(Boolean);
-      allOwners.forEach((s, i) => {
-        const label =
-          panelOwners.includes(s) && fullOwners.includes(s)
-            ? "👑🖥️"
-            : fullOwners.includes(s)
-              ? "👑"
-              : "🖥️";
-        const number = String(s || "").replace(/[^0-9]/g, "");
-        const name = getOwnerName(number);
-        txt += `${i + 1}. ${label} @${number}${name !== "Owner" ? ` — *${name}*` : ""}\n`;
-      });
-      txt += `\nTotal: *${allOwners.length}* owners | 👑 Completo, 🖥️ Panel`;
       return m.reply(txt, { mentions });
     } else {
       const configOwners = (config.owner?.number || []).map(String);
@@ -248,101 +169,42 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     return;
   }
 
-  if (isCpanelMode) {
-    if (isAdd) {
-      if (config.pterodactyl.ownerPanels.includes(targetNumber)) {
-        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es owner de panel.`);
-      }
-
-      let roleChanged = "";
-      if (removeFromSellers(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade de Seller a Owner de Panel`;
-      }
-
-      config.pterodactyl.ownerPanels.push(targetNumber);
-      if (savePanelConfig()) {
-        await m.react("👑");
-        return m.reply(
-          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como owner de panel${roleChanged}\n╰━━━━━━━━━━━━╯`,
-        );
-      } else {
-        config.pterodactyl.ownerPanels = config.pterodactyl.ownerPanels.filter(
-          (s) => s !== targetNumber,
-        );
-        return m.reply(`❌ Error al guardar en config.js`);
-      }
-    } else if (isDel) {
-      const ownerList = config.pterodactyl.ownerPanels || [];
-      const found = ownerList.find(
-        (o) => String(o).trim() === String(targetNumber).trim(),
-      );
-      if (!found) {
-        return m.reply(
-          `👑•─────•👑\n❌ \`${targetNumber}\` no es owner de panel.\n\n> Lista actual: ${ownerList.join(", ") || "vacía"}\n✦────────✦`,
-        );
-      }
-      config.pterodactyl.ownerPanels = ownerList.filter(
-        (s) => String(s).trim() !== String(targetNumber).trim(),
-      );
-      if (savePanelConfig()) {
-        await m.react("✅");
-        return m.reply(
-          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los owners de panel\n╰━━━━━━━━━━━━╯`,
-        );
-      } else {
-        return m.reply(`❌ Error al guardar en config.js`);
-      }
+  if (isAdd) {
+    if (db.data.owner.includes(targetNumber)) {
+      return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es full owner.`);
     }
-  } else {
-    if (isAdd) {
-      if (db.data.owner.includes(targetNumber)) {
-        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es full owner.`);
-      }
 
-      let roleChanged = "";
-      if (removeFromSellers(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade de Seller`;
-        savePanelConfig();
-      }
-      if (removeFromOwnerPanels(targetNumber)) {
-        roleChanged = `\n> ⚡ Auto-upgrade de Panel Owner`;
-        savePanelConfig();
-      }
-
-      db.data.owner.push(targetNumber);
-      if (customName) {
-        const nameMap = db.setting("ownerNames") || {};
-        nameMap[targetNumber] = customName;
-        db.setting("ownerNames", nameMap);
-      }
-      db.save();
-
-      const displayName = customName || getOwnerName(targetNumber);
-      await m.react("👑");
-      return m.reply(
-        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}${roleChanged}\n╰━━━━━━━━━━━━╯`,
-      );
-    } else if (isDel) {
-      const index = db.data.owner.indexOf(targetNumber);
-      if (index === -1) {
-        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es full owner.`);
-      }
-
-      db.data.owner.splice(index, 1);
+    db.data.owner.push(targetNumber);
+    if (customName) {
       const nameMap = db.setting("ownerNames") || {};
-      delete nameMap[targetNumber];
+      nameMap[targetNumber] = customName;
       db.setting("ownerNames", nameMap);
-      db.save();
-
-      await m.react("✅");
-      return m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los full owners\n╰━━━━━━━━━━━━╯`);
     }
+    db.save();
+
+    const displayName = customName || getOwnerName(targetNumber);
+    await m.react("👑");
+    return m.reply(
+      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}\n╰━━━━━━━━━━━━╯`,
+    );
+  } else if (isDel) {
+    const index = db.data.owner.indexOf(targetNumber);
+    if (index === -1) {
+      return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es full owner.`);
+    }
+
+    db.data.owner.splice(index, 1);
+    const nameMap = db.setting("ownerNames") || {};
+    delete nameMap[targetNumber];
+    db.setting("ownerNames", nameMap);
+    db.save();
+
+    await m.react("✅");
+    return m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los full owners\n╰━━━━━━━━━━━━╯`);
   }
 }
 
 export {
   pluginConfig as config,
   handler,
-  removeFromSellers,
-  removeFromOwnerPanels,
 };

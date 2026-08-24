@@ -68,13 +68,10 @@ const CATEGORY_EMOJIS = {
   berita: "📰",
   rpg: "🗡️",
   nsfw: "🔞",
-  linode: "☁️",
   primbon: "🔮",
   cecan: "💃",
   stalker: "🕵️",
-  tts: "🗣️",
-  vps: "🌊",
-  panel: "🖥️"
+  tts: "🗣️"
 };
 function toSmallCaps(text) {
   const smallCaps = {
@@ -1354,9 +1351,6 @@ _Soy un sistema automatizado (bot de WhatsApp) que puede ayudarte a buscar y obt
         case7Text += `┃ ╰┈➤ *Carne* : ${userLimit}\n`;
         case7Text += `╰━━━━━━━━━━━━━━╯\n\n`;
         case7Text += `꧁༺ ¡Hola, mi amigo *"${m.pushName}"!* ༻꧂\n¿Cómo estás hoy? Te sientes bien, ¿verdad?\n⚓ Llevas activo desde hace *${diasActivos} días*\n\n`;
-
-case7Text += `Web de Panel y Alquiler del Bot\n`;
-case7Text += `fallxdstore.zone.id\n\n`;
 
         const readmore = String.fromCharCode(8206).repeat(4001);
         case7Text += readmore + "";
