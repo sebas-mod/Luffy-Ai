@@ -7,7 +7,7 @@ const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 const pluginConfig = {
     name: "countrystalk",
     alias: ["stalknegara", "infonegara"],
-    category: "stalker  ",
+    category: "stalker",
     description: "Buscar información detallada sobre un país",
     usage: ".country <nombre del país>",
     example: ".country indonesia",

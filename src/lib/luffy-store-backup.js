@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import archiver from 'archiver'
+import config from '../../config.js'
 import * as timeHelper from './luffy-time.js'
 const DATABASE_DIR = path.join(process.cwd(), 'database')
 const TEMP_DIR = path.join(process.cwd(), 'temp')
@@ -11,7 +12,7 @@ function getBackupMetadata() {
     return {
         schemaVersion: SCHEMA_VERSION,
         createdAt: new Date().toISOString(),
-botVersion: '1.0.0',
+        botVersion: '1.0.0',
         nodeVersion: process.version,
         platform: process.platform,
         files: 0

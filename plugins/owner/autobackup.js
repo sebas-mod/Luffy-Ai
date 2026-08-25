@@ -4,7 +4,7 @@ import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
   name: "autobackup",
-  alias: ["backup", "ab"],
+  alias: ["ab"],
   category: "owner",
   description: "Gestionar el sistema de respaldo automático",
   usage: ".autobackup <on/off/status/now> [interval]",

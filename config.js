@@ -29,6 +29,7 @@ const config = {
     name: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢", // Nombre del bot
     version: "3.3", // Versión del bot
     developer: "Sebas-MD", // Nombre del desarrollador
+    number: "", // Número del bot (se establece automáticamente)
   },
 
   assets: {
@@ -142,7 +143,7 @@ const config = {
     antiCall: false, // Si es true, el bot rechazará llamadas entrantes
     blockIfCall: false, // Si es true, el bot bloqueará a quien lo llame
     autoTyping: true,
-    autoRead: true,
+    autoRead: false,
     logMessage: true,
     dailyLimitReset: true,
     smartTriggers: false,

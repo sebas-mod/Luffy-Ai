@@ -3,7 +3,7 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 
 const config = {
   name: "limite_premium",
-  alias: ["cappremium", "setprem"],
+  alias: ["cappremium"],
   category: "owner",
   description: "Marcar varias funciones a la vez como premium",
   usage: ".capprem <nombre_funcion1> <nombre_funcion2> ...",

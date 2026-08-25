@@ -12,7 +12,6 @@ const pluginConfig = {
     "setprem",
     "delprem",
     "delpremium",
-    "listprem",
     "premlist",
   ],
   category: "owner",

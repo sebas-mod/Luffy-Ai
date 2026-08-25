@@ -32,7 +32,7 @@ async function getProfileBuffer(sock, jid) {
     try {
         const { f } = await import('./luffy-http.js')
         const res = await f(url, 'arrayBuffer')
-        return Buffer.from(res.data)
+        return Buffer.from(res)
     } catch {
         return null
     }

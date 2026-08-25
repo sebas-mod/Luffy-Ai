@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'anti_remocion',
-    alias: ["antidelete", "anti_quitar", "ar"],
+    alias: ["antidelete", "anti_quitar"],
     category: 'group',
     description: 'Activar/desactivar anti-eliminación de mensajes en el grupo',
     usage: '.antiremove <on/off>',

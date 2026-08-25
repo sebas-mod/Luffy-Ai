@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'estilo_texto',
-    alias: ['fancytext', 'font', 'gaya', 'tulisan', 'fontstyle'],
+    alias: ['fancytext', 'gaya', 'tulisan', 'fontstyle'],
     category: 'tools',
     description: 'Convierte texto normal en varios estilos de escritura geniales (fancy text).',
     usage: '.styleteks <texto>',

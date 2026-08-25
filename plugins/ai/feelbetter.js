@@ -4,7 +4,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "feelbetter",
-  alias: ["fb", "feelbetterbot", "healing"],
+  alias: ["feelbetterbot", "healing"],
   category: "ai",
   description: "Chatea con FeelBetterBot — una IA lista para escucharte sin juzgarte",
   usage: ".feelbetter <desahogo/pregunta>",

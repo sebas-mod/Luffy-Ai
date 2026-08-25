@@ -149,6 +149,8 @@ try {
 try {
   gantiAssetAnswerHandler = (await import("../plugins/owner/cambiar_asset.js"))
     .gantiAssetAnswerHandler;
+} catch (e) { }
+try {
   srtAnswerHandler = (await import("../plugins/owner/srt.js"))
     .srtAnswerHandler;
 } catch (e) { }
@@ -671,7 +673,6 @@ async function messageHandler(msg, sock, options = {}) {
           isPremium: m.isPremium,
           isPartner: m.isPartner,
           isAdmin: m.isAdmin,
-          device: deviceHint,
         });
       }
     }

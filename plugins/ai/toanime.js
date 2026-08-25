@@ -2,7 +2,7 @@ import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'toanime',
-    alias: ['anime', 'animefy', 'ghibli'],
+    alias: ['anime', 'animefy'],
     category: 'ai',
     description: 'Convertir la foto a estilo anime/Ghibli Studio',
     usage: '.toanime (responde/envía imagen)',

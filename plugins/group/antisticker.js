@@ -2,7 +2,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 const pluginConfig = {
     name: 'antisticker',
-    alias: ['as', 'nosticker'],
+    alias: ['nosticker'],
     category: 'group',
     description: 'Configurar el antisticker en el grupo',
     usage: '.antisticker <on/off>',

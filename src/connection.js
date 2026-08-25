@@ -3,7 +3,6 @@ import {
   DisconnectReason,
   useMultiFileAuthState,
   makeCacheableSignalKeyStore,
-  fetchLatestBaileysVersion,
   fetchLatestWaWebVersion,
 } from "ourin";
 import { Boom } from "@hapi/boom";
@@ -253,7 +252,7 @@ async function startConnection(options = {}) {
       creds: state.creds,
       keys: makeCacheableSignalKeyStore(state.keys, logger),
     },
-    browser: ["Ubuntu", "Chrome", "20.0.04"],
+    browser: ["Ubuntu", "Chrome", "120.0.0"],
     syncFullHistory: false,
     markOnlineOnConnect: false,
     generateHighQualityLinkPreview: false,
@@ -659,8 +658,7 @@ async function startConnection(options = {}) {
 
           let groupName = "este grupo";
           try {
-            const meta = await sock.groupMetadata(event.id);
-            groupName = meta.subject || "este grupo";
+            groupName = metadata?.subject || "este grupo";
           } catch { }
 
           const saluranId =

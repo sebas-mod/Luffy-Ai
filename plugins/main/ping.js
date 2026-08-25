@@ -6,7 +6,7 @@ import te from "../../src/lib/luffy-error.js"
 
 const pluginConfig = {
   name: "ping",
-  alias: ["speed", "p", "latency", "sys", "status"],
+  alias: ["speed", "p", "latency", "sys"],
   category: "main",
   description: "Revisar el rendimiento y el estado del sistema del bot en tiempo real (Canvas Epic)",
   usage: ".ping",

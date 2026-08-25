@@ -360,9 +360,7 @@ async function main() {
         initScheduler(config, sock);
         initAutoJpmScheduler(sock);
         initNotifScheduler(sock);
-        try {
-          startOrderPoller(sock);
-        } catch { }
+        // startOrderPoller(sock); — no implementado
         try {
           const { startOtpPoller: _startOtp } =
             await import("./src/lib/luffy-otp-poller.js");
