@@ -16,14 +16,49 @@
   "120363399156869846@g.us": {
     "chatStats": {
       "5491138403093@s.whatsapp.net": {
-        "count": 14,
-        "lastChat": 1787797419982,
+        "count": 122,
+        "lastChat": 1787948854599,
         "name": "."
       },
       "5493856984435@s.whatsapp.net": {
-        "count": 5,
-        "lastChat": 1787797026874,
+        "count": 45,
+        "lastChat": 1787948289111,
         "name": "Shxx Gavx"
+      },
+      "51929083675@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1787941909007,
+        "name": "User"
+      },
+      "51927238856@s.whatsapp.net": {
+        "count": 66,
+        "lastChat": 1787948241424,
+        "name": "ī'm.criss 🇦🇱"
+      },
+      "573133374132@s.whatsapp.net": {
+        "count": 51,
+        "lastChat": 1787948773524,
+        "name": "Yo Soy Yo"
+      },
+      "5491164431320@s.whatsapp.net": {
+        "count": 21,
+        "lastChat": 1787948112766,
+        "name": "Keni"
+      },
+      "5493865317981@s.whatsapp.net": {
+        "count": 27,
+        "lastChat": 1787948113110,
+        "name": "Waguri Assistant"
+      },
+      "195941541883904@s.whatsapp.net": {
+        "count": 30,
+        "lastChat": 1787948290292,
+        "name": "algo"
+      },
+      "5215548289402@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1787948599195,
+        "name": "Unknown"
       }
     },
     "jid": "120363399156869846@g.us",
@@ -37,7 +72,8 @@
     "game": true,
     "rpg": true,
     "warnings": [],
-    "chat": {}
+    "chat": {},
+    "notifDemote": true
   },
   "120363411433511872@g.us": {
     "chatStats": {
@@ -123,7 +159,99 @@
         "count": 6,
         "lastChat": 1787810561553,
         "name": "poetadelmetal"
+      },
+      "122888342519945@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1787941992452,
+        "name": "El ROMANTICO 🌹"
+      },
+      "34659604123@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1787945978565,
+        "name": "tonitrumpet1996"
+      },
+      "51946845973@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1787947460108,
+        "name": "Caramelito Kids"
       }
     }
+  },
+  "120363408669319460@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363408669319460@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363121226395041@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363121226395041@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363392680350368@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363392680350368@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363401186004493@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363401186004493@g.us",
+    "name": "DIAMANTES ARGENTINA🇦🇷 CyN",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {},
+    "chatStats": {
+      "5493496505311@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1787947054641,
+        "name": "🔥 NICKO 🔥"
+      }
+    }
+  },
+  "120363242309224347@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363242309224347@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
   }
 }

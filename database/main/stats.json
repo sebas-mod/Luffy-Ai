@@ -1,4 +1,20 @@
 {
-  "commandsExecuted": 1,
-  "command_s": 1
+  "commandsExecuted": 36,
+  "command_s": 3,
+  "command_cc": 1,
+  "command_notif_degradar": 1,
+  "command_demote": 1,
+  "command_promote": 1,
+  "command_addown": 1,
+  "command_getplugin": 1,
+  "command_letra": 3,
+  "command_idch": 1,
+  "command_menu": 8,
+  "command_configurar_menu": 7,
+  "command_menu_todo": 2,
+  "command_rules": 1,
+  "command_ai": 1,
+  "command_autoai": 2,
+  "command_me": 1,
+  "command_ev": 1
 }

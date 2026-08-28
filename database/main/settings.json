@@ -4,7 +4,7 @@
   "ownerType": 2,
   "welcomeType": 7,
   "replyVariant": 11,
-  "menuVariant": 8,
+  "menuVariant": 3,
   "botAfk": {
     "active": false
   },
@@ -106,6 +106,42 @@
     "5217331152098@s.whatsapp.net": {
       "jid": "5217331152098@s.whatsapp.net",
       "name": "poetadelmetal"
+    },
+    "51927238856@s.whatsapp.net": {
+      "jid": "51927238856@s.whatsapp.net",
+      "name": "ī'm.criss 🇦🇱"
+    },
+    "122888342519945@s.whatsapp.net": {
+      "jid": "122888342519945@s.whatsapp.net",
+      "name": "El ROMANTICO 🌹"
+    },
+    "34659604123@s.whatsapp.net": {
+      "jid": "34659604123@s.whatsapp.net",
+      "name": "tonitrumpet1996"
+    },
+    "573133374132@s.whatsapp.net": {
+      "jid": "573133374132@s.whatsapp.net",
+      "name": "Yo Soy Yo"
+    },
+    "5491164431320@s.whatsapp.net": {
+      "jid": "5491164431320@s.whatsapp.net",
+      "name": "Keni"
+    },
+    "5493865317981@s.whatsapp.net": {
+      "jid": "5493865317981@s.whatsapp.net",
+      "name": "Waguri Assistant"
+    },
+    "5493496505311@s.whatsapp.net": {
+      "jid": "5493496505311@s.whatsapp.net",
+      "name": "🔥 NICKO 🔥"
+    },
+    "195941541883904@s.whatsapp.net": {
+      "jid": "195941541883904@s.whatsapp.net",
+      "name": "algo"
+    },
+    "51946845973@s.whatsapp.net": {
+      "jid": "51946845973@s.whatsapp.net",
+      "name": "Caramelito Kids"
     }
   },
   "notiflimit": false,
