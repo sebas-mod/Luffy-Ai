@@ -66,7 +66,48 @@
   "ownerNames": {},
   "publicGroups": [],
   "autoRead": false,
-  "contacts": {},
+  "contacts": {
+    "5491128736678@s.whatsapp.net": {
+      "jid": "5491128736678@s.whatsapp.net",
+      "name": "Yamila"
+    },
+    "5350416102@s.whatsapp.net": {
+      "jid": "5350416102@s.whatsapp.net",
+      "name": "✨D~C~T✨"
+    },
+    "5493856984435@s.whatsapp.net": {
+      "jid": "5493856984435@s.whatsapp.net",
+      "name": "Shxx Gavx"
+    },
+    "5491136814653@s.whatsapp.net": {
+      "jid": "5491136814653@s.whatsapp.net",
+      "name": "Magali"
+    },
+    "5216647982049@s.whatsapp.net": {
+      "jid": "5216647982049@s.whatsapp.net",
+      "name": "paiak"
+    },
+    "51915024973@s.whatsapp.net": {
+      "jid": "51915024973@s.whatsapp.net",
+      "name": "Yiro"
+    },
+    "35034165719110@s.whatsapp.net": {
+      "jid": "35034165719110@s.whatsapp.net",
+      "name": "Enrique Alejandro"
+    },
+    "5356957902@s.whatsapp.net": {
+      "jid": "5356957902@s.whatsapp.net",
+      "name": "ImNecroz :)"
+    },
+    "5493777292430@s.whatsapp.net": {
+      "jid": "5493777292430@s.whatsapp.net",
+      "name": "Equi"
+    },
+    "5217331152098@s.whatsapp.net": {
+      "jid": "5217331152098@s.whatsapp.net",
+      "name": "poetadelmetal"
+    }
+  },
   "notiflimit": false,
   "pgTopups": {},
   "pgPayments": {},
@@ -76,5 +117,7 @@
   "srtEnabled": true,
   "autobio_text": "",
   "autobio_status": false,
-  "capprem": {}
+  "capprem": {},
+  "_lastCarneDefault": 99999,
+  "_lastCarnePremium": 99999999
 }

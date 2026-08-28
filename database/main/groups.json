@@ -1,1 +1,129 @@
-[]
+{
+  "120363047284570044@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363047284570044@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363399156869846@g.us": {
+    "chatStats": {
+      "5491138403093@s.whatsapp.net": {
+        "count": 14,
+        "lastChat": 1787797419982,
+        "name": "."
+      },
+      "5493856984435@s.whatsapp.net": {
+        "count": 5,
+        "lastChat": 1787797026874,
+        "name": "Shxx Gavx"
+      }
+    },
+    "jid": "120363399156869846@g.us",
+    "name": "『♦️』𝐃𝚵 𝐋𝐔 𝐗𝚵 ↦ 𝚻𝚵公𝕸『♦️』",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363411433511872@g.us": {
+    "chatStats": {
+      "5491128736678@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1787796930675,
+        "name": "Yamila"
+      },
+      "5350416102@s.whatsapp.net": {
+        "count": 6,
+        "lastChat": 1787797234412,
+        "name": "✨D~C~T✨"
+      },
+      "5491136814653@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1787796927217,
+        "name": "Magali"
+      },
+      "5491138403093@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1787797218388,
+        "name": "."
+      }
+    },
+    "jid": "120363411433511872@g.us",
+    "name": "👹💸The Real Maniatico💸👹",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "593960347807-1594869219@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "593960347807-1594869219@g.us",
+    "name": "🌎 MUNDO POKEMON 🌎",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {},
+    "chatStats": {
+      "5216647982049@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1787805836783,
+        "name": "paiak"
+      },
+      "51915024973@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1787801214007,
+        "name": "Yiro"
+      },
+      "35034165719110@s.whatsapp.net": {
+        "count": 7,
+        "lastChat": 1787806722719,
+        "name": "Enrique Alejandro"
+      },
+      "5356957902@s.whatsapp.net": {
+        "count": 10,
+        "lastChat": 1787805848392,
+        "name": "ImNecroz :)"
+      },
+      "5493777292430@s.whatsapp.net": {
+        "count": 9,
+        "lastChat": 1787806792802,
+        "name": "Equi"
+      },
+      "593960347807-1594869219@g.us": {
+        "count": 1,
+        "lastChat": 1787808506803,
+        "name": "Unknown"
+      },
+      "5217331152098@s.whatsapp.net": {
+        "count": 6,
+        "lastChat": 1787810561553,
+        "name": "poetadelmetal"
+      }
+    }
+  }
+}
