@@ -4,7 +4,7 @@ import config from "../../config.js";
 const PAGE_SIZE = 20;
 
 function getRegistrationContextInfo() {
-  const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
   return {

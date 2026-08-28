@@ -56,7 +56,7 @@ try {
 } catch (e) {}
 
 function ctx() {
-  const sId = config.saluran?.id || "120363400911374213@newsletter";
+  const sId = config.saluran?.canalId || "120363400911374213@newsletter";
   const sName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
   return {
     forwardingScore: 9999,

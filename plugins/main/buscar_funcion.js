@@ -204,7 +204,7 @@ async function handler(m, { sock }) {
         `🔍 *ʀᴇꜱᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ʙúꜱQᴜᴇᴅᴀ*\n\n> No se encontró ninguna función con la palabra clave \`${keyword}\``,
       );
     }
-    const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+    const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     let text = `🔍 *ʀᴇꜱᴜʟᴛᴀᴅᴏ ᴅᴇ ʟᴀ ʙúꜱQᴜᴇᴅᴀ: "${keyword}"*\n`;
     text += `> Se encontraron *${matches.length}* funciones\n`;

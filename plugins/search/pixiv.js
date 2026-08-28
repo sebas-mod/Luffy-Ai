@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
     const results = data.data.slice(0, 10);
 
-    const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+    const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     let caption = `╭━〔 🎨 ʙᴜsǫᴜᴇᴅᴀ ᴘɪxɪᴠ 〕━╮\n──────────\n`;

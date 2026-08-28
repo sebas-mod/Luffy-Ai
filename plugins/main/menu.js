@@ -16,6 +16,7 @@ import {
   getCategories,
 } from "../../src/lib/luffy-plugins.js";
 import { getDatabase } from "../../src/lib/luffy-database.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import fs from "fs";
 import path from "path";
 
@@ -360,10 +361,10 @@ function getContextInfo(
   thumbBuffer,
   renderLargerThumbnail = false,
 ) {
-  const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = botConfig.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName =
     botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
-  const saluranLink = botConfig.saluran?.link || "";
+  const saluranLink = botConfig.saluran?.canalLink || "";
   const ctx = {
     mentionedJid: [m.sender],
     forwardingScore: 9,
@@ -430,17 +431,17 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   let videoBuffer = null;
 
   try {
-    imageBuffer = fs.readFileSync(botConfig.assets["luffy"])
-    thumbBuffer = fs.readFileSync(botConfig.assets["luffy2"])
+    imageBuffer = getAssetBuffer("luffy")
+    thumbBuffer = getAssetBuffer("luffy2")
   } catch (e) {
     console.error("Error al cargar assets:", e.message);
   }
   const prefix = botConfig.command?.prefix || ".";
-  const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = botConfig.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName =
     botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
   const saluranLink =
-    botConfig.saluran?.link ||
+    botConfig.saluran?.canalLink ||
     "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t";
   const {
     sorted: menuSorted,

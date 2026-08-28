@@ -192,7 +192,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       groupMeta?.owner?.split("@")[0] || "",
       config.command?.prefix || ".",
     );
-    const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+    const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
     if (goodbyeType === 2) {
       const cardBody = groupData?.goodbyeMsg
@@ -264,7 +264,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
           mentionedJid: [realParticipant],
           forwardedNewsletterMessageInfo: {
             newsletterName: config?.saluran?.name,
-            newsletterJid: config?.saluran?.id,
+            newsletterJid: config?.saluran?.canalId,
           },
         },
       });

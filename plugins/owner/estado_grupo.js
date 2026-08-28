@@ -320,7 +320,7 @@ async function handler(m, { sock, db }) {
       contextInfo: {
         ...saluranCtx(),
         forwardedNewsletterMessageInfo: {
-          newsletterJid: botConfig?.saluran?.id,
+          newsletterJid: botConfig?.saluran?.canalId,
           newsletterName: botConfig?.saluran?.name,
         },
       },

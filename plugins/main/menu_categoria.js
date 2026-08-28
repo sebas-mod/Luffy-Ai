@@ -11,6 +11,7 @@ import {
 } from "../../src/lib/luffy-plugins.js";
 import { getDatabase } from "../../src/lib/luffy-database.js";
 import { getTimeGreeting } from "../../src/lib/luffy-formatter.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 import fs from "fs"
 
 const pluginConfig = {
@@ -222,7 +223,7 @@ async function handler(m, { sock, db }) {
         case 2: {
           const media = await prepareWAMessageMedia(
             {
-              image: fs.readFileSync(config.assets["luffy2"]),
+              image: getAssetBuffer("luffy2"),
             },
             { upload: sock.waUploadToServer },
           );
@@ -328,7 +329,7 @@ async function handler(m, { sock, db }) {
                     isForwarded: true,
                     forwardingScore: 9,
                     forwardedNewsletterMessageInfo: {
-                      newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
+                      newsletterJid: config.saluran?.canalId || "120363400911374213@newsletter",
                       newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                       serverMessageId: 127,
                     },
@@ -412,7 +413,7 @@ async function handler(m, { sock, db }) {
       case 2: {
         const media = await prepareWAMessageMedia(
           {
-            image: fs.readFileSync(config.assets["luffy2"]),
+            image: getAssetBuffer("luffy2"),
           },
           { upload: sock.waUploadToServer },
         );
@@ -525,7 +526,7 @@ async function handler(m, { sock, db }) {
                   isForwarded: true,
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
+                    newsletterJid: config.saluran?.canalId || "120363400911374213@newsletter",
                     newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
@@ -600,7 +601,7 @@ async function handler(m, { sock, db }) {
                   isForwarded: true,
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
+                    newsletterJid: config.saluran?.canalId || "120363400911374213@newsletter",
                     newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },

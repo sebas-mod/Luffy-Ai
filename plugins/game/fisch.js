@@ -49,7 +49,7 @@ try {
 } catch (e) {}
 
 function ctx(title, body) {
-  const sId = config.saluran?.id || "120363400911374213@newsletter";
+  const sId = config.saluran?.canalId || "120363400911374213@newsletter";
   const sName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
   const c = {
     forwardingScore: 9999,

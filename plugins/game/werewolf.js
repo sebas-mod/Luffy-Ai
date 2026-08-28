@@ -91,7 +91,7 @@ const PHASE_DURATION = {
 };
 
 function wwCtx(mentions) {
-  const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
   return {
     forwardingScore: 9999,

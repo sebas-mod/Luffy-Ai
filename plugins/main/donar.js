@@ -21,7 +21,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const botName = config.bot?.name || "Luffy-Ai";
   const ownerName = config.owner?.name || "Owner";
-  const saluranId = config.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName = config.saluran?.name || botName;
 
   const donasiConfig = config.donasi || {};

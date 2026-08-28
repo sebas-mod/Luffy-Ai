@@ -22,7 +22,7 @@ const pluginConfig = {
 };
 
 function getBcContextInfo() {
-  const saluranId = config.saluran?.id || "";
+  const saluranId = config.saluran?.canalId || "";
   const saluranName = config.saluran?.name || config.bot?.name || "";
   const ctx = {
     forwardingScore: 1,

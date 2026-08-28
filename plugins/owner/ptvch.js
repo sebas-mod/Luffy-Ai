@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
         )
     }
     
-    const channelId = config.saluran?.id || '120363404849776664@newsletter'
+    const channelId = config.saluran?.canalId || '120363404849776664@newsletter'
     
     await m.reply(`🕕 *ᴇɴᴠɪᴀɴᴅᴏ ᴘᴛᴠ ᴀʟ ᴄᴀɴᴀʟ...*`)
     

@@ -70,7 +70,7 @@ function generateWaveform(audioBuf, samples = 64) {
 
 async function handler(m, { sock }) {
   const raw = m.text?.trim() || "";
-  let chId = config?.saluran?.id;
+  let chId = config?.saluran?.canalId;
   let chName = config?.saluran?.name || config?.bot?.name || "Luffy-Ai";
   let q = raw;
 
