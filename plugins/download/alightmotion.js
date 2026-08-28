@@ -1,6 +1,7 @@
 import axios from "axios";
 import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
     name: "alightmotiondl",
@@ -20,11 +21,10 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        let help = `📥 *DESCARGADOR DE ALIGHT MOTION*\n\n`
-        help += `¡Esta función te ayuda a descargar proyectos o presets de Alight Motion fácilmente!\n\n`
-        help += `*Cómo Usar:*\n`
-        help += `- Escribe *${m.prefix}amdl <link_alight_motion>*\n\n`
-        help += `*Ejemplo:* ${m.prefix}amdl https://alight.link/xxxxx`
+        let help = `✦ • ─── • ✦\n📽️ *𝗔 𝗟 𝗜 𝗚 𝗛 𝗧 𝗠 𝗢 𝗧 𝗜 𝗢 𝗡*\n──────────\n`
+        help += `> *${config.bot?.name}* descarga proyectos y presets de Alight Motion\n`
+        help += `> Solo pasa el enlace de *alight.link*\n\n`
+        help += usage(m.prefix, m.command, "https://alight.link/xxxxx")
         return m.reply(help);
     }
 
@@ -48,16 +48,26 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data || !data.data.url) {
             await m.react("❌");
-            return m.reply(`╭━━━〔 ✦ 〕━━━╮\n❌ Lo siento, ese enlace de Alight Motion no es válido o el proyecto fue eliminado.\n╰━━━━━━━━━━━━╯`);
+            return m.reply(fail("ALIGHT MOTION", "Enlace no válido o el proyecto fue eliminado."));
         }
 
         const downloadUrl = data.data.url;
+
+        const caption = card({
+            emoji: "📽️",
+            title: "𝗔𝗟𝗜𝗚𝗛𝗧 𝗠𝗢𝗧𝗜𝗢𝗡",
+            fields: [
+                ["Tipo", "Proyecto/Preset (.zip)"],
+                ["Enlace", targetUrl],
+            ],
+            footer: `Descarga directa de ${config.bot?.name} 🚀`,
+        });
 
         await sock.sendMessage(m.chat, {
             document: { url: downloadUrl },
             mimetype: "application/zip",
             fileName: `AlightMotion_${config.bot.name}.zip`,
-            caption: `✦ • ─── • ✦\n✅ Preset de Alight Motion descargado con éxito!`
+            caption
         }, { quoted: m });
 
         await m.react("✅");

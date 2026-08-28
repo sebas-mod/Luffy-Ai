@@ -1,6 +1,7 @@
 import axios from "axios";
 import he from "he";
 import te from "../../src/lib/luffy-error.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const BASE_URL = "https://workers-playground-cool-wood-c008.accoutydusra.workers.dev";
 
@@ -56,9 +57,18 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
   const url = m.text?.trim();
-  
-  if (!url || !/threads/i.test(url)) {
-    return m.reply("✦ • ─── • ✦\n❌ *Vaya, ¿dónde está el enlace de Threads?!*\n\nDebes ingresar el enlace de la publicación de Threads que quieres descargar. Asegúrate de que el enlace sea correcto! \n\nEjemplo: `.tdl https://www.threads.net/@zuck/post/xxx`");
+
+  if (!url) {
+    return m.reply(
+      `✨ *𝗧𝗛𝗥𝗘𝗔𝗗𝗦*\n` +
+        `> Descarga fotos y videos de publicaciones de Threads.` +
+        usage(m.prefix, "tdl", "https://www.threads.net/@zuck/post/xxx"),
+    );
+  }
+
+  if (!/threads/i.test(url)) {
+    await m.react("❌");
+    return m.reply(fail("THREADS", "La URL no es un enlace válido de Threads."));
   }
 
   await m.react("🕕");
@@ -91,17 +101,19 @@ async function handler(m, { sock }) {
 
     if (res.status >= 300 || data.success !== true || result.length === 0) {
       await m.react("❌");
-      return m.reply(`⚠️ *Vaya, error al obtener los datos de Threads!*\n\nQuizás esta publicación es privada, fue eliminada, o el enlace que diste no es correcto.\n\nMotivo del sistema: ${data.message || data.error || "Desconocido"}`);
+      return m.reply(fail("THREADS", data.message || data.error || "No se pudo obtener datos de la publicación. Quizás es privada, fue eliminada o el enlace no es correcto."));
     }
 
-    const captionText = `✦ • ─── • ✦
-✨ *DESCARGADOR DE THREADS* ✨
-──────────
-👤 *Autor*: ${info.author || "Unknown"}
-📝 *Texto de la Publicación*: ${cleanText(info.title) || cleanText(info.description) || "No hay descripción."}
-📊 *Archivos*: ${result.length}
-──────────
-╰┈➤ ¡Vuelve cuando quieras descargar más! 🚀`;
+    const captionText = card({
+      emoji: "✨",
+      title: "𝗧𝗛𝗥𝗘𝗔𝗗𝗦",
+      fields: [
+        ["Autor", info.author || "Unknown"],
+        ["Publicación", cleanText(info.title) || cleanText(info.description) || "No hay descripción."],
+        ["Archivos", `${result.length}`],
+      ],
+      footer: "¡Vuelve cuando quieras descargar más! 🚀",
+    });
 
     const mediaList = [];
     for (const item of result) {
@@ -126,7 +138,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[ThreadsDL]", err.message);
     await m.react("☢");
-    m.reply("✦ • ─── • ✦\n😔 *Parece que hay una falla en mi sistema.* \n\nOcurrió un error fatal al intentar procesar ese enlace de Threads. ¡Intenta de nuevo más tarde!\n──────────");
+    m.reply(fail("THREADS", "Ocurrió un error fatal al intentar procesar ese enlace de Threads. ¡Intenta de nuevo más tarde!"));
   }
 }
 

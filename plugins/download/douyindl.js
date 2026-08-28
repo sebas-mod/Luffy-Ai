@@ -1,4 +1,5 @@
 import axios from "axios";
+import { card, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
   name: "douyindl",
@@ -36,12 +37,9 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `✦ • ─── • ✦\n🎵 *Douyin Downloader*\n──────────\n` +
-        `Descarga videos o audio de Douyin (TikTok chino).\n\n` +
-        `*USO:*\n` +
-        `> *${m.prefix}douyindl <enlace>*\n\n` +
-        `*EJEMPLO:*\n` +
-        `> *${m.prefix}douyindl https://v.douyin.com/xxx*`,
+      `🎵 *𝗗𝗢𝗨𝗬𝗜𝗡*\n──────────\n` +
+        `> Descarga videos o audio de Douyin (TikTok chino).\n\n` +
+        usage(m.prefix, "douyindl", "https://v.douyin.com/xxx"),
     );
   }
 
@@ -51,7 +49,15 @@ async function handler(m, { sock }) {
     const data = await douyinFetch(text);
     const result = data.result;
 
-    let caption = `✦ • ─── • ✦\n🎵 *${result.platform || "Douyin"}*\n──────────\n${result.title || ""}`;
+    let caption = card({
+      emoji: "🎵",
+      title: result.platform || "𝗗𝗢𝗨𝗬𝗜𝗡",
+      fields: [
+        ["Título", result.title],
+        ["Formato", result.video ? "Video (.mp4)" : "Audio (.mp3)"],
+      ],
+      footer: "Descarga completada, a disfrutar! 🚀",
+    });
 
     if (result.video) {
       await sock.sendMedia(m.chat, result.video, caption, m, {

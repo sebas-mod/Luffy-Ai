@@ -1,5 +1,6 @@
 import { snackvideo } from 'btch-downloader'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const pluginConfig = {
     name: 'snackvideodl',
     alias: ['svdl', 'snackvideo', 'sv'],
@@ -21,15 +22,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
-            `> \`${m.prefix}svdl <url>\`\n\n` +
-            `> Ejemplo:\n` +
-            `> \`${m.prefix}svdl https://www.snackvideo.com/@xxx/video/xxx\``
+            `🍿 *𝗦𝗡𝗔𝗖𝗞𝗩𝗜𝗗𝗘𝗢*\n──────────\n` +
+            `> Descarga videos de SnackVideo sin complicaciones\n\n` +
+            usage(m.prefix, 'svdl', 'https://www.snackvideo.com/@xxx/video/xxx')
         )
     }
     
     if (!url.match(/snackvideo\.com/i)) {
-        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de SnackVideo.`)
+        m.react('❌')
+        return m.reply(fail('SNACKVIDEO', 'URL no válida. Usa un enlace de SnackVideo.'))
     }
     
     await m.react('🕕')
@@ -38,20 +39,42 @@ async function handler(m, { sock }) {
         const data = await snackvideo(url)
         
         if (!data?.status || !data?.result?.videoUrl) {
-            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Prueba con otro enlace.`)
+            m.react('❌')
+            return m.reply(fail('SNACKVIDEO', 'Error al obtener el video. Prueba con otro enlace.'))
         }
         
         const result = data.result
+        const it = result.interaction || {}
+        const creator = result.creator || {}
+
+        const caption = card({
+            emoji: '🍿',
+            title: '𝗦𝗡𝗔𝗖𝗞𝗩𝗜𝗗𝗘𝗢',
+            fields: [
+                ['Título', result.title || result.description],
+                ['Autor', creator.name || creator.username],
+                ['Duración', result.duration ? result.duration + 's' : undefined],
+                ['Publicado', result.uploadDate],
+                ['Vistas', it.views],
+                ['Me gusta', it.likes],
+                ['Compartidos', it.shares],
+            ],
+            footer: 'Video sin marca de agua, listo! 🚀',
+        })
         
         await sock.sendMedia(m.chat, result.videoUrl, null, m, {
             type: 'video',
+            caption,
             contextInfo: {
                 forwardingScore: 99,
                 isForwarded: true
             }
         })
+
+        m.react('✅')
         
     } catch (err) {
+        m.react('☢')
         return m.reply(te(m.prefix, m.command, m.pushName))
     }
 }

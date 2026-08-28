@@ -5,6 +5,7 @@ import os from "os";
 import path from "path";
 import axios from "axios";
 import { TeraBoxDL } from "../../src/scraper/terabox.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const exec = promisify(execFile);
 
@@ -29,13 +30,10 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `📦 *TeraBox Downloader*\n\n` +
-        `Descarga videos o archivos de TeraBox.\n\n` +
-        `*USO:*\n` +
-        `> *${m.prefix}terabox <enlace>*\n\n` +
-        `*EJEMPLO:*\n` +
-        `> *${m.prefix}terabox https://terabox.com/s/xxx*\n\n` +
-        `_El archivo se envía como documento, puede tardar un poco_`,
+      `📦 *𝗧𝗘𝗥𝗔𝗕𝗢𝗫*\n` +
+        `> Descarga videos o archivos de TeraBox.` +
+        usage(m.prefix, "terabox", "https://terabox.com/s/xxx") +
+        `\n\n_El archivo se envía como documento, puede tardar un poco_`,
     );
   }
 
@@ -46,14 +44,20 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`✦ • ─── • ✦\n❌ *TeraBox Falló*\n\n> ${result.error}`);
+      return m.reply(fail("TERABOX", result.error || "Error al obtener el contenido."));
     }
 
-    let caption =
-      `✦ • ─── • ✦\n📦 *TeraBox*\n──────────\n` +
-      `> 📌 ${result.file_name}\n` +
-      `> 📏 Tamaño: ${result.file_size}\n` +
-      `> ⏱️ Duración: ${result.duration}`;
+    const caption = card({
+      emoji: "📦",
+      title: "𝗧𝗘𝗥𝗔𝗕𝗢𝗫",
+      fields: [
+        ["Archivo", result.file_name],
+        ["Tamaño", result.file_size],
+        ["Duración", result.duration],
+        ["Extensión", result.extension],
+      ],
+      footer: "Descarga lista, buen provecho! 📥",
+    });
 
     if (result.thumbnail) {
       await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -120,7 +124,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de TeraBox, intenta de nuevo más tarde");
+    m.reply(fail("TERABOX", "Error al obtener los datos de TeraBox, intenta de nuevo más tarde"));
   }
 }
 

@@ -4,6 +4,7 @@ import crypto from 'crypto'
 import { generateWAMessage, generateWAMessageFromContent, jidNormalizedUser } from 'ourin'
 import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
     Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -121,15 +122,15 @@ async function handler(m, { sock }) {
 
     if (!url) {
         return m.reply(
-            `╭┈┈⬡「 🎵 *ᴅᴇsᴄᴀʀɢᴀ ᴛɪᴋᴛᴏᴋ* 」\n` +
-            `┃ ㊗ ᴜsᴏ: \`${m.prefix}tiktok2 <url>\`\n` +
-            `╰┈┈⬡\n\n` +
-            `> Ejemplo: ${m.prefix}tiktok2 https://vt.tiktok.com/xxx`
+            `🎵 *𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔*\n` +
+            `> Descarga videos o diapositivas de TikTok sin marca de agua.` +
+            usage(m.prefix, 'tiktok2', 'https://vt.tiktok.com/xxx')
         )
     }
 
     if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-        return m.reply('✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de TikTok.')
+        await m.react('❌')
+        return m.reply(fail('TIKTOK', 'URL no válida. Usa un enlace de TikTok.'))
     }
 
     m.react('⏱️')
@@ -137,12 +138,20 @@ async function handler(m, { sock }) {
     try {
         const result = await savett(url)
 
-        const caption =
-            `✦ • ─── • ✦\n✅ *Listo*\n──────────\n` +
-            `👤 *${result.username || '-'}*\n` +
-            `👁️ Vistas: ${result.views || '-'} | ❤️ Me gusta: ${result.likes || '-'}\n` +
-            `� Comentarios: ${result.comments || '-'} | 🔗 Compartidos: ${result.shares || '-'}\n` +
-            `⏱️ Duración: ${result.duration || '-'}`
+        const caption = card({
+            emoji: '🎵',
+            title: '𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔',
+            fields: [
+                ['Autor', result.username],
+                ['Vistas', result.views],
+                ['Me gusta', result.likes],
+                ['Favoritos', result.bookmarks],
+                ['Comentarios', result.comments],
+                ['Compartidos', result.shares],
+                ['Duración', result.duration],
+            ],
+            footer: 'Descarga sin marca de agua, listo! 🚀',
+        })
 
         if (result.type === 'video' && result.downloads.nowm.length > 0) {
             const videoRes = await axios.get(result.downloads.nowm[0], {

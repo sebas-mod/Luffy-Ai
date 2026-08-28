@@ -4,6 +4,7 @@ import path from "path";
 import { queueFFmpeg } from "./../../src/lib/luffy-ffmpeg.js";
 import { f } from "../../src/lib/luffy-http.js";
 import te from "../../src/lib/luffy-error.js";
+import { card, usage } from "../../src/lib/luffy-dl-ui.js";
 const pluginConfig = {
   name: "pindl",
   alias: ["pinterestdl", "pindownload", "pintdl"],
@@ -19,14 +20,27 @@ const pluginConfig = {
   carne: 1,
   isEnabled: true,
 };
+function buildCaption(query, item, type) {
+  const tag = type === "video" ? "𝗣𝗜𝗡𝗧𝗘𝗥𝗘𝗦𝗧 𝗩𝗜𝗗𝗘𝗢" : "𝗣𝗜𝗡𝗧𝗘𝗥𝗘𝗦𝗧 𝗜𝗠𝗔𝗚𝗘𝗡";
+  return card({
+    emoji: type === "video" ? "🎬" : "📸",
+    title: tag,
+    fields: [
+      ["Búsqueda", query],
+      ["Tipo", type === "video" ? "Video" : "Imagen"],
+    ],
+    footer: "Descarga lista, a disfrutar! 🚀",
+  });
+}
+
 async function handler(m, { sock }) {
   const query = m.text?.trim();
+  
   if (!query) {
     return m.reply(
-      `📌 *ᴘɪɴᴛᴇʀᴇsᴛ*\n\n` +
-        `> Busca y descarga imágenes/videos de Pinterest!\n\n` +
-        `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
-        `> \`${m.prefix}pindl zhao lusi\``,
+      `📌 *𝗣𝗜𝗡𝗧𝗘𝗥𝗘𝗦𝗧*\n` +
+        `> Busca y descarga imágenes/videos de Pinterest.` +
+        usage(m.prefix, "pindl", "zhao lusi"),
     );
   }
   m.react("🕕");
@@ -51,6 +65,10 @@ async function handler(m, { sock }) {
     if (mediaList.length === 0) {
       throw new Error("No se encontró contenido");
     }
+
+    mediaList.forEach((media) => {
+      media.caption = buildCaption(query, media, media.type);
+    });
 
     for (const media of mediaList) {
       if (media.type === "video") {
@@ -112,7 +130,7 @@ async function handler(m, { sock }) {
                 }
             }
             
-            await sock.sendMedia(m.chat, fs.readFileSync(outputFile), null, m, {
+            await sock.sendMedia(m.chat, fs.readFileSync(outputFile), media.caption, m, {
                 type: "video",
                 contextInfo: { forwardingScore: 99, isForwarded: true }
             });
@@ -128,7 +146,7 @@ async function handler(m, { sock }) {
                         'Referer': 'https://www.pinterest.com/'
                     }
                 });
-                await sock.sendMedia(m.chat, Buffer.from(fallbackBuffer.data), null, m, {
+                await sock.sendMedia(m.chat, Buffer.from(fallbackBuffer.data), media.caption, m, {
                   type: "video",
                   contextInfo: { forwardingScore: 99, isForwarded: true },
                 });
@@ -156,7 +174,7 @@ async function handler(m, { sock }) {
               `ffmpeg -y -ignore_loop 0 -i "${gifPath}" -t 30 -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" -c:v libx264 -pix_fmt yuv420p -movflags faststart -preset ultrafast -an "${mp4Path}"`,
             );
             if (!fs.existsSync(mp4Path)) throw new Error("Error al convertir el GIF");
-            await sock.sendMedia(m.chat, fs.readFileSync(mp4Path), null, m, {
+            await sock.sendMedia(m.chat, fs.readFileSync(mp4Path), media.caption, m, {
               type: "video",
               gifPlayback: true,
               contextInfo: {
@@ -166,7 +184,7 @@ async function handler(m, { sock }) {
             });
           } catch (gifErr) {
             console.error("[PinDL] GIF convert error:", gifErr.message);
-            await sock.sendMedia(m.chat, media.url, null, m, {
+            await sock.sendMedia(m.chat, media.url, media.caption, m, {
               type: "image",
               contextInfo: { forwardingScore: 99, isForwarded: true },
             });
@@ -175,7 +193,7 @@ async function handler(m, { sock }) {
             if (fs.existsSync(mp4Path)) fs.unlinkSync(mp4Path);
           }
         } else {
-          await sock.sendMedia(m.chat, media.url, null, m, {
+          await sock.sendMedia(m.chat, media.url, media.caption, m, {
             type: "image",
             contextInfo: {
               forwardingScore: 99,

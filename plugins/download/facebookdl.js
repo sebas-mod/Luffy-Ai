@@ -1,5 +1,6 @@
 import { fbdown } from '../../src/scraper/fbdown.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 
 const pluginConfig = {
     name: 'facebookdl',
@@ -22,15 +23,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *CÓMO USAR*\n\n` +
-            `- \`${m.prefix}facebookdl <url>\`\n\n` +
-            `*Ejemplo:*\n` +
-            `- \`${m.prefix}fbdown https://www.facebook.com/watch?v=xxx\``
+            `🎥 *𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞*\n──────────\n` +
+            `> Descarga videos de Facebook en alta calidad\n\n` +
+            usage(m.prefix, 'facebookdl', 'https://www.facebook.com/watch?v=xxx')
         )
     }
     
     if (!url.match(/facebook\.com|fb\.watch|fb\.com/i)) {
-        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de Facebook.`)
+        m.react('❌')
+        return m.reply(fail('FACEBOOK', 'URL no válida. Usa un enlace de Facebook.'))
     }
     
     await m.react('🕕')
@@ -40,7 +41,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
             await m.react('❌')
-            return m.reply(`❌ Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.\n──────────\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(fail('FACEBOOK', 'Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.') + `\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
         // Find HD if available, else SD, else first item
@@ -50,16 +51,19 @@ async function handler(m, { sock }) {
         
         if (!video || !video.url) {
             await m.react('❌')
-            return m.reply(`❌ No se encontró ningún video en ese enlace.\n──────────\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(fail('FACEBOOK', 'No se encontró ningún video en ese enlace.') + `\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
-        let caption = `✦ • ─── • ✦\n🎥 *DESCARGADOR DE FACEBOOK*\n──────────\n`
-        caption += `*Título:* ${data.result.title || "Video de Facebook"}\n`
-        caption += `*Calidad:* ${video.quality ? video.quality.toUpperCase() : "Normal"}\n`
-        if (video.formattedSize) {
-            caption += `*Tamaño:* ${video.formattedSize}\n`
-        }
-        caption += `\n_Nota: Esta función no soporta publicaciones de fotos._`
+        let caption = card({
+            emoji: '🎥',
+            title: '𝗙𝗔𝗖𝗘𝗕𝗢𝗢𝗞',
+            fields: [
+                ['Título', data.result.title || 'Video de Facebook'],
+                ['Calidad', video.quality ? video.quality.toUpperCase() : 'Normal'],
+                ['Tamaño', video.formattedSize],
+            ],
+            footer: 'Descarga sin marca de agua, listo! 🚀',
+        })
 
         await sock.sendMedia(m.chat, video.url, caption, m, {
             type: 'video',

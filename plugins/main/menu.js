@@ -361,10 +361,10 @@ function getContextInfo(
   thumbBuffer,
   renderLargerThumbnail = false,
 ) {
-  const saluranId = botConfig.saluran?.canalId || "120363400911374213@newsletter";
+  const saluranId = botConfig.saluran?.canalId || "120363425262664012@newsletter";
   const saluranName =
     botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
-  const saluranLink = botConfig.saluran?.canalLink || "";
+  const saluranLink = botConfig.saluran?.canalLink || "https://whatsapp.com/channel/0029Vb8GuvGDZ4LWNa7sTi3O";
   const ctx = {
     mentionedJid: [m.sender],
     forwardingScore: 9,
@@ -437,12 +437,12 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     console.error("Error al cargar assets:", e.message);
   }
   const prefix = botConfig.command?.prefix || ".";
-  const saluranId = botConfig.saluran?.canalId || "120363400911374213@newsletter";
+  const saluranId = botConfig.saluran?.canalId || "120363425262664012@newsletter";
   const saluranName =
     botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
   const saluranLink =
     botConfig.saluran?.canalLink ||
-    "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t";
+    "https://whatsapp.com/channel/0029Vb8GuvGDZ4LWNa7sTi3O";
   const {
     sorted: menuSorted,
     totalCmds,
@@ -706,6 +706,10 @@ ${readmore}${s}`
 ║ ▸ *Carne* : ${user.carne || 0}
 ║ ▸ *Berry* : ${user.berry || 0}
 ║ ▸ *Registro* : ${user.isRegistered ? "Sí" : "No"}
+╚═══════════════════╝
+
+╔══「 📢 𝗖𝗔𝗡𝗔𝗟 」 
+║ ▸ Únete: ${config.saluran?.canalLink || "https://whatsapp.com/channel/0029Vb8GuvGDZ4LWNa7sTi3O"}
 ╚═══════════════════╝`,
             footerText: '⚓ Elige una de las opciones de abajo',
             headerType: 6,

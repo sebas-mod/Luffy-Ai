@@ -5,6 +5,7 @@ import path from 'path'
 import fs from 'fs'
 import { f } from '../../src/lib/luffy-http.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail } from '../../src/lib/luffy-dl-ui.js'
 const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
@@ -25,12 +26,10 @@ async function handler(m, { sock }) {
 
   if (!url || !url.includes("pixeldrain.com")) {
     return m.reply(
-      `📥 *ᴘɪxᴇʟᴅʀᴀɪɴ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-        `> ¡Descarga archivos de Pixeldrain!\n\n` +
-        `*Formato:*\n` +
-        `> \`${m.prefix}pixeldraindl <url>\`\n\n` +
-        `*Ejemplo:*\n` +
-        `> \`${m.prefix}pixeldraindl https://pixeldrain.com/u/xxxxx\``,
+      `🗄️ *𝗣𝗜𝗫𝗘𝗟𝗗𝗥𝗔𝗜𝗡*\n──────────\n` +
+        `> Descarga archivos de *Pixeldrain* directo al chat.\n\n` +
+        `╰┈➤ Uso: *${m.prefix}pixeldraindl <url>*\n` +
+        `╰┈➤ Ejemplo: *${m.prefix}pixeldraindl https://pixeldrain.com/u/xxxxx*`,
     );
   }
 
@@ -42,9 +41,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply(
-        "❌ *ꜰᴀʟʟó*\n\n> Archivo no encontrado o enlace no válido",
-      );
+      return m.reply(fail("PIXELDRAIN", "Archivo no encontrado o enlace no válido"));
     }
 
     const file = data.data;
@@ -61,7 +58,17 @@ async function handler(m, { sock }) {
 
     if (sizeInMB > 0 && sizeInMB <= 100) {
 
-      await sock.sendMedia(m.chat, file.url, null, m, {
+      const caption = card({
+        emoji: "🗄️",
+        title: "𝗣𝗜𝗫𝗘𝗟𝗗𝗥𝗔𝗜𝗡",
+        fields: [
+          ["Archivo", file.filename],
+          ["Tamaño", file.size],
+        ],
+        footer: "Descarga lista, ¡a disfrutar! 🎉",
+      });
+
+      await sock.sendMedia(m.chat, file.url, caption, m, {
         type: 'document',
         fileName: file.filename,
         mimetype: 'application/octet-stream',
@@ -70,13 +77,14 @@ async function handler(m, { sock }) {
           isForwarded: true
         }
       })
+      m.react("✅");
     } else if (sizeInMB > 100) {
       await m.reply(
-        `⚠️ *ᴀʀᴄʜɪᴠᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ɢʀᴀɴᴅᴇ*\n\n> El archivo ${file.size} es demasiado grande para enviarlo\n> Usa el enlace de descarga de arriba`,
+        `⚠️ *ᴀʀᴄʜɪᴠᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ɢʀᴀɴᴅᴇ*\n\n> El archivo ${file.size} es demasiado grande para enviarlo\n> Usa el enlace de descarga: ${file.url}`,
       );
+    } else {
+      m.react("✅");
     }
-
-    m.react("✅");
   } catch (error) {
     m.react('☢');
     m.reply(te(m.prefix, m.command, m.pushName));

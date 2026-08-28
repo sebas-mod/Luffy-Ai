@@ -1,5 +1,6 @@
 import axios from "axios";
 import ytdl, { fallbackToMp3Buffer } from "../../src/scraper/ytdl.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 const pluginConfig = {
   name: "ytmp3",
   alias: ["youtubemp3", "ytaudio"],
@@ -35,14 +36,30 @@ async function getAudioDownload(url) {
 async function handler(m, { sock }) {
   const url = m.text?.trim();
   if (!url)
-    return m.reply(`╰┈➤ Ejemplo: ${m.prefix}ytmp3 https://youtube.com/watch?v=xxx`);
-  if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-    return m.reply("✦ • ─── • ✦\n❌ La URL debe ser de YouTube");
+    return m.reply(
+      `🎵 *𝗬𝗧𝗠𝗣𝟯*\n` +
+        `> Descarga el audio de cualquier video de YouTube.\n\n` +
+        usage(m.prefix, "ytmp3", "https://youtube.com/watch?v=xxx"),
+    );
+  if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+    await m.react("❌");
+    return m.reply(fail("YTMP3", "La URL debe ser de YouTube."));
+  }
 
   m.react("🕕");
 
   try {
     const result = await getAudioDownload(url);
+
+    const caption = card({
+      emoji: "🎵",
+      title: "𝗬𝗧𝗠𝗣𝟯",
+      fields: [
+        ["Título", result.title],
+        ["Formato", "Audio (.mp3)"],
+      ],
+      footer: "Descarga lista, a disfrutar! 🎧",
+    });
 
     if (result.isFallback) {
       const mp3Buffer = await fallbackToMp3Buffer(result.download);
@@ -53,11 +70,12 @@ async function handler(m, { sock }) {
           mimetype: "audio/mpeg",
           ptt: false,
           fileName: `${result.title || "audio"}.mp3`,
+          caption,
         },
         { quoted: m },
       );
     } else {
-      await sock.sendMedia(m.chat, result.download, null, m, {
+      await sock.sendMedia(m.chat, result.download, caption, m, {
         type: "audio",
         mimetype: "audio/mpeg",
         ptt: false,
@@ -68,7 +86,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[YTMP3]", err);
     m.react("❌");
-    m.reply("✦ • ─── • ✦\nError al descargar el audio.");
+    m.reply(fail("YTMP3", "Error al descargar el audio. Intenta de nuevo más tarde."));
   }
 }
 

@@ -4,6 +4,7 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import { DailymotionDL } from "../../src/scraper/dailymotion.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const exec = promisify(execFile);
 
@@ -28,13 +29,10 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `✦ • ─── • ✦\n🎬 *Dailymotion Downloader*\n──────────\n` +
-        `Descarga videos de Dailymotion, se convierten automáticamente a MP4.\n\n` +
-        `*USO:*\n` +
-        `> *${m.prefix}dailymotiondl <enlace>*\n\n` +
-        `*EJEMPLO:*\n` +
-        `> *${m.prefix}dailymotiondl https://www.dailymotion.com/video/xxx*\n\n` +
-        `_El proceso de conversión puede tardar un poco_`,
+      `🎬 *𝗗𝗔𝗜𝗟𝗬𝗠𝗢𝗧𝗜𝗢𝗡*\n──────────\n` +
+        `> Descarga videos de Dailymotion, se convierten automáticamente a MP4.\n\n` +
+        usage(m.prefix, "dailymotiondl", "https://www.dailymotion.com/video/xxx") +
+        `\n\n_El proceso de conversión puede tardar un poco_`,
     );
   }
 
@@ -45,14 +43,19 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`✦ • ─── • ✦\n❌ *Dailymotion Falló*\n\n> ${result.error}`);
+      return m.reply(fail("DAILYMOTION", result.error));
     }
 
-    let caption =
-      `✦ • ─── • ✦\n🎬 *Dailymotion*\n──────────\n` +
-      `> 📌 ${result.title}\n` +
-      `> ⏱️ Duración: ${result.duration}\n` +
-      `> 📺 Calidad: ${result.quality}`;
+    let caption = card({
+      emoji: "🎬",
+      title: "𝗗𝗔𝗜𝗟𝗬𝗠𝗢𝗧𝗜𝗢𝗡",
+      fields: [
+        ["Título", result.title],
+        ["Duración", result.duration],
+        ["Calidad", result.quality],
+      ],
+      footer: "Video convertido a MP4 para ti! 🚀",
+    });
 
     if (result.thumbnail) {
       await sock.sendMedia(m.chat, result.thumbnail, caption, m, {
@@ -98,7 +101,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de Dailymotion, intenta de nuevo más tarde");
+    m.reply(fail("DAILYMOTION", "Error al obtener los datos de Dailymotion, intenta de nuevo más tarde"));
   }
 }
 

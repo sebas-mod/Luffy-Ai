@@ -1,6 +1,7 @@
 import config from '../../config.js'
 import { f } from '../../src/lib/luffy-http.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const pluginConfig = {
     name: 'sfiledl',
     alias: ['sfile', 'sfiledownload'],
@@ -22,14 +23,15 @@ async function handler(m, { sock }) {
 
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
-            `> \`${m.prefix}sfiledl <url_sfile>\`\n\n` +
-            `> Ejemplo: \`${m.prefix}sfiledl https://sfile.mobi/xxxxx\``
+            `🗂️ *𝗦𝗙𝗜𝗟𝗘*\n──────────\n` +
+            `> Descarga archivos directamente desde Sfile.mobi\n\n` +
+            usage(m.prefix, 'sfiledl', 'https://sfile.mobi/xxxxx')
         )
     }
 
     if (!url.includes('sfile.mobi') && !url.includes('sfile.co')) {
-        return m.reply(`✦ • ─── • ✦\n❌ La URL debe ser de sfile.mobi o sfile.co!`)
+        m.react('❌')
+        return m.reply(fail('SFILE', 'La URL debe ser de sfile.mobi o sfile.co!'))
     }
 
     m.react('🕕')
@@ -39,13 +41,25 @@ async function handler(m, { sock }) {
 
         if (!data.url) {
             m.react('❌')
-            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el enlace de descarga. Es posible que el archivo no esté disponible.`)
+            return m.reply(fail('SFILE', 'Error al obtener el enlace de descarga. Es posible que el archivo no esté disponible.'))
         }
+
+        const caption = card({
+            emoji: '🗂️',
+            title: '𝗦𝗙𝗜𝗟𝗘',
+            fields: [
+                ['Archivo', data.filename],
+                ['Tipo', data.mime],
+                ['Enlace', data.url],
+            ],
+            footer: 'Descarga lista, buen provecho! 📦',
+        })
 
         await sock.sendMedia(m.chat, data.url, null, m, {
             type: 'document',
             fileName: data.filename,
             mimetype: data.mime,
+            caption,
             contextInfo: {
                 forwardingScore: 99,
                 isForwarded: true

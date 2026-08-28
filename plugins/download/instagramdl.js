@@ -1,4 +1,5 @@
 import instagramDownloader from "../../src/scraper/ig.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 const pluginConfig = {
   name: "instagramdl",
   alias: ["igdl", "ig", "instagram"],
@@ -22,17 +23,17 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `📸 *ɪɴsᴛᴀɢʀᴀᴍ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ*\n\n` +
-        `> \`${m.prefix}igdl <url>\`\n\n` +
-        `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
-        `> \`${m.prefix}igdl https://www.instagram.com/reel/xxx\`\n` +
-        `> \`${m.prefix}igdl https://www.instagram.com/p/xxx\``,
+      `📸 *𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠*\n` +
+        `> Descarga videos, reels y fotos de Instagram.\n\n` +
+        usage(m.prefix, "igdl", "https://www.instagram.com/reel/xxx") +
+        `\n> https://www.instagram.com/p/xxx`,
     );
   }
 
   if (!IG_REGEX.test(url)) {
+    await m.react("❌");
     return m.reply(
-      `❌ URL no válida. Usa un enlace de Instagram (reel/post/story).`,
+      fail("INSTAGRAM", "URL no válida. Usa un enlace de Instagram (reel/post/story)."),
     );
   }
 
@@ -43,18 +44,21 @@ async function handler(m, { sock }) {
 
     if (!result?.media?.length) {
       await m.react("❌");
-      return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el contenido. Prueba con otro enlace.`);
+      return m.reply(fail("INSTAGRAM", "Error al obtener el contenido. Prueba con otro enlace."));
     }
 
     const isStory = url.includes("/stories/");
-    let caption = `✦ • ─── • ✦\n📸 *Instagram ${isStory ? "Story" : "Downloader"}*\n──────────\n`;
-    if (result.username && result.username !== "-") {
-      caption += `👤 *Author*: @${result.username}\n`;
-    }
-    if (result.caption) {
-      caption += `📝 *Caption*:\n${result.caption}\n`;
-    }
-    caption = caption.trim();
+    const totalMedia = result.media.length;
+    let caption = card({
+      emoji: "📸",
+      title: isStory ? "𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠 𝗦𝗧𝗢𝗥𝗬" : "𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠",
+      fields: [
+        ["Autor", result.username && result.username !== "-" ? `@${result.username}` : undefined],
+        ["Descripción", result.caption],
+        ["Archivos", `${totalMedia} ${totalMedia === 1 ? "medio" : "medios"}`],
+      ],
+      footer: "Descarga lista, a disfrutar! 🚀",
+    });
 
     for (const item of result.media) {
       if (item.type === "video" || item.type === "mp4") {
@@ -76,7 +80,7 @@ async function handler(m, { sock }) {
     await m.react("✅");
   } catch (err) {
     await m.react("❌");
-    return m.reply(`❌ *ꜰᴀʟʟó ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n> ${err.message}`);
+    return m.reply(`✿ ❌ *ꜰᴀʟʟó ᴀʟ ᴅᴇsᴄᴀʀɢᴀʀ*\n\n> ${err.message}`);
   }
 }
 

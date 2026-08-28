@@ -1,6 +1,7 @@
 import axios from "axios";
 import ytdl from "../../src/scraper/ytdl.js";
 import config from "../../config.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 const pluginConfig = {
   name: "ytmp4",
   alias: ["youtubemp4", "ytvideo"],
@@ -39,23 +40,39 @@ async function getVideoDownloadUrl(url) {
 async function handler(m, { sock }) {
   const url = m.text?.trim();
   if (!url)
-    return m.reply(`╰┈➤ Ejemplo: ${m.prefix}ytmp4 https://youtube.com/watch?v=xxx`);
-  if (!url.includes("youtube.com") && !url.includes("youtu.be"))
-    return m.reply("✦ • ─── • ✦\n❌ La URL debe ser de YouTube");
+    return m.reply(
+      `🎬 *𝗬𝗧𝗠𝗣𝟰*\n` +
+        `> Descarga videos de YouTube en calidad MP4.\n\n` +
+        usage(m.prefix, "ytmp4", "https://youtube.com/watch?v=xxx"),
+    );
+  if (!url.includes("youtube.com") && !url.includes("youtu.be")) {
+    await m.react("❌");
+    return m.reply(fail("YTMP4", "La URL debe ser de YouTube."));
+  }
 
   m.react("🕕");
 
   try {
     const downloadUrl = await getVideoDownloadUrl(url);
 
-    await sock.sendMedia(m.chat, downloadUrl, null, m, {
+    const caption = card({
+      emoji: "🎬",
+      title: "𝗬𝗧𝗠𝗣𝟰",
+      fields: [
+        ["Fuente", "YouTube"],
+        ["Formato", "Video (.mp4)"],
+      ],
+      footer: "Descarga lista, a disfrutar! 🚀",
+    });
+
+    await sock.sendMedia(m.chat, downloadUrl, caption, m, {
       type: "video",
     });
     m.react("✅");
   } catch (err) {
     console.error("[YTMP4]", err);
     m.react("❌");
-    m.reply("✦ • ─── • ✦\nError al descargar el video.");
+    m.reply(fail("YTMP4", "Error al descargar el video. Intenta de nuevo más tarde."));
   }
 }
 

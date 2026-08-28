@@ -1,5 +1,6 @@
 import likee from '../../src/scraper/likee.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const pluginConfig = {
     name: 'likeedl',
     alias: ['lkdl', 'likee', 'lk'],
@@ -21,15 +22,14 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
-            `> \`${m.prefix}lkdl <url>\`\n\n` +
-            `> Ejemplo:\n` +
-            `> \`${m.prefix}lkdl https://likee.video/@xxx\``
+            `🎬 *𝗟𝗜𝗞𝗘𝗘*\n──────────\n` +
+            `> Descarga videos de *Likee* sin marca de agua.\n\n` +
+            usage(m.prefix, m.command, 'https://likee.video/@xxx')
         )
     }
     
     if (!url.match(/likee\.(video|com)/i)) {
-        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de Likee.`)
+        return m.reply(fail('LIKEE', 'URL no válida. Usa un enlace de Likee.'))
     }
     
     await m.react('🕕')
@@ -38,16 +38,27 @@ async function handler(m, { sock }) {
         const data = await likee(url)
         
         if (!data) {
-            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Prueba con otro enlace.`)
+            await m.react('❌')
+            return m.reply(fail('LIKEE', 'Error al obtener el video. Prueba con otro enlace.'))
         }
         
         const videoUrl = data.without_watermark || data.with_watermark
         
         if (!videoUrl) {
-            return m.reply(`✦ • ─── • ✦\n❌ Video no encontrado.`)
+            await m.react('❌')
+            return m.reply(fail('LIKEE', 'Video no encontrado.'))
         }
+
+        const caption = card({
+            emoji: '🎬',
+            title: '𝗟𝗜𝗞𝗘𝗘',
+            fields: [
+                ['Calidad', data.with_watermark ? 'Sin marca de agua' : 'Con marca de agua'],
+            ],
+            footer: '¡Disfruta tu video! 🚀',
+        })
         
-        await sock.sendMedia(m.chat, videoUrl, null, m, {
+        await sock.sendMedia(m.chat, videoUrl, caption, m, {
             type: 'video',
             contextInfo: {
                 forwardingScore: 99,
@@ -58,6 +69,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
         
     } catch (err) {
+        m.react('❌')
         return m.reply(te(m.prefix, m.command, m.pushName))
     }
 }

@@ -2,6 +2,7 @@ import axios from 'axios'
 import config from '../../config.js'
 import { f } from '../../src/lib/luffy-http.js'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 
 const pluginConfig = {
@@ -25,14 +26,15 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `🎬 *ᴠɪᴅᴇʏ ᴅᴏᴡɴʟᴏᴀᴅ*\n\n` +
-            `> Ingresa la URL de videy.co\n\n` +
-            `\`Ejemplo: ${m.prefix}videy https://videy.co/v?id=7ZH1ZRIF\``
+            `🎬 *𝗩𝗜𝗗𝗘𝗬*\n──────────\n` +
+            `> Descarga videos de videy.co directamente\n\n` +
+            usage(m.prefix, 'videy', 'https://videy.co/v?id=7ZH1ZRIF')
         )
     }
     
     if (!url.match(/videy\.co/i)) {
-        return m.reply(`✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de videy.co`)
+        m.react('❌')
+        return m.reply(fail('VIDEY', 'URL no válida. Usa un enlace de videy.co'))
     }
     
     m.react('🕕')
@@ -42,13 +44,24 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data?.data?.url) {
             m.react('❌')
-            return m.reply(`✦ • ─── • ✦\n❌ Error al obtener el video. Enlace no válido o caducado.`)
+            return m.reply(fail('VIDEY', 'Error al obtener el video. Enlace no válido o caducado.'))
         }
         
         const videoUrl = data.data.url
+
+        const caption = card({
+            emoji: '🎬',
+            title: '𝗩𝗜𝗗𝗘𝗬',
+            fields: [
+                ['Formato', 'Video (.mp4)'],
+                ['Origen', 'videy.co'],
+            ],
+            footer: 'Descarga lista, a disfrutar! 🚀',
+        })
         
         await sock.sendMedia(m.chat, videoUrl, null, m, {
             type: 'video',
+            caption,
             contextInfo: {
                 forwardingScore: 99,
                 isForwarded: true

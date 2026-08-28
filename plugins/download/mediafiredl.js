@@ -1,5 +1,6 @@
 import te from "../../src/lib/luffy-error.js";
 import mediafire from "../../src/scraper/mediafire.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
   name: "mediafiredl",
@@ -33,26 +34,37 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `⚠️ *ᴄᴀʀᴀ ᴘᴀᴋᴀɪ*\n\n` +
-        `> \`${m.prefix}mfdl <url>\`\n\n` +
-        `> Ejemplo:\n` +
-        `> \`${m.prefix}mfdl https://www.mediafire.com/file/xxx\``,
+      `📦 *𝗠𝗘𝗗𝗜𝗔𝗙𝗜𝗥𝗘*\n──────────\n` +
+        `> Descarga archivos de *MediaFire* directamente al chat.\n\n` +
+        usage(m.prefix, m.command, 'https://www.mediafire.com/file/xxx'),
     );
   }
 
   if (!url.match(/mediafire\.com/i)) {
-    return m.reply(`✦ • ─── • ✦\n❌ *URL no válida. Usa un enlace de MediaFire.*`);
+    return m.reply(fail("MEDIAFIRE", "URL no válida. Usa un enlace de MediaFire."));
   }
   await m.react("🕕");
 
   try {
     const result = await mediafire(url);
+
+    const caption = card({
+      emoji: "📦",
+      title: "𝗠𝗘𝗗𝗜𝗔𝗙𝗜𝗥𝗘",
+      fields: [
+        ["Archivo", result.meta?.title],
+        ["Tamaño", result.download?.size],
+      ],
+      footer: "Descarga completada con ✨ Luffy-Ai",
+    });
+
     await sock.sendMessage(
       m.chat,
       {
         document: { url: result.download.link_download },
         fileName: getFileName(result),
         mimetype: result.download.mimetype,
+        caption,
         contextInfo: {
           forwardingScore: 99,
           isForwarded: true,
@@ -60,7 +72,9 @@ async function handler(m, { sock }) {
       },
       { quoted: m },
     );
+    await m.react("✅");
   } catch (err) {
+    m.react("❌");
     return m.reply(te(m.prefix, m.command, m.pushName));
   }
 }

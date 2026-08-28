@@ -1,4 +1,5 @@
 import axios from "axios";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 async function tiktokDl(url) {
   function formatNumber(integer) {
@@ -125,8 +126,14 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `╰┈➤ Ejemplo: *${prefix + command} https://vt.tiktok.com/...*`,
+      `🎵 *𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔*\n` +
+        `> Descarga videos, diapositivas o audio de TikTok sin marca de agua.` +
+        usage(prefix, "tiktok", "https://vt.tiktok.com/xxx"),
     );
+  }
+  if (!text.match(/tiktok\.com|vt\.tiktok/i)) {
+    await m.react("❌");
+    return m.reply(fail("TIKTOK", "URL no válida. Usa un enlace de TikTok."));
   }
   m.react("🕕");
   try {
@@ -140,44 +147,46 @@ async function handler(m, { sock }) {
       }),
     };
 
+    const music = result.music_info || {};
+    const baseFields = [
+      ["Autor", result.author?.nickname ? `${result.author.nickname} (${result.author.fullname})` : undefined],
+      ["Descripción", result.title || "-"],
+      ["Música", music.title ? `${music.title} - ${music.author}` : undefined],
+      ["Duración", result.duration !== "0 Seconds" ? result.duration : undefined],
+      ["Subido", result.taken_at],
+      ["Región", result.region],
+    ];
+    const statsFields = [
+      ["Vistas", result.stats?.views],
+      ["Me gusta", result.stats?.likes],
+      ["Comentarios", result.stats?.comment],
+      ["Compartidos", result.stats?.share],
+      ["Descargas", result.stats?.download],
+    ];
+
     if (result.durations > 0 && result.duration !== "0 Seconds") {
       const videoItem = result.data.find(
         (e) => e.type === "nowatermark_hd" || e.type === "nowatermark",
       ) || result.data[0];
 
-      const caption =
-        `✦ • ─── • ✦\n🎵 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n──────────\n` +
-        `- Autor: *${result.author.nickname}* (${result.author.fullname})\n` +
-        `- Descripción: ${result.title || "-"}\n` +
-        `- Música: ${result.music_info.title} - ${result.music_info.author}\n` +
-        `- Duración: ${result.duration}\n` +
-        `- Subido: ${result.taken_at}\n` +
-        `- Región: ${result.region}\n\n` +
-        `*Estadísticas del Video:*\n` +
-        `- Vistas: *${result.stats.views}*\n` +
-        `- Me gusta: *${result.stats.likes}*\n` +
-        `- Comentarios: *${result.stats.comment}*\n` +
-        `- Compartidos: *${result.stats.share}*\n` +
-        `- Descargas: *${result.stats.download}*`;
+      const caption = card({
+        emoji: "🎵",
+        title: "𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔",
+        fields: [...baseFields, ...statsFields],
+        footer: "Video sin marca de agua, listo! 🚀",
+      });
 
       await sock.sendButton(m.chat, videoItem.url, caption, m, {
         type: "video",
         buttons: [musicButton],
       });
     } else {
-      const caption =
-        `✦ • ─── • ✦\n📸 *𝗧 𝗜 𝗞 𝗧 𝗢 𝗞  -  𝗗 𝗘 𝗦 𝗖 𝗔 𝗥 𝗚 𝗔 𝗗 𝗢 𝗥*\n──────────\n` +
-        `- Autor: *${result.author.nickname}* (${result.author.fullname})\n` +
-        `- Descripción: ${result.title || "-"}\n` +
-        `- Música: ${result.music_info.title} - ${result.music_info.author}\n` +
-        `- Subido: ${result.taken_at}\n` +
-        `- Región: ${result.region}\n\n` +
-        `*Estadísticas del Contenido:*\n` +
-        `- Vistas: *${result.stats.views}*\n` +
-        `- Me gusta: *${result.stats.likes}*\n` +
-        `- Comentarios: *${result.stats.comment}*\n` +
-        `- Compartidos: *${result.stats.share}*\n` +
-        `- Descargas: *${result.stats.download}*`;
+      const caption = card({
+        emoji: "📸",
+        title: "𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔",
+        fields: [...baseFields, ...statsFields],
+        footer: "Diapositivas sin marca de agua, listas! 📸",
+      });
 
       const slides = result.data?.map((zan, idx) => ({
         image: { url: zan.url },

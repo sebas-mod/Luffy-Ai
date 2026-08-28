@@ -1,4 +1,5 @@
 import { RedNoteDL } from "../../src/scraper/rednote.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
   name: "rednotedl",
@@ -21,12 +22,9 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `✦ • ─── • ✦\n📕 *RedNote Downloader*\n──────────\n` +
-        `Descarga videos o fotos de XiaoHongShu (RedNote).\n\n` +
-        `*USO:*\n` +
-        `> *${m.prefix}rednotedl <enlace>*\n\n` +
-        `*EJEMPLO:*\n` +
-        `> *${m.prefix}rednotedl https://www.xiaohongshu.com/xxx*`,
+      `📕 *𝗥𝗘𝗗𝗡𝗢𝗧𝗘*\n` +
+        `> Descarga videos o fotos de XiaoHongShu (RedNote).` +
+        usage(m.prefix, "rednotedl", "https://www.xiaohongshu.com/xxx"),
     );
   }
 
@@ -37,22 +35,37 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`✦ • ─── • ✦\n❌ *RedNote Falló*\n\n> ${result.error}`);
+      return m.reply(fail("REDNOTE", result.error || "Error al obtener el contenido."));
     }
 
+    const caption = card({
+      emoji: "📕",
+      title: "𝗥𝗘𝗗𝗡𝗢𝗧𝗘",
+      fields: [
+        ["Título", result.title],
+        ["Autor", result.author],
+        ["Tipo", result.type === "video" ? "Video (.mp4)" : "Fotos"],
+        ["Archivos", result.results?.length ? `${result.results.length}` : undefined],
+      ],
+      footer: "Descarga lista, a disfrutar! 🚀",
+    });
+
     if (result.type === "video" && result.results?.[0]) {
-      await sock.sendMedia(m.chat, result.results[0], result.title, m, {
+      await sock.sendMedia(m.chat, result.results[0], caption, m, {
         type: "video",
       });
     } else if (result.results?.length > 0) {
-      for (let i = 0; i < Math.min(result.results.length, 5); i++) {
+      await sock.sendMedia(m.chat, result.results[0], caption, m, {
+        type: "image",
+      });
+      for (let i = 1; i < Math.min(result.results.length, 5); i++) {
         await sock.sendMedia(m.chat, result.results[i], "", m, {
           type: "image",
         });
       }
       if (result.results.length > 5) {
         await m.reply(
-          `✦ • ─── • ✦\n⏳ _Aún quedan ${result.results.length - 5} fotos más, máximo 5_`,
+          `⏳ _Aún quedan ${result.results.length - 5} fotos más, máximo 5_`,
         );
       }
     }
@@ -61,7 +74,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de RedNote, intenta de nuevo más tarde");
+    m.reply(fail("REDNOTE", "Error al obtener los datos de RedNote, intenta de nuevo más tarde"));
   }
 }
 

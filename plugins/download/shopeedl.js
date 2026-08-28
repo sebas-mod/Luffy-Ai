@@ -1,4 +1,5 @@
 import te from "../../src/lib/luffy-error.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
   name: "shopeedl",
@@ -45,8 +46,17 @@ function bestStream(streams) {
 async function handler(m, { sock }) {
   const url = m.args[0] || m.text?.trim();
 
-  if (!url || !url.includes("shopee")) {
-    return m.reply("✦ • ─── • ✦\n❌ Ingresa un enlace de video de Shopee válido.\n──────────\n╰┈➤ Ejemplo: `.shopeedl https://shopee.co.id/...`");
+  if (!url) {
+    return m.reply(
+      `🛍️ *𝗦𝗛𝗢𝗣𝗘𝗘*\n` +
+        `> Descarga videos de Shopee sin marca de agua.` +
+        usage(m.prefix, "shopeedl", "https://shopee.co.id/..."),
+    );
+  }
+
+  if (!url.includes("shopee")) {
+    await m.react("❌");
+    return m.reply(fail("SHOPEE", "Ingresa un enlace de video de Shopee válido."));
   }
 
   await m.react("🕕");
@@ -55,16 +65,21 @@ async function handler(m, { sock }) {
     const data = await extract(url);
     if (!data || !data.streams_array || data.streams_array.length === 0) {
       await m.react("❌");
-      return m.reply("✦ • ─── • ✦\n⚠️ Error al extraer el video. Asegúrate de que el enlace del video de Shopee sea correcto y público.");
+      return m.reply(fail("SHOPEE", "Error al extraer el video. Asegúrate de que el enlace del video de Shopee sea correcto y público."));
     }
 
     const best = bestStream(data.streams_array);
     const videoUrl = best.stream_url;
 
-    let caption = `✦ • ─── • ✦\n🛍️ *DESCARGADOR DE VIDEOS SHOPEE* 🛍️\n──────────\n`;
-    if (data.username) caption += `*Usuario:* ${data.username}\n`;
-    caption += `*Calidad:* ${best.quality}\n`;
-    caption += `\n╰┈➤ Hecho por tu bot favorito ✨`;
+    const caption = card({
+      emoji: "🛍️",
+      title: "𝗦𝗛𝗢𝗣𝗘𝗘",
+      fields: [
+        ["Usuario", data.username],
+        ["Calidad", best.quality],
+      ],
+      footer: "Hecho por tu bot favorito ✨",
+    });
 
     await sock.sendMessage(m.chat, {
       video: { url: videoUrl },
@@ -76,7 +91,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Shopee DL]", error.message);
     await m.react("☢");
-    m.reply("✦ • ─── • ✦\n😔 Error al descargar el video de Shopee.");
+    m.reply(fail("SHOPEE", "Error al descargar el video de Shopee."));
   }
 }
 

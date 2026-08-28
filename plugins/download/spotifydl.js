@@ -1,4 +1,5 @@
 import axios from "axios";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
 
 const pluginConfig = {
   name: "spotifydl",
@@ -15,8 +16,19 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const text = m.text?.trim();
 
-  if (!text || !/open\.spotify\.com\/track/i.test(text)) {
-    return m.reply("✦ • ─── • ✦\n❌ *Vaya, ¿dónde está el enlace de Spotify o no es correcto?!*\n\nDebes ingresar un enlace válido de una canción de Spotify. Asegúrate de que sea un enlace a un track/canción! \n\nEjemplo: `.spdl https://open.spotify.com/track/3RY0NyQQXxuAiyk5eAS4fC`");
+  if (!text) {
+    return m.reply(
+      `🎵 *𝗦𝗣𝗢𝗧𝗜𝗙𝗬*\n──────────\n` +
+        `> Descarga tus canciones favoritas de Spotify en MP3\n\n` +
+        usage(m.prefix, "spdl", "https://open.spotify.com/track/...")
+    );
+  }
+
+  if (!/open\.spotify\.com\/track/i.test(text)) {
+    m.react("❌");
+    return m.reply(
+      fail("SPOTIFY", "URL no válida. Debe ser un enlace a un track/canción de Spotify.")
+    );
   }
 
   await m.react("🕕");
@@ -28,17 +40,29 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result || !data.result.url) {
       await m.react("❌");
-      return m.reply("✦ • ─── • ✦\n⚠️ *¡Error al obtener la canción!* \n\nEl servidor no respondió con un enlace de descarga válido.");
+      return m.reply(fail("SPOTIFY", "El servidor no respondió con un enlace de descarga válido."));
     }
 
     const { title, artist, url } = data.result;
     const filename = `${artist || "Spotify"} - ${title || "Audio"}.mp3`;
 
+    const caption = card({
+      emoji: "🎵",
+      title: "𝗦𝗣𝗢𝗧𝗜𝗙𝗬",
+      fields: [
+        ["Canción", title],
+        ["Artista", artist],
+        ["Formato", "MP3 (.mp3)"],
+      ],
+      footer: "¡Que disfrutes de tu música! 🎧",
+    });
+
     await sock.sendMessage(m.chat, {
       audio: { url: url },
       mimetype: "audio/mpeg",
       fileName: filename,
-      ptt: false
+      ptt: false,
+      caption,
     }, { quoted: m });
 
     await m.react("✅");

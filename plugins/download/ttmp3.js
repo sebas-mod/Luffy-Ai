@@ -3,6 +3,9 @@ import axios from "axios";
 import ffmpeg from "fluent-ffmpeg";
 import ffmpegInstaller from "@ffmpeg-installer/ffmpeg";
 import { saluranCtx } from "../../src/lib/luffy-context.js";
+import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import { existsSync, mkdirSync, writeFileSync, readFileSync, statSync, unlinkSync } from "fs";
+import { join } from "path";
 ffmpeg.setFfmpegPath(ffmpegInstaller.path);
 
 const pluginConfig = {
@@ -81,16 +84,15 @@ async function handler(m, { sock }) {
 
   if (!url) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ᴅᴇsᴄᴀʀɢᴀ ᴛɪᴋᴛᴏᴋ* 」
-┃ ㊗ ᴜsᴏ: \`${m.prefix}ttmp3 <url>\`
-╰┈┈⬡
-──────────
-╰┈➤ Ejemplo: ${m.prefix}ttmp3 https://vt.tiktok.com/xxx`,
+      `🎵 *𝗧𝗜𝗞𝗧𝗢𝗞 𝗔𝗨𝗗𝗜𝗢*\n` +
+        `> Descarga el audio de un video de TikTok.` +
+        usage(m.prefix, "ttmp3", "https://vt.tiktok.com/xxx"),
     );
   }
 
   if (!url.match(/tiktok\.com|vt\.tiktok/i)) {
-    return m.reply("✦ • ─── • ✦\n❌ URL no válida. Usa un enlace de TikTok.");
+    await m.react("❌");
+    return m.reply(fail("TIKTOK", "URL no válida. Usa un enlace de TikTok."));
   }
 
   m.react("🕕");
@@ -114,10 +116,23 @@ async function handler(m, { sock }) {
       audioSource = extractedAudio.buffer;
     }
 
-    await sock.sendMedia(m.chat, audioSource, null, m, {
+    const author = result.author || {};
+    const caption = card({
+      emoji: "🎵",
+      title: "𝗧𝗜𝗞𝗧𝗢𝗞 𝗔𝗨𝗗𝗜𝗢",
+      fields: [
+        ["Título", result.title],
+        ["Autor", author.nickname || author.username || author.name],
+        ["Formato", "Audio (.mp3)"],
+      ],
+      footer: "Descarga lista, a disfrutar! 🎧",
+    });
+
+    await sock.sendMedia(m.chat, audioSource, caption, m, {
       type: "audio",
       mimetype: "audio/mpeg",
       fileName: `TikTok_Audio_${Date.now()}.mp3`,
+      contextInfo: saluranCtx(),
     });
 
     m.react("✅");

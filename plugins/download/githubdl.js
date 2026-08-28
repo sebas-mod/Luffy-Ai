@@ -2,6 +2,7 @@ import config from '../../config.js'
 import path from 'path'
 import fs from 'fs'
 import te from '../../src/lib/luffy-error.js'
+import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const pluginConfig = {
     name: 'githubdl',
     alias: ['gitdl', 'gitclone', 'repodownload'],
@@ -37,16 +38,15 @@ async function handler(m, { sock }) {
     
     if (!username) {
         return m.reply(
-            `⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n` +
-            `> \`${m.prefix}githubdl <user> <repo> <branch>\`\n\n` +
-            `> Ejemplo:\n` +
-            `> \`${m.prefix}githubdl niceplugin NiceBot main\`\n` +
-            `> \`${m.prefix}githubdl https://github.com/user/repo\``
+            `🐙 *𝗚𝗜𝗧𝗛𝗨𝗕 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔* 🐙\n──────────\n` +
+            `> Descarga cualquier repositorio de *GitHub* como ZIP.\n\n` +
+            usage(m.prefix, m.command, 'niceplugin NiceBot main') + '\n' +
+            `╰┈➤ O usa la URL completa: *${m.prefix}githubdl https://github.com/user/repo*`
         )
     }
     
     if (!repo) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ꜱᴇ ʀᴇǫᴜɪᴇʀᴇ ᴇʟ ʀᴇᴘᴏ*\n\n╰┈➤ Ingresa el nombre del repositorio`)
+        return m.reply(fail('GITHUB', 'Se requiere el nombre del repositorio.'))
     }
     
     await m.react('🕕')
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
         
         if (!repoInfo.ok) {
             await m.react('❌')
-            return m.reply(`✦ • ─── • ✦\n❌ *ʀᴇᴘᴏ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n\n╰┈➤ \`${username}/${repo}\` no existe`)
+            return m.reply(fail('GITHUB', `\`${username}/${repo}\` no existe.`))
         }
         
         const repoData = await repoInfo.json()
@@ -68,12 +68,27 @@ async function handler(m, { sock }) {
         const checkRes = await fetch(zipUrl, { method: 'HEAD' })
         if (!checkRes.ok) {
             await m.react('❌')
-            return m.reply(`✦ • ─── • ✦\n❌ *ʙʀᴀɴᴄʜ ɪɴᴇxɪsᴛᴇɴᴛᴇ*\n\n╰┈➤ La rama \`${branch}\` no se encontró\n╰┈➤ Default: \`${defaultBranch}\``)
+            return m.reply(fail('GITHUB', `La rama \`${branch}\` no se encontró. Default: \`${defaultBranch}\`.`))
         }
+
+        const caption = card({
+            emoji: '🐙',
+            title: '𝗚𝗜𝗧𝗛𝗨𝗕',
+            fields: [
+                ['Repositorio', `${username}/${repo}`],
+                ['Rama', `${branch}`],
+                ['Descripción', repoData.description],
+                ['Estrellas', repoData.stargazers_count],
+                ['Lenguaje', repoData.language],
+                ['Licencia', repoData.license?.spdx_id],
+                ['Creado', repoData.created_at?.slice(0, 10)],
+            ],
+            footer: 'ZIP listo, ¡disfruta el código! 🚀',
+        })
         
-        await sock.sendMedia(m.chat, zipUrl, null, m, {
+        await sock.sendMedia(m.chat, zipUrl, caption, m, {
             type: 'document',
-            fileName: `${repo} - Rama: ${branch}.zip`,
+            fileName: `${repo} - ${branch}.zip`,
             mimetype: 'application/zip',
             contextInfo: {
                 forwardingScore: 99,

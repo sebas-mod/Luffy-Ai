@@ -1,4 +1,4 @@
-import { findParticipantByNumber } from '../../src/lib/luffy-lid.js'
+import { findParticipantByNumber, getParticipantJid } from '../../src/lib/luffy-lid.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'kick',
@@ -63,7 +63,8 @@ async function handler(m, { sock }) {
             return
         }
         
-        await sock.groupParticipantsUpdate(m.chat, [targetParticipant.id], 'remove')
+        const realTargetJid = getParticipantJid(targetParticipant) || targetParticipant.id
+        await sock.groupParticipantsUpdate(m.chat, [realTargetJid], 'remove')
 
         await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ @${targetNumber} fue expulsado de este grupo.`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
 
