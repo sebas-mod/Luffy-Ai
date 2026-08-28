@@ -17,7 +17,7 @@ import {
 import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
 const pluginConfig = {
   name: "menu_todo",
-  alias: ["fullmenu", "am", "allcommand", "todo"],
+  alias: ["allmenu", "fullmenu", "am", "allcommand", "todo", "menucompleto"],
   category: "main",
   description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",
@@ -77,10 +77,10 @@ function getCommandSymbols(cmdName) {
   return symbols.length > 0 ? " " + symbols.join(" ") : "";
 }
 function getContextInfo(botConfig, m, thumbBuffer) {
-  const saluranId = botConfig.saluran?.id || "120363400911374213@newsletter";
+  const saluranId = botConfig.saluran?.canalId || "120363400911374213@newsletter";
   const saluranName =
     botConfig.saluran?.name || botConfig.bot?.name || "Luffy-Ai";
-  const saluranLink = botConfig.saluran?.link || "";
+  const saluranLink = botConfig.saluran?.canalLink || "";
   return {
     mentionedJid: [m.sender],
     forwardingScore: 9999,
@@ -345,7 +345,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   isForwarded: true,
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
+                    newsletterJid: config.saluran?.canalId || "120363400911374213@newsletter",
                     newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
@@ -420,7 +420,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                   isForwarded: true,
                   forwardingScore: 9,
                   forwardedNewsletterMessageInfo: {
-                    newsletterJid: config.saluran?.id || "120363400911374213@newsletter",
+                    newsletterJid: config.saluran?.canalId || "120363400911374213@newsletter",
                     newsletterName: config.saluran?.name || config.bot?.name || "Luffy-Ai",
                     serverMessageId: 127,
                   },
@@ -550,52 +550,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
             break;
           }
           default: {
-            const ftroliQuoted = {
-              key: {
-                fromMe: false,
-                participant: "0@s.whatsapp.net",
-                remoteJid: "status@broadcast",
-              },
-              message: {
-                orderMessage: {
-                  orderId: "44444444444444",
-                  thumbnail:
-                    (thumbBuffer || imageBuffer ? await (await getSharp())(thumbBuffer || imageBuffer)
-                      .resize({ width: 300, height: 300 })
-                      .toBuffer() : null),
-                  itemCount: totalCmds,
-                  status: "INQUIRY",
-                  surface: "CATALOG",
-                  message: `★ ${config.bot.name}`,
-                  orderTitle: `📋 ${totalCmds} Comandos`,
-                  sellerJid: botConfig.botNumber
-                    ? `${botConfig.botNumber}@s.whatsapp.net`
-                    : m.sender,
-                  token: "luffy-menu-v8",
-                  totalAmount1000: 3333333,
-                  totalCurrencyCode: "IDR",
-                  contextInfo: {
-                    isForwarded: true,
-                    forwardingScore: 9,
-                    forwardedNewsletterMessageInfo: {
-                      newsletterJid: "120363351980387532@newsletter",
-                      newsletterName: "Luffy Bot",
-                      serverMessageId: 127,
-                    },
-                  },
-                },
-              },
-            };
             try {
-              await sock.sendMessage(
-                m.chat,
-                {
-                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
-                  mimetype: "audio/mpeg",
-                },
-                { quoted: ftroliQuoted },
-              );
-            } catch (ffmpegErr) {
               await sock.sendMessage(
                 m.chat,
                 {
@@ -604,6 +559,8 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
                 },
                 { quoted: m },
               );
+            } catch (ffmpegErr) {
+              console.error("[AllMenu] Audio fallback error:", ffmpegErr.message);
             }
             break;
           }
@@ -614,19 +571,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     }
   } catch (error) {
     console.error("[AllMenu] Error:", error.message);
-    if (imageBuffer) {
-      await sock.sendMessage(
-        m.chat,
-        {
-          image: imageBuffer,
-          caption: txt,
-          contextInfo: getContextInfo(botConfig, m),
-        },
-        { quoted: m },
-      );
-    } else {
-      await m.reply(txt);
-    }
+    await m.reply(txt);
   }
 }
 export { pluginConfig as config, handler };
