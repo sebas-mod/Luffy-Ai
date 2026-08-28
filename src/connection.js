@@ -66,6 +66,23 @@ function stopWatchdog() {
   }
 }
 
+function waitForSocketOpen(sock, timeoutMs = 20000) {
+  return new Promise((resolve) => {
+    const ws = sock?.ws;
+    if (!ws || ws.readyState === 1) return resolve();
+    const start = Date.now();
+    const timer = setInterval(() => {
+      if (sock?.ws?.readyState === 1) {
+        clearInterval(timer);
+        resolve();
+      } else if (Date.now() - start > timeoutMs) {
+        clearInterval(timer);
+        resolve();
+      }
+    }, 100);
+  });
+}
+
 const store = {
   messages: new Map(),
   chats: new Map(),
@@ -303,7 +320,7 @@ async function startConnection(options = {}) {
     colors.logger.info("pairing", `solicitando código para ${phoneNumber}`);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await waitForSocketOpen(sock);
       const code = await sock.requestPairingCode(phoneNumber);
       console.log("");
       console.log(

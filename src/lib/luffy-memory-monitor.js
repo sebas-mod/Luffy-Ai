@@ -1,8 +1,11 @@
 import { logger } from "./luffy-logger.js";
+import { clearAllCaches } from "./luffy-performance.js";
 const RSS_LIMIT = 1024 * 1024 * 1024;
 const CHECK_INTERVAL = 5 * 60 * 1000;
+const GC_COOLDOWN = 60 * 1000;
 
 let monitorTimer = null;
+let lastGc = 0;
 
 function formatMB(bytes) {
   return (bytes / 1024 / 1024).toFixed(1) + "MB";
@@ -14,14 +17,29 @@ function startMemoryMonitor() {
   monitorTimer = setInterval(() => {
     const mem = process.memoryUsage();
 
-    if (global.gc) global.gc();
-
     if (mem.rss >= RSS_LIMIT) {
       logger.warn(
         "memory",
-        `RSS ${formatMB(mem.rss)} exceeded ${formatMB(RSS_LIMIT)} limit, restarting`,
+        `RSS ${formatMB(mem.rss)} excedió el límite de ${formatMB(RSS_LIMIT)}`,
       );
-      process.exit(1);
+
+      clearAllCaches();
+
+      const now = Date.now();
+      if (global.gc && now - lastGc > GC_COOLDOWN) {
+        lastGc = now;
+        try {
+          global.gc();
+        } catch (e) {
+          logger.warn("memory", `GC manual falló: ${e.message}`);
+        }
+      }
+
+      logger.success(
+        "memory",
+        `Cachés limpiadas (rss ${formatMB(mem.rss)} · heap ${formatMB(mem.heapUsed)})`,
+      );
+      return;
     }
 
     logger.system(

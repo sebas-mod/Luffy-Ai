@@ -3,6 +3,7 @@ import { isSelf } from "../config.js";
 import { generateWAMessageFromContent, prepareWAMessageMedia } from "ourin";
 import { serialize, getCachedThumb } from "./lib/luffy-serialize.js";
 import { saluranCtx } from "./lib/luffy-context.js";
+import { getAssetBuffer } from "./lib/luffy-asset-manager.js";
 import {
   getPlugin,
   getPluginCount,
@@ -1922,7 +1923,11 @@ async function groupHandler(update, sock) {
         const author = update.author || null;
         if (!groupHandler[rankCfg.imgKey]) {
           try {
-            groupHandler[rankCfg.imgKey] = fs.readFileSync(rankCfg.imgPath);
+            const assetKey =
+              rankCfg.imgKey === "_promoteImg"
+                ? "luffy-promote"
+                : "luffy-demote";
+            groupHandler[rankCfg.imgKey] = getAssetBuffer(assetKey);
           } catch {
             groupHandler[rankCfg.imgKey] = null;
           }

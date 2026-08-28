@@ -34,14 +34,14 @@ const config = {
 
   assets: {
     "luffy-daftar": "./assets/image/luffy-daftar.png",
-    "luffy-demote": "./assets/image/luffy-demote.png",
+    "luffy-demote": "https://luffy-images.vercel.app/demote.png",
     "luffy-fishit": "./assets/image/luffy-fishit.jpg",
     "luffy-games": "./assets/image/luffy-games.jpg",
     "luffy-landscape": "./assets/image/luffy-landscape.jpg",
     "luffy-levelup": "./assets/image/luffy-levelup.jpg",
     "luffy-minecraft": "./assets/image/luffy-minecraft.jpg",
     "luffy-promote": "./assets/image/luffy-promote.png",
-    "luffy-rpg": "./assets/image/luffy-rpg.jpg",
+    "luffy-rpg": "https://luffy-images.vercel.app/rpg.png",
     "luffy-rules": "./assets/image/luffy-rules.jpg",
     "luffy-store": "./assets/image/luffy-store.png",
     "luffy-v8": "./assets/image/luffy-v8.jpg",

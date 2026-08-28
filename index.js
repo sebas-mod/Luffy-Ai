@@ -273,8 +273,7 @@ async function main() {
   );
 
   const pluginsPath = path.join(process.cwd(), "plugins");
-  const pluginCount = await loadPlugins(pluginsPath);
-  logger.success("plugin", `¡Se cargaron ${pluginCount} plugins!`);
+  const pluginLoadPromise = loadPlugins(pluginsPath);
 
   if (config.dev?.enabled && config.dev?.watchPlugins)
     startDevWatcher(pluginsPath);
@@ -399,6 +398,9 @@ async function main() {
       }
     },
   });
+
+  const pluginCount = await pluginLoadPromise;
+  logger.success("plugin", `¡Se cargaron ${pluginCount} plugins!`);
 }
 
 main().catch((error) => {
