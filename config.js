@@ -47,7 +47,7 @@ const config = {
     "luffy-v8": "./assets/image/luffy-v8.jpg",
     "luffy-winner": "./assets/image/luffy-winner.jpg",
     "luffy": "./assets/image/luffy.png",
-    "luffy2": "./assets/image/luffy2.jpg",
+    "luffy2": "https://luffy-images.vercel.app/luffy2.png",
     "luffy3": "./assets/image/luffy3.jpg",
     "pp-kosong": "./assets/image/pp-kosong.jpg",
     "luffy-mp4": "./assets/video/luffy-mp4.mp4",

@@ -1,6 +1,6 @@
 {
   "luffy": "./assets/image/luffy.png",
-  "luffy2": "./assets/image/luffy2.jpg",
+  "luffy2": "https://luffy-images.vercel.app/luffy2.png",
   "luffy3": "./assets/image/luffy3.jpg",
   "luffy-daftar": "./assets/image/luffy-daftar.png",
   "luffy-demote": "https://luffy-images.vercel.app/demote.png",
