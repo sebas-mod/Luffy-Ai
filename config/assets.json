@@ -1,0 +1,23 @@
+{
+  "luffy": "./assets/image/luffy.png",
+  "luffy2": "./assets/image/luffy2.jpg",
+  "luffy3": "./assets/image/luffy3.jpg",
+  "luffy-daftar": "./assets/image/luffy-daftar.png",
+  "luffy-demote": "https://luffy-images.vercel.app/demote.png",
+  "luffy-fishit": "./assets/image/luffy-fishit.jpg",
+  "luffy-games": "./assets/image/luffy-games.jpg",
+  "luffy-landscape": "./assets/image/luffy-landscape.jpg",
+  "luffy-levelup": "./assets/image/luffy-levelup.jpg",
+  "luffy-minecraft": "./assets/image/luffy-minecraft.jpg",
+  "luffy-promote": "./assets/image/luffy-promote.png",
+  "luffy-rpg": "https://luffy-images.vercel.app/rpg.png",
+  "luffy-rules": "./assets/image/luffy-rules.jpg",
+  "luffy-store": "./assets/image/luffy-store.png",
+  "luffy-v8": "./assets/image/luffy-v8.jpg",
+  "luffy-winner": "./assets/image/luffy-winner.jpg",
+  "pp-kosong": "./assets/image/pp-kosong.jpg",
+  "luffy-kertas": "./assets/image/luffy-kertas.jpg",
+  "luffy-mp4": "./assets/video/luffy-mp4.mp4",
+  "luffy-mp3": "./assets/audio/luffy-mp3.mp3",
+  "luffy-font": "./assets/luffy-font.ttf"
+}
