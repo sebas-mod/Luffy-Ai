@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         (description ? `> Descripción: ${description}\n` : "") +
         `> ID: ${saluranId}\n` +
         `> Suscriptores: ${result?.subscribers || 0}\n\n` +
-        `_Este saluran se puede configurar en config.saluran.id_`,
+        `_Este saluran se puede configurar en config.saluran.canalId_`,
     );
   } catch (err) {
     return m.reply(`╰┈➤ ❌ Falló la creación del saluran: ${err.message}`);

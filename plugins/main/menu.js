@@ -1459,7 +1459,7 @@ Disfruta su uso, pirata. ⚓`
               isForwarded: true,
               forwardingScore: 999,
               forwardedNewsletterMessageInfo: {
-                newsletterJid: config.saluran.id,
+                newsletterJid: config.saluran.canalId,
                 newsletterName: config.saluran.name
               }
             }

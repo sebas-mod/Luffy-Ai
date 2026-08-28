@@ -4,8 +4,8 @@ import * as ownerPremiumDb from "./src/lib/luffy-premium-db.js";
 //  Lee el objeto config completo hasta el final
 const config = {
   info: {
-    website: "https://firefly.maiku.my.id",
-    grupwa: "https://chat.whatsapp.com/xxxx",
+    website: "",
+    grupwa: "",
   },
 
   owner: {
@@ -84,9 +84,7 @@ const config = {
       { name: "MercadoPago", number: "5491138403093", holder: "Sebas-MD" },
       { name: "Cuenta DNI", number: "5491138403093", holder: "Sebas-MD" },
     ],
-    links: [
-      { name: "PayPal", url: "paypal.me/sebasmd" },
-    ],
+    links: [],
     benefits: [
       "Apoyar el desarrollo del bot",
       "Servidor más estable",
@@ -108,10 +106,10 @@ const config = {
     author: "Sebas-MD", // Autor de los stickers
   },
 
-  saluran: {
-    id: "120363400911374213@newsletter", // ID del canal (ejemplo: 120363xxx@newsletter)                          // ID del canal (ejemplo: 120363xxx@newsletter)
+saluran: {
+    canalId: "120363425262664012@newsletter", // ID del canal (ejemplo: 120363xxx@newsletter)
     name: "Únete al canal oficial de Luffy-Ai", // Nombre del canal
-    link: "https://whatsapp.com/channel/0029VbB37bgBfxoAmAlsgE0t", // Enlace del canal
+    canalLink: "https://whatsapp.com/channel/0029Vb8GuvGDZ4LWNa7sTi3O", // Enlace del canal
   },
 
   groupProtection: {
