@@ -44,6 +44,7 @@ const CATEGORY_EMOJIS = {
   sticker: "🖼️",
   ai: "🤖",
   game: "🎯",
+  juegos2: "🕹️",
   media: "🎬",
   info: "ℹ️",
   user: "📊",
@@ -172,6 +173,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     "tools",
     "fun",
     "game",
+    "juegos2",
     "download",
     "search",
     "sticker",
@@ -453,15 +455,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         g += `♱ Servido con honor por *${ownerName}* ${GOTHIC.TWIN}\n`;
         g += `${GOTHIC.DIV}\n`;
 
-        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━┓\n`;
-        g += `┃ ⛧ Nombre   : ${botName}\n`;
-        g += `┃ ⛧ Funciones: ${totalFeatures} funciones\n`;
-        g += `┃ ⛧ Versión  : ${botVersion}\n`;
-        g += `┃ ⛧ Hora     : ${parsedTime}\n`;
-        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
-
-        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `☽ ♰ *${toFancy("TUS DATOS")}* ♰ ☾\n`;
         g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Rango    : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
         g += `┃ 🪽 Nombre   : ${gUser.regName || pushName}\n`;
@@ -469,9 +463,17 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         g += `┃ 🫀 Registro : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
         g += `┃ ⛧ Limite   : ${userLimit}\n`;
         g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
+
+        g += `☽ ♰ *${toFancy("INFO BOT")}* ♰ ☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ ♰ Nombre   : ${botName}\n`;
+        g += `┃ ♰ Funciones: ${totalFeatures} funciones\n`;
+        g += `┃ ♰ Versión  : ${botVersion}\n`;
+        g += `┃ ♰ Hora     : ${parsedTime}\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
-        g += `♰─ ${GOTHIC.TWIN} *${toFancy("ORDEN DEL MENÚ")}* ${GOTHIC.TWIN} ─♰\n`;
+        g += `☽ ♰ *${toFancy("ORDEN DEL MENÚ")}* ♰ ☾\n`;
         for (const category of sortedCategories) {
           if (category === "owner" && !m.isOwner) continue;
           if (
@@ -485,17 +487,16 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           const caseCmds = casesByCategory[category] || [];
           const allCmds = [...pluginCmds, ...caseCmds];
           if (allCmds.length === 0) continue;
-          const emoji = CATEGORY_EMOJIS[category] || "📋";
-          g += `┏━ ${emoji} ${GOTHIC.TWIN} *${toFancy(category.toUpperCase())}* ${GOTHIC.TWIN} ${emoji} ━┓  (${allCmds.length})\n`;
+          g += `┏━ ♰─【*${toFancy(category.toUpperCase())}*】─♰ ━┓  (${allCmds.length})\n`;
           for (const cmd of allCmds) {
-            g += `┃  ♱➤ ${prefix}${cmd}\n`;
+            g += `┃  ♰➤ ${prefix}${cmd}\n`;
           }
-          g += `┗━ ${GOTHIC.TWIN} ${GOTHIC.NIGHT} ${GOTHIC.TWIN} ━┛\n\n`;
+          g += `┗━ ♰ ${GOTHIC.NIGHT} ♰ ━┛\n\n`;
         }
         g += divider(GOTHIC.DIV3);
 
         const bg = config.global || {};
-        g += `♰─ ${GOTHIC.TWIN} *${toFancy("MARCA")}* ${GOTHIC.TWIN} ─♰\n`;
+        g += `☽ ♰ *${toFancy("MARCA")}* ♰ ☾\n`;
         g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Autor    : ${bg.author}\n`;
         g += `┃ 🪽 Dev      : ${bg.dev}\n`;

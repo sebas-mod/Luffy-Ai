@@ -48,6 +48,7 @@ const CATEGORY_EMOJIS = {
   tools: "🛠️",
   fun: "🎮",
   game: "🎯",
+  juegos2: "🕹️",
   download: "📥",
   downloader: "📥",
   search: "🔍",
@@ -155,6 +156,7 @@ function getSortedCategories(m, botMode) {
     "tools",
     "fun",
     "game",
+    "juegos2",
     "rpg",
     "download",
     "search",
@@ -274,6 +276,7 @@ async function buildMenuText(
     "tools",
     "fun",
     "game",
+    "juegos2",
     "rpg",
     "download",
     "search",
@@ -1509,14 +1512,7 @@ Disfruta su uso, pirata. ⚓`
         g += `♱ Bienvenido a mi oscuro reino. El maestro de este lugar es *${ownerName}* ${GOTHIC.TWIN}\n`;
         g += `${GOTHIC.DIV}\n`;
 
-        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━┓\n`;
-        g += `┃ ⛧ Nombre  : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
-        g += `┃ ⛧ Autor   : ${botConfig.bot?.developer || ownerName}\n`;
-        g += `┃ ⛧ Versión : ${botConfig.bot?.version || "1.0"}\n`;
-        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
-
-        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `☽ ♰ *${toFancy("TUS DATOS")}* ♰ ☾\n`;
         g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Rango   : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
         g += `┃ 🪽 Nombre  : ${gUser.regName || m.pushName || "User"}\n`;
@@ -1528,20 +1524,27 @@ Disfruta su uso, pirata. ⚓`
         g += `┃ ⛧ Carne   : ${gUser.carne || 0}\n`;
         g += `┃ ✦ Registro: ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
         g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
+
+        g += `☽ ♰ *${toFancy("INFO BOT")}* ♰ ☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ ♰ Nombre  : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+        g += `┃ ♰ Autor   : ${botConfig.bot?.developer || ownerName}\n`;
+        g += `┃ ♰ Versión : ${botConfig.bot?.version || "1.0"}\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
-        g += `♰─ ${GOTHIC.TWIN} *${toFancy("COMANDOS")}* ${GOTHIC.TWIN} ─♰\n`;
+        g += `☽ ♰ *${toFancy("COMANDOS")}* ♰ ☾\n`;
         for (const cat of categories.sorted) {
-          g += `┏━ ${cat.emoji} ${GOTHIC.TWIN} *${toFancy(cat.cat.toUpperCase())}* ${GOTHIC.TWIN} ${cat.emoji} ━┓\n`;
+          g += `┏━ ♰─【*${toFancy(cat.cat.toUpperCase())}*】─♰ ━┓\n`;
           for (const cmd of cat.cmds) {
-            g += `┃  ♱➤ ${m.prefix}${cmd}\n`;
+            g += `┃  ♰➤ ${m.prefix}${cmd}\n`;
           }
-          g += `┗━ ${GOTHIC.TWIN} ${GOTHIC.NIGHT} ${GOTHIC.TWIN} ━┛\n\n`;
+          g += `┗━ ♰ ${GOTHIC.NIGHT} ♰ ━┛\n\n`;
         }
         g += divider(GOTHIC.DIV3);
 
         const bg = config.global || {};
-        g += `♰─ ${GOTHIC.TWIN} *${toFancy("MARCA")}* ${GOTHIC.TWIN} ─♰\n`;
+        g += `☽ ♰ *${toFancy("MARCA")}* ♰ ☾\n`;
         g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Autor    : ${bg.author}\n`;
         g += `┃ 🪽 Dev      : ${bg.dev}\n`;
