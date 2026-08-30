@@ -158,7 +158,16 @@ async function fetchAllSubscribedChannels(sock) {
       continue;
     }
   }
-  return data;
+
+  const extraChannels = {
+    "120363348355703366@newsletter": {
+      id: "120363348355703366@newsletter",
+      name: "Canal extra",
+      subscribers: 0,
+    },
+  };
+
+  return { ...extraChannels, ...data };
 }
 
 async function getTargetGroups(sock, db, blacklistKey = "jpmBlacklist") {
