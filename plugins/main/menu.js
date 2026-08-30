@@ -1538,6 +1538,19 @@ Disfruta su uso, pirata. ⚓`
           }
           g += `┗━ ${GOTHIC.TWIN} ${GOTHIC.NIGHT} ${GOTHIC.TWIN} ━┛\n\n`;
         }
+        g += divider(GOTHIC.DIV3);
+
+        const bg = config.global || {};
+        g += `♰─ ${GOTHIC.TWIN} *${toFancy("MARCA")}* ${GOTHIC.TWIN} ─♰\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ 👑 Autor    : ${bg.author}\n`;
+        g += `┃ 🪽 Dev      : ${bg.dev}\n`;
+        g += `┃ 🕯️ Titulo   : ${bg.titulowm}\n`;
+        g += `┃ 🦇 Slogan   : ${bg.titulowm2}\n`;
+        g += `┃ ⛧ Canal    : ${config.saluran?.canalLink || bg.namechannel}\n`;
+        g += `┃ ✦ Version  : ${bg.vs}\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
+
         g += `${gothicCenter(GOTHIC.MOON, 32)}\n`;
         g += `${gothicCenter(`     ${GOTHIC.CROSS}`, 32)}\n`;
         g += `${gothicCenter(`     ${GOTHIC.BAN}`, 32)}`;
