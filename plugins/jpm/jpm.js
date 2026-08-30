@@ -162,7 +162,7 @@ async function fetchAllSubscribedChannels(sock) {
   const extraChannels = {
     "120363348355703366@newsletter": {
       id: "120363348355703366@newsletter",
-      name: "Canal extra",
+      name: "⟬㋠⟭ 𝚱 𝐖𝚯𝐑𝐋𝐃 - 𝐃𝚵 𝐋𝐔 𝐗𝚵 ↦ 𝚻𝚵公𝕸『🔆』",
       subscribers: 0,
     },
   };
