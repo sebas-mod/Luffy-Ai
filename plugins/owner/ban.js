@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     }
 
     if (config.isOwner(targetNumber)) {
-        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> No se puede banear al owner\n♰ ──────── ♱✦`)
+        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> No se puede banear al owner\n♰ ──────── ♱`)
     }
 
     const db = getDatabase()
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyBanned) {
-        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> El número \`${targetNumber}\` ya está baneado\n♰ ──────── ♱✦`)
+        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> El número \`${targetNumber}\` ya está baneado\n♰ ──────── ♱`)
     }
 
     bannedList.push(targetNumber)

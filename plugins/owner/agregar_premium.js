@@ -64,7 +64,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbPremiums = getJadibotPremiums(jadibotId);
       if (jbPremiums.length === 0) {
         return m.reply(
-          `👑•─────•👑\n💎 Aún no hay premium en este jadibot\nUsa \`${m.prefix}agregar_premium\` para añadir\n♰ ──────── ♱✦`,
+          `👑•─────•👑\n💎 Aún no hay premium en este jadibot\nUsa \`${m.prefix}agregar_premium\` para añadir\n♰ ──────── ♱`,
         );
       }
       let txt = `💎 *LISTA DE PREMIUM JADIBOT* — ${jadibotId}\n\n`;
@@ -113,7 +113,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
   if (!targetNumber) {
     return m.reply(
-      `👑•─────•👑\n💎 *${isAdd ? "AGREGAR" : "ELIMINAR"} PREMIUM*\n\nIntroduce el número o etiqueta al usuario\n\`Ejemplo: ${m.prefix}${cmd} 6281234567890\`\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n💎 *${isAdd ? "AGREGAR" : "ELIMINAR"} PREMIUM*\n\nIntroduce el número o etiqueta al usuario\n\`Ejemplo: ${m.prefix}${cmd} 6281234567890\`\n♰ ──────── ♱`,
     );
   }
 
@@ -227,7 +227,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
     await m.react("💎");
     return m.reply(
-      `👑•─────•👑\n✅ Exitoso, se ${existingIndex !== -1 ? "renovó" : "añadió"} premium *${targetNumber}* por *${durationLabel}*\nCaduca: *${formatDate(newExpired)}*\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n✅ Exitoso, se ${existingIndex !== -1 ? "renovó" : "añadió"} premium *${targetNumber}* por *${durationLabel}*\nCaduca: *${formatDate(newExpired)}*\n♰ ──────── ♱`,
     );
   } else if (isDel) {
     const index = db.data.premium.findIndex((p) =>

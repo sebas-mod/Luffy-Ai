@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
         const pending = pendingReset.get(m.sender)
         if (!pending || Date.now() - pending > 60000) {
             pendingReset.delete(m.sender)
-            return m.reply(`👑•─────•👑\n❌ No hay una solicitud de reinicio activa.\n\n> Escribe \`${m.prefix}eliminar_datos\` primero\n♰ ──────── ♱✦`)
+            return m.reply(`👑•─────•👑\n❌ No hay una solicitud de reinicio activa.\n\n> Escribe \`${m.prefix}eliminar_datos\` primero\n♰ ──────── ♱`)
         }
 
         pendingReset.delete(m.sender)

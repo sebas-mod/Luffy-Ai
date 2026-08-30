@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
       return m.reply("☽◯☾ ♰ ❌ El bot no está en ningún grupo.");
     }
 
-    await m.reply(`👑•─────•👑\n⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.\n♰ ──────── ♱✦`);
+    await m.reply(`👑•─────•👑\n⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.\n♰ ──────── ♱`);
 
     let successCount = 0;
     let failCount = 0;

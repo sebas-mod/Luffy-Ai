@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
       const result = enableAutoBackup(interval, sock);
 
       if (!result.success) {
-        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> ${result.error}\n♰ ──────── ♱✦`);
+        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> ${result.error}\n♰ ──────── ♱`);
       }
 
       const ownerNum = config.owner?.number?.[0] || "Owner #1";
@@ -126,14 +126,14 @@ async function handler(m, { sock }) {
     case "trigger": {
       await m.react("🕕");
       await m.reply(
-        `👑•─────•👑\n🕕 *ᴄʀᴇᴀɴᴅᴏ ʀᴇsᴘᴀʟᴅᴏ...*\n\n> Por favor espera, estoy creando el respaldo...\n♰ ──────── ♱✦`,
+        `👑•─────•👑\n🕕 *ᴄʀᴇᴀɴᴅᴏ ʀᴇsᴘᴀʟᴅᴏ...*\n\n> Por favor espera, estoy creando el respaldo...\n♰ ──────── ♱`,
       );
 
       try {
         await triggerManualBackup(sock);
         await m.react("✅");
         return m.reply(
-          `👑•─────•👑\n✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n> El respaldo se ha enviado al owner!\n♰ ──────── ♱✦`,
+          `👑•─────•👑\n✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n> El respaldo se ha enviado al owner!\n♰ ──────── ♱`,
         );
       } catch (error) {
         await m.react('☢');

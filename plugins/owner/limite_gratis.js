@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   }
   
   msg += `_Las funciones de arriba (las exitosas) ahora son de libre acceso para todos los miembros._\n`;
-  msg += `♰ ──────── ♱✦`;
+  msg += `♰ ──────── ♱`;
   
   return m.reply(msg.trim());
 }

@@ -37,7 +37,7 @@ function handler(m) {
             if (existing.menu) info += `🍴 *Menú:* _${existing.menu}_\n`
         }
 
-        info += `\n♰ ──────── ♱✦\n\n*📋 Cómo Usar:*\n`
+        info += `\n♰ ──────── ♱\n\n*📋 Cómo Usar:*\n`
         info += `> \`${m.prefix}notif_comer on 07.00,12.00,19.00\`\n`
         info += `> \`${m.prefix}notif_comer on 07.00,12.00 Tortilla\`\n`
         info += `> \`${m.prefix}notif_comer edit 08.00,13.00\`\n`

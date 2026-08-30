@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     let info = `☽◯☾ ╭━ ♰ 🛡️ ᴀɴÁʟɪsɪs ᴅᴇ ʟᴀ ᴜʀʟ ♰ ━╮ ☽◯☾\n\n`;
     info += `☽◯☾ ♰ 🔗 *URL:* ${result.scanned_url}\n`;
     info += `☽◯☾ ♰ 📊 *Estado:* ${result.status_description}\n\n`;
-    info += `♰ ──────── ♱✦\n*DETALLE DEL ANÁLISIS:*\n`;
+    info += `♰ ──────── ♱\n*DETALLE DEL ANÁLISIS:*\n`;
     info += `☽◯☾ ♰ Phishing: ${result.is_phishing ? "🚨 Sí" : "✅ No"}\n`;
     info += `☽◯☾ ♰ Contiene malware: ${result.contains_malware ? "🚨 Sí" : "✅ No"}\n`;
     info += `☽◯☾ ♰ Redirige a sitios peligrosos: ${result.sends_to_harmful_sites ? "🚨 Sí" : "✅ No"}\n`;

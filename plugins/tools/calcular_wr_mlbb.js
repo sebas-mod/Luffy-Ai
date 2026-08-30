@@ -39,7 +39,7 @@ async function handler(m, { sock, args }) {
     info += `☽◯☾ ♰ 📊 Partidas Totales: *${totalMatch}*\n`;
     info += `☽◯☾ ♰ 📉 WR Actual: *${wrNow}%*\n`;
     info += `☽◯☾ ♰ 📈 WR Objetivo: *${wrTarget}%*\n\n`;
-    info += `♰ ──────── ♱✦\n💡 *Resultado del Análisis:*\n${data.result}\n\n╰━ ⊱༺༒༻⊰ ━╯`;
+    info += `♰ ──────── ♱\n💡 *Resultado del Análisis:*\n${data.result}\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
     await m.reply(info);
     m.react("✅");

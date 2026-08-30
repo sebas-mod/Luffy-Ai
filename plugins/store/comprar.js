@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
     const buyerNum = m.sender.split("@")[0];
     await sock.sendMessage(ownerJid, {
       text:
-        `🔔 *NUEVO PEDIDO*\n♰ ──────── ♱✦\n\n` +
+        `🔔 *NUEVO PEDIDO*\n♰ ──────── ♱\n\n` +
         `🧾 TRX: \`${trxId}\`\n` +
         `👤 Comprador: *${m.pushName || buyerNum}*\n` +
         `📱 Número: \`${buyerNum}\`\n` +

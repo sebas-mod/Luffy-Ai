@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   }
   
   msg += `_Las funciones de arriba (las exitosas) ahora solo pueden ser usadas por miembros Premium._\n`;
-  msg += `♰ ──────── ♱✦`;
+  msg += `♰ ──────── ♱`;
   
   return m.reply(msg.trim());
 }

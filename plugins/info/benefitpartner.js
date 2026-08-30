@@ -46,7 +46,7 @@ async function handler(m) {
     txt += `├ \`${prefix}ver_dueno\` — Revisa el rol del usuario\n`
     txt += `└ \`${prefix}lista_socios\` — Lista de partners\n\n`
 
-    txt += `♰ ──────── ♱✦\n> _Contacta al capitán para más información_\n╰━ ⊱༺༒༻⊰ ━╯`
+    txt += `♰ ──────── ♱\n> _Contacta al capitán para más información_\n╰━ ⊱༺༒༻⊰ ━╯`
 
     await m.reply(txt)
 }

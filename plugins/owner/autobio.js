@@ -51,25 +51,25 @@ async function handler(m, { sock, db }) {
       const { startAutoBioChecker } = await import("../../src/lib/luffy-scheduler.js");
       startAutoBioChecker(sock);
     } catch (e) {}
-    return m.reply(`👑•─────•👑\n✅ *AUTO BIO ACTIVADO*\n\nLa bio de WhatsApp del bot ahora se actualizará automáticamente cada minuto.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n✅ *AUTO BIO ACTIVADO*\n\nLa bio de WhatsApp del bot ahora se actualizará automáticamente cada minuto.\n♰ ──────── ♱`);
   }
   
   if (option === "off") {
     db.setting("autobio_status", false);
     await m.react("❌");
-    return m.reply(`👑•─────•👑\n❌ *AUTO BIO DESACTIVADO*\n\nLa bio de WhatsApp del bot ya no se actualizará.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n❌ *AUTO BIO DESACTIVADO*\n\nLa bio de WhatsApp del bot ya no se actualizará.\n♰ ──────── ♱`);
   }
 
   if (option.startsWith("cambiar_cada")) {
     const timeStr = arg.replace(/cambiar_cada/i, "").trim().toLowerCase();
     if (!timeStr) {
-      return m.reply("👑•─────•👑\n❌ *Formato incorrecto*\n\nEjemplo: `.autobio cambiar_cada 30 segundos` o `1 hora`\n♰ ──────── ♱✦");
+      return m.reply("👑•─────•👑\n❌ *Formato incorrecto*\n\nEjemplo: `.autobio cambiar_cada 30 segundos` o `1 hora`\n♰ ──────── ♱");
     }
 
     let ms = 0;
     const value = parseInt(timeStr);
     if (isNaN(value)) {
-      return m.reply("👑•─────•👑\n❌ *Formato incorrecto*\n\nIntroduce un número válido. Ejemplo: `.autobio cambiar_cada 30 segundos`\n♰ ──────── ♱✦");
+      return m.reply("👑•─────•👑\n❌ *Formato incorrecto*\n\nIntroduce un número válido. Ejemplo: `.autobio cambiar_cada 30 segundos`\n♰ ──────── ♱");
     }
 
     if (timeStr.includes("s") || timeStr.includes("segundo")) ms = value * 1000;
@@ -78,7 +78,7 @@ async function handler(m, { sock, db }) {
     else ms = value * 60000; // default to minutes
 
     if (ms < 10000) {
-      return m.reply("👑•─────•👑\n❌ *Error*\n\nEl intervalo mínimo es de 10 segundos para evitar spam del servidor de WhatsApp.\n♰ ──────── ♱✦");
+      return m.reply("👑•─────•👑\n❌ *Error*\n\nEl intervalo mínimo es de 10 segundos para evitar spam del servidor de WhatsApp.\n♰ ──────── ♱");
     }
 
     db.setting("autobio_interval", ms);
@@ -90,7 +90,7 @@ async function handler(m, { sock, db }) {
       startAutoBioChecker(sock);
     } catch (e) {}
 
-    return m.reply(`👑•─────•👑\n✅ *Intervalo cambiado*\n\nLa bio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n✅ *Intervalo cambiado*\n\nLa bio se actualizará automáticamente cada *${value} ${timeStr.replace(/[0-9\s]/g, "")}* (o ${ms / 1000} segundos).\n♰ ──────── ♱`);
   }
 
   db.setting("autobio_text", arg);

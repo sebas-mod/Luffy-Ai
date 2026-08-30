@@ -23,7 +23,7 @@ async function handler(m) {
   if (!arg || !["on", "off"].includes(arg)) {
     const current = db.setting("autoJoinGc") || false;
     return m.reply(
-      `👑•─────•👑\n🔗 *AUTO JOIN DE GRUPOS*\n\nEstado: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — activar\n\`${m.prefix}autojoingc off\` — desactivar\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n🔗 *AUTO JOIN DE GRUPOS*\n\nEstado: *${current ? "ON ✅" : "OFF ❌"}*\n\n\`${m.prefix}autojoingc on\` — activar\n\`${m.prefix}autojoingc off\` — desactivar\n♰ ──────── ♱`,
     );
   }
   const enabled = arg === "on";

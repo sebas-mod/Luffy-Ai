@@ -36,7 +36,7 @@ function handler(m) {
             info += `⏰ *Horario:* ${existing.jadwal.map(j => `*${j}* (hora local)`).join(', ')}\n`
         }
 
-        info += `\n♰ ──────── ♱✦\n\n*📋 Cómo Usar:*\n`
+        info += `\n♰ ──────── ♱\n\n*📋 Cómo Usar:*\n`
         info += `> \`${m.prefix}notif_dormir on 22.00\`\n`
         info += `> \`${m.prefix}notif_dormir on 22.00,23.30\`\n`
         info += `> \`${m.prefix}notif_dormir edit 23.00\`\n`

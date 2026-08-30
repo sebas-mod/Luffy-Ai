@@ -41,9 +41,9 @@ async function handler(m, { sock }) {
         
         if (bioToSet) {
             await m.reply(
-                `♰ ──────── ♱✦\n✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴀ*\n\n` +
+                `♰ ──────── ♱\n✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴀ*\n\n` +
                 `☽◯☾ ♰ La bio del bot ahora es:\n` +
-                `☽◯☾ ♰ _${bioToSet}_\n♰ ──────── ♱✦`
+                `☽◯☾ ♰ _${bioToSet}_\n♰ ──────── ♱`
             )
         } else {
             await m.reply(

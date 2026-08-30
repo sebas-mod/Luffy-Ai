@@ -102,7 +102,7 @@ async function handler(m, { text }) {
             count++;
         }
         
-        caption += `♰ ──────── ♱✦\n⚽ _Fuente: Goal.com_`;
+        caption += `♰ ──────── ♱\n⚽ _Fuente: Goal.com_`;
         
         await m.reply(caption.trim());
         await m.react('✅');

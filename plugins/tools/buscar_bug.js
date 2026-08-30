@@ -52,15 +52,15 @@ async function handler(m, { args }) {
     text += `☽◯☾ ♰ *Errores Encontrados:* ${bugInfo.total}\n\n`;
 
     if (bugInfo.summary) {
-      text += `♰ ──────── ♱✦\n*📝 Resumen:*\n${bugInfo.summary}\n\n`;
+      text += `♰ ──────── ♱\n*📝 Resumen:*\n${bugInfo.summary}\n\n`;
     }
 
     if (info.codeAnalysis?.fixed?.code) {
-      text += `♰ ──────── ♱✦\n*✨ Código Corregido:*\n\`\`\`${meta.detectedLanguage}\n${info.codeAnalysis.fixed.code}\n\`\`\`\n\n`;
+      text += `♰ ──────── ♱\n*✨ Código Corregido:*\n\`\`\`${meta.detectedLanguage}\n${info.codeAnalysis.fixed.code}\n\`\`\`\n\n`;
     }
 
     if (bugInfo.details && bugInfo.details.length > 0) {
-      text += `♰ ──────── ♱✦\n*📌 Detalles:* \n`;
+      text += `♰ ──────── ♱\n*📌 Detalles:* \n`;
       bugInfo.details.forEach((d, i) => {
         text += `☽◯☾ ♰ ${d.type || d.description}\n`;
       });

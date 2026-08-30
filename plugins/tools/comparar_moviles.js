@@ -178,7 +178,7 @@ async function handler(m, { sock, text }) {
         caption += `☽◯☾ ♰ 📱 *TELÉFONO 2:* ${phone2.title}\n\n`;
 
         for (const sec of sections) {
-            caption += `♰ ──────── ♱✦\n✨ *${sec.section.toUpperCase()}*\n`;
+            caption += `♰ ──────── ♱\n✨ *${sec.section.toUpperCase()}*\n`;
             for (const row of sec.rows) {
                 if (!row.label) continue;
                 caption += `🔹 *${row.label}:*\n`;

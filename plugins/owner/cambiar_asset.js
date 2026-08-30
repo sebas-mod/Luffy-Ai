@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const isMedia = isImage || isVideo || isAudio || isDocument;
 
         if (!isMedia) {
-            return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ ᴀssᴇᴛ*\n\n> Responde a un medio (imagen/video/audio/documento) con el mensaje \`${m.prefix}cambiar_asset\`\n♰ ──────── ♱✦`);
+            return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ ᴀssᴇᴛ*\n\n> Responde a un medio (imagen/video/audio/documento) con el mensaje \`${m.prefix}cambiar_asset\`\n♰ ──────── ♱`);
         }
 
         m.react('🕕');
@@ -162,19 +162,19 @@ async function gantiAssetAnswerHandler(m, sock) {
     const isFontUpload = session.isFontUpload;
 
     if (session.imageKeys && session.imageKeys.includes(selectedKey) && !isImageUpload) {
-        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de imagen.\n♰ ──────── ♱✦`);
+        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de imagen.\n♰ ──────── ♱`);
         return true;
     }
     if (session.videoKeys && session.videoKeys.includes(selectedKey) && !isVideoUpload) {
-        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de video.\n♰ ──────── ♱✦`);
+        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de video.\n♰ ──────── ♱`);
         return true;
     }
     if (session.audioKeys && session.audioKeys.includes(selectedKey) && !isAudioUpload) {
-        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de audio.\n♰ ──────── ♱✦`);
+        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un archivo de audio.\n♰ ──────── ♱`);
         return true;
     }
     if (session.fontKeys && session.fontKeys.includes(selectedKey) && !isFontUpload) {
-        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un documento de fuente (.ttf/.otf).\n♰ ──────── ♱✦`);
+        await m.reply(`👑•─────•👑\n❌ ¡Formato incorrecto!\n> El asset *${selectedKey}* requiere un documento de fuente (.ttf/.otf).\n♰ ──────── ♱`);
         return true;
     }
 
@@ -189,7 +189,7 @@ async function gantiAssetAnswerHandler(m, sock) {
 
     try {
         const newPath = await updateAssetUrl(selectedKey, session.buffer, filename);
-        await m.reply(`👑•─────•👑\n✅ *EXITOSO*\n\n> El asset *${selectedKey}* fue reemplazado por:\n> ${newPath}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱✦`);
+        await m.reply(`👑•─────•👑\n✅ *EXITOSO*\n\n> El asset *${selectedKey}* fue reemplazado por:\n> ${newPath}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱`);
         delete global.gantiAssetSessions[m.chat];
         await m.react('✅');
     } catch (e) {

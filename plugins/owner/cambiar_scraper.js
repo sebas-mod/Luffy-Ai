@@ -147,12 +147,12 @@ async function handler(m, { sock }) {
     try {
       code = (await quoted.download()).toString();
     } catch (e) {
-      return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nError al descargar el archivo\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nError al descargar el archivo\n♰ ──────── ♱`);
     }
   }
 
   if (!code || code.length < 30) {
-    return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nEl código es demasiado corto o no es válido\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nEl código es demasiado corto o no es válido\n♰ ──────── ♱`);
   }
 
   const hasExport =
@@ -163,7 +163,7 @@ async function handler(m, { sock }) {
 
   if (!hasExport) {
     return m.reply(
-      `👑•─────•👑\n❌ *FALLIDO*\n\nEl código no es un formato de scraper válido\nDebe tener export\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n❌ *FALLIDO*\n\nEl código no es un formato de scraper válido\nDebe tener export\n♰ ──────── ♱`,
     );
   }
 
@@ -187,14 +187,14 @@ async function handler(m, { sock }) {
 
   if (!fileName) {
     return m.reply(
-      `👑•─────•👑\n❌ *FALLIDO*\n\nNo se pudo detectar el nombre del scraper\nUsa \`${m.prefix}cambiar_scraper <nombrearchivo>\`\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n❌ *FALLIDO*\n\nNo se pudo detectar el nombre del scraper\nUsa \`${m.prefix}cambiar_scraper <nombrearchivo>\`\n♰ ──────── ♱`,
     );
   }
 
   fileName = fileName.toLowerCase().replace(/[^a-z0-9\-_]/g, "");
 
   if (!fileName) {
-    return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nNombre de archivo no válido\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nNombre de archivo no válido\n♰ ──────── ♱`);
   }
 
   await m.react("🕕");

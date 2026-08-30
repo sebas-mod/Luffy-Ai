@@ -151,7 +151,7 @@ async function handler(m, { sock }) {
 
   if (!expiredAt)
     return m.reply(
-      `👑•─────•👑\n❌ Formato de duración no válido\n\nEjemplo: 7d, 1m, 1y, lifetime\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n❌ Formato de duración no válido\n\nEjemplo: 7d, 1m, 1y, lifetime\n♰ ──────── ♱`,
     );
 
   await m.react("🕕");

@@ -73,7 +73,7 @@ async function getMovieDetail(movieUrl) {
 
 function formatDownloads(downloads) {
     if (!downloads || Object.keys(downloads).length === 0) return ""
-    let txt = `\n♰ ──────── ♱✦\n🔽 *ENLACES DE DESCARGA*\n──────────\n`
+    let txt = `\n♰ ──────── ♱\n🔽 *ENLACES DE DESCARGA*\n──────────\n`
     const qualities = ["1080p", "720p", "480p", "360p"]
     for (const q of qualities) {
         if (!downloads[q]) continue
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
             txt += `📝 *Sinopsis:*\n${synopsisText}\n\n`
         }
 
-        txt += `♰ ──────── ♱✦\n📋 *DETALLES DE LA PELÍCULA*\n──────────\n`
+        txt += `♰ ──────── ♱\n📋 *DETALLES DE LA PELÍCULA*\n──────────\n`
         if (detail.genre) txt += `☽◯☾ ♰ 🎭 Género: *${detail.genre}*\n`
         if (detail.release) txt += `☽◯☾ ♰ 📅 Lanzamiento: *${detail.release}*\n`
         if (detail.duration) txt += `☽◯☾ ♰ ⏱️ Duración: *${detail.duration}*\n`

@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   if (global.statusBcpc) {
     return m.reply(
-      `👑•─────•👑\n❌ El broadcast privado está en curso.\nEscribe \`${m.prefix}detener_difusion\` para detenerlo.\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n❌ El broadcast privado está en curso.\nEscribe \`${m.prefix}detener_difusion\` para detenerlo.\n♰ ──────── ♱`,
     );
   }
 
@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
     if (privateJids.size === 0) {
       m.react("❌");
       return m.reply(
-        "👑•─────•👑\n❌ No se encontraron contactos.\n\nAsegúrate de que el bot ya haya recibido un mensaje de ese contacto.\n♰ ──────── ♱✦",
+        "👑•─────•👑\n❌ No se encontraron contactos.\n\nAsegúrate de que el bot ya haya recibido un mensaje de ese contacto.\n♰ ──────── ♱",
       );
     }
 

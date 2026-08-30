@@ -665,7 +665,7 @@ async function handler(m, { sock }) {
   text += contentTxt.split("\n").map(line => `${line}`).join("\n");
 
   if (failed.length > 0) {
-    text += `\n\n♰ ──────── ♱✦\n⚠️ _Ten en cuenta que fallaron algunos servidores: ${failed.join(", ")}_`;
+    text += `\n\n♰ ──────── ♱\n⚠️ _Ten en cuenta que fallaron algunos servidores: ${failed.join(", ")}_`;
   }
 
   try {

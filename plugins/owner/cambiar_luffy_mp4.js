@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
         await m.reply(`☽◯☾ ♰ ⏳ Subiendo el video...`)
         try {
             const newUrl = await updateAssetUrl('luffy-mp4', buffer, 'luffy.mp4')
-            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> El archivo luffy.mp4 fue reemplazado por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱✦`)
+            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> El archivo luffy.mp4 fue reemplazado por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱`)
         } catch (e) {
             m.reply(`☽◯☾ ♰ ❌ Error al subir el archivo: ${e.message}`)
         }

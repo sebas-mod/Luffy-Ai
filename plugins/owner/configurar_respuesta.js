@@ -93,7 +93,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* hasta *v11*\n♰ ──────── ♱✦`);
+      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* hasta *v11*\n♰ ──────── ♱`);
       return;
     }
 

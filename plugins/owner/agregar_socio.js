@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
         const expDate = new Date(newExpired).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
 
         await m.reply(
-            `👑•─────•👑\n✅ Exitoso, se ${existingIndex !== -1 ? 'renovó' : 'añadió'} el partner @${targetNumber} por *${days} días*\nCaduca: *${expDate}*\n♰ ──────── ♱✦`,
+            `👑•─────•👑\n✅ Exitoso, se ${existingIndex !== -1 ? 'renovó' : 'añadió'} el partner @${targetNumber} por *${days} días*\nCaduca: *${expDate}*\n♰ ──────── ♱`,
             { mentions: [target] }
         )
         return
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
     if (cmd === 'lista_socios') {
         const partners = db.data.partner
         if (!partners.length) {
-            return m.reply(`👑•─────•👑\n🤝 *ʟɪꜱᴛᴀ ᴅᴇ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay partners.\n♰ ──────── ♱✦`)
+            return m.reply(`👑•─────•👑\n🤝 *ʟɪꜱᴛᴀ ᴅᴇ ᴘᴀʀᴛɴᴇʀ*\n\n> Aún no hay partners.\n♰ ──────── ♱`)
         }
 
         let txt = `🤝 *LISTA DE PARTNERS*\n\n`

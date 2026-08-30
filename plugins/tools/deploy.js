@@ -144,7 +144,7 @@ async function handler(m, { sock }) {
         await m.reply(
             `☽◯☾ ╭━ ♰ 🚀 DEPLOY EXITOSO ♰ ━╮ ☽◯☾\n\n` +
             `☽◯☾ ♰ Tu proyecto se subió correctamente a Vercel y se está desplegando (building). Puedes acceder a él de inmediato a través del siguiente enlace.\n\n` +
-            `♰ ──────── ♱✦\n*DETALLES DEL DEPLOY:*\n` +
+            `♰ ──────── ♱\n*DETALLES DEL DEPLOY:*\n` +
             `☽◯☾ ♰ Nombre del Proyecto: *${name}*\n` +
             `☽◯☾ ♰ Tipo de Proyecto: *${isZip ? 'Archivo ZIP (Múltiples archivos)' : 'HTML estático (Archivo único)'}*\n` +
             `☽◯☾ ♰ Enlace: https://${domain}\n\n` +

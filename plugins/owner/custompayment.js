@@ -42,7 +42,7 @@ async function handler(m) {
   }
 
   db.setting('customPaymentText', input)
-  return m.reply(`👑•─────•👑\n✅ ¡Texto de pago personalizado guardado!\n\nVista previa:\n${input}\n♰ ──────── ♱✦`)
+  return m.reply(`👑•─────•👑\n✅ ¡Texto de pago personalizado guardado!\n\nVista previa:\n${input}\n♰ ──────── ♱`)
 }
 
 export { pluginConfig as config, handler }

@@ -47,7 +47,7 @@ async function handler(m, { sock, plugins }) {
   if (isAdd) {
     if (!target)
       return m.reply(
-        `👑•─────•👑\n❌ *Target inválido*\n\nEtiqueta al usuario / Responde al chat / Escribe el número del target\n♰ ──────── ♱✦`,
+        `👑•─────•👑\n❌ *Target inválido*\n\nEtiqueta al usuario / Responde al chat / Escribe el número del target\n♰ ──────── ♱`,
       );
     const cleanArgs = m.args.filter(
       (a) => !a.includes("@") && !/^\d{10,}$/.test(a),
@@ -83,7 +83,7 @@ async function handler(m, { sock, plugins }) {
 
     if (activeAccess.length === 0) {
       return m.reply(
-        `👑•─────•👑\n📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\nTarget: @${target.split("@")[0]}\nEstado: *Sin acceso especial*\n♰ ──────── ♱✦`,
+        `👑•─────•👑\n📊 *ᴀᴄᴄᴇsᴏ ᴅᴇʟ ᴜsᴜᴀʀɪᴏ*\n\nTarget: @${target.split("@")[0]}\nEstado: *Sin acceso especial*\n♰ ──────── ♱`,
         {
           mentions: sock.parseMention(`@${target.split("@")[0]}`),
         },

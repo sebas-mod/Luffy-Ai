@@ -187,7 +187,7 @@ async function handler(m, { sock }) {
       const buyerMention = `@${buyerNum}`;
       await sock.sendMessage(trx.purchaseChat, {
         text:
-          `🎉 *¡PEDIDO COMPLETADO!*\n♰ ──────── ♱✦\n\n` +
+          `🎉 *¡PEDIDO COMPLETADO!*\n♰ ──────── ♱\n\n` +
           `${buyerMention} tu compra de *${trx.productName}* ya fue confirmada ✅\n` +
           `💰 Precio: *${formatPrice(trx.price)}*\n\n` +
           `📦 Los datos del producto ya fueron enviados a tu chat privado. ¡Revisa el mensaje del bot! 📱\n\n` +

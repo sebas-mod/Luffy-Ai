@@ -20,14 +20,14 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
-    if (!isImage) return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ PP-KOSONG.JPG*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/pp-kosong.jpg\n♰ ──────── ♱✦`)
+    if (!isImage) return m.reply(`👑•─────•👑\n🖼️ *ᴄᴀᴍʙɪᴀʀ PP-KOSONG.JPG*\n\n> Envía/responde una imagen para reemplazarla\n> Archivo: assets/images/pp-kosong.jpg\n♰ ──────── ♱`)
     try {
         let buffer = m.quoted && m.quoted.isMedia ? await m.quoted.download() : await m.download()
         if (!buffer) return m.reply('☽◯☾ ♰ ❌ Error al descargar la imagen')
         await m.reply(`☽◯☾ ♰ ⏳ Subiendo la imagen...`)
         try {
             const newUrl = await updateAssetUrl('pp-kosong', buffer, 'pp-kosong.jpg')
-            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen pp-kosong.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱✦`)
+            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> La imagen pp-kosong.jpg fue reemplazada por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱`)
         } catch (e) {
             m.reply(`☽◯☾ ♰ ❌ Error al subir la imagen: ${e.message}`)
         }

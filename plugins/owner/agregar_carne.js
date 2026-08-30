@@ -89,7 +89,7 @@ async function handler(m, { sock }) {
 
         await m.react('✅')
         await m.reply(
-            `👑•─────•👑\n✅ Energía de *@${targetJid.split('@')[0]}* añadida con éxito por *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newCarne)}* de energía\n♰ ──────── ♱✦`,
+            `👑•─────•👑\n✅ Energía de *@${targetJid.split('@')[0]}* añadida con éxito por *${formatNumber(amount)}*!\nAhora tiene *${formatNumber(newCarne)}* de energía\n♰ ──────── ♱`,
             { mentions: [targetJid] }
         )
     }

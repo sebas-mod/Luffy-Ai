@@ -86,7 +86,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbOwners = getJadibotOwners(jadibotId);
       if (jbOwners.length === 0) {
         return m.reply(
-          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.\n♰ ──────── ♱✦`,
+          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.\n♰ ──────── ♱`,
         );
       }
       let txt = `📋 *LISTA DE OWNERS JADIBOT* — ${jadibotId}\n\n`;
@@ -104,7 +104,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const allOwners = [...new Set([...configOwners, ...dbOwners])];
 
       if (allOwners.length === 0) {
-        return m.reply(`👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.\n♰ ──────── ♱✦`);
+        return m.reply(`👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.\n♰ ──────── ♱`);
       }
       let txt = `📋 *LISTA DE OWNERS*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
@@ -141,7 +141,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido\n♰ ──────── ♱`);
   }
 
   if (isJadibot && jadibotId) {

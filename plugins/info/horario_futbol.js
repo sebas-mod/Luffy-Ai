@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
       }
     }
 
-    text += `♰ ──────── ♱✦\n☽◯☾ ♰ Total: *${matches.length}* partidos ⚽`;
+    text += `♰ ──────── ♱\n☽◯☾ ♰ Total: *${matches.length}* partidos ⚽`;
 
     m.react("✅");
 

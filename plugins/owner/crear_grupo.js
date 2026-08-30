@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
         await m.react('✅')
     } catch (err) {
         await m.react('❌')
-        return m.reply(`👑•─────•👑\n❌ ¡Lo siento jefe, falló la creación del grupo! 😭\nError: ${err.message}\n♰ ──────── ♱✦`)
+        return m.reply(`👑•─────•👑\n❌ ¡Lo siento jefe, falló la creación del grupo! 😭\nError: ${err.message}\n♰ ──────── ♱`)
     }
 }
 

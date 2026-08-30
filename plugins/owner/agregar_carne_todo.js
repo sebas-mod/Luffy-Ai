@@ -22,14 +22,14 @@ async function handler(m, { sock }) {
         const amount = parseInt(m.args[0])
         
         if (isNaN(amount) || amount <= 0) {
-            return m.reply(`👑•─────•👑\n⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n\n> Introduce la cantidad de carne que quieres añadir.\n\n\`Ejemplo: ${m.prefix}agregar_carne_todo 50\`\n♰ ──────── ♱✦`)
+            return m.reply(`👑•─────•👑\n⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n\n> Introduce la cantidad de carne que quieres añadir.\n\n\`Ejemplo: ${m.prefix}agregar_carne_todo 50\`\n♰ ──────── ♱`)
         }
         
         const groupMeta = m.groupMetadata
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> No hay miembros en este grupo\n♰ ──────── ♱✦`)
+            return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> No hay miembros en este grupo\n♰ ──────── ♱`)
         }
         
         await m.react('🕕')

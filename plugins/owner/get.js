@@ -371,7 +371,7 @@ async function handler(m, { sock }) {
       );
     }
   } catch (e) {
-    await m.reply(`👑•─────•👑\n❌ *REQUEST FALLIDO*\n\n> ${e.message}\n♰ ──────── ♱✦`);
+    await m.reply(`👑•─────•👑\n❌ *REQUEST FALLIDO*\n\n> ${e.message}\n♰ ──────── ♱`);
   }
 }
 

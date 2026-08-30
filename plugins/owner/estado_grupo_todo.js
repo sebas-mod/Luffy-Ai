@@ -236,7 +236,7 @@ async function handler(m, { sock, db }) {
     });
   } catch (error) {
     await m.reply(
-      `👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Fallo al obtener la lista de grupos.\n> _${error.message}_\n♰ ──────── ♱✦`,
+      `👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Fallo al obtener la lista de grupos.\n> _${error.message}_\n♰ ──────── ♱`,
     );
     if (tempFile && fs.existsSync(tempFile)) {
       try {

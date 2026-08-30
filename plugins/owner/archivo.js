@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
       }
       await m.react("✅");
       return m.reply(
-        `👑•─────•👑\n📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar todos a la vez (no hay lista de chats)\n♰ ──────── ♱✦`,
+        `👑•─────•👑\n📁 *${count} grupos archivados*\n\n> Los chats privados no se pueden archivar todos a la vez (no hay lista de chats)\n♰ ──────── ♱`,
       );
     } catch (err) {
       global.isFetchingGroups = false;

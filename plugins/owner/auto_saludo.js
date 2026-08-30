@@ -105,7 +105,7 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`👑•─────•👑\n${isEnable ? '✅' : '❌'} *Función de Bienvenida Auto Global ${isEnable ? 'Activada' : 'Desactivada'}!*\n\nTodos los grupos (${count}) ahora usan el mismo sistema de saludos que este grupo.\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\n${isEnable ? '✅' : '❌'} *Función de Bienvenida Auto Global ${isEnable ? 'Activada' : 'Desactivada'}!*\n\nTodos los grupos (${count}) ahora usan el mismo sistema de saludos que este grupo.\n♰ ──────── ♱`);
     }
 
     groupData.autoSambut.enabled = isEnable;
@@ -141,7 +141,7 @@ async function handler(m, { sock, db }) {
 
     groupData.autoSambut.delayMs = parsedMs;
     database.setGroup(m.chat, { autoSambut: groupData.autoSambut });
-    return m.reply(`👑•─────•👑\n⏱️ *Retraso de Bienvenida Auto cambiado!*\n\nAhora el bot te saludará después de que no escribas nada en este grupo durante *${formatTime(parsedMs)}* consecutivos.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n⏱️ *Retraso de Bienvenida Auto cambiado!*\n\nAhora el bot te saludará después de que no escribas nada en este grupo durante *${formatTime(parsedMs)}* consecutivos.\n♰ ──────── ♱`);
   }
 
   if (action === "list") {
@@ -156,7 +156,7 @@ async function handler(m, { sock, db }) {
   if (action === "add") {
     const newMsg = args.slice(1).filter(v => v !== '--global').join(" ").trim();
     if (!newMsg) {
-      return m.reply(`👑•─────•👑\nPor favor, introduce el texto del saludo.\nEjemplo: \`${m.prefix}auto_saludo add Hola jefe {user}!\`\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\nPor favor, introduce el texto del saludo.\nEjemplo: \`${m.prefix}auto_saludo add Hola jefe {user}!\`\n♰ ──────── ♱`);
     }
 
     groupData.autoSambut.pesanList.push(newMsg);
@@ -176,16 +176,16 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`👑•─────•👑\n💬 *Nuevo mensaje añadido a la lista Global (${count} grupos)!*\n\nMensaje registrado:\n"${newMsg}"\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\n💬 *Nuevo mensaje añadido a la lista Global (${count} grupos)!*\n\nMensaje registrado:\n"${newMsg}"\n♰ ──────── ♱`);
     }
 
-    return m.reply(`👑•─────•👑\n💬 *Nuevo mensaje añadido con éxito!*\nAhora hay ${groupData.autoSambut.pesanList.length} saludos aleatorios en la lista.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n💬 *Nuevo mensaje añadido con éxito!*\nAhora hay ${groupData.autoSambut.pesanList.length} saludos aleatorios en la lista.\n♰ ──────── ♱`);
   }
 
   if (action === "del") {
     const indexInput = parseInt(args[1]);
     if (isNaN(indexInput) || indexInput < 1 || indexInput > groupData.autoSambut.pesanList.length) {
-      return m.reply(`👑•─────•👑\nPor favor, introduce un número de orden de mensaje válido.\nMira la lista de números con \`${m.prefix}auto_saludo list\`.\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\nPor favor, introduce un número de orden de mensaje válido.\nMira la lista de números con \`${m.prefix}auto_saludo list\`.\n♰ ──────── ♱`);
     }
     if (groupData.autoSambut.pesanList.length <= 1) {
       return m.reply(`☽◯☾ ♰ ¡No se pudo eliminar! Debe haber al menos 1 mensaje en la lista de saludos de este grupo.`);
@@ -208,14 +208,14 @@ async function handler(m, { sock, db }) {
         database.setGroup(jid, { autoSambut: gData.autoSambut });
         count++;
       }
-      return m.reply(`👑•─────•👑\n🗑️ *Mensaje eliminado con éxito a nivel Global (${count} grupos)!*\n\nEliminado:\n"${removedMsg}"\n♰ ──────── ♱✦`);
+      return m.reply(`👑•─────•👑\n🗑️ *Mensaje eliminado con éxito a nivel Global (${count} grupos)!*\n\nEliminado:\n"${removedMsg}"\n♰ ──────── ♱`);
     }
 
-    return m.reply(`👑•─────•👑\n🗑️ *Mensaje eliminado con éxito!*\n\nEliminado:\n"${removedMsg}"\nQuedan ${groupData.autoSambut.pesanList.length} saludos en la lista.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n🗑️ *Mensaje eliminado con éxito!*\n\nEliminado:\n"${removedMsg}"\nQuedan ${groupData.autoSambut.pesanList.length} saludos en la lista.\n♰ ──────── ♱`);
   }
 
   if (action === "pesan") {
-    return m.reply(`👑•─────•👑\n⚠️ El comando \`pesan\` está obsoleto y ha sido reemplazado por el sistema aleatorio.\nPor favor, usa \`${m.prefix}auto_saludo add <texto>\` para añadir saludos, o \`${m.prefix}auto_saludo list\` para ver la lista de saludos.\n♰ ──────── ♱✦`);
+    return m.reply(`👑•─────•👑\n⚠️ El comando \`pesan\` está obsoleto y ha sido reemplazado por el sistema aleatorio.\nPor favor, usa \`${m.prefix}auto_saludo add <texto>\` para añadir saludos, o \`${m.prefix}auto_saludo list\` para ver la lista de saludos.\n♰ ──────── ♱`);
   }
 
   return m.reply(`☽◯☾ ♰ Comando no válido. Intenta escribir \`${m.prefix}auto_saludo\` sin argumentos para ver el manual.`);

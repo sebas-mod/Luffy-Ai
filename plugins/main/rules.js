@@ -21,7 +21,7 @@ const pluginConfig = {
 function buildDefaultRules(botName, prefix) {
     return `☽◯☾ ╭━ ♰ 📜 REGLAS ♰ ━╮ ☽◯☾\n\n📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*
 
-♰ ──────── ♱✦
+♰ ──────── ♱
 
 ¡Hola! Antes de usar todas las funciones disponibles, asegúrate de comprender y cumplir las siguientes reglas. Estas reglas existen para que todos los usuarios estén cómodos y el bot funcione sin problemas.
 
@@ -46,7 +46,7 @@ function buildDefaultRules(botName, prefix) {
 - Las infracciones graves o repetidas pueden provocar un *baneo permanente* del uso del bot
 - El capitán tiene derecho a decidir las sanciones sin previo aviso
 
-♰ ──────── ♱✦
+♰ ──────── ♱
 
 _Al usar este bot, se considera que leíste y aceptaste todas las reglas anteriores._
 ╰━ ⊱༺༒༻⊰ ━╯`
