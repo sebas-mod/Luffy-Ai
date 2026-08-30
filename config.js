@@ -160,7 +160,8 @@ saluran: {
   goodbye: { defaultEnabled: false },
 
   ui: {
-    menuVariant: 3,
+    menuVariant: 9,
+    allmenuVariant: 9,
   },
 
   messages: {

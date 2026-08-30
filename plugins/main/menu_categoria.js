@@ -209,8 +209,7 @@ async function handler(m, { sock, db }) {
       const emoji = CATEGORY_EMOJIS[cat] || "📋";
       const categoryName = toSmallCaps(cat);
       const commandLines = allCmds.map((cmd) => {
-        const symbols = getCommandSymbols(cmd);
-        return `${prefix}${cmd}${symbols}`;
+        return `${prefix}${cmd}`;
       });
       txt += createBracketBox(emoji, categoryName, commandLines);
     }
@@ -394,8 +393,7 @@ async function handler(m, { sock, db }) {
   const emoji = CATEGORY_EMOJIS[matchedCat] || "📁";
   const categoryName = toSmallCaps(matchedCat);
   const commandLines = allCommands.map((cmd) => {
-    const symbols = getCommandSymbols(cmd);
-    return `${prefix}${cmd}${symbols}`;
+    return `${prefix}${cmd}`;
   });
 
   let txt = ``;

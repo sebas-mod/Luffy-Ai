@@ -6,6 +6,7 @@ import axios from "axios";
 import {
   getTimeGreeting,
 } from "../../src/lib/luffy-formatter.js";
+import * as timeHelper from "../../src/lib/luffy-time.js";
 import fs from "fs"
 import {
   getCommandsByCategory,
@@ -15,6 +16,7 @@ import {
   getPluginsByCategory,
 } from "../../src/lib/luffy-plugins.js";
 import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
+import { GOTHIC, toFancy, divider } from "../../src/lib/luffy-gothic.js";
 const pluginConfig = {
   name: "menu_todo",
   alias: ["allmenu", "fullmenu", "am", "allcommand", "todo", "menucompleto"],
@@ -226,8 +228,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     const emoji = CATEGORY_EMOJIS[category] || "📋";
     const categoryName = category.toUpperCase();
     const commandLines = allCmds.map((cmd) => {
-      const symbols = getCommandSymbols(cmd);
-      return `${prefix}${cmd}${symbols}`;
+      return `${prefix}${cmd}`;
     });
     txt += createBracketBox(emoji, categoryName, commandLines);
   }
@@ -434,6 +435,78 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         }, { quoted: m, userJid: sock.user.jid });
 
         await sock.relayMessage(m.chat, msg6.message, { messageId: msg6.key.id });
+        break;
+      }
+      case 9: {
+        const gUser = db.getUser(m.sender) || {};
+        const ownerName = botConfig.getOwnerName
+          ? botConfig.getOwnerName(m.sender)
+          : botConfig.owner?.name || "Sebas";
+        const userName = gUser.regName || m.pushName || "User";
+        const parsedTime = timeHelper.formatTime("HH:mm");
+
+        let g = ``;
+        g += divider(GOTHIC.MOON);
+        g += `${GOTHIC.OBRA}\n`;
+        g += `${GOTHIC.FLOWER}  ${GOTHIC.TWIN}  *${toFancy(botName)}*  ${GOTHIC.TWIN}  ${GOTHIC.FLOWER}\n`;
+        g += `${GOTHIC.OBRA}\n`;
+        g += `${GOTHIC.DIV2}\n\n`;
+
+        g += `${greeting}, *${userName}* ${GOTHIC.SPIDER}\n`;
+        g += `Servido con honor por *${ownerName}* ${GOTHIC.TWIN}\n\n`;
+
+        g += `╰─ ♡ 𝖎𝖓𝖋𝖔 𝖇𝖔𝖙:\n`;
+        g += `♰┇ *${toFancy("Nombre")}* : ${botName}\n`;
+        g += `🪽┇ *${toFancy("Funciones")}* : ${totalFeatures} funciones\n`;
+        g += `❦︎┇ *${toFancy("Versión")}* : ${botVersion}\n`;
+        g += `🦇┇ *${toFancy("Hora")}* : ${parsedTime}\n`;
+        g += `${GOTHIC.LINE}\n\n`;
+
+        g += `╰─ ♡ 𝖘𝖚𝖘 𝖉𝖆𝖙𝖔𝖘:\n`;
+        g += `♰┇ *${toFancy("Rango")}* : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🕯️ Alma"}\n`;
+        g += `🪽┇ *${toFancy("Nombre")}* : ${gUser.regName || pushName}\n`;
+        g += `❦︎┇ *${toFancy("Edad")}* : ${gUser.regAge ?? "—"}\n`;
+        g += `🫀┇ *${toFancy("Registro")}* : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
+        g += `⛧┇ *${toFancy("Limite")}* : ${userLimit}\n`;
+        g += `${GOTHIC.LINE}\n\n`;
+        g += divider(GOTHIC.DIV3);
+
+        g += `╰─ ♡ 𝖔𝖗𝖉𝖊𝖓 𝖉𝖊𝖑 𝖒𝖊𝖓ú:\n`;
+        for (const category of sortedCategories) {
+          if (category === "owner" && !m.isOwner) continue;
+          if (
+            allowedCategories &&
+            !allowedCategories.includes(category.toLowerCase())
+          )
+            continue;
+          if (excludeCategories && excludeCategories.includes(category.toLowerCase()))
+            continue;
+          const pluginCmds = commandsByCategory[category] || [];
+          const caseCmds = casesByCategory[category] || [];
+          const allCmds = [...pluginCmds, ...caseCmds];
+          if (allCmds.length === 0) continue;
+          const emoji = CATEGORY_EMOJIS[category] || "📋";
+          g += `${GOTHIC.NIGHT}\n`;
+          g += `${GOTHIC.FLOWER}  ${emoji}  *${toFancy(category.toUpperCase())}*  ${emoji}  ${GOTHIC.TWIN}  (${allCmds.length})\n`;
+          for (const cmd of allCmds) {
+            g += `   ♱┇ ${prefix}${cmd}\n`;
+          }
+        }
+        g += `${GOTHIC.MOON}\n`;
+        g += `${GOTHIC.BAN}`;
+
+        try {
+          await sock.sendMessage(
+            m.chat,
+            {
+              image: fs.readFileSync(config.assets["luffy"]),
+              caption: g,
+            },
+            { quoted: m },
+          );
+        } catch (err) {
+          await m.reply(g);
+        }
         break;
       }
       default:

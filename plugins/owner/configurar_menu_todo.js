@@ -41,6 +41,12 @@ const VARIANTS = {
     desc: "Visualización con mensaje de ubicación sin botones interactivos",
     emoji: "📍",
   },
+  v9: {
+    id: 9,
+    name: "ALLMENU GOTHIC",
+    desc: "Estilo semi-gótico, imagen cabecera, sin botones",
+    emoji: "⛧",
+  },
 };
 
 async function handler(m, { sock, db }) {
@@ -50,7 +56,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5* o *v6*\n✦────────✦`);
+      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1*, *v2*, *v5*, *v6* o *v9*\n✦────────✦`);
       return;
     }
 

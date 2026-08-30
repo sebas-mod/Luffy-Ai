@@ -508,10 +508,19 @@ function createWarningMessage(message) {
 function getTimeGreeting() {
   const hour = timeHelper.getHour();
 
-  if (hour >= 4 && hour < 10) return "Buenos días 🌅";
-  if (hour >= 10 && hour < 15) return "Buenas tardes ☀️";
-  if (hour >= 15 && hour < 18) return "Buenas tardes 🌇";
-  return "Buenas noches 🌙";
+  if (hour >= 0 && hour < 5)
+    return "Buenas madrugadas 🌌 Que la oscuridad te traiga sueños tranquilos";
+  if (hour >= 5 && hour < 9)
+    return "Buenos días 🌅 Que este nuevo amanecer llene tu día de luz";
+  if (hour >= 9 && hour < 12)
+    return "Buenos días ☀️ Que la mañana te reciba con buenas energías";
+  if (hour >= 12 && hour < 14)
+    return "Buen mediodía 🌞 Que en mitad de tu jornada brilles con fuerza";
+  if (hour >= 14 && hour < 18)
+    return "Buenas tardes 🌤️ Que sigas con buena vibra esta tarde";
+  if (hour >= 18 && hour < 20)
+    return "Buenas tardes 🌇 Disfruta este atardecer a tu manera";
+  return "Buenas noches 🌙 Que tu noche sea calmada y llena de paz";
 }
 
 /**

@@ -17,6 +17,7 @@ import {
 } from "../../src/lib/luffy-plugins.js";
 import { getDatabase } from "../../src/lib/luffy-database.js";
 import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
+import { GOTHIC, toFancy, divider, gothicHeader } from "../../src/lib/luffy-gothic.js";
 import fs from "fs";
 import path from "path";
 
@@ -1486,6 +1487,75 @@ Disfruta su uso, pirata. ⚓`
         });
 
         await sock.relayMessage(m.chat, msg.message, { messageId: msg.key.id });
+        break;
+      }
+      case 9: {
+        const gUser = db.getUser(m.sender) || {};
+        const ownerName = botConfig.getOwnerName
+          ? botConfig.getOwnerName(m.sender)
+          : botConfig.owner?.name || "Sebas";
+        const userName = gUser.regName || m.pushName || "User";
+        const greetingG = getTimeGreeting();
+        const parsedTime = new Date().toLocaleTimeString("es-ES", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        let g = ``;
+        g += divider(GOTHIC.MOON);
+        g += `${GOTHIC.OBRA}\n`;
+        g += `${GOTHIC.FLOWER}  ${GOTHIC.TWIN}  *${toFancy(botConfig.bot?.name || "LUFFY AI")}*  ${GOTHIC.TWIN}  ${GOTHIC.FLOWER}\n`;
+        g += `${GOTHIC.OBRA}\n`;
+        g += `${GOTHIC.DIV}\n\n`;
+
+        g += `${greetingG}, *${userName}* ${GOTHIC.SPIDER}\n`;
+        g += `Bienvenido a mi oscuro reino. El maestro de este lugar es *${ownerName}* ${GOTHIC.TWIN}\n\n`;
+        g += divider(GOTHIC.DIV2);
+
+        g += `╰─ ♡ 𝖎𝖓𝖋𝖔 𝖇𝖔𝖙:\n`;
+        g += `♰┇ *${toFancy("Nombre")}* : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+        g += `🪽┇ *${toFancy("Autor")}* : ${botConfig.bot?.developer || ownerName}\n`;
+        g += `❦︎┇ *${toFancy("Versión")}* : ${botConfig.bot?.version || "1.0"}\n`;
+        g += `${GOTHIC.LINE}\n\n`;
+
+        g += `╰─ ♡ 𝖒𝖊𝖓𝖚 𝖕𝖗𝖎𝖓𝖈𝖎𝖕𝖆𝖑:\n`;
+        g += `♰┇ *${toFancy("Rango")}* : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🕯️ Alma"}\n`;
+        g += `🪽┇ *${toFancy("Nombre")}* : ${gUser.regName || m.pushName || "User"}\n`;
+        g += `❦︎┇ *${toFancy("Edad")}* : ${gUser.regAge ?? "—"}\n`;
+        g += `🦇┇ *${toFancy("Género")}* : ${gUser.regGender ?? "—"}\n`;
+        g += `♱┇ *${toFancy("Nivel")}* : ${gUser.level || 0}\n`;
+        g += `🍎┇ *${toFancy("Exp")}* : ${gUser.exp || 0}\n`;
+        g += `🫀┇ *${toFancy("Berry")}* : ${gUser.berry || 0}\n`;
+        g += `⛧┇ *${toFancy("Carne")}* : ${gUser.carne || 0}\n`;
+        g += `✦┇ *${toFancy("Registro")}* : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
+        g += `${GOTHIC.LINE}\n\n`;
+        g += divider(GOTHIC.DIV3);
+
+        g += `╰─ ♡ 𝖑𝖎𝖘𝖙𝖆 𝖉𝖊𝖈𝖔𝖒𝖆𝖓𝖉𝖔𝖘:\n`;
+        for (const cat of categories.sorted) {
+          g += `${GOTHIC.NIGHT}\n`;
+          g += `${GOTHIC.FLOWER}  ${cat.emoji}  *${toFancy(cat.cat.toUpperCase())}*  ${cat.emoji}  ${GOTHIC.TWIN}\n`;
+          for (const cmd of cat.cmds) {
+            g += `  ♱┇ ${m.prefix}${cmd}\n`;
+          }
+        }
+        g += `${GOTHIC.MOON}\n`;
+        g += `${GOTHIC.DIV6}\n`;
+        g += `${GOTHIC.CROSS}\n`;
+        g += `${GOTHIC.BAN}`;
+
+        try {
+          await sock.sendMessage(
+            m.chat,
+            {
+              image: imageBuffer || fs.readFileSync(config.assets["luffy"]),
+              caption: g,
+            },
+            { quoted: m },
+          );
+        } catch (err) {
+          await m.reply(g);
+        }
         break;
       }
       default:

@@ -67,6 +67,12 @@ const VARIANTS = {
     desc: "Imagen miniatura",
     emoji: "📍",
   },
+  v9: {
+    id: 9,
+    name: "GOTHIC",
+    desc: "Estilo semi-gótico con imagen cabecera, sin botones",
+    emoji: "⛧",
+  },
 };
 
 async function handler(m, { sock, db }) {
@@ -75,7 +81,7 @@ async function handler(m, { sock, db }) {
   if (variant) {
     const selected = VARIANTS[variant];
     if (!selected) {
-      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* hasta *v7*\n✦────────✦`);
+      await m.reply(`👑•─────•👑\n❌ *VARIANTE NO VÁLIDA*\n\nUsa: *v1* hasta *v9*\n✦────────✦`);
       return;
     }
     db.setting("menuVariant", selected.id);
