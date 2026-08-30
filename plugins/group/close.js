@@ -34,9 +34,9 @@ async function handler(m, { sock }) {
         const senderNum = m.sender.split('@')[0];
         
         const successMsg =
-            `╭━━━〔 ⚡ GRUPO 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n` +
             `┃ 🔒 Grupo cerrado por @${senderNum} ✅\n` +
-            `╰━━━━━━━━━━━━╯`;
+            `╰━ ⊱༺༒༻⊰ ━╯`;
         
         await m.reply(successMsg, {mentions: [m.sender]})
         

@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
         const participants = groupMeta.participants || []
         
         if (participants.length === 0) {
-            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ No hay miembros en este grupo`)
+            return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n☽◯☾ ♰ No hay miembros en este grupo`)
         }
         
         await m.react('🕕')
@@ -62,12 +62,12 @@ async function handler(m, { sock }) {
         
         await m.reply(
             `🗑️ *ᴇʟɪᴍɪɴᴀʀ ᴘʀᴇᴍɪᴜᴍ ᴀʟʟ*\n\n` +
-            `╭┈┈⬡「 📋 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
             `┃ 👥 ᴛᴏᴛᴀʟ ᴍɪᴇᴍʙʀᴏs: \`${participants.length}\`\n` +
             `┃ ✅ ᴇʟɪᴍɪɴᴀᴅᴏs: \`${removedCount}\`\n` +
             `┃ ⏭️ ɴᴏ ᴘʀᴇᴍɪᴜᴍ: \`${notPremCount}\`\n` +
             `┃ 💎 ᴘʀᴇᴍɪᴜᴍ ʀᴇsᴛᴀɴᴛᴇs: \`${db.data.premium.length}\`\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Grupo: ${groupMeta.subject}`
         )
         

@@ -34,15 +34,15 @@ async function handler(m, { sock }) {
         }
         
         if (!buffer) {
-            return m.reply(`╰┈➤ ❌ Error al descargar el audio`)
+            return m.reply(`☽◯☾ ♰ ❌ Error al descargar el audio`)
         }
         
-        await m.reply(`╰┈➤ ⏳ Subiendo el audio...`)
+        await m.reply(`☽◯☾ ♰ ⏳ Subiendo el audio...`)
         try {
             const newUrl = await updateAssetUrl('luffy-mp3', buffer, 'luffy.mp3')
-            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> El archivo luffy.mp3 fue reemplazado por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n✦────────✦`)
+            m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> El archivo luffy.mp3 fue reemplazado por la nueva URL:\n> ${newUrl}\n> ¡La config se actualizó en tiempo real!\n♰ ──────── ♱✦`)
         } catch (e) {
-            m.reply(`╰┈➤ ❌ Error al subir el archivo: ${e.message}`)
+            m.reply(`☽◯☾ ♰ ❌ Error al subir el archivo: ${e.message}`)
         }
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

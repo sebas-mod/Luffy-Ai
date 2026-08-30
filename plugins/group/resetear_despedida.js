@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     
     m.react('✅')
     
-    await m.reply("╰┈➤ "+`✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\nVuelve al mensaje predeterminado`)
+    await m.reply("☽◯☾ ♰ "+`✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴀ*\nVuelve al mensaje predeterminado`)
 }
 
 export { pluginConfig as config, handler }

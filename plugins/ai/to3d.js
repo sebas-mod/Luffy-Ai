@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🎮 *ᴛᴏ 3ᴅ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo 3D\n\n` +
             `\`${m.prefix}to3d\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

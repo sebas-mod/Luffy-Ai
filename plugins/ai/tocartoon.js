@@ -26,11 +26,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🎬 *ᴛᴏ ᴄᴀʀᴛᴏᴏɴ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo caricatura\n\n` +
             `\`${m.prefix}tocartoon\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

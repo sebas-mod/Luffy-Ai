@@ -33,8 +33,8 @@ function handler(m, { sock }) {
       txt += `   \`${h.id}\` · Requiere Nv. ${nivel} · 💰 ${h.precio}\n`;
       txt += `   ✦ _${h.efecto}_\n`;
     }
-    txt += `\n╰┈➤ Despertar: *${m.prefix}haki despertar <id>*\n`;
-    txt += `╰┈➤ Tu nivel: *${user.nivel}*`;
+    txt += `\n☽◯☾ ♰ Despertar: *${m.prefix}haki despertar <id>*\n`;
+    txt += `☽◯☾ ♰ Tu nivel: *${user.nivel}*`;
     return m.reply(txt);
   }
 

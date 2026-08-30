@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
                 : `📍 *ꜰɪᴊᴀᴅᴏ ᴇʟɪᴍɪɴᴀᴅᴏ*\n\n> Target: ${target}`
         )
     } catch (err) {
-        return m.reply(`╰┈➤ ❌ Error: ${err.message}`)
+        return m.reply(`☽◯☾ ♰ ❌ Error: ${err.message}`)
     }
 }
 

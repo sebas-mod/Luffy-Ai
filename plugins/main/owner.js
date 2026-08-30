@@ -58,7 +58,7 @@ async function handler(m, { sock, config: botConfig }) {
       text: "💬 Si tienes preguntas, no dudes en preguntar, el capitán es amigable"
     }, { quoted: zanne })
   } else {
-    const ownerText = `👑 *ɪɴꜰᴏʀᴍᴀᴄɪóɴ ᴅᴇʟ ᴄᴀᴘɪᴛáɴ*\n\n╭┈┈⬡「 📋 *ᴅᴇᴛᴀɪʟ* 」\n┃ ㊗ ɴᴏᴍʙʀᴇ: *${ownerNumbers.map((n) => getOwnerName(n)).join(", ")}*\n┃ ㊗ ʙᴏᴛ: *${botName}*\n┃ ㊗ ᴇsᴛᴀᴅᴏ: *🟢 En línea*\n╰┈┈⬡\n\n> _Si tienes preguntas o problemas,_\n> _¡contacta al capitán de arriba!_\n> _📞 Tarjeta de contacto abajo._`;
+    const ownerText = `👑 *ɪɴꜰᴏʀᴍᴀᴄɪóɴ ᴅᴇʟ ᴄᴀᴘɪᴛáɴ*\n\n☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀɪʟ* 」\n┃ ㊗ ɴᴏᴍʙʀᴇ: *${ownerNumbers.map((n) => getOwnerName(n)).join(", ")}*\n┃ ㊗ ʙᴏᴛ: *${botName}*\n┃ ㊗ ᴇsᴛᴀᴅᴏ: *🟢 En línea*\n╰━ ⊱༺༒༻⊰ ━╯\n\n> _Si tienes preguntas o problemas,_\n> _¡contacta al capitán de arriba!_\n> _📞 Tarjeta de contacto abajo._`;
 
     await m.reply(ownerText);
 

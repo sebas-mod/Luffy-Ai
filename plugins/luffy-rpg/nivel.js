@@ -46,7 +46,7 @@ function handler(m, { sock }) {
   txt += `🛡️ *Defensa:* ${s.defensa}\n`;
   txt += `❤️ *Salud:* ${s.salud}/${s.saludMax}\n`;
 
-  txt += `\n╰┈➤ 💡 Gana EXP con *${m.prefix}explorar*, *${m.prefix}combate* y *${m.prefix}entrenar*.`;
+  txt += `\n☽◯☾ ♰ 💡 Gana EXP con *${m.prefix}explorar*, *${m.prefix}combate* y *${m.prefix}entrenar*.`;
 
   return m.reply(txt);
 }

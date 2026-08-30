@@ -20,10 +20,10 @@ const config = {
 async function handler(m, { sock }) {
   if (m.args.length === 0) {
     return m.reply(
-      `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+      `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
       `┃ 🆓 *SISTEMA CAP FREE*\n` +
-      `╰━━━━━━━━━━━━╯\n\n` +
-      `╰┈➤ Sistema para devolver el estado de acceso de varias funciones a la vez y dejarlas gratis para el público.\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+      `☽◯☾ ♰ Sistema para devolver el estado de acceso de varias funciones a la vez y dejarlas gratis para el público.\n\n` +
       `*USO:*\n` +
       `- *${m.prefix}limite_gratis <nombre_función1> <nombre_función2> ...* — Pueden ser varias a la vez\n\n` +
       `*EJEMPLO DE USO:*\n` +
@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   
-  let msg = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *ESTADO CAMBIADO CON ÉXITO*\n╰━━━━━━━━━━━━╯\n\n`;
+  let msg = `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *ESTADO CAMBIADO CON ÉXITO*\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   if (successList.length > 0) {
     msg += `*Exitosos (FREE 🆓):*\n${successList.map(f => `- ${f}`).join("\n")}\n\n`;
   }
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   }
   
   msg += `_Las funciones de arriba (las exitosas) ahora son de libre acceso para todos los miembros._\n`;
-  msg += `✦────────✦`;
+  msg += `♰ ──────── ♱✦`;
   
   return m.reply(msg.trim());
 }

@@ -87,18 +87,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("✦ • ─── • ✦\n⚠️ Por favor, responde a un mensaje de imagen.");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ Por favor, responde a un mensaje de imagen.");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`✦ • ─── • ✦\n👾 *PIXEL ART MAKER*\n\nEnvía o responde una foto con el comando \`${m.prefix}topixel [nivel]\` para convertir tu foto a un estilo retro pixel art!\n──────────\n╰┈➤ _Nota: El nivel es opcional, entre 1-40 (cuanto más alto, más cuadriculado)._`);
+      return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n👾 *PIXEL ART MAKER*\n\nEnvía o responde una foto con el comando \`${m.prefix}topixel [nivel]\` para convertir tu foto a un estilo retro pixel art!\n──────────\n☽◯☾ ♰ _Nota: El nivel es opcional, entre 1-40 (cuanto más alto, más cuadriculado)._`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("✦ • ─── • ✦\n❌ No se pudo leer la imagen, ¡inténtalo de nuevo!");
+  if (!media) return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo leer la imagen, ¡inténtalo de nuevo!");
 
   await m.react("🕕");
 
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
       m.chat, 
       { 
         image: pixelatedBuffer, 
-        caption: `✦ • ─── • ✦\n👾 *PIXEL ART HECHO!*\n──────────\n╰┈➤ Aquí está tu foto en estilo pixel art retro 8-bit. ¿Genial, verdad? ✨` 
+        caption: `♰ ┄ ── ☽◯☾ ── ┄ ♰\n👾 *PIXEL ART HECHO!*\n──────────\n☽◯☾ ♰ Aquí está tu foto en estilo pixel art retro 8-bit. ¿Genial, verdad? ✨` 
       }, 
       { quoted: m }
     );

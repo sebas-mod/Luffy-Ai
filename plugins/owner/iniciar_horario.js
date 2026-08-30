@@ -53,11 +53,11 @@ async function handler(m, { sock, args }) {
 > Programador: *${result.name}*
 > Estado: ✅ Activo
 
-_El programador se ha reiniciado_\n✦────────✦`);
+_El programador se ha reiniciado_\n♰ ──────── ♱✦`);
         } else {
             await m.reply(`👑•─────•👑\n❌ Programador no encontrado o ya está activo
 
-Usa \`.startschedule\` para ver la lista de programadores\n✦────────✦`);
+Usa \`.startschedule\` para ver la lista de programadores\n♰ ──────── ♱✦`);
         }
     } catch (error) {
         console.error('[StartSchedule Error]', error);

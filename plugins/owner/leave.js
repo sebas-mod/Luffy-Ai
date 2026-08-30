@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
     const inviteCode = await extractInviteCode(input);
 
     if (!inviteCode) {
-      return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Enlace de invitación no válido\n✦────────✦`);
+      return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Enlace de invitación no válido\n♰ ──────── ♱✦`);
     }
 
     try {
@@ -57,22 +57,22 @@ async function handler(m, { sock }) {
       groupName = groupInfo.subject || "Unknown";
     } catch (error) {
       return m.reply(
-        `👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudo obtener la info del grupo desde el enlace\n✦────────✦`,
+        `👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> No se pudo obtener la info del grupo desde el enlace\n♰ ──────── ♱✦`,
       );
     }
   } else {
     return m.reply(
       `🚪 *sᴀʟɪʀ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
         `┃ ◦ En el grupo: \`.salir\`\n` +
         `┃ ◦ Vía enlace: \`.salir <enlace>\`\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `\`Ejemplo: ${m.prefix}salir https://chat.whatsapp.com/xxx\``,
     );
   }
 
   if (!targetGroupJid) {
-    return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Grupo no encontrado\n✦────────✦`);
+    return m.reply(`👑•─────•👑\n❌ *ꜰᴀʟʟɪᴅᴏ*\n\n> Grupo no encontrado\n♰ ──────── ♱✦`);
   }
 
   await m.react("🕕");

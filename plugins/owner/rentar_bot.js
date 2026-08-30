@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
   const sewaGroups = Object.keys(db.db.data.sewa.groups || {});
   if (!args || args === "status") {
     return m.reply(
-      `╭━━━〔 🔧 SISTEMA DE ALQUILER DEL BOT 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🔧 SISTEMA DE ALQUILER DEL BOT ♰ ━╮ ☽◯☾\n\n` +
         `Estado: *${currentStatus ? "✅ ACTIVO" : "❌ INACTIVO"}*\n` +
         `Grupos registrados: *${sewaGroups.length}*\n\n` +
         `*COMANDOS DISPONIBLES:*\n` +
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
     db.db.write();
     await m.react("✅");
     return m.reply(
-      `╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ Sistema de alquiler desactivado\n╰━━━━━━━━╯\n\nEl bot no abandonará ningún grupo. ✅`,
+      `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ Sistema de alquiler desactivado\n╰━━━━━━━━╯\n\nEl bot no abandonará ningún grupo. ✅`,
     );
   }
   if (args === "on") {

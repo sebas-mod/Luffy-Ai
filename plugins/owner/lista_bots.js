@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const active = getActiveJadibots()
 
     if (sessions.length === 0) {
-        return m.reply(`╰┈➤ ❌ No hay sesiones de jadibot guardadas`)
+        return m.reply(`☽◯☾ ♰ ❌ No hay sesiones de jadibot guardadas`)
     }
 
     let txt = `🤖 *ʟɪsᴛᴀ ᴅᴇ ᴊᴀᴅɪʙᴏᴛ*\n\n`

@@ -29,7 +29,7 @@ async function handler(m, { sock }) {
   const idx = parseInt(m.text?.trim()) - 1;
 
   if (isNaN(idx) || idx < 0 || idx >= products.length) {
-    let txt = `╭━━〔 🗑️ PRODUCTOS 〕━━╮\n\n🗑️ *Elige el Producto a Eliminar*\n\nEscribe \`${m.prefix}eliminar_producto <numero>\`\n\n`;
+    let txt = `☽◯☾ ╭ ♰ 🗑️ PRODUCTOS ♰ ━╮ ☽◯☾\n\n🗑️ *Elige el Producto a Eliminar*\n\nEscribe \`${m.prefix}eliminar_producto <numero>\`\n\n`;
     for (let i = 0; i < products.length; i++) {
       const p = products[i];
       const typeIcon = p.type === "fisik" ? "📦" : "🔑";
@@ -51,11 +51,11 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `╭━━━〔 ✦ 〕━━━╮\n🗑️ *PRODUCTO ELIMINADO*\n\n` +
+    `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n🗑️ *PRODUCTO ELIMINADO*\n\n` +
       `${typeIcon} Nombre: *${deleted.name}*\n` +
       `💰 Precio: *Rp ${deleted.price.toLocaleString("id-ID")}*\n` +
       `📊 Stock eliminado: *${deleted.type === "fisik" ? deleted.stock + " pcs" : (deleted.stockItems?.length || 0) + " cuentas"}*\n\n` +
-      `╰━━━━━━━━━━━━╯\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `⚠️ _El producto fue eliminado permanentemente y no se puede recuperar._`,
   );
 }

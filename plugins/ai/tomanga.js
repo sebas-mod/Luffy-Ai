@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `📖 *ᴛᴏ ᴍᴀɴɢᴀ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo manga\n\n` +
             `\`${m.prefix}tomanga\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

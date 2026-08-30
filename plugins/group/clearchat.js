@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
             }] 
         }, m.chat)
         
-        await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\n> El chat del grupo fue limpiado por @${m.sender.split('@')[0]}`+"\n╰━━━━━━━━━━━━╯", { mentions: [m.sender] })
+        await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\n> El chat del grupo fue limpiado por @${m.sender.split('@')[0]}`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [m.sender] })
         
     } catch (error) {
         try {
@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
                 } 
             }, m.chat)
             
-            await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\nEl chat del grupo en el WA del bot fue limpiado por @${m.sender.split('@')[0]}\nRevísalo tú mismo en el WhatsApp del bot`+"\n╰━━━━━━━━━━━━╯", { mentions: [m.sender] })
+            await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`✅ *ᴄʜᴀᴛ ʟɪᴍᴘɪᴀᴅᴏ*\n\nEl chat del grupo en el WA del bot fue limpiado por @${m.sender.split('@')[0]}\nRevísalo tú mismo en el WhatsApp del bot`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [m.sender] })
         } catch (e) {
             m.react('☢')
             m.reply(te(m.prefix, m.command, m.pushName))

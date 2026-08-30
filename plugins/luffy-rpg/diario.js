@@ -61,7 +61,7 @@ function handler(m, { sock }) {
     return u;
   });
 
-  let txt = `╭━━〔 🎁 RECOMPENSA DIARIA 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ 🎁 RECOMPENSA DIARIA ♰ ━╮ ☽◯☾\n`;
   txt += `┃ 📆 *Racha:* ${racha} día(s) ${racha > 1 ? "🔥" : ""}\n`;
   txt += `┃\n`;
   txt += `┃ 💰 *Berrys:* +${baseBerry}\n`;
@@ -70,7 +70,7 @@ function handler(m, { sock }) {
   txt += `┃ 🍖 *Objeto:* 1x Carne Asada\n`;
   if (bonusRacha > 0) txt += `┃ 🎉 *Bonus de racha:* +${bonusRacha} Berrys\n`;
   txt += `┃\n`;
-  txt += `╰┈➤ ¡Vuelve mañana para mantener tu racha! ⚡`;
+  txt += `☽◯☾ ♰ ¡Vuelve mañana para mantener tu racha! ⚡`;
 
   return m.reply(txt);
 }

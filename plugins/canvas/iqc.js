@@ -41,7 +41,7 @@ async function handler(m, { sock, text }) {
     } catch (error) {
         console.error("[IQC Plugin Error]", error)
         await m.react('❌')
-        m.reply(`╭━━━〔 ✦ 〕━━━╮\n😔 Lo siento, ocurrió un error al intentar crear la imagen de quote. Inténtalo de nuevo en unos momentos.\n╰━━━━━━━━━━━━╯`)
+        m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n😔 Lo siento, ocurrió un error al intentar crear la imagen de quote. Inténtalo de nuevo en unos momentos.\n╰━ ⊱༺༒༻⊰ ━╯`)
     }
 }
 

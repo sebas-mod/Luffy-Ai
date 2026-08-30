@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`╰┈➤ 📦 *ɴᴘᴍ sᴛᴀʟᴋ*\n\n> Ingresa el username de NPM\n\n\`Ejemplo: ${m.prefix}npmstalk hanya_zann\``)
+        return m.reply(`☽◯☾ ♰ 📦 *ɴᴘᴍ sᴛᴀʟᴋ*\n\n> Ingresa el username de NPM\n\n\`Ejemplo: ${m.prefix}npmstalk hanya_zann\``)
     }
     
     m.react('🔍')
@@ -43,13 +43,13 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`╰┈➤ ❌ Username *${username}* no fue encontrado`)
+            return m.reply(`☽◯☾ ♰ ❌ Username *${username}* no fue encontrado`)
         }
         
         const d = res.data.data
         const s = d.stats || {}
         
-        let caption = `╭━━━〔 📦 ɴᴘᴍ sᴛᴀʟᴋ 〕━━━╮\n\n` +
+        let caption = `☽◯☾ ╭━ ♰ 📦 ɴᴘᴍ sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
             `👤 *Username:* ${d.username}\n` +
             `📛 *Nombre:* ${d.name || '-'}\n` +
             `📧 *Email:* ${d.email || '-'}\n\n` +

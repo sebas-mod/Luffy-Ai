@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📝 *ᴄᴏɴꜰɪɢᴜʀᴀʀ ᴅᴇsᴘᴇᴅɪᴅᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀs* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴘʟᴀᴄᴇʜᴏʟᴅᴇʀs* 」\n` +
         `┃ ◦ \`{user}\` - Nombre del miembro\n` +
         `┃ ◦ \`{number}\` - Número del miembro\n` +
         `┃ ◦ \`{group}\` - Nombre del grupo\n` +
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
         `┃ ◦ \`{day}\` - Día (Lunes, Martes, etc)\n` +
         `┃ ◦ \`{bot}\` - Nombre del bot\n` +
         `┃ ◦ \`{prefix}\` - Prefijo del bot\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `\`Ejemplo:\`\n` +
         `\`${m.prefix}configurar_despedida Adiós {user}! 👋\`\n` +
         `\`Nos vemos el {day}, {date}\``,

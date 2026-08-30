@@ -40,9 +40,9 @@ async function handler(m) {
     })
 
     await m.reply(
-        `╭━━〔 ${emblem} ${clan.name} 〕━━╮\n` +
+        `☽◯☾ ╭ ♰ ${emblem} ${clan.name} ♰ ━╮ ☽◯☾\n` +
         memberLines.join('\n') +
-        `\n╰┈➤ 👥 ${clan.members.length}/50 miembros`,
+        `\n☽◯☾ ♰ 👥 ${clan.members.length}/50 miembros`,
         { mentions }
     )
 }

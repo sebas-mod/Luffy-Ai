@@ -85,10 +85,10 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+      `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
         `┃ 🔍 *ʙᴜsᴄᴀʀ ᴘʟᴜɢɪɴ*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
-        `╰┈➤ Busca y muestra la info de un plugin\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ Busca y muestra la info de un plugin\n\n` +
         `*ᴇᴊᴇᴍᴘʟᴏ:*\n` +
         `› \`${m.prefix}splugin sticker\`\n` +
         `› \`${m.prefix}splugin menu\``,
@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
     if (!info) {
       await m.react("❌");
       return m.reply(
-        `╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n╰━━━━━━━━╯\n\n╰┈➤ El plugin \`${name}\` no fue encontrado`,
+        `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ *ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ*\n╰━━━━━━━━╯\n\n☽◯☾ ♰ El plugin \`${name}\` no fue encontrado`,
       );
     }
 
@@ -135,15 +135,15 @@ async function handler(m, { sock }) {
     await m.react("✅");
     return m.reply(
       `📋 *ɪɴꜰᴏ ᴅᴇʟ ᴘʟᴜɢɪɴ*\n\n` +
-        `╭┈┈⬡「 📝 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📝 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📛 ɴᴏᴍʙʀᴇ: \`${info.name || "-"}\`\n` +
         `┃ 🏷️ ᴀʟɪᴀs: \`${aliases}\`\n` +
         `┃ 📁 ᴄᴀᴛᴇɢᴏʀíᴀ: \`${info.category || "-"}\`\n` +
         `┃ 📄 ᴅᴇsᴄ: ${info.description || "-"}\n` +
         `┃ 📝 ᴜsᴏ: \`${info.usage || "-"}\`\n` +
         `┃ 📌 ᴇᴊᴇᴍᴘʟᴏ: \`${info.example || "-"}\`\n` +
-        `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *ᴀᴊᴜsᴛᴇs* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 ⚙️ *ᴀᴊᴜsᴛᴇs* 」\n` +
         `┃ 🔓 ʜᴀʙɪʟɪᴛᴀᴅᴏ: ${isEnabled}\n` +
         `┃ 👑 sᴏʟᴏ ᴏᴡɴᴇʀ: ${isOwner}\n` +
         `┃ 💎 ᴘʀᴇᴍɪᴜᴍ: ${isPremium}\n` +
@@ -151,7 +151,7 @@ async function handler(m, { sock }) {
         `┃ 🛡️ sᴏʟᴏ ᴀᴅᴍɪɴ: ${isAdmin}\n` +
         `┃ ⏱️ ᴄᴏᴏʟᴅᴏᴡɴ: \`${info.cooldown || 0}s\`\n` +
         `┃ 🎫 ʟɪᴍɪᴛᴇ: \`${info.limit || 0}\`\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
     );
   } catch (error) {
     console.log(error);

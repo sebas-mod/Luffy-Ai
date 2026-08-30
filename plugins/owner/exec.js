@@ -23,7 +23,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, store }) {
     if (!config.isOwner(m.sender)) {
-        return m.reply('╰┈➤ ❌ *Owner Only!*')
+        return m.reply('☽◯☾ ♰ ❌ *Owner Only!*')
     }
 
     let code = null
@@ -95,12 +95,12 @@ async function handler(m, { sock, store }) {
 
     await m.reply(
         `⚙️ *ʀᴇsᴜʟᴛᴀᴅᴏ ᴇxᴇᴄ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴏᴅɪɢᴏ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴄᴏᴅɪɢᴏ* 」\n` +
         `┃ \`${codePreview}\`\n` +
         `├┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
         `┃ ${status}\n` +
         `┃ Tipo: ${type}\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `\`\`\`${output}\`\`\``
     )
 }

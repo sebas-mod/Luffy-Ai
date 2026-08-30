@@ -45,15 +45,15 @@ async function handler(m, { sock }) {
 
     if (m.command === 'listmutemember' || m.command === 'listmute') {
         if (mutedMembers.length === 0) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n> No hay miembros silenciados en este grupo`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
 
-        let txt = `🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n╭┈┈⬡「 📋 *ʟɪsᴛᴀ* 」\n`
+        let txt = `🔇 *LISTA DE MIEMBROS SILENCIADOS*\n\n☽◯☾ ♰ 「 📋 *ʟɪsᴛᴀ* 」\n`
         mutedMembers.forEach((jid, i) => {
             const num = jid.replace(/@.+/g, '')
             txt += `┃ ${i + 1}. @${num}\n`
         })
-        txt += `╰┈┈⬡\n\n> Total: \`${mutedMembers.length}\` miembros silenciados`
+        txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n> Total: \`${mutedMembers.length}\` miembros silenciados`
 
         return m.reply(txt, { mentions: mutedMembers })
     }
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} no está silenciado`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} no está silenciado`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [targetJid] })
     }
 
     mutedMembers.splice(index, 1)
@@ -88,11 +88,11 @@ async function handler(m, { sock }) {
     m.react('🔊')
     await m.reply(
         `🔊 *MIEMBRO DESILENCIADO*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 👤 ᴍɪᴇᴍʙʀᴏ: @${targetNumber}\n` +
         `┃ 🔊 ᴇsᴛᴀᴅᴏ: \`Desilenciado\`\n` +
         `┃ 📊 sɪʟᴇɴᴄɪᴀᴅᴏs ʀᴇsᴛᴀɴᴛᴇs: \`${mutedMembers.length}\` ᴍɪᴇᴍʙʀᴏs\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: [targetJid] }
     )
 }

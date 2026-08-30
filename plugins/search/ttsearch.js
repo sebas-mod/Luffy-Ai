@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
+      `☽◯☾ ♰ 「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
 ┃
 ㊗ ᴜsᴏ: \`${m.prefix}ttsearch <query>\`
 ┃
-╰┈┈⬡
+╰━ ⊱༺༒༻⊰ ━╯
 
 > \`Ejemplo: ${m.prefix}ttsearch anime\``,
     );
@@ -44,21 +44,21 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron videos para: ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron videos para: ${query}`);
     }
 
     const maxShow = Math.min(videos.length, 5);
     const mediaList = videos.slice(0, maxShow).map((video) => ({
       video: { url: video.link },
       mimetype: "video/mp4",
-      caption: `╭━━━〔 🎵 BÚSQUEDA TIKTOK 〕━━━╮
+      caption: `☽◯☾ ╭━ ♰ 🎵 BÚSQUEDA TIKTOK ♰ ━╮ ☽◯☾
 
-╰┈➤ 📌 ${video.title || "-"}
-╰┈➤ 👤 ${video.author?.nickname || "-"}
-╰┈➤ 👀 ${video.stats?.plays || 0} vistas
-╰┈➤ ❤️ ${video.stats?.likes || 0} me gusta
+☽◯☾ ♰ 📌 ${video.title || "-"}
+☽◯☾ ♰ 👤 ${video.author?.nickname || "-"}
+☽◯☾ ♰ 👀 ${video.stats?.plays || 0} vistas
+☽◯☾ ♰ ❤️ ${video.stats?.likes || 0} me gusta
 
-╰━━━━━━━━━━━━╯`,
+╰━ ⊱༺༒༻⊰ ━╯`,
       contextInfo: {
         forwardingScore: 99,
         isForwarded: true,

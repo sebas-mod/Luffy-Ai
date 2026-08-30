@@ -23,7 +23,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        return m.reply(`╰┈➤ 🍳 *BÚSQUEDA DE RECETAS*\n\nEscribe el nombre de la comida cuya receta quieres buscar.\n*Ejemplo:* ${m.prefix}receta Nasi Goreng`);
+        return m.reply(`☽◯☾ ♰ 🍳 *BÚSQUEDA DE RECETAS*\n\nEscribe el nombre de la comida cuya receta quieres buscar.\n*Ejemplo:* ${m.prefix}receta Nasi Goreng`);
     }
 
     await m.react("🕕");
@@ -37,11 +37,11 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.data || data.data.length === 0) {
             await m.react("❌");
-            return m.reply(`╰┈➤ Lo siento, no se encontró ninguna receta para "${text}". Intenta con otra palabra clave.`);
+            return m.reply(`☽◯☾ ♰ Lo siento, no se encontró ninguna receta para "${text}". Intenta con otra palabra clave.`);
         }
 
         const maxResults = Math.min(data.data.length, 10);
-        let listTxt = `╭━━━〔 🍳 RECETAS: ${text.toUpperCase()} 〕━━━╮\n──────────\n`;
+        let listTxt = `☽◯☾ ╭━ ♰ 🍳 RECETAS: ${text.toUpperCase()} ♰ ━╮ ☽◯☾\n──────────\n`;
         listTxt += `Se encontraron varias recetas, elige una:\n\n`;
 
         const searchResults = [];
@@ -52,7 +52,7 @@ async function handler(m, { sock, text }) {
                 name: item.name,
                 url: item.url
             });
-            listTxt += `╰┈➤ *${i + 1}.* ${item.name}\n`;
+            listTxt += `☽◯☾ ♰ *${i + 1}.* ${item.name}\n`;
         }
 
         listTxt += `\n> 💡 *Envía un número (ejemplo: 1)* para ver los detalles de la receta, o escribe \`batal\` para cancelar la búsqueda.`;
@@ -87,7 +87,7 @@ async function resepAnswerHandler(m, sock) {
     if (Date.now() - session.time > SESSION_TIMEOUT) {
         delete user.resep_session;
         db.save();
-        await m.reply(`╰┈➤ ⏰ *SESIÓN CADUCADA*\n\nLa sesión de búsqueda de recetas terminó porque pasaron más de 5 minutos. Escribe el comando .resep de nuevo.`);
+        await m.reply(`☽◯☾ ♰ ⏰ *SESIÓN CADUCADA*\n\nLa sesión de búsqueda de recetas terminó porque pasaron más de 5 minutos. Escribe el comando .resep de nuevo.`);
         return true;
     }
 
@@ -96,7 +96,7 @@ async function resepAnswerHandler(m, sock) {
     if (text === "cancelar" || text === "cancel") {
         delete user.resep_session;
         db.save();
-        await m.reply(`╰┈➤ 🚪 Búsqueda de recetas cancelada.`);
+        await m.reply(`☽◯☾ ♰ 🚪 Búsqueda de recetas cancelada.`);
         return true;
     }
 
@@ -118,7 +118,7 @@ async function resepAnswerHandler(m, sock) {
 
         if (!resData || !resData.status || !resData.data) {
             await m.react("❌");
-            return m.reply(`╰┈➤ Lo siento, error al obtener los detalles de la receta para "${selectedRecipe.name}".`);
+            return m.reply(`☽◯☾ ♰ Lo siento, error al obtener los detalles de la receta para "${selectedRecipe.name}".`);
         }
 
         const recipe = resData.data;
@@ -155,7 +155,7 @@ async function resepAnswerHandler(m, sock) {
     } catch (error) {
         console.error("[RESEP Detail Error]", error);
         await m.react("☢");
-        await m.reply(`╰┈➤ Ocurrió un error al cargar la receta. Inténtalo de nuevo.`);
+        await m.reply(`☽◯☾ ♰ Ocurrió un error al cargar la receta. Inténtalo de nuevo.`);
     }
 
     return true;

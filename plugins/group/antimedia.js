@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
   if (!action) {
     const status = groupData.antimedia ? "✅ ON" : "❌ OFF";
     await m.reply(
-      "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``+"\n╰━━━━━━━━━━━━╯",
+      "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`🖼️ *AntiMedia*\n\n> Estado: *${status}*\n\n> \`.antimedia on/off\``+"\n╰━ ⊱༺༒༻⊰ ━╯",
     );
     return;
   }
@@ -68,18 +68,18 @@ async function handler(m, { sock }) {
   if (action === "on") {
     db.setGroup(m.chat, { antimedia: true });
     m.react("✅");
-    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *AntiMedia activado*`+"\n╰━━━━━━━━━━━━╯");
+    await m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *AntiMedia activado*`+"\n╰━ ⊱༺༒༻⊰ ━╯");
     return;
   }
 
   if (action === "off") {
     db.setGroup(m.chat, { antimedia: false });
     m.react("❌");
-    await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *AntiMedia desactivado*`+"\n╰━━━━━━━━━━━━╯");
+    await m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *AntiMedia desactivado*`+"\n╰━ ⊱༺༒༻⊰ ━╯");
     return;
   }
 
-  await m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Usa \`.antimedia on\` o \`.antimedia off\``+"\n╰━━━━━━━━━━━━╯");
+  await m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ Usa \`.antimedia on\` o \`.antimedia off\``+"\n╰━ ⊱༺༒༻⊰ ━╯");
 }
 
 export { pluginConfig as config, handler, checkAntimedia };

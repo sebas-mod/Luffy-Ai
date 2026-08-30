@@ -82,7 +82,7 @@ async function modeStock(m) {
   if (!r.ok) {
     return m.reply(`❌ ${r.error}`);
   }
-  return m.reply(`╭━━━〔 🌱 GAG2 〕━━━╮\n${formatStock(r.data)}\n\n╰━━━━━━━━━━━━╯`);
+  return m.reply(`☽◯☾ ╭━ ♰ 🌱 GAG2 ♰ ━╮ ☽◯☾\n${formatStock(r.data)}\n\n╰━ ⊱༺༒༻⊰ ━╯`);
 }
 
 async function modeWatch(watchItems, m, sock) {

@@ -200,7 +200,7 @@ async function handler(m, { sock }) {
         { quoted: m },
       );
 
-      await sock.sendButton(m.chat, null, `✦ • ─── • ✦\n📸 ¡Diapositivas enviadas con éxito!\n╰┈➤ Pulsa el botón de abajo para tomar la música.`, m, {
+      await sock.sendButton(m.chat, null, `♰ ┄ ── ☽◯☾ ── ┄ ♰\n📸 ¡Diapositivas enviadas con éxito!\n☽◯☾ ♰ Pulsa el botón de abajo para tomar la música.`, m, {
         buttons: [musicButton],
       });
     }
@@ -208,7 +208,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("❌");
-    m.reply("✦ • ─── • ✦\n❌ Inténtalo de nuevo más tarde, o prueba " + m.prefix + "tt2");
+    m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ Inténtalo de nuevo más tarde, o prueba " + m.prefix + "tt2");
   }
 }
 

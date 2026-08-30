@@ -21,10 +21,10 @@ async function handler(m, { sock }) {
 
   if (!emoji) {
     return m.reply(
-      `╭━━━〔 🎭 ᴇᴍᴏᴊɪ ᴀ ᴀɴɪᴍᴀᴄɪᴏɴ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🎭 ᴇᴍᴏᴊɪ ᴀ ᴀɴɪᴍᴀᴄɪᴏɴ ♰ ━╮ ☽◯☾\n\n` +
         `> Convierte emojis a stickers animados\n\n` +
         `*Ejemplo:*\n` +
-        `> \`${m.prefix}emoji_a_animacion 😳\`\n\n╰━━━━━━━━━━━━╯`,
+        `> \`${m.prefix}emoji_a_animacion 😳\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.url) {
       m.react("❌");
-      return m.reply("╭━〔 ❌ ᴇʀʀᴏʀ 〕━╮\n\n> Emoji no encontrado o error de API\n\n╰━━━━━╯");
+      return m.reply("☽◯☾ ╭ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n> Emoji no encontrado o error de API\n\n╰━━━━━╯");
     }
 
     const webpUrl = data.data.url;

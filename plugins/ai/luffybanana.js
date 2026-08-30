@@ -19,19 +19,19 @@ async function handler(m, { sock }) {
   const prompt = m.args.join(" ");
   if (!prompt) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🍌 *Luffy-Ai BANANA SUPER*\n\n` +
         `> Edita imágenes con IA\n\n` +
         `\`Ejemplo: ${m.prefix}luffybanana make it anime style\`\n\n` +
         `> Responde una imagen o envíala con caption\n\n` +
-        `╰━━━━━━━━━━━━╯`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
   const isImage = m.isImage || (m.quoted && m.quoted.isImage);
   if (!isImage) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n🍌 *ɴᴀɴᴏ ʙᴀɴᴀɴᴀ*\n\n> Responde una imagen o envíala con caption`,
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🍌 *ɴᴀɴᴏ ʙᴀɴᴀɴᴀ*\n\n> Responde una imagen o envíala con caption`,
     );
   }
 

@@ -24,10 +24,10 @@ async function handler(m, { sock }) {
         
         if (participants.length === 0) {
             m.react('❌')
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se pudieron obtener los datos de los miembros del grupo`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se pudieron obtener los datos de los miembros del grupo`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
-        await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`+"\n╰━━━━━━━━━━━━╯")
+        await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`🔍 *ʙᴜsᴄᴀɴᴅᴏ ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ...*\n\n> Esperando respuesta de ${participants.length} miembros\n> Estimado: 5-10 segundos`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         
         const presences = {}
         
@@ -62,17 +62,17 @@ async function handler(m, { sock }) {
         const mentions = onlineMembers
         
         let text = `📊 *ᴄᴇᴋ ᴏɴʟɪɴᴇ*\n\n`
-        text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ ɢʀᴜᴘᴏ* 」\n`
+        text += `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ ɢʀᴜᴘᴏ* 」\n`
         text += `┃ 👥 ɴᴀᴍʙʀᴇ: *${groupMetadata.subject}*\n`
         text += `┃ 👤 ᴛᴏᴛᴀʟ: \`${participants.length}\` miembros\n`
         text += `┃ 🟢 ᴇɴ ʟíɴᴇᴀ: \`${onlineMembers.length}\` miembros\n`
-        text += `╰┈┈⬡\n\n`
+        text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         
         if (onlineMembers.length === 0) {
             text += `> _No se detectaron miembros en línea_\n`
             text += `> _Asegúrate de que los miembros hayan abierto WhatsApp_`
         } else {
-            text += `╭┈┈⬡「 🟢 *ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ* 」\n`
+            text += `☽◯☾ ♰ 「 🟢 *ᴍɪᴇᴍʙʀᴏs ᴇɴ ʟíɴᴇᴀ* 」\n`
             
             let count = 0
             for (const jid of onlineMembers) {
@@ -93,7 +93,7 @@ async function handler(m, { sock }) {
                 count++
             }
             
-            text += `╰┈┈⬡\n\n`
+            text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
             text += `> 🟢 En línea | ⌨️ Escribiendo | 🎤 Grabando audio`
         }
         

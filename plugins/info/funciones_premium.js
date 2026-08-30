@@ -41,23 +41,23 @@ async function handler(m, { sock }) {
   if (premiumFeatures.length === 0) {
     await m.react("✅");
     return m.reply(
-      `╭━━━〔 📝 PREMIUM 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 📝 PREMIUM ♰ ━╮ ☽◯☾\n\n` +
       `📝 Actualmente no hay funciones registradas como premium exclusivas.\n\n` +
-      `╰━━━━━━━━━━━━╯`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
   
   premiumFeatures.sort(); // Urutkan sesuai abjad
   
-  let listText = premiumFeatures.map((f) => `╰┈➤ ${f}`).join("\n");
+  let listText = premiumFeatures.map((f) => `☽◯☾ ♰ ${f}`).join("\n");
 
   await m.react("✅");
   return m.reply(
-    `╭━━━〔 💎 PREMIUM 〕━━━╮\n\n` +
+    `☽◯☾ ╭━ ♰ 💎 PREMIUM ♰ ━╮ ☽◯☾\n\n` +
     `💎 *LISTA DE FUNCIONES PREMIUM*\n\n` +
     `Funciones exclusivas a las que solo pueden acceder los miembros con estado Premium:\n\n` +
     `${listText}\n\n` +
-    `╰━━━━━━━━━━━━╯\n\n` +
+    `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
     `_Para suscribirte a premium, por favor contacta al capitán._`
   );
 }

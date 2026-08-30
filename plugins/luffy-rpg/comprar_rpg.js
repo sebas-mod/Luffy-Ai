@@ -54,11 +54,11 @@ function handler(m, { sock }) {
   addItem(m.sender, item.id, cantidad);
 
   return m.reply(
-    `╭━━〔 🛒 COMPRA EXITOSA 〕━━╮\n` +
+    `☽◯☾ ╭ ♰ 🛒 COMPRA EXITOSA ♰ ━╮ ☽◯☾\n` +
       `┃ ${item.emoji} *${item.nombre}* x${cantidad}\n` +
       `┃ 💰 Pagado: *${total} Berrys*\n` +
       `┃ 💵 Saldo restante: *${getBerrys(m.sender)} Berrys*\n` +
-      `╰┈➤ Revisa tu inventario con *${m.prefix}inventario*`,
+      `☽◯☾ ♰ Revisa tu inventario con *${m.prefix}inventario*`,
   );
 }
 

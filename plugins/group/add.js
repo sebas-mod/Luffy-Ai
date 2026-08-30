@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
                 const groupInfo = await sock.groupGetInviteInfo(linkMatch[1])
                 targetGroup = groupInfo.id
             } catch (e) {
-                return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El link del grupo no es válido o ya expiró!`+"\n╰━━━━━━━━━━━━╯")
+                return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El link del grupo no es válido o ya expiró!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             }
         } else if (arg.includes('@g.us')) {
             targetGroup = arg
@@ -63,11 +63,11 @@ async function handler(m, { sock }) {
     }
     
     if (targetNumbers.length === 0) {
-        return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> Ingresa un número válido!`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> Ingresa un número válido!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (!targetGroup) {
-        return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> Ejecuta en un grupo o incluye el link del grupo!\n\n\`${m.prefix}add <número> <link_grupo>\``+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> Ejecuta en un grupo o incluye el link del grupo!\n\n\`${m.prefix}add <número> <link_grupo>\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     try {
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         )
         
         if (!botParticipant || !['admin', 'superadmin'].includes(botParticipant.admin)) {
-            return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no es admin del grupo *${groupMeta.subject}*!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no es admin del grupo *${groupMeta.subject}*!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         if (!m.isGroup) {
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
             )
             
             if (!senderParticipant || !['admin', 'superadmin'].includes(senderParticipant.admin)) {
-                return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> No eres admin del grupo *${groupMeta.subject}*!`+"\n╰━━━━━━━━━━━━╯")
+                return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> No eres admin del grupo *${groupMeta.subject}*!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             }
         }
         
@@ -108,7 +108,7 @@ async function handler(m, { sock }) {
         }
         
         if (validNumbers.length === 0) {
-            return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> Todos los números ya están en el grupo!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> Todos los números ya están en el grupo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         m.react('🕕')
@@ -163,9 +163,9 @@ async function handler(m, { sock }) {
         m.react('❌')
         
         if (error.message?.includes('not-authorized')) {
-            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no tiene permiso para agregar miembros!`+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no tiene permiso para agregar miembros!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         } else if (error.message?.includes('forbidden')) {
-            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no tiene acceso a este grupo!`+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> El bot no tiene acceso a este grupo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         } else {
             m.reply(te(m.prefix, m.command, m.pushName))
         }

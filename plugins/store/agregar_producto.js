@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
     if (parts.length < 2) {
         return m.reply(
-            `╭━━〔 🛒 TIENDA 〕━━╮\n\n` +
+            `☽◯☾ ╭ ♰ 🛒 TIENDA ♰ ━╮ ☽◯☾\n\n` +
             `➕ *AGREGAR PRODUCTO NUEVO*\n\n` +
             `📋 Formato:\n` +
             `\`${m.prefix}agregar_producto <nombre>|<precio>|<tipo>|<stock>|<descripcion>\`\n\n` +
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
             `• Para productos *digitales*, usa \`${m.prefix}agregar_stock\` después de crear el producto para agregar los datos de cuenta/clave 🔑\n` +
             `• Para productos *físicos*, el stock se ajusta automáticamente con el número indicado 📦\n` +
             `• El precio de descuento se puede configurar luego con \`${m.prefix}editar_producto\` 🏷️\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
@@ -138,7 +138,7 @@ async function handler(m, { sock }) {
     const typeIcon = type === 'digital' ? '🔑' : '📦'
     const typeLabel = type === 'digital' ? 'Digital' : 'Físico'
 
-    let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *PRODUCTO AGREGADO*\n\n`
+    let reply = `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n✅ *PRODUCTO AGREGADO*\n\n`
     reply += `🏷️ Nombre: *${name}*\n`
     reply += `💰 Precio: *Rp ${price.toLocaleString('id-ID')}*\n`
     reply += `${typeIcon} Tipo: *${typeLabel}*\n`
@@ -146,7 +146,7 @@ async function handler(m, { sock }) {
     if (description) reply += `📝 Descripción: _${description}_\n`
     if (imageUrl) reply += `🖼️ Miniatura: ✅ Imagen\n`
     if (videoUrl) reply += `🎬 Miniatura: ✅ Video\n`
-    reply += `\n╰━━━━━━━━━━━━╯\n\n📌 *Siguientes pasos:*\n`
+    reply += `\n╰━ ⊱༺༒༻⊰ ━╯\n\n📌 *Siguientes pasos:*\n`
 
     if (type === 'digital') {
         reply += `1️⃣ Agregar datos de cuenta/clave: \`${m.prefix}agregar_stock ${products.length}|<detalle>\`\n`

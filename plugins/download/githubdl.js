@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
             `🐙 *𝗚𝗜𝗧𝗛𝗨𝗕 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔* 🐙\n──────────\n` +
             `> Descarga cualquier repositorio de *GitHub* como ZIP.\n\n` +
             usage(m.prefix, m.command, 'niceplugin NiceBot main') + '\n' +
-            `╰┈➤ O usa la URL completa: *${m.prefix}githubdl https://github.com/user/repo*`
+            `☽◯☾ ♰ O usa la URL completa: *${m.prefix}githubdl https://github.com/user/repo*`
         )
     }
     

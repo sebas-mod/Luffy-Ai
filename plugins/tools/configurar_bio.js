@@ -19,9 +19,9 @@ async function handler(m, { sock }) {
     
     if (!newBio && m.args?.length === 0) {
         await m.reply(
-            `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
             `> \`${m.prefix}configurar_bio Nueva bio del bot\`\n` +
-            `> \`${m.prefix}configurar_bio clear\` - Borra la bio\n\n╰━━━━━━━━━━━━╯`
+            `> \`${m.prefix}configurar_bio clear\` - Borra la bio\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
         return
     }
@@ -30,8 +30,8 @@ async function handler(m, { sock }) {
     
     if (bioToSet.length > 139) {
         await m.reply(
-            `╭━━━〔 ⚠️ ᴠᴀʟɪᴅᴀᴄɪᴏɴ 〕━━━╮\n\n` +
-            `> La bio admite un máximo de 139 caracteres.\n\n╰━━━━━━━━━━━━╯`
+            `☽◯☾ ╭━ ♰ ⚠️ ᴠᴀʟɪᴅᴀᴄɪᴏɴ ♰ ━╮ ☽◯☾\n\n` +
+            `> La bio admite un máximo de 139 caracteres.\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
         return
     }
@@ -41,21 +41,21 @@ async function handler(m, { sock }) {
         
         if (bioToSet) {
             await m.reply(
-                `✦────────✦\n✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴀ*\n\n` +
-                `╰┈➤ La bio del bot ahora es:\n` +
-                `╰┈➤ _${bioToSet}_\n✦────────✦`
+                `♰ ──────── ♱✦\n✅ *ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴄᴀᴍʙɪᴀᴅᴀ*\n\n` +
+                `☽◯☾ ♰ La bio del bot ahora es:\n` +
+                `☽◯☾ ♰ _${bioToSet}_\n♰ ──────── ♱✦`
             )
         } else {
             await m.reply(
-                `╭━━━〔 ✅ ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ 〕━━━╮\n\n` +
-                `> ¡La bio del bot se eliminó exitosamente!\n\n╰━━━━━━━━━━━━╯`
+                `☽◯☾ ╭━ ♰ ✅ ʙɪᴏ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ ♰ ━╮ ☽◯☾\n\n` +
+                `> ¡La bio del bot se eliminó exitosamente!\n\n╰━ ⊱༺༒༻⊰ ━╯`
             )
         }
     } catch (error) {
         await m.reply(
-            `╭━〔 ❌ ᴇʀʀᴏʀ 〕━╮\n\n` +
-            `╰┈➤ No se pudo cambiar la bio del bot.\n` +
-            `╰┈➤ _${error.message}_\n\n` +
+            `☽◯☾ ╭ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ No se pudo cambiar la bio del bot.\n` +
+            `☽◯☾ ♰ _${error.message}_\n\n` +
             `╰━━━━━╯`
         )
     }

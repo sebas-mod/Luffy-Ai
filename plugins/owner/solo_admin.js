@@ -30,11 +30,11 @@ async function handler(m) {
         await m.react('✅')
         return m.reply(
             '✅ *sᴏʟᴏᴀᴅᴍɪɴ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n' +
-            '╭┈┈⬡「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
+            '☽◯☾ ♰ 「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
             '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner del bot\n' +
             '┃ ❌ Miembros normales\n' +
-            '╰┈┈⬡\n\n' +
+            '╰━ ⊱༺༒༻⊰ ━╯\n\n' +
             '> Usa `.onlyadmin off` para desactivar'
         )
     }
@@ -51,12 +51,12 @@ async function handler(m) {
         await m.react('✅')
         return m.reply(
             '✅ *sᴏʟᴏᴀᴅᴍɪɴ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n' +
-            '╭┈┈⬡「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
+            '☽◯☾ ♰ 「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
             '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner del bot\n' +
             '┃ ✅ Chat privado (todos)\n' +
             '┃ ❌ Miembros normales en el grupo\n' +
-            '╰┈┈⬡\n\n' +
+            '╰━ ⊱༺༒༻⊰ ━╯\n\n' +
             '> Usa `.onlyadmin off` para desactivar'
         )
     }
@@ -73,30 +73,30 @@ async function handler(m) {
     }
 
     if (args === 'on') {
-        if (current) return m.reply('╰┈➤ ⚠️ SoloAdmin ya está activo.')
+        if (current) return m.reply('☽◯☾ ♰ ⚠️ SoloAdmin ya está activo.')
         db.setting('onlyAdmin', true)
         db.setting('selfAdmin', false)
         db.setting('publicAdmin', false)
         await m.react('✅')
         return m.reply(
             '✅ *sᴏʟᴏᴀᴅᴍɪɴ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n' +
-            '╭┈┈⬡「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
+            '☽◯☾ ♰ 「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n' +
             '┃ ✅ Admin del grupo\n' +
             '┃ ✅ Owner del bot\n' +
             '┃ ✅ Chat privado (todos)\n' +
             '┃ ❌ Miembros normales en el grupo\n' +
-            '╰┈┈⬡'
+            '╰━ ⊱༺༒༻⊰ ━╯'
         )
     }
 
     if (args === 'off') {
-        if (!current) return m.reply('╰┈➤ ⚠️ SoloAdmin ya está inactivo.')
+        if (!current) return m.reply('☽◯☾ ♰ ⚠️ SoloAdmin ya está inactivo.')
         db.setting('onlyAdmin', false)
         await m.react('❌')
         return m.reply('❌ *sᴏʟᴏᴀᴅᴍɪɴ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot puede ser usado por todos')
     }
 
-    return m.reply('╰┈➤ ❌ Argumento no válido. Usa: `on` u `off`')
+    return m.reply('☽◯☾ ♰ ❌ Argumento no válido. Usa: `on` u `off`')
 }
 
 export { pluginConfig as config, handler }

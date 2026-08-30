@@ -18,9 +18,9 @@ const pluginConfig = {
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`❖ Formato incorrecto!\n\n╰┈➤ Ejemplo: .fakegopay 100000|500|20000|Enero`);
+    if (!text) return m.reply(`❖ Formato incorrecto!\n\n☽◯☾ ♰ Ejemplo: .fakegopay 100000|500|20000|Enero`);
     const [saldo, coin, terpakai, bulan] = text.split("|").map(v => v.trim());
-    if (!saldo || !coin || !terpakai || !bulan) return m.reply(`✦ • ─── • ✦\n⚠️ Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
+    if (!saldo || !coin || !terpakai || !bulan) return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
     
     await m.react("🕕");
     try {
@@ -32,7 +32,7 @@ async function handler(m, { sock, text }) {
                 "Content-Type": "application/json"
             }
         });
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✦ • ─── • ✦\n✅ Fake gopay creado con éxito" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "♰ ┄ ── ☽◯☾ ── ┄ ♰\n✅ Fake gopay creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[FakeGopay Error]", e);

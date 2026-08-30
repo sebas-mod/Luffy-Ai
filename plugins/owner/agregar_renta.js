@@ -151,7 +151,7 @@ async function handler(m, { sock }) {
 
   if (!expiredAt)
     return m.reply(
-      `👑•─────•👑\n❌ Formato de duración no válido\n\nEjemplo: 7d, 1m, 1y, lifetime\n✦────────✦`,
+      `👑•─────•👑\n❌ Formato de duración no válido\n\nEjemplo: 7d, 1m, 1y, lifetime\n♰ ──────── ♱✦`,
     );
 
   await m.react("🕕");
@@ -160,7 +160,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ Grupo no encontrado o link no válido`);
+      return m.reply(`☽◯☾ ♰ ❌ Grupo no encontrado o link no válido`);
     }
 
     const { id: groupId, name: groupName, inviteCode } = result;

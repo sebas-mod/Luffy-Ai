@@ -186,7 +186,7 @@ async function answerHandler(m, sock) {
 
     await m.react("💕");
     await m.reply(
-      `╭━━━〔 💕 〕━━━╮\n💕 *¡OOH LA LA, ACEPTADO!* @${sessData.shooter.split("@")[0]}\n╰━━━━━━━━━━━━╯\n\n` +
+      `☽◯☾ ╭━ ♰ 💕 ♰ ━╮ ☽◯☾\n💕 *¡OOH LA LA, ACEPTADO!* @${sessData.shooter.split("@")[0]}\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `@${m.sender.split("@")[0]} y @${sessData.shooter.split("@")[0]} oficialmente son pareja\n\n` +
         `¡Que dure y sean felices! 💍`,
       { mentions: [m.sender, sessData.shooter] },

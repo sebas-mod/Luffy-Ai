@@ -118,13 +118,13 @@ async function handler(m, { sock }) {
         return m.reply(
             `🎨 *ᴇᴘʜᴏᴛᴏ ᴇꜰꜰᴇᴄᴛs*\n\n` +
             `> ¡Crea efectos de texto geniales!\n\n` +
-            `╭┈┈⬡「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴇꜰᴇᴄᴛᴏꜱ* 」\n${effectList}\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `☽◯☾ ♰ 「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴇꜰᴇᴄᴛᴏꜱ* 」\n${effectList}\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> *Ejemplo:* ${m.prefix}glitchtext Luffy-Ai`
         )
     }
     
     if (!text) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n╰┈➤ *Ejemplo:* ${m.prefix}${command} Luffy-Ai`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto!\n☽◯☾ ♰ *Ejemplo:* ${m.prefix}${command} Luffy-Ai`)
     }
     
     const effectUrl = EFFECT_URLS[command]

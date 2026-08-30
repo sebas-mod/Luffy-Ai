@@ -63,7 +63,7 @@ function handler(m, { sock }) {
         return m.reply(
             `🔧 *ʙᴏᴛ ᴍᴏᴅᴇ*\n\n` +
             `> Modo actual: *${currentMode.toUpperCase()}* (${MODES[currentMode]?.name || 'Unknown'})\n` +
-            `\n╭─「 📋 *ᴏᴘᴄɪᴏɴᴇs* 」\n` +
+            `\n☽◯☾ ♰ 「 📋 *ᴏᴘᴄɪᴏɴᴇs* 」\n` +
             `${modeList}` +
             `╰───────────────\n\n` +
             `*ᴄᴏᴍᴀɴᴅᴏs:*\n` +
@@ -73,7 +73,7 @@ function handler(m, { sock }) {
     }
 
     if (!Object.keys(MODES).includes(mode)) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`❌ Modo no válido. Opciones: \`${Object.keys(MODES).join(', ')}\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
 

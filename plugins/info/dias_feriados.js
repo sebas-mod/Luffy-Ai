@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     }
 
     const r = data.result;
-    let caption = `╭━━━〔 🎏 FERIADOS 〕━━━╮\n\n📅 *PRÓXIMOS DÍAS FESTIVOS Y NACIONALES* 📅\n\n`;
+    let caption = `☽◯☾ ╭━ ♰ 🎏 FERIADOS ♰ ━╮ ☽◯☾\n\n📅 *PRÓXIMOS DÍAS FESTIVOS Y NACIONALES* 📅\n\n`;
 
     if (r.mendatang.hari_libur && r.mendatang.hari_libur.length > 0) {
       caption += `✦ *Próximos Días Festivos*\n`;
@@ -52,7 +52,7 @@ async function handler(m, { sock }) {
       });
     }
 
-    await m.reply(caption.trim() + "\n\n╰━━━━━━━━━━━━╯");
+    await m.reply(caption.trim() + "\n\n╰━ ⊱༺༒༻⊰ ━╯");
     await m.react("✅");
 
   } catch (error) {

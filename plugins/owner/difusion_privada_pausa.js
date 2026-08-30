@@ -59,7 +59,7 @@ async function handler(m) {
 
   const ms = parseDelay(input)
   if (!ms || ms < 1000) {
-    return m.reply('╰┈➤ ❌ Formato incorrecto. Ejemplo: `5s`, `2m`, `1h`, `1d`')
+    return m.reply('☽◯☾ ♰ ❌ Formato incorrecto. Ejemplo: `5s`, `2m`, `1h`, `1d`')
   }
 
   const prev = current

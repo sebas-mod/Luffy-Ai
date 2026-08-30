@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
     let text = `╭━━━━━━━━━━━━━━━━━╮\n`
     text += `┃  🎂 *ʟɪsᴛᴀ ᴄᴜᴍᴘʟᴇᴀÑᴏs*\n`
     text += `╰━━━━━━━━━━━━━━━━━╯\n\n`
-    text += `╭┈┈⬡「 📋 *${birthdays.length} ᴍɪᴇᴍʙʀᴏs* 」\n`
+    text += `☽◯☾ ♰ 「 📋 *${birthdays.length} ᴍɪᴇᴍʙʀᴏs* 」\n`
     
     const mentions = []
     
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         text += `┃ ... y ${birthdays.length - 15} más\n`
     }
     
-    text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+    text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     text += `> Configura tu cumpleaños: .setbirthday DD-MM`
     
     await m.reply(text, { mentions })

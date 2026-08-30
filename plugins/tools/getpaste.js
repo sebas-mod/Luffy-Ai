@@ -46,9 +46,9 @@ async function handler(m, { sock }) {
 
   if (!text || !text.includes("pastebin.com")) {
     return m.reply(
-      `╭━━━〔 📋 ᴏʙᴛᴇɴᴇʀ ᴅᴇ ᴘᴀsᴛᴇʙɪɴ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 📋 ᴏʙᴛᴇɴᴇʀ ᴅᴇ ᴘᴀsᴛᴇʙɪɴ ♰ ━╮ ☽◯☾\n\n` +
       `> Ingresa un enlace válido de Pastebin\n\n` +
-      `> Ejemplo: \`${m.prefix}getpaste https://pastebin.com/Gu8RZaqv\`\n\n╰━━━━━━━━━━━━╯`,
+      `> Ejemplo: \`${m.prefix}getpaste https://pastebin.com/Gu8RZaqv\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

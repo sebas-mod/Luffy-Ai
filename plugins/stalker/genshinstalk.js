@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const uid = m.text?.trim() || m.args[0];
 
   if (!uid) {
-    return m.reply("╰┈➤ ❌ *¿Y el UID de Genshin?*\n\nDebes ingresar el UID del jugador de Genshin Impact que quieres buscar. \n\nEjemplo: `.genshinstalk 856012067`");
+    return m.reply("☽◯☾ ♰ ❌ *¿Y el UID de Genshin?*\n\nDebes ingresar el UID del jugador de Genshin Impact que quieres buscar. \n\nEjemplo: `.genshinstalk 856012067`");
   }
 
   await m.react("🕕");
@@ -38,13 +38,13 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ⚠️ *¡Búsqueda Fallida!*\n\nEl UID *${uid}* no fue encontrado o el perfil está en privado. Asegúrate de que el UID que ingresaste sea correcto.`);
+      return m.reply(`☽◯☾ ♰ ⚠️ *¡Búsqueda Fallida!*\n\nEl UID *${uid}* no fue encontrado o el perfil está en privado. Asegúrate de que el UID que ingresaste sea correcto.`);
     }
 
     const r = data.result.player_info;
     const imageUrl = data.result.image_url;
     
-    let caption = `╭━━━〔 🌟 GENSHIN IMPACT STALK 〕━━━╮\n\n`;
+    let caption = `☽◯☾ ╭━ ♰ 🌟 GENSHIN IMPACT STALK ♰ ━╮ ☽◯☾\n\n`;
     caption += `¡Hola Traveler! Esta es la información de la cuenta del UID *${data.result.id}*:\n\n`;
     
     caption += `👤 *INFO DEL JUGADOR*\n`;
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
     if (r.stygian_onslaught) caption += `› Stygian Onslaught: ${r.stygian_onslaught}\n`;
     caption += `\n`;
     
-    caption += `──────────\n╰┈➤ ¿Qué tal están tus stats? ¡Muéstralos a tus amigos! 🚀\n\n╰━━━━━━━━━━━━╯`;
+    caption += `──────────\n☽◯☾ ♰ ¿Qué tal están tus stats? ¡Muéstralos a tus amigos! 🚀\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
     if (imageUrl) {
       await sock.sendMessage(m.chat, {
@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Genshin Stalk]", error.message);
     await m.react("☢");
-    m.reply("╰┈➤ 😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo obtener los datos del servidor de Genshin Impact. Vuelve a intentarlo en unos momentos.");
+    m.reply("☽◯☾ ♰ 😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo obtener los datos del servidor de Genshin Impact. Vuelve a intentarlo en unos momentos.");
   }
 }
 

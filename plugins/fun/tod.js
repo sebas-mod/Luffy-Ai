@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
         challengeText = dares[Math.floor(Math.random() * dares.length)];
       }
 
-      let text = `╭━━━〔 🍾 〕━━━╮\n   *¡LA BOTELLA GIRA!* 🍾\n╰━━━━━━━━━━━━╯\n\n`;
+      let text = `☽◯☾ ╭━ ♰ 🍾 ♰ ━╮ ☽◯☾\n   *¡LA BOTELLA GIRA!* 🍾\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
       text += `La botella gira rápido en medio de todos...\n`;
       text += `Lentamente se va frenando, y se detiene señalando a...\n\n`;
       text += `⚡•───•⚡\n👉 @${targetJid.split('@')[0]} 👈\n⚡•───•⚡\n\n`;

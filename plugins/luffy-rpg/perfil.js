@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
   const inventario = getInventarioDetallado(targetJid);
   const isla = getIslaById(user.islaId);
 
-  let txt = `╭━━〔 🏴‍☠️ FICHA DE PIRATA 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ 🏴‍☠️ FICHA DE PIRATA ♰ ━╮ ☽◯☾\n`;
   txt += `┃ 👤 *${user.nombre}*\n`;
   txt += `┃ 🎗️ *Rango:* ${user.rango}\n`;
   txt += `┃ 🎖️ *Título:* ${titulo?.emoji || "🪙"} ${titulo?.nombre || "Novato"}\n`;
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
 
   txt += `┃ 🎒 *Objetos:* ${inventario.length} tipos\n`;
   txt += `┃ ⭐ *Personajes:* ${user.personajes.length} coleccionados\n`;
-  txt += `╰━━━━━━━━━━╯`;
+  txt += `╰━ ⊱༺༒༻⊰ ━╯`;
 
   return m.reply(txt);
 }

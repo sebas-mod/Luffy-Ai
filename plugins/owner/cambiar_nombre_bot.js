@@ -21,7 +21,7 @@ async function handler(m, { sock, config }) {
     const newName = m.args.join(' ')
     
     if (!newName) {
-        return m.reply(`👑•─────•👑\n🤖 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ʙᴏᴛ*\n\n> Nombre actual: *${config.bot?.name || '-'}*\n\n*Uso:*\n\`${m.prefix}cambiar_nombre_bot <nombre nuevo>\`\n✦────────✦`)
+        return m.reply(`👑•─────•👑\n🤖 *ᴄᴀᴍʙɪᴀʀ ɴᴏᴍʙʀᴇ ᴅᴇʟ ʙᴏᴛ*\n\n> Nombre actual: *${config.bot?.name || '-'}*\n\n*Uso:*\n\`${m.prefix}cambiar_nombre_bot <nombre nuevo>\`\n♰ ──────── ♱✦`)
     }
     
     try {
@@ -37,7 +37,7 @@ async function handler(m, { sock, config }) {
         
         config.bot.name = newName
         
-        m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del bot cambiado a: *${newName}*\n✦────────✦`)
+        m.reply(`👑•─────•👑\n✅ *ᴇxɪᴛᴏsᴏ*\n\n> Nombre del bot cambiado a: *${newName}*\n♰ ──────── ♱✦`)
         
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

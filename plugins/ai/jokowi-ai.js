@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🏛️ *Pak Jokowi*\n\n` +
         `> El hombre de Solo — Expresidente de Indonesia\n> Sencillo, sabio y le gusta andar de gira\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}jokowi-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
         `> *${m.prefix}jokowi-ai Pak, ¿cómo está?*\n\n` +
-      `╰━━━━━━━━━━━━╯`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 

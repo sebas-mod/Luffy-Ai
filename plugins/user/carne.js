@@ -60,12 +60,12 @@ async function handler(m, { sock }) {
     else if (user.isPremium) userStatus = 'Premium'
     if (!carneEnabled) userStatus += ' (Carne OFF)'
     
-    let text = `╭━━━〔 ⚡ CARNE 〕━━━╮\n\n`
+    let text = `☽◯☾ ╭━ ♰ ⚡ CARNE ♰ ━╮ ☽◯☾\n\n`
 
 text += `┃ 👤 Usuario: ${targetName}\n`
 text += `┃ ⚡ Carne: ${carneDisplay}\n`
 text += `┃ 💎 Estado: ${userStatus}\n`
-text += `╰━━━━━━━━━━━━╯\n\n`
+text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     
     if (!carneEnabled) {
         text += `🔌 Sistema de carne desactivado — todos los comandos son gratis`

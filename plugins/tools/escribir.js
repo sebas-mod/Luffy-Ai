@@ -45,23 +45,23 @@ async function handler(m, { sock }) {
   const text = m.args?.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
         `> \`${m.prefix}escribir <texto>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}escribir Te quiero por siempre\`\n\n╰━━━━━━━━━━━━╯`,
+        `> \`${m.prefix}escribir Te quiero por siempre\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
   if (text.length > 500) {
-    return m.reply(`╭━〔 ❌ ᴛᴇxᴛᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ʟᴀʀɢᴏ 〕━╮\n\n> Máximo 500 caracteres\n\n╰━━━━━╯`);
+    return m.reply(`☽◯☾ ╭ ♰ ❌ ᴛᴇxᴛᴏ ᴅᴇᴍᴀsɪᴀᴅᴏ ʟᴀʀɢᴏ ♰ ━╮ ☽◯☾\n\n> Máximo 500 caracteres\n\n╰━━━━━╯`);
   }
   const inputUrl = getAssetBuffer("luffy-kertas");
   if (!inputUrl) {
     return m.reply(
-      `╭━〔 ❌ ᴘʟᴀɴᴛɪʟʟᴀ ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇ 〕━╮\n\n> El archivo de plantilla de papel no se encontró en config.assets\n\n╰━━━━━╯`,
+      `☽◯☾ ╭ ♰ ❌ ᴘʟᴀɴᴛɪʟʟᴀ ɴᴏ ᴅɪsᴘᴏɴɪʙʟᴇ ♰ ━╮ ☽◯☾\n\n> El archivo de plantilla de papel no se encontró en config.assets\n\n╰━━━━━╯`,
     );
   }
   await m.react("🕕");
-  await m.reply(`✦ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n╰┈➤ Creando texto a mano...`);
+  await m.reply(`✦ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n☽◯☾ ♰ Creando texto a mano...`);
   try {
     const { createCanvas, loadImage, GlobalFonts } = _canvas;
     if (!_fontRegistered) {

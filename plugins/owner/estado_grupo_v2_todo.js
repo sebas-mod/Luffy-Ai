@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
     }
 
     if (!buffer) {
-      return m.reply("╰┈➤ ❌ Error al descargar el media. Inténtalo de nuevo.");
+      return m.reply("☽◯☾ ♰ ❌ Error al descargar el media. Inténtalo de nuevo.");
     }
 
     const fileType = await fileTypeFromBuffer(buffer);
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
         ptt: m.quoted?.ptt || m.ptt || false,
       };
     } else {
-      return m.reply("╰┈➤ ❌ Formato de media no soportado para SW GC.");
+      return m.reply("☽◯☾ ♰ ❌ Formato de media no soportado para SW GC.");
     }
   } else if (text) {
     rawContent = { text: text };
@@ -80,10 +80,10 @@ async function handler(m, { sock }) {
     return m.reply(
       `👋 *sᴡɢᴄᴠ2 ᴀʟʟ ɢʟᴏʙᴀʟ*\n\n` +
       `> Envía un mensaje de *Estado de Grupo V2* a TODOS los grupos a la vez.\n\n` +
-      `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
+      `☽◯☾ ♰ 「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
       `┃ ${m.prefix}estado_grupo_v2_todo ¡Hola a todos!\n` +
       `┃ o responde una imagen/video con caption ${m.prefix}estado_grupo_v2_todo\n` +
-      `╰┈┈┈┈┈┈┈┈⬡`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 
@@ -95,10 +95,10 @@ async function handler(m, { sock }) {
 
     if (groupIds.length === 0) {
       await m.react("❌");
-      return m.reply("╰┈➤ ❌ El bot no está en ningún grupo.");
+      return m.reply("☽◯☾ ♰ ❌ El bot no está en ningún grupo.");
     }
 
-    await m.reply(`👑•─────•👑\n⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.\n✦────────✦`);
+    await m.reply(`👑•─────•👑\n⏳ *Iniciando el broadcast del Estado de Grupo V2 a ${groupIds.length} grupos...*\n\n> Este proceso puede tardar unos momentos.\n♰ ──────── ♱✦`);
 
     let successCount = 0;
     let failCount = 0;
@@ -171,11 +171,11 @@ async function handler(m, { sock }) {
     await m.react("✅");
     await m.reply(
       `✅ *sᴡɢᴄᴠ2 ᴀʟʟ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
-      `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+      `☽◯☾ ♰ 「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
       `┃ 🌐 Total de Grupos: *${groupIds.length}*\n` +
       `┃ ✅ Exitosos: *${successCount}*\n` +
       `┃ ❌ Errores: *${failCount}*\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> ¡El broadcast del Estado de Grupo V2 (Ring Pink) se envió con éxito a todos los grupos!`
     );
 

@@ -27,13 +27,13 @@ async function handler(m, { sock }) {
     const ownerNum = config.owner?.number?.[0] || "No configurado";
 
     let txt = `🗂️ *sɪsᴛᴇᴍᴀ ᴅᴇ ʀᴇsᴘᴀʟᴅᴏ ᴀᴜᴛᴏ*\n\n`;
-    txt += `╭┈┈⬡「 📊 *ᴇsᴛᴀᴅᴏ* 」\n`;
+    txt += `☽◯☾ ♰ 「 📊 *ᴇsᴛᴀᴅᴏ* 」\n`;
     txt += `┃ 🔘 Estado: ${status.enabled ? "✅ *ON*" : "❌ *OFF*"}\n`;
     txt += `┃ ⏱️ Intervalo: ${status.interval}\n`;
     txt += `┃ 📅 Último respaldo: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
     txt += `┃ #️⃣ Total: ${status.backupCount} respaldos\n`;
     txt += `┃ 📤 Enviado a: ${ownerNum}\n`;
-    txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+    txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
     txt += `*ᴄóᴍᴏ ᴜsᴀʀ:*\n`;
     txt += `> \`${m.prefix}autobackup on <intervalo>\`\n`;
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
       const result = enableAutoBackup(interval, sock);
 
       if (!result.success) {
-        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> ${result.error}\n✦────────✦`);
+        return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> ${result.error}\n♰ ──────── ♱✦`);
       }
 
       const ownerNum = config.owner?.number?.[0] || "Owner #1";
@@ -81,11 +81,11 @@ async function handler(m, { sock }) {
       await m.react("✅");
       return m.reply(
         `✅ *ʀᴇsᴘᴀʟᴅᴏ ᴀᴜᴛᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n` +
-          `╭┈┈⬡「 ⚙️ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ* 」\n` +
+          `☽◯☾ ♰ 「 ⚙️ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ* 」\n` +
           `┃ ⏱️ Intervalo: ${result.interval}\n` +
           `┃ 📤 Enviado a: ${ownerNum}\n` +
           `┃ 📦 Excluidos: node_modules, .git, storages, etc\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `> El primer respaldo se enviará en ${result.interval}`,
       );
     }
@@ -109,14 +109,14 @@ async function handler(m, { sock }) {
       const ownerNum = config.owner?.number?.[0] || "No configurado";
 
       let txt = `🗂️ *ᴇsᴛᴀᴅᴏ ᴅᴇʟ ʀᴇsᴘᴀʟᴅᴏ ᴀᴜᴛᴏ*\n\n`;
-      txt += `╭┈┈⬡「 📊 *ɪɴꜰᴏ* 」\n`;
+      txt += `☽◯☾ ♰ 「 📊 *ɪɴꜰᴏ* 」\n`;
       txt += `┃ 🔘 Habilitado: ${status.enabled ? "✅ Sí" : "❌ No"}\n`;
       txt += `┃ ⏱️ Intervalo: ${status.interval}\n`;
       txt += `┃ 🔄 Ejecutándose: ${status.isRunning ? "✅ Sí" : "❌ No"}\n`;
       txt += `┃ 📅 Último: ${status.lastBackup ? timeHelper.fromTimestamp(status.lastBackup, "DD MMMM YYYY HH:mm:ss") : "-"}\n`;
       txt += `┃ #️⃣ Total: ${status.backupCount} respaldos\n`;
       txt += `┃ 📤 Destino: ${ownerNum}\n`;
-      txt += `╰┈┈┈┈┈┈┈┈⬡`;
+      txt += `╰━ ⊱༺༒༻⊰ ━╯`;
 
       return m.reply(txt);
     }
@@ -126,14 +126,14 @@ async function handler(m, { sock }) {
     case "trigger": {
       await m.react("🕕");
       await m.reply(
-        `👑•─────•👑\n🕕 *ᴄʀᴇᴀɴᴅᴏ ʀᴇsᴘᴀʟᴅᴏ...*\n\n> Por favor espera, estoy creando el respaldo...\n✦────────✦`,
+        `👑•─────•👑\n🕕 *ᴄʀᴇᴀɴᴅᴏ ʀᴇsᴘᴀʟᴅᴏ...*\n\n> Por favor espera, estoy creando el respaldo...\n♰ ──────── ♱✦`,
       );
 
       try {
         await triggerManualBackup(sock);
         await m.react("✅");
         return m.reply(
-          `👑•─────•👑\n✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n> El respaldo se ha enviado al owner!\n✦────────✦`,
+          `👑•─────•👑\n✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n> El respaldo se ha enviado al owner!\n♰ ──────── ♱✦`,
         );
       } catch (error) {
         await m.react('☢');

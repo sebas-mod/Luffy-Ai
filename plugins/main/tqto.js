@@ -91,7 +91,7 @@ async function handler(m, { sock }) {
     const headers = ['No', 'Nombre', 'Rol / Nivel']
     const rows = credits.map((c, i) => [i + 1, c.name, c.role])
 
-    await m.reply(`╭━━━〔 🍟 CRÉDITOS 〕━━━╮\n\n🍟 *Personas que han contribuido al bot ${config.bot.name}*:\n\n${credits.map((c, i) => `*${String(i + 1).padStart(2, '0')} ›* *${c.name}* [ ${c.icon} ${c.role} ]`).join('\n')}\n\n╰━━━━━━━━━━━━╯`)
+    await m.reply(`☽◯☾ ╭━ ♰ 🍟 CRÉDITOS ♰ ━╮ ☽◯☾\n\n🍟 *Personas que han contribuido al bot ${config.bot.name}*:\n\n${credits.map((c, i) => `*${String(i + 1).padStart(2, '0')} ›* *${c.name}* [ ${c.icon} ${c.role} ]`).join('\n')}\n\n╰━ ⊱༺༒༻⊰ ━╯`)
 }
 
 export { pluginConfig as config, handler }

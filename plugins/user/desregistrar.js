@@ -44,9 +44,9 @@ async function handler(m, { sock }) {
     m.chat,
     {
       text:
-        `╭━━━〔 ✦ 〕━━━╮\n✅ *ᴜɴʀᴇɢɪsᴛᴇʀ ᴇxɪᴛᴏsᴏ!*\n\n` +
+        `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n✅ *ᴜɴʀᴇɢɪsᴛᴇʀ ᴇxɪᴛᴏsᴏ!*\n\n` +
         `Tus datos de registro han sido eliminados.\n\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Para volver a registrarte: \`${m.prefix}registrar\``,
       contextInfo: {
         forwardingScore: 9999,

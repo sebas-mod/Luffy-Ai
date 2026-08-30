@@ -41,11 +41,11 @@ async function handler(m, { sock }) {
         
         if (descToSet) {
             await m.reply(
-                "╰┈➤ "+`✅ La descripción del grupo se actualizó correctamente!`
+                "☽◯☾ ♰ "+`✅ La descripción del grupo se actualizó correctamente!`
             )
         } else {
             await m.reply(
-                "╰┈➤ "+`✅ La descripción del grupo se eliminó correctamente!`
+                "☽◯☾ ♰ "+`✅ La descripción del grupo se eliminó correctamente!`
             )
         }
     } catch (error) {

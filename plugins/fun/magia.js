@@ -32,7 +32,7 @@ function sleep(ms) {
 async function handler(m, { sock }) {
     await m.react('🎩')
 
-    const sent = await m.reply(`╭━━━〔 🎩 〕━━━╮\n🎩✨ *ᴇsᴘᴇᴄᴛᴀ́ᴄᴜʟᴏ ᴅᴇ ᴍᴀɢɪᴀ* ✨\n╰━━━━━━━━━━━━╯\n\n` +
+    const sent = await m.reply(`☽◯☾ ╭━ ♰ 🎩 ♰ ━╮ ☽◯☾\n🎩✨ *ᴇsᴘᴇᴄᴛᴀ́ᴄᴜʟᴏ ᴅᴇ ᴍᴀɢɪᴀ* ✨\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `¿A quién quieres hacer desaparecer?\n\n` +
             `> Responde a este mensaje + menciona a la persona`)
 

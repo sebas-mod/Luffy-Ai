@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🤖 *GPT-4.1 Nano*\n\n` +
         `Pregúntale lo que sea a la IA, será respondido con el modelo GPT-4.1 Nano.\n\n` +
         `*USO:*\n` +
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         `> *${m.prefix}gpt5 ¿Qué es la computación cuántica?*\n` +
         `> *${m.prefix}gpt5 Crea un poema sobre Indonesia*\n\n` +
         `_La respuesta puede tardar un poco, ten paciencia_\n\n` +
-      `╰━━━━━━━━━━━━╯`,
+      `╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

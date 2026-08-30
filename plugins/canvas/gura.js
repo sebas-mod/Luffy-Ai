@@ -47,18 +47,18 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type !== "imageMessage") {
-      return m.reply("✦ • ─── • ✦\n⚠️ ¡Oye, responde a un mensaje de imagen por favor!");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ ¡Oye, responde a un mensaje de imagen por favor!");
     }
     media = await downloadMediaMessage(m.quoted, "buffer", {});
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type !== "imageMessage") {
-      return m.reply(`✦ • ─── • ✦\n🦈 *GURA CANVAS*\n\n╰┈➤ Envía o responde una foto con el comando \`${m.prefix}gura\` para darle el efecto Gura!`);
+      return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n🦈 *GURA CANVAS*\n\n☽◯☾ ♰ Envía o responde una foto con el comando \`${m.prefix}gura\` para darle el efecto Gura!`);
     }
     media = await downloadMediaMessage(m, "buffer", {});
   }
 
-  if (!media) return m.reply("✦ • ─── • ✦\n❌ No se pudo leer el medio, ¡inténtalo de nuevo!");
+  if (!media) return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo leer el medio, ¡inténtalo de nuevo!");
 
   await m.react("🕕");
 
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
     
     const buffer = Buffer.from(await res.arrayBuffer());
 
-    await sock.sendMessage(m.chat, { image: buffer, caption: "✦ • ─── • ✦\n🦈 *RAWWRR! Gura is here!*" }, { quoted: m });
+    await sock.sendMessage(m.chat, { image: buffer, caption: "♰ ┄ ── ☽◯☾ ── ┄ ♰\n🦈 *RAWWRR! Gura is here!*" }, { quoted: m });
     await m.react("✅");
 
   } catch (err) {

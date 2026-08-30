@@ -94,7 +94,7 @@ async function handler(m, { sock }) {
       ? `${String(ownerNumbers[0]).replace(/[^0-9]/g, "")}@s.whatsapp.net`
       : null;
 
-  let txt = `╭━━━〔 🛒 PEDIDO 〕━━━╮\n\n🛒 *PEDIDO CREADO*\n\n`;
+  let txt = `☽◯☾ ╭━ ♰ 🛒 PEDIDO ♰ ━╮ ☽◯☾\n\n🛒 *PEDIDO CREADO*\n\n`;
   txt += `🧾 Número de Transacción: \`${trxId}\`\n\n`;
   txt += `📦 *Detalle del Pedido:*\n`;
   txt += `${typeIcon} Producto: *${product.name}*\n`;
@@ -103,7 +103,7 @@ async function handler(m, { sock }) {
   if (product.originalPrice)
     txt += `🏷️ ~~${formatPrice(product.originalPrice)}~~\n`;
   if (product.description) txt += `📝 _${product.description}_\n`;
-  txt += `\n╰━━━━━━━━━━━━╯\n`;
+  txt += `\n╰━ ⊱༺༒༻⊰ ━╯\n`;
 
   if (product.image) {
     await sock.sendMessage(
@@ -121,7 +121,7 @@ async function handler(m, { sock }) {
     await m.reply(txt);
   }
 
-  let paymentTxt = `╭━━━〔 💳 PAGO 〕━━━╮\n\n💳 *INSTRUCCIONES DE PAGO*\n\n`;
+  let paymentTxt = `☽◯☾ ╭━ ♰ 💳 PAGO ♰ ━╮ ☽◯☾\n\n💳 *INSTRUCCIONES DE PAGO*\n\n`;
   paymentTxt += `1️⃣ Transfiere *${formatPrice(product.price)}* al número del admin 💰\n`;
 
   if (config.store?.payment?.length) {
@@ -136,7 +136,7 @@ async function handler(m, { sock }) {
   paymentTxt += `\n2️⃣ Después de transferir, envía el *comprobante de pago* al admin 📸\n`;
   paymentTxt += `3️⃣ El admin verificará y enviará los datos del producto ✅\n\n`;
   paymentTxt += `🧾 Tu número de transacción: \`${trxId}\`\n`;
-  paymentTxt += `_Guarda este número como referencia_ 📌\n╰━━━━━━━━━━━━╯`;
+  paymentTxt += `_Guarda este número como referencia_ 📌\n╰━ ⊱༺༒༻⊰ ━╯`;
 
   if (ownerJid) {
     paymentTxt += `\n\n📞 Contacta al admin: wa.me/${ownerJid.split("@")[0]}`;
@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
     const buyerNum = m.sender.split("@")[0];
     await sock.sendMessage(ownerJid, {
       text:
-        `🔔 *NUEVO PEDIDO*\n✦────────✦\n\n` +
+        `🔔 *NUEVO PEDIDO*\n♰ ──────── ♱✦\n\n` +
         `🧾 TRX: \`${trxId}\`\n` +
         `👤 Comprador: *${m.pushName || buyerNum}*\n` +
         `📱 Número: \`${buyerNum}\`\n` +

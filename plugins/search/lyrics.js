@@ -34,8 +34,8 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `╭━〔 🎶 〕━╮\n╰┈➤ ¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n──────────\n╰┈➤ Intenta escribir el comando así: *${m.prefix}letra sempurna andra and the backbone* 🎶\n──────────
-╰┈➤ ¡Escribe el título para que podamos cantar juntos! 🎤🔥\n╰━━━━━╯`
+            `☽◯☾ ╭ ♰ 🎶 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ ¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n──────────\n☽◯☾ ♰ Intenta escribir el comando así: *${m.prefix}letra sempurna andra and the backbone* 🎶\n──────────
+☽◯☾ ♰ ¡Escribe el título para que podamos cantar juntos! 🎤🔥\n╰━━━━━╯`
         )
     }
     
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
         
         if (!data || !data.lyrics || !data.lyrics.plain_lyrics) {
             m.react('❌')
-            return m.reply(`╰┈➤ Vaya, lo siento mucho 🥺 la letra de *${query}* no fue encontrada en la base de datos. ¡Intenta con una palabra clave o un título más específico! 💔`)
+            return m.reply(`☽◯☾ ♰ Vaya, lo siento mucho 🥺 la letra de *${query}* no fue encontrada en la base de datos. ¡Intenta con una palabra clave o un título más específico! 💔`)
         }
         
         const title = data.title || query
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
         
     } catch (error) {
         m.react('☢')
-        m.reply(`╰┈➤ Ay, el servidor de letras está de malas 😭 ¡Inténtalo de nuevo más tarde! 🛠️✨`)
+        m.reply(`☽◯☾ ♰ Ay, el servidor de letras está de malas 😭 ¡Inténtalo de nuevo más tarde! 🛠️✨`)
     }
 }
 

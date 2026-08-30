@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("✦ • ─── • ✦\n❌ Error al obtener los datos de Douyin, intenta de nuevo más tarde");
+    m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ Error al obtener los datos de Douyin, intenta de nuevo más tarde");
   }
 }
 

@@ -18,7 +18,7 @@ const pluginConfig = {
 
 async function handler(m, { sock }) {
     if (!m.quoted) {
-        return m.reply("╰┈➤ "+'⚠️ *¡Responde al mensaje que quieres eliminar!*')
+        return m.reply("☽◯☾ ♰ "+'⚠️ *¡Responde al mensaje que quieres eliminar!*')
     }
 
     const quotedSender = m.quoted.sender || m.quoted.key?.participant
@@ -28,10 +28,10 @@ async function handler(m, { sock }) {
 
     if (!isOwnMessage && !isBotMessage) {
         if (!m.isBotAdmin) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+'⚠️ *¡El bot debe ser admin para eliminar mensajes de otras personas!*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+'⚠️ *¡El bot debe ser admin para eliminar mensajes de otras personas!*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         if (!m.isAdmin && !m.isOwner) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+'⚠️ *¡Solo los admins pueden eliminar mensajes de otras personas!*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+'⚠️ *¡Solo los admins pueden eliminar mensajes de otras personas!*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
     }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
 
     } catch (err) {
         if (err.message?.includes('not found') || err.message?.includes('forbidden')) {
-            await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+'❌ *¡No se pudo eliminar!*\n> Es posible que el mensaje ya haya sido eliminado o sea demasiado antiguo.'+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+'❌ *¡No se pudo eliminar!*\n> Es posible que el mensaje ya haya sido eliminado o sea demasiado antiguo.'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         } else {
             await m.react('❌')
         }

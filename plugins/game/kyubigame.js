@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
         };
         db.save();
 
-        let txt = `╭━━━〔 ⛩️ 〕━━━╮\n  *LOBBY SHINOBI* ⛩️\n╰━━━━━━━━━━━━╯\n\n`;
+        let txt = `☽◯☾ ╭━ ♰ ⛩️ ♰ ━╮ ☽◯☾\n  *LOBBY SHINOBI* ⛩️\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
         txt += `📊 *Estadísticas del Shinobi:*\n`;
         txt += `> Nivel: *${userLevel}*\n`;
         txt += `> Stamina: *${user.rpg.stamina ?? 100}/100*\n\n`;
@@ -318,7 +318,7 @@ async function kyubigameAnswerHandler(m, sock) {
                 user.berry = (user.berry || 0) + ryoReward;
                 await addExpWithLevelCheck(sock, m, db, user, expReward);
 
-                reportText += `꧁༺ 🏆 VICTORIA ༻꧂\n╰┈➤ *¡MISIÓN CUMPLIDA!*\n\n`;
+                reportText += `꧁༺ 🏆 VICTORIA ༻꧂\n☽◯☾ ♰ *¡MISIÓN CUMPLIDA!*\n\n`;
                 reportText += `Con un jutsu mortal, ¡lograste derrotar a *${session.monster}*!\n\n`;
                 reportText += `*🎁 RECOMPENSA POR COMPLETAR LA MISIÓN:*\n⚡•───•⚡\n`;
                 reportText += `> ✨ EXP: *+${Math.floor(expReward)}*\n`;

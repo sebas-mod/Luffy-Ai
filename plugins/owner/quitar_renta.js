@@ -57,20 +57,20 @@ async function handler(m, { sock }) {
   } else {
     const result = await resolveGroupId(sock, input);
     if (!result)
-      return m.reply(`╰┈➤ ❌ Enlace no válido o grupo no encontrado`);
+      return m.reply(`☽◯☾ ♰ ❌ Enlace no válido o grupo no encontrado`);
     groupId = result.id;
     groupName = result.name;
   }
 
-  if (!groupId) return m.reply(`╰┈➤ ❌ No se pudo determinar el grupo`);
+  if (!groupId) return m.reply(`☽◯☾ ♰ ❌ No se pudo determinar el grupo`);
 
   const sewaData = db.db.data.sewa.groups[groupId];
   if (!sewaData)
     return m.reply(
-      `╭━〔 ⚙️ SISTEMA 〕━━━╮\n` +
+      `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n` +
       `┃ ❌ El grupo no está registrado\n` +
       `┃ en el sistema de alquiler\n` +
-      `╰━━━━━━━━━━━━╯\n\nConsulta la lista: *${m.prefix}lista_rentas*`,
+      `╰━ ⊱༺༒༻⊰ ━╯\n\nConsulta la lista: *${m.prefix}lista_rentas*`,
     );
 
   groupName = groupName || sewaData.name || groupId.split("@")[0];
@@ -80,7 +80,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   await m.reply(
-    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *RENTA ELIMINADA*\n╰━━━━━━━━━━━━╯\n\nGrupo: *${groupName}*\nID: ${groupId.split("@")[0]}`,
+    `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *RENTA ELIMINADA*\n╰━ ⊱༺༒༻⊰ ━╯\n\nGrupo: *${groupName}*\nID: ${groupId.split("@")[0]}`,
   );
 
   if (db.db.data.sewa.enabled) {

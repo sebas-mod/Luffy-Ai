@@ -44,10 +44,10 @@ async function handler(m, { sock }) {
 
     if (!targetNumber || targetNumber.length < 10 || targetNumber.length > 15) {
         return m.reply(
-            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
             `┃ ✅ *ᴜɴʙᴀɴ ᴅᴇ ᴜsᴜᴀʀɪᴏ*\n` +
-            `╰━━━━━━━━━━━━╯\n\n` +
-            `╰┈➤ Introduce el número o etiqueta al usuario\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+            `☽◯☾ ♰ Introduce el número o etiqueta al usuario\n\n` +
             `\`Ejemplo: ${m.prefix}unban 6281234567890\``
         )
     }
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
     })
 
     if (index === -1) {
-        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n╰┈➤ El número \`${targetNumber}\` no está en la lista de baneados`)
+        return m.reply(`❌ *ᴇʀʀᴏʀ*\n\n☽◯☾ ♰ El número \`${targetNumber}\` no está en la lista de baneados`)
     }
 
     bannedList.splice(index, 1)
@@ -72,11 +72,11 @@ async function handler(m, { sock }) {
 
     await m.reply(
         `✅ *ᴜsᴜᴀʀɪᴏ ᴅᴇsʙᴀɴᴇᴀᴅᴏ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📱 ɴúᴍᴇʀᴏ: \`${targetNumber}\`\n` +
         `┃ ✅ ᴇsᴛᴀᴅᴏ: \`Desbaneado\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ: \`${bannedList.length}\` ᴜsᴜᴀʀɪᴏs\n` +
-        `╰┈┈⬡`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     )
 }
 

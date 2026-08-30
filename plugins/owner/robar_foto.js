@@ -34,10 +34,10 @@ async function handler(m, { sock }) {
   console.log(targetJid);
   if (!targetJid) {
     return m.reply(
-      `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+      `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
         `┃ 🕵️ *ʀᴏʙᴀʀ ᴘᴘ*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
-        `╰┈➤ Responde al mensaje de alguien para robar su foto de perfil\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ Responde al mensaje de alguien para robar su foto de perfil\n\n` +
         `*ᴄóᴍᴏ:*\n` +
         `› Responde al mensaje del target → \`${m.prefix}robar_foto\``,
     );
@@ -67,9 +67,9 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.split("@")[0];
     await m.react("✅");
     return m.reply(
-      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+      `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
         `┃ ✅ *¡ᴀʀᴛᴇ ᴅᴇ ᴘᴇʀꜰɪʟ ʀᴏʙᴀᴅᴀ ᴄᴏɴ Éxɪᴛᴏ!*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `🎯 Target: @${targetNumber}\n` +
         `📸 Fuente: ${source}`,
       { mentions: [targetJid] },

@@ -25,10 +25,10 @@ async function handler(m, { sock }) {
         return m.reply(
             `👋 *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ*\n\n` +
             `> Activa/desactiva la despedida en TODOS los grupos a la vez\n\n` +
-            `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴄóᴍᴏ ᴜsᴀʀ* 」\n` +
             `┃ ${m.prefix}despedida_todos on\n` +
             `┃ ${m.prefix}despedida_todos off\n` +
-            `╰┈┈┈┈┈┈┈┈⬡`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
@@ -50,19 +50,19 @@ async function handler(m, { sock }) {
         if (status) {
             return m.reply(
                 `✅ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏɴ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+                `☽◯☾ ♰ 「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
                 `┃ 🌐 Total Grupos: *${count}*\n` +
                 `┃ ✅ Despedida: *ACTIVA*\n` +
-                `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+                `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
                 `> A los miembros que salgan se les enviará un mensaje de despedida!`
             )
         } else {
             return m.reply(
                 `❌ *ᴅᴇsᴘᴇᴅɪᴅᴀ ɢʟᴏʙᴀʟ ᴏꜰꜰ*\n\n` +
-                `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+                `☽◯☾ ♰ 「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
                 `┃ 🌐 Total Grupos: *${count}*\n` +
                 `┃ ❌ Despedida: *DESACTIVADA*\n` +
-                `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+                `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
                 `> La despedida se desactivó en todos los grupos.`
             )
         }

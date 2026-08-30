@@ -22,25 +22,25 @@ async function handler(m, { sock }) {
         try {
             video = await m.quoted.download()
         } catch (e) {
-            return m.reply(`╰┈➤ ❌ No se pudo descargar el video citado.`)
+            return m.reply(`☽◯☾ ♰ ❌ No se pudo descargar el video citado.`)
         }
     } else if (m.isVideo) {
         try {
             video = await m.download()
         } catch (e) {
-            return m.reply(`╰┈➤ ❌ No se pudo descargar el video.`)
+            return m.reply(`☽◯☾ ♰ ❌ No se pudo descargar el video.`)
         }
     }
     
     if (!video) {
         return m.reply(
-            `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
             `> Envía un *video* o *responde un video* y escribe:\n` +
-            `> \`${m.prefix}ptv\`\n\n╰━━━━━━━━━━━━╯`
+            `> \`${m.prefix}ptv\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
-    await m.reply(`╰┈➤ 🕕 *ᴄʀᴇᴀɴᴅᴏ ᴘᴛᴠ...*`)
+    await m.reply(`☽◯☾ ♰ 🕕 *ᴄʀᴇᴀɴᴅᴏ ᴘᴛᴠ...*`)
     
     try {
         await sock.sendMessage(m.chat, {

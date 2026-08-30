@@ -585,7 +585,7 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (!type || type === "conversation" || type === "extendedTextMessage") {
-      return m.reply("╭━〔 🛠️ 〕━╮\n╰┈➤ ⚠️ ¡Oye, responde a un archivo (imagen/video/audio/documento) por favor!\n╰━━━━━╯");
+      return m.reply("☽◯☾ ╭ ♰ 🛠️ ♰ ━╮ ☽◯☾\n☽◯☾ ♰ ⚠️ ¡Oye, responde a un archivo (imagen/video/audio/documento) por favor!\n╰━━━━━╯");
     }
 
     try {
@@ -603,12 +603,12 @@ async function handler(m, { sock }) {
   } else if (m.message) {
     const type = getContentType(m.message);
     if (!type || type === "conversation" || type === "extendedTextMessage") {
-      let txt = `╭━━━〔 🛠️ MEDIA UPLOADER 🛠️ 〕━━━╮\n\n`;
-      txt += `╰┈➤ 🌊 ¡Hola! ¿Necesitas un enlace para tu media? Puedo ayudarte a subirlo a varios servidores gratuitos!\n\n`;
+      let txt = `☽◯☾ ╭━ ♰ 🛠️ MEDIA UPLOADER 🛠️ ♰ ━╮ ☽◯☾\n\n`;
+      txt += `☽◯☾ ♰ 🌊 ¡Hola! ¿Necesitas un enlace para tu media? Puedo ayudarte a subirlo a varios servidores gratuitos!\n\n`;
       txt += `✦ *Cómo usar:*\n`;
-      txt += `╰┈➤ 👉 Envía un media con caption \`${m.prefix}a_url\`\n`;
-      txt += `╰┈➤ 👉 O responde un media existente con \`${m.prefix}a_url\`\n`;
-      txt += `╰━━━━━━━━━━━━╯`;
+      txt += `☽◯☾ ♰ 👉 Envía un media con caption \`${m.prefix}a_url\`\n`;
+      txt += `☽◯☾ ♰ 👉 O responde un media existente con \`${m.prefix}a_url\`\n`;
+      txt += `╰━ ⊱༺༒༻⊰ ━╯`;
       return m.reply(txt);
     }
 
@@ -627,7 +627,7 @@ async function handler(m, { sock }) {
   }
 
   if (!media || media.length === 0) {
-    return m.reply("╰┈➤ ❌ ¡Vaya, el media no se pudo leer. Intenta enviarlo de nuevo!");
+    return m.reply("☽◯☾ ♰ ❌ ¡Vaya, el media no se pudo leer. Intenta enviarlo de nuevo!");
   }
 
   await m.react("🕕");
@@ -649,15 +649,15 @@ async function handler(m, { sock }) {
     return m.reply(`❌ *¡Ay, todos dieron error al subir!*\n──────────\n> Falló en el servidor: ${failed.join(", ")}`);
   }
 
-  let text = `╭━━━〔 🚀 SUBIDA EXITOSA 🚀 〕━━━╮\n\n`;
-  text += `╰┈➤ ¡Yay! Tu media se subió correctamente a los servidores en la nube. Elige un enlace y cópialo con el botón de abajo! ✨\n\n`;
+  let text = `☽◯☾ ╭━ ♰ 🚀 SUBIDA EXITOSA 🚀 ♰ ━╮ ☽◯☾\n\n`;
+  text += `☽◯☾ ♰ ¡Yay! Tu media se subió correctamente a los servidores en la nube. Elige un enlace y cópialo con el botón de abajo! ✨\n\n`;
 
   let contentTxt = "";
   results.forEach((r, i) => {
     const status = r.expires === "Permanent" ? "∞ Permanente" : r.expires;
-    contentTxt += `╰┈➤ ☁️ *Servidor :* ${r.host}\n`;
-    contentTxt += `╰┈➤ ⏳ *Expira :* ${status}\n`;
-    contentTxt += `╰┈➤ 🔗 *Enlace :*\n`;
+    contentTxt += `☽◯☾ ♰ ☁️ *Servidor :* ${r.host}\n`;
+    contentTxt += `☽◯☾ ♰ ⏳ *Expira :* ${status}\n`;
+    contentTxt += `☽◯☾ ♰ 🔗 *Enlace :*\n`;
     contentTxt += `${r.url}`;
     if (i < results.length - 1) contentTxt += `\n──────────\n\n`;
   });
@@ -665,7 +665,7 @@ async function handler(m, { sock }) {
   text += contentTxt.split("\n").map(line => `${line}`).join("\n");
 
   if (failed.length > 0) {
-    text += `\n\n✦────────✦\n⚠️ _Ten en cuenta que fallaron algunos servidores: ${failed.join(", ")}_`;
+    text += `\n\n♰ ──────── ♱✦\n⚠️ _Ten en cuenta que fallaron algunos servidores: ${failed.join(", ")}_`;
   }
 
   try {

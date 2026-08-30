@@ -208,7 +208,7 @@ async function handler(m, { sock }) {
         Math.min(Math.max(2000, 5000 - (pick.speed || 0) * 3000), 4000),
       ),
     );
-    let txt = `╭━━〔 ⛏️ 〕━━╮\n *¡RESULTADO DE LA MINERÍA!* ⛏️\n╰━━━━━━━━━━╯\n\n`;
+    let txt = `☽◯☾ ╭ ♰ ⛏️ ♰ ━╮ ☽◯☾\n *¡RESULTADO DE LA MINERÍA!* ⛏️\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
     for (const o of ores) {
       txt += `${rc(o.rarity)} *${o.name}*\n   _💰 ${formatMoney(o.price)} | 📦 x${o.stack}_\n`;
     }

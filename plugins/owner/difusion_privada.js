@@ -57,7 +57,7 @@ async function handler(m, { sock }) {
 
   if (global.statusBcpc) {
     return m.reply(
-      `👑•─────•👑\n❌ El broadcast privado está en curso.\nEscribe \`${m.prefix}detener_difusion\` para detenerlo.\n✦────────✦`,
+      `👑•─────•👑\n❌ El broadcast privado está en curso.\nEscribe \`${m.prefix}detener_difusion\` para detenerlo.\n♰ ──────── ♱✦`,
     );
   }
 
@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
     if (privateJids.size === 0) {
       m.react("❌");
       return m.reply(
-        "👑•─────•👑\n❌ No se encontraron contactos.\n\nAsegúrate de que el bot ya haya recibido un mensaje de ese contacto.\n✦────────✦",
+        "👑•─────•👑\n❌ No se encontraron contactos.\n\nAsegúrate de que el bot ya haya recibido un mensaje de ese contacto.\n♰ ──────── ♱✦",
       );
     }
 
@@ -131,13 +131,13 @@ async function handler(m, { sock }) {
       {
         text:
           `📱 *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴅᴏ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+          `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
           `┃ 📝 ᴍᴇɴsᴀᴊᴇ: \`${input.substring(0, 50)}${input.length > 50 ? "..." : ""}\`\n` +
           `┃ 📷 ᴍᴇᴅɪᴀ: \`${mediaBuffer ? mediaType : "No"}\`\n` +
           `┃ 👥 ᴛᴀʀɢᴇᴛ: \`${filtered.length}\` contactos\n` +
           `┃ ⏱️ ᴘᴀᴜsᴀ: \`${jeda}ms\`\n` +
           `┃ 📊 ᴇsᴛɪᴍᴀᴄɪóɴ: \`${Math.ceil((filtered.length * jeda) / 60000)} minutos\`\n` +
-          `╰┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `> Iniciando broadcast...`,
         contextInfo: ctx,
       },
@@ -177,11 +177,11 @@ async function handler(m, { sock }) {
       {
         text:
           `✅ *ʙʀᴏᴀᴅᴄᴀsᴛ ᴘʀɪᴠᴀᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
-          `╭┈┈⬡「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+          `☽◯☾ ♰ 「 📊 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
           `┃ ✅ ᴇxɪᴛᴏsᴏs: \`${success}\`\n` +
           `┃ ❌ ғᴀʟʟɪᴅᴏs: \`${failed}\`\n` +
           `┃ 📊 ᴛᴏᴛᴀʟ: \`${filtered.length}\`\n` +
-          `╰┈┈⬡`,
+          `╰━ ⊱༺༒༻⊰ ━╯`,
         contextInfo: ctx,
       },
       { quoted: m },

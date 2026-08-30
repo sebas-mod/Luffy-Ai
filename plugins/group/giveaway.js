@@ -124,7 +124,7 @@ async function handleSession(m, sock) {
     } catch (e) {
       session.groupId = currentGroup;
       session.step = "q3";
-      await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+"⚠️ No se pudo obtener la lista de grupos. Usando este grupo."+"\n╰━━━━━━━━━━━━╯");
+      await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+"⚠️ No se pudo obtener la lista de grupos. Usando este grupo."+"\n╰━ ⊱༺༒༻⊰ ━╯");
       await askPrizeDetails(m, sock, session);
     }
     return true;
@@ -138,7 +138,7 @@ async function handleSession(m, sock) {
     session.prizeName = prizeName;
     session.prizeDetails = detailParts.join(" | ");
 
-    await m.reply("╰┈➤ "+"✅ ¡Detalles del premio guardados! Creando giveaway...");
+    await m.reply("☽◯☾ ♰ "+"✅ ¡Detalles del premio guardados! Creando giveaway...");
 
     await createGiveaway(session, sock, m);
     createSessions.delete(m.sender);
@@ -164,7 +164,7 @@ async function askPrizeDetails(m, sock, session) {
       { quoted: m },
     );
   } catch (e) {
-    await m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+"⚠️ No se pudo enviar el PM. Chatea con el bot primero y repite."+"\n╰━━━━━━━━━━━━╯");
+    await m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+"⚠️ No se pudo enviar el PM. Chatea con el bot primero y repite."+"\n╰━ ⊱༺༒༻⊰ ━╯");
     createSessions.delete(session.adminJid);
   }
 }
@@ -202,14 +202,14 @@ async function createGiveaway(session, sock, m) {
 
   const giveawayText =
     "🎉 *G I V E A W A Y*\n\n" +
-    `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+    `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
     `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
     `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
     `┃ 👥 ɢᴀɴᴀᴅᴏʀᴇs: ${giveaway.winners}\n` +
     `┃ ⏰ ᴛᴇʀᴍɪɴᴀ: ${endTimeFormatted}\n` +
     `┃ ⏱️ ᴅᴜʀᴀᴄɪóɴ: ${remaining}\n` +
     `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-    `╰┈┈⬡\n\n` +
+    `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
     `> ¡Pulsa el botón *Join* para participar en el giveaway!`;
 
   const joinButton = [
@@ -247,7 +247,7 @@ async function createGiveaway(session, sock, m) {
   await sock.sendMessage(
     session.adminJid,
     {
-      text: "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+"✅ ¡Giveaway creado con éxito! Revisa el mensaje del giveaway en el grupo seleccionado."+"\n╰━━━━━━━━━━━━╯",
+      text: "☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+"✅ ¡Giveaway creado con éxito! Revisa el mensaje del giveaway en el grupo seleccionado."+"\n╰━ ⊱༺༒༻⊰ ━╯",
       contextInfo: getCtx(),
     },
     { quoted: m },
@@ -269,10 +269,10 @@ async function endGiveaway(giveawayId, sock, db) {
       text:
         `😔 *GIVEAWAY TERMINADO*\n\n` +
         `El giveaway *${giveaway.title}* terminó sin participantes.\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
         `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
         `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: 0\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
       contextInfo: getCtx(),
     });
     return;
@@ -305,15 +305,15 @@ async function endGiveaway(giveawayId, sock, db) {
     {
       text:
         `🎊 *¡GIVEAWAY TERMINADO!*\n\n` +
-        `╭┈┈⬡「 🏆 *ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
+        `☽◯☾ ♰ 「 🏆 *ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
         `${winnerText}\n` +
-        `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
         `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
         `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
         `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
         `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: ${giveaway.participants.length}\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> ¡El premio se envió al chat privado del ganador!`,
       contextInfo: { ...getCtx(), mentionedJid: giveaway.winnerList },
     },
@@ -341,14 +341,14 @@ async function endGiveaway(giveawayId, sock, db) {
           text:
             `🎉 *¡Fᴇʟɪᴄɪᴛᴀᴄɪᴏɴᴇs!*\n\n` +
             `> ¡Ganaste el giveaway!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
             `┃ 🎁 ᴛɪᴛʟᴇ: \`${giveaway.title}\`\n` +
             `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
             `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-            `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🎁 *ᴅᴇᴛᴀʟʟᴇ ᴅᴇʟ ᴘʀᴇᴍɪᴏ* 」\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+            `☽◯☾ ♰ 「 🎁 *ᴅᴇᴛᴀʟʟᴇ ᴅᴇʟ ᴘʀᴇᴍɪᴏ* 」\n` +
             `${giveaway.prizeDetails || "Contacta al admin para detalles"}\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> _Esta es información oficial del bot._`,
           contextInfo: ctx,
         },
@@ -405,10 +405,10 @@ async function handler(m, { sock }) {
 
   if (createCmds.includes(cmd)) {
     if (!m.isAdmin && !m.isOwner)
-      return m.reply("╰┈➤ "+"⚠️ ¡Solo los admins pueden crear giveaways!");
-    if (!m.isGroup) return m.reply("╰┈➤ "+"⚠️ ¡Úsalo en un grupo!");
+      return m.reply("☽◯☾ ♰ "+"⚠️ ¡Solo los admins pueden crear giveaways!");
+    if (!m.isGroup) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Úsalo en un grupo!");
     if (createSessions.has(m.sender))
-      return m.reply("╰┈➤ "+"⚠️ ¡Aún tienes una sesión de creación activa!");
+      return m.reply("☽◯☾ ♰ "+"⚠️ ¡Aún tienes una sesión de creación activa!");
 
     createSessions.set(m.sender, {
       step: "q1",
@@ -444,7 +444,7 @@ async function handler(m, { sock }) {
     session.step = "q3";
 
     await m.reply(
-      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+"✅ ¡Grupo seleccionado! Revisa el chat privado para la siguiente pregunta."+"\n╰━━━━━━━━━━━━╯",
+      "☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+"✅ ¡Grupo seleccionado! Revisa el chat privado para la siguiente pregunta."+"\n╰━ ⊱༺༒༻⊰ ━╯",
     );
     await askPrizeDetails(m, sock, session);
     return;
@@ -456,26 +456,26 @@ async function handler(m, { sock }) {
 
     const giveaways = db.setting("giveaways") || {};
     const giveaway = giveaways[giveawayId];
-    if (!giveaway) return m.reply("╰┈➤ "+"⚠️ ¡Giveaway no encontrado!");
-    if (giveaway.ended) return m.reply("╰┈➤ "+"⚠️ ¡El giveaway ya terminó!");
+    if (!giveaway) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Giveaway no encontrado!");
+    if (giveaway.ended) return m.reply("☽◯☾ ♰ "+"⚠️ ¡El giveaway ya terminó!");
     if (giveaway.participants.includes(m.sender))
-      return m.reply("╰┈➤ "+"⚠️ ¡Ya participas!");
+      return m.reply("☽◯☾ ♰ "+"⚠️ ¡Ya participas!");
 
     giveaway.participants.push(m.sender);
     db.setting("giveaways", giveaways);
 
     await m.react("✅");
     await m.reply(
-      "╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ ¡@${m.sender.split("@")[0]} se unió al giveaway! (${giveaway.participants.length} participantes)`+"\n╰━━━━━━━━━━━━╯",
+      "☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`✅ ¡@${m.sender.split("@")[0]} se unió al giveaway! (${giveaway.participants.length} participantes)`+"\n╰━ ⊱༺༒༻⊰ ━╯",
     );
     return;
   }
 
   if (listCmds.includes(cmd)) {
-    if (!m.isAdmin && !m.isOwner) return m.reply("╰┈➤ "+"⚠️ ¡Solo admins!");
+    if (!m.isAdmin && !m.isOwner) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Solo admins!");
     const giveaways = db.setting("giveaways") || {};
     const entries = Object.values(giveaways);
-    if (entries.length === 0) return m.reply("╰┈➤ "+"📋 No hay giveaways.");
+    if (entries.length === 0) return m.reply("☽◯☾ ♰ "+"📋 No hay giveaways.");
 
     const active = entries.filter((g) => !g.ended);
     const ended = entries.filter((g) => g.ended);
@@ -501,30 +501,30 @@ async function handler(m, { sock }) {
   }
 
   if (deleteCmds.includes(cmd)) {
-    if (!m.isAdmin && !m.isOwner) return m.reply("╰┈➤ "+"⚠️ ¡Solo admins!");
+    if (!m.isAdmin && !m.isOwner) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Solo admins!");
     const giveawayId = args[0];
-    if (!giveawayId) return m.reply("╰┈➤ "+`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
+    if (!giveawayId) return m.reply("☽◯☾ ♰ "+`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
 
     const giveaways = db.setting("giveaways") || {};
-    if (!giveaways[giveawayId]) return m.reply("╰┈➤ "+"⚠️ ¡Giveaway no encontrado!");
+    if (!giveaways[giveawayId]) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Giveaway no encontrado!");
 
     delete giveaways[giveawayId];
     db.setting("giveaways", giveaways);
-    await m.reply("╰┈➤ "+`✅ ¡Giveaway \`${giveawayId}\` eliminado con éxito!`);
+    await m.reply("☽◯☾ ♰ "+`✅ ¡Giveaway \`${giveawayId}\` eliminado con éxito!`);
     return;
   }
 
   if (rerollCmds.includes(cmd)) {
-    if (!m.isAdmin && !m.isOwner) return m.reply("╰┈➤ "+"⚠️ ¡Solo admins!");
+    if (!m.isAdmin && !m.isOwner) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Solo admins!");
     const giveawayId = args[0];
-    if (!giveawayId) return m.reply("╰┈➤ "+`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
+    if (!giveawayId) return m.reply("☽◯☾ ♰ "+`⚠️ Formato: ${prefix}${cmd} GA-XXXXXX`);
 
     const giveaways = db.setting("giveaways") || {};
     const giveaway = giveaways[giveawayId];
-    if (!giveaway) return m.reply("╰┈➤ "+"⚠️ ¡Giveaway no encontrado!");
-    if (!giveaway.ended) return m.reply("╰┈➤ "+"⚠️ ¡El giveaway aún no termina!");
+    if (!giveaway) return m.reply("☽◯☾ ♰ "+"⚠️ ¡Giveaway no encontrado!");
+    if (!giveaway.ended) return m.reply("☽◯☾ ♰ "+"⚠️ ¡El giveaway aún no termina!");
     if (giveaway.participants.length === 0)
-      return m.reply("╰┈➤ "+"⚠️ ¡No hay participantes!");
+      return m.reply("☽◯☾ ♰ "+"⚠️ ¡No hay participantes!");
 
     const winnerCount = Math.min(
       giveaway.winners,
@@ -541,14 +541,14 @@ async function handler(m, { sock }) {
     await sock.sendMessage(giveaway.chatId, {
       text:
         `🔄 *¡REROLL DEL GIVEAWAY!*\n\n` +
-        `╭┈┈⬡「 🏆 *ɴᴜᴇᴠᴏs ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
+        `☽◯☾ ♰ 「 🏆 *ɴᴜᴇᴠᴏs ɢᴀɴᴀᴅᴏʀᴇs* 」\n` +
         `${winnerText}\n` +
-        `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
         `┃ 🎁 ᴛɪᴛʟᴇ: *${giveaway.title}*\n` +
         `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
         `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
       contextInfo: { ...getCtx(), mentionedJid: giveaway.winnerList },
     });
 
@@ -560,14 +560,14 @@ async function handler(m, { sock }) {
           text:
             `🎉 *¡Fᴇʟɪᴄɪᴛᴀᴄɪᴏɴᴇs!*\n\n` +
             `> ¡Ganaste el giveaway (reroll)!\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
             `┃ 🎁 ᴛɪᴛʟᴇ: \`${giveaway.title}\`\n` +
             `┃ 🏆 ᴘʀᴇᴍɪᴏ: *${giveaway.prizeName}*\n` +
             `┃ 🆔 ɪᴅ: \`${giveawayId}\`\n` +
-            `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🎁 *ᴅᴇᴛᴀʟʟᴇ ᴅᴇʟ ᴘʀᴇᴍɪᴏ* 」\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+            `☽◯☾ ♰ 「 🎁 *ᴅᴇᴛᴀʟʟᴇ ᴅᴇʟ ᴘʀᴇᴍɪᴏ* 」\n` +
             `${giveaway.prizeDetails || "Contacta al admin para detalles"}\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> _Esta es información oficial del bot._`,
           contextInfo: ctx,
         });

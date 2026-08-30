@@ -38,12 +38,12 @@ async function handler(m, { sock }) {
 
     const newStyle = parseInt(args);
     if (isNaN(newStyle) || newStyle < 1 || newStyle > 4) {
-        return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nLa opción de variante de audio debe ser un número del 1 al 4.\nEjemplo: *${m.prefix}configurar_audio_menu 2*\n✦────────✦`);
+        return m.reply(`👑•─────•👑\n❌ *FALLIDO*\n\nLa opción de variante de audio debe ser un número del 1 al 4.\nEjemplo: *${m.prefix}configurar_audio_menu 2*\n♰ ──────── ♱✦`);
     }
 
     await m.react("🕕");
     db.setting("allmenuAudioStyle", newStyle);
-    await m.reply(`👑•─────•👑\n✅ *EXITOSO*\n\nEl estilo de audio de All Menu se cambió correctamente a *Variante ${newStyle}*. Haz una prueba escribiendo *${m.prefix}menu_todo*.\n✦────────✦`);
+    await m.reply(`👑•─────•👑\n✅ *EXITOSO*\n\nEl estilo de audio de All Menu se cambió correctamente a *Variante ${newStyle}*. Haz una prueba escribiendo *${m.prefix}menu_todo*.\n♰ ──────── ♱✦`);
     await m.react("✅");
 }
 

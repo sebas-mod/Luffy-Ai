@@ -40,14 +40,14 @@ function handler(m, { sock }) {
   const accion = (args[0] || "tirar").toLowerCase();
 
   if (accion === "listar") {
-    let txt = `╭━━〔 🎴 PERSONAJES DISPONIBLES 〕━━╮\n`;
+    let txt = `☽◯☾ ╭ ♰ 🎴 PERSONAJES DISPONIBLES ♰ ━╮ ☽◯☾\n`;
     const chars = getCharacters();
     for (const c of chars) {
       const raro = RARIDAD_EMOJI[c.raro] || "🪙";
       const poseido = user.personajes.includes(c.id);
       txt += `┃ ${poseido ? "✅" : "⬜"} ${raro} ${c.emoji} *${c.nombre}* — ${c.poder} poder\n`;
     }
-    txt += `╰┈➤ Tirar: *${m.prefix}personajes* (${PRECIO_TIRO} Berrys/tiro)`;
+    txt += `☽◯☾ ♰ Tirar: *${m.prefix}personajes* (${PRECIO_TIRO} Berrys/tiro)`;
     return m.reply(txt);
   }
 
@@ -89,7 +89,7 @@ function handler(m, { sock }) {
   } else {
     txt += `🎉 *¡Nuevo personaje coleccionado!*\n`;
   }
-  txt += `\n╰┈➤ Ver colección: *${m.prefix}coleccion*`;
+  txt += `\n☽◯☾ ♰ Ver colección: *${m.prefix}coleccion*`;
 
   return m.reply(txt);
 }

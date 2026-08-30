@@ -51,7 +51,7 @@ function handler(m, { sock }) {
         `🎌 *${crew.nombre}*\n` +
         `👑 Capitán: *${user.nombre}*\n` +
         `💰 Costo: ${PRECIO_CREAR} Berrys\n` +
-        `╰┈➤ Invita miembros con *${m.prefix}tripulacion unirse ${crew.nombre}*`,
+        `☽◯☾ ♰ Invita miembros con *${m.prefix}tripulacion unirse ${crew.nombre}*`,
     );
   }
 
@@ -72,7 +72,7 @@ function handler(m, { sock }) {
         `🏴 ⚔️ 🏴\n` +
         `🏴 *${crew.nombre}*\n` +
         `👥 Miembros: *${crew.miembros.length}*\n` +
-        `╰┈➤ Ver info: *${m.prefix}tripulacion info*`,
+        `☽◯☾ ♰ Ver info: *${m.prefix}tripulacion info*`,
     );
   }
 
@@ -105,12 +105,12 @@ function handler(m, { sock }) {
   if (accion === "lista") {
     const crews = Object.values(getCrews());
     if (crews.length === 0) return m.reply(`No hay tripulaciones registradas.\n> Crea una con *${m.prefix}tripulacion crear <nombre>*`);
-    let txt = `╭━━〔 🏴 TRIPULACIONES 〕━━╮\n`;
+    let txt = `☽◯☾ ╭ ♰ 🏴 TRIPULACIONES ♰ ━╮ ☽◯☾\n`;
     for (const c of crews) {
       txt += `┃ ⚑ *${c.nombre}*\n`;
       txt += `┃   👥 ${c.miembros.length} miembros · 👑 ${c.capitan}\n`;
     }
-    txt += `╰━━━━━━━━━━╯`;
+    txt += `╰━ ⊱༺༒༻⊰ ━╯`;
     return m.reply(txt);
   }
 
@@ -129,7 +129,7 @@ function handler(m, { sock }) {
   if (!crew) return m.reply(`❌ Tu tripulación no existe.`);
   const rol = rolEnCrew(crew, m.sender);
 
-  let txt = `╭━━〔 🏴 ${crew.nombre} 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ 🏴 ${crew.nombre} ♰ ━╮ ☽◯☾\n`;
   txt += `┃ 👑 *Capitán:* ${crew.capitan}\n`;
   txt += `┃ ⭐ *Tu rol:* ${rol}\n`;
   txt += `┃ 👥 *Miembros:* ${crew.miembros.length}\n`;
@@ -139,7 +139,7 @@ function handler(m, { sock }) {
     const nom = jid === m.sender ? "tú" : jid.split("@")[0];
     txt += `┃ › ${nom}\n`;
   }
-  txt += `╰┈➤ Salir: *${m.prefix}tripulacion salir*`;
+  txt += `☽◯☾ ♰ Salir: *${m.prefix}tripulacion salir*`;
 
   return m.reply(txt);
 }

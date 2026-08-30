@@ -54,7 +54,7 @@ function handler(m, { sock }) {
 
   if (option === "off") {
     db.setGroup(m.chat, { antilinkall: "off" });
-    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *Antilink Total Inactivo*\n\n> Los enlaces ya no se filtrarán`+"\n╰━━━━━━━━━━━━╯");
+    return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *Antilink Total Inactivo*\n\n> Los enlaces ya no se filtrarán`+"\n╰━ ⊱༺༒༻⊰ ━╯");
   }
 
   if (option.startsWith("metode")) {
@@ -62,16 +62,16 @@ function handler(m, { sock }) {
     if (method === "kick") {
       db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "kick" });
       return m.reply(
-        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *Antilink Total — Modo Expulsar*\n\n> El usuario que envíe un enlace será expulsado`+"\n╰━━━━━━━━━━━━╯"
+        "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *Antilink Total — Modo Expulsar*\n\n> El usuario que envíe un enlace será expulsado`+"\n╰━ ⊱༺༒༻⊰ ━╯"
       );
     } else if (method === "remove" || method === "delete") {
       db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "remove" });
       return m.reply(
-        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *Antilink Total — Modo Eliminar*\n\n> El mensaje con enlace será eliminado`+"\n╰━━━━━━━━━━━━╯"
+        "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *Antilink Total — Modo Eliminar*\n\n> El mensaje con enlace será eliminado`+"\n╰━ ⊱༺༒༻⊰ ━╯"
       );
     } else {
       return m.reply(
-        "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ *Método No Válido*\n\n> Usa *kick* o *remove*\n> Ejemplo: *${m.prefix}antienlace_todo metode kick*`+"\n╰━━━━━━━━━━━━╯"
+        "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`❌ *Método No Válido*\n\n> Usa *kick* o *remove*\n> Ejemplo: *${m.prefix}antienlace_todo metode kick*`+"\n╰━ ⊱༺༒༻⊰ ━╯"
       );
     }
   }
@@ -79,19 +79,19 @@ function handler(m, { sock }) {
   if (option === "kick") {
     db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "kick" });
     return m.reply(
-      "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *Antilink Total — Modo Expulsar*\n\n> El usuario que envíe un enlace será expulsado`+"\n╰━━━━━━━━━━━━╯"
+      "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *Antilink Total — Modo Expulsar*\n\n> El usuario que envíe un enlace será expulsado`+"\n╰━ ⊱༺༒༻⊰ ━╯"
     );
   }
 
   if (option === "remove" || option === "delete") {
     db.setGroup(m.chat, { antilinkall: "on", antilinkallMode: "remove" });
     return m.reply(
-      "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *Antilink Total — Modo Eliminar*\n\n> El mensaje con enlace será eliminado`+"\n╰━━━━━━━━━━━━╯"
+      "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *Antilink Total — Modo Eliminar*\n\n> El mensaje con enlace será eliminado`+"\n╰━ ⊱༺༒༻⊰ ━╯"
     );
   }
 
   return m.reply(
-    "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *Opción No Válida*\n\n> Usa *on*, *off*, *metode kick* o *metode remove*`+"\n╰━━━━━━━━━━━━╯"
+    "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *Opción No Válida*\n\n> Usa *on*, *off*, *metode kick* o *metode remove*`+"\n╰━ ⊱༺༒༻⊰ ━╯"
   );
 }
 

@@ -30,7 +30,7 @@ async function handler(m, { sock }) {
 
     if (!targetJid) {
         return m.reply(
-            `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+            `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n` +
             `┃ ⚠️ *ᴄóᴍᴏ ᴜsᴀʀ*\n` +
             `╰━━━━━━━━╯\n\n` +
             `› \`.unblock 628xxx\` — Desbloquear por número\n` +
@@ -44,9 +44,9 @@ async function handler(m, { sock }) {
         await sock.updateBlockStatus(targetJid, 'unblock')
         await m.react('✅')
         return m.reply(
-            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
             `┃ ✅ *ɴúᴍᴇʀᴏ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴏ*\n` +
-            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `🎯 Objetivo: @${targetJid.split('@')[0]}`,
             { mentions: [targetJid] }
         )

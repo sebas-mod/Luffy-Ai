@@ -34,7 +34,7 @@ async function handler(m, { sock, config: botConfig }) {
     
     const isSticker = quoted.type === 'stickerMessage' || quoted.isSticker
     if (!isSticker) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> Responde un mensaje de sticker, no ${quoted.type?.replace('Message', '') || 'otro medio'}`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ꜰᴀʟʟᴏ*\n\n> Responde un mensaje de sticker, no ${quoted.type?.replace('Message', '') || 'otro medio'}`)
     }
     
     const input = m.text?.trim()
@@ -66,7 +66,7 @@ async function handler(m, { sock, config: botConfig }) {
         
         if (!buffer || buffer.length === 0) {
             m.react('❌')
-            return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el sticker`)
+            return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el sticker`)
         }
         
         const exifOpts = { packname, author, emojis: ['🤖'] }

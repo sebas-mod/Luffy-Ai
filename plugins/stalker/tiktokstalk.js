@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]?.replace('@', '')
     
     if (!username) {
-        return m.reply(`╰┈➤ 🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Ingresa el username de TikTok\n\n\`Ejemplo: ${m.prefix}tiktokstalk mrbeast\``)
+        return m.reply(`☽◯☾ ♰ 🎵 *ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ*\n\n> Ingresa el username de TikTok\n\n\`Ejemplo: ${m.prefix}tiktokstalk mrbeast\``)
     }
     
     m.react('🔍')
@@ -43,23 +43,23 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`╰┈➤ ❌ Username *@${username}* no fue encontrado`)
+            return m.reply(`☽◯☾ ♰ ❌ Username *@${username}* no fue encontrado`)
         }
         
         const d = res.data.data
         const s = d.stats
         
-        const caption = `╭━━━〔 🎵 ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ 〕━━━╮\n\n` +
-            `╰┈➤ 👤 *Username:* @${d.username}\n` +
-            `╰┈➤ 📛 *Nombre:* ${d.nickname}\n` +
-            `╰┈➤ ✅ *Verificado:* ${d.verified ? 'Sí' : 'No'}\n` +
-            `╰┈➤ 🔒 *Privado:* ${d.private ? 'Sí' : 'No'}\n──────────\n` +
-            `╰┈➤ 👥 *Seguidores:* ${shortNum(s.followers)}\n` +
-            `╰┈➤ 👤 *Siguiendo:* ${shortNum(s.following)}\n` +
-            `╰┈➤ ❤️ *Me gusta:* ${shortNum(s.hearts)}\n` +
-            `╰┈➤ 🎬 *Videos:* ${shortNum(s.videos)}\n──────────\n` +
+        const caption = `☽◯☾ ╭━ ♰ 🎵 ᴛɪᴋᴛᴏᴋ sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ 👤 *Username:* @${d.username}\n` +
+            `☽◯☾ ♰ 📛 *Nombre:* ${d.nickname}\n` +
+            `☽◯☾ ♰ ✅ *Verificado:* ${d.verified ? 'Sí' : 'No'}\n` +
+            `☽◯☾ ♰ 🔒 *Privado:* ${d.private ? 'Sí' : 'No'}\n──────────\n` +
+            `☽◯☾ ♰ 👥 *Seguidores:* ${shortNum(s.followers)}\n` +
+            `☽◯☾ ♰ 👤 *Siguiendo:* ${shortNum(s.following)}\n` +
+            `☽◯☾ ♰ ❤️ *Me gusta:* ${shortNum(s.hearts)}\n` +
+            `☽◯☾ ♰ 🎬 *Videos:* ${shortNum(s.videos)}\n──────────\n` +
             `📝 *Bio:*\n${d.signature || '-'}\n──────────\n` +
-            `🔗 https://tiktok.com/@${d.username}\n\n╰━━━━━━━━━━━━╯`
+            `🔗 https://tiktok.com/@${d.username}\n\n╰━ ⊱༺༒༻⊰ ━╯`
         
         m.react('✅')
         

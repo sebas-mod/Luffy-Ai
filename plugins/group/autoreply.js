@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     
     if (action === 'private') {
         if (!m.isOwner) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo el owner puede configurar el autoreply privado!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo el owner puede configurar el autoreply privado!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         const subAction = args[1]?.toLowerCase()
@@ -43,13 +43,13 @@ async function handler(m, { sock }) {
         if (subAction === 'on') {
             db.setting('autoreplyPrivate', true)
             m.react('✅')
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá automáticamente en el chat privado`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá automáticamente en el chat privado`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         if (subAction === 'off') {
             db.setting('autoreplyPrivate', false)
             m.react('❌')
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá automáticamente en el chat privado`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴘʀɪᴠᴀᴅᴏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá automáticamente en el chat privado`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         const currentStatus = db.setting('autoreplyPrivate') ?? false
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
     
     if (action === 'global') {
         if (!m.isOwner) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo el owner puede configurar el autoreply global!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo el owner puede configurar el autoreply global!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         const subAction = args[1]?.toLowerCase()
@@ -88,7 +88,7 @@ async function handler(m, { sock }) {
             const reply = fullBody.substring(pipeIdx + 1)
             
             if (!trigger.trim() || !reply) {
-                return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El trigger y la respuesta no pueden estar vacíos!`+"\n╰━━━━━━━━━━━━╯")
+                return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El trigger y la respuesta no pueden estar vacíos!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             }
             
             const existingIndex = globalCustomReplies.findIndex(r => r.trigger.toLowerCase() === trigger.trim().toLowerCase())
@@ -113,12 +113,12 @@ async function handler(m, { sock }) {
         if (subAction === 'del' || subAction === 'rm') {
             const trigger = args.slice(2).join(' ').toLowerCase().trim()
             if (!trigger) {
-                return m.reply("╰┈➤ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el trigger que quieres eliminar!`)
+                return m.reply("☽◯☾ ♰ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el trigger que quieres eliminar!`)
             }
             
             const index = globalCustomReplies.findIndex(r => r.trigger === trigger)
             if (index === -1) {
-                return m.reply("╰┈➤ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Trigger \`${trigger}\` no encontrado!`)
+                return m.reply("☽◯☾ ♰ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Trigger \`${trigger}\` no encontrado!`)
             }
             
             globalCustomReplies.splice(index, 1)
@@ -126,7 +126,7 @@ async function handler(m, { sock }) {
             await db.save()
             
             m.react('🗑️')
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🗑️ *AUTOREPLY GLOBAL ELIMINADO*\n\n¡Trigger *${trigger}* eliminado correctamente!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`🗑️ *AUTOREPLY GLOBAL ELIMINADO*\n\n¡Trigger *${trigger}* eliminado correctamente!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         if (subAction === 'list' || !subAction) {
@@ -170,7 +170,7 @@ async function handler(m, { sock }) {
     }
     
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo los admins pueden configurar el autoreply en el grupo!`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Solo los admins pueden configurar el autoreply en el grupo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     const groupData = db.getGroup(m.chat) || {}
@@ -215,13 +215,13 @@ async function handler(m, { sock }) {
     if (action === 'on') {
         db.setGroup(m.chat, { ...groupData, autoreply: true })
         m.react('✅')
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá automáticamente en este grupo`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`✅ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot responderá automáticamente en este grupo`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (action === 'off') {
         db.setGroup(m.chat, { ...groupData, autoreply: false })
         m.react('❌')
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá automáticamente en este grupo`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴀᴜᴛᴏʀᴇᴘʟʏ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ*\n\n> El bot no responderá automáticamente en este grupo`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (action === 'add') {
@@ -253,7 +253,7 @@ async function handler(m, { sock }) {
         const reply = fullBody.substring(pipeIdx + 1)
         
         if (!trigger) {
-            return m.reply("╰┈➤ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El trigger no puede estar vacío!`)
+            return m.reply("☽◯☾ ♰ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El trigger no puede estar vacío!`)
         }
         
         let imageBuffer = null
@@ -327,14 +327,14 @@ async function handler(m, { sock }) {
         const trigger = args.slice(1).join(' ').toLowerCase().trim()
         
         if (!trigger) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el trigger que quieres eliminar!\n\n\`${m.prefix}autoreply del halo\``+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el trigger que quieres eliminar!\n\n\`${m.prefix}autoreply del halo\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         const customReplies = groupData.customReplies || []
         const index = customReplies.findIndex(r => r.trigger === trigger)
         
         if (index === -1) {
-            return m.reply("╰┈➤ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Trigger \`${trigger}\` no encontrado!`)
+            return m.reply("☽◯☾ ♰ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡Trigger \`${trigger}\` no encontrado!`)
         }
         
         if (customReplies[index].image) {
@@ -407,10 +407,10 @@ async function handler(m, { sock }) {
         
         db.setGroup(m.chat, { ...groupData, customReplies: [] })
         m.react('🗑️')
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🗑️ *ᴀᴜᴛᴏʀᴇᴘʟʏ ʀᴇsᴇᴛᴇᴀᴅᴏ*\n\n> ¡Todos los autoreply personalizados fueron eliminados!`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🗑️ *ᴀᴜᴛᴏʀᴇᴘʟʏ ʀᴇsᴇᴛᴇᴀᴅᴏ*\n\n> ¡Todos los autoreply personalizados fueron eliminados!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
-    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴀᴄᴄɪóɴ ɪɴᴠáʟɪᴅᴀ*\n\n> Usa: \`on\`, \`off\`, \`private on/off\`, \`add\`, \`del\`, \`list\`, \`reset\``+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴀᴄᴄɪóɴ ɪɴᴠáʟɪᴅᴀ*\n\n> Usa: \`on\`, \`off\`, \`private on/off\`, \`add\`, \`del\`, \`list\`, \`reset\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 export { pluginConfig as config, handler }

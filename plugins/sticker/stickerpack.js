@@ -114,7 +114,7 @@ async function handler(m, { sock }) {
     if (!search.status || !search.data?.length) {
       await m.react("✘");
       return m.reply(
-        `── .✦ ──\n\n> No hay sticker pack para: *${query}* .☘︎ ݁˖`,
+        `── .☽◯☾ ──\n\n> No hay sticker pack para: *${query}* .☘︎ ݁˖`,
       );
     }
 
@@ -124,11 +124,11 @@ async function handler(m, { sock }) {
 
     if (!detail.status || !detail.stickers?.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> No se pudo obtener el detalle del sticker pack .☘︎ ݁˖`);
+      return m.reply(`── .☽◯☾ ──\n\n> No se pudo obtener el detalle del sticker pack .☘︎ ݁˖`);
     }
 
     await m.reply(
-      `── .✦ ──\n\n> Descargando *${randPick.name}*\n> ${Math.min(detail.stickers.length, MAX_STICKERS)} stickers .☘︎ ݁˖`,
+      `── .☽◯☾ ──\n\n> Descargando *${randPick.name}*\n> ${Math.min(detail.stickers.length, MAX_STICKERS)} stickers .☘︎ ݁˖`,
     );
 
     const limited = detail.stickers.slice(0, MAX_STICKERS);
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
 
     if (!stickerBuffers.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> No se pudo descargar el sticker .☘︎ ݁˖`);
+      return m.reply(`── .☽◯☾ ──\n\n> No se pudo descargar el sticker .☘︎ ݁˖`);
     }
 
     const packname = randPick.name || config.sticker?.packname || "Luffy-Ai";
@@ -166,7 +166,7 @@ async function handler(m, { sock }) {
     } catch (packErr) {
       console.error("[StickerPack] Pack send failed:", packErr.message);
       await m.reply(
-        `── .✦ ──\n\n> El pack falló, enviando uno por uno... .☘︎ ݁˖`,
+        `── .☽◯☾ ──\n\n> El pack falló, enviando uno por uno... .☘︎ ݁˖`,
       );
 
       let sent = 0;
@@ -198,11 +198,11 @@ async function handler(m, { sock }) {
       if (sent > 0) {
         await m.react("✓");
         await m.reply(
-          `── .✦ ──\n\n> Se enviaron *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
+          `── .☽◯☾ ──\n\n> Se enviaron *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
         );
       } else {
         await m.react("✘");
-        await m.reply(`── .✦ ──\n\n> No se pudo enviar el sticker .☘︎ ݁˖`);
+        await m.reply(`── .☽◯☾ ──\n\n> No se pudo enviar el sticker .☘︎ ݁˖`);
       }
     }
   } catch (error) {

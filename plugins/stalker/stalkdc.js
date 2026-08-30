@@ -160,19 +160,19 @@ async function lookupUser(discordId, recaptchaToken) {
 async function handler(m, { text, sock }) {
     if (!text) {
         return m.reply(
-            `╭━━━〔 👾 DISCORD STALKER 〕━━━╮ 👾\n\n` +
+            `☽◯☾ ╭━ ♰ 👾 DISCORD STALKER ♰ ━╮ ☽◯☾ 👾\n\n` +
             `¡Esta función te ayuda a rastrear el perfil de un usuario de Discord solo con su ID!\n\n` +
             `*CÓMO USARLO:*\n` +
             `- Escribe \`${m.prefix}stalkdc <ID Discord>\`\n` +
             `- Ejemplo: \`${m.prefix}stalkdc 1280009524941426700\`\n\n` +
-            `_Asegúrate de ingresar un ID numérico (¡no un username!)._\n\n╰━━━━━━━━━━━━╯`
+            `_Asegúrate de ingresar un ID numérico (¡no un username!)._\n\n╰━ ⊱༺༒༻⊰ ━╯`
         );
     }
 
     const discordId = text.replace(/[^0-9]/g, '');
     
     if (!discordId) {
-        return m.reply(`╰┈➤ ❌ *ID NO VÁLIDO*\n\nAsegúrate de que el ID de Discord que ingresaste solo contenga números.`);
+        return m.reply(`☽◯☾ ♰ ❌ *ID NO VÁLIDO*\n\nAsegúrate de que el ID de Discord que ingresaste solo contenga números.`);
     }
 
     try {
@@ -183,27 +183,27 @@ async function handler(m, { text, sock }) {
 
         if (!resp.success) {
             await m.react('❌');
-            return m.reply(`╰┈➤ ❌ *CUENTA NO ENCONTRADA*\n\nEl sistema no pudo encontrar la cuenta con ID *${discordId}*. Tal vez el ID sea incorrecto o la cuenta haya sido eliminada.\n\n_Mensaje de error: ${resp.message || '-'}_`);
+            return m.reply(`☽◯☾ ♰ ❌ *CUENTA NO ENCONTRADA*\n\nEl sistema no pudo encontrar la cuenta con ID *${discordId}*. Tal vez el ID sea incorrecto o la cuenta haya sido eliminada.\n\n_Mensaje de error: ${resp.message || '-'}_`);
         }
 
         const d = resp.data || {};
         const isBot = d.is_bot ? 'Sí (Bot)' : 'No (Usuario)';
         const badges = (d.badges || []).map((b) => b.name).join(', ') || '-';
         
-        let caption = `╭━━━〔 👾 DISCORD STALKER 〕━━━╮\n\n`;
-        caption += `╰┈➤ ¡Búsqueda exitosa! Esta es la información del perfil de Discord:\n──────────\n`;
-        caption += `╰┈➤ 👤 *Username:* ${d.username}\n`;
-        caption += `╰┈➤ 🏷️ *Global Name:* ${d.global_name || '-'}\n`;
-        caption += `╰┈➤ 🆔 *User ID:* ${d.id}\n`;
-        caption += `╰┈➤ 🤖 *¿Es Bot?:* ${isBot}\n`;
-        caption += `╰┈➤ 🗓️ *Creado Desde:* ${d.creation_date || '-'}\n`;
-        caption += `╰┈➤ 🏅 *Badges:* ${badges}\n`;
+        let caption = `☽◯☾ ╭━ ♰ 👾 DISCORD STALKER ♰ ━╮ ☽◯☾\n\n`;
+        caption += `☽◯☾ ♰ ¡Búsqueda exitosa! Esta es la información del perfil de Discord:\n──────────\n`;
+        caption += `☽◯☾ ♰ 👤 *Username:* ${d.username}\n`;
+        caption += `☽◯☾ ♰ 🏷️ *Global Name:* ${d.global_name || '-'}\n`;
+        caption += `☽◯☾ ♰ 🆔 *User ID:* ${d.id}\n`;
+        caption += `☽◯☾ ♰ 🤖 *¿Es Bot?:* ${isBot}\n`;
+        caption += `☽◯☾ ♰ 🗓️ *Creado Desde:* ${d.creation_date || '-'}\n`;
+        caption += `☽◯☾ ♰ 🏅 *Badges:* ${badges}\n`;
         
         if (d.clan) {
-            caption += `╰┈➤ 🛡️ *Clan:* ${d.clan.tag} (${d.clan.name})\n`;
+            caption += `☽◯☾ ♰ 🛡️ *Clan:* ${d.clan.tag} (${d.clan.name})\n`;
         }
         
-        caption += `──────────\n_Powered by dclookup.id_\n\n╰━━━━━━━━━━━━╯`;
+        caption += `──────────\n_Powered by dclookup.id_\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
         if (d.avatar_url || d.default_avatar_url || d.avatar) {
             const avaUrl = d.avatar_url || d.default_avatar_url || d.avatar;
@@ -216,7 +216,7 @@ async function handler(m, { text, sock }) {
     } catch (e) {
         console.error("DC Lookup Error:", e);
         await m.react('❌');
-        m.reply(`╰┈➤ ❌ *ERROR AL RASTREAR LA CUENTA*\n\nLo siento, el sistema está teniendo problemas al realizar el *bypass de reCAPTCHA* o al llamar a la API. Vuelve a intentarlo en unos momentos.\n\n_Error: ${e.message}_`);
+        m.reply(`☽◯☾ ♰ ❌ *ERROR AL RASTREAR LA CUENTA*\n\nLo siento, el sistema está teniendo problemas al realizar el *bypass de reCAPTCHA* o al llamar a la API. Vuelve a intentarlo en unos momentos.\n\n_Error: ${e.message}_`);
     }
 }
 

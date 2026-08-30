@@ -21,7 +21,7 @@ async function handler(m)  {
     const sessionsPath = path.join(process.cwd(), 'storage', 'sessions')
     
     if (!fs.existsSync(sessionsPath)) {
-        return m.reply(`╰┈➤ ❌ ¡La carpeta de sessions no existe!`)
+        return m.reply(`☽◯☾ ♰ ❌ ¡La carpeta de sessions no existe!`)
     }
     
     await m.react('🗑️')
@@ -30,7 +30,7 @@ async function handler(m)  {
         const files = fs.readdirSync(sessionsPath)
         
         if (files.length === 0) {
-            return m.reply(`╰┈➤ 📁 ¡La carpeta de sessions ya está vacía!`)
+            return m.reply(`☽◯☾ ♰ 📁 ¡La carpeta de sessions ya está vacía!`)
         }
         
         let deleted = 0
@@ -56,13 +56,13 @@ async function handler(m)  {
         
         await m.react('✅')
         await m.reply(
-            `╭┈┈⬡「 🗑️ *ᴄʟᴇᴀʀ sᴇssɪᴏɴs* 」
+            `☽◯☾ ♰ 「 🗑️ *ᴄʟᴇᴀʀ sᴇssɪᴏɴs* 」
 ┃
 ┃ ㊗ ᴇʟɪᴍɪɴᴀᴅᴏs: *${deleted}* archivos
 ┃ ㊗ ᴏᴍɪᴛɪᴅᴏs: *${skipped}* archivos
 ┃ ㊗ ɴᴏᴛᴀ: creds.json no se elimina
 ┃
-╰┈┈⬡
+╰━ ⊱༺༒༻⊰ ━╯
 
 > _¡Los archivos de session se limpiaron con éxito!_
 > _Reinicia el bot si es necesario._`

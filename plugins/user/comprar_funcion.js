@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
         text += `> Precio: *${formatNumber(PRICE_PER_FEATURE)}* bal/función\n`
         text += `> Berry: *${formatNumber(user.berry || 0)}*\n\n`
         
-        text += `╭┈┈⬡「 📋 *ꜰɪᴛᴜʀ* 」\n`
+        text += `☽◯☾ ♰ 「 📋 *ꜰɪᴛᴜʀ* 」\n`
         
         for (const feature of PREMIUM_FEATURES) {
             const isUnlocked = unlockedFeatures.includes(feature.id)
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
             text += `┃\n`
         }
         
-        text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+        text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         text += `> Usa: \`.comprar_funcion <id>\`\n`
         text += `> O hazte *Premium* y desbloquea todo!`
         
@@ -107,11 +107,11 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ꜰᴜɴᴄɪᴏɴ ᴅᴇsʙʟᴏǫᴜᴇᴀᴅᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 🎁 ꜰᴜɴᴄɪᴏɴ: *${feature.name}*\n` +
         `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(PRICE_PER_FEATURE)}* bal\n` +
         `┃ 💰 ʀᴇsᴛᴀɴᴛᴇ: *${formatNumber(newBerry)}*\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> _${feature.desc}_\n\n` +
         `> 💡 Tip: Hazte *Premium* para desbloquear TODO!`
     )

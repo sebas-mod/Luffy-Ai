@@ -38,13 +38,13 @@ function handler(m) {
     }
 
     if (!db.db.data.sewa.enabled) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`ℹ️ El sistema de alquiler está inactivo\n\nEste bot se puede usar en todos los grupos.`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`ℹ️ El sistema de alquiler está inactivo\n\nEste bot se puede usar en todos los grupos.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     const sewaData = db.db.data.sewa.groups[m.chat]
 
     if (!sewaData) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Este grupo no está registrado en el sistema de alquiler\n\nContacta al owner del bot para info sobre el alquiler.`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ Este grupo no está registrado en el sistema de alquiler\n\nContacta al owner del bot para info sobre el alquiler.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     const groupName = sewaData.name || m.chat.split('@')[0]

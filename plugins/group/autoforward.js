@@ -26,9 +26,9 @@ function handler(m, { sock }) {
         const status = group.autoforward ? '✅ ON' : '❌ OFF'
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ ◦ Estado: *${status}*\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Usa: \`${m.prefix}autoforward on/off\`\n\n` +
             `_Esta función reenviará todos los mensajes a este grupo_`
         )
@@ -39,9 +39,9 @@ function handler(m, { sock }) {
         m.react('✅')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ✅ *ᴀᴄᴛɪᴠᴏ* 」\n` +
+            `☽◯☾ ♰ 「 ✅ *ᴀᴄᴛɪᴠᴏ* 」\n` +
             `┃ ◦ Estado: *ON*\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> _Todos los mensajes serán reenviados_`
         )
     }
@@ -51,13 +51,13 @@ function handler(m, { sock }) {
         m.react('❌')
         return m.reply(
             `🔄 *ᴀᴜᴛᴏ ꜰᴏʀᴡᴀʀᴅ*\n\n` +
-            `╭┈┈⬡「 ❌ *ɪɴᴀᴄᴛɪᴠᴏ* 」\n` +
+            `☽◯☾ ♰ 「 ❌ *ɪɴᴀᴄᴛɪᴠᴏ* 」\n` +
             `┃ ◦ Estado: *OFF*\n` +
-            `╰┈┈⬡`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
-    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Usa: on o off`+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ Usa: on o off`+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 export { pluginConfig as config, handler }

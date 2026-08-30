@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
         await sock.groupRevokeInvite(m.chat)
         
         m.react('✅')
-        m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`✅ *ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴏ*\nEl enlace anterior del grupo ya no es válido.\nUsa \`${m.prefix}enlace_grupo\` para obtener el nuevo enlace.`+"\n╰━━━━━━━━━━━━╯")
+        m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`✅ *ʟɪɴᴋ ᴅᴇʟ ɢʀᴜᴘᴏ ʀᴇsᴛᴀʙʟᴇᴄɪᴅᴏ*\nEl enlace anterior del grupo ya no es válido.\nUsa \`${m.prefix}enlace_grupo\` para obtener el nuevo enlace.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         
     } catch (err) {
         m.react('☢')

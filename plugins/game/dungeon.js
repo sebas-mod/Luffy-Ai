@@ -184,7 +184,7 @@ async function handler(m, { sock }) {
         };
         db.save();
 
-        let txt = `╭━━━〔 🏰 〕━━━╮\n  *LOBBY DE LA MAZMORRA* 🏰\n╰━━━━━━━━━━━━╯\n\n`;
+        let txt = `☽◯☾ ╭━ ♰ 🏰 ♰ ━╮ ☽◯☾\n  *LOBBY DE LA MAZMORRA* 🏰\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
         txt += `📊 *Tus Estadísticas:*\n`;
         txt += `> Nivel: *${userLevel}*\n`;
         txt += `> Stamina: *${user.rpg.stamina ?? 100}/100*\n\n`;

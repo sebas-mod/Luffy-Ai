@@ -64,7 +64,7 @@ async function handler(m, { sock, db }) {
     if (action === "on" || action === "off") {
         const isEnable = action === "on"
         if (groupData.antispam === isEnable) {
-            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`✅ El antispam ya está ${isEnable ? "activado" : "desactivado"} en este grupo, no se hizo ningún cambio`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`✅ El antispam ya está ${isEnable ? "activado" : "desactivado"} en este grupo, no se hizo ningún cambio`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         
         groupData.antispam = isEnable

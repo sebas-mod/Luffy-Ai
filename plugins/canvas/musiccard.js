@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
   if (m.quoted?.message) {
     const type = getContentType(m.quoted.message);
     if (type !== "imageMessage") {
-      return m.reply("✦ • ─── • ✦\n❌ *¡Vaya, eso no es una imagen!*\n\nDebes responder (responder) un mensaje que sea *imagen* con el formato `.musiccard <título>|<artista>`.\n──────────\n╰┈➤ Ejemplo:\nResponde a la imagen de tu amigo y luego escribe: `.musiccard Perfect|Ed Sheeran`");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *¡Vaya, eso no es una imagen!*\n\nDebes responder (responder) un mensaje que sea *imagen* con el formato `.musiccard <título>|<artista>`.\n──────────\n☽◯☾ ♰ Ejemplo:\nResponde a la imagen de tu amigo y luego escribe: `.musiccard Perfect|Ed Sheeran`");
     }
     try {
       mediaBuffer = await downloadMediaMessage(
@@ -37,12 +37,12 @@ async function handler(m, { sock }) {
       );
       mimetype = m.quoted.message[type]?.mimetype;
     } catch (e) {
-      return m.reply("✦ • ─── • ✦\n😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
     }
   } else if (m.message) {
     const type = getContentType(m.message);
     if (type !== "imageMessage") {
-      return m.reply("✦ • ─── • ✦\n❌ *¡Vaya, ¿dónde está la imagen?*\n\nDebes enviar una imagen con caption (texto complementario) `.musiccard <título>|<artista>` o responder a una imagen existente.\n──────────\n╰┈➤ Ejemplo:\nEnvía una imagen con caption: `.musiccard Perfect|Ed Sheeran`");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *¡Vaya, ¿dónde está la imagen?*\n\nDebes enviar una imagen con caption (texto complementario) `.musiccard <título>|<artista>` o responder a una imagen existente.\n──────────\n☽◯☾ ♰ Ejemplo:\nEnvía una imagen con caption: `.musiccard Perfect|Ed Sheeran`");
     }
     try {
       mediaBuffer = await downloadMediaMessage(
@@ -52,16 +52,16 @@ async function handler(m, { sock }) {
       );
       mimetype = m.message[type]?.mimetype;
     } catch (e) {
-      return m.reply("✦ • ─── • ✦\n😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n😔 *No se pudo descargar la imagen.* Intenta enviar la imagen de nuevo.");
     }
   }
 
   if (!mediaBuffer) {
-    return m.reply("✦ • ─── • ✦\n❌ *¡Imagen no detectada!* Asegúrate de enviar la imagen correctamente.");
+    return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *¡Imagen no detectada!* Asegúrate de enviar la imagen correctamente.");
   }
 
   if (!text) {
-    return m.reply("✦ • ─── • ✦\n❌ *¡Faltan el título y el artista!*\n\nEl formato correcto es: `.musiccard <título>|<artista>`\nSepara el título y el nombre del artista con el símbolo ( | ).\n──────────");
+    return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *¡Faltan el título y el artista!*\n\nEl formato correcto es: `.musiccard <título>|<artista>`\nSepara el título y el nombre del artista con el símbolo ( | ).\n──────────");
   }
 
   let judul = text;
@@ -82,7 +82,7 @@ async function handler(m, { sock }) {
 
     if (!uploadResult || !uploadResult.directLink) {
       await m.react("❌");
-      return m.reply("✦ • ─── • ✦\n⚠️ *¡No se pudo subir la imagen!* Asegúrate de que la imagen no sea demasiado grande e inténtalo de nuevo.");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ *¡No se pudo subir la imagen!* Asegúrate de que la imagen no sea demasiado grande e inténtalo de nuevo.");
     }
 
     const apiUrl = `https://api.nexray.eu.cc/canvas/musiccard?judul=${encodeURIComponent(judul)}&nama=${encodeURIComponent(nama)}&image_url=${encodeURIComponent(uploadResult.directLink)}`;
@@ -94,14 +94,14 @@ async function handler(m, { sock }) {
 
     if (res.headers["content-type"] && !res.headers["content-type"].includes("image")) {
       await m.react("❌");
-      return m.reply("✦ • ─── • ✦\n⚠️ *No se pudo crear la Music Card.* El servidor respondió con un formato incorrecto.");
+      return m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ *No se pudo crear la Music Card.* El servidor respondió con un formato incorrecto.");
     }
 
     const cardBuffer = Buffer.from(res.data);
 
     await sock.sendMessage(m.chat, {
       image: cardBuffer,
-      caption: `✦ • ─── • ✦\n✨ *MUSIC CARD CREADA CON ÉXITO!* ✨\n🎧 *Título*: ${judul}\n🎤 *Artista*: ${nama}\n──────────\n╰┈➤ El resultado es genial, ¡presúmelo con tus amigos! 🚀`
+      caption: `♰ ┄ ── ☽◯☾ ── ┄ ♰\n✨ *MUSIC CARD CREADA CON ÉXITO!* ✨\n🎧 *Título*: ${judul}\n🎤 *Artista*: ${nama}\n──────────\n☽◯☾ ♰ El resultado es genial, ¡presúmelo con tus amigos! 🚀`
     }, { quoted: m });
 
     await m.react("✅");
@@ -109,7 +109,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.error("[Music Card]", err.message);
     await m.react("☢");
-    m.reply("✦ • ─── • ✦\n😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de tarjetas. Por favor, inténtalo de nuevo en unos momentos.\n──────────");
+    m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n😔 *Hubo un problema en nuestro sistema.* \n\nEl sistema no pudo conectar con el servidor creador de tarjetas. Por favor, inténtalo de nuevo en unos momentos.\n──────────");
   }
 }
 

@@ -53,7 +53,7 @@ function handler(m, { sock }) {
   setCooldown(m.sender, "explorar");
 
   const roll = randomInt(1, 100);
-  let txt = `╭━━〔 🌊 AVENTURA 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ 🌊 AVENTURA ♰ ━╮ ☽◯☾\n`;
   txt += `┃ 🧭 *EXPLORANDO ${isla.emoji} ${isla.nombre}*\n`;
   txt += `┃\n`;
 
@@ -87,7 +87,7 @@ function handler(m, { sock }) {
     txt += `┃\n`;
   }
 
-  txt += `╰┈➤ 💡 Ve a pelear con *${m.prefix}combate* o cambia de isla con *${m.prefix}viajar*.`;
+  txt += `☽◯☾ ♰ 💡 Ve a pelear con *${m.prefix}combate* o cambia de isla con *${m.prefix}viajar*.`;
 
   return m.reply(txt);
 }

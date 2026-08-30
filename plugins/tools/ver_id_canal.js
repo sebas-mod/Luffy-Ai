@@ -36,15 +36,15 @@ async function handler(m, { sock }) {
 
     if (!text) {
         return m.reply(
-            `╭━━━〔 ℹ️ INFORMACIÓN DE USO 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ℹ️ INFORMACIÓN DE USO ♰ ━╮ ☽◯☾\n\n` +
             `Ingresa el enlace del canal de WhatsApp cuya información deseas consultar en detalle.\n\n` +
             `*EJEMPLO DE USO:*\n` +
-            `• \`${m.prefix}ver_id_canal https://whatsapp.com/channel/xxxxx\`\n\n╰━━━━━━━━━━━━╯`
+            `• \`${m.prefix}ver_id_canal https://whatsapp.com/channel/xxxxx\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
     if (!text.includes('https://whatsapp.com/channel/')) {
-        return m.reply(`╰┈➤ ❌ *ENLACE NO VÁLIDO*\n\nAsegúrate de que el enlace que ingresaste sea un enlace de canal de WhatsApp válido y correcto.`)
+        return m.reply(`☽◯☾ ♰ ❌ *ENLACE NO VÁLIDO*\n\nAsegúrate de que el enlace que ingresaste sea un enlace de canal de WhatsApp válido y correcto.`)
     }
 
     m.react('🕕')
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
         if (!metadata?.id) {
             m.react('❌')
-            return m.reply(`╰┈➤ ❌ *CANAL NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar información de ese canal. Quizás el enlace caducó o el canal fue eliminado.`)
+            return m.reply(`☽◯☾ ♰ ❌ *CANAL NO ENCONTRADO*\n\nLo siento, el sistema no pudo encontrar información de ese canal. Quizás el enlace caducó o el canal fue eliminado.`)
         }
 
         const chName = metadata.name || 'Unknown'

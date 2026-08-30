@@ -20,7 +20,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     const text = m.args.join(' ')
     if (!text) {
-        return m.reply(`✦ • ─── • ✦\n🖼️ *ʙʀᴀᴛ cᴇᴡᴇᴋ sᴛɪᴄᴋᴇʀ*\n\n> Ingresa el texto\n\n\`╰┈➤ Ejemplo: ${m.prefix}bratcewek Hola a todos\``)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n🖼️ *ʙʀᴀᴛ cᴇᴡᴇᴋ sᴛɪᴄᴋᴇʀ*\n\n> Ingresa el texto\n\n\`☽◯☾ ♰ Ejemplo: ${m.prefix}bratcewek Hola a todos\``)
     }
     
     m.react('🕕')

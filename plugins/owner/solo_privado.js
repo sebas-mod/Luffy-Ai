@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
     db.setting("onlyGc", false);
     await m.react("✅");
     return m.reply(
-      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ 💬 *Only Private Activo*\n╰━━━━━━━━━━━━╯\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ 💬 *Only Private Activo*\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> El bot solo se puede usar en chat privado ✅\n` +
         `> El modo Solo Grupo se desactivó`
     );
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
     db.setting("onlyPc", false);
     await m.react("❌");
     return m.reply(
-      `╭━〔 ⚙️ SISTEMA 〕━╮\n┃ 💬 *Only Private Inactivo*\n╰━━━━━━━━╯\n\n` +
+      `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ 💬 *Only Private Inactivo*\n╰━━━━━━━━╯\n\n` +
         `> El bot se puede usar en cualquier lugar ✅`
     );
   }

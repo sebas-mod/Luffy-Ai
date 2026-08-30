@@ -71,11 +71,11 @@ async function handler(m, { sock }) {
 
     if (!results || results.length === 0) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> No se encontraron resultados para: *${query}* .☘︎ ݁˖`);
+      return m.reply(`── .☽◯☾ ──\n\n> No se encontraron resultados para: *${query}* .☘︎ ݁˖`);
     }
 
     await m.reply(
-      `── .✦ ──\n\n> Descargando *${results.length}* imágenes de Pinterest\n> Y convirtiendo a sticker pack... .☘︎ ݁˖`,
+      `── .☽◯☾ ──\n\n> Descargando *${results.length}* imágenes de Pinterest\n> Y convirtiendo a sticker pack... .☘︎ ݁˖`,
     );
 
     const stickerBuffers = [];
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
 
     if (!stickerBuffers.length) {
       await m.react("✘");
-      return m.reply(`── .✦ ──\n\n> No se pudo descargar la imagen .☘︎ ݁˖`);
+      return m.reply(`── .☽◯☾ ──\n\n> No se pudo descargar la imagen .☘︎ ݁˖`);
     }
 
     const packname = `Pinterest: ${query}`;
@@ -115,7 +115,7 @@ async function handler(m, { sock }) {
     } catch (packErr) {
       console.error("[PinPack] Pack send failed:", packErr.message);
       await m.reply(
-        `── .✦ ──\n\n> El pack falló, enviando uno por uno... .☘︎ ݁˖`,
+        `── .☽◯☾ ──\n\n> El pack falló, enviando uno por uno... .☘︎ ݁˖`,
       );
 
       let sent = 0;
@@ -147,11 +147,11 @@ async function handler(m, { sock }) {
       if (sent > 0) {
         await m.react("✓");
         await m.reply(
-          `── .✦ ──\n\n> Se enviaron *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
+          `── .☽◯☾ ──\n\n> Se enviaron *${sent}* stickers de *${packname}* .☘︎ ݁˖`,
         );
       } else {
         await m.react("✘");
-        await m.reply(`── .✦ ──\n\n> No se pudo enviar el sticker .☘︎ ݁˖`);
+        await m.reply(`── .☽◯☾ ──\n\n> No se pudo enviar el sticker .☘︎ ݁˖`);
       }
     }
   } catch (error) {

@@ -61,7 +61,7 @@ async function handler(m, { sock, text }) {
     
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`╭━━━〔 ✦ 〕━━━╮\n😔 Lo siento, el sistema no pudo descargar la imagen de portada que enviaste.\n╰━━━━━━━━━━━━╯`);
+      return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n😔 Lo siento, el sistema no pudo descargar la imagen de portada que enviaste.\n╰━ ⊱༺༒༻⊰ ━╯`);
     }
 
     const coverUrl = await uploadImage(buffer);
@@ -76,7 +76,7 @@ async function handler(m, { sock, text }) {
   } catch (error) {
     console.error("[APPLEMUSIC Plugin Error]", error);
     await m.react("❌");
-    m.reply(`╭━━━〔 ✦ 〕━━━╮\n😔 Lo siento, no se pudo crear el canvas de Apple Music. Inténtalo de nuevo en unos momentos.\n╰━━━━━━━━━━━━╯`);
+    m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n😔 Lo siento, no se pudo crear el canvas de Apple Music. Inténtalo de nuevo en unos momentos.\n╰━ ⊱༺༒༻⊰ ━╯`);
   }
 }
 

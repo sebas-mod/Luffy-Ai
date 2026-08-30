@@ -16,7 +16,7 @@ const pluginConfig = {
 async function handler(m, { sock }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`╰┈➤ ⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n> \`${m.prefix}spotplay <query>\``);
+    return m.reply(`☽◯☾ ♰ ⚠️ *ᴄᴏᴍᴏ ᴜsᴀʀ*\n\n> \`${m.prefix}spotplay <query>\``);
 
   await m.react("🕕");
 
@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
 
     if (!searchData?.status || !searchData?.result || searchData.result.length === 0) {
       await m.react("❌");
-      return m.reply("╰┈➤ ❌ Canción de Spotify no encontrada.");
+      return m.reply("☽◯☾ ♰ ❌ Canción de Spotify no encontrada.");
     }
 
     const firstTrack = searchData.result[0];
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!dlData?.status || !dlData?.result?.download_url) {
       await m.react("❌");
-      return m.reply("╰┈➤ ❌ Error al obtener el enlace de descarga de la canción de Spotify.");
+      return m.reply("☽◯☾ ♰ ❌ Error al obtener el enlace de descarga de la canción de Spotify.");
     }
 
     const result = dlData.result;

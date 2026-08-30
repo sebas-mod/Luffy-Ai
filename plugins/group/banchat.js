@@ -39,11 +39,11 @@ async function handler(m, { sock }) {
             
             return sock.sendMessage(m.chat, {
                 text: `✅ *ɢʀᴜᴘᴏ ᴅᴇsʙᴀɴᴇᴀᴅᴏ*\n\n` +
-                    `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                    `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
                     `┃ 📛 ɢʀᴜᴘᴏ: *${groupName}*\n` +
                     `┃ 📊 ᴇsᴛᴀᴅᴏ: *✅ ACTIVO*\n` +
                     `┃ 👤 ᴅᴇsʙᴀɴᴇᴀᴅᴏ ᴘᴏʀ: @${m.sender.split('@')[0]}\n` +
-                    `╰┈┈⬡\n\n` +
+                    `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
                     `> Todos los miembros ahora pueden volver a usar el bot.`,
                 mentions: [m.sender]
             }, { quoted: m })
@@ -60,11 +60,11 @@ async function handler(m, { sock }) {
         db.setGroup(m.chat, { ...groupData, isBanned: true })
         
         await m.reply(`🚫 *ɢʀᴜᴘᴏ ʙᴀɴᴇᴀᴅᴏ*\n\n` +
-                `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
                 `┃ 📛 ɢʀᴜᴘᴏ: *${groupName}*\n` +
                 `┃ 📊 ᴇsᴛᴀᴅᴏ: *🔴 BANEADO*\n` +
                 `┃ 👤 ʙᴀɴᴇᴀᴅᴏ ᴘᴏʀ: @${m.sender.split('@')[0]}\n` +
-                `╰┈┈⬡\n\n` +
+                `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
                 `> Los miembros comunes no pueden usar el bot en este grupo.\n` +
                 `> Solo el owner puede usar el bot.`, {  mentions: [m.sender] })
         

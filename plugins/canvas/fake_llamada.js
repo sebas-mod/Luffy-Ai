@@ -42,11 +42,11 @@ async function handler(m, { sock }) {
     const [nombre, duracion] = text.split('|').map(s => s.trim())
 
     if (!nombre) {
-        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n⚠️ Lo siento, el nombre de la persona que llama no puede estar vacío. ¡Completa el nombre primero!\n╰━━━━━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n⚠️ Lo siento, el nombre de la persona que llama no puede estar vacío. ¡Completa el nombre primero!\n╰━ ⊱༺༒༻⊰ ━╯`)
     }
 
     if (!duracion) {
-        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n⚠️ Lo siento, la duración de la llamada no puede estar vacía. ¡Completa la duración primero!\n╰━━━━━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n⚠️ Lo siento, la duración de la llamada no puede estar vacía. ¡Completa la duración primero!\n╰━ ⊱༺༒༻⊰ ━╯`)
     }
 
     await m.react('🕕')

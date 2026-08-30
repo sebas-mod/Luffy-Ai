@@ -141,9 +141,9 @@ async function handler(m, { sock }) {
   if (!keyword) {
     return m.reply(
       `🔍 *ʙᴜꜱᴄᴀʀ ꜰᴜɴᴄɪóɴ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴄóᴍᴏ ᴜꜱᴀʀ* 」\n` +
+      `☽◯☾ ♰ 「 📋 *ᴄóᴍᴏ ᴜꜱᴀʀ* 」\n` +
       `┃ \`${m.prefix}buscar_funcion <keyword>\`\n` +
-      `╰┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> Ejemplo:\n` +
       `\`${m.prefix}buscar_funcion sticker\`\n` +
       `\`${m.prefix}buscar_funcion download\`\n` +

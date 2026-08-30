@@ -25,7 +25,7 @@ function handler(m) {
         const antilinkList = groupData.antilinkList || []
         
         if (antilinkList.length === 0) {
-            return m.reply("╰┈➤ "+`📋 ¡La lista antilink está vacía!`)
+            return m.reply("☽◯☾ ♰ "+`📋 ¡La lista antilink está vacía!`)
         }
         
         let txt = `🔗 *ʟɪsᴛᴀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
@@ -44,7 +44,7 @@ function handler(m) {
     const index = antilinkList.findIndex(l => l === link)
     
     if (index === -1) {
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`⚠️ ¡El enlace \`${link}\` no está en la lista antilink!`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`⚠️ ¡El enlace \`${link}\` no está en la lista antilink!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     antilinkList.splice(index, 1)

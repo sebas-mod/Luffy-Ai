@@ -15,7 +15,7 @@ const pluginConfig = {
 }
 
 async function handler(m, { sock }) {
-    await m.reply('╭━━━〔 🛑 SISTEMA 〕━━━╮\n┃ *Deteniendo el Bot...*\n╰━━━━━━━━━━━━╯\n\n╰┈➤ El bot se apagó. Debe encenderse manualmente desde la terminal.')
+    await m.reply('☽◯☾ ╭━ ♰ 🛑 SISTEMA ♰ ━╮ ☽◯☾\n┃ *Deteniendo el Bot...*\n╰━ ⊱༺༒༻⊰ ━╯\n\n☽◯☾ ♰ El bot se apagó. Debe encenderse manualmente desde la terminal.')
     console.log('Stopping via command...')
     
     // Permitir que el mensaje se envíe antes de salir

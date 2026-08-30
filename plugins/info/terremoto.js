@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
       : null;
 
     const text =
-      `╭━━━〔 🌊 SISMO 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🌊 SISMO ♰ ━╮ ☽◯☾\n\n` +
       `🌍 *Info del Terremoto Reciente — BMKG*\n\n` +
       `┃ 📅 Fecha: *${g.Tanggal}*\n` +
       `┃ 🕐 Hora: *${g.Jam}*\n` +
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
       `┃ 🗺️ Zona: *${g.Wilayah}*\n` +
       `┃ ⚠️ Potencial: *${g.Potensi}*\n` +
       `┃ 🏠 Sentido: *${g.Dirasakan}*\n` +
-      `╰━━━━━━━━━━━━╯\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `_Fuente: BMKG Indonesia_`;
 
     await m.react("✅");

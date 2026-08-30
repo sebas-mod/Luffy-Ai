@@ -15,9 +15,9 @@ async function handler(m, { sock }) {
   try {
     await sock.readMessages([m.key]);
     await m.react("✅");
-    return m.reply("╰┈➤ 📖 *Mensaje marcado como leído*");
+    return m.reply("☽◯☾ ♰ 📖 *Mensaje marcado como leído*");
   } catch (err) {
-    return m.reply(`╰┈➤ ❌ Falló: ${err.message}`);
+    return m.reply(`☽◯☾ ♰ ❌ Falló: ${err.message}`);
   }
 }
 

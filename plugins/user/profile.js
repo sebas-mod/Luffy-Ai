@@ -129,10 +129,10 @@ async function handler(m, { sock }) {
     }
   }
 
-  let caption = `╭━━━〔 👑 PERFIL 〕━━━╮\n\n`;
+  let caption = `☽◯☾ ╭━ ♰ 👑 PERFIL ♰ ━╮ ☽◯☾\n\n`;
   caption += `Hola @${phone}! 👋\n`;
   caption += `Aquí tienes el desglose completo de tu perfil, estado y todos los activos que tienes actualmente en el sistema del bot:\n`;
-  caption += `╰━━━━━━━━━━━━╯\n\n`;
+  caption += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   
   caption += `*〔 👤 INFORMACIÓN PERSONAL 〕*\n`;
   caption += `- *Nombre real:* ${user.name || m.pushName || "Usuario"}\n`;

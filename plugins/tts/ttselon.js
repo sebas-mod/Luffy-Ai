@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
   if (!text)
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n╰┈➤ Usa: \`${m.prefix}ttselon <text>\`\n\n╰━━━━━━━━━━━━╯`,
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🚀 *ᴇʟᴏɴ ᴍᴜsᴋ ᴛᴛs*\n\n☽◯☾ ♰ Usa: \`${m.prefix}ttselon <text>\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
 
   m.react("🚀");

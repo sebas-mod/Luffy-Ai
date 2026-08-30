@@ -32,9 +32,9 @@ async function handler(m) {
             text += `> Tu cumpleaños: *${currentBday}*\n\n`
         }
         
-        text += `╭┈┈⬡「 📋 *ғᴏʀᴍᴀᴛ* 」\n`
+        text += `☽◯☾ ♰ 「 📋 *ғᴏʀᴍᴀᴛ* 」\n`
         text += `┃ ${m.prefix}configurar_cumpleanos DD-MM\n`
-        text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+        text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         text += `*Ejemplo:*\n`
         text += `> ${m.prefix}configurar_cumpleanos 25-12\n`
         text += `> ${m.prefix}configurar_cumpleanos 01-01`
@@ -73,10 +73,10 @@ async function handler(m) {
     
     await m.reply(
         `✅ *ʙɪʀᴛʜᴅᴀʏ ɢᴜᴀʀᴅᴀᴅᴏ!*\n\n` +
-        `╭┈┈⬡「 🎂 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 🎂 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📅 Fecha: *${day} ${months[month - 1]}*\n` +
         `┃ 👤 Usuario: @${cleanJid}\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> El bot te felicitará\n` +
         `> por tu cumpleaños en tu día especial! 🎉`,
         { mentions: [userJid] }

@@ -34,27 +34,27 @@ async function handler(m, { sock }) {
     const message = 
         `⭐ *¿QUÉ ES PREMIUM?*\n\n` +
         `Premium es un *usuario de pago* que obtiene acceso a funciones exclusivas y mayores ventajas.\n\n` +
-        `╭┈┈⬡「 💎 *VENTAJAS PREMIUM* 」\n` +
+        `☽◯☾ ♰ 「 💎 *VENTAJAS PREMIUM* 」\n` +
         `┃ ✦ \`\`\`Carne diaria: ${premiumCarne}x (vs ${defaultCarne}x usuario normal)\`\`\`\n` +
         `┃ ✦ \`\`\`Cooldown más bajo\`\`\`\n` +
         `┃ ✦ \`\`\`Acceso a funciones exclusivas\`\`\`\n` +
         `┃ ✦ \`\`\`Prioridad de respuesta\`\`\`\n` +
         `┃ ✦ \`\`\`Sin marca de agua en algunas funciones\`\`\`\n` +
         `┃ ✦ \`\`\`Soporte prioritario\`\`\`\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *CÓMO OBTENERLO* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 ⚙️ *CÓMO OBTENERLO* 」\n` +
         `┃ \`Premium se obtiene mediante:\`\n` +
         `┃ • Contacta al owner del bot\n` +
         `┃ • \`\`\`${config.command?.prefix || '.'}addprem <número> <duración>\`\`\`\n` +
         `┃ • Ejemplo: .addprem 628xxx 30d\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *LISTA DE COMANDOS PREMIUM* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 📋 *LISTA DE COMANDOS PREMIUM* 」\n` +
         `┃ \`Total: ${totalCommands} comandos\`\n` +
         `┃\n` +
         (totalCommands > 0 
             ? commandList.map(cmd => `┃ ${cmd}`).join('\n')
             : `┃ Todos los comandos están disponibles para usuarios normales`) +
-        `\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `¿Quieres actualizar? Contacta al capitán del bot\n${config.owner.number.map(num => `- wa.me/${num}`).join('\n') }`
     
     await m.reply(message)

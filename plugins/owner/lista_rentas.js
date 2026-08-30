@@ -50,12 +50,12 @@ function handler(m) {
 
     if (groupIds.length === 0) {
         return m.reply(
-            `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+            `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n` +
             `┃ 📋 *LISTA DE RENTAS*\n` +
             `╰━━━━━━━━╯\n\n` +
             `Estado: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n` +
             `Aún no hay grupos registrados\n\n` +
-            `╰┈➤ Agrega con: *${m.prefix}agregar_renta <enlace> <duración>*`
+            `☽◯☾ ♰ Agrega con: *${m.prefix}agregar_renta <enlace> <duración>*`
         )
     }
 
@@ -70,7 +70,7 @@ function handler(m) {
     const active = sorted.filter(id => sewaGroups[id].isLifetime || sewaGroups[id].expiredAt > Date.now())
     const expired = sorted.filter(id => !sewaGroups[id].isLifetime && sewaGroups[id].expiredAt <= Date.now())
 
-    let text = `╭━〔 ⚙️ SISTEMA 〕━╮\n┃ 📋 *LISTA DE RENTAS*\n╰━━━━━━━━╯\n\n`
+    let text = `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ 📋 *LISTA DE RENTAS*\n╰━━━━━━━━╯\n\n`
     text += `Estado del sistema: *${db.db.data.sewa.enabled ? '✅ ACTIVO' : '❌ INACTIVO'}*\n`
     text += `Total: *${groupIds.length}* grupos (${active.length} activos, ${expired.length} expirados)\n\n`
 

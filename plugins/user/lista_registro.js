@@ -164,7 +164,7 @@ async function handler(m, { sock }) {
     startIndex + PAGE_SIZE,
   );
 
-  let text = `╭━━━〔 📋 REGISTRO 〕━━━╮\n\n📋 *ʟɪsᴛᴀ ᴅᴇ ᴜsᴜᴀʀɪᴏs ʀᴇɢɪsᴛʀᴀᴅᴏs*\n\n`;
+  let text = `☽◯☾ ╭━ ♰ 📋 REGISTRO ♰ ━╮ ☽◯☾\n\n📋 *ʟɪsᴛᴀ ᴅᴇ ᴜsᴜᴀʀɪᴏs ʀᴇɢɪsᴛʀᴀᴅᴏs*\n\n`;
   text += `> Total: *${registeredUsers.length}* usuarios\n`;
   text += `> Página: *${page}/${totalPages}*\n`;
   text += `> Orden: *${options.sort === "nuevo" ? "Nuevos" : "Default"}*\n`;
@@ -189,7 +189,7 @@ async function handler(m, { sock }) {
   });
 
   if (totalPages > 1) {
-    text += `\n╰━━━━━━━━━━━━╯\n\n> Usa \`${m.prefix}lista_registro page ${page + 1 > totalPages ? totalPages : page + 1}\` para ver otra página`;
+    text += `\n╰━ ⊱༺༒༻⊰ ━╯\n\n> Usa \`${m.prefix}lista_registro page ${page + 1 > totalPages ? totalPages : page + 1}\` para ver otra página`;
   }
 
   const mentions = displayUsers.map((u) => u.jid + "@s.whatsapp.net");

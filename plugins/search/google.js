@@ -22,13 +22,13 @@ async function handler(m) {
   if (!query) {
     m.react("❌");
     return m.reply(
-        `╭━━━〔 🔍 Google News 〕━━━╮\n\n` +
+        `☽◯☾ ╭━ ♰ 🔍 Google News ♰ ━╮ ☽◯☾\n\n` +
         `Busca las noticias más recientes de Google News.\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}google <tema>*\n\n` +
         `*EJEMPLO:*\n` +
         `> *${m.prefix}google terremoto de hoy*\n` +
-        `> *${m.prefix}google teknologi terbaru*\n\n╰━━━━━━━━━━━━╯`,
+        `> *${m.prefix}google teknologi terbaru*\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -39,17 +39,17 @@ async function handler(m) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`╰┈➤ ❌ *Google Falló*\n\n> ${result.error}`);
+      return m.reply(`☽◯☾ ♰ ❌ *Google Falló*\n\n> ${result.error}`);
     }
 
     const items = result.results.slice(0, 10);
 
     if (items.length === 0) {
       m.react("☢");
-      return m.reply(`╰┈➤ ❌ No se encontraron resultados para: *${query}*`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron resultados para: *${query}*`);
     }
 
-    let txt = `╭━━━〔 🔍 GOOGLE NEWS 〕━━━╮\n──────────\n`;
+    let txt = `☽◯☾ ╭━ ♰ 🔍 GOOGLE NEWS ♰ ━╮ ☽◯☾\n──────────\n`;
     txt += `> Búsqueda: *${query}*\n\n`;
 
     items.forEach((item) => {
@@ -64,7 +64,7 @@ async function handler(m) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("╰┈➤ ❌ Error al buscar en Google, inténtalo de nuevo más tarde");
+    m.reply("☽◯☾ ♰ ❌ Error al buscar en Google, inténtalo de nuevo más tarde");
   }
 }
 

@@ -39,23 +39,23 @@ async function handler(m, { sock }) {
     
     if (arg === 'on' || arg === '1' || arg === 'aktif') {
         if (current) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está activo!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está activo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         db.setGroup(m.chat, { automedia: true })
         await db.save()
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ ¡Activado correctamente!\n> Los stickers se convertirán automáticamente en imagen/video`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ✅ ¡Activado correctamente!\n> Los stickers se convertirán automáticamente en imagen/video`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (arg === 'off' || arg === '0' || arg === 'nonaktif') {
         if (!current) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está inactivo!`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ¡Ya está inactivo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         db.setGroup(m.chat, { automedia: false })
         await db.save()
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ ¡Desactivado correctamente!`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`🎬 *ᴀᴜᴛᴏᴍᴇᴅɪᴀ*\n\n> ❌ ¡Desactivado correctamente!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
-    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`❌ Usa: \`${m.prefix}automedia on/off\``+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`❌ Usa: \`${m.prefix}automedia on/off\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 async function autoMediaHandler(m, sock) {

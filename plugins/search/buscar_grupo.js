@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `╭━━━〔 🔍 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ɢʀᴜᴘᴏs 〕━━━╮\n\n╰┈➤ Ingresa una palabra clave de búsqueda\n──────────\n\`Ejemplo: ${m.prefix}buscar_grupo gb isian\`\n╰━━━━━╯`,
+      `☽◯☾ ╭━ ♰ 🔍 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ɢʀᴜᴘᴏs ♰ ━╮ ☽◯☾\n\n☽◯☾ ♰ Ingresa una palabra clave de búsqueda\n──────────\n\`Ejemplo: ${m.prefix}buscar_grupo gb isian\`\n╰━━━━━╯`,
     );
   }
 
@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.data?.groups?.length) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron grupos para la palabra clave *${text}*`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron grupos para la palabra clave *${text}*`);
     }
 
     const groups = data.data.groups;

@@ -59,24 +59,24 @@ async function handler(m, { sock }) {
     
     if (!mediaSource) {
         await m.reply(
-            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
             `> No se detectó ningún video/nota de voz!\n\n` +
             `*Cómo usar:*\n` +
             `> 1. Envía un video + caption \`${m.prefix}toaudio\`\n` +
-            `> 2. Responde un video/VN con \`${m.prefix}toaudio\`\n\n╰━━━━━━━━━━━━╯`
+            `> 2. Responde un video/VN con \`${m.prefix}toaudio\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
         return
     }
     if (!isVideo && !isPtt) {
         await m.reply(
-            `╭━━━〔 ⚠️ ʏᴀ ᴇs ᴀᴜᴅɪᴏ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ⚠️ ʏᴀ ᴇs ᴀᴜᴅɪᴏ ♰ ━╮ ☽◯☾\n\n` +
             `> Este media ya está en formato de audio.\n` +
-            `> Usa \`${m.prefix}tovn\` si quieres convertirlo en nota de voz.\n\n╰━━━━━━━━━━━━╯`
+            `> Usa \`${m.prefix}tovn\` si quieres convertirlo en nota de voz.\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
         return
     }
 
-    await m.reply(`╰┈➤ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Extrayendo el audio del media...`)
+    await m.reply(`☽◯☾ ♰ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Extrayendo el audio del media...`)
 
     const tempDir = path.join(process.cwd(), 'temp')
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true })
@@ -90,9 +90,9 @@ async function handler(m, { sock }) {
 
         if (!buffer || buffer.length === 0) {
             await m.reply(
-                `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
+                `☽◯☾ ╭━ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
                 `> No se pudo descargar el media.\n` +
-                `> Es posible que el media ya no esté disponible.\n\n╰━━━━━━━━━━━━╯`
+                `> Es posible que el media ya no esté disponible.\n\n╰━ ⊱༺༒༻⊰ ━╯`
             )
             return
         }
@@ -103,9 +103,9 @@ async function handler(m, { sock }) {
 
         if (!fs.existsSync(outputPath)) {
             await m.reply(
-                `╭━━━〔 ❌ ᴄᴏɴᴠᴇʀsɪᴏɴ ᴇʀʀᴏʀᴇᴀᴅᴀ 〕━━━╮\n\n` +
+                `☽◯☾ ╭━ ♰ ❌ ᴄᴏɴᴠᴇʀsɪᴏɴ ᴇʀʀᴏʀᴇᴀᴅᴀ ♰ ━╮ ☽◯☾\n\n` +
                 `> No se pudo extraer el audio del media.\n` +
-                `> Asegúrate de que ffmpeg esté instalado correctamente.\n\n╰━━━━━━━━━━━━╯`
+                `> Asegúrate de que ffmpeg esté instalado correctamente.\n\n╰━ ⊱༺༒༻⊰ ━╯`
             )
             return
         }
@@ -118,9 +118,9 @@ async function handler(m, { sock }) {
 
     } catch (error) {
         await m.reply(
-            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
             `> Se produjo un error durante el procesamiento.\n` +
-            `> _${error.message}_\n\n╰━━━━━━━━━━━━╯`
+            `> _${error.message}_\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     } finally {
         if (fs.existsSync(inputPath)) fs.unlinkSync(inputPath)

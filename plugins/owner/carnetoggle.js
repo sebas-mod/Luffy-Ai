@@ -25,11 +25,11 @@ async function handler(m) {
     return m.reply(
         isEnable
             ? '⚡ *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴀᴄᴛɪᴠᴀᴅᴏ* ✅\n\n' +
-              '╭━〔 ⚙️ SISTEMA 〕━╮\n' +
+              '☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n' +
               '┃ Cada comando ahora requiere energía.\n' +
               '╰━━━━━━━━╯'
             : '🔌 *sɪsᴛᴇᴍᴀ ᴅᴇ ᴇɴᴇʀɢɪ́ᴀ ᴅᴇsᴀᴄᴛɪᴠᴀᴅᴏ* ❌\n\n' +
-              '╭━〔 ⚙️ SISTEMA 〕━╮\n' +
+              '☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n' +
               '┃ Los comandos ya no requieren energía.\n' +
               '╰━━━━━━━━╯'
     )

@@ -24,7 +24,7 @@ export function nombreDeUsuario(m, user) {
 export function validarIniciado(m, user) {
   if (!user) {
     m.reply(
-      `╰┈➤ ⛵ *No tienes un registro pirata*\n\n` +
+      `☽◯☾ ♰ ⛵ *No tienes un registro pirata*\n\n` +
         `› ¡Embárcate en la aventura primero!\n\n` +
         `⚓ Escribe: *${m.prefix}iniciar*`,
     );

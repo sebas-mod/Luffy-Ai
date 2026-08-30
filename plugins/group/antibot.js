@@ -198,17 +198,17 @@ function handler(m, { sock }) {
     db.setGroup(m.chat, { ...groupData, antibot: true });
     db.save();
     m.react("✅");
-    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`✅ *AntiBot activado*`+"\n╰━━━━━━━━━━━━╯");
+    return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`✅ *AntiBot activado*`+"\n╰━ ⊱༺༒༻⊰ ━╯");
   }
 
   if (args === "off") {
     db.setGroup(m.chat, { ...groupData, antibot: false });
     db.save();
     m.react("❌");
-    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *AntiBot desactivado*`+"\n╰━━━━━━━━━━━━╯");
+    return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *AntiBot desactivado*`+"\n╰━ ⊱༺༒༻⊰ ━╯");
   }
 
-  return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ Usa \`.antibot on\` o \`.antibot off\``+"\n╰━━━━━━━━━━━━╯");
+  return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ Usa \`.antibot on\` o \`.antibot off\``+"\n╰━ ⊱༺༒༻⊰ ━╯");
 }
 
 function isBotMessage(m) {

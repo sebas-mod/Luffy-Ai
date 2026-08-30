@@ -25,7 +25,7 @@ async function handler(m, { sock }) {
   const query = m.text?.trim();
 
   if (!query) {
-    return m.reply(`╰┈➤ ❌ Ingresa una palabra clave de búsqueda.\n\nEjemplo: \`${m.prefix}pin2 kucing\``);
+    return m.reply(`☽◯☾ ♰ ❌ Ingresa una palabra clave de búsqueda.\n\nEjemplo: \`${m.prefix}pin2 kucing\``);
   }
 
   await m.react("🕕");
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url);
     if (!results || results.length === 0) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ Vaya, no se encontraron resultados para *${query}*. Intenta con otra palabra clave.`);
+      return m.reply(`☽◯☾ ♰ ❌ Vaya, no se encontraron resultados para *${query}*. Intenta con otra palabra clave.`);
     }
 
     const randomItem = results[Math.floor(Math.random() * results.length)];
@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
 
     if (!imageUrl) {
       await m.react("❌");
-      return m.reply("╰┈➤ ⚠️ Imagen no disponible.");
+      return m.reply("☽◯☾ ♰ ⚠️ Imagen no disponible.");
     }
 
     const mediaMessage = await prepareWAMessageMedia({
@@ -95,7 +95,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[PIN2 Search]", error.message);
     await m.react("☢");
-    m.reply("╰┈➤ 😔 Error al cargar la búsqueda de Pinterest. El servidor puede estar teniendo problemas.");
+    m.reply("☽◯☾ ♰ 😔 Error al cargar la búsqueda de Pinterest. El servidor puede estar teniendo problemas.");
   }
 }
 

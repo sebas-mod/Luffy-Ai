@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const username = m.args[0]
     
     if (!username) {
-        return m.reply(`╰┈➤ 🐙 *ɢɪᴛʜᴜʙ sᴛᴀʟᴋ*\n\n> Ingresa el username de GitHub\n\n\`Ejemplo: ${m.prefix}githubstalk torvalds\``)
+        return m.reply(`☽◯☾ ♰ 🐙 *ɢɪᴛʜᴜʙ sᴛᴀʟᴋ*\n\n> Ingresa el username de GitHub\n\n\`Ejemplo: ${m.prefix}githubstalk torvalds\``)
     }
     
     m.react('🔍')
@@ -34,21 +34,21 @@ async function handler(m, { sock }) {
         
         if (!res.data?.status || !res.data?.data) {
             m.react('❌')
-            return m.reply(`╰┈➤ ❌ Username *${username}* no fue encontrado`)
+            return m.reply(`☽◯☾ ♰ ❌ Username *${username}* no fue encontrado`)
         }
         
         const d = res.data.data
         
-        const caption = `╭━━━〔 🐙 ɢɪᴛʜᴜʙ sᴛᴀʟᴋ 〕━━━╮\n\n` +
-            `╰┈➤ 👤 *Username:* ${d.username}\n` +
-            `╰┈➤ 📛 *Nombre:* ${d.name || '-'}\n` +
-            `╰┈➤ 🏢 *Company:* ${d.company || '-'}\n` +
-            `╰┈➤ 📍 *Location:* ${d.location || '-'}\n──────────\n` +
-            `╰┈➤ 📦 *Public Repos:* ${d.public_repos}\n` +
-            `╰┈➤ 👥 *Followers:* ${d.followers}\n` +
-            `╰┈➤ 👤 *Following:* ${d.following}\n──────────\n` +
+        const caption = `☽◯☾ ╭━ ♰ 🐙 ɢɪᴛʜᴜʙ sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ 👤 *Username:* ${d.username}\n` +
+            `☽◯☾ ♰ 📛 *Nombre:* ${d.name || '-'}\n` +
+            `☽◯☾ ♰ 🏢 *Company:* ${d.company || '-'}\n` +
+            `☽◯☾ ♰ 📍 *Location:* ${d.location || '-'}\n──────────\n` +
+            `☽◯☾ ♰ 📦 *Public Repos:* ${d.public_repos}\n` +
+            `☽◯☾ ♰ 👥 *Followers:* ${d.followers}\n` +
+            `☽◯☾ ♰ 👤 *Following:* ${d.following}\n──────────\n` +
             `📝 *Bio:*\n${d.bio || '-'}\n──────────\n` +
-            `🔗 ${d.url}\n\n╰━━━━━━━━━━━━╯`
+            `🔗 ${d.url}\n\n╰━ ⊱༺༒༻⊰ ━╯`
         
         m.react('✅')
         

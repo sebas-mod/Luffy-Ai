@@ -23,18 +23,18 @@ async function handler(m, { sock }) {
 
     if (!name || !m.quoted) {
         return m.reply(
-            `╭━━━〔 🌐 INFORMACIÓN DE USO 〕━━━╮\n\n` +
-            `╰┈➤ Esta función se usa para hacer un *deploy* (alojar) código HTML o un proyecto completo (ZIP) directamente en Vercel.\n\n` +
+            `☽◯☾ ╭━ ♰ 🌐 INFORMACIÓN DE USO ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ Esta función se usa para hacer un *deploy* (alojar) código HTML o un proyecto completo (ZIP) directamente en Vercel.\n\n` +
             `✦ *EJEMPLO DE USO:*\n` +
-            `╰┈➤ Responde un texto/código HTML con el comando: \`${m.prefix}deploy nombresitio\`\n` +
-            `╰┈➤ Responde un archivo \`.html\` o \`.zip\` con el comando: \`${m.prefix}deploy nombresitio\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `☽◯☾ ♰ Responde un texto/código HTML con el comando: \`${m.prefix}deploy nombresitio\`\n` +
+            `☽◯☾ ♰ Responde un archivo \`.html\` o \`.zip\` con el comando: \`${m.prefix}deploy nombresitio\`\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
     const token = config.vercel?.token
     if (!token) {
-        return m.reply(`❌ *TOKEN NO CONFIGURADO*\n──────────\n╰┈➤ El Token de Vercel no está configurado en la configuración del sistema. Configura \`config.vercel.token\` primero.`)
+        return m.reply(`❌ *TOKEN NO CONFIGURADO*\n──────────\n☽◯☾ ♰ El Token de Vercel no está configurado en la configuración del sistema. Configura \`config.vercel.token\` primero.`)
     }
 
     m.react('🕕')
@@ -62,7 +62,7 @@ async function handler(m, { sock }) {
 
             if (filesPayload.length === 0) {
                 m.react('❌')
-                return m.reply(`╰┈➤ ❌ *ARCHIVO ZIP VACÍO*\n\nEl archivo ZIP que subiste no contiene ningún archivo. Asegúrate de que el ZIP contenga un proyecto HTML/Web estático.`)
+                return m.reply(`☽◯☾ ♰ ❌ *ARCHIVO ZIP VACÍO*\n\nEl archivo ZIP que subiste no contiene ningún archivo. Asegúrate de que el ZIP contenga un proyecto HTML/Web estático.`)
             }
         } else if (
             m.quoted.mimetype === 'text/html' ||
@@ -86,11 +86,11 @@ async function handler(m, { sock }) {
         } else {
             m.react('❌')
             return m.reply(
-                `╭━━━〔 ❌ FORMATO NO SOPORTADO 〕━━━╮\n\n` +
+                `☽◯☾ ╭━ ♰ ❌ FORMATO NO SOPORTADO ♰ ━╮ ☽◯☾\n\n` +
                 `El sistema solo admite el despliegue desde los siguientes formatos:\n` +
                 `• Texto de código HTML\n` +
                 `• Documento \`.html\`\n` +
-                `• Archivo comprimido \`.zip\`\n\n╰━━━━━━━━━━━━╯`
+                `• Archivo comprimido \`.zip\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
             )
         }
 
@@ -142,13 +142,13 @@ async function handler(m, { sock }) {
         m.react('✅')
 
         await m.reply(
-            `╭━━━〔 🚀 DEPLOY EXITOSO 〕━━━╮\n\n` +
-            `╰┈➤ Tu proyecto se subió correctamente a Vercel y se está desplegando (building). Puedes acceder a él de inmediato a través del siguiente enlace.\n\n` +
-            `✦────────✦\n*DETALLES DEL DEPLOY:*\n` +
-            `╰┈➤ Nombre del Proyecto: *${name}*\n` +
-            `╰┈➤ Tipo de Proyecto: *${isZip ? 'Archivo ZIP (Múltiples archivos)' : 'HTML estático (Archivo único)'}*\n` +
-            `╰┈➤ Enlace: https://${domain}\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `☽◯☾ ╭━ ♰ 🚀 DEPLOY EXITOSO ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ Tu proyecto se subió correctamente a Vercel y se está desplegando (building). Puedes acceder a él de inmediato a través del siguiente enlace.\n\n` +
+            `♰ ──────── ♱✦\n*DETALLES DEL DEPLOY:*\n` +
+            `☽◯☾ ♰ Nombre del Proyecto: *${name}*\n` +
+            `☽◯☾ ♰ Tipo de Proyecto: *${isZip ? 'Archivo ZIP (Múltiples archivos)' : 'HTML estático (Archivo único)'}*\n` +
+            `☽◯☾ ♰ Enlace: https://${domain}\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
 
     } catch (error) {
@@ -159,7 +159,7 @@ async function handler(m, { sock }) {
             error.response?.data?.message ||
             error.message
 
-        m.reply(`❌ *DEPLOY FALLIDO*\n──────────\n╰┈➤ Se produjo un error al intentar subir el proyecto a Vercel.\n\n*Causa del error:*\n> ${err}`)
+        m.reply(`❌ *DEPLOY FALLIDO*\n──────────\n☽◯☾ ♰ Se produjo un error al intentar subir el proyecto a Vercel.\n\n*Causa del error:*\n> ${err}`)
     }
 }
 

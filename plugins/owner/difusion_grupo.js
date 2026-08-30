@@ -54,12 +54,12 @@ async function handler(m, { sock }) {
 
   if (command === "stopbcgc" || command === "stopbroadcastgc") {
     if (!global.statusBcgc) {
-      return m.reply(`╰┈➤ ❌ No hay un broadcast de grupos en curso.`);
+      return m.reply(`☽◯☾ ♰ ❌ No hay un broadcast de grupos en curso.`);
     }
     global.stopBcgc = true;
     m.react("⏹️");
     return m.reply(
-      `👑•─────•👑\n⏹️ *Broadcast de Grupos Detenido*\n\n> Deteniendo el proceso de broadcast...\n✦────────✦`,
+      `👑•─────•👑\n⏹️ *Broadcast de Grupos Detenido*\n\n> Deteniendo el proceso de broadcast...\n♰ ──────── ♱✦`,
     );
   }
 
@@ -74,14 +74,14 @@ async function handler(m, { sock }) {
   if (input.toLowerCase() === "on") {
     db.setting("bcgcEnabled", true);
     return m.reply(
-      `👑•─────•👑\n✅ *Broadcast de Grupos Activado*\n\n> Ahora puedes enviar broadcast a todos los grupos.\n✦────────✦`,
+      `👑•─────•👑\n✅ *Broadcast de Grupos Activado*\n\n> Ahora puedes enviar broadcast a todos los grupos.\n♰ ──────── ♱✦`,
     );
   }
 
   if (input.toLowerCase() === "off") {
     db.setting("bcgcEnabled", false);
     return m.reply(
-      `👑•─────•👑\n✅ *Broadcast de Grupos Desactivado*\n\n> El broadcast de grupos se ha apagado.\n✦────────✦`,
+      `👑•─────•👑\n✅ *Broadcast de Grupos Desactivado*\n\n> El broadcast de grupos se ha apagado.\n♰ ──────── ♱✦`,
     );
   }
 
@@ -110,14 +110,14 @@ async function handler(m, { sock }) {
 
   if (global.statusBcgc) {
     return m.reply(
-      `👑•─────•👑\n❌ *Broadcast En Curso*\n\n> Escribe *${m.prefix}stopbcgc* para detenerlo primero.\n✦────────✦`,
+      `👑•─────•👑\n❌ *Broadcast En Curso*\n\n> Escribe *${m.prefix}stopbcgc* para detenerlo primero.\n♰ ──────── ♱✦`,
     );
   }
 
   const enabled = db.setting("bcgcEnabled");
   if (!enabled) {
     return m.reply(
-      `👑•─────•👑\n❌ *Broadcast Aún No Activo*\n\n> Escribe *${m.prefix}difusion_grupo on* primero para activarlo.\n✦────────✦`,
+      `👑•─────•👑\n❌ *Broadcast Aún No Activo*\n\n> Escribe *${m.prefix}difusion_grupo on* primero para activarlo.\n♰ ──────── ♱✦`,
     );
   }
 
@@ -185,7 +185,7 @@ async function handler(m, { sock }) {
     if (groupIds.length === 0) {
       m.react("❌");
       return m.reply(
-        `👑•─────•👑\n❌ *Sin Grupos*\n\n> El bot no encontró grupos a los que enviar${blCount > 0 ? ` (${blCount} grupos en la lista negra)` : ""}\n✦────────✦`,
+        `👑•─────•👑\n❌ *Sin Grupos*\n\n> El bot no encontró grupos a los que enviar${blCount > 0 ? ` (${blCount} grupos en la lista negra)` : ""}\n♰ ──────── ♱✦`,
       );
     }
 
@@ -311,7 +311,7 @@ async function handleSetDelay(m, db, input) {
 
   const ms = parseDelay(input);
   if (!ms || ms < 1000) {
-    return m.reply(`╰┈➤ ❌ Formato incorrecto. Ejemplo: *5s*, *2m*, *1h*, *1d*`);
+    return m.reply(`☽◯☾ ♰ ❌ Formato incorrecto. Ejemplo: *5s*, *2m*, *1h*, *1d*`);
   }
 
   db.setting("jedaBcgc", ms);

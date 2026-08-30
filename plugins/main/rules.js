@@ -19,9 +19,9 @@ const pluginConfig = {
 }
 
 function buildDefaultRules(botName, prefix) {
-    return `╭━━━〔 📜 REGLAS 〕━━━╮\n\n📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*
+    return `☽◯☾ ╭━ ♰ 📜 REGLAS ♰ ━╮ ☽◯☾\n\n📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*
 
-✦────────✦
+♰ ──────── ♱✦
 
 ¡Hola! Antes de usar todas las funciones disponibles, asegúrate de comprender y cumplir las siguientes reglas. Estas reglas existen para que todos los usuarios estén cómodos y el bot funcione sin problemas.
 
@@ -46,10 +46,10 @@ function buildDefaultRules(botName, prefix) {
 - Las infracciones graves o repetidas pueden provocar un *baneo permanente* del uso del bot
 - El capitán tiene derecho a decidir las sanciones sin previo aviso
 
-✦────────✦
+♰ ──────── ♱✦
 
 _Al usar este bot, se considera que leíste y aceptaste todas las reglas anteriores._
-╰━━━━━━━━━━━━╯`
+╰━ ⊱༺༒༻⊰ ━╯`
 }
 
 async function handler(m, { sock }) {
@@ -61,11 +61,11 @@ async function handler(m, { sock }) {
     if (customRules && typeof customRules === "string" && customRules.trim().length > 0) {
         rulesText = customRules
     } else if (Array.isArray(customRules) && customRules.length > 0) {
-        rulesText = `╭━━━〔 📜 REGLAS 〕━━━╮\n\n📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*\n\n`
+        rulesText = `☽◯☾ ╭━ ♰ 📜 REGLAS ♰ ━╮ ☽◯☾\n\n📜 *Rᴇɢʟᴀs ᴅᴇ ${botName.toUpperCase()}*\n\n`
         customRules.forEach((rule, i) => {
             rulesText += `${String(i + 1).padStart(2, '0')} › ${rule}\n`
         })
-        rulesText += `\n╰━━━━━━━━━━━━╯`
+        rulesText += `\n╰━ ⊱༺༒༻⊰ ━╯`
     } else {
         rulesText = buildDefaultRules(botName, m.prefix)
     }

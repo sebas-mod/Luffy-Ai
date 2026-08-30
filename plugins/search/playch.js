@@ -83,18 +83,18 @@ async function handler(m, { sock }) {
 
   if (!q)
     return m.reply(
-      `╭━━━〔 🎵 REPRODUCIR EN CANAL 〕━━━╮\n\n╰┈➤ \`${m.prefix}playch <título de la canción>\`\n╰┈➤ \`${m.prefix}playch --idch <id_canal> <título de la canción>\`\n\n╰━━━━━━━━━━━━╯`,
+      `☽◯☾ ╭━ ♰ 🎵 REPRODUCIR EN CANAL ♰ ━╮ ☽◯☾\n\n☽◯☾ ♰ \`${m.prefix}playch <título de la canción>\`\n☽◯☾ ♰ \`${m.prefix}playch --idch <id_canal> <título de la canción>\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   if (!chId)
     return m.reply(
-      `╰┈➤ ❌ El canal no está configurado.\n──────────\nUsa \`--idch <id>\` o configúralo en config.js`,
+      `☽◯☾ ♰ ❌ El canal no está configurado.\n──────────\nUsa \`--idch <id>\` o configúralo en config.js`,
     );
 
   m.react("🔎");
   try {
     const { videos } = await yts(q);
     const video = pickVideo({ videos });
-    if (!video) return m.reply(`╰┈➤ ❌ Video no encontrado`);
+    if (!video) return m.reply(`☽◯☾ ♰ ❌ Video no encontrado`);
 
     const ytChannel = video.author?.name || video.author?.username || "Unknown";
     
@@ -105,7 +105,7 @@ async function handler(m, { sock }) {
     }
     const downloadUrl = data.result.results[0].download;
 
-    let info = `╭━━━〔 🎵 SONANDO AHORA (CANAL) 〕━━━╮\n\n`;
+    let info = `☽◯☾ ╭━ ♰ 🎵 SONANDO AHORA (CANAL) ♰ ━╮ ☽◯☾\n\n`;
     info += `📌 *Título:* ${video.title}\n\n`;
     info += `*DETALLE*\n`;
     info += `👤 Canal: *${ytChannel}*\n`;
@@ -141,7 +141,7 @@ async function handler(m, { sock }) {
       waveform: Array.from(waveform),
     });
     m.react("✅");
-    m.reply(`╰┈➤ ✅ *${title}* enviado correctamente al canal`);
+    m.reply(`☽◯☾ ♰ ✅ *${title}* enviado correctamente al canal`);
   } catch (e) {
     console.error("[PlayCh]", e);
     m.react("☢");

@@ -21,7 +21,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        let help = `✦ • ─── • ✦\n📽️ *𝗔 𝗟 𝗜 𝗚 𝗛 𝗧 𝗠 𝗢 𝗧 𝗜 𝗢 𝗡*\n──────────\n`
+        let help = `♰ ┄ ── ☽◯☾ ── ┄ ♰\n📽️ *𝗔 𝗟 𝗜 𝗚 𝗛 𝗧 𝗠 𝗢 𝗧 𝗜 𝗢 𝗡*\n──────────\n`
         help += `> *${config.bot?.name}* descarga proyectos y presets de Alight Motion\n`
         help += `> Solo pasa el enlace de *alight.link*\n\n`
         help += usage(m.prefix, m.command, "https://alight.link/xxxxx")

@@ -86,7 +86,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const jbOwners = getJadibotOwners(jadibotId);
       if (jbOwners.length === 0) {
         return m.reply(
-          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.\n✦────────✦`,
+          `👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ ᴊᴀᴅɪʙᴏᴛ*\n\n> Aún no hay owners registrados.\n> Usa \`${m.prefix}agregar_dueno\` para agregar.\n♰ ──────── ♱✦`,
         );
       }
       let txt = `📋 *LISTA DE OWNERS JADIBOT* — ${jadibotId}\n\n`;
@@ -104,7 +104,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       const allOwners = [...new Set([...configOwners, ...dbOwners])];
 
       if (allOwners.length === 0) {
-        return m.reply(`👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.\n✦────────✦`);
+        return m.reply(`👑•─────•👑\n📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴏᴡɴᴇʀ*\n\n> Aún no hay owners registrados.\n♰ ──────── ♱✦`);
       }
       let txt = `📋 *LISTA DE OWNERS*\n\n`;
       const mentions = allOwners.map(toMentionJid).filter(Boolean);
@@ -141,7 +141,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
   }
 
   if (targetNumber.length < 10 || targetNumber.length > 15) {
-    return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido\n✦────────✦`);
+    return m.reply(`👑•─────•👑\n❌ *ᴇʀʀᴏʀ*\n\n> Formato de número no válido\n♰ ──────── ♱✦`);
   }
 
   if (isJadibot && jadibotId) {
@@ -149,21 +149,21 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
       if (addJadibotOwner(jadibotId, targetNumber)) {
         await m.react("👑");
         return m.reply(
-          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como owner jadibot\n╰━━━━━━━━━━━━╯`,
+          `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ Exitoso, se añadió *${targetNumber}* como owner jadibot\n╰━ ⊱༺༒༻⊰ ━╯`,
         );
       } else {
         return m.reply(
-          `╰┈➤ ❌ \`${targetNumber}\` ya es owner de este Jadibot.`,
+          `☽◯☾ ♰ ❌ \`${targetNumber}\` ya es owner de este Jadibot.`,
         );
       }
     } else if (isDel) {
       if (removeJadibotOwner(jadibotId, targetNumber)) {
         await m.react("✅");
         return m.reply(
-          `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los owners jadibot\n╰━━━━━━━━━━━━╯`,
+          `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los owners jadibot\n╰━ ⊱༺༒༻⊰ ━╯`,
         );
       } else {
-        return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es owner de este Jadibot.`);
+        return m.reply(`☽◯☾ ♰ ❌ \`${targetNumber}\` no es owner de este Jadibot.`);
       }
     }
     return;
@@ -171,7 +171,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
 
   if (isAdd) {
     if (db.data.owner.includes(targetNumber)) {
-      return m.reply(`╰┈➤ ❌ \`${targetNumber}\` ya es full owner.`);
+      return m.reply(`☽◯☾ ♰ ❌ \`${targetNumber}\` ya es full owner.`);
     }
 
     db.data.owner.push(targetNumber);
@@ -185,12 +185,12 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     const displayName = customName || getOwnerName(targetNumber);
     await m.react("👑");
     return m.reply(
-      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}\n╰━━━━━━━━━━━━╯`,
+      `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ Exitoso, se añadió *${targetNumber}* como full owner${customName ? ` (${customName})` : ""}\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   } else if (isDel) {
     const index = db.data.owner.indexOf(targetNumber);
     if (index === -1) {
-      return m.reply(`╰┈➤ ❌ \`${targetNumber}\` no es full owner.`);
+      return m.reply(`☽◯☾ ♰ ❌ \`${targetNumber}\` no es full owner.`);
     }
 
     db.data.owner.splice(index, 1);
@@ -200,7 +200,7 @@ async function handler(m, { sock, jadibotId, isJadibot }) {
     db.save();
 
     await m.react("✅");
-    return m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los full owners\n╰━━━━━━━━━━━━╯`);
+    return m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ Exitoso, se eliminó *${targetNumber}* de los full owners\n╰━ ⊱༺༒༻⊰ ━╯`);
   }
 }
 

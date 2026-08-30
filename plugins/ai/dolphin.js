@@ -51,20 +51,20 @@ async function handler(m, { sock }) {
     
     if (!text) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🐬 *ᴅᴏʟᴘʜɪɴ ᴀɪ*\n\n` +
             `> Chat con el Dolphin AI 24B Model\n\n` +
-            `╭┈┈⬡「 📋 *ᴘʟᴀɴᴛɪʟʟᴀs* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴘʟᴀɴᴛɪʟʟᴀs* 」\n` +
             `┃ • \`logical\` - Respuesta lógica\n` +
             `┃ • \`creative\` - Respuesta creativa\n` +
             `┃ • \`summarize\` - Resumen\n` +
             `┃ • \`code-beginner\` - Código para principiantes\n` +
             `┃ • \`code-advanced\` - Código avanzado\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> *Ejemplo:*\n` +
             `> ${m.prefix}dolphin ¿qué es la IA?\n` +
             `> ${m.prefix}dolphin --creative crea un poema\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

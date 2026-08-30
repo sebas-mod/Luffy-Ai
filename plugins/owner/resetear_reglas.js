@@ -21,10 +21,10 @@ function handler(m) {
     db.setting('botRules', null)
     
     m.reply(
-        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
         `┃ ✅ *ʀᴇɢʟᴀs ᴅᴇʟ ʙᴏᴛ ʀᴇɪɴɪᴄɪᴀᴅᴀs*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
-        `╰┈➤ ¡Las reglas del bot se reiniciaron al predeterminado!\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ ¡Las reglas del bot se reiniciaron al predeterminado!\n` +
         `› Escribe \`${m.prefix}rules\` para verlas.`
     )
 }

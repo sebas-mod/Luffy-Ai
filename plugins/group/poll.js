@@ -78,9 +78,9 @@ async function handler(m, { sock }) {
     
     try {
         const pollMsg =
-            `╭━━━〔 ⚡ GRUPO 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n` +
             `┃ 📢 Encuesta creada correctamente ✅\n` +
-            `╰━━━━━━━━━━━━╯`;
+            `╰━ ⊱༺༒༻⊰ ━╯`;
         
         await m.reply(pollMsg, { mentions: [m.sender] });
         

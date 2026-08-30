@@ -22,7 +22,7 @@ async function handler(m) {
     const groupData = db.getGroup(m.chat) || db.setGroup(m.chat)
     
     if (!groupData.intro) {
-        return m.reply("╰┈➤ "+`❌ Este grupo ya usa el intro predeterminado!`)
+        return m.reply("☽◯☾ ♰ "+`❌ Este grupo ya usa el intro predeterminado!`)
     }
     
     delete groupData.intro

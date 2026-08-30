@@ -20,13 +20,13 @@ async function handler(m, { sock }) {
   const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
 
   if (!isImage) {
-    let help = `╭━━━〔 ✨ MEJORA HD V3 (UNBLUR) 〕━━━╮\n\n`
-    help += `╰┈➤ Función avanzada para arreglar imágenes borrosas y devolverles nitidez usando inteligencia artificial!\n\n`
+    let help = `☽◯☾ ╭━ ♰ ✨ MEJORA HD V3 (UNBLUR) ♰ ━╮ ☽◯☾\n\n`
+    help += `☽◯☾ ♰ Función avanzada para arreglar imágenes borrosas y devolverles nitidez usando inteligencia artificial!\n\n`
     help += `✦ *Cómo Usar:*\n`
-    help += `╰┈➤ Envía una imagen y agrega el mensaje *${m.prefix}hd3*\n`
-    help += `╰┈➤ O responde a una imagen ya enviada con el comando *${m.prefix}hd3*\n\n`
+    help += `☽◯☾ ♰ Envía una imagen y agrega el mensaje *${m.prefix}hd3*\n`
+    help += `☽◯☾ ♰ O responde a una imagen ya enviada con el comando *${m.prefix}hd3*\n\n`
     help += `_El proceso de renderizado puede tardar unos momentos._\n\n`
-    help += `╰━━━━━━━━━━━━╯`
+    help += `╰━ ⊱༺༒༻⊰ ━╯`
     return m.reply(help);
   }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
     if (!buffer) {
       await m.react("❌");
-      return m.reply(`╰┈➤ 😔 Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Por favor, intenta volver a enviarla!`);
+      return m.reply(`☽◯☾ ♰ 😔 Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Por favor, intenta volver a enviarla!`);
     }
 
     const form = new FormData();
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const data = response.data;
     if (!data || !data.status || !data.result || !data.result.output_url || !data.result.output_url[0]) {
       await m.react("❌");
-      return m.reply(`╰┈➤ 😔 Lo siento, la IA no pudo procesar tu imagen esta vez. ¡Inténtalo de nuevo en unos momentos!`);
+      return m.reply(`☽◯☾ ♰ 😔 Lo siento, la IA no pudo procesar tu imagen esta vez. ¡Inténtalo de nuevo en unos momentos!`);
     }
 
     await m.react("✅");

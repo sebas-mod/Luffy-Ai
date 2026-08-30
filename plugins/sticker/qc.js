@@ -83,14 +83,14 @@ async function handler(m, { sock }) {
         const colorList = Object.keys(COLORS).join(', ')
         return m.reply(
             `💬 *ǫᴜᴏᴛᴇ sᴛɪᴄᴋᴇʀ*\n\n` +
-            `╭┈┈⬡「 📋 *ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ* 」\n` +
             `┃ ◦ \`${m.prefix}qc <color> <texto>\`\n` +
             `┃ ◦ Responde un mensaje + \`${m.prefix}qc <color>\`\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Ejemplo: \`${m.prefix}qc pink Hola a todos!\`\n\n` +
-            `╭┈┈⬡「 🎨 *ᴄᴏʟᴏʀᴇꜱ* 」\n` +
+            `☽◯☾ ♰ 「 🎨 *ᴄᴏʟᴏʀᴇꜱ* 」\n` +
             `┃ ${colorList}\n` +
-            `╰┈┈⬡`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
     const backgroundColor = COLORS[color]
     
     if (!backgroundColor) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no existe!\n> Usa uno de los colores disponibles.`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ᴇʀʀᴏʀ*\n\n> ¡El color \`${color}\` no existe!\n> Usa uno de los colores disponibles.`)
     }
     
     let message = args.slice(1).join(' ')
@@ -108,11 +108,11 @@ async function handler(m, { sock }) {
     }
     
     if (!message) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Ingresa el texto para la cita!`)
     }
     
     if (message.length > 80) {
-        return m.reply(`✦ • ─── • ✦\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ᴇʀʀᴏʀ*\n\n> ¡Máximo 80 caracteres! (Actual: ${message.length})`)
     }
     
     m.react('🕕')

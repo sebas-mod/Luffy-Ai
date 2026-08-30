@@ -33,11 +33,11 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `╭━━━〔 📸 sᴄʀᴇᴇɴsʜᴏᴛ ᴡᴇʙ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 📸 sᴄʀᴇᴇɴsʜᴏᴛ ᴡᴇʙ ♰ ━╮ ☽◯☾\n\n` +
         `> Captura de pantalla de una página web\n\n` +
         `> *Ejemplo:*\n` +
         `> ${m.prefix}ssweb https://google.com\n` +
-        `> ${m.prefix}ss https://github.com --mobile\n\n╰━━━━━━━━━━━━╯`,
+        `> ${m.prefix}ss https://github.com --mobile\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

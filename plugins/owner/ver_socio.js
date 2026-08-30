@@ -41,7 +41,7 @@ async function handler(m) {
     const jid = targetNumber + '@s.whatsapp.net'
 
     if (!info) {
-        return m.reply(`╰┈➤ ❌ @${targetNumber} no es partner`, { mentions: [jid] })
+        return m.reply(`☽◯☾ ♰ ❌ @${targetNumber} no es partner`, { mentions: [jid] })
     }
 
     const now = Date.now()
@@ -49,7 +49,7 @@ async function handler(m) {
     const totalDays = info.addedAt ? Math.ceil((info.expired - info.addedAt) / (1000 * 60 * 60 * 24)) : '?'
     const user = db.getUser(jid)
 
-    let txt = `╭━━━〔 🤝 DETALLES DEL PARTNER 〕━━━╮\n\n`
+    let txt = `☽◯☾ ╭━ ♰ 🤝 DETALLES DEL PARTNER ♰ ━╮ ☽◯☾\n\n`
     txt += `👤 Usuario: @${targetNumber}\n`
     txt += `📛 Nombre: *${info.name || 'Desconocido'}*\n`
     txt += `📅 Inicio: *${info.addedAt ? formatDate(info.addedAt) : 'Desconocido'}*\n`

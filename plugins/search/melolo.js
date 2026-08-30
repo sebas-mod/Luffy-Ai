@@ -64,12 +64,12 @@ async function handler(m, { sock }) {
 
   if (!category) {
     return m.reply(
-      `╭━━━〔 🎭 DRAMA DE MELOLO 〕━━━╮\n\n╰┈➤ Ingresa el género o título\n──────────\n\`${m.prefix}melolo fantasy\`\n╰━━━━━╯`,
+      `☽◯☾ ╭━ ♰ 🎭 DRAMA DE MELOLO ♰ ━╮ ☽◯☾\n\n☽◯☾ ♰ Ingresa el género o título\n──────────\n\`${m.prefix}melolo fantasy\`\n╰━━━━━╯`,
     );
   }
 
   if (!config.APIkey?.covenant) {
-    return m.reply("╰┈➤ ❌ La API key de covenant no está configurada!");
+    return m.reply("☽◯☾ ♰ ❌ La API key de covenant no está configurada!");
   }
 
   m.react("🔍");
@@ -81,7 +81,7 @@ async function handler(m, { sock }) {
     if (items.length === 0) {
       m.react("❌");
       return m.reply(
-        `╰┈➤ ❌ No se encontraron resultados de Melolo para la categoría: ${category}`,
+        `☽◯☾ ♰ ❌ No se encontraron resultados de Melolo para la categoría: ${category}`,
       );
     }
 
@@ -92,7 +92,7 @@ async function handler(m, { sock }) {
     caption += `🔋 *Crédito Restante:* ${result?.usage?.remaining ?? "-"}\n\n`;
 
     items.forEach((item, index) => {
-      caption += `╰┈➤ *${index + 1}.* ${trimText(item.title, 70)}\n`;
+      caption += `☽◯☾ ♰ *${index + 1}.* ${trimText(item.title, 70)}\n`;
       caption += `› 📂 ${trimText(item.section, 32)}\n`;
       caption += `› ⭐ ${item.rating || "-"}\n`;
       caption += `› 📝 ${trimText(item.episodes, 110)}\n`;
@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
     m.react("☢");
     const message = error?.response?.data?.message || error?.message;
     if (message) {
-      return m.reply(`╰┈➤ ❌ ${message}`);
+      return m.reply(`☽◯☾ ♰ ❌ ${message}`);
     }
     m.reply(te(m.prefix, m.command, m.pushName));
   }

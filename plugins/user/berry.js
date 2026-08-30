@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     
     const isSelf = targetJid === m.sender
     
-    let text = `╭━━━〔 💰 BERRY 〕━━━╮\n\n`
+    let text = `☽◯☾ ╭━ ♰ 💰 BERRY ♰ ━╮ ☽◯☾\n\n`
 
 text += `┃ 👤 Usuario: ${targetName}\n`
 text += `┃ 💰 Berry: ${berryDisplay}\n`
@@ -51,13 +51,13 @@ const isOwner = config.isOwner(targetJid) ? 'Owner' : ''
 const isPremium = user.isPremium ? 'Premium' : 'Free'
 
 text += `┃ 💎 Estado: ${isOwner || isPremium}\n`
-text += `╰━━━━━━━━━━━━╯`
+text += `╰━ ⊱༺༒༻⊰ ━╯`
 
 if (isSelf) {
-  text += `\n\n╭━━〔 🛒 TIENDA 〕━━╮\n`
-  text += `┃ ╰┈➤ \`.buycarne <cant>\` (1 = 100 berry)\n`
-  text += `┃ ╰┈➤ \`.comprar_funcion\` (1 = 3000 berry)\n`
-  text += `╰━━━━━━━━━━━━╯\n`
+  text += `\n\n☽◯☾ ╭ ♰ 🛒 TIENDA ♰ ━╮ ☽◯☾\n`
+  text += `┃ ☽◯☾ ♰ \`.buycarne <cant>\` (1 = 100 berry)\n`
+  text += `┃ ☽◯☾ ♰ \`.comprar_funcion\` (1 = 3000 berry)\n`
+  text += `╰━ ⊱༺༒༻⊰ ━╯\n`
   text += `\n_🎮 ¡Juega para ganar berry!_`
 }
     

@@ -40,38 +40,38 @@ function handler(m) {
 
     if (option === 'on') {
         db.setGroup(m.chat, { antijudol: 'on' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiJudol activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiJudol activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option === 'off') {
         db.setGroup(m.chat, { antijudol: 'off' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ *AntiJudol desactivado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'❌ *AntiJudol desactivado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option.startsWith('metode')) {
         const method = m.args?.[1]?.toLowerCase()
         if (method === 'kick') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiJudol modo KICK activado*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiJudol modo KICK activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         if (method === 'remove' || method === 'delete') {
             db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiJudol modo DELETE activado*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiJudol modo DELETE activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
-        return m.reply("╰┈➤ "+`❌ ¡Método no válido! Usa: \`kick\` o \`remove\``)
+        return m.reply("☽◯☾ ♰ "+`❌ ¡Método no válido! Usa: \`kick\` o \`remove\``)
     }
 
     if (option === 'kick') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'kick' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiJudol modo KICK activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiJudol modo KICK activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option === 'remove' || option === 'delete') {
         db.setGroup(m.chat, { antijudol: 'on', antijudolMode: 'remove' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiJudol modo DELETE activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiJudol modo DELETE activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
-    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick`, `metode remove`'+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick`, `metode remove`'+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 export { pluginConfig as config, handler }

@@ -102,7 +102,7 @@ async function handler(m, { sock }) {
 
   if (!durationMs)
     return m.reply(
-      `╰┈➤ ❌ Formato de duración no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
+      `☽◯☾ ♰ ❌ Formato de duración no válido\nEjemplo: 7d, 1m, 1y, lifetime`,
     );
 
   await m.react("🕕");
@@ -111,7 +111,7 @@ async function handler(m, { sock }) {
     const result = await resolveGroupId(sock, input);
     if (!result) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ Grupo no encontrado`);
+      return m.reply(`☽◯☾ ♰ ❌ Grupo no encontrado`);
     }
 
     const { id: groupId } = result;
@@ -120,7 +120,7 @@ async function handler(m, { sock }) {
     if (!existing) {
       await m.react("❌");
       return m.reply(
-        `╭━〔 ⚙️ SISTEMA 〕━━━╮\n┃ ❌ Grupo no registrado\n╰━━━━━━━━━━━━╯\nUsa *${m.prefix}agregar_renta* para agregarlo`,
+        `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ Grupo no registrado\n╰━ ⊱༺༒༻⊰ ━╯\nUsa *${m.prefix}agregar_renta* para agregarlo`,
       );
     }
 
@@ -130,7 +130,7 @@ async function handler(m, { sock }) {
     } else {
       if (existing.isLifetime) {
         await m.react("❌");
-        return m.reply(`╰┈➤ ❌ Este grupo ya es Permanente, no es necesario renovarlo`);
+        return m.reply(`☽◯☾ ♰ ❌ Este grupo ya es Permanente, no es necesario renovarlo`);
       }
       const baseTime =
         existing.expiredAt > Date.now() ? existing.expiredAt : Date.now();
@@ -150,7 +150,7 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
 
-    let text = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *ALQUILER RENOVADO*\n╰━━━━━━━━━━━━╯\n\n`;
+    let text = `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *ALQUILER RENOVADO*\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
     text += `👑•─────•👑\n`;
     text += `Grupo: *${groupName}*\n`;
     text += `Extensión: *${formatDuration(durationStr)}*\n`;

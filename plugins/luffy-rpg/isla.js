@@ -28,14 +28,14 @@ function handler(m, { sock }) {
 
   if (islaEspecifica) {
     const enemigos = getEnemigosDeIsla(islaEspecifica.id);
-    let txt = `╭━━〔 🗺️ ${islaEspecifica.emoji} ${islaEspecifica.nombre} 〕━━╮\n`;
+    let txt = `☽◯☾ ╭ ♰ 🗺️ ${islaEspecifica.emoji} ${islaEspecifica.nombre} ♰ ━╮ ☽◯☾\n`;
     txt += `┃ _${islaEspecifica.descripcion}_\n`;
     txt += `┃\n`;
     txt += `┃ 🎯 *Nivel mínimo:* ${islaEspecifica.nivelMin}\n`;
     txt += `┃ 👾 *Enemigos:* ${enemigos.length}\n`;
     txt += `┃\n`;
     txt += enemigos.map((e) => `┃ › ${e.emoji} ${e.nombre} (Nv. ${e.nivel})`).join("\n") + `\n`;
-    txt += `╰┈➤ Pelea con *${m.prefix}combate* o viaja aquí con *${m.prefix}viajar ${islaEspecifica.id}*`;
+    txt += `☽◯☾ ♰ Pelea con *${m.prefix}combate* o viaja aquí con *${m.prefix}viajar ${islaEspecifica.id}*`;
     return m.reply(txt);
   }
 
@@ -49,8 +49,8 @@ function handler(m, { sock }) {
     if (!desbloqueada) txt += `   ✦ _Requiere nivel ${isla.nivelMin}_\n`;
   }
 
-  txt += `\n╰┈➤ Detalle: *${m.prefix}isla <id>*\n`;
-  txt += `╰┈➤ Viajar: *${m.prefix}viajar <id>*`;
+  txt += `\n☽◯☾ ♰ Detalle: *${m.prefix}isla <id>*\n`;
+  txt += `☽◯☾ ♰ Viajar: *${m.prefix}viajar <id>*`;
   return m.reply(txt);
 }
 

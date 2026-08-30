@@ -21,9 +21,9 @@ async function handler(m) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 📱 ɢsᴍᴀʀᴇɴᴀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 📱 ɢsᴍᴀʀᴇɴᴀ ♰ ━╮ ☽◯☾\n\n` +
         `> Busca especificaciones completas de móviles\n\n` +
-        `\`Ejemplo: ${m.prefix}gsmarena samsung galaxy s25\`\n\n╰━━━━━━━━━━━━╯`,
+        `\`Ejemplo: ${m.prefix}gsmarena samsung galaxy s25\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -34,7 +34,7 @@ async function handler(m) {
 
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`╰┈➤ 📱 Móvil no encontrado para *${text}*`);
+      return m.reply(`☽◯☾ ♰ 📱 Móvil no encontrado para *${text}*`);
     }
 
     if (results.length === 1) {
@@ -53,11 +53,11 @@ async function handler(m) {
 }
 
 function formatList(results, query, prefix) {
-  let txt = `╭━〔 📱 ʀᴇsᴜʟᴛᴀᴅᴏs 〕━╮\n──────────\n`;
+  let txt = `☽◯☾ ╭ ♰ 📱 ʀᴇsᴜʟᴛᴀᴅᴏs ♰ ━╮ ☽◯☾\n──────────\n`;
   txt += `> *${query}*\n\n`;
 
   results.slice(0, 10).forEach((d, i) => {
-    txt += `╰┈➤ ${i + 1}. 📱 *${d.name}*\n`;
+    txt += `☽◯☾ ♰ ${i + 1}. 📱 *${d.name}*\n`;
     if (d.description) {
       const desc =
         d.description.length > 80
@@ -72,7 +72,7 @@ function formatList(results, query, prefix) {
 }
 
 function formatDetail(device) {
-  let txt = `╭━━━〔 📱 ${device.name} 〕━━━╮\n\n`;
+  let txt = `☽◯☾ ╭━ ♰ 📱 ${device.name} ♰ ━╮ ☽◯☾\n\n`;
 
   if (device.quickSpec && device.quickSpec.length > 0) {
     txt += `📋 *ʀᴇsᴜᴍᴇɴ:*\n`;

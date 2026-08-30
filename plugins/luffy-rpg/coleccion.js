@@ -23,12 +23,12 @@ function handler(m, { sock }) {
   const personajes = user.personajes || [];
   const total = getCharactersCount();
 
-  let txt = `╭━━〔 ⭐ TU COLECCIÓN 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ ⭐ TU COLECCIÓN ♰ ━╮ ☽◯☾\n`;
   txt += `┃ 📊 Completitud: *${personajes.length}/${total}* (${Math.floor((personajes.length / total) * 100)}%)\n`;
 
   if (personajes.length === 0) {
     txt += `┃\n┃ Aún no coleccionas personajes.\n`;
-    txt += `╰┈➤ Tira el gacha con *${m.prefix}personajes*`;
+    txt += `☽◯☾ ♰ Tira el gacha con *${m.prefix}personajes*`;
     return m.reply(txt);
   }
 
@@ -47,12 +47,12 @@ function handler(m, { sock }) {
   for (const [raro, lista] of Object.entries(porRaro)) {
     txt += `━━━ ${orden[raro] || "🪙"} ${raro.toUpperCase()} ━━━\n`;
     for (const c of lista) {
-      txt += `╰┈➤ ${c.emoji} *${c.nombre}* — ${c.poder} poder\n`;
+      txt += `☽◯☾ ♰ ${c.emoji} *${c.nombre}* — ${c.poder} poder\n`;
     }
     txt += `\n`;
   }
 
-  txt += `╰┈➤ Tira más: *${m.prefix}personajes*`;
+  txt += `☽◯☾ ♰ Tira más: *${m.prefix}personajes*`;
 
   return m.reply(txt);
 }

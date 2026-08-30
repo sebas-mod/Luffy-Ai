@@ -72,7 +72,7 @@ function formatNumber(num) {
 async function handler(m, { sock }) {
   const query = m.text?.trim()?.toLowerCase();
   if (!query)
-    return m.reply(`╰┈➤ *FUENTE NERD*\n\n> Ingresa el nombre de la fuente que quieres descargar`);
+    return m.reply(`☽◯☾ ♰ *FUENTE NERD*\n\n> Ingresa el nombre de la fuente que quieres descargar`);
   try {
     const res = await nerdfonts();
     const data = res.find(
@@ -93,7 +93,7 @@ async function handler(m, { sock }) {
         .toBuffer(),
       caption: `✦ *Listo* ✦
 ──────────
-╰┈➤ Si quieres descargar de nuevo, escribe ${m.prefix}nerdfont de nuevo`,
+☽◯☾ ♰ Si quieres descargar de nuevo, escribe ${m.prefix}nerdfont de nuevo`,
     });
   } catch (err) {
     return m.reply(te(m.prefix, m.command, m.pushName));

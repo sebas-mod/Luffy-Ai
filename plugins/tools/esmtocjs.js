@@ -126,13 +126,13 @@ async function handler(m, { sock }) {
 
     if (!code) {
         return m.reply(
-            `╭━━━〔 🔄 ᴄᴏɴᴠᴇʀsᴏʀ ᴇsᴍ ᴀ ᴄᴊs 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ 🔄 ᴄᴏɴᴠᴇʀsᴏʀ ᴇsᴍ ᴀ ᴄᴊs ♰ ━╮ ☽◯☾\n\n` +
             `> Convierte ES Modules a CommonJS\n\n` +
             `> *Cómo usar:*\n` +
             `> Responde el código ESM con ${m.prefix}esmtocjs\n\n` +
             `> *Ejemplo ESM:*\n` +
             `> \`import axios from 'axios'\`\n` +
-            `> \`export default function() {}\`\n\n╰━━━━━━━━━━━━╯`
+            `> \`export default function() {}\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 

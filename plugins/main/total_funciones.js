@@ -67,7 +67,7 @@ async function handler(m, { sock }) {
             tableData,
             m,
             {
-                headerText: `╭━━━〔 📊 FUNCIONES 〕━━━╮\n\n✦ Total: ${total} ✦ Activos: ${enabled} ✦ Categorías: ${sorted.length}`,
+                headerText: `☽◯☾ ╭━ ♰ 📊 FUNCIONES ♰ ━╮ ☽◯☾\n\n✦ Total: ${total} ✦ Activos: ${enabled} ✦ Categorías: ${sorted.length}`,
                 footer: `ꕥ Un total de ${total} funciones disponibles`
             }
         )

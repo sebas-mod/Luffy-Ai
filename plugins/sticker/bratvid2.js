@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
     const text = m.args.join(' ')
     
     if (!text) {
-        return m.reply(`✦ • ─── • ✦\n🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Ingresa el texto\n\n\`╰┈➤ Ejemplo: ${m.prefix}bratvid2 hello world\``)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n🎬 *ʙʀᴀᴛ ᴠɪᴅᴇᴏ ᴠ2*\n\n> Ingresa el texto\n\n\`☽◯☾ ♰ Ejemplo: ${m.prefix}bratvid2 hello world\``)
     }
     
     m.react('🕕')

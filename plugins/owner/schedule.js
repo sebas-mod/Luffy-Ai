@@ -281,7 +281,7 @@ function buildTaskPayload(id, parsed, extra = {}) {
 }
 
 function buildHelpText(m) {
-  return `╭━━━〔 📅 PLANIFICADOR DE AGENDA 〕━━━╮\n\nEsta función sirve para crear agendas o recordatorios libres.
+  return `☽◯☾ ╭━ ♰ 📅 PLANIFICADOR DE AGENDA ♰ ━╮ ☽◯☾\n\nEsta función sirve para crear agendas o recordatorios libres.
 Se puede usar para escuela, clases, trabajo, reuniones, citas, torneos o cualquier agenda.
 
 El mensaje enviado seguirá el *texto personalizado* creado por el owner.
@@ -575,7 +575,7 @@ function buildCategoryListText(tasks) {
     (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
   );
 
-  let text = "╭━━━〔 🏷️ CATEGORÍAS DE AGENDA ACTIVAS 〕━╮\n\n";
+  let text = "☽◯☾ ╭━ ♰ 🏷️ CATEGORÍAS DE AGENDA ACTIVAS ♰ ━╮ ☽◯☾\n\n";
 
   for (const [category, total] of entries) {
     text += `• ${category} (${total})\n`;
@@ -586,7 +586,7 @@ function buildCategoryListText(tasks) {
 }
 
 function buildPresetListText() {
-  let text = "╭━━━〔 ⚡ PRESETS RÁPIDOS DE AGENDA 〕━╮\n\n";
+  let text = "☽◯☾ ╭━ ♰ ⚡ PRESETS RÁPIDOS DE AGENDA ♰ ━╮ ☽◯☾\n\n";
 
   for (const [name, preset] of Object.entries(presetTemplates)) {
     text += `• *${name}*\n`;
@@ -607,7 +607,7 @@ function buildListText(tasks, header = null) {
   const sorted = [...tasks].sort(
     (a, b) => a.hour * 60 + a.minute - (b.hour * 60 + b.minute),
   );
-  let text = `${header || `╭━━━〔 📅 SCHEDULE PLANNER (${sorted.length}) 〕━╮`}\n\n`;
+  let text = `${header || `☽◯☾ ╭━ ♰ 📅 SCHEDULE PLANNER (${sorted.length}) ♰ ━╮ ☽◯☾`}\n\n`;
 
   for (const task of sorted) {
     const msUntil = getMsUntilTime(task.hour, task.minute);
@@ -626,7 +626,7 @@ function buildListText(tasks, header = null) {
 
 function buildDetailText(task) {
   const msUntil = getMsUntilTime(task.hour, task.minute);
-  return `╭━━━〔 📌 DETALLE DE LA AGENDA 〕━╮
+  return `☽◯☾ ╭━ ♰ 📌 DETALLE DE LA AGENDA ♰ ━╮ ☽◯☾
 
 🆔 ID: \`${task.id}\`
 🏷️ Categoría: ${getTaskCategory(task)}
@@ -663,7 +663,7 @@ async function handler(m, { sock, args }) {
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *AGENDA CREADA*\n╰━━━━━━━━━━━━╯
+        await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *AGENDA CREADA*\n╰━ ⊱༺༒༻⊰ ━╯
 
 🆔 ID: \`${id}\`
 🏷️ Categoría: ${parsed.category}
@@ -705,7 +705,7 @@ ${truncateText(parsed.customText, 180)}
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *PRESET DE AGENDA CREADO*\n╰━━━━━━━━━━━━╯
+        await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *PRESET DE AGENDA CREADO*\n╰━ ⊱༺༒༻⊰ ━╯
 
 🆔 ID: \`${id}\`
 ⚡ Preset: ${parsed.presetKey}
@@ -757,7 +757,7 @@ ${truncateText(parsed.customText, 180)}
 
         const msUntil = getMsUntilTime(parsed.hour, parsed.minute);
 
-        await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *AGENDA ACTUALIZADA*\n╰━━━━━━━━━━━━╯
+        await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *AGENDA ACTUALIZADA*\n╰━ ⊱༺༒༻⊰ ━╯
 
 🆔 ID: \`${task.id}\`
 🏷️ Categoría: ${parsed.category}
@@ -785,7 +785,7 @@ ${truncateText(parsed.customText, 180)}
 
       if (tasks.length === 0) {
         await m.reply(
-          "╭━〔 📅 AGENDAS 〕━╮\n┃ Aún no hay agendas activas\n╰━━━━━━━━╯\n\nUsa `.schedule` para ver el formato del planificador.",
+          "☽◯☾ ╭ ♰ 📅 AGENDAS ♰ ━╮ ☽◯☾\n┃ Aún no hay agendas activas\n╰━━━━━━━━╯\n\nUsa `.schedule` para ver el formato del planificador.",
         );
         return;
       }
@@ -802,7 +802,7 @@ ${truncateText(parsed.customText, 180)}
 
       if (tasks.length === 0) {
         await m.reply(
-          "╭━〔 📅 AGENDAS 〕━╮\n┃ Aún no hay agendas activas\n╰━━━━━━━━╯\n\nUsa `.schedule` para ver el formato del planificador.",
+          "☽◯☾ ╭ ♰ 📅 AGENDAS ♰ ━╮ ☽◯☾\n┃ Aún no hay agendas activas\n╰━━━━━━━━╯\n\nUsa `.schedule` para ver el formato del planificador.",
         );
         return;
       }
@@ -820,7 +820,7 @@ ${truncateText(parsed.customText, 180)}
 
       if (!filteredTasks.length) {
         await m.reply(
-          `╰┈➤ ❌ No hay agendas activas para la categoría \`${categoryName}\``,
+          `☽◯☾ ♰ ❌ No hay agendas activas para la categoría \`${categoryName}\``,
         );
         return;
       }
@@ -870,10 +870,10 @@ ${truncateText(parsed.customText, 180)}
 
       if (cancelled) {
         await m.reply(
-          `╭━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ Agenda \`${taskId}\` eliminada\n╰━━━━━━━━━━━━╯${existingTask?.title ? `\n\n📝 ${existingTask.title}` : ""}`,
+          `☽◯☾ ╭ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ Agenda \`${taskId}\` eliminada\n╰━ ⊱༺༒༻⊰ ━╯${existingTask?.title ? `\n\n📝 ${existingTask.title}` : ""}`,
         );
       } else {
-        await m.reply(`╰┈➤ ❌ No se encontró la agenda \`${taskId}\``);
+        await m.reply(`☽◯☾ ♰ ❌ No se encontró la agenda \`${taskId}\``);
       }
       break;
     }
@@ -885,7 +885,7 @@ ${truncateText(parsed.customText, 180)}
         ...new Set(tasks.map((task) => getTaskCategory(task))),
       ];
 
-      const text = `╭━━━〔 📊 ESTADO DEL PLANIFICADOR 〕━╮
+      const text = `☽◯☾ ╭━ ♰ 📊 ESTADO DEL PLANIFICADOR ♰ ━╮ ☽◯☾
 
 📝 Agendas activas: ${status.scheduledMessagesCount}
 🏷️ Categorías activas: ${categories.length ? categories.join(", ") : "-"}

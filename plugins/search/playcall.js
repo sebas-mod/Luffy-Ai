@@ -20,10 +20,10 @@ const pluginConfig = {
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`╰┈➤ 🎵 *ᴘʟᴀʏ ᴄᴀʟʟ*\n\n> Ingresa el título de la canción\n\`Ejemplo: ${m.prefix}playcall despacito\``);
+    return m.reply(`☽◯☾ ♰ 🎵 *ᴘʟᴀʏ ᴄᴀʟʟ*\n\n> Ingresa el título de la canción\n\`Ejemplo: ${m.prefix}playcall despacito\``);
 
   if (!global.voipClient) {
-    return m.reply("╰┈➤ La función de llamada de voz no está activada (VoipClient aún no está listo).");
+    return m.reply("☽◯☾ ♰ La función de llamada de voz no está activada (VoipClient aún no está listo).");
   }
 
   m.react("📞");
@@ -60,9 +60,9 @@ async function handler(m, { sock, text }) {
     const targetNumber = m.sender.split("@")[0];
 
     if (m.isGroup) {
-      await m.reply(`╰┈➤ _📞 La llamada grupal no está soportada por la librería actualmente. Llamando a tu número de forma privada (${targetNumber})..._`);
+      await m.reply(`☽◯☾ ♰ _📞 La llamada grupal no está soportada por la librería actualmente. Llamando a tu número de forma privada (${targetNumber})..._`);
     } else {
-      await m.reply(`╰┈➤ _📞 Llamando a tu número (${targetNumber})..._`);
+      await m.reply(`☽◯☾ ♰ _📞 Llamando a tu número (${targetNumber})..._`);
     }
 
     call = await global.voipClient.call(targetNumber, {
@@ -71,12 +71,12 @@ async function handler(m, { sock, text }) {
     });
 
     call.on("connected", () => {
-      m.reply(`╰┈➤ ✅ *CONECTADO*\nLa canción *${video.title}* se está reproduciendo en la llamada!`);
+      m.reply(`☽◯☾ ♰ ✅ *CONECTADO*\nLa canción *${video.title}* se está reproduciendo en la llamada!`);
     });
 
     call.on("ended", (reason) => {
       if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
-      m.reply(`╰┈➤ 📵 Llamada finalizada: ${reason}`);
+      m.reply(`☽◯☾ ♰ 📵 Llamada finalizada: ${reason}`);
     });
 
     call.on("error", (err) => {
@@ -86,7 +86,7 @@ async function handler(m, { sock, text }) {
   } catch (err) {
     console.error("[PlayCall]", err);
     m.react("😭");
-    m.reply(`╰┈➤ Error al llamar / reproducir la canción: ${err.message}`);
+    m.reply(`☽◯☾ ♰ Error al llamar / reproducir la canción: ${err.message}`);
   }
 }
 

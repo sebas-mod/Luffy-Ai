@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🇮🇩 *Pak Prabowo*\n\n` +
         `> El hombre de la palma — Presidente de Indonesia\n> Firme, patriótico y carismático\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}prabowo-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
         `> *${m.prefix}prabowo-ai Hermano, ¡debemos ser soberanos!*\n\n` +
-      `╰━━━━━━━━━━━━╯`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 

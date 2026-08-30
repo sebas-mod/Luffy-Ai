@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     
     if (!prompt) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🎨 *ᴀɴɪᴍᴇ ᴀʀᴛ ɢᴇɴᴇʀᴀᴛᴏʀ*\n\n` +
             `> ¡Genera imágenes de anime con IA a partir de un prompt!\n\n` +
             `*ᴄᴏᴍᴏ ᴜꜱᴀʀʟᴏ:*\n` +
@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
             `> • Usa inglés\n` +
             `> • Cuanto más detallado sea el prompt, mejor será el resultado\n` +
             `> • Añade estilo: vibrant, dark, pastel, etc\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

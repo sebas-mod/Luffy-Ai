@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
 
       if (!inviteCode) {
         m.react("✘");
-        return m.reply(`── .✦ ──\n\n> Enlace de grupo no válido .☘︎ ݁˖`);
+        return m.reply(`── .☽◯☾ ──\n\n> Enlace de grupo no válido .☘︎ ݁˖`);
       }
 
       try {
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> Enlace de grupo no válido o ya expiró .☘︎ ݁˖`,
+          `── .☽◯☾ ──\n\n> Enlace de grupo no válido o ya expiró .☘︎ ݁˖`,
         );
       }
     } else if (input && input.endsWith("@g.us")) {
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
       } catch {
         m.react("✘");
         return m.reply(
-          `── .✦ ──\n\n> No se pudo acceder a ese grupo .☘︎ ݁˖`,
+          `── .☽◯☾ ──\n\n> No se pudo acceder a ese grupo .☘︎ ݁˖`,
         );
       }
     } else if (m.isGroup) {
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
 
     if (!groupMeta || !groupJid) {
       m.react("✘");
-      return m.reply(`── .✦ ──\n\n> No se pudo encontrar la información del grupo .☘︎ ݁˖`);
+      return m.reply(`── .☽◯☾ ──\n\n> No se pudo encontrar la información del grupo .☘︎ ݁˖`);
     }
 
     const groupName = groupMeta.subject || "Unknown";

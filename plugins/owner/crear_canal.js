@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
         `_Este saluran se puede configurar en config.saluran.canalId_`,
     );
   } catch (err) {
-    return m.reply(`╰┈➤ ❌ Falló la creación del saluran: ${err.message}`);
+    return m.reply(`☽◯☾ ♰ ❌ Falló la creación del saluran: ${err.message}`);
   }
 }
 

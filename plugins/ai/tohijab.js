@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n🧕 *ʜɪᴊᴀʙ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}tohijab\`\n\n╰━━━━━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🧕 *ʜɪᴊᴀʙ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}tohijab\`\n\n╰━ ⊱༺༒༻⊰ ━╯`)
     }
     
     m.react('🕕')

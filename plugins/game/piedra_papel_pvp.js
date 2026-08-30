@@ -96,10 +96,10 @@ async function handler(m, { sock }) {
     
     await m.react('✊')
     await m.reply(`⚔️ ──────────\nDesafías a @${target.split('@')[0]} a un duelo de piedra, papel o tijera\n\n` +
-            `╭┈┈⬡「 💬 *ʀᴇsᴘᴜᴇsᴛᴀ* 」\n` +
+            `☽◯☾ ♰ 「 💬 *ʀᴇsᴘᴜᴇsᴛᴀ* 」\n` +
             `┃ ✅ Escribe *acepto* / *gas* / *ok*\n` +
             `┃ ❌ Escribe *rechazo* / *no*\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `Tiempo: 90 segundos`, {  mentions: [target]})
 }
 
@@ -247,7 +247,7 @@ async function answerHandler(m, sock) {
                 winner = room.p2
             }
             
-            let resultTxt = `╭━━〔 🎲 〕━━╮\n✊✌️✋ *RESULTADO DEL SUIT*\n╰━━━━━━━━━━╯\n\n`
+            let resultTxt = `☽◯☾ ╭ ♰ 🎲 ♰ ━╮ ☽◯☾\n✊✌️✋ *RESULTADO DEL SUIT*\n╰━ ⊱༺༒༻⊰ ━╯\n\n`
             resultTxt += `@${room.p.split('@')[0]} ${EMOJI[room.pilih]} ${room.pilih}\n`
             resultTxt += `@${room.p2.split('@')[0]} ${EMOJI[room.pilih2]} ${room.pilih2}\n\n`
             
@@ -256,7 +256,7 @@ async function answerHandler(m, sock) {
             } else {
                 db.updateBerry(winner, WIN_REWARD)
                 
-                resultTxt += `꧁༺ 🏆 VICTORIA ༻꧂\n╰┈➤ @${winner.split('@')[0]} gana! 💥\n`
+                resultTxt += `꧁༺ 🏆 VICTORIA ༻꧂\n☽◯☾ ♰ @${winner.split('@')[0]} gana! 💥\n`
                 resultTxt += `> +Rp ${WIN_REWARD.toLocaleString()}`
             }
             

@@ -47,10 +47,10 @@ function handler(m, { sock }) {
     return m.reply(
         `🔔 *ʟᴇᴠᴇʟ ᴜᴘ ɴᴏᴛɪꜰ*\n\n` +
         `> Estado actual: *${status}*\n\n` +
-        `╭┈┈⬡「 📋 *ᴜsᴏ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴜsᴏ* 」\n` +
         `┃ > \`.levelup on\` - Activar\n` +
         `┃ > \`.levelup off\` - Desactivar\n` +
-        `╰┈┈┈┈┈┈┈┈⬡`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     )
 }
 

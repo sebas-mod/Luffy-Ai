@@ -18,21 +18,21 @@ async function handler(m, { sock }) {
     try {
         const botJid = sock.user?.id
         if (!botJid) {
-            await m.reply(`╰┈➤ ❌ JID del bot no encontrado.`)
+            await m.reply(`☽◯☾ ♰ ❌ JID del bot no encontrado.`)
             return
         }
         
         await sock.removeProfilePicture(botJid)
         
         await m.reply(
-            `╭━━━〔 ✅ ᴘᴘ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ 〕━━━╮\n\n` +
-            `> ¡La foto de perfil del bot se eliminó exitosamente!\n\n╰━━━━━━━━━━━━╯`
+            `☽◯☾ ╭━ ♰ ✅ ᴘᴘ ᴅᴇʟ ʙᴏᴛ ᴇʟɪᴍɪɴᴀᴅᴀ ♰ ━╮ ☽◯☾\n\n` +
+            `> ¡La foto de perfil del bot se eliminó exitosamente!\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     } catch (error) {
         await m.reply(
-            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
             `> No se pudo eliminar la foto del bot.\n` +
-            `> _${error.message}_\n\n╰━━━━━━━━━━━━╯`
+            `> _${error.message}_\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 }

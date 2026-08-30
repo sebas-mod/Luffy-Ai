@@ -26,11 +26,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🖼️ *ᴛᴏ ᴏɪʟ ᴘᴀɪɴᴛɪɴɢ*\n\n` +
             `> Envía/responde una imagen para convertirla a estilo pintura al óleo\n\n` +
             `\`${m.prefix}tooilpainting\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

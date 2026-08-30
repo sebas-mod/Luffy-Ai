@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
   if (!isImage) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}toblack\`\n\n╰━━━━━━━━━━━━╯`,
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🖤 *ʙʟᴀᴄᴋ sᴛʏʟᴇ*\n\n> Envía/responde una imagen\n\n\`${m.prefix}toblack\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

@@ -29,10 +29,10 @@ async function handler(m, { sock }) {
         
         return m.reply(
             `✅ *ʙᴏᴛ ᴠᴜᴇʟᴛᴇ ᴀ ᴇsᴛᴀʀ ᴇɴ ʟíɴᴇᴀ*\n\n` +
-            `╭┈┈⬡「 📊 *ᴇsᴛᴀᴅístɪᴄᴀs ᴅᴇʟ ᴀꜰᴋ* 」\n` +
+            `☽◯☾ ♰ 「 📊 *ᴇsᴛᴀᴅístɪᴄᴀs ᴅᴇʟ ᴀꜰᴋ* 」\n` +
             `┃ ⏱️ ᴅᴜʀᴀᴄɪóɴ: \`${duration}\`\n` +
             `┃ 📝 ᴍᴏᴛɪᴠᴏ: \`${currentAfk.reason || '-'}\`\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> ¡El bot está listo para recibir comandos!`
         )
     } else {
@@ -47,15 +47,15 @@ async function handler(m, { sock }) {
         await m.react('💤')
         return m.reply(
             `💤 *ʙᴏᴛ ᴀꜰᴋ ᴀᴄᴛɪᴠᴏ*\n\n` +
-            `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n` +
             `┃ 📝 ᴍᴏᴛɪᴠᴏ: \`${reason}\`\n` +
             `┃ ⏰ ᴅᴇsᴅᴇ: \`${moment().tz('Asia/Jakarta').format('HH:mm:ss')}\`\n` +
-            `╰┈┈⬡\n\n` +
-            `╭┈┈⬡「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+            `☽◯☾ ♰ 「 🔒 *ᴀᴄᴄᴇsᴏ* 」\n` +
             `┃ ✅ Owner del bot\n` +
             `┃ ✅ El propio bot (fromMe)\n` +
             `┃ ❌ Todos los demás usuarios\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Los demás usuarios recibirán el mensaje AFK\n` +
             `> Escribe \`${m.prefix}botafk\` para volver a estar en línea`
         )

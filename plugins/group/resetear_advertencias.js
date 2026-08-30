@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
     const targetName = targetUser.split('@')[0]
     
     if (!warnings[targetUser] || warnings[targetUser].length === 0) {
-        await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ @${targetName} no tiene advertencias.`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetUser] })
+        await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`✅ @${targetName} no tiene advertencias.`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [targetUser] })
         return
     }
     

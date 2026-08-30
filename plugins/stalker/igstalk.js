@@ -32,9 +32,9 @@ async function handler(m, { sock }) {
     
     if (!username) {
         return m.reply(
-            `╭━━━〔 📸 ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ 📸 ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
             `> Ingresa el username de Instagram\n\n` +
-            `\`Ejemplo: ${m.prefix}igstalk cristiano\`\n\n╰━━━━━━━━━━━━╯`
+            `\`Ejemplo: ${m.prefix}igstalk cristiano\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
@@ -49,19 +49,19 @@ async function handler(m, { sock }) {
         const d = res.data?.data
         if (!res.data?.status || !d?.username) {
             m.react('❌')
-            return m.reply(`╰┈➤ ❌ La cuenta *@${username}* no fue encontrada`)
+            return m.reply(`☽◯☾ ♰ ❌ La cuenta *@${username}* no fue encontrada`)
         }
         
-        const caption = `╭━━━〔 📸 ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ 〕━━━╮\n\n` +
-            `╰┈➤ 👤 *Username:* ${d.username}\n` +
-            `╰┈➤ 📛 *Nombre:* ${d.full_name || '-'}\n` +
-            `╰┈➤ ✅ *Verificado:* ${d.is_verified ? 'Sí' : 'No'}\n` +
-            `╰┈➤ 🔒 *Privado:* ${d.is_private ? 'Sí' : 'No'}\n──────────\n` +
-            `╰┈➤ 👥 *Seguidores:* ${shortNum(d.stats?.followers)}\n` +
-            `╰┈➤ 👤 *Siguiendo:* ${shortNum(d.stats?.following)}\n` +
-            `╰┈➤ 📷 *Publicaciones:* ${shortNum(d.stats?.posts)}\n──────────\n` +
+        const caption = `☽◯☾ ╭━ ♰ 📸 ɪɴsᴛᴀɢʀᴀᴍ sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
+            `☽◯☾ ♰ 👤 *Username:* ${d.username}\n` +
+            `☽◯☾ ♰ 📛 *Nombre:* ${d.full_name || '-'}\n` +
+            `☽◯☾ ♰ ✅ *Verificado:* ${d.is_verified ? 'Sí' : 'No'}\n` +
+            `☽◯☾ ♰ 🔒 *Privado:* ${d.is_private ? 'Sí' : 'No'}\n──────────\n` +
+            `☽◯☾ ♰ 👥 *Seguidores:* ${shortNum(d.stats?.followers)}\n` +
+            `☽◯☾ ♰ 👤 *Siguiendo:* ${shortNum(d.stats?.following)}\n` +
+            `☽◯☾ ♰ 📷 *Publicaciones:* ${shortNum(d.stats?.posts)}\n──────────\n` +
             `📝 *Bio:*\n${d.bio || '-'}\n──────────\n` +
-            `🔗 https://instagram.com/${d.username}\n\n╰━━━━━━━━━━━━╯`
+            `🔗 https://instagram.com/${d.username}\n\n╰━ ⊱༺༒༻⊰ ━╯`
         
         m.react('✅')
         

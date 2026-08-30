@@ -48,8 +48,8 @@ async function handler(m) {
     
     await m.reply(`꧁༺ ⭐ CALIFICACIÓN ༻꧂
 ──────────
-╰┈➤ Puntaje: *${rating.score}*
-╰┈➤ ${rating.comment}`);
+☽◯☾ ♰ Puntaje: *${rating.score}*
+☽◯☾ ♰ ${rating.comment}`);
 }
 
 export { pluginConfig as config, handler }

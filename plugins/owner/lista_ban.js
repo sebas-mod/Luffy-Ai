@@ -21,17 +21,17 @@ async function handler(m, { sock }) {
     const bannedUsers = config.bannedUsers && config.bannedUsers.length > 0 ? config.bannedUsers : (db.setting('bannedUsers') || [])
     
     if (bannedUsers.length === 0) {
-        return m.reply(`👑•─────•👑\n🚫 *ʟɪsᴛᴀ ᴅᴇ ʙᴀɴɴᴇᴀᴅᴏs*\n\n> No hay usuarios baneados\n\n\`Usa: ${m.prefix}ban <número>\`\n✦────────✦`)
+        return m.reply(`👑•─────•👑\n🚫 *ʟɪsᴛᴀ ᴅᴇ ʙᴀɴɴᴇᴀᴅᴏs*\n\n> No hay usuarios baneados\n\n\`Usa: ${m.prefix}ban <número>\`\n♰ ──────── ♱✦`)
     }
     
     let caption = `🚫 *ʟɪsᴛᴀ ᴅᴇ ʙᴀɴɴᴇᴀᴅᴏs*\n\n`
-    caption += `╭┈┈⬡「 ⛔ *ᴜsᴜᴀʀɪᴏs* 」\n`
+    caption += `☽◯☾ ♰ 「 ⛔ *ᴜsᴜᴀʀɪᴏs* 」\n`
     
     for (let i = 0; i < bannedUsers.length; i++) {
         caption += `┃ ${i + 1}. \`${bannedUsers[i]}\`\n`
     }
     
-    caption += `╰┈┈⬡\n\n`
+    caption += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     caption += `> ᴛᴏᴛᴀʟ: \`${bannedUsers.length}\` ᴜsᴜᴀʀɪᴏs ʙᴀɴɴᴇᴀᴅᴏs`
     
     await m.reply(caption)

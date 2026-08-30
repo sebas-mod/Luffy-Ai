@@ -46,7 +46,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
   return m.reply(
-    `╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ ESTADO DEL SISTEMA\n┃ DE CARNE CAMBIADO\n╰━━━━━━━━━━━━╯\n\n` +
+    `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ ESTADO DEL SISTEMA\n┃ DE CARNE CAMBIADO\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
     `El sistema de carne se ha *${isEnabled ? "ACTIVADO" : "DESACTIVADO"}* correctamente.\n\n` +
     `*Estado actual:*\n` +
     `- Modo: *${isEnabled ? "ACTIVO 🔋" : "INACTIVO (UNLIMITED) ♾️"}*\n\n` +

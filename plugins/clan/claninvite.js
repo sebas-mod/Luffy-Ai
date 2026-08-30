@@ -51,7 +51,7 @@ async function handler(m) {
         `${emblem} ⚔️ *INVITADO!* ⚔️\n` +
         `✦ @${target.split('@')[0]} se unió a *${clan.name}*\n` +
         `👥 Miembros: ${clan.members.length}/50\n` +
-        `╰━━━━━━━━━━╯`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: [m.sender, target] }
     )
 }

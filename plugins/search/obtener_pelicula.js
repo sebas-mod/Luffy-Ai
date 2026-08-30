@@ -23,11 +23,11 @@ async function handler(m, { sock }) {
 
   if (!url || !url.includes("neoxr.eu")) {
     return m.reply(
-      `╭━━━〔 🎬 ᴅᴇᴛᴀʟʟᴇ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🎬 ᴅᴇᴛᴀʟʟᴇ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀ ♰ ━╮ ☽◯☾\n\n` +
         `> Obtén los detalles de la película desde una URL\n\n` +
         `*Formato:*\n` +
         `> \`${m.prefix}obtener_pelicula <url>\`\n\n` +
-        `> Usa \`${m.prefix}pelicula <título>\` para buscar la película primero\n\n╰━━━━━━━━━━━━╯`,
+        `> Usa \`${m.prefix}pelicula <título>\` para buscar la película primero\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data) {
       m.react("❌");
-      return m.reply("╰┈➤ ❌ *ꜰᴀʟʟᴏ*\n\n> Película no encontrada");
+      return m.reply("☽◯☾ ♰ ❌ *ꜰᴀʟʟᴏ*\n\n> Película no encontrada");
     }
 
     const film = data.data;
@@ -57,8 +57,8 @@ async function handler(m, { sock }) {
       } catch {}
     }
 
-    let text = `╭━━━〔 🎬 ${film.title || "Film"} 〕━━━╮\n\n`;
-    text += `╭┈┈⬡「 📋 *ɪɴꜰᴏ* 」\n`;
+    let text = `☽◯☾ ╭━ ♰ 🎬 ${film.title || "Film"} ♰ ━╮ ☽◯☾\n\n`;
+    text += `☽◯☾ ♰ 「 📋 *ɪɴꜰᴏ* 」\n`;
     text += `┃ ⭐ Rating: ${film.rating || "-"}\n`;
     text += `┃ 📺 Quality: ${film.quality || "-"}\n`;
     text += `┃ ⏱️ Duration: ${film.duration || "-"}\n`;
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
     text += `┃ 🎭 Genre: ${film.tags || "-"}\n`;
     text += `┃ 🎬 Director: ${film.director || "-"}\n`;
     text += `┃ 👥 Actors: ${film.actors || "-"}\n`;
-    text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+    text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
     text += `📝 *Synopsis:*\n`;
     text += `> ${film.synopsis || "-"}\n\n`;

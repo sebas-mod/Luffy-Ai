@@ -109,9 +109,9 @@ async function handler(m, { sock }) {
   ctx.mentionedJid = [m.sender, shooterJid];
 
   await m.reply(
-    `╭━━━〔 💕 〕━━━╮
+    `☽◯☾ ╭━ ♰ 💕 ♰ ━╮ ☽◯☾
 💕 *¡OOH LA LA, ACEPTADO!* @${shooterJid.split("@")[0]}
-╰━━━━━━━━━━━━╯\n\n` +
+╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `@${m.sender.split("@")[0]} y @${shooterJid.split("@")[0]} oficialmente son pareja\n\n` +
       `¡Que dure y sean felices! 💍`,
     { contextInfo: ctx },

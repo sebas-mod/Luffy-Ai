@@ -40,35 +40,35 @@ async function handler(m, { sock, args }) {
         const action = args[0]?.toLowerCase();
 
         if (!action) {
-            return m.reply(`╭━━━〔 🛠️ SISTEMA SHUFFLE REPLY THUMB (SRT) 〕━━━╮\n\nBienvenido al menú de gestión de imágenes de respuesta automática. Este sistema permite que el bot responda con imágenes *thumbnail* barajadas automáticamente de la colección que guardas.\n\nEsta es la lista de comandos disponibles:\n- *.srt on* : Activa la función shuffle de forma global.\n- *.srt off* : Desactiva la función shuffle y vuelve a la configuración inicial.\n- *.srt c* : Abre una sesión de captura de imágenes para agregar una nueva colección a la base de datos.\n- *.srt d* : Cierra la sesión de captura de imágenes.\n- *.srt list* : Muestra toda la colección de imágenes guardadas en la base de datos del bot.\n- *.srt del* : Elimina una imagen de la base de datos (usa *.srt list* primero para mostrar las imágenes y luego *responde* a una de ellas con este comando).\n╰━━━━━━━━━━━━━━━━━━━━━━━╯`);
+            return m.reply(`☽◯☾ ╭━ ♰ 🛠️ SISTEMA SHUFFLE REPLY THUMB (SRT) ♰ ━╮ ☽◯☾\n\nBienvenido al menú de gestión de imágenes de respuesta automática. Este sistema permite que el bot responda con imágenes *thumbnail* barajadas automáticamente de la colección que guardas.\n\nEsta es la lista de comandos disponibles:\n- *.srt on* : Activa la función shuffle de forma global.\n- *.srt off* : Desactiva la función shuffle y vuelve a la configuración inicial.\n- *.srt c* : Abre una sesión de captura de imágenes para agregar una nueva colección a la base de datos.\n- *.srt d* : Cierra la sesión de captura de imágenes.\n- *.srt list* : Muestra toda la colección de imágenes guardadas en la base de datos del bot.\n- *.srt del* : Elimina una imagen de la base de datos (usa *.srt list* primero para mostrar las imágenes y luego *responde* a una de ellas con este comando).\n╰━━━━━━━━━━━━━━━━━━━━━━━╯`);
         }
 
         if (action === 'on') {
             db.setting('srtEnabled', true);
-            await m.reply('╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *FUNCIÓN SRT ACTIVADA*\n╰━━━━━━━━━━━━╯\n\nEsta función se ha activado de forma global. Ahora cada respuesta del bot que soporte *thumbnail* mostrará una imagen aleatoria de la carpeta shuffle que se ha recopilado.');
+            await m.reply('☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *FUNCIÓN SRT ACTIVADA*\n╰━ ⊱༺༒༻⊰ ━╯\n\nEsta función se ha activado de forma global. Ahora cada respuesta del bot que soporte *thumbnail* mostrará una imagen aleatoria de la carpeta shuffle que se ha recopilado.');
         } 
         else if (action === 'off') {
             db.setting('srtEnabled', false);
-            await m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ *FUNCIÓN SRT DESACTIVADA*\n╰━━━━━━━━╯\n\nEl uso de *thumbnail* aleatorio se ha desactivado. Todas las respuestas del bot volverán a usar la imagen *default* del sistema.');
+            await m.reply('☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ *FUNCIÓN SRT DESACTIVADA*\n╰━━━━━━━━╯\n\nEl uso de *thumbnail* aleatorio se ha desactivado. Todas las respuestas del bot volverán a usar la imagen *default* del sistema.');
         } 
         else if (action === 'c' || action === 'capture') {
             global.srtSession[m.chat] = { sender: m.sender, count: 0 };
             const totalImages = countShuffleImages();
-            await m.reply(`╭━━━〔 📸 SESIÓN DE CAPTURA INICIADA 〕━╮\n\nEnvía imágenes una por una de forma continua en este chat. El bot leerá cada imagen y las guardará automáticamente en el sistema de *base de datos shuffle*.\n\n- Total de imágenes guardadas actualmente: *${totalImages}*\n- Cuando hayas terminado de enviar imágenes, detén la sesión con el comando \`${m.prefix}srt d\`.\n╰━━━━━━━━━━━━━━━━━╯`);
+            await m.reply(`☽◯☾ ╭━ ♰ 📸 SESIÓN DE CAPTURA INICIADA ♰ ━╮ ☽◯☾\n\nEnvía imágenes una por una de forma continua en este chat. El bot leerá cada imagen y las guardará automáticamente en el sistema de *base de datos shuffle*.\n\n- Total de imágenes guardadas actualmente: *${totalImages}*\n- Cuando hayas terminado de enviar imágenes, detén la sesión con el comando \`${m.prefix}srt d\`.\n╰━━━━━━━━━━━━━━━━━╯`);
         } 
         else if (action === 'd' || action === 'done') {
             if (!global.srtSession[m.chat] || global.srtSession[m.chat].sender !== m.sender) {
-                return m.reply('╰┈➤ ❌ No estás dentro de una sesión de captura de imágenes activa en este momento.');
+                return m.reply('☽◯☾ ♰ ❌ No estás dentro de una sesión de captura de imágenes activa en este momento.');
             }
             const count = global.srtSession[m.chat].count;
             delete global.srtSession[m.chat];
             const totalImages = countShuffleImages();
-            await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *SESIÓN DE CAPTURA TERMINADA*\n╰━━━━━━━━━━━━╯\n\nLa sesión se ha detenido y todas las imágenes han sido procesadas.\n- Total de imágenes nuevas agregadas: *${count}*\n- Total de imágenes en el sistema: *${totalImages}*`);
+            await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *SESIÓN DE CAPTURA TERMINADA*\n╰━ ⊱༺༒༻⊰ ━╯\n\nLa sesión se ha detenido y todas las imágenes han sido procesadas.\n- Total de imágenes nuevas agregadas: *${count}*\n- Total de imágenes en el sistema: *${totalImages}*`);
         } 
         else if (action === 'list') {
-            if (!fs.existsSync(SHUFFLE_DIR)) return m.reply('╰┈➤ ❌ Aún no hay ninguna imagen guardada en el directorio *shuffle*. Realiza una captura de imágenes primero.');
+            if (!fs.existsSync(SHUFFLE_DIR)) return m.reply('☽◯☾ ♰ ❌ Aún no hay ninguna imagen guardada en el directorio *shuffle*. Realiza una captura de imágenes primero.');
             const files = fs.readdirSync(SHUFFLE_DIR).filter(f => f.endsWith('.jpg') || f.endsWith('.png') || f.endsWith('.jpeg'));
-            if (files.length === 0) return m.reply('╰┈➤ ❌ El directorio *shuffle* sigue vacío. Usa el comando de captura de imágenes para empezar a agregar.');
+            if (files.length === 0) return m.reply('☽◯☾ ♰ ❌ El directorio *shuffle* sigue vacío. Usa el comando de captura de imágenes para empezar a agregar.');
 
             await m.reply(`📂 ──────────\n*LISTA DE IMÁGENES SHUFFLE*\n──────────\n\nEl sistema encontró *${files.length}* imágenes guardadas. Procesando y armando el álbum para mostrarlo, espera un momento ⏳`);
             
@@ -115,13 +115,13 @@ async function handler(m, { sock, args }) {
                 }
             } catch (albumErr) {
                 console.error('Album Error:', albumErr);
-                return m.reply('╰┈➤ ❌ Ocurrió un error al crear el álbum de imágenes.');
+                return m.reply('☽◯☾ ♰ ❌ Ocurrió un error al crear el álbum de imágenes.');
             }
         } 
         else if (action === 'del' || action === 'delete') {
             const isImage = m.isImage || (m.quoted && m.quoted.isImage);
             if (!isImage) {
-                return m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ *CÓMO ELIMINAR UNA IMAGEN*\n╰━━━━━━━━╯\n\n1. Escribe `.srt list` para mostrar toda la colección de imágenes.\n2. Responde (*reply*) a una de las imágenes del álbum con el comando `.srt del`.');
+                return m.reply('☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ *CÓMO ELIMINAR UNA IMAGEN*\n╰━━━━━━━━╯\n\n1. Escribe `.srt list` para mostrar toda la colección de imágenes.\n2. Responde (*reply*) a una de las imágenes del álbum con el comando `.srt del`.');
             }
             
             await m.react('🕕');
@@ -133,7 +133,7 @@ async function handler(m, { sock, args }) {
                     buffer = await m.download();
                 }
             } catch (e) {
-                return m.reply('╰┈➤ ❌ Fallo al descargar la imagen para eliminarla.');
+                return m.reply('☽◯☾ ♰ ❌ Fallo al descargar la imagen para eliminarla.');
             }
 
             if (buffer) {
@@ -143,15 +143,15 @@ async function handler(m, { sock, args }) {
 
                 if (fs.existsSync(filepath)) {
                     fs.unlinkSync(filepath);
-                    await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *IMAGEN ELIMINADA*\n╰━━━━━━━━━━━━╯\n\nLa imagen se eliminó de la base de datos shuffle.`);
+                    await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *IMAGEN ELIMINADA*\n╰━ ⊱༺༒༻⊰ ━╯\n\nLa imagen se eliminó de la base de datos shuffle.`);
                 } else {
-                    await m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ *IMAGEN NO ENCONTRADA*\n╰━━━━━━━━╯\n\nEsta imagen no coincide con ninguna de la base de datos shuffle (o ya fue eliminada antes).');
+                    await m.reply('☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ *IMAGEN NO ENCONTRADA*\n╰━━━━━━━━╯\n\nEsta imagen no coincide con ninguna de la base de datos shuffle (o ya fue eliminada antes).');
                 }
             }
             await m.react('✅');
         }
         else {
-            await m.reply(`╰┈➤ ❌ El comando avanzado "${action}" no es reconocido por el sistema.`);
+            await m.reply(`☽◯☾ ♰ ❌ El comando avanzado "${action}" no es reconocido por el sistema.`);
         }
         
     } catch (error) {
@@ -188,18 +188,18 @@ async function srtAnswerHandler(m, sock) {
             const filepath = path.join(SHUFFLE_DIR, filename);
 
             if (fs.existsSync(filepath)) {
-                await m.reply('╰┈➤ ⚠️ Se detectó que la misma imagen ya está guardada en la base de datos.');
+                await m.reply('☽◯☾ ♰ ⚠️ Se detectó que la misma imagen ya está guardada en la base de datos.');
             } else {
                 fs.writeFileSync(filepath, buffer);
                 session.count++;
-                await m.reply(`╭━━━〔 ✦ ÉXITO 〕━━━╮\n┃ ✅ *IMAGEN GUARDADA*\n╰━━━━━━━━━━━━╯\n\nLa imagen se ha almacenado en el almacenamiento local del bot.\n- Total de imágenes agregadas en esta sesión: *${session.count}*`);
+                await m.reply(`☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n┃ ✅ *IMAGEN GUARDADA*\n╰━ ⊱༺༒༻⊰ ━╯\n\nLa imagen se ha almacenado en el almacenamiento local del bot.\n- Total de imágenes agregadas en esta sesión: *${session.count}*`);
             }
         }
         await m.react('✅');
         return true;
     } catch (e) {
         await m.react('❌');
-        await m.reply('╰┈➤ ❌ Ocurrió un error fatal al intentar descargar y guardar la imagen.');
+        await m.reply('☽◯☾ ♰ ❌ Ocurrió un error fatal al intentar descargar y guardar la imagen.');
         return true;
     }
 }

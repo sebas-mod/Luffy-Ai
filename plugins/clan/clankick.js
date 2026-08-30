@@ -45,9 +45,9 @@ async function handler(m) {
     const emblem = clan.emblem || '🏰'
 
     await m.reply(
-        `╭━━〔 👢 EXPULSADO 〕━━╮\n` +
+        `☽◯☾ ╭ ♰ 👢 EXPULSADO ♰ ━╮ ☽◯☾\n` +
         `┃ @${target.split('@')[0]} fue expulsado de *${clan.name}*\n` +
-        `╰┈➤ Miembros restantes: ${clan.members.length}/50`,
+        `☽◯☾ ♰ Miembros restantes: ${clan.members.length}/50`,
         { mentions: [target] }
     )
 }

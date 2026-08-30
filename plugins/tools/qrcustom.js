@@ -43,15 +43,15 @@ async function handler(m, { sock }) {
     
     if (!data) {
         return m.reply(
-            `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
             `> \`${m.prefix}qrcustom <url/texto>\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`${m.prefix}qrcustom https://wa.me/628xxx\`\n\n` +
-            `💡 Responde una imagen para usar un logo personalizado en el centro del QR\n\n╰━━━━━━━━━━━━╯`
+            `💡 Responde una imagen para usar un logo personalizado en el centro del QR\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
-    await m.reply(`╰┈➤ 🕕 *Generando código QR...*`)
+    await m.reply(`☽◯☾ ♰ 🕕 *Generando código QR...*`)
     
     try {
         let imageUrl = ''
@@ -78,7 +78,7 @@ async function handler(m, { sock }) {
         
         await sock.sendMessage(m.chat, {
             image: { url: apiUrl },
-            caption: `╰┈➤ 📱 *QR Code*\n> ${data.substring(0, 50)}${data.length > 50 ? '...' : ''}`
+            caption: `☽◯☾ ♰ 📱 *QR Code*\n> ${data.substring(0, 50)}${data.length > 50 ? '...' : ''}`
         }, { quoted: m })
         
         m.react('📱')

@@ -16,7 +16,7 @@ const pluginConfig = {
 
 function handler(m, { sock, db }) {
     if (!m.isAdmin && !m.isOwner) {
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Solo los admins del grupo pueden usar esta función`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ Solo los admins del grupo pueden usar esta función`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     const args = m.args[0]?.toLowerCase()
@@ -24,7 +24,7 @@ function handler(m, { sock, db }) {
     
     if (!['on', 'off'].includes(args)) {
         const status = group.notifOpenGroup === true ? '✅ Activo' : '❌ Inactivo'
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n"+`🔓 *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notif_abrir_grupo on\` - Activar\n\`${m.prefix}notif_abrir_grupo off\` - Desactivar`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n"+`🔓 *ɴᴏᴛɪꜰ ᴏᴘᴇɴ ɢʀᴏᴜᴘ*\n\n> Estado: ${status}\n\n*Uso:*\n\`${m.prefix}notif_abrir_grupo on\` - Activar\n\`${m.prefix}notif_abrir_grupo off\` - Desactivar`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (args === 'on') {

@@ -34,7 +34,7 @@ async function handler(m, { sock }) {
     const index = toxicWords.indexOf(word)
     
     if (index === -1) {
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra \`${word}\` no está en la lista`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra \`${word}\` no está en la lista`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     toxicWords.splice(index, 1)
@@ -44,10 +44,10 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ᴘᴀʟᴀʙʀᴀ ᴛᴏxɪᴄᴀ ᴇʟɪᴍɪɴᴀᴅᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📝 ᴘᴀʟᴀʙʀᴀ: \`${word}\`\n` +
         `┃ 📊 ʀᴇsᴛᴀɴᴛᴇs: \`${toxicWords.length}\` palabras\n` +
-        `╰┈┈⬡`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     )
 }
 

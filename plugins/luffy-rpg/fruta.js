@@ -52,7 +52,7 @@ function handler(m, { sock }) {
     txt += `⚔️ Ataque: *+${fruta.ataque || 0}*\n`;
     txt += `💨 Velocidad: *+${fruta.velocidad || 0}*\n`;
     txt += `💰 Precio: *${fruta.precio} Berrys*\n\n`;
-    txt += `╰┈➤ Para comerla: *${m.prefix}fruta comer ${fruta.id}*`;
+    txt += `☽◯☾ ♰ Para comerla: *${m.prefix}fruta comer ${fruta.id}*`;
     return m.reply(txt);
   }
 
@@ -89,7 +89,7 @@ function handler(m, { sock }) {
     txt += `⚔️ *Ataque:* +${fruta.ataque || 0}\n`;
     txt += `💨 *Velocidad:* +${fruta.velocidad || 0}\n\n`;
     txt += `⚠️ *No puedes comer otra fruta.*\n`;
-    txt += `╰━━━━━━━━━━╯`;
+    txt += `╰━ ⊱༺༒༻⊰ ━╯`;
     return m.reply(txt);
   }
 

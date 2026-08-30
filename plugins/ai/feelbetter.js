@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-        `╭━━━〔 ✦ 〕━━━╮\n\n` +
+        `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
         `💚 *FeelBetterBot*\n\n` +
         `Una IA lista para escuchar tu desahogo — sin juzgar, con calidez y empatía.\n\n` +
         `*USO:*\n` +
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         `> *${m.prefix}feelbetter estoy triste ahora*\n` +
         `> *${m.prefix}feelbetter estoy muy agotado últimamente*\n\n` +
         `_Este bot no reemplaza a un profesional, pero puede ser un lugar seguro para desahogarse_\n\n` +
-        `╰━━━━━━━━━━━━╯`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 

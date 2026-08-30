@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const prompt = m.text?.trim() || m.args.join(" ");
 
   if (!prompt) {
-    return m.reply("❌ Ingresa la descripción del logo que quieres crear.\n\n╰┈➤ Ejemplo: `.sologo robot genial color rojo`");
+    return m.reply("❌ Ingresa la descripción del logo que quieres crear.\n\n☽◯☾ ♰ Ejemplo: `.sologo robot genial color rojo`");
   }
 
   await m.react("🕕");
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     const logo = data.result[0];
 
-    const caption = `╭━〔 🎨 *SOLOGO AI* 〕━╮\n\n` +
+    const caption = `☽◯☾ ╭ ♰ 🎨 *SOLOGO AI* ♰ ━╮ ☽◯☾\n\n` +
       `*Prompt:* ${prompt}\n` +
       `*Título:* ${logo.title}\n` +
       `*Descripción:* ${logo.desc}\n` +
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SoLogo AI]", error.message);
     await m.react("☢");
-    m.reply("╰┈➤ 😔 Ocurrió un error al procesar la solicitud hacia la IA.");
+    m.reply("☽◯☾ ♰ 😔 Ocurrió un error al procesar la solicitud hacia la IA.");
   }
 }
 

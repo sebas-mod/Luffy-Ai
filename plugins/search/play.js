@@ -24,7 +24,7 @@ function formatViews(n) {
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query)
-    return m.reply(`╰┈➤ 🎵 *ᴘʟᴀʏ*\n\n> Ejemplo:\n\`${m.prefix}play komang\``);
+    return m.reply(`☽◯☾ ♰ 🎵 *ᴘʟᴀʏ*\n\n> Ejemplo:\n\`${m.prefix}play komang\``);
 
   m.react("🕐");
 
@@ -41,20 +41,20 @@ async function handler(m, { sock, text }) {
     }
     const downloadUrl = data.result.results[0].download;
 
-    let info = `╭━━━〔 🎵 SONANDO AHORA 〕━━━╮\n\n`;
-    info += `╰┈➤ 📌 *Título:* ${video.title}\n──────────\n`;
+    let info = `☽◯☾ ╭━ ♰ 🎵 SONANDO AHORA ♰ ━╮ ☽◯☾\n\n`;
+    info += `☽◯☾ ♰ 📌 *Título:* ${video.title}\n──────────\n`;
     info += `*DETALLE*\n`;
-    info += `╰┈➤ 👤 Canal: *${video.author.name}*\n`;
-    info += `╰┈➤ ⏱️ Duración: *${video.duration.timestamp}*\n`;
-    info += `╰┈➤ 👀 Vistas: *${formatViews(video.views)}*\n`;
-    info += `╰┈➤ 📅 Subido: *${video.ago}*\n`;
-    info += `╰┈➤ 🆔 ID: \`${video.videoId}\`\n──────────\n`;
+    info += `☽◯☾ ♰ 👤 Canal: *${video.author.name}*\n`;
+    info += `☽◯☾ ♰ ⏱️ Duración: *${video.duration.timestamp}*\n`;
+    info += `☽◯☾ ♰ 👀 Vistas: *${formatViews(video.views)}*\n`;
+    info += `☽◯☾ ♰ 📅 Subido: *${video.ago}*\n`;
+    info += `☽◯☾ ♰ 🆔 ID: \`${video.videoId}\`\n──────────\n`;
     if (video.description) {
       const desc = video.description.substring(0, 150).replace(/\n/g, " ");
       info += `*Descripción:*\n_${desc}${video.description.length > 150 ? "..." : ""}_\n\n`;
     }
     info += `🔗 ${video.url}\n\n`;
-    info += `_⏳ enviando audio, por favor espera..._\n\n╰━━━━━━━━━━━━╯`;
+    info += `_⏳ enviando audio, por favor espera..._\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
     await sock.sendPreview(
       m.chat,
@@ -90,7 +90,7 @@ async function handler(m, { sock, text }) {
     console.error("[Play]", err);
     m.react("😭");
     m.reply(
-      `╰┈➤ 😔 Uy, la función de reproducir música tiene un problema, intenta de nuevo más tarde, no hagas spam`,
+      `☽◯☾ ♰ 😔 Uy, la función de reproducir música tiene un problema, intenta de nuevo más tarde, no hagas spam`,
     );
   }
 }

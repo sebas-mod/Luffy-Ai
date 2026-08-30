@@ -194,7 +194,7 @@ async function handler(m, { sock }) {
         Math.min(Math.max(2000, 5000 - (rod.speed || 0) * 3000), 4000),
       ),
     );
-    let txt = `╭━━〔 🎣 〕━━╮\n *¡RESULTADO DE LA PESCA!* 🎣\n╰━━━━━━━━━━╯\n\n`;
+    let txt = `☽◯☾ ╭ ♰ 🎣 ♰ ━╮ ☽◯☾\n *¡RESULTADO DE LA PESCA!* 🎣\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
     for (const c of catches) {
       txt += `${rc(c.rarity)} *${c.name}*\n   _${formatMoney(c.price)} | ${c.kg}kg_\n`;
       if (c.isMutated)

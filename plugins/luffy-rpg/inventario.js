@@ -24,13 +24,13 @@ function handler(m, { sock }) {
   ensureUser(m.sender, m.pushName || "Usuario");
   const det = getInventarioDetallado(m.sender);
 
-  let txt = `╭━━〔 🎒 INVENTARIO 〕━━╮\n`;
+  let txt = `☽◯☾ ╭ ♰ 🎒 INVENTARIO ♰ ━╮ ☽◯☾\n`;
 
   if (det.length === 0) {
     txt += `┃ Tu mochila está vacía.\n┃\n`;
     txt += `┃ › Compra objetos con *${m.prefix}tienda*.\n`;
     txt += `┃ › Usa *${m.prefix}usar <id>* para consumir.\n`;
-    txt += `╰━━━━━━━━━━╯`;
+    txt += `╰━ ⊱༺༒༻⊰ ━╯`;
     return m.reply(txt);
   }
 
@@ -39,7 +39,7 @@ function handler(m, { sock }) {
     txt += `┃    \`${id}\` · ${item.tipo}\n`;
   }
 
-  txt += `╰┈➤ 💡 Usa *${m.prefix}usar <id>* para consumir objetos.`;
+  txt += `☽◯☾ ♰ 💡 Usa *${m.prefix}usar <id>* para consumir objetos.`;
   return m.reply(txt);
 }
 

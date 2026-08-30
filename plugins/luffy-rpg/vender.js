@@ -50,11 +50,11 @@ function handler(m, { sock }) {
   addBerrys(m.sender, total);
 
   return m.reply(
-    `╭━━〔 💰 VENTA EXITOSA 〕━━╮\n` +
+    `☽◯☾ ╭ ♰ 💰 VENTA EXITOSA ♰ ━╮ ☽◯☾\n` +
       `┃ ${item.emoji} *${item.nombre}* x${cantidad}\n` +
       `┃ 💵 Ganado: *${total} Berrys*\n` +
       `┃ 💵 Saldo: *${getBerrys(m.sender)} Berrys*\n` +
-      `╰━━━━━━━━━━╯`,
+      `╰━ ⊱༺༒༻⊰ ━╯`,
   );
 }
 

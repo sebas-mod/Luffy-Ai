@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
         )
     }
     if (text.length > 100) {
-        return m.reply(`✦ • ─── • ✦\n❌ ¡El texto es demasiado largo! Máximo 100 caracteres.`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ ¡El texto es demasiado largo! Máximo 100 caracteres.`)
     }
     m.react('🕕')
     try {

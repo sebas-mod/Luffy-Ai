@@ -42,7 +42,7 @@ async function handler(m, { sock, args, text }) {
     }
 
     if (!query.trim()) {
-        return m.reply(`╰┈➤ ¡Escribe el nombre del dispositivo que quieres buscar!\nEjemplo: .bandingkan-device phone samsung s24`);
+        return m.reply(`☽◯☾ ♰ ¡Escribe el nombre del dispositivo que quieres buscar!\nEjemplo: .bandingkan-device phone samsung s24`);
     }
 
     await m.react("🕕");
@@ -53,11 +53,11 @@ async function handler(m, { sock, args, text }) {
 
         if (!resData || !resData.status || !resData.data || resData.data.length === 0) {
             await m.react("❌");
-            return m.reply(`╰┈➤ Dispositivo "${query}" no encontrado.`);
+            return m.reply(`☽◯☾ ♰ Dispositivo "${query}" no encontrado.`);
         }
 
         const maxResults = Math.min(resData.data.length, 10);
-        let listTxt = `╭━━━〔 📊 DISPOSITIVO 1: ${query.toUpperCase()} 〕━━━╮\n──────────\n`;
+        let listTxt = `☽◯☾ ╭━ ♰ 📊 DISPOSITIVO 1: ${query.toUpperCase()} ♰ ━╮ ☽◯☾\n──────────\n`;
         listTxt += `Por favor elige uno más específico:\n\n`;
 
         const searchResults = [];
@@ -106,7 +106,7 @@ async function comparationAnswerHandler(m, sock) {
     if (Date.now() - session.time > SESSION_TIMEOUT) {
         delete user.compare_session;
         db.save();
-        await m.reply(`╰┈➤ ⏰ *SESIÓN CADUCADA*\n\nLa sesión de comparación de dispositivos ha terminado.`);
+        await m.reply(`☽◯☾ ♰ ⏰ *SESIÓN CADUCADA*\n\nLa sesión de comparación de dispositivos ha terminado.`);
         return true;
     }
 
@@ -116,7 +116,7 @@ async function comparationAnswerHandler(m, sock) {
     if (textLower === "cancelar" || textLower === "cancel") {
         delete user.compare_session;
         db.save();
-        await m.reply(`╰┈➤ 🚪 Sesión de comparación cancelada.`);
+        await m.reply(`☽◯☾ ♰ 🚪 Sesión de comparación cancelada.`);
         return true;
     }
 
@@ -135,7 +135,7 @@ async function comparationAnswerHandler(m, sock) {
         db.save();
 
         await m.react("✅");
-        await m.reply(`╰┈➤ Bien, elegiste *${selected.label}* con tipo *${session.type}* para el primer dispositivo.\n\n¿Con qué quieres compararlo?\n\n> 💡 _Envía el nombre del segundo dispositivo a buscar (ejemplo: iphone 17 pro max)_`);
+        await m.reply(`☽◯☾ ♰ Bien, elegiste *${selected.label}* con tipo *${session.type}* para el primer dispositivo.\n\n¿Con qué quieres compararlo?\n\n> 💡 _Envía el nombre del segundo dispositivo a buscar (ejemplo: iphone 17 pro max)_`);
         return true;
     }
 
@@ -150,12 +150,12 @@ async function comparationAnswerHandler(m, sock) {
 
             if (!resData || !resData.status || !resData.data || resData.data.length === 0) {
                 await m.react("❌");
-                await m.reply(`╰┈➤ Dispositivo "${query}" no encontrado. Escribe el nombre de otro dispositivo a buscar, o escribe \`batal\`.`);
+                await m.reply(`☽◯☾ ♰ Dispositivo "${query}" no encontrado. Escribe el nombre de otro dispositivo a buscar, o escribe \`batal\`.`);
                 return true;
             }
 
             const maxResults = Math.min(resData.data.length, 10);
-            let listTxt = `╭━━━〔 📊 DISPOSITIVO 2: ${query.toUpperCase()} 〕━━━╮\n──────────\n`;
+            let listTxt = `☽◯☾ ╭━ ♰ 📊 DISPOSITIVO 2: ${query.toUpperCase()} ♰ ━╮ ☽◯☾\n──────────\n`;
             listTxt += `Por favor elige uno más específico:\n\n`;
 
             const searchResults = [];
@@ -180,7 +180,7 @@ async function comparationAnswerHandler(m, sock) {
         } catch (error) {
             console.error("[Compare Search 2 Error]", error);
             await m.react("☢");
-            await m.reply("╰┈➤ Ocurrió un error al buscar el segundo dispositivo. Inténtalo de nuevo más tarde o escribe `batal`.");
+            await m.reply("☽◯☾ ♰ Ocurrió un error al buscar el segundo dispositivo. Inténtalo de nuevo más tarde o escribe `batal`.");
             return true;
         }
     }
@@ -199,7 +199,7 @@ async function comparationAnswerHandler(m, sock) {
         db.save();
 
         await m.react("🔄");
-        await m.reply(`╰┈➤ Procesando la comparación entre:\n*1. ${device1.label}*\n*2. ${device2.label}*\n\nEspera un momento, los datos de comparación se están obteniendo...`);
+        await m.reply(`☽◯☾ ♰ Procesando la comparación entre:\n*1. ${device1.label}*\n*2. ${device2.label}*\n\nEspera un momento, los datos de comparación se están obteniendo...`);
 
         try {
             const compareUrl = `https://api.neoxr.eu/api/compare?item1=${encodeURIComponent(device1.name)}&item2=${encodeURIComponent(device2.name)}&type=${session.type}&apikey=${NEOXR_APIKEY}`;
@@ -208,7 +208,7 @@ async function comparationAnswerHandler(m, sock) {
 
             if (!resData || !resData.status || !resData.data) {
                 await m.react("❌");
-                await m.reply(`╰┈➤ Error al obtener los datos de comparación.`);
+                await m.reply(`☽◯☾ ♰ Error al obtener los datos de comparación.`);
                 return true;
             }
 
@@ -272,7 +272,7 @@ async function comparationAnswerHandler(m, sock) {
         } catch (error) {
             console.error("[Compare Fetch Error]", error);
             await m.react("❌");
-            await m.reply("╰┈➤ Ocurrió un error al procesar los datos de comparación.");
+            await m.reply("☽◯☾ ♰ Ocurrió un error al procesar los datos de comparación.");
             return true;
         }
     }

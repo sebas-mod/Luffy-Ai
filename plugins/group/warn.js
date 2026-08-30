@@ -47,11 +47,11 @@ async function handler(m, { sock }) {
     if (args[0]?.toLowerCase() === 'max') {
         const newMax = parseInt(args[1])
         if (isNaN(newMax) || newMax < 1 || newMax > 20) {
-            return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ERROR*\n\nEl límite de advertencias debe ser un número del 1-20.\nEjemplo: *${m.prefix}warn max 5*`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`❌ *ERROR*\n\nEl límite de advertencias debe ser un número del 1-20.\nEjemplo: *${m.prefix}warn max 5*`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         groupData.maxWarnings = newMax
         db.setGroup(m.chat, groupData)
-        return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`✅ *LÍMITE DE ADVERTENCIAS CAMBIADO*\n\nEl máximo de advertencias de este grupo se actualizó a *${newMax} veces*.`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`✅ *LÍMITE DE ADVERTENCIAS CAMBIADO*\n\nEl máximo de advertencias de este grupo se actualizó a *${newMax} veces*.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     let targetUser = null
@@ -73,14 +73,14 @@ async function handler(m, { sock }) {
         const groupMeta = m.groupMetadata
         const participant = groupMeta.participants.find(p => getParticipantJid(p) === targetUser)
         if (participant?.admin) {
-            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ No se puede dar una advertencia a un admin del grupo.`+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ No se puede dar una advertencia a un admin del grupo.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             return
         }
     } catch (e) {}
     
     const botJid = sock.user?.id?.split(':')[0] + '@s.whatsapp.net'
     if (targetUser === botJid) {
-        await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ No me adviertas, solo soy un bot.`+"\n╰━━━━━━━━━━━━╯")
+        await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ No me adviertas, solo soy un bot.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         return
     }
     

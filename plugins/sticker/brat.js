@@ -117,7 +117,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `✦ • ─── • ✦\n🖼️ *ɪᴍᴀɢᴇɴ ʙʀᴀᴛ*\n\n> Ingresa el texto\n\n\`╰┈➤ Ejemplo: ${m.prefix}bratimg Hola a todos\``,
+      `♰ ┄ ── ☽◯☾ ── ┄ ♰\n🖼️ *ɪᴍᴀɢᴇɴ ʙʀᴀᴛ*\n\n> Ingresa el texto\n\n\`☽◯☾ ♰ Ejemplo: ${m.prefix}bratimg Hola a todos\``,
     );
   }
 

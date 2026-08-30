@@ -19,7 +19,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
   
   if (!text) {
-    return m.reply(`✦ • ─── • ✦\n⚠️ ¡Ingresa el texto superior e inferior!\n╰┈➤ Ejemplo: \`${m.prefix}${m.command} arriba|abajo\``);
+    return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ ¡Ingresa el texto superior e inferior!\n☽◯☾ ♰ Ejemplo: \`${m.prefix}${m.command} arriba|abajo\``);
   }
 
   const parts = text.split('|');
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
   const isImage = getContentType(msg) === 'imageMessage' || m.mtype === 'imageMessage';
 
   if (!isImage && !isQuotedImage) {
-    return m.reply(`✦ • ─── • ✦\n⚠️ Envía o responde una imagen con el caption \`${m.prefix}${m.command} texto_superior|texto_inferior\``);
+    return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ Envía o responde una imagen con el caption \`${m.prefix}${m.command} texto_superior|texto_inferior\``);
   }
 
   await m.react('🕕');
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     
     const response = await axios.get(apiUrl);
     if (!response.data.status || !response.data.data?.url) {
-      return m.reply('✦ • ─── • ✦\n❌ No se pudo crear el meme, posiblemente la API tenga problemas.');
+      return m.reply('♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo crear el meme, posiblemente la API tenga problemas.');
     }
 
     const stickerUrl = response.data.data.url;

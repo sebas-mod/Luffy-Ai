@@ -32,7 +32,7 @@ async function handler(m, { sock }) {
         const sessions = getAllJadibotSessions()
 
         if (sessions.length === 0) {
-            return m.reply(`╰┈➤ ❌ No hay sesiones jadibot guardadas`)
+            return m.reply(`☽◯☾ ♰ ❌ No hay sesiones jadibot guardadas`)
         }
 
         let txt = `🗑️ *sᴛᴏᴘ & ᴇʟɪᴍɪɴᴀʀ ᴊᴀᴅɪʙᴏᴛ*\n\n`
@@ -56,7 +56,7 @@ async function handler(m, { sock }) {
     const session = sessions.find(s => s.id === id)
 
     if (!session) {
-        return m.reply(`╰┈➤ ❌ No se encontró la sesión jadibot de *@${id}*`, { mentions: [target] })
+        return m.reply(`☽◯☾ ♰ ❌ No se encontró la sesión jadibot de *@${id}*`, { mentions: [target] })
     }
 
     await m.react('🕕')

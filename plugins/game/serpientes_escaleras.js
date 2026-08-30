@@ -124,19 +124,19 @@ async function handler(m, { sock }) {
       await sendUT(
         sock,
         m.chat,
-        `╭━━〔 🎲 〕━━╮\n🐍🎲 *SERPIENTES Y ESCALERAS* 🎲\n╰━━━━━━━━━━╯\n\n` +
+        `☽◯☾ ╭ ♰ 🎲 ♰ ━╮ ☽◯☾\n🐍🎲 *SERPIENTES Y ESCALERAS* 🎲\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `¡Sala creada con éxito!\n\n` +
-        `╭┈┈⬡「 📋 *INFO DE LA SALA* 」\n` +
+        `☽◯☾ ♰ 「 📋 *INFO DE LA SALA* 」\n` +
         `┃ 👑 Host: @${m.sender.split("@")[0]}\n` +
         `┃ 👥 Jugadores: 1/4\n` +
         `┃ 🗺️ Mapa: ${mapConfig.name}\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 🎮 *COMANDOS* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 🎮 *COMANDOS* 」\n` +
         `┃ ➕ \`${prefix}ut join\` - Unirse\n` +
         `┃ ▶️ \`${prefix}ut start\` - Empezar\n` +
         `┃ ℹ️ \`${prefix}ut info\` - Info de la sala\n` +
         `┃ 🚪 \`${prefix}ut exit\` - Salir\n` +
-        `╰┈┈┈┈┈┈┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         "🎲 ROOM CREATED",
         "¡Vamos a unirse!",
         [m.sender],
@@ -180,12 +180,12 @@ async function handler(m, { sock }) {
         m.chat,
         `✅ *JUGADOR SE UNIÓ*\n\n` +
         `@${m.sender.split("@")[0]} entró!\n\n` +
-        `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+        `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
         `${playerList
           .split("\n")
           .map((l) => `┃ ${l}`)
           .join("\n")}\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Total: ${players.length}/4\n` +
         `> ${players.length >= 2 ? `✅ ¡Pueden empezar! \`${prefix}ut start\`` : "🕕 Falta 1 jugador más"}`,
         "👥 PLAYER JOINED",
@@ -244,12 +244,12 @@ async function handler(m, { sock }) {
             image: boardImage,
             caption:
               `🐍🎲 *¡EL JUEGO HA COMENZADO!*\n\n` +
-              `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+              `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
               `${playerList
                 .split("\n")
                 .map((l) => `┃ ${l}`)
                 .join("\n")}\n` +
-              `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+              `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
               `> 🎯 Turno de: @${players[0].split("@")[0]}\n` +
               `> Escribe *lanzar* para tirar el dado!`,
             contextInfo: utCtx(players),
@@ -261,12 +261,12 @@ async function handler(m, { sock }) {
           sock,
           m.chat,
           `🐍🎲 *¡EL JUEGO HA COMENZADO!*\n\n` +
-          `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+          `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
           `${playerList
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `> 🎯 Turno de: @${players[0].split("@")[0]}\n` +
           `> Escribe *lanzar* para tirar el dado!`,
           "🎮 GAME STARTED",
@@ -300,18 +300,18 @@ async function handler(m, { sock }) {
         {
           text:
             `🐍🎲 *INFO DE LA SALA*\n\n` +
-            `╭┈┈⬡「 📋 *SALA* 」\n` +
+            `☽◯☾ ♰ 「 📋 *SALA* 」\n` +
             `┃ 👑 Host: @${ut[m.chat].host.split("@")[0]}\n` +
             `┃ 📍 Estado: ${ut[m.chat].status}\n` +
             `┃ 🗺️ Mapa: ${ut[m.chat].mapName}\n` +
             `┃ 👥 Jugadores: ${players.length}/4\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-            `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+            `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
             `${playerList
               .split("\n")
               .map((l) => `┃ ${l}`)
               .join("\n")}\n` +
-            `╰┈┈┈┈┈┈┈┈⬡` +
+            `╰━ ⊱༺༒༻⊰ ━╯` +
             (currentTurn
               ? `\n\n> 🎯 Turno de: @${currentTurn.split("@")[0]}`
               : ""),
@@ -398,19 +398,19 @@ async function handler(m, { sock }) {
       `🐍🎲 *SERPIENTES Y ESCALERAS*\n\n` +
       `¡Un juego clásico lleno de aventura!\n` +
       `¡Sube las escaleras, esquiva las serpientes, llega al 100!\n\n` +
-      `╭┈┈⬡「 🎮 *COMANDOS* 」\n` +
+      `☽◯☾ ♰ 「 🎮 *COMANDOS* 」\n` +
       `┃ 🎲 \`${prefix}ut create\` - Crear sala\n` +
       `┃ ➕ \`${prefix}ut join\` - Unirse a sala\n` +
       `┃ ▶️ \`${prefix}ut start\` - Empezar juego\n` +
       `┃ ℹ️ \`${prefix}ut info\` - Info de la sala\n` +
       `┃ 🚪 \`${prefix}ut exit\` - Salir\n` +
       `┃ 🗑️ \`${prefix}ut delete\` - Eliminar sala\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `╭┈┈⬡「 🏆 *PREMIOS* 」\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+      `☽◯☾ ♰ 「 🏆 *PREMIOS* 」\n` +
       `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
       `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
       `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> Min 2 jugadores, Max 4 jugadores`,
       "🐍🎲 SERPIENTES Y ESCALERAS",
       "¡A jugar!",
@@ -536,11 +536,11 @@ async function answerHandler(m, sock) {
         caption:
           `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
           `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
-          `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
+          `☽◯☾ ♰ 「 🎁 *PREMIOS* 」\n` +
           `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
           `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
           `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `> ¡GG WP! ¿Otra ronda? \`.ut create\``,
         contextInfo: utCtx([m.sender]),
       });
@@ -550,11 +550,11 @@ async function answerHandler(m, sock) {
         m.chat,
         `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
         `${color} @${m.sender.split("@")[0]} llegó al 100!\n\n` +
-        `╭┈┈⬡「 🎁 *PREMIOS* 」\n` +
+        `☽◯☾ ♰ 「 🎁 *PREMIOS* 」\n` +
         `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
         `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
         `┃ ⚡ +${WIN_REWARD.carne} Energía\n` +
-        `╰┈┈┈┈┈┈┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         "🏆 WINNER!",
         `¡${name} ganó!`,
         [m.sender],

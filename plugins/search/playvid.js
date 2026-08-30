@@ -51,7 +51,7 @@ async function getVideoDownloadUrl(url) {
 async function handler(m, { sock, text }) {
   const query = m.text?.trim();
   if (!query) {
-    return m.reply(`╰┈➤ Hola *${m.pushName}* 👋\n\nPara buscar y reproducir videos de YouTube, por favor usa el formato:\n- \`${m.prefix}playvid <título del video>\`\n\nEjemplo:\n- \`${m.prefix}playvid windah basudara\``);
+    return m.reply(`☽◯☾ ♰ Hola *${m.pushName}* 👋\n\nPara buscar y reproducir videos de YouTube, por favor usa el formato:\n- \`${m.prefix}playvid <título del video>\`\n\nEjemplo:\n- \`${m.prefix}playvid windah basudara\``);
   }
 
   m.react("🕕");
@@ -61,7 +61,7 @@ async function handler(m, { sock, text }) {
     if (!search.videos.length) throw new Error("Video no encontrado");
     const video = search.videos[0];
 
-    let info = `╭━〔 🎬 〕━╮\n╰┈➤ Hola *${m.pushName}*, este es el video que buscas:\n──────────\n`;
+    let info = `☽◯☾ ╭ ♰ 🎬 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ Hola *${m.pushName}*, este es el video que buscas:\n──────────\n`;
     info += `📌 *Título:* ${video.title}\n`;
     info += `👤 *Canal:* ${video.author.name}\n`;
     info += `⏱️ *Duración:* ${video.duration.timestamp}\n`;
@@ -95,7 +95,7 @@ async function handler(m, { sock, text }) {
     console.error("[PlayVid]", err);
     m.react("❌");
     m.reply(
-      `╰┈➤ 😔 Lo siento *${m.pushName}*, la función de reproducir video está teniendo problemas o el video es demasiado grande. ¡Intenta de nuevo más tarde!`,
+      `☽◯☾ ♰ 😔 Lo siento *${m.pushName}*, la función de reproducir video está teniendo problemas o el video es demasiado grande. ¡Intenta de nuevo más tarde!`,
     );
   }
 }

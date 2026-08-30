@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     
     if (!url) {
         return m.reply(
-            `✦ • ─── • ✦\n🎥 *𝗖 𝗢 𝗖 𝗢 𝗙 𝗨 𝗡*\n──────────\n` +
+            `♰ ┄ ── ☽◯☾ ── ┄ ♰\n🎥 *𝗖 𝗢 𝗖 𝗢 𝗙 𝗨 𝗡*\n──────────\n` +
             `> Descarga el video de *CocoFun* sin marca de agua.\n\n` +
             usage(m.prefix, m.command, 'https://www.cocofun.com/share/post/xxx')
         )

@@ -78,8 +78,8 @@ function buildEffectList() {
         '〰️ *Modulation*': ['tremolo', 'vibrato'],
     }
 
-    let txt = `✦ • ─── • ✦\n🎧 *AUDIO FX* — ${EFFECT_NAMES.length} efectos\n──────────\n\n`
-    txt += `╰┈➤ Responde un audio/video y luego escribe el efecto\n\n`
+    let txt = `♰ ┄ ── ☽◯☾ ── ┄ ♰\n🎧 *AUDIO FX* — ${EFFECT_NAMES.length} efectos\n──────────\n\n`
+    txt += `☽◯☾ ♰ Responde un audio/video y luego escribe el efecto\n\n`
 
     for (const [cat, effects] of Object.entries(categories)) {
         txt += `${cat}\n`
@@ -90,7 +90,7 @@ function buildEffectList() {
         txt += `\n`
     }
 
-    txt += `──────────\n╰┈➤ _Ejemplo: responde un audio y luego escribe .bass_`
+    txt += `──────────\n☽◯☾ ♰ _Ejemplo: responde un audio y luego escribe .bass_`
     return txt
 }
 
@@ -107,14 +107,14 @@ async function handler(m, { sock }) {
     const fx = EFFECTS[effectName]
     if (!fx) {
         return m.reply(
-            `✦ • ─── • ✦\n❌ El efecto *${effectName}* no existe\n──────────\n` +
-            `╰┈➤ Escribe *${m.prefix}audiofx list* para ver la lista de efectos`
+            `♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ El efecto *${effectName}* no existe\n──────────\n` +
+            `☽◯☾ ♰ Escribe *${m.prefix}audiofx list* para ver la lista de efectos`
         )
     }
 
     const media = getMediaSource(m)
     if (!media) {
-        return m.reply(`✦ • ─── • ✦\n${fx.emoji} *${effectName.toUpperCase()}*\n──────────\n╰┈➤ Responde un audio/video con este comando`)
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n${fx.emoji} *${effectName.toUpperCase()}*\n──────────\n☽◯☾ ♰ Responde un audio/video con este comando`)
     }
 
     m.react('🕕')
@@ -129,14 +129,14 @@ async function handler(m, { sock }) {
     try {
         const buffer = await media.download()
         if (!buffer?.length) {
-            return m.reply(`✦ • ─── • ✦\n❌ No se pudo descargar el medio`)
+            return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo descargar el medio`)
         }
 
         fs.writeFileSync(inputPath, buffer)
         await queueFFmpeg(`ffmpeg -y -i "${inputPath}" -af "${fx.filter}" -vn "${outputPath}"`)
 
         if (!fs.existsSync(outputPath)) {
-            return m.reply(`✦ • ─── • ✦\n❌ No se pudo procesar el audio`)
+            return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo procesar el audio`)
         }
 
         const audioBuffer = fs.readFileSync(outputPath)

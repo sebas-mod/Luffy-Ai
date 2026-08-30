@@ -14,13 +14,13 @@ const pluginConfig = {
 
 async function handler(m, { sock, args }) {
   if (args.length < 3) {
-      return m.reply(`╭━〔 🎮 〕━╮\n╰┈➤ Hola *${m.pushName}* 👋\n──────────\n╰┈➤ Para calcular tu win rate objetivo de MLBB, usa el formato:\n╰┈➤ \`${m.prefix}calcular_wr_mlbb <total_partidas> <wr_actual> <wr_objetivo>\`\n──────────\n✧ Ejemplo:\n╰┈➤ \`${m.prefix}calcular_wr_mlbb 4242 22 88\`\n╰━━━━━╯`);
+      return m.reply(`☽◯☾ ╭ ♰ 🎮 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ Hola *${m.pushName}* 👋\n──────────\n☽◯☾ ♰ Para calcular tu win rate objetivo de MLBB, usa el formato:\n☽◯☾ ♰ \`${m.prefix}calcular_wr_mlbb <total_partidas> <wr_actual> <wr_objetivo>\`\n──────────\n✧ Ejemplo:\n☽◯☾ ♰ \`${m.prefix}calcular_wr_mlbb 4242 22 88\`\n╰━━━━━╯`);
   }
 
   const [totalMatch, wrNow, wrTarget] = args;
 
   if (isNaN(totalMatch) || isNaN(wrNow) || isNaN(wrTarget)) {
-    return m.reply(`❌ Número no válido.\n──────────\n╰┈➤ Asegúrate de que todo lo ingresado sean números (sin %).\n╰┈➤ Ejemplo: \`.hitungwrmlbb 4242 22 88\``);
+    return m.reply(`❌ Número no válido.\n──────────\n☽◯☾ ♰ Asegúrate de que todo lo ingresado sean números (sin %).\n☽◯☾ ♰ Ejemplo: \`.hitungwrmlbb 4242 22 88\``);
   }
 
   m.react("🕕");
@@ -32,14 +32,14 @@ async function handler(m, { sock, args }) {
 
     if (!data.status || !data.result) {
       await m.react("❌");
-        return m.reply(`╭━〔 🎮 〕━╮\n╰┈➤ ⚠️ Error al calcular el Win Rate.\n╰┈➤ Asegúrate de que los números sean razonables o inténtalo más tarde.\n╰━━━━━╯`);
+        return m.reply(`☽◯☾ ╭ ♰ 🎮 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ ⚠️ Error al calcular el Win Rate.\n☽◯☾ ♰ Asegúrate de que los números sean razonables o inténtalo más tarde.\n╰━━━━━╯`);
     }
 
-    let info = `╭━━━〔 🎮 CALCULADORA WINRATE MLBB 🎮 〕━━━╮\n\n`;
-    info += `╰┈➤ 📊 Partidas Totales: *${totalMatch}*\n`;
-    info += `╰┈➤ 📉 WR Actual: *${wrNow}%*\n`;
-    info += `╰┈➤ 📈 WR Objetivo: *${wrTarget}%*\n\n`;
-    info += `✦────────✦\n💡 *Resultado del Análisis:*\n${data.result}\n\n╰━━━━━━━━━━━━╯`;
+    let info = `☽◯☾ ╭━ ♰ 🎮 CALCULADORA WINRATE MLBB 🎮 ♰ ━╮ ☽◯☾\n\n`;
+    info += `☽◯☾ ♰ 📊 Partidas Totales: *${totalMatch}*\n`;
+    info += `☽◯☾ ♰ 📉 WR Actual: *${wrNow}%*\n`;
+    info += `☽◯☾ ♰ 📈 WR Objetivo: *${wrTarget}%*\n\n`;
+    info += `♰ ──────── ♱✦\n💡 *Resultado del Análisis:*\n${data.result}\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
     await m.reply(info);
     m.react("✅");
@@ -47,7 +47,7 @@ async function handler(m, { sock, args }) {
   } catch (error) {
     console.error("[WR MLBB Error]", error);
     await m.react("❌");
-    m.reply("╰┈➤ 😔 Ocurrió un error del sistema al calcular el Win Rate. Por favor, inténtalo de nuevo más tarde.");
+    m.reply("☽◯☾ ♰ 😔 Ocurrió un error del sistema al calcular el Win Rate. Por favor, inténtalo de nuevo más tarde.");
   }
 }
 

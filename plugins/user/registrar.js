@@ -189,29 +189,29 @@ function buildConfirmationRewardBlock(user) {
   const rewards = getRegistrationRewards();
 
   if (user?.hasClaimedRegisterReward) {
-    return `╭┈┈⬡「 🎁 *ʙᴏɴᴜs* 」\n┃ El bonus de primer registro ya fue reclamado\n┃ Registrarse de nuevo no da recompensa otra vez\n╰┈┈┈┈┈┈┈┈⬡`;
+    return `☽◯☾ ♰ 「 🎁 *ʙᴏɴᴜs* 」\n┃ El bonus de primer registro ya fue reclamado\n┃ Registrarse de nuevo no da recompensa otra vez\n╰━ ⊱༺༒༻⊰ ━╯`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.berry.toLocaleString("id-ID")} Berry\n┃ ⚡ +${rewards.carne} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `☽◯☾ ♰ 「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.berry.toLocaleString("id-ID")} Berry\n┃ ⚡ +${rewards.carne} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰━ ⊱༺༒༻⊰ ━╯`;
 }
 
 function buildSuccessRewardBlock(alreadyClaimedReward) {
   const rewards = getRegistrationRewards();
 
   if (alreadyClaimedReward) {
-    return `╭┈┈⬡「 🎁 *ʙᴏɴᴜs* 」\n┃ El bonus de registro ya fue reclamado\n┃ No hay recompensa adicional esta vez\n╰┈┈┈┈┈┈┈┈⬡`;
+    return `☽◯☾ ♰ 「 🎁 *ʙᴏɴᴜs* 」\n┃ El bonus de registro ya fue reclamado\n┃ No hay recompensa adicional esta vez\n╰━ ⊱༺༒༻⊰ ━╯`;
   }
 
-  return `╭┈┈⬡「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.berry.toLocaleString("id-ID")} Berry\n┃ ⚡ +${rewards.carne} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰┈┈┈┈┈┈┈┈⬡`;
+  return `☽◯☾ ♰ 「 🎁 *ʀᴇᴡᴀʀᴅs* 」\n┃ 💰 +${rewards.berry.toLocaleString("id-ID")} Berry\n┃ ⚡ +${rewards.carne} Energía\n┃ ⭐ +${rewards.exp.toLocaleString("id-ID")} EXP\n╰━ ⊱༺༒༻⊰ ━╯`;
 }
 
 function buildUserDataBlock(name, age, gender) {
   return (
-    `╭┈┈⬡「 📋 *ᴅᴀᴛᴏs* 」\n` +
+    `☽◯☾ ♰ 「 📋 *ᴅᴀᴛᴏs* 」\n` +
     `┃ 📛 Nombre: *${name || "-"}*\n` +
     `┃ 🎂 Edad: *${age ? `${age} años` : "-"}*\n` +
     `┃ 👤 Género: *${gender || "-"}*\n` +
-    `╰┈┈┈┈┈┈┈┈⬡`
+    `╰━ ⊱༺༒༻⊰ ━╯`
   );
 }
 

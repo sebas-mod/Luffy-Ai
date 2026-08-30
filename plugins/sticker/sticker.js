@@ -148,7 +148,7 @@ async function handler(m, { sock, config: botConfig }) {
         }
         
         if (!buffer) {
-            await m.reply('✦ • ─── • ✦\n❌ No se pudo descargar el medio!')
+            await m.reply('♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo descargar el medio!')
             await m.react('❌')
             return
         }
@@ -167,7 +167,7 @@ async function handler(m, { sock, config: botConfig }) {
                 const duration = parseFloat(stdout.trim())
                 
                 if (duration > 10) {
-                    await m.reply(`✦ • ─── • ✦\n❌ Video demasiado largo!\n──────────\n╰┈➤ Duración: ${duration.toFixed(1)} segundos\n╰┈➤ Máximo: 10 segundos`)
+                    await m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ Video demasiado largo!\n──────────\n☽◯☾ ♰ Duración: ${duration.toFixed(1)} segundos\n☽◯☾ ♰ Máximo: 10 segundos`)
                     await m.react('☢')
                     if (fs.existsSync(tempVideo)) fs.unlinkSync(tempVideo)
                     return

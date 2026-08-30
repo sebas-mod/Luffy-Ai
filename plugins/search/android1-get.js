@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
   const url = m.text?.trim();
 
   if (!url || !url.includes("an1.com")) {
-    return m.reply(`╰┈➤ ❌ ¡URL no válida! Debe ser una URL de an1.com`);
+    return m.reply(`☽◯☾ ♰ ❌ ¡URL no válida! Debe ser una URL de an1.com`);
   }
 
   m.react("🕕");

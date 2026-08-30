@@ -145,7 +145,7 @@ async function handler(m, { sock }) {
   const typeIcon = trx.productType === "fisik" ? "📦" : "🔑";
   const typeLabel = trx.productType === "fisik" ? "Físico" : "Digital";
 
-  let invoiceTxt = `╭━━━〔 🎉 ÉXITO 〕━━━╮\n\n🎉 *TRANSACCIÓN EXITOSA*\n\n`;
+  let invoiceTxt = `☽◯☾ ╭━ ♰ 🎉 ÉXITO ♰ ━╮ ☽◯☾\n\n🎉 *TRANSACCIÓN EXITOSA*\n\n`;
   invoiceTxt += `🕐 Hora: \`${timeStr}\`\n`;
   invoiceTxt += `✅ Estado: *Exitosa*\n\n`;
   invoiceTxt += `📦 *Detalle del Pedido:*\n`;
@@ -160,7 +160,7 @@ async function handler(m, { sock }) {
     invoiceTxt += `📦 _El producto físico será enviado por el admin. Confirma la dirección de envío._\n\n`;
   }
 
-  invoiceTxt += `╰━━━━━━━━━━━━╯\n\n🙏 ¡Gracias por comprar! _Hasta el próximo pedido_ ✨`;
+  invoiceTxt += `╰━ ⊱༺༒༻⊰ ━╯\n\n🙏 ¡Gracias por comprar! _Hasta el próximo pedido_ ✨`;
 
   try {
     await sock.sendMessage(buyerJid, {
@@ -187,7 +187,7 @@ async function handler(m, { sock }) {
       const buyerMention = `@${buyerNum}`;
       await sock.sendMessage(trx.purchaseChat, {
         text:
-          `🎉 *¡PEDIDO COMPLETADO!*\n✦────────✦\n\n` +
+          `🎉 *¡PEDIDO COMPLETADO!*\n♰ ──────── ♱✦\n\n` +
           `${buyerMention} tu compra de *${trx.productName}* ya fue confirmada ✅\n` +
           `💰 Precio: *${formatPrice(trx.price)}*\n\n` +
           `📦 Los datos del producto ya fueron enviados a tu chat privado. ¡Revisa el mensaje del bot! 📱\n\n` +
@@ -205,7 +205,7 @@ async function handler(m, { sock }) {
 
   await m.react("✅");
 
-  let confirmTxt = `╭━━━〔 ✦ CONFIRMADO 〕━━━╮\n\n✅ *TRANSACCIÓN CONFIRMADA*\n\n`;
+  let confirmTxt = `☽◯☾ ╭━ ♰ ✦ CONFIRMADO ♰ ━╮ ☽◯☾\n\n✅ *TRANSACCIÓN CONFIRMADA*\n\n`;
   confirmTxt += `🧾 TRX: \`${trxId}\`\n`;
   confirmTxt += `${typeIcon} Producto: *${trx.productName}*\n`;
   confirmTxt += `👤 Comprador: *${trx.buyerName}*\n`;
@@ -218,7 +218,7 @@ async function handler(m, { sock }) {
         : `${product.stockItems?.length || 0} cuentas`;
     confirmTxt += `📊 Stock restante: *${stockDisplay}*\n`;
   }
-  confirmTxt += `\n╰━━━━━━━━━━━━╯\n\n📤 _Los datos fueron enviados al número del comprador_ ✅`;
+  confirmTxt += `\n╰━ ⊱༺༒༻⊰ ━╯\n\n📤 _Los datos fueron enviados al número del comprador_ ✅`;
 
   return m.reply(confirmTxt);
 }

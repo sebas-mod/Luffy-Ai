@@ -16,7 +16,7 @@ async function handler(m, { sock }) {
   const text = m.text?.trim();
 
   if (!text) {
-    return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n🎤 *Google TTS*\n\n╰┈➤ Usa:\n${m.prefix}tts hola mundo\n\n╰━━━━━━━━━━━━╯`);
+    return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🎤 *Google TTS*\n\n☽◯☾ ♰ Usa:\n${m.prefix}tts hola mundo\n\n╰━ ⊱༺༒༻⊰ ━╯`);
   }
 
   m.react("🎤");

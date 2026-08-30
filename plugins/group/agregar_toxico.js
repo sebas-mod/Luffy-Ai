@@ -29,18 +29,18 @@ async function handler(m, { sock }) {
     }
     
     if (word.length < 2) {
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra es demasiado corta (mín 2 letras)`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra es demasiado corta (mín 2 letras)`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     if (word.length > 30) {
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra es demasiado larga (máx 30 letras)`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra es demasiado larga (máx 30 letras)`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     const groupData = db.getGroup(m.chat) || {}
     const toxicWords = groupData.toxicWords || []
     
     if (toxicWords.includes(word)) {
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra \`${word}\` ya está en la lista`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> La palabra \`${word}\` ya está en la lista`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
     
     toxicWords.push(word)
@@ -50,10 +50,10 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ᴘᴀʟᴀʙʀᴀ ᴛᴏxɪᴄᴀ ᴀɢʀᴇɢᴀᴅᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📝 ᴘᴀʟᴀʙʀᴀ: \`${word}\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ: \`${toxicWords.length}\` palabras\n` +
-        `╰┈┈⬡`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     )
 }
 

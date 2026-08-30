@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
         if (changes.length === 0) {
             await m.react('✅')
-            return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ 📦 *sɪɴ ᴄᴀᴍʙɪᴏs*\n╰━━━━━━━━╯\n\n╰┈➤ No hay cambios que confirmar en el repositorio.\n› El árbol de trabajo está limpio.`)
+            return m.reply(`☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ 📦 *sɪɴ ᴄᴀᴍʙɪᴏs*\n╰━━━━━━━━╯\n\n☽◯☾ ♰ No hay cambios que confirmar en el repositorio.\n› El árbol de trabajo está limpio.`)
         }
 
         await runCmd('git add -A')
@@ -66,12 +66,12 @@ async function handler(m, { sock }) {
         await m.react('✅')
         await m.reply(
             `📦 *ᴄᴏᴍᴍɪᴛ ᴇxɪᴛᴏsᴏ*\n\n` +
-            `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+            `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
             `┃ 📝 Mensaje: *${commitMessage}*\n` +
             `┃ 📄 Archivos: *${changes.length}*\n` +
             (pushInfo ? `┃ ${pushInfo}` : '') +
             `┃ ⏱️ Tiempo: *${elapsed}s*\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `📂 *Archivos:*\n\`\`\`${fileList}\`\`\``
         )
     } catch (error) {
@@ -79,7 +79,7 @@ async function handler(m, { sock }) {
         await m.reply(
             `❌ *ғᴀʟʟɪᴅᴏ ᴇɴ ᴇʟ ᴄᴏᴍᴍɪᴛ*\n` +
             `──────────\n\n` +
-            `╰┈➤ ${error.stderr || error.message || 'Error desconocido'}\n\n` +
+            `☽◯☾ ♰ ${error.stderr || error.message || 'Error desconocido'}\n\n` +
             `› Comprueba la salida del comando para más detalles.`
         )
     }

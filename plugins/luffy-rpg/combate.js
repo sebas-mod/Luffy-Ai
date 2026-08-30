@@ -91,7 +91,7 @@ function handler(m, { sock }) {
       txt += `\n👑 *¡SUBISTE DE NIVEL! Ahora eres nivel ${recompensa.resultado.nivel}!*\n`;
     }
     txt += `\n❤️ *Salud restante:* ${resultado.saludJugador}/${statsJugador.saludMax}\n`;
-    txt += `╰┈➤ Recupérate con *${m.prefix}usar pocion_menor*`;
+    txt += `☽◯☾ ♰ Recupérate con *${m.prefix}usar pocion_menor*`;
   } else {
     updateUser(m.sender, (u) => {
       u.salud = Math.max(1, resultado.saludJugador);
@@ -101,7 +101,7 @@ function handler(m, { sock }) {
     txt += `💀 *¡DERROTA!*\n`;
     txt += `🌊 ${enemigo.nombre} fue demasiado fuerte.\n`;
     txt += `\n❤️ *Salud restante:* ${Math.max(1, resultado.saludJugador)}/${statsJugador.saludMax}\n`;
-    txt += `╰┈➤ Recupérate con *${m.prefix}usar pocion_menor* o *${m.prefix}diario*.`;
+    txt += `☽◯☾ ♰ Recupérate con *${m.prefix}usar pocion_menor* o *${m.prefix}diario*.`;
   }
 
   return m.reply(txt);

@@ -228,7 +228,7 @@ async function handler(m, { sock }) {
     }
     if (!imageTopBuffer) {
       m.react("❌");
-      return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
+      return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar la imagen`);
     }
     const resultBuffer = await createFakeStory(
       username,

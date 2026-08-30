@@ -21,7 +21,7 @@ async function handler(m) {
     const tempPath = path.join(process.cwd(), 'temp')
 
     if (!fs.existsSync(tempPath)) {
-        return m.reply('╰┈➤ ❌ ¡La carpeta temp no existe!')
+        return m.reply('☽◯☾ ♰ ❌ ¡La carpeta temp no existe!')
     }
 
     await m.react('🗑️')
@@ -30,7 +30,7 @@ async function handler(m) {
         const files = fs.readdirSync(tempPath)
 
         if (!files.length) {
-            return m.reply('╰┈➤ 📁 ¡La carpeta temp ya está vacía!')
+            return m.reply('☽◯☾ ♰ 📁 ¡La carpeta temp ya está vacía!')
         }
 
         let deleted = 0

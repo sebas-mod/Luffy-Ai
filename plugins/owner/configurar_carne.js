@@ -35,7 +35,7 @@ async function handler(m, { sock }) {
     }
     
     if (newCarne < 1 || newCarne > 1000) {
-        return m.reply(`👑•─────•👑\n❌ *ғᴀʟʟɪᴅᴏ*\n\n> La carne debe estar entre 1 - 1000\n✦────────✦`)
+        return m.reply(`👑•─────•👑\n❌ *ғᴀʟʟɪᴅᴏ*\n\n> La carne debe estar entre 1 - 1000\n♰ ──────── ♱✦`)
     }
     
     const db = getDatabase()

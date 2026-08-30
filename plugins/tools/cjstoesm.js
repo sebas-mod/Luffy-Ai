@@ -115,14 +115,14 @@ async function handler(m, { sock }) {
 
     if (!code) {
         return m.reply(
-            `╭━━━〔 🛠️ ᴄᴏɴᴠᴇʀsᴏʀ ᴄᴊs ᴀ ᴇsᴍ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ 🛠️ ᴄᴏɴᴠᴇʀsᴏʀ ᴄᴊs ᴀ ᴇsᴍ ♰ ━╮ ☽◯☾\n\n` +
             `> Convierte CommonJS a ES Modules\n\n` +
             `> ✦ *Cómo usar:*\n` +
             `> Responde el código CJS con ${m.prefix}cjstoesm\n\n` +
             `> ✦ *Ejemplo CJS:*\n` +
             `> \`const axios = require('axios')\`\n` +
             `> \`module.exports = handler\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 

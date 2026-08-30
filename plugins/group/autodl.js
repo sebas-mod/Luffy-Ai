@@ -54,7 +54,7 @@ function handler(m, { sock }) {
         return m.reply(`❌ *ᴀᴜᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ɪɴᴀᴄᴛɪᴠᴏ*`)
     }
     
-    return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ *ᴀʀɢᴜᴍᴇɴᴛᴏ ɪɴᴠáʟɪᴅᴏ*\n\n> Usa: \`on\` o \`off\``+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴀʀɢᴜᴍᴇɴᴛᴏ ɪɴᴠáʟɪᴅᴏ*\n\n> Usa: \`on\` o \`off\``+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 export { pluginConfig as config, handler }

@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const parts = input.split(/[&,]/).map(s => s.trim()).filter(s => s)
 
     if (parts.length < 2) {
-        return m.reply(`╭━━〔 🎨 CANVAS 〕━━╮\n🎨 *ʟᴏɢᴏ ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ*\n╰━━━━━━━━━━╯\n\n> Ingresa 2 textos para el logo\n\n╰┈➤ Ejemplo: ${m.prefix}balogo Blue & Archive`)
+        return m.reply(`☽◯☾ ╭ ♰ 🎨 CANVAS ♰ ━╮ ☽◯☾\n🎨 *ʟᴏɢᴏ ʙʟᴜᴇ ᴀʀᴄʜɪᴠᴇ*\n╰━ ⊱༺༒༻⊰ ━╯\n\n> Ingresa 2 textos para el logo\n\n☽◯☾ ♰ Ejemplo: ${m.prefix}balogo Blue & Archive`)
     }
 
     const textL = parts[0]

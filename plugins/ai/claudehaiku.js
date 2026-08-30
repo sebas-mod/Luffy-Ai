@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🤍 *Claude Haiku 4.5*\n\n` +
         `Pregúntale lo que sea al AI Claude Haiku — rápido y ligero, ideal para preguntas cotidianas.\n\n` +
         `*USO:*\n` +
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         `> *${m.prefix}claudehaiku Explica la teoría de la relatividad*\n` +
         `> *${m.prefix}claudehaiku Tips para ser productivo*\n\n` +
         `_Respuestas rápidas, pero inteligentes_\n\n` +
-      `╰━━━━━━━━━━━━╯`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 

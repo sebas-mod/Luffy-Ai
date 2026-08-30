@@ -37,13 +37,13 @@ async function handler(m, { sock }) {
     if (!sub || !['list', 'approve', 'reject'].includes(sub)) {
         return m.reply(
             `📋 *ᴅɪsᴇñᴀᴅᴏʀ ᴅᴇ sᴏʟɪᴄɪᴛᴜᴅᴇs ᴅᴇ ᴜɴɪóɴ*\n\n` +
-            `╭┈┈⬡「 📌 *ᴄᴏᴍᴀɴᴅᴏs* 」\n` +
+            `☽◯☾ ♰ 「 📌 *ᴄᴏᴍᴀɴᴅᴏs* 」\n` +
             `┃ ${m.prefix}aceptar list\n` +
             `┃ ${m.prefix}aceptar approve all\n` +
             `┃ ${m.prefix}aceptar reject all\n` +
             `┃ ${m.prefix}aceptar approve 1|2|3\n` +
             `┃ ${m.prefix}aceptar reject 1|2|3\n` +
-            `╰┈┈┈┈┈┈┈┈⬡`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
 
         if (!pendingList?.length) {
             await m.react('📭')
-            return m.reply("╰┈➤ "+`📭 No hay solicitudes de ingreso pendientes.`)
+            return m.reply("☽◯☾ ♰ "+`📭 No hay solicitudes de ingreso pendientes.`)
         }
 
         if (sub === 'list') {

@@ -32,14 +32,14 @@ async function handler(m, { sock }) {
 
     if (!text) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🤖 *AI*\n\n` +
             `> ¡Hola! Soy un asistente inteligente\n\n` +
             `*Cómo usarlo:*\n` +
             `> \`${m.prefix}ai <pregunta>\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`${m.prefix}ai crea una tabla de horario de turnos\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         );
     }
 

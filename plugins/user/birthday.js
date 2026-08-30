@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
     const isToday = now.getDate() === day && now.getMonth() === month - 1
     
     let text = `🎂 *ʙɪʀᴛʜᴅᴀʏ ɪɴғᴏ*\n\n`
-    text += `╭┈┈⬡「 👤 *ᴜsᴇʀ* 」\n`
+    text += `☽◯☾ ♰ 「 👤 *ᴜsᴇʀ* 」\n`
     text += `┃ 🏷️ @${cleanJid}\n`
     text += `┃ 📅 ${day} ${months[month - 1]}\n`
     
@@ -60,7 +60,7 @@ async function handler(m, { sock }) {
         text += `┃ 🕕 en ${diffDays} días\n`
     }
     
-    text += `╰┈┈┈┈┈┈┈┈⬡`
+    text += `╰━ ⊱༺༒༻⊰ ━╯`
     
     if (isToday) {
         text += `\n\n🎊 *HAPPY BIRTHDAY!* 🎊\n`

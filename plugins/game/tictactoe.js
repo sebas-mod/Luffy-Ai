@@ -314,7 +314,7 @@ async function answerHandler(m, sock) {
       m,
       `꧁༺ 🏆 VICTORIA ༻꧂\n──────────\n\n` +
         `${board}\n\n` +
-        `╰┈➤ 🏆 @${winner.split("@")[0]} gana! +Rp 1.000`,
+        `☽◯☾ ♰ 🏆 @${winner.split("@")[0]} gana! +Rp 1.000`,
       { mentions: [winner, loser] },
     );
 

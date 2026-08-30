@@ -39,7 +39,7 @@ function handler(m, { sock }) {
 
   let txt = `╭━━━🏴‍☠️━━━╮\n`;
   txt += `⛵ *¡BIENVENIDO A LA GRAN ERA DE LOS PIRATAS!*\n`;
-  txt += `╰━━━━━━━━━━╯\n\n`;
+  txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   txt += `⚓ ¡${nombre}! Has decidido zarpar hacia la aventura.\n\n`;
   txt += `👤 *Nombre:* ${user.nombre}\n`;
   txt += `🎗️ *Rango:* Pirata Novato\n`;

@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
 
   if (!targetJid || levels <= 0) {
     return m.reply(
-      `╭┈┈⬡「 📊 *ʀᴇsᴛᴀʀ ɴɪᴠᴇʟ* 」\n` +
+      `☽◯☾ ♰ 「 📊 *ʀᴇsᴛᴀʀ ɴɪᴠᴇʟ* 」\n` +
         `┃ 📋 *ᴜsᴏ*\n` +
         `┃ › \`.dellevel <cantidad>\` - a ti mismo\n` +
         `┃ › \`.dellevel <cantidad> @user\` - a otra persona\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╰┈➤ Ejemplo: \`${m.prefix}quitar_nivel 5\``,
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ Ejemplo: \`${m.prefix}quitar_nivel 5\``,
     );
   }
 
@@ -61,13 +61,13 @@ async function handler(m, { sock }) {
 
   await m.reply(
     `✅ *ɴɪᴠᴇʟ ʀᴇsᴛᴀᴅᴏ*\n\n` +
-      `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+      `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
       `┃ 👤 ᴜsᴜᴀʀɪᴏ: @${targetJid.split("@")[0]}\n` +
       `┃ ➖ ʀᴇsᴛᴀᴅᴏ: *-${levels} Nivel*\n` +
       `┃ 🚄 ᴇxᴘ ʀᴇᴛɪʀᴀᴅᴏ: *-${expToRemove.toLocaleString("id-ID")}*\n` +
       `┃ 📊 ɴɪᴠᴇʟ: *${oldLevel} → ${newLevel}*\n` +
       `┃ ${getRole(newLevel)}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡`,
+      `╰━ ⊱༺༒༻⊰ ━╯`,
     { mentions: [targetJid] },
   );
 }

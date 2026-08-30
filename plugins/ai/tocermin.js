@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🪞 *ᴛᴏ ᴄᴇʀᴍɪɴ*\n\n` +
             `> Envía/responde una imagen para el efecto espejo\n\n` +
             `\`${m.prefix}tocermin\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

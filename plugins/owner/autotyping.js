@@ -53,7 +53,7 @@ async function handler(m, { sock }) {
   }
 
   return m.reply(
-    `👑•─────•👑\n❌ *Opción No Válida*\n\n> Usa *${m.prefix}autotyping on* o *${m.prefix}autotyping off*\n✦────────✦`
+    `👑•─────•👑\n❌ *Opción No Válida*\n\n> Usa *${m.prefix}autotyping on* o *${m.prefix}autotyping off*\n♰ ──────── ♱✦`
   );
 }
 

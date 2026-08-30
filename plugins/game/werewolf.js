@@ -226,51 +226,51 @@ function getRoleDescription(role, prefix = ".") {
     werewolf:
       `🐺 *WEREWOLF*\n\n` +
       `¡Eres un depredador nocturno!\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 🎯 Objetivo: Mata a todos los Villagers\n` +
       `┃ ⚔️ Habilidad: Mata a 1 jugador cada noche\n` +
       `┃ 🕐 Acción: De noche\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> De noche, escribe:\n` +
       `> \`${prefix}wwkill <número>\` en el PM del bot`,
     seer:
       `🔮 *SEER*\n\n` +
       `¡Puedes ver la identidad de los jugadores!\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 🎯 Objetivo: Ayuda a los Villagers\n` +
       `┃ 🔮 Habilidad: Ve el rol de 1 jugador\n` +
       `┃ 🕐 Acción: De noche\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> De noche, escribe:\n` +
       `> \`${prefix}wwsee <número>\` en el PM del bot`,
     guardian:
       `🛡️ *GUARDIAN*\n\n` +
       `¡Puedes proteger a los jugadores!\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 🎯 Objetivo: Protege a los Villagers\n` +
       `┃ 🛡️ Habilidad: Protege a 1 jugador\n` +
       `┃ 🕐 Acción: De noche\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> De noche, escribe:\n` +
       `> \`${prefix}wwprotect <número>\` en el PM del bot`,
     sorcerer:
       `🧙 *SORCERER*\n\n` +
       `¡Eres aliado de los Werewolf!\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 🎯 Objetivo: Ayuda a que los Werewolf ganen\n` +
       `┃ 🔍 Habilidad: Comprueba si el objetivo es el Seer\n` +
       `┃ 🕐 Acción: De noche\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> De noche, escribe:\n` +
       `> \`${prefix}wwsorcerer <número>\` en el PM del bot`,
     villager:
       `👨‍🌾 *VILLAGER*\n\n` +
       `¡Eres un habitante normal!\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 🎯 Objetivo: Encuentra al Werewolf\n` +
       `┃ 🗳️ Habilidad: Vota de día\n` +
       `┃ 🕐 Acción: De día\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> ¡Discute y vota al werewolf!\n` +
       `> \`${prefix}ww vote <número>\` en el grupo`,
   };
@@ -340,19 +340,19 @@ async function handler(m, { sock }) {
 
       await m.react("🐺");
       await m.reply(
-        `╭━━━〔 🐺 〕━━━╮\n🐺 *WEREWOLF GAME* 🐺\n╰━━━━━━━━━━━━╯\n\n` +
+        `☽◯☾ ╭━ ♰ 🐺 ♰ ━╮ ☽◯☾\n🐺 *WEREWOLF GAME* 🐺\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `¡Sala creada!\n\n` +
-          `╭┈┈⬡「 📋 *INFO DE LA SALA* 」\n` +
+          `☽◯☾ ♰ 「 📋 *INFO DE LA SALA* 」\n` +
           `┃ 👑 Host: @${m.sender.split("@")[0]}\n` +
           `┃ 👥 Jugadores: 1/${MAX_PLAYERS}\n` +
           `┃ ⏱️ Mínimo: ${MIN_PLAYERS} jugadores\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `╭┈┈⬡「 🎮 *CÓMO JUGAR* 」\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+          `☽◯☾ ♰ 「 🎮 *CÓMO JUGAR* 」\n` +
           `┃ ➕ \`${prefix}ww join\` - Unirse\n` +
           `┃ ▶️ \`${prefix}ww start\` - Empezar (host)\n` +
           `┃ 👥 \`${prefix}ww player\` - Lista de jugadores\n` +
           `┃ 🚪 \`${prefix}ww exit\` - Salir\n` +
-          `╰┈┈┈┈┈┈┈┈⬡`,
+          `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: [m.sender] },
       );
     },
@@ -403,12 +403,12 @@ async function handler(m, { sock }) {
       await m.reply(
         `✅ *JUGADOR UNIDO*\n\n` +
           `@${m.sender.split("@")[0]} entró!\n\n` +
-          `╭┈┈⬡「 👥 *LISTA DE JUGADORES* 」\n` +
+          `☽◯☾ ♰ 「 👥 *LISTA DE JUGADORES* 」\n` +
           `${playerList
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `Total: ${ww[m.chat].players.length}/${MIN_PLAYERS} (mín)\n` +
           (canStart
             ? `✅ ¡Puedes empezar! \`${prefix}ww start\``
@@ -482,18 +482,18 @@ async function handler(m, { sock }) {
       await m.reply(
         `🌙 ──────────\n🐺 *¡PARTIDA INICIADA!* 🌙\n\n` +
           `🌙 *Noche - Día 1*\n\n` +
-          `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+          `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
           `${playerList
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `╭┈┈⬡「 🎭 *ROLES* 」\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+          `☽◯☾ ♰ 「 🎭 *ROLES* 」\n` +
           `${roleInfo
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
           `📩 ¡Revisa tu PM para conocer tu rol!\n` +
           `🌙 Los Werewolf cazan...\n` +
           `⏱️ Tiempo de noche: ${PHASE_DURATION.night / 1000} segundos`,
@@ -610,18 +610,18 @@ async function handler(m, { sock }) {
 
       await m.reply(
         `🐺 *WEREWOLF - ESTADO*\n\n` +
-          `╭┈┈⬡「 📊 *INFO DE LA PARTIDA* 」\n` +
+          `☽◯☾ ♰ 「 📊 *INFO DE LA PARTIDA* 」\n` +
           `┃ 📅 Día: ${ww[m.chat].day}\n` +
           `┃ ${phaseEmoji} Fase: ${ww[m.chat].phase}\n` +
           `┃ 👤 Vivos: ${ww[m.chat].players.filter((p) => p.alive).length}\n` +
           `┃ ☠️ Muertos: ${ww[m.chat].dead.length}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-          `╭┈┈⬡「 👥 *JUGADORES* 」\n` +
+          `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+          `☽◯☾ ♰ 「 👥 *JUGADORES* 」\n` +
           `${playerList
             .split("\n")
             .map((l) => `┃ ${l}`)
             .join("\n")}\n` +
-          `╰┈┈┈┈┈┈┈┈⬡`,
+          `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: ww[m.chat].players.map((p) => p.id) },
       );
     },
@@ -689,7 +689,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `🐺 *WEREWOLF GAME*\n\n` +
         `¡Un juego social para encontrar al Werewolf!\n\n` +
-        `╭┈┈⬡「 🎮 *COMANDOS* 」\n` +
+        `☽◯☾ ♰ 「 🎮 *COMANDOS* 」\n` +
         `┃ 🆕 \`${prefix}ww create\` - Crear sala\n` +
         `┃ ➕ \`${prefix}ww join\` - Unirse\n` +
         `┃ ▶️ \`${prefix}ww start\` - Empezar (host)\n` +
@@ -697,14 +697,14 @@ async function handler(m, { sock }) {
         `┃ 👥 \`${prefix}ww player\` - Lista de jugadores\n` +
         `┃ 🚪 \`${prefix}ww exit\` - Salir\n` +
         `┃ 🗑️ \`${prefix}ww delete\` - Borrar sala\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 🎭 *ROLES* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 🎭 *ROLES* 」\n` +
         `┃ 🐺 Werewolf - Mata a los habitantes\n` +
         `┃ 🧙 Sorcerer - Busca al Seer\n` +
         `┃ 🔮 Seer - Ve los roles\n` +
         `┃ 🛡️ Guardian - Protege\n` +
         `┃ 👨‍🌾 Villager - Vota al werewolf\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `Mín: ${MIN_PLAYERS} jugadores | Máx: ${MAX_PLAYERS} jugadores`,
     );
   }
@@ -862,12 +862,12 @@ async function processNightActions(chatId, sock, db, prefix) {
     .map((p) => `${p.number}. @${p.id.split("@")[0]}`)
     .join("\n");
 
-  nightReport += `╭┈┈⬡「 👥 *JUGADORES VIVOS* 」\n`;
+  nightReport += `☽◯☾ ♰ 「 👥 *JUGADORES VIVOS* 」\n`;
   nightReport += `${playerList
     .split("\n")
     .map((l) => `┃ ${l}`)
     .join("\n")}\n`;
-  nightReport += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+  nightReport += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   nightReport += `> 🗳️ ¡Es hora de votar!\n`;
   nightReport += `> Escribe \`${prefix}ww vote <número>\`\n`;
   nightReport += `> ⏱️ Tiempo: ${PHASE_DURATION.day / 1000} segundos`;
@@ -1030,16 +1030,16 @@ async function endGame(chatId, sock, db, winner) {
   const endText =
     `꧁༺ 🏆 FIN DEL JUEGO ༻꧂\n──────────\n\n` +
     `${winner === "wolf" ? "🐺 *¡GANARON LOS WEREWOLF!*" : "👨‍🌾 *¡GANARON LOS VILLAGERS!*"}\n\n` +
-    `╭┈┈⬡「 👥 *TODOS LOS JUGADORES* 」\n` +
+    `☽◯☾ ♰ 「 👥 *TODOS LOS JUGADORES* 」\n` +
     `${allPlayers
       .split("\n")
       .map((l) => `┃ ${l}`)
       .join("\n")}\n` +
-    `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-    `╭┈┈⬡「 🎁 *RECOMPENSAS* 」\n` +
+    `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+    `☽◯☾ ♰ 「 🎁 *RECOMPENSAS* 」\n` +
     `┃ 💰 +${WIN_REWARD.berry.toLocaleString()} Berry\n` +
     `┃ ⭐ +${WIN_REWARD.exp.toLocaleString()} EXP\n` +
-    `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+    `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
     `> ¡Bien jugado! ¿Otra partida? \`${config.command?.prefix || "."}ww create\``;
 
   await sendWW(

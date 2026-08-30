@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Spotify DL Error]", error);
     await m.react("❌");
-    m.reply("✦ • ─── • ✦\n😔 *Ocurrió un error del sistema al procesar ese enlace de Spotify.* ¡Intenta de nuevo más tarde!");
+    m.reply("♰ ┄ ── ☽◯☾ ── ┄ ♰\n😔 *Ocurrió un error del sistema al procesar ese enlace de Spotify.* ¡Intenta de nuevo más tarde!");
   }
 }
 

@@ -24,14 +24,14 @@ async function handler(m, { sock }) {
   const isImage = m.isImage || (m.quoted && m.quoted.type === "imageMessage");
   if (!isImage) {
     return m.reply(
-      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
         `> Responde una imagen con \`${m.prefix}ocr\`\n\n` +
         `> Medios compatibles:\n` +
-        `> JPG, PNG, GIF, WEBP\n\n╰━━━━━━━━━━━━╯`,
+        `> JPG, PNG, GIF, WEBP\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
   await m.react("🕕");
-  await m.reply(`╰┈➤ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Extrayendo texto de la imagen...`);
+  await m.reply(`☽◯☾ ♰ 🕕 *ᴘʀᴏᴄᴇsᴀɴᴅᴏ...*\n\n> Extrayendo texto de la imagen...`);
   try {
     let buffer;
     if (m.quoted && m.quoted.isMedia) {
@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
     }
     if (!buffer || buffer.length === 0) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo descargar la imagen`);
+      return m.reply(`☽◯☾ ♰ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo descargar la imagen`);
     }
     const Tesseract = await getTesseract();
     const {
@@ -51,18 +51,18 @@ async function handler(m, { sock }) {
     if (!extractedText || extractedText.length === 0) {
       await m.react("❌");
       return m.reply(
-        `╭━〔 ❌ sɪɴ ᴛᴇxᴛᴏ 〕━╮\n\n> No se detectó texto en la imagen\n\n╰━━━━━╯`,
+        `☽◯☾ ╭ ♰ ❌ sɪɴ ᴛᴇxᴛᴏ ♰ ━╮ ☽◯☾\n\n> No se detectó texto en la imagen\n\n╰━━━━━╯`,
       );
     }
     await m.react("✅");
     const responseText =
       `📖 *ʀᴇsᴜʟᴛᴀᴅᴏ ᴏᴄʀ*\n\n` +
-      `╭┈┈⬡「 📝 *ᴛᴇxᴛᴏ* 」\n` +
+      `☽◯☾ ♰ 「 📝 *ᴛᴇxᴛᴏ* 」\n` +
       `${extractedText
         .split("\n")
         .map((l) => `┃ ${l}`)
         .join("\n")}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `> Total: ${extractedText.length} caracteres`;
     await sendToolsPreview(
       sock,

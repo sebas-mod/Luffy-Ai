@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
         
         if (!data?.status || !data.result || !data.result.medias || data.result.medias.length === 0) {
             await m.react('❌')
-            return m.reply(fail('FACEBOOK', 'Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.') + `\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(fail('FACEBOOK', 'Error al obtener el video. Prueba con otro enlace o asegúrate de que la publicación sea pública.') + `\n☽◯☾ ♰ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
         // Find HD if available, else SD, else first item
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
         
         if (!video || !video.url) {
             await m.react('❌')
-            return m.reply(fail('FACEBOOK', 'No se encontró ningún video en ese enlace.') + `\n╰┈➤ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
+            return m.reply(fail('FACEBOOK', 'No se encontró ningún video en ese enlace.') + `\n☽◯☾ ♰ _Nota: El sistema aún no soporta descargar fotos de Facebook, solo videos._`)
         }
         
         let caption = card({

@@ -21,10 +21,10 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
             `> \`${m.prefix}applemusic <query>\`\n\n` +
             `> Ejemplo:\n` +
-            `> \`${m.prefix}applemusic Best Friend\`\n\n╰━━━━━━━━━━━━╯`
+            `> \`${m.prefix}applemusic Best Friend\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     
@@ -32,16 +32,16 @@ async function handler(m, { sock }) {
         const res = await axios.get(`https://api.nexray.web.id/search/applemusic?q=${encodeURIComponent(query)}`)
         
         if (!res.data?.result?.length) {
-            return m.reply(`╰┈➤ ❌ No se encontraron resultados para: ${query}`)
+            return m.reply(`☽◯☾ ♰ ❌ No se encontraron resultados para: ${query}`)
         }
         
         const tracks = res.data.result.slice(0, 5)
         
-        let txt = `╭━━━〔 🍎 ᴀᴘᴘʟᴇ ᴍᴜsɪᴄ sᴇᴀʀᴄʜ 〕━━━╮\n\n`
+        let txt = `☽◯☾ ╭━ ♰ 🍎 ᴀᴘᴘʟᴇ ᴍᴜsɪᴄ sᴇᴀʀᴄʜ ♰ ━╮ ☽◯☾\n\n`
         txt += `> Query: *${query}*\n\n`                                                                                    
         
         tracks.forEach((t, i) => {
-            txt += `╰┈➤ *${i + 1}.* \`\`\`${t.title}\`\`\`\n`
+            txt += `☽◯☾ ♰ *${i + 1}.* \`\`\`${t.title}\`\`\`\n`
             txt += `› 📀 \`${t.subtitle || 'Unknown'}\`\n`
             txt += `   └ 🔗 \`${t.link}\`\n\n`
         })

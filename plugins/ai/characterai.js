@@ -23,21 +23,21 @@ const pluginConfig = {
 
 async function handler(m, { sock, args, text }) {
     if (!args || args.length === 0) {
-        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n` +
+        return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🤖 *CHARACTER AI*\n\n` +
             `Usa los siguientes comandos:\n` +
             `> *.character-ai search <nombre>* (Buscar personaje)\n` +
             `> *.character-ai off* (Apagar Auto AI)\n` +
             `> *.character-ai reset* (Borrar memoria de la conversación)\n\n` +
             `*Ejemplo:* .character-ai search gojo\n\n` +
-            `╰━━━━━━━━━━━━╯`);
+            `╰━ ⊱༺༒༻⊰ ━╯`);
     }
 
     const cmd = args[0].toLowerCase();
 
     if (cmd === "search") {
         const query = args.slice(1).join(" ");
-        if (!query) return m.reply(`✧ ¡Escribe el nombre del personaje que quieres buscar!\n╰┈➤ Ejemplo: .character-ai search yuji`);
+        if (!query) return m.reply(`✧ ¡Escribe el nombre del personaje que quieres buscar!\n☽◯☾ ♰ Ejemplo: .character-ai search yuji`);
 
         await m.react("🕕");
         try {
@@ -114,7 +114,7 @@ async function handler(m, { sock, args, text }) {
             m.reply(`✧ ❌ No hay ningún Auto Character AI activo en este chat.`);
         }
     } else {
-        m.reply(`╰┈➤ Comando no válido. Usa search, off o reset.`);
+        m.reply(`☽◯☾ ♰ Comando no válido. Usa search, off o reset.`);
     }
 }
 
@@ -141,7 +141,7 @@ async function caiAnswerHandler(m, sock) {
     if (text === "cancelar" || text === "cancel") {
         delete user.cai_search_session;
         db.save();
-        await m.reply(`╰┈➤ 🚪 Búsqueda de personaje cancelada.`);
+        await m.reply(`☽◯☾ ♰ 🚪 Búsqueda de personaje cancelada.`);
         return true;
     }
 

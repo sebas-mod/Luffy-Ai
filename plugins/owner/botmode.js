@@ -37,15 +37,15 @@ async function handler(m, { sock }) {
     const groupMode = groupData.botMode || null
     
     if (!mode) {
-        let txt = `╭┈┈⬡「 🤖 *ʙᴏᴛ ᴍᴏᴅᴇ* 」\n`
+        let txt = `☽◯☾ ♰ 「 🤖 *ʙᴏᴛ ᴍᴏᴅᴇ* 」\n`
         txt += `┃ ㊗ ɢʟᴏʙᴀʟ: *${globalMode.toUpperCase()}*\n`
         
         if (m.isGroup) {
             txt += `┃ ㊗ ɢʀᴜᴘ: *${(groupMode || 'INHERIT').toUpperCase()}*\n`
         }
-        txt += `╰┈┈⬡\n\n`
+        txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         
-        txt += `╭┈┈⬡「 📋 *ᴀᴠᴀɪʟᴀʙʟᴇ ᴍᴏᴅᴇs* 」\n`
+        txt += `☽◯☾ ♰ 「 📋 *ᴀᴠᴀɪʟᴀʙʟᴇ ᴍᴏᴅᴇs* 」\n`
         
         const currentMode = m.isGroup ? (groupMode || globalMode) : globalMode
         
@@ -54,7 +54,7 @@ async function handler(m, { sock }) {
             txt += `┃ ㊗ *${key.toUpperCase()}*${isActive}\n`
             txt += `┃   ${desc}\n`
         }
-        txt += `╰┈┈⬡\n\n`
+        txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         
         txt += `*ᴄᴏᴍᴀɴᴅᴏs:*\n`
         txt += `> \`${m.prefix}botmode store\` - Pedido manual\n`
@@ -67,10 +67,10 @@ async function handler(m, { sock }) {
 
     if (!VALID_MODES.includes(mode)) {
         return m.reply(
-            `╭━〔 ⚙️ SISTEMA 〕━╮\n` +
+            `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n` +
             `┃ ❌ *ᴍᴏᴅᴏ ɴᴏ ᴠáʟɪᴅᴏ*\n` +
             `╰━━━━━━━━╯\n\n` +
-            `╰┈➤ Modos disponibles: \`${VALID_MODES.join(', ')}\``
+            `☽◯☾ ♰ Modos disponibles: \`${VALID_MODES.join(', ')}\``
         )
     }
 
@@ -101,9 +101,9 @@ async function handler(m, { sock }) {
     }
 
     await m.reply(
-        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
         `┃ ✅ *ᴍᴏᴅᴏ ᴄᴀᴍʙɪᴀᴅᴏ*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `› Mode: *${mode.toUpperCase()}*\n` +
         `› ${MODE_DESCRIPTIONS[mode]}\n` +
         extraInfo +

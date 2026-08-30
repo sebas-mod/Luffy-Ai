@@ -22,20 +22,20 @@ async function handler(m, { sock }) {
 
   if (!ip) {
     return m.reply(
-      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
         `> \`${m.prefix}ipwho <ip>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}ipwho 8.8.8.8\`\n\n╰━━━━━━━━━━━━╯`,
+        `> \`${m.prefix}ipwho 8.8.8.8\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
   const ipRegex = /^(\d{1,3}\.){3}\d{1,3}$/;
   if (!ipRegex.test(ip)) {
-    return m.reply(`╰┈➤ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`8.8.8.8\``);
+    return m.reply(`☽◯☾ ♰ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`8.8.8.8\``);
   }
 
   await m.react("🕕");
-  await m.reply(`╰┈➤ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇ ɪᴘ...*`);
+  await m.reply(`☽◯☾ ♰ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇ ɪᴘ...*`);
 
   try {
     const res = await fetch(`https://ipwho.is/${ip}`);
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
 
     if (!data.success) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *ɪᴘ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> IP ${ip} no válida`);
+      return m.reply(`☽◯☾ ♰ ❌ *ɪᴘ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴀ*\n\n> IP ${ip} no válida`);
     }
 
     if (data.latitude && data.longitude) {
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
 
     const text =
       `🌐 *ɪᴘ ʟᴏᴏᴋᴜᴘ*\n\n` +
-      `╭┈┈⬡「 📍 *ᴜʙɪᴄᴀᴄɪᴏɴ* 」\n` +
+      `☽◯☾ ♰ 「 📍 *ᴜʙɪᴄᴀᴄɪᴏɴ* 」\n` +
       `┃ 🔢 IP: ${data.ip}\n` +
       `┃ 🌍 País: ${data.country} ${data.country_code}\n` +
       `┃ 🏙️ Ciudad: ${data.city || "-"}\n` +
@@ -69,17 +69,17 @@ async function handler(m, { sock }) {
       `┃ 🌐 Continente: ${data.continent || "-"}\n` +
       `┃ 📮 Código Postal: ${data.postal || "-"}\n` +
       `┃ ⏰ Zona Horaria: ${data.timezone?.id || "-"}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `╭┈┈⬡「 🔌 *ᴄᴏɴᴇxɪᴏɴ* 」\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+      `☽◯☾ ♰ 「 🔌 *ᴄᴏɴᴇxɪᴏɴ* 」\n` +
       `┃ 🏢 ISP: ${data.connection?.isp || "-"}\n` +
       `┃ 🌐 ORG: ${data.connection?.org || "-"}\n` +
       `┃ 📡 ASN: ${data.connection?.asn || "-"}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-      `╭┈┈⬡「 🛡️ *sᴇɢᴜʀɪᴅᴀᴅ* 」\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+      `☽◯☾ ♰ 「 🛡️ *sᴇɢᴜʀɪᴅᴀᴅ* 」\n` +
       `┃ 🔒 VPN: ${data.security?.vpn ? "✅ Yes" : "❌ No"}\n` +
       `┃ 🌐 Proxy: ${data.security?.proxy ? "✅ Yes" : "❌ No"}\n` +
       `┃ 🤖 Tor: ${data.security?.tor ? "✅ Yes" : "❌ No"}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡`;
+      `╰━ ⊱༺༒༻⊰ ━╯`;
 
     await m.react("✅");
     await sendToolsPreview(sock, m.chat, text, "🌐 *ɪᴘ ʟᴏᴏᴋᴜᴘ*", data.country, {

@@ -44,14 +44,14 @@ function handler(m, { sock }) {
   };
 
   let txt = `꧁༺ 🛒 TIENDA PIRATA ༻꧂\n\n`;
-  txt += `╰┈➤ Compras con tus Berrys. Usa:\n`;
+  txt += `☽◯☾ ♰ Compras con tus Berrys. Usa:\n`;
   txt += `› *${m.prefix}comprar_rpg <id> [cantidad]*\n`;
   txt += `› *${m.prefix}vender <id> [cantidad]*\n\n`;
 
   for (const [tipoKey, itemsList] of Object.entries(grupos)) {
     txt += `━━━ ${emojis[tipoKey] || "📦"} ${tipoKey.toUpperCase()} ━━━\n`;
     for (const item of itemsList) {
-      txt += `╰┈➤ ${item.emoji} *${item.nombre}*\n`;
+      txt += `☽◯☾ ♰ ${item.emoji} *${item.nombre}*\n`;
       txt += `   \`${item.id}\` — 💰 ${item.precio} Berrys\n`;
       txt += `   ✦ _${item.descripcion}_\n`;
     }

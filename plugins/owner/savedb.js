@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
     }
     const dbPath = path.join(process.cwd(), 'database', 'db.json')
     if (!fs.existsSync(dbPath)) {
-        return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ ¡El archivo de la base\n┃ de datos no existe! 📁\n╰━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ ¡El archivo de la base\n┃ de datos no existe! 📁\n╰━━━━━━━━╯`)
     }
     try {
         const stats = fs.statSync(dbPath)
@@ -37,12 +37,12 @@ async function handler(m, { sock }) {
             fileName: fileName,
             mimetype: 'application/json',
             caption: `📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇ ʟᴀ ʙᴀsᴇ ᴅᴇ ᴅᴀᴛᴏs*\n\n` +
-                `╭┈┈⬡「 📋 *ɪɴғᴏ* 」\n` +
+                `☽◯☾ ♰ 「 📋 *ɪɴғᴏ* 」\n` +
                 `┃ 📁 Archivo: \`db.json\`\n` +
                 `┃ 📊 Tamaño: \`${(stats.size / 1024).toFixed(2)} KB\`\n` +
                 `┃ 📅 Fecha: \`${now.format('DD/MM/YYYY')}\`\n` +
                 `┃ ⏰ Hora: \`${now.format('HH:mm:ss')}\`\n` +
-                `╰┈┈┈┈┈┈┈┈⬡`
+                `╰━ ⊱༺༒༻⊰ ━╯`
         }, { quoted: m })
     } catch (error) {
         await m.reply(te(m.prefix, m.command, m.pushName))

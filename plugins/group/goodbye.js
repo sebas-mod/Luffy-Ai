@@ -209,7 +209,7 @@ async function sendGoodbyeMessage(sock, groupJid, participant, groupMeta) {
       await sock.sendMessage(groupJid, {
         interactiveMessage: {
           body: {
-            text: "╰┈➤ "+`👋 *Sayonara* *@${userName}*`,
+            text: "☽◯☾ ♰ "+`👋 *Sayonara* *@${userName}*`,
           },
           footer: { text: config.bot?.name || "Luffy-Ai" },
           header: { title: "Despedida", hasMediaAttachment: false },
@@ -411,7 +411,7 @@ async function handler(m, { sock }) {
   const currentStatus = groupData.goodbye === true;
   if (sub === "on" && sub2 === "all") {
     if (!m.isOwner) {
-      return m.reply("╰┈➤ "+`❌ Solo el owner puede usar esta función!`);
+      return m.reply("☽◯☾ ♰ "+`❌ Solo el owner puede usar esta función!`);
     }
     m.react("🕕");
     try {
@@ -434,7 +434,7 @@ async function handler(m, { sock }) {
   }
   if (sub === "off" && sub2 === "all") {
     if (!m.isOwner) {
-      return m.reply("╰┈➤ "+`❌ Solo el owner puede usar esta función!`);
+      return m.reply("☽◯☾ ♰ "+`❌ Solo el owner puede usar esta función!`);
     }
     m.react("🕕");
     try {

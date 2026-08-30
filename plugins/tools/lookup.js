@@ -22,10 +22,10 @@ async function handler(m, { sock }) {
 
   if (!domain) {
     return m.reply(
-      `╭━━━〔 ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ⚠️ ᴄᴏᴍᴏ ᴜsᴀʀ ♰ ━╮ ☽◯☾\n\n` +
         `> \`${m.prefix}lookup <dominio>\`\n\n` +
         `> Ejemplo:\n` +
-        `> \`${m.prefix}lookup google.com\`\n\n╰━━━━━━━━━━━━╯`,
+        `> \`${m.prefix}lookup google.com\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -34,11 +34,11 @@ async function handler(m, { sock }) {
   if (
     !/^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]?(\.[a-zA-Z]{2,})+$/.test(domain)
   ) {
-    return m.reply(`╰┈➤ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`google.com\``);
+    return m.reply(`☽◯☾ ♰ ❌ *ғᴏʀᴍᴀᴛᴏ ɪɴᴠᴀʟɪᴅᴏ*\n\n> Ejemplo: \`google.com\``);
   }
 
   await m.react("🕕");
-  await m.reply(`╰┈➤ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇʟ ᴅᴏᴍɪɴɪᴏ...*`);
+  await m.reply(`☽◯☾ ♰ 🕕 *ʙᴜsᴄᴀɴᴅᴏ ɪɴғᴏ ᴅᴇʟ ᴅᴏᴍɪɴɪᴏ...*`);
 
   try {
     const [dnsRes, whoisRes] = await Promise.allSettled([
@@ -55,7 +55,7 @@ async function handler(m, { sock }) {
 
     if (!dnsData && !whoisData) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo procesar el dominio`);
+      return m.reply(`☽◯☾ ♰ ❌ *ᴇʀʀᴏʀ*\n\n> No se pudo procesar el dominio`);
     }
 
     let text = `🔍 *ᴅɴs ʟᴏᴏᴋᴜᴘ*\n\n`;
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
         }
       });
 
-      text += `╭┈┈⬡「 📋 *ᴅɴs ʀᴇᴄᴏʀᴅs* 」\n`;
+      text += `☽◯☾ ♰ 「 📋 *ᴅɴs ʀᴇᴄᴏʀᴅs* 」\n`;
       if (records["A"])
         text += `┃ 🅰️ A: ${records["A"].slice(0, 3).join(", ")}\n`;
       if (records["AAAA"])
@@ -86,7 +86,7 @@ async function handler(m, { sock }) {
         text += `┃ 🌐 NS: ${records["NS"].slice(0, 3).join(", ")}\n`;
       if (records["TXT"])
         text += `┃ 📝 TXT: ${records["TXT"].length} records\n`;
-      text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+      text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
     }
 
     if (whoisData && !whoisData.includes("error") && whoisData.length < 2000) {
@@ -99,13 +99,13 @@ async function handler(m, { sock }) {
           ?.slice(0, 2)
           .map((ns) => ns.split(":")[1]?.trim()) || [];
 
-      text += `╭┈┈⬡「 📄 *ᴡʜᴏɪs* 」\n`;
+      text += `☽◯☾ ♰ 「 📄 *ᴡʜᴏɪs* 」\n`;
       text += `┃ 🏢 Registrar: ${registrar.slice(0, 35)}\n`;
       text += `┃ 📅 Created: ${created.slice(0, 20)}\n`;
       text += `┃ ⏰ Expires: ${expires.slice(0, 20)}\n`;
       if (nameservers.length > 0)
         text += `┃ 🌐 NS: ${nameservers.join(", ")}\n`;
-      text += `╰┈┈┈┈┈┈┈┈⬡`;
+      text += `╰━ ⊱༺༒༻⊰ ━╯`;
     }
 
     await m.react("✅");

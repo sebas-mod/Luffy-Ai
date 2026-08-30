@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ") || m.text?.trim();
 
   if (!text) {
-    return m.reply("❌ ¿Sobre qué quieres hablar con Simi?\n\n╰┈➤ Ejemplo: `.simi ¡Hola Simi!`");
+    return m.reply("❌ ¿Sobre qué quieres hablar con Simi?\n\n☽◯☾ ♰ Ejemplo: `.simi ¡Hola Simi!`");
   }
 
   await m.react("🕕");
@@ -47,7 +47,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[SimiSimi]", error.message);
     await m.react("☢");
-    m.reply("╰┈➤ 😔 Simi no pudo responder tu mensaje.");
+    m.reply("☽◯☾ ♰ 😔 Simi no pudo responder tu mensaje.");
   }
 }
 

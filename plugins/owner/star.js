@@ -14,9 +14,9 @@ const pluginConfig = {
 async function handler(m, { sock }) {
     if (!m.quoted) {
         return m.reply(
-            '╭━━━〔 👑 OWNER 〕━━━╮\n' +
+            '☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n' +
             '┃ ⭐ *ᴇsᴛʀᴇʟʟᴀ ᴇɴ ᴇʟ ᴍᴇɴsᴀᴊᴇ*\n' +
-            '╰━━━━━━━━━━━━╯\n\n' +
+            '╰━ ⊱༺༒༻⊰ ━╯\n\n' +
             '› `.star` (responder mensaje) — Agregar estrella\n' +
             '› `.star eliminar` (responder mensaje) — Quitar estrella'
         )
@@ -36,8 +36,8 @@ async function handler(m, { sock }) {
         await m.react('⭐')
         return m.reply(
             unstar
-                ? '╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ Estrella eliminada del mensaje\n╰━━━━━━━━╯'
-                : '╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ⭐ Mensaje marcado con estrella\n╰━━━━━━━━╯'
+                ? '☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ Estrella eliminada del mensaje\n╰━━━━━━━━╯'
+                : '☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ⭐ Mensaje marcado con estrella\n╰━━━━━━━━╯'
         )
     } catch (err) {
         return m.reply(`❌ Fallo: ${err.message}`)

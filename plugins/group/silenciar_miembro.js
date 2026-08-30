@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
             return pJid === targetNumber && (p.admin === 'admin' || p.admin === 'superadmin')
         })
         if (isTargetAdmin) {
-            return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se puede silenciar a un admin del grupo`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> No se puede silenciar a un admin del grupo`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
     }
 
@@ -75,7 +75,7 @@ async function handler(m, { sock }) {
     })
 
     if (alreadyMuted) {
-        return m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} ya está silenciado`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
+        return m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n"+`❌ *ᴇʀʀᴏʀ*\n\n> El miembro @${targetNumber} ya está silenciado`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [targetJid] })
     }
 
     mutedMembers.push(targetJid)
@@ -84,11 +84,11 @@ async function handler(m, { sock }) {
     m.react('🔇')
     await m.reply(
         `🔇 *MIEMBRO SILENCIADO*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 👤 ᴍɪᴇᴍʙʀᴏ: @${targetNumber}\n` +
         `┃ 🔇 ᴇsᴛᴀᴅᴏ: \`Silenciado\`\n` +
         `┃ 📊 ᴛᴏᴛᴀʟ sɪʟᴇɴᴄɪᴀᴅᴏs: \`${mutedMembers.length}\` ᴍɪᴇᴍʙʀᴏs\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Todos los mensajes de este miembro serán eliminados automáticamente\n` +
         `> Usa \`${m.prefix}unmutemember\` para desilenciar`,
         { mentions: [targetJid] }

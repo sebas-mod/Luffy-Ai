@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
 
     if (!url) {
         return m.reply(
-            `✦ • ─── • ✦\n🎬 *𝗖 𝗔 𝗣 𝗖 𝗨 𝗧*\n──────────\n` +
+            `♰ ┄ ── ☽◯☾ ── ┄ ♰\n🎬 *𝗖 𝗔 𝗣 𝗖 𝗨 𝗧*\n──────────\n` +
             `> Descarga el video de *CapCut* que quieras sin marca de agua.\n\n` +
             usage(m.prefix, m.command, 'https://www.capcut.com/t/xxx')
         )

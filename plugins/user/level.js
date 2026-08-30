@@ -82,19 +82,19 @@ async function handler(m, { sock }) {
   txt += `┃ 📊 *ʟᴇᴠᴇʟ ɪɴꜰᴏ*\n`;
   txt += `╰━━━━━━━━━━━━━━━━━╯\n\n`;
 
-  txt += `╭┈┈⬡「 👤 *ᴜsᴇʀ* 」\n`;
+  txt += `☽◯☾ ♰ 「 👤 *ᴜsᴇʀ* 」\n`;
   txt += `┃ 🏷️ Nombre: *${targetName}*\n`;
   txt += `┃ 🆔 Tag: @${targetJid.split("@")[0]}\n`;
-  txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+  txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
-  txt += `╭┈┈⬡「 📈 *sᴛᴀᴛs* 」\n`;
+  txt += `☽◯☾ ♰ 「 📈 *sᴛᴀᴛs* 」\n`;
   txt += `┃ 📊 Level: *${level}*\n`;
   txt += `┃ ${role}\n`;
   txt += `┃ 🚄 Exp: *${exp.toLocaleString("id-ID")}*\n`;
   txt += `┃ 📊 Progress:\n`;
   txt += `┃ ${progress}\n`;
   txt += `┃ ${expInLevel.toLocaleString("id-ID")} / ${expNeeded.toLocaleString("id-ID")}\n`;
-  txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+  txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
   txt += `> Siguiente nivel: *${expToNextLevel(exp).toLocaleString("id-ID")} exp* más!`;
 

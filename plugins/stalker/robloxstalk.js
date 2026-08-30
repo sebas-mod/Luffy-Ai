@@ -114,9 +114,9 @@ async function handler(m, { sock }) {
 
   if (!username) {
     return m.reply(
-      `╭━━━〔 🎮 ʀᴏʙʟᴏx sᴛᴀʟᴋ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🎮 ʀᴏʙʟᴏx sᴛᴀʟᴋ ♰ ━╮ ☽◯☾\n\n` +
         `> Ingresa el username de Roblox\n\n` +
-        `\`Ejemplo: ${m.prefix}robloxstalk Linkmon99\`\n\n╰━━━━━━━━━━━━╯`,
+        `\`Ejemplo: ${m.prefix}robloxstalk Linkmon99\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -127,7 +127,7 @@ async function handler(m, { sock }) {
 
     if (res.error) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ Username *${username}* no fue encontrado`);
+      return m.reply(`☽◯☾ ♰ ❌ Username *${username}* no fue encontrado`);
     }
 
     const topGroups =

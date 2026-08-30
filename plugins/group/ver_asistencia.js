@@ -41,14 +41,14 @@ async function handler(m, { sock }) {
   const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
   await m.reply(
     `📋 *LISTA DE ASISTENCIA*\n\n` +
-      `╭┈┈⬡「 📋 *INFO* 」\n` +
+      `☽◯☾ ♰ 「 📋 *INFO* 」\n` +
       `┃ 📝 ${absen.keterangan}\n` +
       `┃ 📅 ${dateStr}\n` +
       `┃ ⏰ Iniciada: ${timeStr}\n` +
       `┃ 👑 Creada por: @${absen.createdBy.split("@")[0]}\n` +
       `├┈┈⬡「 👥 *PARTICIPANTES (${absen.peserta.length})* 」\n` +
       `${list}\n` +
-      `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `Escribe *${m.prefix}asistencia* para asistir`,
     { mentions: [...absen.peserta, absen.createdBy] },
   );

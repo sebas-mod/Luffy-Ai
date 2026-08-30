@@ -73,7 +73,7 @@ function handler(m, { sock }) {
         `🌊 ⚓ 🌊\n` +
         `🛡️ *Tu defensa:* ${stats.defensa}\n` +
         `❤️ *Tu salud máx:* ${stats.saludMax}\n` +
-        `╰┈➤ ¡Navega con *${m.prefix}viajar*!`,
+        `☽◯☾ ♰ ¡Navega con *${m.prefix}viajar*!`,
     );
   }
 

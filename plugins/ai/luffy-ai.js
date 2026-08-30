@@ -21,14 +21,14 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🤖 *Luffy AI*\n\n` +
         `> Asistente inteligente listo para ayudar\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}luffy-ai <pregunta>*\n\n` +
         `*EJEMPLO:*\n` +
         `> *${m.prefix}luffy-ai ¿Qué es Node.js?*\n\n` +
-      `╰━━━━━━━━━━━━╯`
+      `╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 

@@ -16,7 +16,7 @@ const pluginConfig = {
 
 async function handler(m, { sock, text }) {
     if (!text) {
-        return m.reply(`✦ • ─── • ✦\n⚠️ ¡Ingresa la palabra clave de búsqueda o la URL de Sticker.ly!\n╰┈➤ Ejemplo: \`${m.prefix}${m.command} anime\``);
+        return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ ¡Ingresa la palabra clave de búsqueda o la URL de Sticker.ly!\n☽◯☾ ♰ Ejemplo: \`${m.prefix}${m.command} anime\``);
     }
 
     await m.react("🕕");
@@ -32,11 +32,11 @@ async function handler(m, { sock, text }) {
 
         if (!data || !data.status || !data.result || data.result.length === 0) {
             await m.react("❌");
-            return m.reply(`╭━━━〔 ✦ 〕━━━╮\n🔍 Lo siento, no se encontró el sticker pack para "${text}".\n╰┈➤ Prueba con otra palabra clave.\n╰━━━━━━━━━━━━╯`);
+            return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n🔍 Lo siento, no se encontró el sticker pack para "${text}".\n☽◯☾ ♰ Prueba con otra palabra clave.\n╰━ ⊱༺༒༻⊰ ━╯`);
         }
 
         const maxResults = Math.min(data.result.length, 10);
-        let listTxt = `✦ • ─── • ✦\n🎨 *RESULTADOS DE BÚSQUEDA STICKER.LY*\n🔍 ${text.toUpperCase()}\n──────────\n\n`;
+        let listTxt = `♰ ┄ ── ☽◯☾ ── ┄ ♰\n🎨 *RESULTADOS DE BÚSQUEDA STICKER.LY*\n🔍 ${text.toUpperCase()}\n──────────\n\n`;
         listTxt += `Se encontraron varios packs, elige uno:\n\n`;
 
         const searchResults = [];
@@ -48,10 +48,10 @@ async function handler(m, { sock, text }) {
                 url: item.shareUrl,
                 author: item.authorName
             });
-            listTxt += `╰┈➤ *${i + 1}.* ${item.name} by ${item.authorName}\n`;
+            listTxt += `☽◯☾ ♰ *${i + 1}.* ${item.name} by ${item.authorName}\n`;
         }
 
-        listTxt += `\n──────────\n╰┈➤ 💡 *Envía un número (ejemplo: 1)* para descargar el pack, o escribe \`batal\` para cancelar la búsqueda.`;
+        listTxt += `\n──────────\n☽◯☾ ♰ 💡 *Envía un número (ejemplo: 1)* para descargar el pack, o escribe \`batal\` para cancelar la búsqueda.`;
         
         const db = getDatabase();
         const user = db.getUser(m.sender);
@@ -94,7 +94,7 @@ async function stickerlyAnswerHandler(m, sock) {
     if (text === "cancelar" || text === "cancel") {
         delete user.stickerly_session;
         db.save();
-        await m.reply(`✦ • ─── • ✦\n🚪 Búsqueda de stickerly cancelada.`);
+        await m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n🚪 Búsqueda de stickerly cancelada.`);
         return true;
     }
 
@@ -122,7 +122,7 @@ async function downloadStickerlyPack(sock, m, packUrl) {
 
         if (!data || !data.status || !data.result || !data.result.stickers || data.result.stickers.length === 0) {
             await m.react("❌");
-            return m.reply(`✦ • ─── • ✦\n❌ No se pudo obtener el detalle del pack.`);
+            return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudo obtener el detalle del pack.`);
         }
 
         const stickersData = data.result.stickers;
@@ -136,7 +136,7 @@ async function downloadStickerlyPack(sock, m, packUrl) {
 
         if (stickerUrls.length === 0) {
             await m.react("❌");
-            return m.reply(`✦ • ─── • ✦\n❌ No hay stickers en este pack.`);
+            return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No hay stickers en este pack.`);
         }
 
         const packname = packInfo.name || "Sticker.ly Pack";
@@ -172,10 +172,10 @@ async function downloadStickerlyPack(sock, m, packUrl) {
             }
             if (sent > 0) {
                 await m.react("✅");
-                await m.reply(`✦ • ─── • ✦\n✅ Se enviaron ${sent} stickers ✨`);
+                await m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n✅ Se enviaron ${sent} stickers ✨`);
             } else {
                 await m.react("❌");
-                await m.reply(`✦ • ─── • ✦\n❌ No se pudieron enviar todos los stickers.`);
+                await m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ No se pudieron enviar todos los stickers.`);
             }
         }
     } catch (error) {

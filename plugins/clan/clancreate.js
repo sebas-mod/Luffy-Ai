@@ -103,7 +103,7 @@ async function handler(m) {
         `👑 Líder: @${m.sender.split('@')[0]}\n` +
         `🔓 Estado: Abierto · 👥 1/50 miembros\n` +
         `💰 _-Rp ${CLAN_CREATE_COST.toLocaleString('id-ID')}_\n` +
-        `╰━━━━━━━━━━╯\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `› Invita amigos: *.claninvite @user*\n` +
         `› O comparte el ID: *${clanId}*`,
         { mentions: [m.sender] }

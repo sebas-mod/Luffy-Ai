@@ -67,13 +67,13 @@ async function handler(m, { sock }) {
   const found = await findPluginFile(pluginName);
 
   if (!found) {
-    return m.reply(`╰┈➤ ❌ ¡Plugin *${pluginName}* no encontrado!`);
+    return m.reply(`☽◯☾ ♰ ❌ ¡Plugin *${pluginName}* no encontrado!`);
   }
 
   const { filePath, plugin, category, file } = found;
 
   if (plugin.config.isEnabled !== false) {
-    return m.reply(`╰┈➤ ⚠️ ¡El plugin *${pluginName}* ya está activo!`);
+    return m.reply(`☽◯☾ ♰ ⚠️ ¡El plugin *${pluginName}* ya está activo!`);
   }
 
   try {
@@ -85,12 +85,12 @@ async function handler(m, { sock }) {
 
     await m.reply(
       `✅ *ᴘʟᴜɢɪɴ ʜᴀʙɪʟɪᴛᴀᴅᴏ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 📦 Plugin: *${plugin.config.name}*\n` +
         `┃ 📁 Categoría: *${category}*\n` +
         `┃ 📄 Archivo: *${file}*\n` +
         `┃ 🟢 Estado: *Activado*\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Reinicia el bot o usa hot reload para aplicar.`,
     );
   } catch (error) {

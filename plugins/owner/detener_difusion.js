@@ -15,10 +15,10 @@ const pluginConfig = {
 
 async function handler(m) {
   if (!global.statusBcpc) {
-    return m.reply('╰┈➤ ❌ No hay ningún broadcast privado en ejecución.')
+    return m.reply('☽◯☾ ♰ ❌ No hay ningún broadcast privado en ejecución.')
   }
   global.stopBcpc = true
-  return m.reply('╰┈➤ ⏹️ Deteniendo el broadcast privado...')
+  return m.reply('☽◯☾ ♰ ⏹️ Deteniendo el broadcast privado...')
 }
 
 export { pluginConfig as config, handler }

@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
     const isImage = m.isImage || (m.quoted && m.quoted.type === 'imageMessage')
     
     if (!isImage) {
-        return m.reply(`╭━━━〔 ✦ 〕━━━╮\n\n🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía/responde una imagen para convertirla a estilo Chibi\n\n\`${m.prefix}tochibi\`\n\n╰━━━━━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🎀 *ᴄʜɪʙɪ sᴛʏʟᴇ*\n\n> Envía/responde una imagen para convertirla a estilo Chibi\n\n\`${m.prefix}tochibi\`\n\n╰━ ⊱༺༒༻⊰ ━╯`)
     }
     
     m.react('🕕')

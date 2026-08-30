@@ -13,7 +13,7 @@ const pluginConfig = {
 
 async function handler(m) {
     if (!m.quoted) {
-        return m.reply('╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ Responde al mensaje que\n┃ quieres inspeccionar\n╰━━━━━━━━╯')
+        return m.reply('☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ Responde al mensaje que\n┃ quieres inspeccionar\n╰━━━━━━━━╯')
     }
 
     try {

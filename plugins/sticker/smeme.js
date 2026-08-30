@@ -31,13 +31,13 @@ async function handler(m, { sock }) {
     (m.quoted && (m.quoted.isSticker || m.quoted.type === "stickerMessage"));
   if (!isImage && !isSticker) {
     return m.reply(
-      `✦ • ─── • ✦\n😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Responde o envía una imagen/sticker con el caption\n\n\`╰┈➤ Ejemplo: ${m.prefix}smeme Arriba|Abajo\``,
+      `♰ ┄ ── ☽◯☾ ── ┄ ♰\n😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Responde o envía una imagen/sticker con el caption\n\n\`☽◯☾ ♰ Ejemplo: ${m.prefix}smeme Arriba|Abajo\``,
     );
   }
   const input = m.args.join(" ");
   if (!input || !input.includes("|")) {
     return m.reply(
-      `✦ • ─── • ✦\n😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Formato: superior|inferior\n\n\`╰┈➤ Ejemplo: ${m.prefix}smeme Cuando|Lo Olvidas\``,
+      `♰ ┄ ── ☽◯☾ ── ┄ ♰\n😂 *ᴍᴇᴍᴇ sᴛɪᴄᴋᴇʀ*\n\n> Formato: superior|inferior\n\n\`☽◯☾ ♰ Ejemplo: ${m.prefix}smeme Cuando|Lo Olvidas\``,
     );
   }
   const [top, bottom] = input.split("|").map((s) => s.trim());
@@ -51,7 +51,7 @@ async function handler(m, { sock }) {
     }
     if (!mediaBuffer) {
       m.react("❌");
-      return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el medio`);
+      return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo descargar el medio`);
     }
     let imageBuffer;
     try {
@@ -113,7 +113,7 @@ async function handler(m, { sock }) {
     }
     if (!imageUrl) {
       m.react("❌");
-      return m.reply(`✦ • ─── • ✦\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo subir la imagen, inténtalo de nuevo más tarde`);
+      return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *ꜰᴀʟʟᴏ*\n\n> No se pudo subir la imagen, inténtalo de nuevo más tarde`);
     }
     console.log("[SMEME] Image uploaded:", imageUrl);
     const encodeText = (text) => {

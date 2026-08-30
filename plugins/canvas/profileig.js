@@ -20,9 +20,9 @@ const pluginConfig = {
 };
 
 async function handler(m, { sock, text }) {
-    if (!text) return m.reply(`❖ Formato incorrecto!\n\n╰┈➤ Ejemplo: .profileig 10M|1|150|jokowi|Presidente de RI|true\n──────────\n╰┈➤ _Nota: Responde una imagen para usarla como foto de perfil._`);
+    if (!text) return m.reply(`❖ Formato incorrecto!\n\n☽◯☾ ♰ Ejemplo: .profileig 10M|1|150|jokowi|Presidente de RI|true\n──────────\n☽◯☾ ♰ _Nota: Responde una imagen para usarla como foto de perfil._`);
     const [pengikut, mengikuti, postingan, username, bio, verif] = text.split("|").map(v => v.trim());
-    if (!pengikut || !mengikuti || !postingan || !username || !bio || !verif) return m.reply(`✦ • ─── • ✦\n⚠️ Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
+    if (!pengikut || !mengikuti || !postingan || !username || !bio || !verif) return m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n⚠️ Asegúrate de que todos los argumentos estén completos y separados por el signo |.`);
 
     let imgUrl = "";
     const isImage = m.type === "imageMessage" || (m.quoted && m.quoted.type === "imageMessage");
@@ -52,7 +52,7 @@ async function handler(m, { sock, text }) {
             }
         });
 
-        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "✦ • ─── • ✦\n✅ Perfil IG creado con éxito" }, { quoted: m });
+        await sock.sendMessage(m.chat, { image: Buffer.from(res.data), caption: "♰ ┄ ── ☽◯☾ ── ┄ ♰\n✅ Perfil IG creado con éxito" }, { quoted: m });
         await m.react("✅");
     } catch (e) {
         console.error("[ProfileIG Error]", e);

@@ -20,7 +20,7 @@ async function handler(m, { sock }) {
     const member = participants.map(u => u.jid);
     const persona1 = member[Math.floor(Math.random() * member.length)];
     const persona2 = member[Math.floor(Math.random() * member.length)];
-    const text = `🔥┈┈┈┈┈┈┈┈┈┈\n╰┈➤ @${persona1.split('@')[0]} *está gay con* @${persona2.split('@')[0]}\n🔥┈┈┈┈┈┈┈┈┈┈`;
+    const text = `🔥┈┈┈┈┈┈┈┈┈┈\n☽◯☾ ♰ @${persona1.split('@')[0]} *está gay con* @${persona2.split('@')[0]}\n🔥┈┈┈┈┈┈┈┈┈┈`;
     await m.reply(text, { mentions: [persona1, persona2] })
 }
 

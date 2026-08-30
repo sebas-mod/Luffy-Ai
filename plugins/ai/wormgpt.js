@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n🐛 *ᴡᴏʀᴍ ɢᴘᴛ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}wormgpt preséntate\`\n\n╰━━━━━━━━━━━━╯`,
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n🐛 *ᴡᴏʀᴍ ɢᴘᴛ*\n\n> Escribe una pregunta\n\n\`Ejemplo: ${m.prefix}wormgpt preséntate\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

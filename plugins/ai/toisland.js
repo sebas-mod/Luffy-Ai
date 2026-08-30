@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
     
     if (!isImage) {
         return m.reply(
-            `╭━━━〔 ✦ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
             `🏝️ *ᴛᴏ ɪsʟᴀɴᴅ*\n\n` +
             `> Envía/responde una imagen para ambiente de isla\n\n` +
             `\`${m.prefix}toisland\`\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
     

@@ -97,7 +97,7 @@ function getBackupOutputDir(projectRoot) {
 async function handler(m, { sock }) {
   await m.react("🕕");
   await m.reply(
-    `👑•─────•👑\n📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇʟ sᴄʀɪᴘᴛ*\n\n> Procesando respaldo...\n> Por favor espera un momento...\n✦────────✦`,
+    `👑•─────•👑\n📦 *ʀᴇsᴘᴀʟᴅᴏ ᴅᴇʟ sᴄʀɪᴘᴛ*\n\n> Procesando respaldo...\n> Por favor espera un momento...\n♰ ──────── ♱✦`,
   );
   try {
     const projectRoot = process.cwd();
@@ -194,12 +194,12 @@ async function handler(m, { sock }) {
         mimetype: "application/zip",
         caption:
           `✅ *ʀᴇsᴘᴀʟᴅᴏ ᴄᴏᴍᴘʟᴇᴛᴀᴅᴏ*\n\n` +
-          `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+          `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
           `┃ 📝 ɴᴏᴍʙʀᴇ: \`${zipFileName}\`\n` +
           `┃ 📊 ᴛᴀᴍᴀñᴏ: \`${fileSizeMB} MB\`\n` +
           `┃ 📁 ᴀʀᴄʜɪᴠᴏs: \`${fileCount}\`\n` +
           `┃ 📅 ꜰᴇᴄʜᴀ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
-          `╰┈┈⬡`,
+          `╰━ ⊱༺༒༻⊰ ━╯`,
         contextInfo: {
           forwardingScore: 9999,
           isForwarded: true,

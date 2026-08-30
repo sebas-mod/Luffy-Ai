@@ -36,14 +36,14 @@ async function handler(m, { sock }) {
   const db = getDatabase();
   const overrides = db.setting("capcarne") || {};
   
-  let responseText = `╭━━━〔 🔋 CARNE 〕━━━╮\n\n🔋 *DETALLES DE CARNE DE FUNCIONES*\n\n`;
+  let responseText = `☽◯☾ ╭━ ♰ 🔋 CARNE ♰ ━╮ ☽◯☾\n\n🔋 *DETALLES DE CARNE DE FUNCIONES*\n\n`;
   
   for (const cmd of m.args) {
     const targetCommand = cmd.toLowerCase();
     const plugin = getPlugin(targetCommand);
     
     if (!plugin) {
-      responseText += `╰┈➤ ❌ *${targetCommand}* : ¡No encontrado!\n\n`;
+      responseText += `☽◯☾ ♰ ❌ *${targetCommand}* : ¡No encontrado!\n\n`;
       continue;
     }
     
@@ -51,10 +51,10 @@ async function handler(m, { sock }) {
       ? overrides[plugin.config.name] 
       : (plugin.config.carne || 0);
       
-    responseText += `╰┈➤ ✅ *${plugin.config.name}* : ${carneCost} Carne\n`;
+    responseText += `☽◯☾ ♰ ✅ *${plugin.config.name}* : ${carneCost} Carne\n`;
   }
 
-  responseText += `\n╰━━━━━━━━━━━━╯`;
+  responseText += `\n╰━ ⊱༺༒༻⊰ ━╯`;
 
   await m.react("✅");
   return m.reply(responseText.trim());

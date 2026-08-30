@@ -26,10 +26,10 @@ function handler(m, { sock }) {
     asignarMisionesDiarias(m.sender);
     const activas = getMisionesActivas(m.sender);
 
-    let txt = `╭━━〔 🎯 MISIONES ACTIVAS 〕━━╮\n`;
+    let txt = `☽◯☾ ╭ ♰ 🎯 MISIONES ACTIVAS ♰ ━╮ ☽◯☾\n`;
     if (activas.length === 0) {
       txt += `┃ No tienes misiones activas.\n`;
-      txt += `╰┈➤ Usa *${m.prefix}mision asignar <id>* para tomar una.`;
+      txt += `☽◯☾ ♰ Usa *${m.prefix}mision asignar <id>* para tomar una.`;
     } else {
       activas.forEach(({ mision, progreso }, i) => {
         txt += `┃\`${i + 1}\` ${mision.emoji || "🎯"} *${mision.nombre}*\n`;

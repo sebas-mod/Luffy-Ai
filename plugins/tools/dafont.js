@@ -55,14 +55,14 @@ async function handler(m, { sock }) {
   if (!text) {
     m.react("❌");
     return m.reply(
-      `╭━━━〔 🔤 Búsqueda DaFont 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🔤 Búsqueda DaFont ♰ ━╮ ☽◯☾\n\n` +
         `Busca fuentes en DaFont y luego responde el número para descargar.\n\n` +
         `*USO:*\n` +
         `> *${m.prefix}dafont <nombre de fuente>*\n\n` +
         `*EJEMPLO:*\n` +
         `> *${m.prefix}dafont arial*\n` +
         `> *${m.prefix}dafont horror*\n\n` +
-        `_Una vez que aparezca la lista, responde el mensaje del bot con el número de la fuente para descargarla_\n\n╰━━━━━━━━━━━━╯`
+        `_Una vez que aparezca la lista, responde el mensaje del bot con el número de la fuente para descargarla_\n\n╰━ ⊱༺༒༻⊰ ━╯`
     );
   }
 
@@ -73,7 +73,7 @@ async function handler(m, { sock }) {
 
     if (!result.status) {
       m.react("☢");
-      return m.reply(`╰┈➤ ❌ *DaFont Error*\n\n> ${result.error}`);
+      return m.reply(`☽◯☾ ♰ ❌ *DaFont Error*\n\n> ${result.error}`);
     }
 
     const items = result.results.slice(0, 10);
@@ -98,7 +98,7 @@ async function handler(m, { sock }) {
   } catch (e) {
     console.error(e);
     m.react("☢");
-    m.reply("╰┈➤ ❌ Error al buscar la fuente, inténtalo de nuevo más tarde");
+    m.reply("☽◯☾ ♰ ❌ Error al buscar la fuente, inténtalo de nuevo más tarde");
   }
 }
 

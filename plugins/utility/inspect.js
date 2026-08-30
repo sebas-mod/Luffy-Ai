@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
             
             let teks = 
                 `📋 *ɪɴꜰᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ɢʀᴜᴘᴏ*\n\n` +
-                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                `☽◯☾ ♰ 「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
                 `┃ 📝 ɴᴏᴍʙʀᴇ: *${groupInfo.subject}*\n` +
                 `┃ 🆔 ɪᴅ: \`${groupInfo.id}\`\n` +
                 `┃ 📅 ᴄʀᴇᴀᴅᴏ: ${new Date(groupInfo.creation * 1000).toLocaleString('id-ID')}\n`
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
                 `┃ ✅ ᴀᴘʀᴏʙᴀᴄɪᴏɴ ᴅᴇ ᴜɴɪᴏɴ: ${groupInfo.joinApprovalMode ? '✅' : '❌'}\n` +
                 `┃ ➕ ᴍᴏᴅᴏ ᴀɢʀᴇɢᴀʀ ᴍɪᴇᴍʙʀᴏs: ${groupInfo.memberAddMode ? '✅' : '❌'}\n` +
                 `┃ 👥 ᴘᴀʀᴛɪᴄɪᴘᴀɴᴛᴇs: ${groupInfo.participants?.length || 0}\n` +
-                `╰┈┈⬡\n\n`
+                `╰━ ⊱༺༒༻⊰ ━╯\n\n`
 
             if (groupInfo.desc) {
                 teks += `📝 *ᴅᴇsᴄʀɪᴘᴄɪᴏɴ:*\n${groupInfo.desc}\n\n`
@@ -72,7 +72,7 @@ async function handler(m, { sock }) {
                     admins.forEach(a => {
                         teks += `├ @${a.id.split('@')[0]} [${a.admin}]\n`
                     })
-                    teks += `╰┈┈⬡`
+                    teks += `╰━ ⊱༺༒༻⊰ ━╯`
                 }
             }
 
@@ -92,14 +92,14 @@ async function handler(m, { sock }) {
             
             const teks = 
                 `📺 *ɪɴꜰᴏʀᴍᴀᴄɪᴏɴ ᴅᴇʟ ᴄᴀɴᴀʟ*\n\n` +
-                `╭┈┈⬡「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+                `☽◯☾ ♰ 「 📊 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
                 `┃ 🆔 ɪᴅ: \`${channelInfo.id}\`\n` +
                 `┃ 📌 ᴇsᴛᴀᴅᴏ: ${channelInfo.state?.type || '-'}\n` +
                 `┃ 📝 ɴᴏᴍʙʀᴇ: *${channelInfo.thread_metadata?.name?.text || '-'}*\n` +
                 `┃ 📅 ᴄʀᴇᴀᴅᴏ: ${new Date((channelInfo.thread_metadata?.creation_time || 0) * 1000).toLocaleString('id-ID')}\n` +
                 `┃ 👥 sᴜsᴄʀɪᴛᴏʀᴇs: ${channelInfo.thread_metadata?.subscribers_count || 0}\n` +
                 `┃ ✅ ᴠᴇʀɪꜰɪᴄᴀᴄɪᴏɴ: ${channelInfo.thread_metadata?.verification || '-'}\n` +
-                `╰┈┈⬡\n\n` +
+                `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
                 `📝 *ᴅᴇsᴄʀɪᴘᴄɪᴏɴ:*\n${channelInfo.thread_metadata?.description?.text || 'Sin descripción'}`
 
             m.react('✅')

@@ -150,11 +150,11 @@ async function handler(m, { sock, db }) {
     
     const successMsg = `✅ *ʜᴏʀᴀʀɪᴏ ɢᴜᴀʀᴅᴀᴅᴏ*
 
-╭┈┈⬡「 ⏰ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ* 」
+☽◯☾ ♰ 「 ⏰ *ᴄᴏɴꜰɪɢᴜʀᴀᴄɪóɴ* 」
 ┃ ㊗ ${emoji} ᴀᴄᴄɪóɴ: *${actionText}*
 ┃ ㊗ ⏱️ ʜᴏʀᴀ: *${formattedTime} WIB*
 ┃ ㊗ 📡 ᴇsᴛᴀᴅᴏ: *🟢 Activo*
-╰┈┈⬡
+╰━ ⊱༺༒༻⊰ ━╯
 
 > _El grupo se ${action === 'open' ? 'abrirá' : 'cerrará'} automáticamente_
 > _todos los días a las *${formattedTime}* WIB._`;

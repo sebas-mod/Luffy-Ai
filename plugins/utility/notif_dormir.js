@@ -29,21 +29,21 @@ function handler(m) {
             ? (existing.enabled ? '✅ Activo' : '❌ Inactivo')
             : '⚪ Sin configurar'
 
-        let info = `╭━━━〔 🌙 DORMIR 〕━━━╮\n\n🌙 *RECORDATORIO DE SUEÑO*\n\n`
+        let info = `☽◯☾ ╭━ ♰ 🌙 DORMIR ♰ ━╮ ☽◯☾\n\n🌙 *RECORDATORIO DE SUEÑO*\n\n`
         info += `📌 *Estado:* ${status}\n`
 
         if (existing) {
             info += `⏰ *Horario:* ${existing.jadwal.map(j => `*${j}* (hora local)`).join(', ')}\n`
         }
 
-        info += `\n✦────────✦\n\n*📋 Cómo Usar:*\n`
+        info += `\n♰ ──────── ♱✦\n\n*📋 Cómo Usar:*\n`
         info += `> \`${m.prefix}notif_dormir on 22.00\`\n`
         info += `> \`${m.prefix}notif_dormir on 22.00,23.30\`\n`
         info += `> \`${m.prefix}notif_dormir edit 23.00\`\n`
         info += `> \`${m.prefix}notif_dormir off\`\n`
         info += `\n> 💡 _La hora puede ser con punto o dos puntos (22.00 / 22:00)_\n`
         info += `> 💡 _Pueden ser varias horas, sepáralas con comas_\n\n`
-        info += `╰━━━━━━━━━━━━╯`
+        info += `╰━ ⊱༺༒༻⊰ ━╯`
 
         return m.reply(info)
     }
@@ -78,12 +78,12 @@ function handler(m) {
 
         setNotifTidur(sender, chatJid, jadwal)
 
-        let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *¡Recordatorio de sueño activo!* 🔔\n\n`
+        let reply = `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n✅ *¡Recordatorio de sueño activo!* 🔔\n\n`
         reply += `⏰ *Horario:*\n`
         for (const j of jadwal) {
             reply += `> 🕐 *${j}* (hora local)\n`
         }
-        reply += `\n> 💡 _La notificación se enviará a este chat todos los días_\n\n╰━━━━━━━━━━━━╯`
+        reply += `\n> 💡 _La notificación se enviará a este chat todos los días_\n\n╰━ ⊱༺༒༻⊰ ━╯`
 
         return m.reply(reply)
     }
@@ -105,7 +105,7 @@ function handler(m) {
 
         setNotifTidur(sender, chatJid, jadwal)
 
-        let reply = `╭━━━〔 ✦ ACTUALIZADO 〕━━━╮\n✅ *¡Horario de sueño actualizado!* ✏️\n\n`
+        let reply = `☽◯☾ ╭━ ♰ ✦ ACTUALIZADO ♰ ━╮ ☽◯☾\n✅ *¡Horario de sueño actualizado!* ✏️\n\n`
         reply += `⏰ *Nuevo horario:*\n`
         for (const j of jadwal) {
             reply += `> 🕐 *${j}* (hora local)\n`

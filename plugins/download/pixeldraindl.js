@@ -28,8 +28,8 @@ async function handler(m, { sock }) {
     return m.reply(
       `🗄️ *𝗣𝗜𝗫𝗘𝗟𝗗𝗥𝗔𝗜𝗡*\n──────────\n` +
         `> Descarga archivos de *Pixeldrain* directo al chat.\n\n` +
-        `╰┈➤ Uso: *${m.prefix}pixeldraindl <url>*\n` +
-        `╰┈➤ Ejemplo: *${m.prefix}pixeldraindl https://pixeldrain.com/u/xxxxx*`,
+        `☽◯☾ ♰ Uso: *${m.prefix}pixeldraindl <url>*\n` +
+        `☽◯☾ ♰ Ejemplo: *${m.prefix}pixeldraindl https://pixeldrain.com/u/xxxxx*`,
     );
   }
 

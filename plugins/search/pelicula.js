@@ -25,12 +25,12 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭━━━〔 🎬 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀs 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🎬 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴘᴇʟɪᴄᴜʟᴀs ♰ ━╮ ☽◯☾\n\n` +
         `> Busca y mira películas en línea\n\n` +
         `*Formato:*\n` +
         `> \`${m.prefix}pelicula <título>\`\n\n` +
         `*Ejemplo:*\n` +
-        `> \`${m.prefix}pelicula civil war\`\n\n╰━━━━━━━━━━━━╯`,
+        `> \`${m.prefix}pelicula civil war\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -43,7 +43,7 @@ async function handler(m, { sock }) {
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
       return m.reply(
-        `╭━〔 ❌ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ 〕━╮\n\n> Película "${query}" no encontrada\n\n╰━━━━━╯`,
+        `☽◯☾ ╭ ♰ ❌ ɴᴏ ᴇɴᴄᴏɴᴛʀᴀᴅᴏ ♰ ━╮ ☽◯☾\n\n> Película "${query}" no encontrada\n\n╰━━━━━╯`,
       );
     }
 
@@ -58,11 +58,11 @@ async function handler(m, { sock }) {
       filmSessions.delete(m.sender);
     }, 300000);
 
-    let text = `╭━〔 🎬 ʀᴇsᴜʟᴛᴀᴅᴏs 〕━╮\n──────────\n`;
+    let text = `☽◯☾ ╭ ♰ 🎬 ʀᴇsᴜʟᴛᴀᴅᴏs ♰ ━╮ ☽◯☾\n──────────\n`;
     text += `> Se encontraron *${films.length}* películas para "${query}"\n\n`;
 
     films.forEach((f, i) => {
-      text += `╰┈➤ *${i + 1}. ${f.title}*\n`;
+      text += `☽◯☾ ♰ *${i + 1}. ${f.title}*\n`;
       text += `> ⭐ ${f.rating} | 📺 ${f.quality} | 📅 ${f.release}\n\n`;
     });
 

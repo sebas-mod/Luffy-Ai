@@ -40,12 +40,12 @@ async function handler(m, { sock }) {
     const targetNumber = targetJid.replace(/@.*$/, '')
 
     if (targetJid === botNumber || targetNumber === botNumber.replace(/@.*$/, '')) {
-        await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar al bot mismo!`+"\n╰━━━━━━━━━━━━╯")
+        await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar al bot mismo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         return
     }
 
     if (targetJid === m.sender) {
-        await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No puedes expulsarte a ti mismo!`+"\n╰━━━━━━━━━━━━╯")
+        await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No puedes expulsarte a ti mismo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         return
     }
 
@@ -54,19 +54,19 @@ async function handler(m, { sock }) {
         const targetParticipant = findParticipantByNumber(groupMeta.participants, targetJid)
         
         if (!targetParticipant) {
-            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El usuario no está en el grupo!`+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡El usuario no está en el grupo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             return
         }
         
         if (targetParticipant.admin) {
-            await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar a un admin del grupo!`+"\n╰━━━━━━━━━━━━╯")
+            await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`❌ *ᴇʀʀᴏʀ*\n\n> ¡No se puede expulsar a un admin del grupo!`+"\n╰━ ⊱༺༒༻⊰ ━╯")
             return
         }
         
         const realTargetJid = getParticipantJid(targetParticipant) || targetParticipant.id
         await sock.groupParticipantsUpdate(m.chat, [realTargetJid], 'remove')
 
-        await m.reply("╭━━━〔 👑 ADMIN 〕━━━╮\n┃ "+`✅ @${targetNumber} fue expulsado de este grupo.`+"\n╰━━━━━━━━━━━━╯", { mentions: [targetJid] })
+        await m.reply("☽◯☾ ╭━ ♰ 👑 ADMIN ♰ ━╮ ☽◯☾\n┃ "+`✅ @${targetNumber} fue expulsado de este grupo.`+"\n╰━ ⊱༺༒༻⊰ ━╯", { mentions: [targetJid] })
 
     } catch (error) {
         m.reply(te(m.prefix, m.command, m.pushName))

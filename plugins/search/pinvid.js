@@ -41,9 +41,9 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭━━━〔 📌 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴠɪᴅᴇᴏ ᴘɪɴᴛᴇʀᴇsᴛ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 📌 ʙᴜsǫᴜᴇᴅᴀ ᴅᴇ ᴠɪᴅᴇᴏ ᴘɪɴᴛᴇʀᴇsᴛ ♰ ━╮ ☽◯☾\n\n` +
         `> Ingresa una consulta de búsqueda\n\n` +
-        `\`${m.prefix}pinvid anime\`\n\n╰━━━━━━━━━━━━╯`,
+        `\`${m.prefix}pinvid anime\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -59,7 +59,7 @@ async function handler(m, { sock }) {
 
     if (!res.data?.status || !res.data?.data?.length) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron videos para: ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron videos para: ${query}`);
     }
 
     const videos = res.data.data.slice(0, 5);
@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ Error al descargar el video`);
+      return m.reply(`☽◯☾ ♰ ❌ Error al descargar el video`);
     }
 
     m.react("📤");

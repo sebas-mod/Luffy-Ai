@@ -36,14 +36,14 @@ async function handler(m, { sock }) {
   const db = getDatabase();
   const overrides = db.setting("capprem") || {};
   
-  let responseText = `╭━━━〔 🔍 ACCESO 〕━━━╮\n\n🔍 *DETALLES DE ACCESO A FUNCIONES*\n\n`;
+  let responseText = `☽◯☾ ╭━ ♰ 🔍 ACCESO ♰ ━╮ ☽◯☾\n\n🔍 *DETALLES DE ACCESO A FUNCIONES*\n\n`;
   
   for (const cmd of m.args) {
     const targetCommand = cmd.toLowerCase();
     const plugin = getPlugin(targetCommand);
     
     if (!plugin) {
-      responseText += `╰┈➤ ❌ *${targetCommand}* : ¡No encontrado!\n\n`;
+      responseText += `☽◯☾ ♰ ❌ *${targetCommand}* : ¡No encontrado!\n\n`;
       continue;
     }
     
@@ -65,10 +65,10 @@ async function handler(m, { sock }) {
     }
     
     let listRoles = roles.map(r => `  - ${r}`).join("\n");
-    responseText += `╰┈➤ ✅ *${plugin.config.name}*\n${listRoles}\n\n`;
+    responseText += `☽◯☾ ♰ ✅ *${plugin.config.name}*\n${listRoles}\n\n`;
   }
 
-  responseText += `╰━━━━━━━━━━━━╯`;
+  responseText += `╰━ ⊱༺༒༻⊰ ━╯`;
 
   await m.react("✅");
   return m.reply(responseText.trim());

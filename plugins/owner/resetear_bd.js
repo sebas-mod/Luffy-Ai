@@ -38,10 +38,10 @@ async function handler(m, { sock }) {
             `> • Datos de grupos\n` +
             `> • Datos de clanes\n` +
             `> • Todas las estadísticas\n\n` +
-            `╭┈┈⬡「 ⚠️ *ᴄᴏɴғɪʀᴍᴀᴄɪᴏ́ɴ* 」\n` +
+            `☽◯☾ ♰ 「 ⚠️ *ᴄᴏɴғɪʀᴍᴀᴄɪᴏ́ɴ* 」\n` +
             `┃ Escribe: *.resetdb confirm*\n` +
             `┃ en 60 segundos\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> ❌ ¡Esta acción NO se puede deshacer!`
         )
     }
@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
     const pending = global.resetDbPending[m.sender]
     if (!pending || (Date.now() - pending) > 60000) {
         delete global.resetDbPending[m.sender]
-        return m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮\n┃ ❌ ¡Tiempo agotado! ⏰\n┃ Escribe *.resetdb* de nuevo\n╰━━━━━━━━╯`)
+        return m.reply(`☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ ❌ ¡Tiempo agotado! ⏰\n┃ Escribe *.resetdb* de nuevo\n╰━━━━━━━━╯`)
     }
     
     delete global.resetDbPending[m.sender]
@@ -87,11 +87,11 @@ async function handler(m, { sock }) {
         
         await m.reply(
             `✅ *ʙᴀsᴇ ᴅᴇ ᴅᴀᴛᴏs ʀᴇɪɴɪᴄɪᴀᴅᴀ!*\n\n` +
-            `╭┈┈⬡「 📊 *ᴅᴀᴛᴏs ᴇʟɪᴍɪɴᴀᴅᴏs* 」\n` +
+            `☽◯☾ ♰ 「 📊 *ᴅᴀᴛᴏs ᴇʟɪᴍɪɴᴀᴅᴏs* 」\n` +
             `┃ 👤 Usuarios: ${userCount}\n` +
             `┃ 👥 Grupos: ${groupCount}\n` +
             `┃ ⚔️ Clanes: ${clanCount}\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Backup guardado en:\n` +
             `> \`${path.basename(backupPath)}\``
         )

@@ -23,11 +23,11 @@ async function handler(m, { sock }) {
 
   if (!isVideoMessage && !isDocumentMessage) {
     return m.reply(
-      `╭━━━〔 ✨ ᴡɪɴᴋ ᴠɪᴅᴇᴏ ᴇɴʜᴀɴᴄᴇʀ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✨ ᴡɪɴᴋ ᴠɪᴅᴇᴏ ᴇɴʜᴀɴᴄᴇʀ ♰ ━╮ ☽◯☾\n\n` +
         `> Convierte videos borrosos en *Ultra HD* con AI Wink!\n\n` +
         `*Cómo usar:*\n` +
         `> Envía/responde un video con caption \`${m.prefix}wink\`\n\n` +
-        `⚠️ _Función Premium, tiempo estimado de 1-5 minutos según la duración del video_\n\n╰━━━━━━━━━━━━╯`,
+        `⚠️ _Función Premium, tiempo estimado de 1-5 minutos según la duración del video_\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 
@@ -38,18 +38,18 @@ async function handler(m, { sock }) {
 
     if (!videoBuffer || videoBuffer.length === 0) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *ERROR*\n\nEl video no se pudo descargar, intenta enviarlo de nuevo!`);
+      return m.reply(`☽◯☾ ♰ ❌ *ERROR*\n\nEl video no se pudo descargar, intenta enviarlo de nuevo!`);
     }
 
     if (videoBuffer.length > 50 * 1024 * 1024) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *ARCHIVO DEMASIADO GRANDE*\n\nEl tamaño máximo del video es de *50MB*!`);
+      return m.reply(`☽◯☾ ♰ ❌ *ARCHIVO DEMASIADO GRANDE*\n\nEl tamaño máximo del video es de *50MB*!`);
     }
 
     await m.reply(
-      `╭━━━〔 🎬 ɪɴɪᴄɪᴀᴅᴏ ᴇʟ ᴘʀᴏᴄᴇsᴏ ᴅᴇ ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🎬 ɪɴɪᴄɪᴀᴅᴏ ᴇʟ ᴘʀᴏᴄᴇsᴏ ᴅᴇ ᴡɪɴᴋ ᴇɴʜᴀɴᴄᴇ ♰ ━╮ ☽◯☾\n\n` +
         `> El video se está procesando con AI Wink para quedar en *Ultra HD* ✨\n` +
-        `> Tiempo estimado de *1-5 minutos*, ten paciencia!\n\n╰━━━━━━━━━━━━╯`,
+        `> Tiempo estimado de *1-5 minutos*, ten paciencia!\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
 
     const result = await winkEnhance(videoBuffer, {
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   } catch (err) {
     console.log(err);
     await m.react("❌");
-    await m.reply(`╰┈➤ ❌ El proceso de Wink enhance falló! Inténtalo de nuevo más tarde 😭`);
+    await m.reply(`☽◯☾ ♰ ❌ El proceso de Wink enhance falló! Inténtalo de nuevo más tarde 😭`);
   }
 }
 

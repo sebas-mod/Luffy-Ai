@@ -76,7 +76,7 @@ function handler(m, { sock }) {
   txt += `_${isla.descripcion}_\n\n`;
   txt += `✨ *EXP:* +30\n`;
   if (res.subio) txt += `👑 *¡Subiste de nivel! Ahora eres nivel ${res.nivel}!*\n`;
-  txt += `\n╰┈➤ Explora con *${m.prefix}explorar* o pelea con *${m.prefix}combate*.`;
+  txt += `\n☽◯☾ ♰ Explora con *${m.prefix}explorar* o pelea con *${m.prefix}combate*.`;
 
   return m.reply(txt);
 }

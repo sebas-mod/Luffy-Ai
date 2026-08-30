@@ -27,7 +27,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `🌐 *𝗔𝗟𝗟 𝗜𝗡 𝗢𝗡𝗘*\n──────────\n` +
         `> ¡Descarga desde varias plataformas en un solo comando!\n\n` +
-        `╭┈┈⬡「 🗂️ *PLATAFORMAS* 」\n` +
+        `☽◯☾ ♰ 「 🗂️ *PLATAFORMAS* 」\n` +
         `┃ • Instagram\n` +
         `┃ • TikTok\n` +
         `┃ • Facebook\n` +
@@ -36,7 +36,7 @@ async function handler(m, { sock }) {
         `┃ • Pinterest\n` +
         `┃ • CapCut\n` +
         `┃ • Threads / Reddit\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         usage(m.prefix, "aio", "https://instagram.com/p/xxx"),
     );
   }

@@ -46,7 +46,7 @@ function handler(m, { sock }) {
   txt += `• *${m.prefix}barco* — Comprar o ver barcos\n\n`;
   txt += `━━━ *🏆 COMPETENCIA* ━━━\n`;
   txt += `• *${m.prefix}clasificacion* — Top piratas\n\n`;
-  txt += `╰┈➤ ¡Zarpa hacia la aventura! ⚔️ 🌊`;
+  txt += `☽◯☾ ♰ ¡Zarpa hacia la aventura! ⚔️ 🌊`;
 
   return m.reply(txt);
 }

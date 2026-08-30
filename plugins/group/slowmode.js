@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
 
     if (subCmd === 'off') {
         db.setGroup(m.chat, { ...groupData, slowmode: { enabled: false } })
-        return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`✅ Slowmode *desactivado*`+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`✅ Slowmode *desactivado*`+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     let mode = 'all'
@@ -83,7 +83,7 @@ async function handler(m, { sock }) {
     } else {
         delay = parseInt(subCmd)
         if (isNaN(delay)) {
-            return m.reply("╭━━━〔 ⚡ GRUPO 〕━━━╮\n┃ "+`❌ Usa *.slowmode on 30* o *.slowmode onlycommand 30*`+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ Usa *.slowmode on 30* o *.slowmode onlycommand 30*`+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
     }
 
@@ -96,7 +96,7 @@ async function handler(m, { sock }) {
     }
 
     if (delay < 5 || delay > 600) {
-        return m.reply("╰┈➤ "+`❌ El delay debe estar entre 5–600 segundos`)
+        return m.reply("☽◯☾ ♰ "+`❌ El delay debe estar entre 5–600 segundos`)
     }
 
     db.setGroup(m.chat, {

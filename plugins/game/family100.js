@@ -40,7 +40,7 @@ async function handler(m, { sock }) {
       const answered = session.answered || [];
       const total = session.question.jawaban.length;
 
-      let text = `꧁༺ 👨‍👩‍👧‍👦 FAMILY 100 ༻꧂\n┈┈┈┈┈┈┈┈┈┈\n╰┈➤ ¡Vaya, la sesión sigue en curso! 😱✨\n\n`;
+      let text = `꧁༺ 👨‍👩‍👧‍👦 FAMILY 100 ༻꧂\n┈┈┈┈┈┈┈┈┈┈\n☽◯☾ ♰ ¡Vaya, la sesión sigue en curso! 😱✨\n\n`;
       text += `*${session.question.soal}*\n\n`;
       text += `Respondidas: *${answered.length} de ${total}*\n`;
       answered.forEach((ans, i) => {
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
 
   const total = question.jawaban.length;
 
-  let text = `╭━━━〔 🎉 〕━━━╮\n  ¡Es hora de jugar *FAMILY 100*!\n╰━━━━━━━━━━━━╯\n\n`;
+  let text = `☽◯☾ ╭━ ♰ 🎉 ♰ ━╮ ☽◯☾\n  ¡Es hora de jugar *FAMILY 100*!\n╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   text += `*Pregunta:* ${question.soal}\n\n`;
   text += `Total de Respuestas: *${total}* 📝\n`;
   for (let i = 0; i < total; i++) {
@@ -184,7 +184,7 @@ async function family100AnswerHandler(m, sock) {
         const participants = Object.values(session.answeredBy);
         const uniqueParticipants = [...new Set(participants)];
 
-        let text = `꧁༺ 🏆 VICTORIA ༻꧂\n╰┈➤ ¡¡WOWWW INCREÍBLE! ¡Se acertaron todas las respuestas! 🎉🔥✨\n\n`;
+        let text = `꧁༺ 🏆 VICTORIA ༻꧂\n☽◯☾ ♰ ¡¡WOWWW INCREÍBLE! ¡Se acertaron todas las respuestas! 🎉🔥✨\n\n`;
         text += `*Pregunta:* ${session.question.soal}\n\n`;
         session.question.jawaban.forEach((ans, i) => {
           const who = session.answeredBy[ans.toLowerCase()];
@@ -197,7 +197,7 @@ async function family100AnswerHandler(m, sock) {
       }
 
       const total = session.question.jawaban.length;
-      let text = `✅ ──────────\n╰┈➤ ¡Correctooooo! 🎉\n@${m.sender.split("@")[0]} gana *+${answerReward.exp} EXP* & *+${answerReward.berry} Berry*! 💸✨\n\n`;
+      let text = `✅ ──────────\n☽◯☾ ♰ ¡Correctooooo! 🎉\n@${m.sender.split("@")[0]} gana *+${answerReward.exp} EXP* & *+${answerReward.berry} Berry*! 💸✨\n\n`;
       text += `*Pregunta:* ${session.question.soal}\n\n`;
       session.question.jawaban.forEach((ans, i) => {
         const isAnswered = session.answered.includes(ans.toLowerCase());

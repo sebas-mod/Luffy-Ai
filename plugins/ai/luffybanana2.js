@@ -20,11 +20,11 @@ async function handler(m, { sock }) {
   const prompt = m.text;
   if (!prompt) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
         `🍌 *Luffy-Ai BANANA SUPER 2*\n\n` +
         `> Crea imágenes con IA\n\n` +
         `\`Ejemplo: ${m.prefix}luffybanana2 make a cat\`\n\n` +
-        `╰━━━━━━━━━━━━╯`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

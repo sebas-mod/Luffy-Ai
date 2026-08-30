@@ -59,8 +59,8 @@ async function handler(m, { sock }) {
   if (!nik || nik.length !== 16) {
     return m.reply(
         `🪪 *ᴀɴᴀʟɪsᴀᴅᴏʀ ᴅᴇ ɴɪᴋ* ✦\n\n` +
-        `╰┈➤ Analiza y valida el NIK KTP 🇮🇩\n` +
-        `╰┈➤ Ingresa los 16 dígitos del NIK\n\n` +
+        `☽◯☾ ♰ Analiza y valida el NIK KTP 🇮🇩\n` +
+        `☽◯☾ ♰ Ingresa los 16 dígitos del NIK\n\n` +
         `\`${m.prefix}nikparser 3517072109020003\``,
     );
   }
@@ -81,8 +81,8 @@ async function handler(m, { sock }) {
       m.react("❌");
       return m.reply(
         `🪪 *ɴɪᴋ ɪɴᴠᴀʟɪᴅᴏ*\n──────────\n` +
-          `╰┈➤ El NIK que ingresaste no es válido\n` +
-          `╰┈➤ Asegúrate de que los 16 dígitos sean correctos`,
+          `☽◯☾ ♰ El NIK que ingresaste no es válido\n` +
+          `☽◯☾ ♰ Asegúrate de que los 16 dígitos sean correctos`,
       );
     }
 
@@ -99,7 +99,7 @@ async function handler(m, { sock }) {
     const provNama = PROVINSI[data.provinceId] || data.province || "-";
 
     m.reply(
-      `╭━━━〔 🪪 ᴀɴᴀʟɪsᴀᴅᴏʀ ᴅᴇ ɴɪᴋ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🪪 ᴀɴᴀʟɪsᴀᴅᴏʀ ᴅᴇ ɴɪᴋ ♰ ━╮ ☽◯☾\n\n` +
         `- *NIK* → \`${data.raw}\`\n` +
         `- *Válido* → ✅ Válido\n` +
         `- *Fecha de Nacimiento* → ${bFormatted}\n` +
@@ -107,7 +107,7 @@ async function handler(m, { sock }) {
         `- *Provincia* → ${provNama}\n` +
         `- *Kab/Kota* → Código \`${data.kabupatenKotaId}\`\n` +
         `- *Distrito* → Código \`${data.kecamatanId}\`\n` +
-        `- *Código Único* → \`${data.uniqcode}\`\n\n╰━━━━━━━━━━━━╯`,
+        `- *Código Único* → \`${data.uniqcode}\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   } catch (e) {
     console.log(e);

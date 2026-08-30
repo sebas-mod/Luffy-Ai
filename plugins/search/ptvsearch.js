@@ -22,11 +22,11 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `╭┈┈⬡「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
+      `☽◯☾ ♰ 「 🎵 *ʙᴜsǫᴜᴇᴅᴀ ᴛɪᴋᴛᴏᴋ* 」
 ┃
 ┃ ㊗ ᴜsᴏ: \`${m.prefix}ptvsearch <query>\`
 ┃
-╰┈┈⬡
+╰━ ⊱༺༒༻⊰ ━╯
 
 > \`Ejemplo: ${m.prefix}ptvsearch anime\``,
     );
@@ -39,7 +39,7 @@ async function handler(m, { sock }) {
 
     if (!videos || videos.length === 0) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron videos para: ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron videos para: ${query}`);
     }
 
     const randomVideo = videos[Math.floor(Math.random() * videos.length)];

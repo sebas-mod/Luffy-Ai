@@ -32,23 +32,23 @@ async function handler(m, { sock }) {
     const message = 
         `👑 *ᴀᴘᴀ ɪᴛᴜ ᴏᴡɴᴇʀ?*\n\n` +
         `El Owner es el *dueño del bot* que tiene acceso completo a todas las funciones y al control del sistema.\n\n` +
-        `╭┈┈⬡「 🔐 *ᴘʀɪᴠɪʟᴇɢɪᴏꜱ ᴅᴇʟ ᴏᴡɴᴇʀ* 」\n` +
+        `☽◯☾ ♰ 「 🔐 *ᴘʀɪᴠɪʟᴇɢɪᴏꜱ ᴅᴇʟ ᴏᴡɴᴇʀ* 」\n` +
         `┃ ✦ \`\`\`Acceso a todos los comandos sin límites\`\`\`\n` +
         `┃ ✦ \`\`\`Límite ilimitado (-1)\`\`\`\n` +
         `┃ ✦ \`\`\`Bypass de todos los cooldowns\`\`\`\n` +
         `┃ ✦ \`\`\`Control total del sistema del bot\`\`\`\n` +
         `┃ ✦ \`\`\`Gestión de usuarios y grupos\`\`\`\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 ⚙️ *ᴄóᴍᴏ ꜰᴜɴᴄɪᴏɴᴀ* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 ⚙️ *ᴄóᴍᴏ ꜰᴜɴᴄɪᴏɴᴀ* 」\n` +
         `┃ \`El Owner se agrega mediante:\`\n` +
         `┃ • \`\`\`${config.command?.prefix || '.'}addowner <número>\`\`\`\n` +
         `┃ • O directamente en config.js\n` +
-        `╰┈┈┈┈┈┈┈┈⬡\n\n` +
-        `╭┈┈⬡「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏꜱ ᴅᴇʟ ᴏᴡɴᴇʀ* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 📋 *ʟɪꜱᴛᴀ ᴅᴇ ᴄᴏᴍᴀɴᴅᴏꜱ ᴅᴇʟ ᴏᴡɴᴇʀ* 」\n` +
         `┃ \`Total: ${totalCommands} comandos\`\n` +
         `┃\n` +
         commandList.map(cmd => `┃ ${cmd}`).join('\n') +
-        `\n╰┈┈┈┈┈┈┈┈⬡\n\n` +
+        `\n╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> ¡Contacta al owner para obtener acceso!`
     
     await m.reply(message)

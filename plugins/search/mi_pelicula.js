@@ -73,7 +73,7 @@ async function getMovieDetail(movieUrl) {
 
 function formatDownloads(downloads) {
     if (!downloads || Object.keys(downloads).length === 0) return ""
-    let txt = `\n✦────────✦\n🔽 *ENLACES DE DESCARGA*\n──────────\n`
+    let txt = `\n♰ ──────── ♱✦\n🔽 *ENLACES DE DESCARGA*\n──────────\n`
     const qualities = ["1080p", "720p", "480p", "360p"]
     for (const q of qualities) {
         if (!downloads[q]) continue
@@ -93,14 +93,14 @@ async function handler(m, { sock }) {
 
     if (!query) {
         return m.reply(
-            `╭━━━〔 🎬 MOVIEKU 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ 🎬 MOVIEKU ♰ ━╮ ☽◯☾\n\n` +
             `Esta función te ayuda a buscar información completa de películas de la base de datos de Movieku, incluyendo sinopsis, detalles y enlaces de descarga en varias calidades\n\n` +
             `*Cómo usar:*\n` +
             `> \`${m.prefix}mi_pelicula <título de la película>\`\n\n` +
             `*Ejemplo:*\n` +
             `> \`${m.prefix}mi_pelicula avengers\`\n` +
             `> \`${m.prefix}mi_pelicula one piece\`\n\n` +
-            `_Los resultados de búsqueda mostrarán la película más relevante según el título que busques_\n\n╰━━━━━━━━━━━━╯`
+            `_Los resultados de búsqueda mostrarán la película más relevante según el título que busques_\n\n╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
@@ -111,13 +111,13 @@ async function handler(m, { sock }) {
 
         if (!movies || movies.length === 0) {
             m.react("❌")
-            return m.reply(`╰┈➤ ❌ No se encontró una película con la palabra clave *${query}*, intenta con un título más específico`)
+            return m.reply(`☽◯☾ ♰ ❌ No se encontró una película con la palabra clave *${query}*, intenta con un título más específico`)
         }
 
         const movie = movies[0]
         const detail = await getMovieDetail(movie.post_link)
 
-        let txt = `╭━━━〔 🎬 ${detail.title || movie.post_title || query.toUpperCase()} 〕━━━╮\n\n`
+        let txt = `☽◯☾ ╭━ ♰ 🎬 ${detail.title || movie.post_title || query.toUpperCase()} ♰ ━╮ ☽◯☾\n\n`
 
         if (detail.synopsis) {
             const synopsisText = detail.synopsis.length > 500
@@ -126,16 +126,16 @@ async function handler(m, { sock }) {
             txt += `📝 *Sinopsis:*\n${synopsisText}\n\n`
         }
 
-        txt += `✦────────✦\n📋 *DETALLES DE LA PELÍCULA*\n──────────\n`
-        if (detail.genre) txt += `╰┈➤ 🎭 Género: *${detail.genre}*\n`
-        if (detail.release) txt += `╰┈➤ 📅 Lanzamiento: *${detail.release}*\n`
-        if (detail.duration) txt += `╰┈➤ ⏱️ Duración: *${detail.duration}*\n`
-        if (detail.quality) txt += `╰┈➤ 📺 Calidad: *${detail.quality}*\n`
-        if (detail.country) txt += `╰┈➤ 🌍 País: *${detail.country}*\n`
-        if (detail.director) txt += `╰┈➤ 🎬 Director: *${detail.director}*\n`
-        if (detail.rating) txt += `╰┈➤ ⭐ Rating: *${detail.rating}*\n`
-        if (detail.score) txt += `╰┈➤ 📊 Score: *${detail.score}*\n`
-        if (detail.stars) txt += `╰┈➤ 🌟 Reparto: *${detail.stars}*\n`
+        txt += `♰ ──────── ♱✦\n📋 *DETALLES DE LA PELÍCULA*\n──────────\n`
+        if (detail.genre) txt += `☽◯☾ ♰ 🎭 Género: *${detail.genre}*\n`
+        if (detail.release) txt += `☽◯☾ ♰ 📅 Lanzamiento: *${detail.release}*\n`
+        if (detail.duration) txt += `☽◯☾ ♰ ⏱️ Duración: *${detail.duration}*\n`
+        if (detail.quality) txt += `☽◯☾ ♰ 📺 Calidad: *${detail.quality}*\n`
+        if (detail.country) txt += `☽◯☾ ♰ 🌍 País: *${detail.country}*\n`
+        if (detail.director) txt += `☽◯☾ ♰ 🎬 Director: *${detail.director}*\n`
+        if (detail.rating) txt += `☽◯☾ ♰ ⭐ Rating: *${detail.rating}*\n`
+        if (detail.score) txt += `☽◯☾ ♰ 📊 Score: *${detail.score}*\n`
+        if (detail.stars) txt += `☽◯☾ ♰ 🌟 Reparto: *${detail.stars}*\n`
 
         if (detail.stream) {
             txt += `\n▶️ *Streaming:* ${detail.stream}\n`
@@ -158,7 +158,7 @@ async function handler(m, { sock }) {
         }
 
         if (movies.length > 1) {
-            let listTxt = `╭━━━〔 🎬 MÁS RESULTADOS 〕━━━╮\n──────────\n`
+            let listTxt = `☽◯☾ ╭━ ♰ 🎬 MÁS RESULTADOS ♰ ━╮ ☽◯☾\n──────────\n`
             listTxt += `Se encontraron *${movies.length}* películas que coinciden con tu búsqueda, aquí está la lista completa:\n\n`
             const maxShow = Math.min(movies.length, 10)
             for (let i = 1; i < maxShow; i++) {

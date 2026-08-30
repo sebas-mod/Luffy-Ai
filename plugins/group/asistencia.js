@@ -28,7 +28,7 @@ async function handler(m, { sock }) {
     }
     const absen = global.absensi[chatId]
     if (absen.peserta.includes(m.sender)) {
-        return m.reply("╰┈➤ "+`❌ ¡Ya estás registrado en la asistencia!`)
+        return m.reply("☽◯☾ ♰ "+`❌ ¡Ya estás registrado en la asistencia!`)
     }
     absen.peserta.push(m.sender)
     const now = moment().tz('Asia/Jakarta')
@@ -38,12 +38,12 @@ async function handler(m, { sock }) {
         .join('\n')
     await m.reply(`✅ *GENIAL, @${m.sender.split('@')[0]} PRESENTE*\n` +
             `MOTIVO DE LA ASISTENCIA: ${absen.keterangan}\n` +
-            `╭┈┈⬡「 📋 OTRA INFO 」\n` +
+            `☽◯☾ ♰ 「 📋 OTRA INFO 」\n` +
             `┃ 📅 ${dateStr}\n` +
             `┃ 👥 Total: ${absen.peserta.length}\n` +
             `├┈┈⬡「 📝 *ʟɪsᴛᴀ ᴅᴇ ᴘʀᴇsᴇɴᴛᴇs* 」\n` +
             `${list}\n` +
-            `╰┈┈┈┈┈┈┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> _Escribe *${m.prefix}asistencia* para marcar presencia_\n` +
             `> _Escribe *${m.prefix}ver_asistencia* para ver la lista_`,
             { mentions: absen.peserta })

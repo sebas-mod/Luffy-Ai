@@ -48,7 +48,7 @@ async function handler(m) {
     
     await m.reply(`✦ ${m.body.slice(1)}?
 ┈┈┈┈┈┈┈┈┈┈
-╰┈➤ *${answer}*`);
+☽◯☾ ♰ *${answer}*`);
 }
 
 export { pluginConfig as config, handler }

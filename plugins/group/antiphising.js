@@ -40,38 +40,38 @@ function handler(m) {
 
     if (option === 'on') {
         db.setGroup(m.chat, { antiphising: 'on' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *AntiPhishing activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *AntiPhishing activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option === 'off') {
         db.setGroup(m.chat, { antiphising: 'off' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ *AntiPhishing desactivado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'❌ *AntiPhishing desactivado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option.startsWith('metode')) {
         const method = m.args?.[1]?.toLowerCase()
         if (method === 'kick') {
             db.setGroup(m.chat, { antiphising: 'on', antiphisingMode: 'kick' })
-            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *Modo KICK de AntiPhishing activado*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *Modo KICK de AntiPhishing activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
         if (method === 'remove' || method === 'delete') {
             db.setGroup(m.chat, { antiphising: 'on', antiphisingMode: 'remove' })
-            return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *Modo DELETE de AntiPhishing activado*'+"\n╰━━━━━━━━━━━━╯")
+            return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *Modo DELETE de AntiPhishing activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
         }
-        return m.reply("╰┈➤ "+'❌ ¡Método no válido! Usa: `kick` o `remove`')
+        return m.reply("☽◯☾ ♰ "+'❌ ¡Método no válido! Usa: `kick` o `remove`')
     }
 
     if (option === 'kick') {
         db.setGroup(m.chat, { antiphising: 'on', antiphisingMode: 'kick' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *Modo KICK de AntiPhishing activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *Modo KICK de AntiPhishing activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
     if (option === 'remove' || option === 'delete') {
         db.setGroup(m.chat, { antiphising: 'on', antiphisingMode: 'remove' })
-        return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'✅ *Modo DELETE de AntiPhishing activado*'+"\n╰━━━━━━━━━━━━╯")
+        return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'✅ *Modo DELETE de AntiPhishing activado*'+"\n╰━ ⊱༺༒༻⊰ ━╯")
     }
 
-    return m.reply("╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n┃ "+'❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick`, `metode remove`'+"\n╰━━━━━━━━━━━━╯")
+    return m.reply("☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n┃ "+'❌ ¡Opción no válida! Usa: `on`, `off`, `metode kick`, `metode remove`'+"\n╰━ ⊱༺༒༻⊰ ━╯")
 }
 
 export { pluginConfig as config, handler }

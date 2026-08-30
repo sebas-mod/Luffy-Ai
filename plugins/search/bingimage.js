@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `╰┈➤ ❌ *¡Ingresa una palabra clave de búsqueda!*\n──────────\n> Ejemplo: ${m.prefix}carigambar rem`,
+        `☽◯☾ ♰ ❌ *¡Ingresa una palabra clave de búsqueda!*\n──────────\n> Ejemplo: ${m.prefix}carigambar rem`,
       );
     }
 
@@ -42,7 +42,7 @@ async function handler(m, { sock }) {
 
     if (!data.status) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *No se encontraron resultados para:* ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ *No se encontraron resultados para:* ${query}`);
     }
     const results = data.result;
     const album = await Promise.all(

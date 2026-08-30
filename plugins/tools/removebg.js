@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
         
         await sock.sendMessage(m.chat, {
             image: result,
-            caption: `╰┈➤ ✅ *ꜰᴏɴᴅᴏ ᴇʟɪᴍɪɴᴀᴅᴏ*\n\n> El fondo de la imagen se eliminó correctamente`
+            caption: `☽◯☾ ♰ ✅ *ꜰᴏɴᴅᴏ ᴇʟɪᴍɪɴᴀᴅᴏ*\n\n> El fondo de la imagen se eliminó correctamente`
         }, { quoted: m });
         try {
             fs.unlinkSync(pathnya);

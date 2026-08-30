@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
   }
 
   return m.reply(
-    "╭━━〔 🛡️ PROTECCIÓN 〕━━╮\n"+`❌ *Opción Inválida*\n\n> Usa *${m.prefix}anticulik on* o *${m.prefix}anticulik off*`+"\n╰━━━━━━━━━━━━╯"
+    "☽◯☾ ╭ ♰ 🛡️ PROTECCIÓN ♰ ━╮ ☽◯☾\n"+`❌ *Opción Inválida*\n\n> Usa *${m.prefix}anticulik on* o *${m.prefix}anticulik off*`+"\n╰━ ⊱༺༒༻⊰ ━╯"
   );
 }
 

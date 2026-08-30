@@ -21,9 +21,9 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `🕕 *Creando backup de la base de datos...*\n\n` +
-        `╭┈┈⬡「 📦 *ʟᴏ ǫᴜᴇ sᴇ ʀᴇsᴘᴀʟᴅᴀ* 」\n` +
+        `☽◯☾ ♰ 「 📦 *ʟᴏ ǫᴜᴇ sᴇ ʀᴇsᴘᴀʟᴅᴀ* 」\n` +
         backupContents.map(c => `┃ ${c}`).join('\n') +
-        `\n╰┈┈┈┈┈┈┈┈⬡`
+        `\n╰━ ⊱༺༒༻⊰ ━╯`
     )
     
     const result = await sendStoreBackup(sock)
@@ -38,7 +38,7 @@ async function handler(m, { sock }) {
             `> El backup fue enviado al capitán principal.`
         )
     } else {
-        await m.reply(`╰┈➤ ❌ Backup fallido: ${result.error}`)
+        await m.reply(`☽◯☾ ♰ ❌ Backup fallido: ${result.error}`)
     }
 }
 

@@ -21,7 +21,7 @@ async function handler(m, { sock }) {
   const prompt = m.text?.trim() || m.args.join(" ");
 
   if (!prompt) {
-    return m.reply("❌ Ingresa la descripción de la canción que quieres crear.\n\n╰┈➤ Ejemplo: `.musicmaker Canción pop romántica y alegre`");
+    return m.reply("❌ Ingresa la descripción de la canción que quieres crear.\n\n☽◯☾ ♰ Ejemplo: `.musicmaker Canción pop romántica y alegre`");
   }
 
   await m.react("🕕");
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
     const r = data.result;
 
-    const caption = `╭━〔 🎵 *MUSIC MAKER AI* 〕━╮\n\n` +
+    const caption = `☽◯☾ ╭ ♰ 🎵 *MUSIC MAKER AI* ♰ ━╮ ☽◯☾\n\n` +
       `*Título:* ${r.title}\n` +
       `*Tags:* ${r.tags}\n` +
       `*Duración:* ${r.duration} segundos\n\n` +
@@ -66,7 +66,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     console.error("[Music Maker AI]", error.message);
     await m.react("☢");
-    m.reply("╰┈➤ 😔 Ocurrió un error al procesar la solicitud de creación de canción hacia la IA. Es posible que el servidor de IA esté ocupado.");
+    m.reply("☽◯☾ ♰ 😔 Ocurrió un error al procesar la solicitud de creación de canción hacia la IA. Es posible que el servidor de IA esté ocupado.");
   }
 }
 

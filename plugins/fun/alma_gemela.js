@@ -166,16 +166,16 @@ async function handler(m, { sock }) {
   })();
 
   let text = `💘 *ᴇᴍᴘᴀʀᴇᴊᴀ ᴀʟ ᴀᴢᴀʀ*\n\n`;
-  text += `╭┈┈⬡「 💑 *ᴘᴀʀᴇᴊᴀ* 」\n`;
+  text += `☽◯☾ ♰ 「 💑 *ᴘᴀʀᴇᴊᴀ* 」\n`;
   text += `┃ ${label1} ${name1}\n`;
   text += `┃ ❤️\n`;
   text += `┃ ${label2} ${name2}\n`;
-  text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
-  text += `╭┈┈⬡「 📊 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ* 」\n`;
+  text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
+  text += `☽◯☾ ♰ 「 📊 *ᴄᴏᴍᴘᴀᴛɪʙɪʟɪᴅᴀᴅ* 」\n`;
   text += `┃ ${progressBar} *${compatibility}%\n`;
   text += `┃ ${compatibilityEmoji(compatibility)}\n`;
   text += `┃ Status: *${compatibilityText(compatibility)}*\n`;
-  text += `╰┈┈┈┈┈┈┈┈⬡\n\n`;
+  text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
   if (usedRegistration) {
     text += `> ✨ _Emparejados según los datos de registro_\n`;
   }

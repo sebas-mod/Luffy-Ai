@@ -41,9 +41,9 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
             `┃ ⚡ *ʀᴇsᴛᴀʀ ᴇɴᴇʀɢɪ́ᴀ*\n` +
-            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `› \`.delcarne <cantidad>\` - de ti mismo\n` +
             `› \`.delcarne <cantidad> @user\` - de un usuario\n\n` +
             `\`Ejemplo: ${m.prefix}quitar_carne 50\``
@@ -51,13 +51,13 @@ async function handler(m, { sock }) {
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ La cantidad debe ser mayor que 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n☽◯☾ ♰ La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ El usuario no existe en la base de datos`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n☽◯☾ ♰ El usuario no existe en la base de datos`)
     }
     
     if (user.carne === -1) {
@@ -70,11 +70,11 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ᴇɴᴇʀɢɪ́ᴀ ʀᴇsᴛᴀᴅᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 👤 ᴜsᴜᴀʀɪᴏ: @${targetJid.split('@')[0]}\n` +
         `┃ ➖ ʀᴇsᴛᴀᴅᴀ: *-${formatNumber(amount)}*\n` +
         `┃ ⚡ ʀᴇsᴛᴀɴᴛᴇ: *${formatNumber(newCarne)}*\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: [targetJid] }
     )
 }

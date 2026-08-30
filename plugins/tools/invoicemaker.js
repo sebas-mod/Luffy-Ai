@@ -27,17 +27,17 @@ async function handler(m, { sock }) {
   if (!text || !text.includes("|")) {
     return m.reply(
       `🧾 *ᴄʀᴇᴀᴅᴏʀ ᴅᴇ ғᴀᴄᴛᴜʀᴀs*\n\n` +
-        `╭┈┈⬡「 📋 *ꜰᴏʀᴍᴀᴛᴏ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ꜰᴏʀᴍᴀᴛᴏ* 」\n` +
         `┃ \`${m.prefix}invoicemaker <tienda>|<factura>|<fecha>|<estado>|<items>|<total>\`\n` +
-        `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 📝 *ᴘᴀʀᴀᴍᴇᴛʀᴏs* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 📝 *ᴘᴀʀᴀᴍᴇᴛʀᴏs* 」\n` +
         `┃ • tienda: Nombre de la tienda\n` +
         `┃ • factura: Número de factura\n` +
         `┃ • fecha: Formato DD/MM/AAAA\n` +
         `┃ • estado: paid/unpaid\n` +
         `┃ • items: Nombre:unidad:precio (separados por coma)\n` +
         `┃ • total: Precio total\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Ejemplo:\n` +
         `\`${m.prefix}invoicemaker TokoKu|INV001|15/01/2026|paid|Nasi Goreng:1x:15000,Es Teh:2x:6000|21000\``,
     );
@@ -47,14 +47,14 @@ async function handler(m, { sock }) {
 
   if (parts.length < 6) {
     return m.reply(
-      `╰┈➤ ❌ ¡Formato incompleto!\n──────────\nSe necesitan 6 parámetros (tienda|factura|fecha|estado|items|total)`,
+      `☽◯☾ ♰ ❌ ¡Formato incompleto!\n──────────\nSe necesitan 6 parámetros (tienda|factura|fecha|estado|items|total)`,
     );
   }
 
   const [store, invoice, date, status, itemsRaw, totalRaw] = parts;
 
   if (!["paid", "unpaid"].includes(status.toLowerCase())) {
-    return m.reply(`╰┈➤ ❌ ¡El estado debe ser 'paid' o 'unpaid'!`);
+    return m.reply(`☽◯☾ ♰ ❌ ¡El estado debe ser 'paid' o 'unpaid'!`);
   }
 
   const itemsArr = itemsRaw.split(",").map((item) => {
@@ -68,7 +68,7 @@ async function handler(m, { sock }) {
 
   if (itemsArr.length === 0 || itemsArr.some((i) => !i.name)) {
     return m.reply(
-      `╰┈➤ ❌ ¡Formato de items incorrecto!\n──────────\nUsa: Nombre:unidad:precio (separa por comas para varios)`,
+      `☽◯☾ ♰ ❌ ¡Formato de items incorrecto!\n──────────\nUsa: Nombre:unidad:precio (separa por comas para varios)`,
     );
   }
 
@@ -104,18 +104,18 @@ async function handler(m, { sock }) {
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
     let caption = `🧾 *ғᴀᴄᴛᴜʀᴀ ɢᴇɴᴇʀᴀᴅᴀ*\n\n`;
-    caption += `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n`;
+    caption += `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n`;
     caption += `┃ 🏪 Tienda: *${data.store}*\n`;
     caption += `┃ 🔢 Factura: *${data.invoice}*\n`;
     caption += `┃ 📅 Fecha: *${data.date}*\n`;
     caption += `┃ 📌 Estado: *${data.status === "paid" ? "✅ PAGADA" : "❌ NO PAGADA"}*\n`;
-    caption += `╰┈┈⬡\n\n`;
+    caption += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
-    caption += `╭┈┈⬡「 🛒 *ɪᴛᴇᴍs* 」\n`;
+    caption += `☽◯☾ ♰ 「 🛒 *ɪᴛᴇᴍs* 」\n`;
     data.items.forEach((item, i) => {
       caption += `┃ ${i + 1}. ${item.name} (${item.unit}) - Rp${item.price.toLocaleString("id-ID")}\n`;
     });
-    caption += `╰┈┈⬡\n\n`;
+    caption += `╰━ ⊱༺༒༻⊰ ━╯\n\n`;
 
     caption += `> 💰 Total: *Rp${data.total.toLocaleString("id-ID")}*`;
 

@@ -95,14 +95,14 @@ function parseHeaders(headerArgs) {
 
 async function handler(m, { sock }) {
   if (!config.isOwner(m.sender)) {
-    return m.reply("╰┈➤ ❌ *Solo Owner!*");
+    return m.reply("☽◯☾ ♰ ❌ *Solo Owner!*");
   }
 
   let input = m.fullArgs?.trim() || m.text?.trim();
   if (!input) {
     return m.reply(
       `🌐 *HTTP REQUEST TOOL*\n\n` +
-        `╭┈┈⬡「 📋 OPTIONS 」\n` +
+        `☽◯☾ ♰ 「 📋 OPTIONS 」\n` +
         `┃ ◦ \`--method <GET|POST|PUT|PATCH|DELETE>\`\n` +
         `┃ ◦ \`--json <body>\` — JSON body\n` +
         `┃ ◦ \`--header \"Key: Value\"\` — Custom header\n` +
@@ -110,7 +110,7 @@ async function handler(m, { sock }) {
         `┃ ◦ \`--verbose\` / \`-v\` — Show response headers\n` +
         `┃ ◦ \`--timeout <ms>\` — Request timeout\n` +
         `┃ ◦ \`--post\` — Shortcut for --method POST\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `\`Examples:\`\n` +
         `> .get https://api.example.com\n` +
         `> .get https://api.example.com --post --json {\"key\":\"val\"}\n` +
@@ -146,7 +146,7 @@ async function handler(m, { sock }) {
   ];
   if (!validMethods.includes(method)) {
     return m.reply(
-      `╰┈➤ ❌ Método inválido: ${method}. Válidos: ${validMethods.join(", ")}`,
+      `☽◯☾ ♰ ❌ Método inválido: ${method}. Válidos: ${validMethods.join(", ")}`,
     );
   }
 
@@ -157,7 +157,7 @@ async function handler(m, { sock }) {
       jsonBody = JSON.parse(jsonMatch[1]);
       input = input.replace(/--json\s+\{[\s\S]*?\}/i, "").trim();
     } catch (e) {
-      return m.reply(`╰┈➤ ❌ Cuerpo JSON inválido: ${e.message}`);
+      return m.reply(`☽◯☾ ♰ ❌ Cuerpo JSON inválido: ${e.message}`);
     }
   }
 
@@ -185,16 +185,16 @@ async function handler(m, { sock }) {
   }
 
   if (isBlockedUrl(url)) {
-    return m.reply("╰┈➤ ❌ Dirección localhost / interna / de metadata bloqueada");
+    return m.reply("☽◯☾ ♰ ❌ Dirección localhost / interna / de metadata bloqueada");
   }
 
   try {
     new URL(url);
   } catch {
-    return m.reply("╰┈➤ ❌ URL inválida");
+    return m.reply("☽◯☾ ♰ ❌ URL inválida");
   }
 
-  await m.reply(`╰┈➤ 🕕 ${method} ${url} ...`);
+  await m.reply(`☽◯☾ ♰ 🕕 ${method} ${url} ...`);
 
   try {
     const startTime = Date.now();
@@ -240,19 +240,19 @@ async function handler(m, { sock }) {
 
     let header = `🌐 *HTTP RESPONSE*
 
-╭┈┈⬡「 📋 INFO 」
+☽◯☾ ♰ 「 📋 INFO 」
 ┃ ${statusEmoji} Status: ${response.status} ${response.statusText}
 ┃ 📨 Method: ${method}
 ┃ ⏱️ Time: ${elapsed}ms
 ┃ 📦 Size: ${formatSize(size)}
 ┃ 📄 Type: ${mimeType || "unknown"}
-╰┈┈⬡`;
+╰━ ⊱༺༒༻⊰ ━╯`;
 
     if (isVerbose) {
       const respHeaders = Object.entries(response.headers)
         .map(([k, v]) => `┃ ${k}: ${v}`)
         .join("\n");
-      header += `\n\n╭┈┈⬡「 📨 RESPONSE HEADERS 」\n${respHeaders}\n╰┈┈⬡`;
+      header += `\n\n☽◯☾ ♰ 「 📨 RESPONSE HEADERS 」\n${respHeaders}\n╰━ ⊱༺༒༻⊰ ━╯`;
     }
 
     if (category === "gif") {
@@ -371,7 +371,7 @@ async function handler(m, { sock }) {
       );
     }
   } catch (e) {
-    await m.reply(`👑•─────•👑\n❌ *REQUEST FALLIDO*\n\n> ${e.message}\n✦────────✦`);
+    await m.reply(`👑•─────•👑\n❌ *REQUEST FALLIDO*\n\n> ${e.message}\n♰ ──────── ♱✦`);
   }
 }
 

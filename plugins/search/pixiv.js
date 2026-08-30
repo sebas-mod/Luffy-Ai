@@ -23,7 +23,7 @@ async function handler(m, { sock }) {
 
     if (!query) {
       return m.reply(
-        `╰┈➤ ❌ *¡Ingresa una palabra clave de búsqueda!*\n──────────\n> Ejemplo: .pixiv rem`,
+        `☽◯☾ ♰ ❌ *¡Ingresa una palabra clave de búsqueda!*\n──────────\n> Ejemplo: .pixiv rem`,
       );
     }
 
@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
     if (!data.status || !data.data || data.data.length === 0) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ *No se encontraron resultados para:* ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ *No se encontraron resultados para:* ${query}`);
     }
 
     const results = data.data.slice(0, 10);
@@ -45,14 +45,14 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `╭━〔 🎨 ʙᴜsǫᴜᴇᴅᴀ ᴘɪxɪᴠ 〕━╮\n──────────\n`;
+    let caption = `☽◯☾ ╭ ♰ 🎨 ʙᴜsǫᴜᴇᴅᴀ ᴘɪxɪᴠ ♰ ━╮ ☽◯☾\n──────────\n`;
     caption += `📝 *ᴋᴜᴇʀʏ:* ${query}\n`;
     caption += `📊 *ʀᴇsᴜʟᴛᴀᴅᴏs:* ${results.length} ilustraciones\n\n`;
 
     results.forEach((art, i) => {
       const aiLabel = art.aiType === 2 ? " 🤖" : "";
       const isNsfw = art.xRestrict > 0 ? " 🔞" : "";
-      caption += `╰┈➤ *${i + 1}.* ${art.title}${aiLabel}${isNsfw}\n`;
+      caption += `☽◯☾ ♰ *${i + 1}.* ${art.title}${aiLabel}${isNsfw}\n`;
       caption += `   👤 ${art.userName}\n`;
       caption += `   📐 ${art.width}x${art.height} • 📄 ${art.pageCount} página\n`;
       caption += `   🔗 ${art.url}\n\n`;
@@ -87,7 +87,7 @@ async function handler(m, { sock }) {
   } catch (error) {
     await m.react("☢");
     if (error.response?.status === 403) {
-      return m.reply(`╰┈➤ ❌ *API Key no válida o límite alcanzado*`);
+      return m.reply(`☽◯☾ ♰ ❌ *API Key no válida o límite alcanzado*`);
     }
     m.reply(te(m.prefix, m.command, m.pushName));
   }

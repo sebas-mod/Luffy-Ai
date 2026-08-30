@@ -334,7 +334,7 @@ async function handler(m, { sock, text }) {
         fontsLoaded = false;
         console.error(e);
         await m.react('❌');
-        m.reply(`✦ • ─── • ✦\n❌ *NO SE PUDO CREAR EL QUOTE*\n\nLo sentimos, el sistema tuvo un problema al intentar crear la imagen de quote. Por favor, inténtalo de nuevo más tarde.\n──────────`);
+        m.reply(`♰ ┄ ── ☽◯☾ ── ┄ ♰\n❌ *NO SE PUDO CREAR EL QUOTE*\n\nLo sentimos, el sistema tuvo un problema al intentar crear la imagen de quote. Por favor, inténtalo de nuevo más tarde.\n──────────`);
     }
 }
 

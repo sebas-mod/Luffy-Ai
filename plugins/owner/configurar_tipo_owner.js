@@ -34,9 +34,9 @@ async function handler(m, { sock, db }) {
         await db.save()
 
         await m.reply(
-            `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
             `┃ ✅ Tipo de owner cambiado a *V${id}*\n` +
-            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `👑 *${VARIANTS[id].name}*\n` +
             `✦ _${VARIANTS[id].desc}_`
         )

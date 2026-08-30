@@ -30,12 +30,12 @@ async function handler(m, { sock }) {
         }
         
         let txt = `🖼️ *sᴛɪᴄᴋᴇʀ ᴄᴏᴍᴍᴀɴᴅs*\n\n`
-        txt += `╭┈┈⬡「 📋 *ʟɪsᴛᴀ* 」\n`
+        txt += `☽◯☾ ♰ 「 📋 *ʟɪsᴛᴀ* 」\n`
         
         for (const cmd of existingCmds) {
             txt += `┃ 🖼️ → \`.${cmd.command}\`\n`
         }
-        txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+        txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
         
         txt += `*Para eliminar:*\n`
         txt += `> \`.delstickercmd <command>\`\n`

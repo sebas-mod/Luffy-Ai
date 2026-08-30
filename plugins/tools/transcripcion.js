@@ -50,18 +50,18 @@ async function handler(m, { sock }) {
     const isAudio = quoted.type === 'audioMessage' || /audio/.test(quoted.mimetype || '');
     if (!isAudio) {
         return m.reply(
-            `╭━━━〔 🎤 ᴛʀᴀɴsᴄʀɪᴘᴄɪᴏɴ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ 🎤 ᴛʀᴀɴsᴄʀɪᴘᴄɪᴏɴ ♰ ━╮ ☽◯☾\n\n` +
             `> Responde una nota de voz o audio para convertirlo a texto\n` +
-            `> Ejemplo: responde un VN → escribe \`${m.prefix}transcripcion\`\n\n╰━━━━━━━━━━━━╯`
+            `> Ejemplo: responde un VN → escribe \`${m.prefix}transcripcion\`\n\n╰━ ⊱༺༒༻⊰ ━╯`
         );
     }
     const groqKey = config.APIkey?.groq;
     if (!groqKey) {
         return m.reply(
-            `╭━━━〔 ❌ ᴇʀʀᴏʀ 〕━━━╮\n\n` +
+            `☽◯☾ ╭━ ♰ ❌ ᴇʀʀᴏʀ ♰ ━╮ ☽◯☾\n\n` +
             `> La API Key de Groq aún no está configurada\n` +
             `> Configúrala en config.js → APIkey.groq\n` +
-            `> Es gratuita en https://console.groq.com\n\n╰━━━━━━━━━━━━╯`
+            `> Es gratuita en https://console.groq.com\n\n╰━ ⊱༺༒༻⊰ ━╯`
         );
     }
     m.react('🎤');
@@ -86,11 +86,11 @@ async function handler(m, { sock }) {
         const duration = Math.ceil(buffer.length / 4000);
         await m.reply(
             `🎤 *ᴛʀᴀɴsᴄʀɪᴘᴄɪᴏɴ*\n\n` +
-            `╭┈┈⬡「 📝 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
+            `☽◯☾ ♰ 「 📝 *ʀᴇsᴜʟᴛᴀᴅᴏ* 」\n` +
             `┃\n` +
             `┃ ${text}\n` +
             `┃\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> 🤖 Modelo: Whisper Large V3\n` +
             `> 🌐 Idioma: Indonesia\n` +
             `> 📊 Tamaño: ~${(buffer.length / 1024).toFixed(1)} KB`

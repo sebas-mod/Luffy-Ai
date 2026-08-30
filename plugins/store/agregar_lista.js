@@ -49,7 +49,7 @@ async function handler(m, { sock }) {
 
     if (pipeIdx === -1) {
         return m.reply(
-            `╭━━〔 🛒 TIENDA 〕━━╮\n\n` +
+            `☽◯☾ ╭ ♰ 🛒 TIENDA ♰ ━╮ ☽◯☾\n\n` +
             `➕ *AGREGAR INFORMACIÓN DE LA TIENDA*\n\n` +
             `📋 Formato:\n` +
             `\`${m.prefix}agregar_lista <nombre>|<contenido>\`\n\n` +
@@ -63,7 +63,7 @@ async function handler(m, { sock }) {
             `• Envía una imagen/video primero, luego responde ese medio con el comando para agregar el medio 📸\n` +
             `• Usa \`;;\` para crear una nueva línea en el contenido de la información ✍️\n` +
             `• Todos pueden ver esta información mediante \`${m.prefix}list\` 👥\n\n` +
-            `╰━━━━━━━━━━━━╯`
+            `╰━ ⊱༺༒༻⊰ ━╯`
         )
     }
 
@@ -117,12 +117,12 @@ async function handler(m, { sock }) {
 
     await m.react('✅')
 
-    let reply = `╭━━━〔 ✦ ÉXITO 〕━━━╮\n✅ *INFORMACIÓN AGREGADA*\n\n`
+    let reply = `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n✅ *INFORMACIÓN AGREGADA*\n\n`
     reply += `🏷️ Nombre: *${name}*\n`
     if (imageUrl) reply += `🖼️ Medio: ✅ Imagen\n`
     if (videoUrl) reply += `🎬 Medio: ✅ Video\n`
     reply += `📝 Contenido:\n${content}\n\n`
-    reply += `╰━━━━━━━━━━━━╯\n\n`
+    reply += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     reply += `📋 _Ver la lista: \`${m.prefix}list\`_\n`
     reply += `✏️ _Editar: \`${m.prefix}editar_lista ${lists.length}\`_`
 

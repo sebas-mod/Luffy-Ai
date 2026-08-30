@@ -43,9 +43,9 @@ async function handler(m, { sock }) {
     
     if (!targetJid || amount <= 0) {
         return m.reply(
-            `╭━━━〔 👑 OWNER 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ 👑 OWNER ♰ ━╮ ☽◯☾\n` +
             `┃ ⭐ *ʀᴇsᴛᴀʀ ᴇxᴘ*\n` +
-            `╰━━━━━━━━━━━━╯\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `› \`.delexp <cantidad>\` - de ti mismo\n` +
             `› \`.delexp <cantidad> @user\` - de un usuario\n\n` +
             `\`Ejemplo: ${m.prefix}quitar_exp 5000\``
@@ -53,13 +53,13 @@ async function handler(m, { sock }) {
     }
     
     if (amount <= 0) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ La cantidad debe ser mayor que 0`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n☽◯☾ ♰ La cantidad debe ser mayor que 0`)
     }
     
     const user = db.getUser(targetJid)
     
     if (!user) {
-        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n╰┈➤ El usuario no existe en la base de datos`)
+        return m.reply(`❌ *ꜰᴀʟʟɪᴅᴏ*\n\n☽◯☾ ♰ El usuario no existe en la base de datos`)
     }
     
     const newExp = db.updateExp(targetJid, -amount)
@@ -68,11 +68,11 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ᴇxᴘ ʀᴇsᴛᴀᴅᴏ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ 👤 ᴜsᴜᴀʀɪᴏ: @${targetJid.split('@')[0]}\n` +
         `┃ ➖ ʀᴇsᴛᴀᴅᴏ: *-${formatNumber(amount)}*\n` +
         `┃ ⭐ ʀᴇsᴛᴀɴᴛᴇ: *${formatNumber(newExp)}*\n` +
-        `╰┈┈⬡`,
+        `╰━ ⊱༺༒༻⊰ ━╯`,
         { mentions: [targetJid] }
     )
 }

@@ -22,7 +22,7 @@ async function handler(m, { sock }) {
   const text = m.args.join(" ");
   if (!text) {
     return m.reply(
-      `╭━━━〔 ✦ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n\n` +
       `🧠 *DeepSeek V4*\n\n` +
         `AI que piensa antes de responder — ideal para preguntas que requieren razonamiento.\n\n` +
         `*USO:*\n` +
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
         `> *${m.prefix}deepseek Explica el agujero negro*\n` +
         `> *${m.prefix}deepseek Crea código de algoritmo de ordenamiento*\n\n` +
         `_El bot piensa primero y luego responde — así que tarda un poco más_\n\n` +
-      `╰━━━━━━━━━━━━╯`,
+      `╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
 

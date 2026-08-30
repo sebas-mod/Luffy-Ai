@@ -30,9 +30,9 @@ async function handler(m, { sock }) {
   if (!text) {
     return m.reply(
       `📱 *ᴀɴᴅʀᴏɪᴅ1 sᴇᴀʀᴄʜ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴄᴏᴍᴏ ᴜsᴀʀ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴄᴏᴍᴏ ᴜsᴀʀ* 」\n` +
         `┃ 🔍 \`${m.prefix}android1 <query>\` - Buscar APK\n` +
-        `╰┈┈⬡\n\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `> Ejemplo:\n` +
         `\`${m.prefix}android1 Subway Surfer\``,
     );
@@ -50,7 +50,7 @@ async function handler(m, { sock }) {
 
     if (!data?.status || !data?.data?.length) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron resultados para: \`${text}\``);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron resultados para: \`${text}\``);
     }
 
     const apps = data.data.slice(0, 10);
@@ -67,11 +67,11 @@ async function handler(m, { sock }) {
     const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
     const saluranName = config.saluran?.name || config.bot?.name || "Luffy-Ai";
 
-    let caption = `╭━━━〔 📱 BÚSQUEDA: ${text} 〕━━━╮\n──────────\n`;
+    let caption = `☽◯☾ ╭━ ♰ 📱 BÚSQUEDA: ${text} ♰ ━╮ ☽◯☾\n──────────\n`;
     caption += `*${apps.length}* aplicaciones encontradas\n\n`;
 
     apps.forEach((app, i) => {
-      caption += `╰┈➤ *${i + 1}.* ${app.name}\n`;
+      caption += `☽◯☾ ♰ *${i + 1}.* ${app.name}\n`;
       caption += `› 👤 ${app.developer}\n`;
       caption += `   └ ⭐ ${app.rating}/5\n\n`;
     });

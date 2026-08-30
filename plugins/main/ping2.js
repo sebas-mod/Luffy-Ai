@@ -133,7 +133,7 @@ async function handler(m, { sock }) {
             tableData,
             m,
             {
-                headerText: `╭━━━〔 ⚡ ESTADO 〕━━━╮\n\n${config.bot?.name || 'Luffy-Ai'} *ESTADO DEL SISTEMA*\n\n╰┈➤ 🎄 Lo siguiente son las estadísticas de nuestro bot`,
+                headerText: `☽◯☾ ╭━ ♰ ⚡ ESTADO ♰ ━╮ ☽◯☾\n\n${config.bot?.name || 'Luffy-Ai'} *ESTADO DEL SISTEMA*\n\n☽◯☾ ♰ 🎄 Lo siguiente son las estadísticas de nuestro bot`,
                 footer: '🍃 Monitoreo en tiempo real'
             }
         )

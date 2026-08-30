@@ -41,7 +41,7 @@ async function handler(m, { sock }) {
 
   let dbStatus = db.setting("bannedUsers");
 
-  await m.reply(`╭━〔 ⚙️ SISTEMA 〕━╮
+  await m.reply(`☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾
 ┃ 🐞 DEBUG BAN (${target})
 ┃ cleanNumber: ${cleanNumber}
 ┃ bannedList (config): ${JSON.stringify(bannedList)}

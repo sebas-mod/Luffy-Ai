@@ -45,7 +45,7 @@ async function handler(m, { sock }) {
       return txt + "\n";
     };
 
-    let caption = `╭━━━〔 🌱 GROW A GARDEN 〕━━━╮\n\n🌱 *INFORMACIÓN DE GROW A GARDEN* 🌱\n\n`;
+    let caption = `☽◯☾ ╭━ ♰ 🌱 GROW A GARDEN ♰ ━╮ ☽◯☾\n\n🌱 *INFORMACIÓN DE GROW A GARDEN* 🌱\n\n`;
 
     caption += formatStock(r.gearStock, "⚙️ Gear Stock");
     caption += formatStock(r.eggStock, "🥚 Egg Stock");
@@ -61,7 +61,7 @@ async function handler(m, { sock }) {
       });
     }
 
-    await m.reply(caption.trim() + "\n\n╰━━━━━━━━━━━━╯");
+    await m.reply(caption.trim() + "\n\n╰━ ⊱༺༒༻⊰ ━╯");
     await m.react("✅");
 
   } catch (error) {

@@ -33,18 +33,18 @@ function handler(m) {
     
     let txt = `🔗 *ʟɪsᴛᴀ ᴀɴᴛɪʟɪɴᴋ*\n\n`
     
-    txt += `╭┈┈⬡「 📌 *ᴘʀᴇᴅᴇᴛᴇʀᴍɪɴᴀᴅᴏs* 」\n`
+    txt += `☽◯☾ ♰ 「 📌 *ᴘʀᴇᴅᴇᴛᴇʀᴍɪɴᴀᴅᴏs* 」\n`
     DEFAULT_BLOCKED_LINKS.forEach((l, i) => {
         txt += `┃ ${i + 1}. \`${l}\`\n`
     })
-    txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+    txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     
     if (customList.length > 0) {
-        txt += `╭┈┈⬡「 ➕ *ᴄᴜsᴛᴏᴍ* 」\n`
+        txt += `☽◯☾ ♰ 「 ➕ *ᴄᴜsᴛᴏᴍ* 」\n`
         customList.forEach((l, i) => {
             txt += `┃ ${i + 1}. \`${l}\`\n`
         })
-        txt += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+        txt += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     }
     
     txt += `> Predeterminados: *${DEFAULT_BLOCKED_LINKS.length}* enlaces\n`

@@ -30,7 +30,7 @@ async function handler(m) {
     const stock = data.data.stock;
     const weather = stock.weather;
 
-    let txt = `╭━━━〔 🌱 GAG2 STOCK 〕━━━╮\n\n🌱 *MONITOR DE STOCK GAG2*\n\n`;
+    let txt = `☽◯☾ ╭━ ♰ 🌱 GAG2 STOCK ♰ ━╮ ☽◯☾\n\n🌱 *MONITOR DE STOCK GAG2*\n\n`;
     txt += `*ESTADO:* ${stock.message || '-'}\n`;
     txt += `*REABASTECIMIENTO EN:* ${stock.restockInLabel || '-'}\n\n`;
 
@@ -60,7 +60,7 @@ async function handler(m) {
     });
 
     await m.react("✅");
-    await m.reply(txt + "\n╰━━━━━━━━━━━━╯");
+    await m.reply(txt + "\n╰━ ⊱༺༒༻⊰ ━╯");
   } catch (error) {
     console.error("[GAG-WATCH Plugin Error]", error);
     await m.react("☢");

@@ -23,10 +23,10 @@ async function handler(m, { sock }) {
     db.setting('defaultCarne', null)
     
     await m.reply(
-        `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+        `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
         `┃ ✅ *ᴇxɪᴛᴏsᴏ*\n` +
-        `╰━━━━━━━━━━━━╯\n\n` +
-        `╰┈➤ Carne predeterminada reiniciada al config: \`${configDefault}\`\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ Carne predeterminada reiniciada al config: \`${configDefault}\`\n` +
         `› Los nuevos usuarios obtendrán la carne del config`
     )
 }

@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
 
         if (!buffer) {
             await m.react("❌");
-            return m.reply(`╰┈➤ Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Intenta enviarla de nuevo!`);
+            return m.reply(`☽◯☾ ♰ Lo siento, el sistema no pudo descargar la imagen que enviaste. ¡Intenta enviarla de nuevo!`);
         }
 
         const form = new FormData();
@@ -58,7 +58,7 @@ async function handler(m, { sock }) {
         const data = response.data;
         if (!data || !data.status || !data.result || !data.result.full_matches) {
             await m.react("❌");
-            return m.reply(`╰┈➤ Lo siento, el título del anime no fue encontrado. Intenta con una captura de la escena más clara o un personaje más específico.`);
+            return m.reply(`☽◯☾ ♰ Lo siento, el título del anime no fue encontrado. Intenta con una captura de la escena más clara o un personaje más específico.`);
         }
 
         await m.react("✅");
@@ -69,7 +69,7 @@ async function handler(m, { sock }) {
         const similarityRaw = resObj.similarity ? parseFloat(resObj.similarity) : (match.similarity * 100);
         const similarity = isNaN(similarityRaw) ? resObj.similarity : similarityRaw.toFixed(2);
 
-        let txt = `╭━━━〔 🔍 ¡ANIME ENCONTRADO! 〕━━━╮\n──────────\n`;
+        let txt = `☽◯☾ ╭━ ♰ 🔍 ¡ANIME ENCONTRADO! ♰ ━╮ ☽◯☾\n──────────\n`;
         txt += `🎬 *Título Romaji:* ${resObj.title_romaji || match.anilist.title.romaji}\n`;
         txt += `🇯🇵 *Título Original:* ${resObj.title_native || match.anilist.title.native}\n`;
         txt += `📺 *Episodio:* ${resObj.episode || match.episode}\n`;

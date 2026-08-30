@@ -148,7 +148,7 @@ async function handler(m, { sock }) {
     
     let text = `🏆 *${title}* 🏆\n\n`
     text += `Ranking de los más poderosos del momento!\n\n`
-    text += `╭┈┈⬡「 ${emoji} *RANKING* 」\n`
+    text += `☽◯☾ ♰ 「 ${emoji} *RANKING* 」\n`
     
     const mentions = []
     
@@ -164,7 +164,7 @@ async function handler(m, { sock }) {
         mentions.push(u.jid.includes('@') ? u.jid : u.jid + "@s.whatsapp.net")
     })
     
-    text += `╰┈┈┈┈┈┈┈┈⬡\n\n`
+    text += `╰━ ⊱༺༒༻⊰ ━╯\n\n`
     
     const myRankIndex = users.findIndex(u => u.jid === senderJid)
     if (myRankIndex !== -1) {

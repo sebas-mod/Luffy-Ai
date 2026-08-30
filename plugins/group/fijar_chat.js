@@ -55,9 +55,9 @@ async function handler(m, { sock, args }) {
             : `${Math.floor(duration / 3600)} horas`;
         
         const successMsg =
-            `╭━━━〔 ⚡ GRUPO 〕━━━╮\n` +
+            `☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n` +
             `┃ 📌 Mensaje fijado con éxito ✅\n` +
-            `╰━━━━━━━━━━━━╯`;
+            `╰━ ⊱༺༒༻⊰ ━╯`;
         await m.reply(successMsg, { mentions: [m.sender] })
         
     } catch (error) {

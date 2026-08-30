@@ -45,10 +45,10 @@ async function handler(m, { sock }) {
 
   if (!name) {
     return m.reply(
-      `╭━〔 ⚙️ SISTEMA 〕━━━╮\n` +
+      `☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n` +
       `┃ Hola *${m.pushName}*, parece que olvidaste\n` +
       `┃ poner el nombre del plugin a eliminar 📝\n` +
-      `╰━━━━━━━━━━━━╯\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `Por favor usa el siguiente formato de comando:\n` +
       `- .delplugin <nombre del plugin>\n\n` +
       `Ejemplo de uso:\n` +
@@ -64,7 +64,7 @@ async function handler(m, { sock }) {
 
     if (!found) {
       await m.react("❌");
-      return m.reply(`╰┈➤ ❌ Lo siento *${m.pushName}*, no se encontró el plugin con el nombre *${name}*.`);
+      return m.reply(`☽◯☾ ♰ ❌ Lo siento *${m.pushName}*, no se encontró el plugin con el nombre *${name}*.`);
     }
 
     let unloadResult = { success: false };
@@ -76,10 +76,10 @@ async function handler(m, { sock }) {
 
     await m.react("✅");
     let replyText =
-      `╭━━━〔 ✦ ÉXITO 〕━━━╮\n` +
+      `☽◯☾ ╭━ ♰ ✦ ÉXITO ♰ ━╮ ☽◯☾\n` +
       `┃ ¡Proceso completado! El plugin\n` +
       `┃ se eliminó correctamente 🗑️\n` +
-      `╰━━━━━━━━━━━━╯\n\n` +
+      `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
       `- Archivo: ${found.file}\n` +
       `- Carpeta: ${found.folder}\n` +
       `- Estado de descarga: ${unloadResult.success ? "Exitoso" : "Pendiente"}\n\n` +

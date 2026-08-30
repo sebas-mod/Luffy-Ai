@@ -57,7 +57,7 @@ async function scSearch(q) {
 
 async function handler(m, { args, sock }) {
   if (!args[0]) {
-    let txt = `╭━━━〔 🎵 SOUNDCLOUD SEARCH 〕━━━╮\n──────────\n`;
+    let txt = `☽◯☾ ╭━ ♰ 🎵 SOUNDCLOUD SEARCH ♰ ━╮ ☽◯☾\n──────────\n`;
     txt += `¡Hola! ¿Qué canción quieres buscar hoy?\n\n`;
     txt += `*Cómo Usar:*\n`;
     txt += `👉 \`${m.prefix}soundcloud <título de la canción>\`\n\n`;
@@ -71,24 +71,24 @@ async function handler(m, { args, sock }) {
   try {
     const data = await scSearch(args.join(" "));
     if (!data.length) {
-      return m.reply(`╰┈➤ ❌ ¡Vaya, no encontré la canción! Intenta buscar con otro título. 😭`);
+      return m.reply(`☽◯☾ ♰ ❌ ¡Vaya, no encontré la canción! Intenta buscar con otro título. 😭`);
     }
     let thumb = data.find((v) => v.artwork)?.artwork || null;
-    let txt = `╭━━━〔 🎧 BÚSQUEDA EN SOUNDCLOUD 〕━━━╮\n\n`;
+    let txt = `☽◯☾ ╭━ ♰ 🎧 BÚSQUEDA EN SOUNDCLOUD ♰ ━╮ ☽◯☾\n\n`;
     let contentTxt = "";
     const limit = Math.min(data.length, 5);
     for (let i = 0; i < limit; i++) {
-      contentTxt += `╰┈➤ 🎵 *Título :* ${data[i].title}\n`;
-      contentTxt += `╰┈➤ 🔗 *Enlace :* ${data[i].url}\n`;
-      contentTxt += `╰┈➤ 👁️ *Vistas :* ${data[i].plays}\n`;
-      contentTxt += `╰┈➤ ❤️ *Likes :* ${data[i].likes}\n`;
-      contentTxt += `╰┈➤ 💬 *Comments :* ${data[i].comments}\n`;
-      contentTxt += `╰┈➤ 🔁 *Reposts :* ${data[i].reposts}`;
+      contentTxt += `☽◯☾ ♰ 🎵 *Título :* ${data[i].title}\n`;
+      contentTxt += `☽◯☾ ♰ 🔗 *Enlace :* ${data[i].url}\n`;
+      contentTxt += `☽◯☾ ♰ 👁️ *Vistas :* ${data[i].plays}\n`;
+      contentTxt += `☽◯☾ ♰ ❤️ *Likes :* ${data[i].likes}\n`;
+      contentTxt += `☽◯☾ ♰ 💬 *Comments :* ${data[i].comments}\n`;
+      contentTxt += `☽◯☾ ♰ 🔁 *Reposts :* ${data[i].reposts}`;
       if (i < limit - 1) contentTxt += `\n──────────\n\n`;
     }
     txt += contentTxt.trim().split("\n").map(line => line.trim() ? `${line}` : ``).join("\n");
     txt += `\n\n`;
-    txt += `──────────\n╰┈➤ Si quieres descargar la canción, usa la función \`${m.prefix}playsc\`! 😉\n\n╰━━━━━━━━━━━━╯`;
+    txt += `──────────\n☽◯☾ ♰ Si quieres descargar la canción, usa la función \`${m.prefix}playsc\`! 😉\n\n╰━ ⊱༺༒༻⊰ ━╯`;
     if (thumb) {
       await sock.sendMedia(m.chat, thumb, txt.trim(), m, { type: "image" });
     } else {
@@ -96,7 +96,7 @@ async function handler(m, { args, sock }) {
     }
     await m.react("✅");
   } catch (e) {
-    m.reply(`╰┈➤ ❌ Lo siento, ocurrió un error del sistema!\nError: ${e.message}`);
+    m.reply(`☽◯☾ ♰ ❌ Lo siento, ocurrió un error del sistema!\nError: ${e.message}`);
   }
 }
 

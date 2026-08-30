@@ -30,10 +30,10 @@ async function handler(m, { sock }) {
         
         return m.reply(
             `🛒 *ᴄᴏᴍᴘʀᴀʀ ᴄᴀʀɴᴇ*\n\n` +
-            `╭┈┈⬡「 💰 *ɪɴꜰᴏ* 」\n` +
+            `☽◯☾ ♰ 「 💰 *ɪɴꜰᴏ* 」\n` +
             `┃ 💵 ᴘʀᴇᴄɪᴏ: *${PRICE_PER_CARNE}* berry/carne\n` +
             `┃ 💰 ᴛᴜs ʙᴇʀʀʏ: *${formatNumber(user.berry || 0)}*\n` +
-            `╰┈┈⬡\n\n` +
+            `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
             `> Usa: \`.buycarne <cantidad>\`\n\n` +
             `\`Ejemplo: ${m.prefix}comprar_carne 10\``
         )
@@ -69,14 +69,14 @@ async function handler(m, { sock }) {
     
     await m.reply(
         `✅ *ᴄᴏᴍᴘʀᴀ ᴇxɪᴛᴏsᴀ*\n\n` +
-        `╭┈┈⬡「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+        `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
         `┃ ⚡ ᴄᴀʀɴᴇ: *+${formatNumber(amount)}*\n` +
         `┃ 💵 ᴘʀᴇᴄɪᴏ: *-${formatNumber(totalPrice)}* berry\n` +
-        `╰┈┈⬡\n\n` +
-        `╭┈┈⬡「 💰 *sᴀʟᴅᴏ* 」\n` +
+        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `☽◯☾ ♰ 「 💰 *sᴀʟᴅᴏ* 」\n` +
         `┃ ⚡ ᴄᴀʀɴᴇ: *${formatNumber(newCarne)}*\n` +
         `┃ 💰 ʙᴇʀʀʏ: *${formatNumber(newBerry)}*\n` +
-        `╰┈┈⬡`
+        `╰━ ⊱༺༒༻⊰ ━╯`
     )
 }
 

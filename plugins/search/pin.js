@@ -29,9 +29,9 @@ async function handler(m, { sock }) {
   const query = m.text?.trim();
   if (!query) {
     return m.reply(
-      `╭━━━〔 🔍 ʙᴜsǫᴜᴇᴅᴀ ᴘɪɴᴛᴇʀᴇsᴛ 〕━━━╮\n\n` +
+      `☽◯☾ ╭━ ♰ 🔍 ʙᴜsǫᴜᴇᴅᴀ ᴘɪɴᴛᴇʀᴇsᴛ ♰ ━╮ ☽◯☾\n\n` +
       `> Ejemplo:\n` +
-      `\`${m.prefix}pin Zhao Lusi\`\n\n╰━━━━━━━━━━━━╯`,
+      `\`${m.prefix}pin Zhao Lusi\`\n\n╰━ ⊱༺༒༻⊰ ━╯`,
     );
   }
   m.react("🕕");
@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
     const results = data?.data?.results?.filter(item => item.image_url)?.slice(0, 10);
     if (!results || results.length === 0) {
       m.react("❌");
-      return m.reply(`╰┈➤ ❌ No se encontraron resultados para: ${query}`);
+      return m.reply(`☽◯☾ ♰ ❌ No se encontraron resultados para: ${query}`);
     }
 
     const mediaList = [];
@@ -70,7 +70,7 @@ async function handler(m, { sock }) {
 
     if (mediaList.length === 0) {
       m.react("❌");
-      return m.reply("╰┈➤ ❌ Error al cargar la imagen");
+      return m.reply("☽◯☾ ♰ ❌ Error al cargar la imagen");
     }
 
     try {
