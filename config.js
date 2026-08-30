@@ -106,6 +106,27 @@ const config = {
     author: "Sebas-MD", // Autor de los stickers
   },
 
+  // Apartado de marca/globales del bot (los plugins y el runtime los leen aquí)
+  global: {
+    packname: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢",
+    botname: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢",
+    wm: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢",
+    author: "𝑴𝒂𝒅𝒆 𝑩𝒚 : 𝑺𝒆𝒃𝒂𝒔-𝑴𝑫☕",
+    dev: "© 𝑷𝒐𝒘𝒆𝒓𝒆𝒅 𝑩𝒚: 𝑺𝒆𝒃𝒂𝒔-𝑴𝑫",
+    textbot: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢 : 𝑺𝒆𝒃𝒂𝒔-𝑴𝑫",
+    namebot: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢",
+    stickpack: "© 𝑷𝒐𝒘𝒆𝒓𝒆𝒅 𝑩𝒚: 𝑺𝒆𝒃𝒂𝒔-𝑴𝑫",
+    titulowm: "𝑺𝒆𝒃𝒂𝒔-𝑴𝑫",
+    titulowm2: "sere el rey de los piratas",
+    igfg: "@sebas-dzn",
+    titu: "©️ ρσωε૨ ɓყ ɠαℓαאყ ƭεαɱ",
+    listo: "*Aqui tiene ฅ^•ﻌ•^ฅ*",
+    vs: "2.0.7",
+    namechannel: "𝐋𝐮𝐟𝐟𝐲 𝐀𝐢",
+    stickauth: "© 𝐋𝐮𝐟𝐟𝐲 𝐀𝐢 : 𝑺𝒆𝒃𝒂𝒔-𝑴𝑫",
+    dis: "♕⫸",
+  },
+
 saluran: {
     canalId: "120363425262664012@newsletter", // ID del canal (ejemplo: 120363xxx@newsletter)
     name: "Únete al canal oficial de Luffy-Ai", // Nombre del canal
@@ -527,6 +548,15 @@ config.isBanned = isBanned;
 config.setBotNumber = setBotNumber;
 config.isSelf = isSelf;
 config.getOwnerName = getOwnerName;
+
+// Expone el apartado "global" como variables globales reales para plugins/otros bots
+function applyGlobalBranding() {
+  const g = config.global || {};
+  for (const key of Object.keys(g)) {
+    globalThis[key] = g[key];
+  }
+}
+applyGlobalBranding();
 
 export default config;
 export {
