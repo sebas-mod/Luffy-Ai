@@ -23,22 +23,56 @@ const pluginConfig = {
     customTrigger: (body) => body?.startsWith('=>')
 }
 
+const PROMPT_HELP = [
+    '⚙️ *ᴇᴠᴀʟ*',
+    '',
+    '> ¡Introduce código JavaScript!',
+    '',
+    '*Ejemplos:*',
+    '> .$ 1 + 1',
+    '> .$ m.chat',
+    '> .$ db.getUser(m.sender)',
+    '> .$ await sock.sendMessage(m.chat, { text: "hola" })',
+    '',
+    '*Multilínea (bloque ```):*',
+    '> .$ ```',
+    '> const a = 2;',
+    '> return a * 5',
+    '> ```',
+    '',
+    '*Helpers:* send · reply · readFile · writeFile · settle · getUsers · loadPlugin',
+].join('\n')
+
+function formatValue(v) {
+    if (v === undefined) return 'undefined'
+    if (v === null) return 'null'
+    if (typeof v === 'object') {
+        try {
+            return util.inspect(v, { depth: 3, maxArrayLength: 60 })
+        } catch {
+            return String(v)
+        }
+    }
+    return String(v)
+}
+
+function extractCode(raw) {
+    let code = String(raw ?? '').trim()
+    const fence = /^```(?:js|javascript)?\s*\n?([\s\S]*?)\n?```\s*$/i
+    const fenceMatch = code.match(fence)
+    if (fenceMatch) return fenceMatch[1].trim()
+    return code
+}
+
 async function handler(m, { sock, store }) {
     if (!config.isOwner(m.sender)) {
         return m.reply('☽◯☾ ♰ ❌ *Owner Only!*')
     }
 
-    const code = m.fullArgs?.trim() || m.text?.trim()
+    const code = extractCode(m.fullArgs?.trim() || m.text?.trim())
 
     if (!code) {
-        return m.reply(
-            `⚙️ *ᴇᴠᴀʟ*\n\n` +
-            `> ¡Introduce código JavaScript!\n\n` +
-            `*Ejemplo:*\n` +
-            `> .$ 1 + 1\n` +
-            `> .$ m.chat\n` +
-            `> .$ db.getUser(m.sender)`
-        )
+        return m.reply(PROMPT_HELP)
     }
 
     const db = getDatabase()
@@ -50,21 +84,15 @@ async function handler(m, { sock, store }) {
         warn: console.warn,
         info: console.info,
         debug: console.debug,
+        table: console.table,
     }
 
     const capture = (level) => (...args) => {
         const txt = args
-            .map((a) => {
-                try {
-                    return typeof a === 'string'
-                        ? a
-                        : util.inspect(a, { depth: 4, maxArrayLength: 50 })
-                } catch {
-                    return String(a)
-                }
-            })
+            .map((a) => (typeof a === 'string' ? a : formatValue(a)))
             .join(' ')
         logs.push(`[${level}] ${txt}`)
+        if (level === 'ERROR' || level === 'WARN') original[level === 'ERROR' ? 'error' : 'warn'](...args)
     }
 
     console.log = capture('LOG')
@@ -73,16 +101,55 @@ async function handler(m, { sock, store }) {
     console.info = capture('INFO')
     console.debug = capture('DEBUG')
 
-    const ctx = { m, sock, store, db, config, fs, path, axios, os, util }
+    // Helpers de conveniencia expuestos al código evaluado
+    const helpers = {
+        send: (text) => sock.sendMessage(m.chat, { text: String(text) }, { quoted: m }),
+        reply: (text) => m.reply(String(text)),
+        readFile: (p) => fs.readFileSync(path.resolve(p), 'utf-8'),
+        writeFile: (p, data) => fs.writeFileSync(path.resolve(p), data, 'utf-8'),
+        settle: async (promises) =>
+            Promise.allSettled(Array.isArray(promises) ? promises : [promises]),
+        getUsers: () => {
+            try {
+                const store = db.getStore && db.getStore()
+                const list = store && store.data && store.data.users
+                return Object.keys(list || {}).map((j) => list[j])
+            } catch {
+                return []
+            }
+        },
+        loadPlugin: async (name) => {
+            try {
+                const mod = await import(`../../plugins/${name}.js`)
+                return { config: mod.config, handler: typeof mod.handler }
+            } catch (e) {
+                return { error: e.message }
+            }
+        },
+    }
+
+    const ctx = { m, sock, store, db, config, fs, path, axios, os, util, ...helpers }
     const scopeNames = Object.keys(ctx).join(', ')
 
     let result
     let isError = false
 
     try {
-        result = await eval(
-            `(async ({ ${scopeNames} }) => { ${code} })(ctx)`
-        )
+        // 1º intento: expresión (retorno implícito → permite `. $ 1 + 2` sin `return`)
+        try {
+            result = await eval(
+                `(async ({ ${scopeNames} }) => (${code}))(ctx)`
+            )
+        } catch (e1) {
+            // 2º intento: bloque de statements (código multilínea con return/if/for...)
+            result = await eval(
+                `(async ({ ${scopeNames} }) => { ${code} })(ctx)`
+            )
+        }
+        // Si el código retorna un array de promesas, esperarlas todas
+        if (Array.isArray(result) && result.some((p) => p && typeof p.then === 'function')) {
+            result = await Promise.all(result)
+        }
     } catch (e) {
         isError = true
         result = e
@@ -92,26 +159,37 @@ async function handler(m, { sock, store }) {
         console.warn = original.warn
         console.info = original.info
         console.debug = original.debug
+        console.table = original.table
     }
 
-    let output
-    if (typeof result === 'undefined') {
-        output = 'undefined'
-    } else if (result === null) {
-        output = 'null'
-    } else if (typeof result === 'object') {
-        try {
-            output = util.inspect(result, { depth: 2, maxArrayLength: 50 })
-        } catch {
-            output = String(result)
-        }
-    } else {
-        output = String(result)
+    // --- Log de auditoría ---
+    try {
+        const audit = db.setting('evalLog') || []
+        audit.push({
+            ts: Date.now(),
+            sender: m.sender,
+            status: isError ? 'error' : 'ok',
+            code: code.length > 200 ? code.slice(0, 200) + '…' : code,
+        })
+        db.setting('evalLog', audit.slice(-50))
+    } catch {}
+
+    // --- Envío de respuestas directas (multimedia/custom) ---
+    let sentDirect = false
+    if (!isError && result !== undefined && result !== null) {
+        const direct = await trySendDirect(m, sock, result)
+        if (direct) sentDirect = true
     }
 
+    // --- Formateo de texto/resumen ---
+    let output = formatValue(result)
+    if (isError && result instanceof Error) {
+        output = `${result.stack || result.message}`
+    }
+
+    const logsText = logs.join('\n')
     if (logs.length) {
-        const logsText = logs.join('\n')
-        output = output === 'undefined' && isError === false && logsText
+        output = output === 'undefined' && !isError && logsText
             ? logsText
             : `${logsText}\n\n➤ Retorno:\n${output}`
     }
@@ -121,17 +199,55 @@ async function handler(m, { sock, store }) {
     }
 
     const status = isError ? '❌ Error' : '✅ Éxito'
-    const type = isError ? result?.name || 'Error' : typeof result
+    const type = isError ? (result?.name || 'Error') : (Array.isArray(result) ? 'Array' : typeof result)
 
+    // Si ya se envió una respuesta directa, solo responder con el resumen
     await m.reply(
-        `⚙️ *ʀᴇsᴜʟᴛᴀᴅᴏ ᴇᴠᴀʟ*\n\n` +
-        `☽◯☾ ♰ 「 📋 *ɪɴғᴏ* 」\n` +
-        `┃ ${status}\n` +
-        `┃ Tipo: ${type}\n` +
-        (logs.length ? `┃ Logs: ${logs.length}\n` : '') +
-        `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
+        `${status} · ${type}${sentDirect ? ' · 📎 respuesta enviada' : ''}\n` +
+        (logs.length ? `🧾 ${logs.length} log(s)\n` : '') +
         `\`\`\`${output}\`\`\``
     )
+}
+
+const MEDIA_KEYS = ['text', 'image', 'video', 'audio', 'document', 'sticker', 'caption', 'mimetype', 'fileName', 'url', 'viewOnce', 'fileName', 'jpegThumbnail', 'ptt']
+
+async function trySendDirect(m, sock, result) {
+    // Buffer → enviar como imagen
+    if (Buffer.isBuffer(result)) {
+        try {
+            await sock.sendMessage(m.chat, {
+                image: result,
+                caption: '📦 resultado (buffer)',
+            }, { quoted: m })
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    // Objeto estilo mensaje → enviar directo
+    if (result && typeof result === 'object' && !Array.isArray(result)) {
+        const isMessageLike =
+            typeof result.text === 'string' ||
+            result.image || result.video || result.audio ||
+            result.document || result.sticker
+        if (!isMessageLike) return false
+
+        const content = {}
+        for (const key of MEDIA_KEYS) {
+            if (result[key] !== undefined) content[key] = result[key]
+        }
+        if (!content.caption && result.text) content.caption = content.caption ?? content.text
+
+        try {
+            await sock.sendMessage(m.chat, content, { quoted: m })
+            return true
+        } catch {
+            return false
+        }
+    }
+
+    return false
 }
 
 export { pluginConfig as config, handler }
