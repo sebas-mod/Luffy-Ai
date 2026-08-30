@@ -17,7 +17,7 @@ import {
 } from "../../src/lib/luffy-plugins.js";
 import { getDatabase } from "../../src/lib/luffy-database.js";
 import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
-import { GOTHIC, toFancy, divider, gothicHeader } from "../../src/lib/luffy-gothic.js";
+import { GOTHIC, toFancy, divider, gothicHeader, gothicCenter, headerBlock } from "../../src/lib/luffy-gothic.js";
 import fs from "fs";
 import path from "path";
 
@@ -1502,47 +1502,45 @@ Disfruta su uso, pirata. ⚓`
         });
 
         let g = ``;
-        g += divider(GOTHIC.MOON);
-        g += `${GOTHIC.OBRA}\n`;
-        g += `${GOTHIC.FLOWER}  ${GOTHIC.TWIN}  *${toFancy(botConfig.bot?.name || "LUFFY AI")}*  ${GOTHIC.TWIN}  ${GOTHIC.FLOWER}\n`;
-        g += `${GOTHIC.OBRA}\n`;
+        g += headerBlock(toFancy(botConfig.bot?.name || "LUFFY AI"));
         g += `${GOTHIC.DIV}\n\n`;
 
-        g += `${greetingG}, *${userName}* ${GOTHIC.SPIDER}\n`;
-        g += `Bienvenido a mi oscuro reino. El maestro de este lugar es *${ownerName}* ${GOTHIC.TWIN}\n\n`;
-        g += divider(GOTHIC.DIV2);
+        g += `♱ ${greetingG}, *${userName}* ${GOTHIC.SPIDER}\n`;
+        g += `♱ Bienvenido a mi oscuro reino. El maestro de este lugar es *${ownerName}* ${GOTHIC.TWIN}\n`;
+        g += `${GOTHIC.DIV}\n`;
 
-        g += `╰─ ♡ 𝖎𝖓𝖋𝖔 𝖇𝖔𝖙:\n`;
-        g += `♰┇ *${toFancy("Nombre")}* : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
-        g += `🪽┇ *${toFancy("Autor")}* : ${botConfig.bot?.developer || ownerName}\n`;
-        g += `❦︎┇ *${toFancy("Versión")}* : ${botConfig.bot?.version || "1.0"}\n`;
-        g += `${GOTHIC.LINE}\n\n`;
+        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ ⛧ Nombre  : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
+        g += `┃ ⛧ Autor   : ${botConfig.bot?.developer || ownerName}\n`;
+        g += `┃ ⛧ Versión : ${botConfig.bot?.version || "1.0"}\n`;
+        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
 
-        g += `╰─ ♡ 𝖒𝖊𝖓𝖚 𝖕𝖗𝖎𝖓𝖈𝖎𝖕𝖆𝖑:\n`;
-        g += `♰┇ *${toFancy("Rango")}* : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🕯️ Alma"}\n`;
-        g += `🪽┇ *${toFancy("Nombre")}* : ${gUser.regName || m.pushName || "User"}\n`;
-        g += `❦︎┇ *${toFancy("Edad")}* : ${gUser.regAge ?? "—"}\n`;
-        g += `🦇┇ *${toFancy("Género")}* : ${gUser.regGender ?? "—"}\n`;
-        g += `♱┇ *${toFancy("Nivel")}* : ${gUser.level || 0}\n`;
-        g += `🍎┇ *${toFancy("Exp")}* : ${gUser.exp || 0}\n`;
-        g += `🫀┇ *${toFancy("Berry")}* : ${gUser.berry || 0}\n`;
-        g += `⛧┇ *${toFancy("Carne")}* : ${gUser.carne || 0}\n`;
-        g += `✦┇ *${toFancy("Registro")}* : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
-        g += `${GOTHIC.LINE}\n\n`;
+        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ 👑 Rango   : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
+        g += `┃ 🪽 Nombre  : ${gUser.regName || m.pushName || "User"}\n`;
+        g += `┃ 🕯️ Edad    : ${gUser.regAge ?? "—"}\n`;
+        g += `┃ 🦇 Género  : ${gUser.regGender ?? "—"}\n`;
+        g += `┃ ♱ Nivel   : ${gUser.level || 0}\n`;
+        g += `┃ 🍎 Exp     : ${gUser.exp || 0}\n`;
+        g += `┃ 🫀 Berry   : ${gUser.berry || 0}\n`;
+        g += `┃ ⛧ Carne   : ${gUser.carne || 0}\n`;
+        g += `┃ ✦ Registro: ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
+        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
-        g += `╰─ ♡ 𝖑𝖎𝖘𝖙𝖆 𝖉𝖊𝖈𝖔𝖒𝖆𝖓𝖉𝖔𝖘:\n`;
+        g += `♰─ ${GOTHIC.TWIN} *${toFancy("COMANDOS")}* ${GOTHIC.TWIN} ─♰\n`;
         for (const cat of categories.sorted) {
-          g += `${GOTHIC.NIGHT}\n`;
-          g += `${GOTHIC.FLOWER}  ${cat.emoji}  *${toFancy(cat.cat.toUpperCase())}*  ${cat.emoji}  ${GOTHIC.TWIN}\n`;
+          g += `┏━ ${cat.emoji} ${GOTHIC.TWIN} *${toFancy(cat.cat.toUpperCase())}* ${GOTHIC.TWIN} ${cat.emoji} ━┓\n`;
           for (const cmd of cat.cmds) {
-            g += `  ♱┇ ${m.prefix}${cmd}\n`;
+            g += `┃  ♱➤ ${m.prefix}${cmd}\n`;
           }
+          g += `┗━ ${GOTHIC.TWIN} ${GOTHIC.NIGHT} ${GOTHIC.TWIN} ━┛\n\n`;
         }
-        g += `${GOTHIC.MOON}\n`;
-        g += `${GOTHIC.DIV6}\n`;
-        g += `${GOTHIC.CROSS}\n`;
-        g += `${GOTHIC.BAN}`;
+        g += `${gothicCenter(GOTHIC.MOON, 32)}\n`;
+        g += `${gothicCenter(`     ${GOTHIC.CROSS}`, 32)}\n`;
+        g += `${gothicCenter(`     ${GOTHIC.BAN}`, 32)}`;
 
         try {
           await sock.sendMessage(

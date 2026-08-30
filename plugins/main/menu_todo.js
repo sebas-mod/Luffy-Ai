@@ -16,7 +16,7 @@ import {
   getPluginsByCategory,
 } from "../../src/lib/luffy-plugins.js";
 import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
-import { GOTHIC, toFancy, divider } from "../../src/lib/luffy-gothic.js";
+import { GOTHIC, toFancy, divider, gothicCenter, headerBlock } from "../../src/lib/luffy-gothic.js";
 const pluginConfig = {
   name: "menu_todo",
   alias: ["allmenu", "fullmenu", "am", "allcommand", "todo", "menucompleto"],
@@ -446,32 +446,32 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         const parsedTime = timeHelper.formatTime("HH:mm");
 
         let g = ``;
-        g += divider(GOTHIC.MOON);
-        g += `${GOTHIC.OBRA}\n`;
-        g += `${GOTHIC.FLOWER}  ${GOTHIC.TWIN}  *${toFancy(botName)}*  ${GOTHIC.TWIN}  ${GOTHIC.FLOWER}\n`;
-        g += `${GOTHIC.OBRA}\n`;
-        g += `${GOTHIC.DIV2}\n\n`;
+        g += headerBlock(toFancy(botName));
+        g += `${GOTHIC.DIV}\n\n`;
 
-        g += `${greeting}, *${userName}* ${GOTHIC.SPIDER}\n`;
-        g += `Servido con honor por *${ownerName}* ${GOTHIC.TWIN}\n\n`;
+        g += `♱ ${greeting}, *${userName}* ${GOTHIC.SPIDER}\n`;
+        g += `♱ Servido con honor por *${ownerName}* ${GOTHIC.TWIN}\n`;
+        g += `${GOTHIC.DIV}\n`;
 
-        g += `╰─ ♡ 𝖎𝖓𝖋𝖔 𝖇𝖔𝖙:\n`;
-        g += `♰┇ *${toFancy("Nombre")}* : ${botName}\n`;
-        g += `🪽┇ *${toFancy("Funciones")}* : ${totalFeatures} funciones\n`;
-        g += `❦︎┇ *${toFancy("Versión")}* : ${botVersion}\n`;
-        g += `🦇┇ *${toFancy("Hora")}* : ${parsedTime}\n`;
-        g += `${GOTHIC.LINE}\n\n`;
+        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ ⛧ Nombre   : ${botName}\n`;
+        g += `┃ ⛧ Funciones: ${totalFeatures} funciones\n`;
+        g += `┃ ⛧ Versión  : ${botVersion}\n`;
+        g += `┃ ⛧ Hora     : ${parsedTime}\n`;
+        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
 
-        g += `╰─ ♡ 𝖘𝖚𝖘 𝖉𝖆𝖙𝖔𝖘:\n`;
-        g += `♰┇ *${toFancy("Rango")}* : ${m.isOwner ? "👑 Owner" : m.isPremium ? "💎 Premium" : "🕯️ Alma"}\n`;
-        g += `🪽┇ *${toFancy("Nombre")}* : ${gUser.regName || pushName}\n`;
-        g += `❦︎┇ *${toFancy("Edad")}* : ${gUser.regAge ?? "—"}\n`;
-        g += `🫀┇ *${toFancy("Registro")}* : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
-        g += `⛧┇ *${toFancy("Limite")}* : ${userLimit}\n`;
-        g += `${GOTHIC.LINE}\n\n`;
+        g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
+        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┃ 👑 Rango    : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
+        g += `┃ 🪽 Nombre   : ${gUser.regName || pushName}\n`;
+        g += `┃ 🕯️ Edad     : ${gUser.regAge ?? "—"}\n`;
+        g += `┃ 🫀 Registro : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
+        g += `┃ ⛧ Limite   : ${userLimit}\n`;
+        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
-        g += `╰─ ♡ 𝖔𝖗𝖉𝖊𝖓 𝖉𝖊𝖑 𝖒𝖊𝖓ú:\n`;
+        g += `♰─ ${GOTHIC.TWIN} *${toFancy("ORDEN DEL MENÚ")}* ${GOTHIC.TWIN} ─♰\n`;
         for (const category of sortedCategories) {
           if (category === "owner" && !m.isOwner) continue;
           if (
@@ -486,14 +486,15 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           const allCmds = [...pluginCmds, ...caseCmds];
           if (allCmds.length === 0) continue;
           const emoji = CATEGORY_EMOJIS[category] || "📋";
-          g += `${GOTHIC.NIGHT}\n`;
-          g += `${GOTHIC.FLOWER}  ${emoji}  *${toFancy(category.toUpperCase())}*  ${emoji}  ${GOTHIC.TWIN}  (${allCmds.length})\n`;
+          g += `┏━ ${emoji} ${GOTHIC.TWIN} *${toFancy(category.toUpperCase())}* ${GOTHIC.TWIN} ${emoji} ━┓  (${allCmds.length})\n`;
           for (const cmd of allCmds) {
-            g += `   ♱┇ ${prefix}${cmd}\n`;
+            g += `┃  ♱➤ ${prefix}${cmd}\n`;
           }
+          g += `┗━ ${GOTHIC.TWIN} ${GOTHIC.NIGHT} ${GOTHIC.TWIN} ━┛\n\n`;
         }
-        g += `${GOTHIC.MOON}\n`;
-        g += `${GOTHIC.BAN}`;
+        g += `${gothicCenter(GOTHIC.MOON, 32)}\n`;
+        g += `${gothicCenter(`     ${GOTHIC.CROSS}`, 32)}\n`;
+        g += `${gothicCenter(`     ${GOTHIC.BAN}`, 32)}`;
 
         try {
           await sock.sendMessage(

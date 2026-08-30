@@ -47,6 +47,31 @@ function divider(line = GOTHIC.DIV) {
   return `${line}\n`;
 }
 
+function numChars(str) {
+  return Array.from(String(str)).length;
+}
+
+function gothicCenter(title, width) {
+  const t = String(title);
+  const pad = width - numChars(t);
+  const left = Math.max(0, Math.floor(pad / 2));
+  return " ".repeat(left) + t;
+}
+
+function headerBlock(title) {
+  const o = GOTHIC.OBRA;
+  const t = GOTHIC.TWIN;
+  const obraLine = `     ${o} ${t} ${o}`;
+  const nameLine = `༺♱ ${title} ♱༻`;
+  const bodyWidth = numChars(obraLine) - 5;
+  const pad = Math.max(0, 5 + Math.floor((bodyWidth - numChars(nameLine)) / 2));
+  let out = "";
+  out += `${obraLine}\n`;
+  out += `${" ".repeat(pad)}${nameLine}\n`;
+  out += `${obraLine}\n`;
+  return out;
+}
+
 function gothicHeader(title) {
   let out = "";
   out += divider(GOTHIC.OBRA);
@@ -56,4 +81,4 @@ function gothicHeader(title) {
   return out;
 }
 
-export { GOTHIC, toFancy, divider, gothicHeader };
+export { GOTHIC, toFancy, divider, gothicHeader, gothicCenter, headerBlock };
