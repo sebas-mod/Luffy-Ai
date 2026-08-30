@@ -73,11 +73,16 @@ async function handler(m, { sock, store }) {
     console.info = capture('INFO')
     console.debug = capture('DEBUG')
 
+    const ctx = { m, sock, store, db, config, fs, path, axios, os, util }
+    const scopeNames = Object.keys(ctx).join(', ')
+
     let result
     let isError = false
 
     try {
-        result = await eval(`(async () => { ${code} })()`)
+        result = await eval(
+            `(async ({ ${scopeNames} }) => { ${code} })(ctx)`
+        )
     } catch (e) {
         isError = true
         result = e
