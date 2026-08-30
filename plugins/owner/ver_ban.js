@@ -6,7 +6,7 @@ const pluginConfig = {
   alias: [],
   category: "owner",
   description: "Comprobar el estado de ban actual",
-  usage: ".checkban",
+  usage: ".ver_ban",
   isOwner: true,
 };
 

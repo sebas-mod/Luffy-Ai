@@ -5,7 +5,7 @@ const pluginConfig = {
   alias: ["delaybcpc", "pausa_bcpc", "configurar_pausa_bcpc"],
   category: 'owner',
   description: 'Configurar el intervalo del broadcast de chat privado',
-  usage: '.bcpcjeda <tiempo> (ejemplo: 5s, 2m, 1h)',
+  usage: '.difusion_privada_pausa <tiempo> (ejemplo: 5s, 2m, 1h)',
   isOwner: true,
   isPremium: false,
   isGroup: false,

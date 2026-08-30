@@ -3,7 +3,7 @@ const pluginConfig = {
   alias: ['stopbroadcastpc'],
   category: 'owner',
   description: 'Detener el broadcast privado que está en ejecución',
-  usage: '.stopbcpc',
+  usage: '.detener_difusion',
   isOwner: true,
   isPremium: false,
   isGroup: false,

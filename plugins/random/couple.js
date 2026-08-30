@@ -8,7 +8,7 @@ const pluginConfig = {
     alias: ['cp', 'ppcp'],
     category: 'random',
     description: 'Imagen aleatoria de foto de perfil de pareja',
-    usage: '.ppcouple',
+    usage: '.pp_pareja',
     isGroup: true,
     isBotAdmin: false,
     isAdmin: false,

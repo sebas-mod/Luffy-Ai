@@ -454,21 +454,21 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         g += `${GOTHIC.DIV}\n`;
 
         g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ ⛧ Nombre   : ${botName}\n`;
         g += `┃ ⛧ Funciones: ${totalFeatures} funciones\n`;
         g += `┃ ⛧ Versión  : ${botVersion}\n`;
         g += `┃ ⛧ Hora     : ${parsedTime}\n`;
-        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
 
         g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Rango    : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
         g += `┃ 🪽 Nombre   : ${gUser.regName || pushName}\n`;
         g += `┃ 🕯️ Edad     : ${gUser.regAge ?? "—"}\n`;
         g += `┃ 🫀 Registro : ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
         g += `┃ ⛧ Limite   : ${userLimit}\n`;
-        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
         g += `♰─ ${GOTHIC.TWIN} *${toFancy("ORDEN DEL MENÚ")}* ${GOTHIC.TWIN} ─♰\n`;

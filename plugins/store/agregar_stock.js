@@ -6,8 +6,8 @@ const pluginConfig = {
   category: "store",
   description: "📦 Agregar stock de artículos al producto (solo en chat privado)",
   usage:
-    ".addstok <numero_producto>|<detalle> o .addstok <numero> <cantidad> (físico)",
-  example: ".addstok 1|Email: user@mail.com;;Password: pass123",
+    ".agregar_stock <numero_producto>|<detalle> o .agregar_stock <numero> <cantidad> (físico)",
+  example: ".agregar_stock 1|Email: user@mail.com;;Password: pass123",
   isOwner: true,
   isPremium: false,
   isGroup: false,

@@ -3,8 +3,8 @@ const pluginConfig = {
     alias: [],
     category: 'owner',
     description: 'Eliminar un canal/newsletter',
-    usage: '.hapussaluran <id_del_canal>',
-    example: '.hapussaluran 120363xxx@newsletter',
+    usage: '.eliminar_canal <id_del_canal>',
+    example: '.eliminar_canal 120363xxx@newsletter',
     isOwner: true,
     cooldown: 5,
     carne: 0,
@@ -18,9 +18,9 @@ async function handler(m, { sock }) {
     if (!targetJid) {
         return m.reply(
             '🗑️ *ʙᴏʀʀᴀʀ sᴀʟᴜʀᴀɴ*\n\n' +
-            '> `.hapussaluran <id_del_canal>` — Eliminar canal\n\n' +
+            '> `.eliminar_canal <id_del_canal>` — Eliminar canal\n\n' +
             '📝 Ejemplo:\n' +
-            '> `.hapussaluran 120363xxx@newsletter`\n\n' +
+            '> `.eliminar_canal 120363xxx@newsletter`\n\n' +
             '⚠️ El canal se eliminará permanentemente'
         )
     }

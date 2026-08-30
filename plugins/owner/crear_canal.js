@@ -27,11 +27,11 @@ async function handler(m, { sock }) {
   if (!name || name.length < 2) {
     return m.reply(
       "📢 *ᴄʀᴇᴀʀ sᴀʟᴜʀᴀɴ*\n\n" +
-        "> `.buatsaluran Nombre del Saluran`\n" +
-        "> `.buatsaluran Nombre|Descripción`\n\n" +
+        "> `.crear_canal Nombre del Saluran`\n" +
+        "> `.crear_canal Nombre|Descripción`\n\n" +
         "📝 Ejemplo:\n" +
-        "> `.buatsaluran Info Bot`\n" +
-        "> `.buatsaluran Info Bot|Últimas novedades de nuestro bot`",
+        "> `.crear_canal Info Bot`\n" +
+        "> `.crear_canal Info Bot|Últimas novedades de nuestro bot`",
     );
   }
 

@@ -10,7 +10,7 @@ const pluginConfig = {
   category: "owner",
   description:
     "Transmitir mensajes a todos los grupos con soporte de todo tipo de medios",
-  usage: ".bcgc",
+  usage: ".difusion_grupo",
   isOwner: true,
   isPremium: false,
   isGroup: false,

@@ -1,6 +1,6 @@
 // Librería de estilo semi-gótico para los menús del bot
 const GOTHIC = {
-  OBRA: "⏝꒷♱ 𖥔 ♱꒷⏝",
+  OBRA: "⏝꒷♱𖥔♱꒷⏝",
   DIV: "⋆♱⋆ ─────── ⋆♱⋆",
   DIV2: "☽◯☾ ─────── ☽◯☾",
   DIV3: "♰ ─── ✦ ─── ♰",

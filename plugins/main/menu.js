@@ -1510,14 +1510,14 @@ Disfruta su uso, pirata. ⚓`
         g += `${GOTHIC.DIV}\n`;
 
         g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("INFO BOT")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ ⛧ Nombre  : ${botConfig.bot?.name || "Luffy-Ai"}\n`;
         g += `┃ ⛧ Autor   : ${botConfig.bot?.developer || ownerName}\n`;
         g += `┃ ⛧ Versión : ${botConfig.bot?.version || "1.0"}\n`;
-        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
 
         g += `☽◯☾ ${GOTHIC.TWIN} *${toFancy("TUS DATOS")}* ${GOTHIC.TWIN} ☽◯☾\n`;
-        g += `┏━━━━━━━━━━━━━━━━━━━━┓\n`;
+        g += `┏━━━━━━━━━━━━━━━━┓\n`;
         g += `┃ 👑 Rango   : ${m.isOwner ? "Owner" : m.isPremium ? "Premium" : "Alma"}\n`;
         g += `┃ 🪽 Nombre  : ${gUser.regName || m.pushName || "User"}\n`;
         g += `┃ 🕯️ Edad    : ${gUser.regAge ?? "—"}\n`;
@@ -1527,7 +1527,7 @@ Disfruta su uso, pirata. ⚓`
         g += `┃ 🫀 Berry   : ${gUser.berry || 0}\n`;
         g += `┃ ⛧ Carne   : ${gUser.carne || 0}\n`;
         g += `┃ ✦ Registro: ${gUser.isRegistered ? "✅ Sí" : "❌ No"}\n`;
-        g += `┗━━━━━━━━━━━━━━━━━━━━┛\n\n`;
+        g += `┗━━━━━━━━━━━━━━━━┛\n\n`;
         g += divider(GOTHIC.DIV3);
 
         g += `♰─ ${GOTHIC.TWIN} *${toFancy("COMANDOS")}* ${GOTHIC.TWIN} ─♰\n`;

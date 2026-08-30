@@ -11,7 +11,7 @@ const pluginConfig = {
   alias: ["broadcastpc", "bcprivate"],
   category: "owner",
   description: "Transmitir un mensaje a todos los contactos de chat privado",
-  usage: ".bcpc <mensaje>",
+  usage: ".difusion_privada <mensaje>",
   isOwner: true,
   isPremium: false,
   isGroup: false,
