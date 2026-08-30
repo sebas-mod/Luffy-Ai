@@ -43,6 +43,36 @@ async function handler(m, { sock, store }) {
 
     const db = getDatabase()
 
+    const logs = []
+    const original = {
+        log: console.log,
+        error: console.error,
+        warn: console.warn,
+        info: console.info,
+        debug: console.debug,
+    }
+
+    const capture = (level) => (...args) => {
+        const txt = args
+            .map((a) => {
+                try {
+                    return typeof a === 'string'
+                        ? a
+                        : util.inspect(a, { depth: 4, maxArrayLength: 50 })
+                } catch {
+                    return String(a)
+                }
+            })
+            .join(' ')
+        logs.push(`[${level}] ${txt}`)
+    }
+
+    console.log = capture('LOG')
+    console.error = capture('ERROR')
+    console.warn = capture('WARN')
+    console.info = capture('INFO')
+    console.debug = capture('DEBUG')
+
     let result
     let isError = false
 
@@ -51,6 +81,12 @@ async function handler(m, { sock, store }) {
     } catch (e) {
         isError = true
         result = e
+    } finally {
+        console.log = original.log
+        console.error = original.error
+        console.warn = original.warn
+        console.info = original.info
+        console.debug = original.debug
     }
 
     let output
@@ -68,6 +104,13 @@ async function handler(m, { sock, store }) {
         output = String(result)
     }
 
+    if (logs.length) {
+        const logsText = logs.join('\n')
+        output = output === 'undefined' && isError === false && logsText
+            ? logsText
+            : `${logsText}\n\n➤ Retorno:\n${output}`
+    }
+
     if (output.length > 3000) {
         output = output.slice(0, 3000) + '\n\n... (truncated)'
     }
@@ -80,6 +123,7 @@ async function handler(m, { sock, store }) {
         `☽◯☾ ♰ 「 📋 *ɪɴғᴏ* 」\n` +
         `┃ ${status}\n` +
         `┃ Tipo: ${type}\n` +
+        (logs.length ? `┃ Logs: ${logs.length}\n` : '') +
         `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
         `\`\`\`${output}\`\`\``
     )
