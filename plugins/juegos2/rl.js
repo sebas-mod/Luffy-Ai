@@ -143,8 +143,10 @@ async function handler(m, { prefix }) {
         const capped = Math.min(points, MAX_POINTS)
 
         let user = db.getUser(jid)
+        const pushName = (m.pushName || '').trim()
+        const displayName = pushName || (user && user.name && user.name !== 'Unknown' ? user.name : null)
         if (!user) {
-            db.setUser(jid)
+            db.setUser(jid, displayName ? { name: displayName } : {})
             user = db.getUser(jid)
         }
         const scores = { ...(user.scores || {}) }
@@ -154,7 +156,7 @@ async function handler(m, { prefix }) {
         if (isNew) {
             scores[game] = capped
             const total = Object.values(scores).reduce((a, b) => a + b, 0)
-            db.setUser(jid, { scores, totalScore: total })
+            db.setUser(jid, { name: displayName || undefined, scores, totalScore: total })
             return m.reply(
                 `✅ *PUNTAJE REGISTRADO* · @sebas-MD\n\n` +
                 `> 🎮 Juego: *${game}*\n` +
@@ -179,7 +181,8 @@ function buildLeaderboard(db, cmd) {
         const u = users[num]
         const total = u.totalScore || 0
         if (total > 0) {
-            rows.push({ num, name: u.name || num, total, games: Object.keys(u.scores || {}).length })
+            const nm = (u.name && u.name !== 'Unknown') ? u.name : num
+            rows.push({ num, name: nm, total, games: Object.keys(u.scores || {}).length })
         }
     }
     rows.sort((a, b) => b.total - a.total)
