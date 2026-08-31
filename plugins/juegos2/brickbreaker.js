@@ -1,0 +1,88 @@
+const pluginConfig = {
+  name: "brickbreaker",
+  alias: ["ladrillos","arkanoid","breakout"],
+  category: "juegos2",
+  description: "Brick Breaker: rompe ladrillos con la paleta. 3 dificultades y récord local.",
+  usage: "..brickbreaker",
+  example: "..brickbreaker",
+  isOwner: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 3,
+  isEnabled: true,
+}
+
+async function handler(m, { sock }) {
+  const from = m.chat
+  try {
+    const msgContent = {
+      messageContextInfo: {
+        deviceListMetadata: {},
+        deviceListMetadataVersion: 2,
+        botMetadata: {
+          messageDisclaimerText: "",
+          botResponseId: "b19a3a85-50d2-40f5-9770-6b2be5a0b700",
+          verificationMetadata: {
+            proofs: [
+              {
+                version: 1,
+                useCase: 1,
+                signature: "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LVZlcmlmaWNhdGlvblNpZ25hdHVyZS5NZXRhZGF0YeN55YRyad2+ZA==",
+                certificateChain: [
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGEOvtJr968bbpKdZreOTwkk9aPN++XPE60RfuzNLkXXc7LE8BOkJOWRpo2oNXaRJ3uCNJ43HY3A+oetnvHSfcxWqmvvTSrBOI5V1NOD6RMsZ/st1XVPUx83AGps1l5jYBOYzqMNy6un2tToJ2Bt9bXRo29tWLZTu8m7TNY/hISwVpVc5tjSet5U7btPN+dMIx2UvykB1jcbWGsdklheeuz8RXSStNXzeaGvsf1lpZ/ugLE4b2BdmlRNKrY6zLE4qFtRYQoS7axOyQX+4QUyN2m9bfm7urQmn+QRSXJwMO7X5kAJJLbkVGJFt9Pm9VXPwQVrK2aaqiXlpusj+7DfDw00OULmYMmZDTqXM0nUVLxj13z0LhMQoQhhNG8utdUn4uKOFceliTZ/xiP+A54GnX9620641bqw3ctfh9NNXPsTEK8hAUD7FDqUhVntHmoEYYEHq8X1tHHZYP49/f2iezTiE8AUaoZo42/jIWQIKohOGNUib2hEqMkW8NsR8vPihvNuqPc0zKZcl6359YFQdjiiW8kCRD/rsDOr9v1eYLFZKYloFyzFqEgj+jcG/V47elOjShJ5CCPwatXwP6HIloVwtgygFsnOFmCg6Ojoivfoz8Nw1qxFwg5OU2cq/1WbWNELKnaFg4eUWCAIJ/3ZIJsEPkgemZxGhE+hdiNn9dkQYBJs1kx2BxdIkJmQ9vJSKkrMz6lTxZM3IJ9mhmKS6zYdU1ppeAao0/ayte997DQParb/AHLN79g0iW1ad0z8ir5jAl0q3a+UZPTSa4YiSqC2PZ/gfxG5wvL2mKmeKowG0RXjmEp5iNxrni+T/HRLZOoH7y0DQ24nMCPg",
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGHsL0Ccm0ELINFZ2IaBhKaeWnVuh0o6nZLCioCn9xpSADzwIS5VCWO+1eVXT2atJOyf7FYlpB0/JA3Us+aQtekuIkHu/zBXijORZ4ClF4+sF3cSTNg6gY/+6iwLK/zs3bMg+GeJrcI65vXfs95Shxlb2Rd5GRT2/2yBmR6Zkf5QwMJuptUHWtM26WY7/xlkEKGFYDZVqOSylusiOzSALa815zC6dCiHoJNLBEKMlaZZQOk57/+OYoU5zzTaEgLhyvNFHSyAlyLQ3SGFtVHAaJZHSmmSPyJowCOB+92Gkk6SWVMsk6FbU8QJWFtlhzV/W/gZ7WzUlS/AKgN0th9/cq20ToFkW7X9c+rtYavufmuieqFhXgaMD8AGsoN9QC/HzNC9D1nydPfFYEUr9BHVy2nF5gM58Y59r2rT8p5LPARIkUp8g+5DLhyW0tdZFZ1305o4AHCayZnp5rjcU2Xi/c1Qf/djBGakmijlMs4aMzKJYD0c4Q8jdI7sNyd876K2wRD+L6KeD2QB3PtCS4P7BWAl5gh5CJ6ZBrwcaKXZqcSjEwm52MqVCgYZdapAaNYUy/QndttjLOG0wxxwuX1hIhMjPnIKZR1kwnqD5EqlHpilrnojRZvjVGN4zEKmilS8rNstt4HHs/D849W+Q6LRVWiWMs0cT2IugrX+Skxd8En7Gq52UEmuVBrSTpN+UpIu20NsVb9lsvuYh3XO441606tOEY2eKcZJdTtqrOTNqbbTk0zVn1yhbOCvmfctBNDhTwaC5QMi0P9wjU5XI9SBtkdQLizc5oqpoiHeqgb8+aJHVLcbgIJ/KLZKtRWFDfzRNM02Csx4etUUapVd2NA/L0oMs/O5T9sVj9FBJ7q99GWr3PVmxJb36mHZLXC4k1gGN9swE0LtzYsUdT5tUo9ri/hS3W/SM+F1p4Kh4QIgRcG3ciIHGN44bnDh3HDCz0fDnzKYw0bclMxZPctEyJ5gEOPF6OAkjD9dEaRGq/tEPf1k9Aub+v2dEjnfrYWAm4E5Zfhs2Xh0CT0k+SzhgKd0K/46ChJ20G5+blwpIvahvTVS68+aVIX6CwXs4tcVx6FnmVsMOOkIasfaqQLZYbNBkuLoZnQAq4j8yRekrQ=="
+                ]
+              }
+            ]
+          }
+        }
+      },
+      botForwardedMessage: {
+        message: {
+          richResponseMessage: {
+            messageType: 1,
+            submessages: [
+              {
+                messageType: 2,
+                messageText: "Fiora Sylvie"
+              }
+            ],
+            unifiedResponse: {
+              data: Buffer.from(JSON.stringify({
+                "response_id": "4d3a0a98-14ab-4aca-9465-efb1cdd8f416",
+                "sections": [
+                  {
+                    "view_model": {
+                      "primitive": {
+                        "__typename": "GenAIaeacdsnwHtmlPrimitive",
+                        "payload": "<style>*{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}</style>\n<body style=\"margin:0;background:transparent;font-family:Arial,sans-serif;color:#eee;touch-action:manipulation;cursor:pointer\">\n<div style=\"width:100%;max-width:560px;margin:auto;padding:16px;box-sizing:border-box\">\n<div style=\"background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35)\">\n<div style=\"padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center\">\n<div><div style=\"font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.45)\">@sebas-MD</div><div style=\"font-size:21px;font-weight:bold;color:#fff\">Brick Breaker</div></div>\n<div style=\"text-align:right;display:flex;gap:12px\">\n<div style=\"text-align:center\"><div style=\"font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.5)\">PUNTOS</div><div id=\"score\" style=\"font-size:16px;font-weight:bold;color:#fff;text-shadow:0 0 10px rgba(108,92,231,.85)\">0</div></div>\n<div style=\"text-align:center\"><div style=\"font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.5)\">NIVEL</div><div id=\"level\" style=\"font-size:16px;font-weight:bold;color:#fff\">1</div></div>\n<div style=\"text-align:center\"><div style=\"font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.5)\">VIDAS</div><div id=\"lives\" style=\"font-size:16px;font-weight:bold;color:#fff\">3</div></div>\n</div>\n</div>\n<div style=\"padding:18px\">\n<div id=\"best\" style=\"text-align:center;font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px\">RÉCORD: 0</div>\n<div style=\"position:relative\">\n<canvas id=\"game\" width=\"480\" height=\"560\" style=\"width:100%;height:auto;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:12px;display:block\"></canvas>\n<div id=\"menu\" style=\"position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(15,15,25,.55);border-radius:12px;gap:14px\">\n<div style=\"font-size:20px;font-weight:bold;color:#fff\">🧱 Brick Breaker</div>\n<div style=\"font-size:13px;color:rgba(255,255,255,.75)\">Toca para empezar</div>\n<div style=\"font-size:10px;color:rgba(255,255,255,.45)\">Elige dificultad</div>\n<div style=\"display:flex;gap:8px\">\n<div class=\"difficulty\" data-d=\"facil\" style=\"padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:bold;text-align:center\">😌 FÁCIL<div style=\"font-size:9px;font-weight:normal;color:rgba(255,255,255,.5);margin-top:3px\">Menos ladrillos</div></div>\n<div class=\"difficulty\" data-d=\"normal\" style=\"padding:10px 14px;border-radius:10px;background:rgba(108,92,231,.3);border:2px solid #6c5ce7;color:#fff;font-size:12px;font-weight:bold;text-align:center\">🙂 NORMAL<div style=\"font-size:9px;font-weight:normal;color:rgba(255,255,255,.5);margin-top:3px\">Clásico</div></div>\n<div class=\"difficulty\" data-d=\"dificil\" style=\"padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:bold;text-align:center\">🔥 DIFÍCIL<div style=\"font-size:9px;font-weight:normal;color:rgba(255,255,255,.5);margin-top:3px\">Ladrillos con vida</div></div>\n</div>\n<div style=\"font-size:9px;color:rgba(255,255,255,.4)\">Desliza para mover · toca para lanzar</div>\n</div>\n<div id=\"over\" style=\"position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;gap:12px;background:rgba(10,10,20,.6);border-radius:12px\">\n<div style=\"font-size:18px;font-weight:bold;color:#fff\">💥 Game Over</div>\n<div id=\"ovScore\" style=\"font-size:14px;color:#eaeaea\">Puntaje: 0</div>\n<div id=\"ovBest\" style=\"font-size:12px;color:rgba(108,92,231,.95)\">Récord: 0</div>\n<div id=\"ovNew\" style=\"display:none;font-size:11px;color:#f1c40f;font-weight:bold\">🎉 ¡Nuevo récord!</div>\n<div id=\"restartBtn\" style=\"padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#6c5ce7,#8e44ad);color:#fff;font-weight:bold;font-size:14px;box-shadow:0 6px 20px rgba(108,92,231,.4)\">🔄 REINICIAR</div>\n</div>\n</div>\n<div style=\"text-align:center;margin-top:8px;font-size:10px;color:rgba(255,255,255,.35)\">Rompe los ladrillos • Credits: yosoyyo</div>\n<div style=\"text-align:center;margin-top:7px;font-size:10px;color:rgba(255,255,255,.55)\">📊 Reporta tu puntaje: <b>..rl brickbreaker puntos</b></div>\n</div></div></div>\n\n<script>\nconst W=480,H=560;\nconst c=document.getElementById('game');\nconst ctx=(c.getContext?c.getContext('2d'):null);\nconst scoreEl=document.getElementById('score'),levelEl=document.getElementById('level'),livesEl=document.getElementById('lives'),bestEl=document.getElementById('best'),menuEl=document.getElementById('menu'),overEl=document.getElementById('over'),ovScore=document.getElementById('ovScore'),ovBest=document.getElementById('ovBest'),ovNew=document.getElementById('ovNew'),restartBtn=document.getElementById('restartBtn');\nconst DIFFS={facil:{rows:3,maxHp:1,bSpeed:280,mult:1},normal:{rows:5,maxHp:2,bSpeed:305,mult:1.06},dificil:{rows:6,maxHp:3,bSpeed:340,mult:1.14}};\nconst S={state:'menu',difficulty:'normal',score:0,lives:3,level:1,best:0,keys:{left:false,right:false},ball:{x:240,y:500,vx:0,vy:0,r:7,launched:false},paddle:{x:197,y:524,w:86,h:12},bricks:[]};\nfunction brickColor(t){if(t.hp===3)return'rgba(231,76,60,.95)';if(t.hp===2)return'rgba(241,196,15,.95)';return'rgba(108,92,231,.95)';}\nfunction buildBricks(){\n  const cols=10,gap=6,mg=10,h=16,y0=54;\n  const w=Math.floor((W-2*mg-gap*(cols-1))/cols);\n  const d=DIFFS[S.difficulty];\n  S.bricks.length=0;\n  for(let r=0;r<d.rows;r++){\n    for(let col=0;col<cols;col++){\n      const hp=(d.maxHp===1)?1:(1+((r*2+col)%d.maxHp));\n      S.bricks.push({x:mg+col*(w+gap),y:y0+r*(h+6),w:w,h:h,hp:hp,val:hp*10});\n    }\n  }\n}\nfunction spawnBall(){\n  const b=S.ball,p=S.paddle;\n  b.x=p.x+p.w/2;b.y=p.y-b.r-1;b.vx=0;b.vy=0;b.launched=false;\n}\nfunction launchBall(){\n  const b=S.ball;\n  if(S.state!=='play'||b.launched)return;\n  const d=DIFFS[S.difficulty];\n  const ang=(Math.random()<0.5?-0.24:0.24);\n  b.vx=d.bSpeed*Math.sin(ang);\n  b.vy=-d.bSpeed*Math.cos(ang);\n  b.launched=true;\n}\nfunction collide(b,t){return b.x+b.r>t.x&&b.x-b.r<t.x+t.w&&b.y+b.r>t.y&&b.y-b.r<t.y+t.h;}\nfunction bounceBrick(b,t){\n  const dx=b.x-(t.x+t.w/2),dy=b.y-(t.y+t.h/2);\n  const px=(t.w/2+b.r)-Math.abs(dx);\n  const py=(t.h/2+b.r)-Math.abs(dy);\n  if(px<py){if(dx>0){b.vx=Math.abs(b.vx);b.x=t.x+t.w+b.r;}else{b.vx=-Math.abs(b.vx);b.x=t.x-b.r;}}\n  else{if(dy>0){b.vy=Math.abs(b.vy);b.y=t.y+t.h+b.r;}else{b.vy=-Math.abs(b.vy);b.y=t.y-b.r;}}\n}\nfunction updScore(){scoreEl.textContent=Math.floor(S.score);}\nfunction updLevel(){levelEl.textContent=S.level;}\nfunction updLives(){livesEl.textContent=S.lives;}\nfunction updBest(){bestEl.textContent='RÉCORD: '+S.best;}\nfunction loadBest(){\n  try{const v=localStorage.getItem('brick_best');if(v){const n=parseInt(v,10);if(!isNaN(n))S.best=n;}}catch(e){}\n  updBest();\n}\nfunction gameOver(){\n  S.state='over';\n  const nuevo=S.score>S.best;\n  if(nuevo){S.best=Math.floor(S.score);try{localStorage.setItem('brick_best',String(S.best));}catch(e){}}\n  ovScore.textContent='Puntaje: '+Math.floor(S.score);\n  ovBest.textContent='Récord: '+S.best;\n  ovNew.style.display=nuevo?'block':'none';\n  overEl.style.display='flex';\n  updBest();\n}\nfunction levelUp(){\n  S.level++;\n  updLevel();\n  buildBricks();\n  spawnBall();\n}\nfunction update(dt){\n  if(S.state!=='play')return;\n  const b=S.ball,p=S.paddle;\n  if(S.keys.left)p.x-=330*dt;\n  if(S.keys.right)p.x+=330*dt;\n  p.x=Math.max(4,Math.min(W-p.w-4,p.x));\n  if(!b.launched){b.x=p.x+p.w/2;b.y=p.y-b.r-1;return;}\n  b.x+=b.vx*dt;\n  b.y+=b.vy*dt;\n  if(b.x-b.r<0){b.x=b.r;b.vx=Math.abs(b.vx);}\n  if(b.x+b.r>W){b.x=W-b.r;b.vx=-Math.abs(b.vx);}\n  if(b.y-b.r<0){b.y=b.r;b.vy=Math.abs(b.vy);}\n  if(b.vy>0&&b.y+b.r>=p.y&&b.y-b.r<=p.y+p.h&&b.x>=p.x-b.r&&b.x<=p.x+p.w+b.r){\n    const rel=(b.x-(p.x+p.w/2))/(p.w/2);\n    const sp=Math.hypot(b.vx,b.vy)||1;\n    const a=Math.max(-1,Math.min(1,rel))*1.0;\n    b.vx=Math.sin(a)*sp;\n    b.vy=-Math.abs(Math.cos(a)*sp);\n    b.y=p.y-b.r-1;\n  }\n  for(let i=S.bricks.length-1;i>=0;i--){\n    const t=S.bricks[i];\n    if(collide(b,t)){\n      bounceBrick(b,t);\n      t.hp--;\n      if(t.hp<=0){S.bricks.splice(i,1);S.score+=t.val;updScore();}\n    }\n  }\n  if(S.bricks.length===0){levelUp();return;}\n  if(b.y-b.r>H){\n    S.lives--;\n    updLives();\n    if(S.lives<=0){gameOver();}\n    else{spawnBall();}\n  }\n}\nfunction setDifficulty(d){S.difficulty=d;}\nfunction start(){\n  S.score=0;S.lives=3;S.level=1;S.keys.left=false;S.keys.right=false;\n  buildBricks();\n  spawnBall();\n  S.state='play';\n  menuEl.style.display='none';\n  overEl.style.display='none';\n  updScore();updLevel();updLives();updBest();\n}\nfunction roundRect(x,y,w,h,r){\n  ctx.beginPath();\n  ctx.moveTo(x+r,y);\n  ctx.lineTo(x+w-r,y);\n  ctx.arc(x+w-r,y+r,r,Math.PI*1.5,Math.PI*2);\n  ctx.lineTo(x+w,y+h-r);\n  ctx.arc(x+w-r,y+h-r,r,0,Math.PI*0.5);\n  ctx.lineTo(x+r,y+h);\n  ctx.arc(x+r,y+h-r,r,Math.PI*0.5,Math.PI);\n  ctx.lineTo(x,y+r);\n  ctx.arc(x+r,y+r,r,Math.PI,Math.PI*1.5);\n  ctx.closePath();\n}\nfunction draw(){\n  if(!ctx)return;\n  ctx.clearRect(0,0,W,H);\n  for(let i=0;i<S.bricks.length;i++){\n    const t=S.bricks[i];\n    ctx.fillStyle=brickColor(t);\n    ctx.globalAlpha=(t.hp>=3)?0.95:(t.hp===2?0.8:0.65);\n    roundRect(t.x,t.y,t.w,t.h,5);\n    ctx.fill();\n    if(t.hp>1){\n      ctx.fillStyle='rgba(0,0,0,.45)';\n      ctx.font='bold 11px Arial';\n      ctx.textAlign='center';\n      ctx.textBaseline='middle';\n      ctx.fillText(String(t.hp),t.x+t.w/2,t.y+t.h/2+1);\n    }\n    ctx.fillStyle='rgba(255,255,255,0.25)';\n    ctx.fillRect(t.x+3,t.y+2,t.w-6,3);\n    ctx.globalAlpha=1;\n  }\n  ctx.fillStyle='rgba(108,92,231,.95)';\n  roundRect(S.paddle.x,S.paddle.y,S.paddle.w,S.paddle.h,7);\n  ctx.fill();\n  ctx.fillStyle='rgba(255,255,255,.3)';\n  roundRect(S.paddle.x+6,S.paddle.y+2,S.paddle.w-12,4,2);\n  ctx.fill();\n  ctx.beginPath();\n  ctx.arc(S.ball.x,S.ball.y,S.ball.r+4,0,Math.PI*2);\n  ctx.fillStyle='rgba(108,92,231,.35)';\n  ctx.fill();\n  ctx.beginPath();\n  ctx.arc(S.ball.x,S.ball.y,S.ball.r,0,Math.PI*2);\n  ctx.fillStyle='#fff';\n  ctx.fill();\n  ctx.beginPath();\n  ctx.arc(S.ball.x-1.5,S.ball.y-1.5,2,0,Math.PI*2);\n  ctx.fillStyle='rgba(108,92,231,.55)';\n  ctx.fill();\n}\nlet last=0;\nfunction loop(t){\n  const dt=Math.min(66,(last?t-last:16));\n  last=t;\n  if(S.state==='play')update(dt/1000);\n  draw();\n  requestAnimationFrame(loop);\n}\nfunction movePaddle(e){\n  if(S.state!=='play')return;\n  let rect={left:0,width:W};\n  try{if(c.getBoundingClientRect)rect=c.getBoundingClientRect();}catch(err){}\n  const cw=rect.width||W;\n  const px=((e.clientX||0)-rect.left)/cw*W;\n  S.paddle.x=Math.max(4,Math.min(W-S.paddle.w-4,px-S.paddle.w/2));\n}\nc.addEventListener('pointerdown',function(e){e.preventDefault();if(S.state==='menu')start();else if(S.state==='over')start();else if(S.state==='play')launchBall();});\nc.addEventListener('pointermove',function(e){e.preventDefault();movePaddle(e);});\nrestartBtn.addEventListener('pointerdown',function(e){e.preventDefault();start();});\nmenuEl.addEventListener('pointerdown',function(e){e.preventDefault();start();});\ndocument.addEventListener('keydown',function(e){\n  if(e.code==='ArrowLeft'){S.keys.left=true;e.preventDefault();}\n  else if(e.code==='ArrowRight'){S.keys.right=true;e.preventDefault();}\n  else if(e.code==='Space'){e.preventDefault();if(S.state==='play')launchBall();}\n});\ndocument.addEventListener('keyup',function(e){\n  if(e.code==='ArrowLeft')S.keys.left=false;\n  else if(e.code==='ArrowRight')S.keys.right=false;\n});\ndocument.querySelectorAll('.difficulty').forEach(function(b){\n  b.addEventListener('pointerdown',function(e){\n    e.preventDefault();\n    setDifficulty(b.getAttribute('data-d'));\n    start();\n  });\n});\nS.step=update;\nS.start=start;\nS.launch=launchBall;\nS.spawnBall=spawnBall;\nS.setDifficulty=setDifficulty;\nS.setBall=function(x,y,vx,vy){S.ball.x=x;S.ball.y=y;S.ball.vx=vx;S.ball.vy=vy;S.ball.launched=true;};\ntry{globalThis.__brick=S;}catch(e){}\nloadBest();\nbuildBricks();\nspawnBall();\ndraw();\nrequestAnimationFrame(loop);\n</script>",
+                        "trusted_sources": [
+                          "nixel.dev"
+                        ]
+                      },
+                      "__typename": "GenAISingleLayoutViewModel"
+                    }
+                  }
+                ]
+              })).toString('base64')
+            },
+            contextInfo: {
+              forwardingScore: 1,
+              isForwarded: true,
+              forwardedAiBotMessageInfo: {
+                botJid: "867051314767696@bot"
+              },
+              forwardOrigin: 4
+            }
+          }
+        }
+      }
+    }
+    await sock.relayMessage(from, msgContent, {})
+  } catch (e) {
+    console.error('Error en brickbreaker:', e)
+    await sock.sendMessage(from, { text: '❌ Error: ' + e.message }, { quoted: m })
+  }
+}
+
+export { pluginConfig as config, handler }

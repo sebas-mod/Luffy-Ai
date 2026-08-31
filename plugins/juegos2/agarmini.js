@@ -1,0 +1,88 @@
+const pluginConfig = {
+  name: "agarmini",
+  alias: ["agar","celula","zona"],
+  category: "juegos2",
+  description: "Agar.io mini: crece comiendo puntos y células enemigas.",
+  usage: "..agarmini",
+  example: "..agarmini",
+  isOwner: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 3,
+  isEnabled: true,
+}
+
+async function handler(m, { sock }) {
+  const from = m.chat
+  try {
+    const msgContent = {
+      messageContextInfo: {
+        deviceListMetadata: {},
+        deviceListMetadataVersion: 2,
+        botMetadata: {
+          messageDisclaimerText: "",
+          botResponseId: "a89338e6-930a-47f9-8b20-b67a80449d9d",
+          verificationMetadata: {
+            proofs: [
+              {
+                version: 1,
+                useCase: 1,
+                signature: "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LVZlcmlmaWNhdGlvblNpZ25hdHVyZS5NZXRhZGF0YeN55YRyad2+ZA==",
+                certificateChain: [
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGEOvtJr968bbpKdZreOTwkk9aPN++XPE60RfuzNLkXXc7LE8BOkJOWRpo2oNXaRJ3uCNJ43HY3A+oetnvHSfcxWqmvvTSrBOI5V1NOD6RMsZ/st1XVPUx83AGps1l5jYBOYzqMNy6un2tToJ2Bt9bXRo29tWLZTu8m7TNY/hISwVpVc5tjSet5U7btPN+dMIx2UvykB1jcbWGsdklheeuz8RXSStNXzeaGvsf1lpZ/ugLE4b2BdmlRNKrY6zLE4qFtRYQoS7axOyQX+4QUyN2m9bfm7urQmn+QRSXJwMO7X5kAJJLbkVGJFt9Pm9VXPwQVrK2aaqiXlpusj+7DfDw00OULmYMmZDTqXM0nUVLxj13z0LhMQoQhhNG8utdUn4uKOFceliTZ/xiP+A54GnX9620641bqw3ctfh9NNXPsTEK8hAUD7FDqUhVntHmoEYYEHq8X1tHHZYP49/f2iezTiE8AUaoZo42/jIWQIKohOGNUib2hEqMkW8NsR8vPihvNuqPc0zKZcl6359YFQdjiiW8kCRD/rsDOr9v1eYLFZKYloFyzFqEgj+jcG/V47elOjShJ5CCPwatXwP6HIloVwtgygFsnOFmCg6Ojoivfoz8Nw1qxFwg5OU2cq/1WbWNELKnaFg4eUWCAIJ/3ZIJsEPkgemZxGhE+hdiNn9dkQYBJs1kx2BxdIkJmQ9vJSKkrMz6lTxZM3IJ9mhmKS6zYdU1ppeAao0/ayte997DQParb/AHLN79g0iW1ad0z8ir5jAl0q3a+UZPTSa4YiSqC2PZ/gfxG5wvL2mKmeKowG0RXjmEp5iNxrni+T/HRLZOoH7y0DQ24nMCPg",
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGHsL0Ccm0ELINFZ2IaBhKaeWnVuh0o6nZLCioCn9xpSADzwIS5VCWO+1eVXT2atJOyf7FYlpB0/JA3Us+aQtekuIkHu/zBXijORZ4ClF4+sF3cSTNg6gY/+6iwLK/zs3bMg+GeJrcI65vXfs95Shxlb2Rd5GRT2/2yBmR6Zkf5QwMJuptUHWtM26WY7/xlkEKGFYDZVqOSylusiOzSALa815zC6dCiHoJNLBEKMlaZZQOk57/+OYoU5zzTaEgLhyvNFHSyAlyLQ3SGFtVHAaJZHSmmSPyJowCOB+92Gkk6SWVMsk6FbU8QJWFtlhzV/W/gZ7WzUlS/AKgN0th9/cq20ToFkW7X9c+rtYavufmuieqFhXgaMD8AGsoN9QC/HzNC9D1nydPfFYEUr9BHVy2nF5gM58Y59r2rT8p5LPARIkUp8g+5DLhyW0tdZFZ1305o4AHCayZnp5rjcU2Xi/c1Qf/djBGakmijlMs4aMzKJYD0c4Q8jdI7sNyd876K2wRD+L6KeD2QB3PtCS4P7BWAl5gh5CJ6ZBrwcaKXZqcSjEwm52MqVCgYZdapAaNYUy/QndttjLOG0wxxwuX1hIhMjPnIKZR1kwnqD5EqlHpilrnojRZvjVGN4zEKmilS8rNstt4HHs/D849W+Q6LRVWiWMs0cT2IugrX+Skxd8En7Gq52UEmuVBrSTpN+UpIu20NsVb9lsvuYh3XO441606tOEY2eKcZJdTtqrOTNqbbTk0zVn1yhbOCvmfctBNDhTwaC5QMi0P9wjU5XI9SBtkdQLizc5oqpoiHeqgb8+aJHVLcbgIJ/KLZKtRWFDfzRNM02Csx4etUUapVd2NA/L0oMs/O5T9sVj9FBJ7q99GWr3PVmxJb36mHZLXC4k1gGN9swE0LtzYsUdT5tUo9ri/hS3W/SM+F1p4Kh4QIgRcG3ciIHGN44bnDh3HDCz0fDnzKYw0bclMxZPctEyJ5gEOPF6OAkjD9dEaRGq/tEPf1k9Aub+v2dEjnfrYWAm4E5Zfhs2Xh0CT0k+SzhgKd0K/46ChJ20G5+blwpIvahvTVS68+aVIX6CwXs4tcVx6FnmVsMOOkIasfaqQLZYbNBkuLoZnQAq4j8yRekrQ=="
+                ]
+              }
+            ]
+          }
+        }
+      },
+      botForwardedMessage: {
+        message: {
+          richResponseMessage: {
+            messageType: 1,
+            submessages: [
+              {
+                messageType: 2,
+                messageText: "Fiora Sylvie"
+              }
+            ],
+            unifiedResponse: {
+              data: Buffer.from(JSON.stringify({
+                "response_id": "4cb0a129-469a-4a5b-b8b6-3ad48361726d",
+                "sections": [
+                  {
+                    "view_model": {
+                      "primitive": {
+                        "__typename": "GenAIaeacdsnwHtmlPrimitive",
+                        "payload": "<style>*{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}</style>\n<body style=\"margin:0;background:transparent;font-family:Arial,sans-serif;color:#eee;touch-action:manipulation;cursor:pointer\">\n\n<div style=\"width:100%;max-width:620px;margin:auto;padding:16px;box-sizing:border-box\">\n<div style=\"background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35)\">\n<div style=\"padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center\">\n<div><div style=\"font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.45)\">@sebas-MD</div><div style=\"font-size:21px;font-weight:bold;color:#fff\">Agar Mini</div></div>\n<div style=\"text-align:right\"><div style=\"font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5)\">MEJOR MASA</div><div id=\"bestEl\" style=\"font-size:18px;font-weight:bold;color:#f1c40f;text-shadow:0 0 10px rgba(241,196,15,.5)\">--</div></div>\n</div>\n<div style=\"padding:16px\">\n<canvas id=\"game\" width=\"400\" height=\"400\" style=\"width:100%;height:auto;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:12px;display:block;touch-action:none\"></canvas>\n<div style=\"display:flex;justify-content:space-between;gap:10px;margin-top:10px\">\n<div style=\"flex:1;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 6px\"><div style=\"font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.45)\">MASA</div><div id=\"massEl\" style=\"font-size:18px;font-weight:bold;color:#6c5ce7\">--</div></div>\n<div style=\"flex:1;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 6px\"><div style=\"font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.45)\">ENEMIGOS</div><div id=\"countEl\" style=\"font-size:18px;font-weight:bold;color:#fff\">--</div></div>\n<div style=\"flex:1;text-align:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 6px\"><div style=\"font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.45)\">TIEMPO</div><div id=\"timeEl\" style=\"font-size:18px;font-weight:bold;color:#fff\">0s</div></div>\n</div>\n<div id=\"menuEl\" style=\"margin-top:12px;text-align:center\">\n<div style=\"font-size:13px;font-weight:bold;color:#fff;margin-bottom:10px\">🟣 Elige la dificultad</div>\n<div style=\"display:flex;gap:8px;justify-content:center\">\n<div id=\"dEasy\" style=\"flex:1;max-width:120px;padding:12px 8px;border-radius:12px;background:rgba(255,255,255,.07);border:2px solid rgba(46,204,113,.4);color:#2ecc71;font-weight:bold;font-size:12px;text-align:center\">😌 FÁCIL</div>\n<div id=\"dNorm\" style=\"flex:1;max-width:120px;padding:12px 8px;border-radius:12px;background:rgba(255,255,255,.07);border:2px solid rgba(108,92,231,.5);color:#8e8aff;font-weight:bold;font-size:12px;text-align:center\">⚖️ NORMAL</div>\n<div id=\"dHard\" style=\"flex:1;max-width:120px;padding:12px 8px;border-radius:12px;background:rgba(255,255,255,.07);border:2px solid rgba(231,76,60,.4);color:#e74c3c;font-weight:bold;font-size:12px;text-align:center\">🔥 DIFÍCIL</div>\n</div>\n</div>\n<div id=\"msg\" style=\"text-align:center;margin-top:10px;font-size:12px;font-weight:bold;color:rgba(255,255,255,.75);min-height:18px\">Crece comiendo puntos y come células más pequeñas</div>\n<div id=\"overEl\" style=\"display:none;margin-top:12px;text-align:center;padding:16px;background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.35);border-radius:12px\">\n<div style=\"font-size:22px;font-weight:bold;color:#ff6b6b;margin-bottom:4px\">💀 ¡Te comieron!</div>\n<div id=\"overInfo\" style=\"font-size:12px;color:rgba(255,255,255,.7);margin-bottom:10px\"></div>\n<div id=\"reBtn\" style=\"padding:12px;border-radius:12px;background:linear-gradient(135deg,#6c5ce7,#8e44ad);color:#fff;font-weight:bold;font-size:14px;text-align:center;box-shadow:0 6px 20px rgba(108,92,231,.4)\">🔁 REINICIAR</div>\n</div>\n<div style=\"text-align:center;margin-top:8px;font-size:10px;color:rgba(255,255,255,.35)\">Crece comiendo puntos • Credits: yosoyyo</div>\n<div style=\"text-align:center;margin-top:7px;font-size:10px;color:rgba(255,255,255,.55)\">📊 Reporta tu puntaje: <b>..rl agarmini puntos</b></div>\n</div></div></div>\n\n\n<script>\n\nconst c=document.getElementById('game'),x=c.getContext('2d');\nconst massEl=document.getElementById('massEl'),countEl=document.getElementById('countEl'),timeEl=document.getElementById('timeEl'),bestEl=document.getElementById('bestEl');\nconst menuEl=document.getElementById('menuEl'),msgEl=document.getElementById('msg'),overEl=document.getElementById('overEl'),overInfo=document.getElementById('overInfo');\nconst dEasy=document.getElementById('dEasy'),dNorm=document.getElementById('dNorm'),dHard=document.getElementById('dHard'),reBtn=document.getElementById('reBtn');\n\nconst W=400,H=400,R0=15,MAXR=150;\nconst DIFFS=[\n  {name:'FACIL',count:5,r0:20,rEnd:24,speed:0.55,food:26,gain:1.6},\n  {name:'NORMAL',count:7,r0:22,rEnd:27,speed:1,food:22,gain:1.4},\n  {name:'DIFICIL',count:10,r0:24,rEnd:30,speed:1.7,food:18,gain:1.2}\n];\nconst FOOD_COLORS=['#e74c3c','#3498db','#2ecc71','#f1c40f','#e67e22','#9b59b6','#1abc9c'];\nconst ENEMY_COLORS=['#e74c3c','#e67e22','#2ecc71','#3498db','#f1c40f','#8e44ad','#1abc9c','#d35400','#16a085','#c0392b'];\n\nlet p={x:W/2,y:H/2,r:R0};\nlet enemies=[],food=[];\nlet drag=null,dragging=false;\nlet gameOver=false,time=0,wave=1,curDiff=1,best=0;\ntry{best=parseInt(localStorage.getItem('agar_best'))||0;}catch(e){best=0;}\n\nfunction circ(cx,cy,r,style){x.fillStyle=style;x.beginPath();x.arc(cx,cy,r,0,7);x.fill();}\nfunction speedOf(r){return Math.max(0.8,3.4-(r-R0)*0.05);}\n\nfunction newFood(){\n  let fx=40,fy=40;\n  for(let t=0;t<12;t++){\n    fx=10+Math.random()*(W-20);fy=10+Math.random()*(H-20);\n    if(Math.hypot(fx-p.x,fy-p.y)>p.r+40)break;\n  }\n  return {x:fx,y:fy,r:2+Math.random()*3,color:FOOD_COLORS[(Math.random()*FOOD_COLORS.length)|0]};\n}\n\nfunction newEnemy(){\n  const D=DIFFS[curDiff];\n  let ex=40,ey=40;\n  for(let t=0;t<12;t++){\n    ex=30+Math.random()*(W-60);ey=30+Math.random()*(H-60);\n    if(Math.hypot(ex-p.x,ey-p.y)>90)break;\n  }\n  const r=Math.min(70,D.r0+Math.random()*(D.rEnd-D.r0)+(wave-1)*2);\n  return {x:ex,y:ey,r:r,speed:(0.5+Math.random()*0.6),color:ENEMY_COLORS[(Math.random()*ENEMY_COLORS.length)|0]};\n}\n\nfunction stepPlayer(dt){\n  if(!drag)return;\n  const dx=drag.x-p.x,dy=drag.y-p.y;\n  const d=Math.hypot(dx,dy);\n  if(d<1)return;\n  const st=Math.min(d,speedOf(p.r)*(dt/16));\n  p.x+=dx/d*st;p.y+=dy/d*st;\n  if(p.x<p.r)p.x=p.r;if(p.x>W-p.r)p.x=W-p.r;\n  if(p.y<p.r)p.y=p.r;if(p.y>H-p.r)p.y=H-p.r;\n}\n\nfunction stepEnemies(dt){\n  const D=DIFFS[curDiff];\n  const f=dt/16;\n  for(const e of enemies){\n    const dx=p.x-e.x,dy=p.y-e.y;\n    const d=Math.hypot(dx,dy)||1;\n    let dirx=dx/d,diry=dy/d;\n    if(e.r<p.r){dirx=-dirx;diry=-diry;}\n    const mv=e.speed*D.speed*f;\n    e.x+=dirx*mv;e.y+=diry*mv;\n    if(e.x<e.r)e.x=e.r;if(e.x>W-e.r)e.x=W-e.r;\n    if(e.y<e.r)e.y=e.r;if(e.y>H-e.r)e.y=H-e.r;\n  }\n}\n\nfunction eatFood(){\n  for(let i=food.length-1;i>=0;i--){\n    const f=food[i];\n    if(Math.hypot(f.x-p.x,f.y-p.y)<p.r+f.r){\n      p.r=Math.min(MAXR,p.r+DIFFS[curDiff].gain);\n      food[i]=newFood();\n    }\n  }\n}\n\nfunction spawnWave(){\n  wave++;\n  const D=DIFFS[curDiff];\n  for(let i=0;i<D.count;i++)enemies.push(newEnemy());\n  msgEl.textContent='🌊 Ola '+wave+' — enemigos más grandes';\n  msgEl.style.color='#8e8aff';\n}\n\nfunction eatEnemies(){\n  for(let i=enemies.length-1;i>=0;i--){\n    const e=enemies[i];\n    const d=Math.hypot(e.x-p.x,e.y-p.y);\n    if(e.r<p.r){\n      if(d<e.r+p.r*0.55){\n        p.r=Math.min(MAXR,p.r+e.r*0.35);\n        enemies.splice(i,1);\n        if(!enemies.length)spawnWave();\n      }\n    }else{\n      if(d<e.r+p.r*0.45){endGame();return;}\n    }\n  }\n}\n\nfunction endGame(){\n  gameOver=true;drag=null;\n  if(p.r>best){best=Math.floor(p.r);try{localStorage.setItem('agar_best',String(best));}catch(e){}}\n  bestEl.textContent=best>0?best:'--';\n  overInfo.textContent='Masa '+Math.floor(p.r)+' · Tiempo '+Math.floor(time)+'s · Récord '+best;\n  overEl.style.display='block';\n  msgEl.textContent='🔵 Pulsa REINICIAR para intentarlo de nuevo';\n  msgEl.style.color='rgba(255,255,255,.75)';\n  draw();\n}\n\nfunction paintHud(){\n  massEl.textContent=Math.floor(p.r);\n  countEl.textContent=enemies.length;\n  timeEl.textContent=Math.floor(time)+'s';\n  bestEl.textContent=best>0?best:'--';\n}\n\nfunction tick(dt){\n  if(dt==null)dt=16;\n  if(gameOver){draw();return;}\n  time+=dt/1000;\n  stepPlayer(dt);\n  stepEnemies(dt);\n  eatFood();\n  eatEnemies();\n  paintHud();\n  draw();\n}\n\nfunction reset(diff){\n  if(typeof diff!=='number')diff=curDiff;\n  curDiff=diff;\n  const D=DIFFS[diff];\n  p.x=W/2;p.y=H/2;p.r=R0;\n  drag=null;dragging=false;gameOver=false;time=0;wave=1;\n  enemies=[];food=[];\n  for(let i=0;i<D.count;i++)enemies.push(newEnemy());\n  for(let i=0;i<D.food;i++)food.push(newFood());\n  window.enemies=enemies;\n  window.food=food;\n  menuEl.style.display='none';\n  overEl.style.display='none';\n  msgEl.textContent='🔵 Mantén el dedo en el lienzo para moverte — come puntos para crecer';\n  msgEl.style.color='rgba(255,255,255,.75)';\n  paintHud();\n  draw();\n}\n\nfunction draw(){\n  x.clearRect(0,0,W,H);\n  x.fillStyle='rgba(15,12,28,.92)';x.fillRect(0,0,W,H);\n  x.fillStyle='rgba(255,255,255,.07)';\n  for(let i=8;i<W;i+=20){\n    for(let j=8;j<H;j+=20){\n      x.beginPath();x.arc(i+((j*7)%10),j+((i*5)%10),1.2,0,7);x.fill();\n    }\n  }\n  for(const f of food){\n    circ(f.x,f.y,f.r,f.color);\n    circ(f.x,f.y,f.r*0.45,'rgba(255,255,255,.5)');\n  }\n  for(const e of enemies){\n    const edible=e.r<p.r;\n    circ(e.x,e.y,e.r,e.color);\n    x.lineWidth=edible?3:2;\n    x.strokeStyle=edible?'rgba(255,255,255,.9)':'rgba(255,255,255,.35)';\n    x.beginPath();x.arc(e.x,e.y,e.r,0,7);x.stroke();\n    circ(e.x-e.r*0.3,e.y-e.r*0.3,e.r*0.3,'rgba(255,255,255,.3)');\n  }\n  circ(p.x,p.y,p.r+8,'rgba(108,92,231,.28)');\n  circ(p.x,p.y,p.r,'#6c5ce7');\n  x.lineWidth=2;\n  x.strokeStyle='rgba(255,255,255,.55)';\n  x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.stroke();\n  circ(p.x-p.r*0.3,p.y-p.r*0.3,p.r*0.32,'rgba(255,255,255,.4)');\n  if(gameOver){\n    x.fillStyle='rgba(0,0,0,.4)';x.fillRect(0,0,W,H);\n    x.fillStyle='#ff6b6b';x.font='bold 20px Arial';x.textAlign='center';x.fillText('💀 TE COMIERON',W/2,H/2-12);\n    x.fillStyle='rgba(255,255,255,.8)';x.font='bold 12px Arial';x.fillText('Masa '+Math.floor(p.r)+' · Tiempo '+Math.floor(time)+'s',W/2,H/2+16);\n  }\n}\n\nfunction pointerPos(ev){\n  const r=c.getBoundingClientRect();\n  return {x:(ev.clientX-r.left)/r.width*W,y:(ev.clientY-r.top)/r.height*H};\n}\n\nc.addEventListener('pointerdown',function(e){e.preventDefault();dragging=true;drag=pointerPos(e);});\nc.addEventListener('pointermove',function(e){if(dragging){e.preventDefault();drag=pointerPos(e);}});\nc.addEventListener('pointerup',function(e){dragging=false;drag=null;});\nc.addEventListener('pointerleave',function(e){dragging=false;drag=null;});\ndEasy.addEventListener('pointerdown',function(e){e.preventDefault();reset(0);});\ndNorm.addEventListener('pointerdown',function(e){e.preventDefault();reset(1);});\ndHard.addEventListener('pointerdown',function(e){e.preventDefault();reset(2);});\nreBtn.addEventListener('pointerdown',function(e){e.preventDefault();reset(curDiff);});\n\nfunction state(){return {p:p,enemies:enemies,food:food,over:gameOver,time:time,best:best,wave:wave,diff:curDiff};}\n\nwindow.player=p;\nwindow.enemies=enemies;\nwindow.food=food;\nwindow._move=function(px,py){drag={x:Math.max(0,Math.min(W,px)),y:Math.max(0,Math.min(H,py))};dragging=true;};\nwindow._tick=tick;\nwindow._reset=reset;\nwindow._state=state;\n\nbestEl.textContent=best>0?best:'--';\npaintHud();\ndraw();\n\n(function loop(){\n  if(!gameOver)tick(16);\n  requestAnimationFrame(loop);\n})(0);\n\n</script>",
+                        "trusted_sources": [
+                          "nixel.dev"
+                        ]
+                      },
+                      "__typename": "GenAISingleLayoutViewModel"
+                    }
+                  }
+                ]
+              })).toString('base64')
+            },
+            contextInfo: {
+              forwardingScore: 1,
+              isForwarded: true,
+              forwardedAiBotMessageInfo: {
+                botJid: "867051314767696@bot"
+              },
+              forwardOrigin: 4
+            }
+          }
+        }
+      }
+    }
+    await sock.relayMessage(from, msgContent, {})
+  } catch (e) {
+    console.error('Error en agarmini:', e)
+    await sock.sendMessage(from, { text: '❌ Error: ' + e.message }, { quoted: m })
+  }
+}
+
+export { pluginConfig as config, handler }

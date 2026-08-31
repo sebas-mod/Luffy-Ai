@@ -1,0 +1,88 @@
+const pluginConfig = {
+  name: "blackjack",
+  alias: ["21","bj","cartas"],
+  category: "juegos2",
+  description: "Blackjack: llega a 21 sin pasarte.",
+  usage: "..blackjack",
+  example: "..blackjack",
+  isOwner: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 3,
+  isEnabled: true,
+}
+
+async function handler(m, { sock }) {
+  const from = m.chat
+  try {
+    const msgContent = {
+      messageContextInfo: {
+        deviceListMetadata: {},
+        deviceListMetadataVersion: 2,
+        botMetadata: {
+          messageDisclaimerText: "",
+          botResponseId: "b2e40280-433c-45d8-9c1a-270bec558860",
+          verificationMetadata: {
+            proofs: [
+              {
+                version: 1,
+                useCase: 1,
+                signature: "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LVZlcmlmaWNhdGlvblNpZ25hdHVyZS5NZXRhZGF0YeN55YRyad2+ZA==",
+                certificateChain: [
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGEOvtJr968bbpKdZreOTwkk9aPN++XPE60RfuzNLkXXc7LE8BOkJOWRpo2oNXaRJ3uCNJ43HY3A+oetnvHSfcxWqmvvTSrBOI5V1NOD6RMsZ/st1XVPUx83AGps1l5jYBOYzqMNy6un2tToJ2Bt9bXRo29tWLZTu8m7TNY/hISwVpVc5tjSet5U7btPN+dMIx2UvykB1jcbWGsdklheeuz8RXSStNXzeaGvsf1lpZ/ugLE4b2BdmlRNKrY6zLE4qFtRYQoS7axOyQX+4QUyN2m9bfm7urQmn+QRSXJwMO7X5kAJJLbkVGJFt9Pm9VXPwQVrK2aaqiXlpusj+7DfDw00OULmYMmZDTqXM0nUVLxj13z0LhMQoQhhNG8utdUn4uKOFceliTZ/xiP+A54GnX9620641bqw3ctfh9NNXPsTEK8hAUD7FDqUhVntHmoEYYEHq8X1tHHZYP49/f2iezTiE8AUaoZo42/jIWQIKohOGNUib2hEqMkW8NsR8vPihvNuqPc0zKZcl6359YFQdjiiW8kCRD/rsDOr9v1eYLFZKYloFyzFqEgj+jcG/V47elOjShJ5CCPwatXwP6HIloVwtgygFsnOFmCg6Ojoivfoz8Nw1qxFwg5OU2cq/1WbWNELKnaFg4eUWCAIJ/3ZIJsEPkgemZxGhE+hdiNn9dkQYBJs1kx2BxdIkJmQ9vJSKkrMz6lTxZM3IJ9mhmKS6zYdU1ppeAao0/ayte997DQParb/AHLN79g0iW1ad0z8ir5jAl0q3a+UZPTSa4YiSqC2PZ/gfxG5wvL2mKmeKowG0RXjmEp5iNxrni+T/HRLZOoH7y0DQ24nMCPg",
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGHsL0Ccm0ELINFZ2IaBhKaeWnVuh0o6nZLCioCn9xpSADzwIS5VCWO+1eVXT2atJOyf7FYlpB0/JA3Us+aQtekuIkHu/zBXijORZ4ClF4+sF3cSTNg6gY/+6iwLK/zs3bMg+GeJrcI65vXfs95Shxlb2Rd5GRT2/2yBmR6Zkf5QwMJuptUHWtM26WY7/xlkEKGFYDZVqOSylusiOzSALa815zC6dCiHoJNLBEKMlaZZQOk57/+OYoU5zzTaEgLhyvNFHSyAlyLQ3SGFtVHAaJZHSmmSPyJowCOB+92Gkk6SWVMsk6FbU8QJWFtlhzV/W/gZ7WzUlS/AKgN0th9/cq20ToFkW7X9c+rtYavufmuieqFhXgaMD8AGsoN9QC/HzNC9D1nydPfFYEUr9BHVy2nF5gM58Y59r2rT8p5LPARIkUp8g+5DLhyW0tdZFZ1305o4AHCayZnp5rjcU2Xi/c1Qf/djBGakmijlMs4aMzKJYD0c4Q8jdI7sNyd876K2wRD+L6KeD2QB3PtCS4P7BWAl5gh5CJ6ZBrwcaKXZqcSjEwm52MqVCgYZdapAaNYUy/QndttjLOG0wxxwuX1hIhMjPnIKZR1kwnqD5EqlHpilrnojRZvjVGN4zEKmilS8rNstt4HHs/D849W+Q6LRVWiWMs0cT2IugrX+Skxd8En7Gq52UEmuVBrSTpN+UpIu20NsVb9lsvuYh3XO441606tOEY2eKcZJdTtqrOTNqbbTk0zVn1yhbOCvmfctBNDhTwaC5QMi0P9wjU5XI9SBtkdQLizc5oqpoiHeqgb8+aJHVLcbgIJ/KLZKtRWFDfzRNM02Csx4etUUapVd2NA/L0oMs/O5T9sVj9FBJ7q99GWr3PVmxJb36mHZLXC4k1gGN9swE0LtzYsUdT5tUo9ri/hS3W/SM+F1p4Kh4QIgRcG3ciIHGN44bnDh3HDCz0fDnzKYw0bclMxZPctEyJ5gEOPF6OAkjD9dEaRGq/tEPf1k9Aub+v2dEjnfrYWAm4E5Zfhs2Xh0CT0k+SzhgKd0K/46ChJ20G5+blwpIvahvTVS68+aVIX6CwXs4tcVx6FnmVsMOOkIasfaqQLZYbNBkuLoZnQAq4j8yRekrQ=="
+                ]
+              }
+            ]
+          }
+        }
+      },
+      botForwardedMessage: {
+        message: {
+          richResponseMessage: {
+            messageType: 1,
+            submessages: [
+              {
+                messageType: 2,
+                messageText: "Fiora Sylvie"
+              }
+            ],
+            unifiedResponse: {
+              data: Buffer.from(JSON.stringify({
+                "response_id": "ebc81b49-a3c7-4baf-969e-9fcde9acdfea",
+                "sections": [
+                  {
+                    "view_model": {
+                      "primitive": {
+                        "__typename": "GenAIaeacdsnwHtmlPrimitive",
+                        "payload": "<style>*{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}</style>\n<body style=\"margin:0;background:transparent;font-family:Arial,sans-serif;color:#eee;touch-action:manipulation;cursor:pointer\">\n\n<div style=\"width:100%;max-width:620px;margin:auto;padding:16px;box-sizing:border-box\">\n<div style=\"background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35)\">\n<div style=\"padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center\">\n<div><div style=\"font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.45)\">@sebas-MD</div><div style=\"font-size:21px;font-weight:bold;color:#fff\">Blackjack</div></div>\n<div style=\"text-align:right\"><div style=\"font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5)\">SALDO</div><div id=\"saldo\" style=\"font-size:18px;font-weight:bold;color:#ffd700\">100</div></div>\n</div>\n<div style=\"padding:18px\">\n<div id=\"dealer\" style=\"text-align:center;margin-bottom:14px\">\n<div style=\"font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5);margin-bottom:8px\">CRUPIER <span id=\"dealerVal\" style=\"color:#ffd700\"></span></div>\n<div id=\"dealerCards\" style=\"display:flex;justify-content:center;gap:8px;min-height:96px;flex-wrap:wrap\"></div>\n</div>\n<div id=\"player\" style=\"text-align:center\">\n<div style=\"font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5);margin-bottom:8px\">TÚ <span id=\"playerVal\" style=\"color:#ffd700\"></span></div>\n<div id=\"playerCards\" style=\"display:flex;justify-content:center;gap:8px;min-height:96px;flex-wrap:wrap\"></div>\n</div>\n<div id=\"msg\" style=\"text-align:center;margin-top:14px;min-height:22px;font-size:15px;font-weight:bold;color:#fff\"></div>\n<div id=\"betRow\" style=\"display:flex;justify-content:center;align-items:center;gap:10px;margin-top:12px\">\n<div id=\"betMinus\" style=\"padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:18px;font-weight:bold;text-align:center\">−</div>\n<div style=\"text-align:center\"><div style=\"font-size:10px;letter-spacing:1px;color:rgba(255,255,255,.5)\">APUESTA</div><div id=\"bet\" style=\"font-size:20px;font-weight:bold;color:#6c5ce7;text-shadow:0 0 10px rgba(108,92,231,.6)\">10</div></div>\n<div id=\"betPlus\" style=\"padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:18px;font-weight:bold;text-align:center\">+</div>\n</div>\n<div id=\"btnRow\" style=\"display:flex;justify-content:center;gap:10px;margin-top:12px\">\n<div id=\"btnP\" style=\"padding:14px 22px;border-radius:12px;background:linear-gradient(135deg,#6c5ce7,#8e44ad);color:#fff;font-weight:bold;font-size:15px;text-align:center;flex:1;max-width:160px;box-shadow:0 6px 20px rgba(108,92,231,.4)\">🃏 PEDIR</div>\n<div id=\"btnS\" style=\"padding:14px 22px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:bold;font-size:15px;text-align:center;flex:1;max-width:160px\">✋ PLANTARSE</div>\n</div>\n<div id=\"btnR\" style=\"display:none;margin-top:12px;padding:14px;border-radius:12px;background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;font-weight:bold;font-size:15px;text-align:center;box-shadow:0 6px 20px rgba(46,204,113,.4)\">🔁 REINICIAR</div>\n</div>\n<div style=\"text-align:center;margin-top:8px;font-size:10px;color:rgba(255,255,255,.35)\">Llega a 21 sin pasarte • Credits: yosoyyo</div>\n<div style=\"text-align:center;margin-top:7px;font-size:10px;color:rgba(255,255,255,.55)\">📊 Reporta tu puntaje: <b>..rl blackjack puntos</b></div>\n</div></div></div>\n\n<script>\n\nconst saldoEl=document.getElementById('saldo'),msgEl=document.getElementById('msg'),betEl=document.getElementById('bet'),dealerCards=document.getElementById('dealerCards'),playerCards=document.getElementById('playerCards'),dealerVal=document.getElementById('dealerVal'),playerVal=document.getElementById('playerVal'),btnP=document.getElementById('btnP'),btnS=document.getElementById('btnS'),btnR=document.getElementById('btnR'),betMinus=document.getElementById('betMinus'),betPlus=document.getElementById('betPlus');\nlet saldo=100,bet=10,deck=[],playerHand=[],dealerHand=[],playerTurn=true,over=false,hiddenCard=null;\nfunction makeDeck(){const p=['♠','♥','♦','♣'],v=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];deck=[];for(const s of p)for(const c of v)deck.push({r:c,s:hue(s)});}\nfunction hue(s){return s==='♥'||s==='♦'?'#e74c3c':'#2c3e50';}\nfunction shuffle(){for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}}\nfunction cardVal(r){if(r==='A')return 11;if(r==='J'||r==='Q'||r==='K')return 10;return parseInt(r);}\nfunction handTotal(h){let total=0,aces=0;for(const c of h){total+=cardVal(c.r);if(c.r==='A')aces++;}while(total>21&&aces>0){total-=10;aces--;}return total;}\nfunction drawCard(){return deck.pop();}\nfunction cardEl(c,hide){const d=document.createElement('div');const isRed=c.s==='#e74c3c';d.style.cssText='width:58px;height:84px;border-radius:10px;background:rgba(255,255,255,.9);border:1px solid rgba(0,0,0,.15);display:flex;flex-direction:column;justify-content:space-between;padding:6px;box-sizing:border-box;box-shadow:0 4px 12px rgba(0,0,0,.3);color:'+(isRed&&!hide?'#e74c3c':'#2c3e50')+';font-weight:bold;font-size:15px;align-items:flex-start';\nif(hide){d.textContent='🂠';d.style.background='linear-gradient(135deg,#6c5ce7,#8e44ad)';d.style.color='#fff';d.style.fontSize='28px';d.style.justifyContent='center';d.style.alignItems='center';}else{d.innerHTML='<div>'+c.r+'</div><div style=\"text-align:center;font-size:30px;margin:auto;color:'+(isRed?'#e74c3c':'#2c3e50')+'\">'+c.s+'</div>';}\nreturn d;}\nfunction displayDealer(){dealerCards.innerHTML='';for(const c of dealerHand){dealerCards.appendChild(cardEl(c,c===hiddenCard));}dealerVal.textContent=handTotal(dealerHand);}\nfunction displayPlayer(){playerCards.innerHTML='';for(const c of playerHand)playerCards.appendChild(cardEl(c,false));playerVal.textContent=handTotal(playerHand);}\nfunction render(){displayPlayer();displayDealer();saldoEl.textContent=saldo;}\nfunction setOver(){over=true;btnP.style.opacity='0.4';btnS.style.opacity='0.4';btnR.style.display='block';}\nfunction clearGame(){hiddenCard=null;playerTurn=true;over=false;playerHand=[];dealerHand=[];msgEl.innerHTML='';btnP.style.opacity='1';btnS.style.opacity='1';btnR.style.display='none';dealerVal.textContent='';}\nfunction deal(){clearGame();makeDeck();shuffle();playerHand=[drawCard(),drawCard()];dealerHand=[drawCard(),drawCard()];hiddenCard=dealerHand[1];dealerVal.textContent=handTotal([dealerHand[0]]);render();checkNatural();}\nfunction playerHasNatural(){return playerHand.length===2&&handTotal(playerHand)===21&&(playerHand[0].r==='A'||playerHand[1].r==='A');}\nfunction checkNatural(){if(playerHasNatural()){const d=handTotal(dealerHand);if(d===21){const win=bet;saldo+=bet;msgEl.innerHTML='<span style=\"color:#e67e22\">🤝 Empate (doble 21)</span>';}else{const win=Math.round(bet*1.5);saldo+=win;msgEl.innerHTML='<span style=\"color:#2ecc71\">⭐ ¡BLACKJACK NATURAL! Ganas '+win+'</span>';}setOver();save();}\nelse if(handTotal(dealerHand)===21){dealerVal.textContent=21;msgEl.innerHTML='<span style=\"color:#e74c3c\">💀 El crupier tiene blackjack</span>';saldo-=bet;setOver();save();}}\nfunction hit(){if(over||!playerTurn)return;playerHand.push(drawCard());render();if(handTotal(playerHand)>21){playerTurn=false;msgEl.innerHTML='<span style=\"color:#e74c3c\">💥 ¡Te pasaste de 21! Pierdes '+bet+'</span>';saldo-=bet;setOver();save();}}\nfunction stand(){if(over||!playerTurn)return;playerTurn=false;hiddenCard=null;let i=0;while(handTotal(dealerHand)<17&&i<50){dealerHand.push(drawCard());i++;}render();resolve();}\nfunction resolve(){const p=handTotal(playerHand),d=handTotal(dealerHand);let txt,win=0;if(d>21){win=bet;txt='<span style=\"color:#2ecc71\">🎉 El crupier se pasó. Ganas '+bet+'</span>';}else if(p>d){win=bet;txt='<span style=\"color:#2ecc71\">🎉 ¡Ganaste! +'+bet+'</span>';}else if(p<d){win=-bet;txt='<span style=\"color:#e74c3c\">😞 Perdiste −'+bet+'</span>';}else{txt='<span style=\"color:#e67e22\">🤝 Empate, recuperas tu apuesta</span>';}saldo+=win;msgEl.innerHTML=txt;setOver();save();}\nfunction save(){const best=parseInt(localStorage.getItem('bj_best')||'0');if(saldo>best)localStorage.setItem('bj_best',String(saldo));}\nfunction restart(){deal();}\nfunction adjBet(n){if(over)return;const nb=bet+n;if(nb>=5&&nb<=100&&nb<=saldo){bet=nb;betEl.textContent=bet;}}\nbtnP.addEventListener('pointerdown',e=>{e.preventDefault();hit();});\nbtnS.addEventListener('pointerdown',e=>{e.preventDefault();stand();});\nbtnR.addEventListener('pointerdown',e=>{e.preventDefault();restart();});\nbetPlus.addEventListener('pointerdown',e=>{e.preventDefault();adjBet(5);});\nbetMinus.addEventListener('pointerdown',e=>{e.preventDefault();adjBet(-5);});\ndocument.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(k==='p')hit();else if(k==='s')stand();else if(k==='n')restart();});\ndeal();\n\n</script>",
+                        "trusted_sources": [
+                          "nixel.dev"
+                        ]
+                      },
+                      "__typename": "GenAISingleLayoutViewModel"
+                    }
+                  }
+                ]
+              })).toString('base64')
+            },
+            contextInfo: {
+              forwardingScore: 1,
+              isForwarded: true,
+              forwardedAiBotMessageInfo: {
+                botJid: "867051314767696@bot"
+              },
+              forwardOrigin: 4
+            }
+          }
+        }
+      }
+    }
+    await sock.relayMessage(from, msgContent, {})
+  } catch (e) {
+    console.error('Error en blackjack:', e)
+    await sock.sendMessage(from, { text: '❌ Error: ' + e.message }, { quoted: m })
+  }
+}
+
+export { pluginConfig as config, handler }

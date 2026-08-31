@@ -1,0 +1,88 @@
+const pluginConfig = {
+  name: "pinball",
+  alias: ["pinballrebelde","pin"],
+  category: "juegos2",
+  description: "Pinball interactivo con flippers, bumpers, 3 vidas y mejor puntuación.",
+  usage: "..pinball",
+  example: "..pinball",
+  isOwner: false,
+  isGroup: false,
+  isPrivate: false,
+  cooldown: 3,
+  isEnabled: true,
+}
+
+async function handler(m, { sock }) {
+  const from = m.chat
+  try {
+    const msgContent = {
+      messageContextInfo: {
+        deviceListMetadata: {},
+        deviceListMetadataVersion: 2,
+        botMetadata: {
+          messageDisclaimerText: "",
+          botResponseId: "f775a6d0-a1c4-4312-8705-4b391c7b243c",
+          verificationMetadata: {
+            proofs: [
+              {
+                version: 1,
+                useCase: 1,
+                signature: "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LVZlcmlmaWNhdGlvblNpZ25hdHVyZS5NZXRhZGF0YeN55YRyad2+ZA==",
+                certificateChain: [
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGEOvtJr968bbpKdZreOTwkk9aPN++XPE60RfuzNLkXXc7LE8BOkJOWRpo2oNXaRJ3uCNJ43HY3A+oetnvHSfcxWqmvvTSrBOI5V1NOD6RMsZ/st1XVPUx83AGps1l5jYBOYzqMNy6un2tToJ2Bt9bXRo29tWLZTu8m7TNY/hISwVpVc5tjSet5U7btPN+dMIx2UvykB1jcbWGsdklheeuz8RXSStNXzeaGvsf1lpZ/ugLE4b2BdmlRNKrY6zLE4qFtRYQoS7axOyQX+4QUyN2m9bfm7urQmn+QRSXJwMO7X5kAJJLbkVGJFt9Pm9VXPwQVrK2aaqiXlpusj+7DfDw00OULmYMmZDTqXM0nUVLxj13z0LhMQoQhhNG8utdUn4uKOFceliTZ/xiP+A54GnX9620641bqw3ctfh9NNXPsTEK8hAUD7FDqUhVntHmoEYYEHq8X1tHHZYP49/f2iezTiE8AUaoZo42/jIWQIKohOGNUib2hEqMkW8NsR8vPihvNuqPc0zKZcl6359YFQdjiiW8kCRD/rsDOr9v1eYLFZKYloFyzFqEgj+jcG/V47elOjShJ5CCPwatXwP6HIloVwtgygFsnOFmCg6Ojoivfoz8Nw1qxFwg5OU2cq/1WbWNELKnaFg4eUWCAIJ/3ZIJsEPkgemZxGhE+hdiNn9dkQYBJs1kx2BxdIkJmQ9vJSKkrMz6lTxZM3IJ9mhmKS6zYdU1ppeAao0/ayte997DQParb/AHLN79g0iW1ad0z8ir5jAl0q3a+UZPTSa4YiSqC2PZ/gfxG5wvL2mKmeKowG0RXjmEp5iNxrni+T/HRLZOoH7y0DQ24nMCPg",
+                  "TklYRUwuTWVzc2FnZUJ1aWxkZXJWNC43LUNlcnRpZmljYXRlQ2hhaW4uTWV0YWRhdGHsL0Ccm0ELINFZ2IaBhKaeWnVuh0o6nZLCioCn9xpSADzwIS5VCWO+1eVXT2atJOyf7FYlpB0/JA3Us+aQtekuIkHu/zBXijORZ4ClF4+sF3cSTNg6gY/+6iwLK/zs3bMg+GeJrcI65vXfs95Shxlb2Rd5GRT2/2yBmR6Zkf5QwMJuptUHWtM26WY7/xlkEKGFYDZVqOSylusiOzSALa815zC6dCiHoJNLBEKMlaZZQOk57/+OYoU5zzTaEgLhyvNFHSyAlyLQ3SGFtVHAaJZHSmmSPyJowCOB+92Gkk6SWVMsk6FbU8QJWFtlhzV/W/gZ7WzUlS/AKgN0th9/cq20ToFkW7X9c+rtYavufmuieqFhXgaMD8AGsoN9QC/HzNC9D1nydPfFYEUr9BHVy2nF5gM58Y59r2rT8p5LPARIkUp8g+5DLhyW0tdZFZ1305o4AHCayZnp5rjcU2Xi/c1Qf/djBGakmijlMs4aMzKJYD0c4Q8jdI7sNyd876K2wRD+L6KeD2QB3PtCS4P7BWAl5gh5CJ6ZBrwcaKXZqcSjEwm52MqVCgYZdapAaNYUy/QndttjLOG0wxxwuX1hIhMjPnIKZR1kwnqD5EqlHpilrnojRZvjVGN4zEKmilS8rNstt4HHs/D849W+Q6LRVWiWMs0cT2IugrX+Skxd8En7Gq52UEmuVBrSTpN+UpIu20NsVb9lsvuYh3XO441606tOEY2eKcZJdTtqrOTNqbbTk0zVn1yhbOCvmfctBNDhTwaC5QMi0P9wjU5XI9SBtkdQLizc5oqpoiHeqgb8+aJHVLcbgIJ/KLZKtRWFDfzRNM02Csx4etUUapVd2NA/L0oMs/O5T9sVj9FBJ7q99GWr3PVmxJb36mHZLXC4k1gGN9swE0LtzYsUdT5tUo9ri/hS3W/SM+F1p4Kh4QIgRcG3ciIHGN44bnDh3HDCz0fDnzKYw0bclMxZPctEyJ5gEOPF6OAkjD9dEaRGq/tEPf1k9Aub+v2dEjnfrYWAm4E5Zfhs2Xh0CT0k+SzhgKd0K/46ChJ20G5+blwpIvahvTVS68+aVIX6CwXs4tcVx6FnmVsMOOkIasfaqQLZYbNBkuLoZnQAq4j8yRekrQ=="
+                ]
+              }
+            ]
+          }
+        }
+      },
+      botForwardedMessage: {
+        message: {
+          richResponseMessage: {
+            messageType: 1,
+            submessages: [
+              {
+                messageType: 2,
+                messageText: "Fiora Sylvie"
+              }
+            ],
+            unifiedResponse: {
+              data: Buffer.from(JSON.stringify({
+                "response_id": "ee312b3e-3e38-4511-8ba2-4f1f7e33c8b9",
+                "sections": [
+                  {
+                    "view_model": {
+                      "primitive": {
+                        "__typename": "GenAIaeacdsnwHtmlPrimitive",
+                        "payload": "<style>*{-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}</style>\n<body style=\"margin:0;background:transparent;font-family:Arial,sans-serif;color:#eee;touch-action:manipulation;cursor:pointer\">\n\n\n<div style=\"width:100%;max-width:620px;margin:auto;padding:16px;box-sizing:border-box\">\n<div style=\"background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.15);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.35)\">\n<div style=\"padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center\">\n<div><div style=\"font-size:11px;letter-spacing:1.5px;color:rgba(255,255,255,.45)\">@sebas-MD</div><div style=\"font-size:21px;font-weight:bold;color:#fff\">Pinball</div></div>\n<div style=\"text-align:right\"><div style=\"font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.5)\">PUNTOS</div><div id=\"score\" style=\"font-size:18px;font-weight:bold;color:#fff;text-shadow:0 0 10px rgba(108,92,231,.85);transition:transform .15s\">0</div><div id=\"best\" style=\"font-size:10px;color:rgba(255,255,255,.4);margin-top:2px\">MEJOR 0</div></div>\n</div>\n<div style=\"padding:18px\">\n<div style=\"display:flex;justify-content:space-between;align-items:center;margin-bottom:10px\">\n<span style=\"font-size:12px;color:rgba(255,255,255,.55)\">Vidas</span>\n<div id=\"lives\" style=\"font-size:15px;letter-spacing:2px;color:#eaeaea\">❤❤❤</div>\n</div>\n<canvas id=\"game\" width=\"360\" height=\"520\" style=\"width:100%;height:auto;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:12px;display:block\"></canvas>\n<div style=\"display:flex;justify-content:space-between;gap:10px;margin-top:10px\">\n<div id=\"lanzar\" style=\"flex:1;padding:12px 10px;border-radius:12px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;font-weight:bold;font-size:14px;text-align:center;box-shadow:0 4px 16px rgba(108,92,231,.45)\">🚀 LANZAR</div>\n<div id=\"reset\" style=\"flex:1;padding:12px 10px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#eaeaea;font-weight:bold;font-size:14px;text-align:center;display:none\">🔄 REINICIAR</div>\n</div>\n<div style=\"text-align:center;margin-top:8px;font-size:10px;color:rgba(255,255,255,.35)\">3 vidas de bola • Credits: yosoyyo</div>\n<div style=\"text-align:center;margin-top:7px;font-size:10px;color:rgba(255,255,255,.55)\">📊 Reporta tu puntaje: <b>..rl pinball puntos</b></div>\n</div></div></div>\n\n\n<script>\n\n(function(){\nvar c=document.getElementById('game'),x=c.getContext('2d');\nvar scoreEl=document.getElementById('score'),bestEl=document.getElementById('best');\nvar livesEl=document.getElementById('lives'),lanzarEl=document.getElementById('lanzar'),resetEl=document.getElementById('reset');\nvar W=c.width,H=c.height,R=9;\nvar GRAV=.28,FRIC=.9975,MAXSPD=9.5;\nvar score=0,best=0,lives=3,state='ready',last=0;\nvar ball={x:W/2,y:H-56,vx:0,vy:0};\nvar ballOnTable=false,drainMsg='',drainT=0,tick=0;\nvar bumpers=[\n {x:96,y:132,r:18,flash:0,hit:false,ph:0},\n {x:W-96,y:132,r:18,flash:0,hit:false,ph:2.1},\n {x:W/2,y:218,r:20,flash:0,hit:false,ph:4.2}\n];\nvar flippers={\n left:{px:80,py:H-28,len:46,ang:-0.28,target:-0.28,active:false},\n right:{px:W-80,py:H-28,len:46,ang:Math.PI+0.28,target:Math.PI+0.28,active:false}\n};\nfunction loadBest(){\n try{var v=localStorage.getItem('pinball_best');if(v&&!isNaN(parseInt(v,10)))return parseInt(v,10)}catch(e){}\n return 0;\n}\nfunction saveBest(v){try{localStorage.setItem('pinball_best',String(Math.floor(v)))}catch(e){}}\nbest=loadBest();\nfunction wallL(y){var t=y/H;return 12+7*Math.sin(t*Math.PI)}\nfunction wallR(y){return W-wallL(y)}\nfunction flipperTip(f){return {x:f.px+Math.cos(f.ang)*f.len,y:f.py+Math.sin(f.ang)*f.len}}\nfunction hud(){\n scoreEl.textContent=String(score);\n bestEl.textContent='MEJOR '+String(best);\n var h='';for(var i=0;i<3;i++)h+=i<lives?'❤':'🖤';livesEl.textContent=h;\n}\nfunction launch(){\n if(state==='over')return;\n resetEl.style.display='none';lanzarEl.style.display='block';\n ball={x:W/2,y:H-56,vx:(Math.random()-.5)*2,vy:-7.2};\n ballOnTable=true;drainMsg='';drainT=0;state='play';hud();\n}\nfunction resetGame(){\n score=0;lives=3;drainMsg='';drainT=0;\n ball={x:W/2,y:H-56,vx:0,vy:0};\n ballOnTable=false;state='ready';\n resetEl.style.display='none';lanzarEl.style.display='block';\n hud();draw();\n}\nfunction drain(){\n lives--;ballOnTable=false;\n if(lives<=0){\n  lives=0;state='over';\n  if(score>best){best=score;saveBest(best)}\n  resetEl.style.display='block';lanzarEl.style.display='none';\n  hud();return;\n }\n state='ready';drainMsg='¡Bola perdida! Quedan '+lives+' vidas';drainT=70;\n ball={x:W/2,y:H-56,vx:0,vy:0};\n hud();\n}\nfunction setFlipper(side,on){\n var f=flippers[side];f.active=on;\n if(side==='left')f.target=on?-1.12:-0.28;else f.target=on?Math.PI+1.12:Math.PI+0.28;\n}\nfunction updateFlippers(dt){\n var s=Math.min(1,.3*dt);\n flippers.left.ang+=(flippers.left.target-flippers.left.ang)*s;\n flippers.right.ang+=(flippers.right.target-flippers.right.ang)*s;\n}\nfunction collideFlippers(){\n for(var k in flippers){\n  var f=flippers[k],tip=flipperTip(f);\n  var dx=tip.x-f.px,dy=tip.y-f.py;\n  var len2=dx*dx+dy*dy;\n  var t=len2>0?((ball.x-f.px)*dx+(ball.y-f.py)*dy)/len2:0;\n  t=Math.max(0,Math.min(1,t));\n  var cx=f.px+t*dx,cy=f.py+t*dy;\n  var nx=ball.x-cx,ny=ball.y-cy;\n  var d=Math.sqrt(nx*nx+ny*ny),minD=R+7;\n  if(d<minD&&d>0){\n   var ux=nx/d,uy=ny/d;\n   ball.x=cx+ux*minD;ball.y=cy+uy*minD;\n   var dot=ball.vx*ux+ball.vy*uy;\n   if(dot<0){ball.vx-=2.05*dot*ux;ball.vy-=2.05*dot*uy}\n   if(f.active){\n    if(k==='left'){ball.vx=Math.max(ball.vx,1)+2.8;ball.vy=-4.6}\n    else{ball.vx=Math.min(ball.vx,-1)-2.8;ball.vy=-4.6}\n   }\n  }\n }\n}\nfunction collideBumpers(){\n for(var i=0;i<bumpers.length;i++){\n  var b=bumpers[i];\n  var dx=ball.x-b.x,dy=ball.y-b.y;\n  var d=Math.sqrt(dx*dx+dy*dy),minD=b.r+R;\n  if(d<minD&&d>0){\n   var nx=dx/d,ny=dy/d;\n   ball.x=b.x-nx*minD;ball.y=b.y-ny*minD;\n   var dot=ball.vx*nx+ball.vy*ny;\n   if(dot<0){ball.vx-=2*dot*nx;ball.vy-=2*dot*ny}\n   ball.vx+=nx*3.4;ball.vy+=ny*3.4;\n   if(!b.hit){\n    b.hit=true;b.flash=1;score+=50;\n    if(score>best){best=score;saveBest(best)}\n    scoreEl.style.transform='scale(1.3)';\n    setTimeout(function(){scoreEl.style.transform='scale(1)'},120);\n    hud();\n   }\n  }else if(b.hit){b.hit=false}\n }\n}\nfunction draw(){\n x.clearRect(0,0,W,H);\n x.fillStyle='rgba(5,5,16,.92)';x.fillRect(0,0,W,H);\n x.strokeStyle='rgba(108,92,231,.12)';x.lineWidth=1;\n for(var i=0;i<W;i+=30){x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.stroke()}\n for(var j=0;j<H;j+=30){x.beginPath();x.moveTo(0,j);x.lineTo(W,j);x.stroke()}\n x.fillStyle='rgba(108,92,231,.25)';\n x.beginPath();x.moveTo(0,0);x.lineTo(wallL(0),0);\n for(var yy=0;yy<=H;yy+=6){x.lineTo(wallL(yy),yy)}\n x.lineTo(0,H);x.closePath();x.fill();\n x.beginPath();x.moveTo(W,0);x.lineTo(wallR(0),0);\n for(var yy2=0;yy2<=H;yy2+=6){x.lineTo(wallR(yy2),yy2)}\n x.lineTo(W,H);x.closePath();x.fill();\n x.strokeStyle='rgba(108,92,231,.35)';x.lineWidth=3;\n x.beginPath();\n for(var yy3=0;yy3<=H;yy3+=6){var wl3=wallL(yy3);if(yy3===0)x.moveTo(wl3,yy3);else x.lineTo(wl3,yy3)}\n x.lineTo(H>0?wallL(H):0,H);x.stroke();\n x.beginPath();\n for(var yy4=0;yy4<=H;yy4+=6){var wr4=wallR(yy4);if(yy4===0)x.moveTo(wr4,yy4);else x.lineTo(wr4,yy4)}\n x.lineTo(H>0?wallR(H):0,H);x.stroke();\n x.fillStyle='rgba(108,92,231,.45)';x.fillRect(0,0,W,6);\n x.fillStyle='rgba(255,90,90,.16)';x.fillRect(wallL(H),H-10,wallR(H)-wallL(H),10);\n for(var bi=0;bi<bumpers.length;bi++){\n  var b=bumpers[bi];\n  var pul=.5+.5*Math.sin(tick*.05+b.ph);\n  var rr=b.r+b.flash*6;\n  x.save();\n  x.shadowColor='rgba(108,92,231,.9)';x.shadowBlur=18+b.flash*10;\n  x.fillStyle='rgba(108,92,231,'+(0.25+pul*.1)+')';\n  x.beginPath();x.arc(b.x,b.y,rr+7,0,Math.PI*2);x.fill();\n  x.fillStyle='#6c5ce7';\n  x.beginPath();x.arc(b.x,b.y,rr,0,Math.PI*2);x.fill();\n  x.fillStyle='rgba(255,255,255,.85)';\n  x.beginPath();x.arc(b.x,b.y,rr*.45,0,Math.PI*2);x.fill();\n  x.restore();\n }\n if(state==='ready'){\n  x.save();\n  x.shadowColor='rgba(255,255,255,.45)';x.shadowBlur=8;\n  x.fillStyle='#eaeaea';x.beginPath();x.arc(ball.x,ball.y,R,0,Math.PI*2);x.fill();\n  x.restore();\n  x.fillStyle='rgba(15,10,30,.55)';x.fillRect(0,0,W,H);\n  x.textAlign='center';\n  x.font='bold 16px Arial';x.fillStyle='#fff';\n  x.fillText('🚀 Presiona LANZAR',W/2,H*0.58);\n  x.font='12px Arial';x.fillStyle='rgba(255,255,255,.6)';\n  x.fillText('Toca izq/der de la mesa para girar las paletas',W/2,H*0.58+22);\n  if(drainMsg&&drainT>0){x.font='bold 14px Arial';x.fillStyle='#ff6b6b';x.fillText(drainMsg,W/2,H*0.52)}\n  x.textAlign='left';\n }\n if(state==='play'){\n  x.save();\n  x.shadowColor='rgba(255,255,255,.55)';x.shadowBlur=10;\n  x.fillStyle='#eaeaea';\n  x.beginPath();x.arc(ball.x,ball.y,R,0,Math.PI*2);x.fill();\n  x.fillStyle='#6c5ce7';\n  x.beginPath();x.arc(ball.x-ball.vx*.4,ball.y-ball.vy*.4,2.6,0,Math.PI*2);x.fill();\n  x.restore();\n }\n function drawFlipper(f){\n  x.save();\n  x.translate(f.px,f.py);x.rotate(f.ang);\n  x.shadowColor='rgba(108,92,231,.9)';x.shadowBlur=14;\n  x.fillStyle=f.active?'#a29bfe':'#6c5ce7';\n  x.beginPath();\n  if(x.roundRect){x.roundRect(0,-6,f.len,12,6)}else{x.fillRect(0,-6,f.len,12)}\n  x.fill();\n  x.fillStyle='rgba(255,255,255,.35)';\n  x.fillRect(3,-2,f.len-6,4);\n  x.restore();\n  x.fillStyle='#2d2357';\n  x.beginPath();x.arc(f.px,f.py,8,0,Math.PI*2);x.fill();\n }\n drawFlipper(flippers.left);\n drawFlipper(flippers.right);\n if(state==='over'){\n  x.fillStyle='rgba(15,10,30,.72)';x.fillRect(0,0,W,H);\n  x.textAlign='center';\n  x.font='bold 26px Arial';x.fillStyle='#fff';\n  x.fillText('GAME OVER',W/2,H*0.40);\n  x.font='15px Arial';x.fillStyle='#eaeaea';\n  x.fillText('Puntos: '+score,W/2,H*0.40+32);\n  x.font='13px Arial';x.fillStyle='rgba(108,92,231,.95)';\n  x.fillText('Mejor: '+best,W/2,H*0.40+56);\n  x.fillStyle='rgba(255,255,255,.6)';x.font='12px Arial';\n  x.fillText('Presiona 🔄 REINICIAR',W/2,H*0.40+82);\n  x.textAlign='left';\n }\n}\nfunction update(dt){\n tick+=dt;\n if(state==='ready'){if(drainT>0)drainT-=dt;draw();return}\n if(state==='over'){draw();return}\n ball.vy+=GRAV*dt;\n ball.vx*=Math.pow(FRIC,dt);\n ball.x+=ball.vx*dt;\n ball.y+=ball.vy*dt;\n var sp=Math.sqrt(ball.vx*ball.vx+ball.vy*ball.vy);\n if(sp>MAXSPD){ball.vx*=MAXSPD/sp;ball.vy*=MAXSPD/sp}\n var wl=wallL(ball.y),wr=wallR(ball.y);\n if(ball.x-R<wl){ball.x=wl+R;if(ball.vx<0)ball.vx=Math.abs(ball.vx)*.85}\n if(ball.x+R>wr){ball.x=wr-R;if(ball.vx>0)ball.vx=-Math.abs(ball.vx)*.85}\n if(ball.y-R<6){ball.y=6+R;if(ball.vy<0)ball.vy=Math.abs(ball.vy)}\n updateFlippers(dt);\n collideFlippers();\n collideBumpers();\n for(var bi2=0;bi2<bumpers.length;bi2++){bumpers[bi2].flash=Math.max(0,bumpers[bi2].flash-.03*dt)}\n if(ball.y-R>H-2&&ballOnTable){drain();draw();return}\n hud();\n draw();\n}\nfunction loop(t){\n if(!last)last=t;\n var dt=Math.min((t-last)/16.67,2);\n last=t;\n update(dt);\n requestAnimationFrame(loop);\n}\nfunction releaseAll(){setFlipper('left',false);setFlipper('right',false)}\nc.addEventListener('pointerdown',function(e){\n e.preventDefault();\n var r=c.getBoundingClientRect();\n var side=(e.clientX-r.left)<W/2?'left':'right';\n setFlipper(side,true);\n});\nc.addEventListener('pointerup',function(e){releaseAll()});\nc.addEventListener('pointercancel',function(e){releaseAll()});\nlanzarEl.addEventListener('click',function(e){launch()});\nresetEl.addEventListener('click',function(e){resetGame();setTimeout(function(){launch()},50)});\nwindow._step=function(){update(1)};\nwindow._setBall=function(x,y,vx,vy){ball={x:x,y:y,vx:vx,vy:vy};ballOnTable=true;state='play';drainMsg=''};\nwindow._tapFlipper=function(side){setFlipper(side,true);updateFlippers(1)};\nwindow._releaseFlipper=function(side){setFlipper(side,false)};\nwindow._launch=function(){launch()};\nwindow._resetGame=function(){resetGame()};\nwindow._drain=function(){drain()};\nwindow._setLives=function(n){lives=n;hud()};\nwindow._state=function(){\n return {\n  score:score,lives:lives,best:best,state:state,\n  x:ball.x,y:ball.y,vx:ball.vx,vy:ball.vy,ballOnTable:ballOnTable,\n  la:flippers.left.active,ra:flippers.right.active,\n  lf:flippers.left.ang,lt:flippers.left.target,\n  rf:flippers.right.ang,rt:flippers.right.target\n };\n};\nhud();\ndraw();\nrequestAnimationFrame(loop);\n})();\n\n</script>",
+                        "trusted_sources": [
+                          "nixel.dev"
+                        ]
+                      },
+                      "__typename": "GenAISingleLayoutViewModel"
+                    }
+                  }
+                ]
+              })).toString('base64')
+            },
+            contextInfo: {
+              forwardingScore: 1,
+              isForwarded: true,
+              forwardedAiBotMessageInfo: {
+                botJid: "867051314767696@bot"
+              },
+              forwardOrigin: 4
+            }
+          }
+        }
+      }
+    }
+    await sock.relayMessage(from, msgContent, {})
+  } catch (e) {
+    console.error('Error en pinball:', e)
+    await sock.sendMessage(from, { text: '❌ Error: ' + e.message }, { quoted: m })
+  }
+}
+
+export { pluginConfig as config, handler }
