@@ -82,6 +82,7 @@ let FormData,
   levelHelper,
   handleBuyerDone,
   registrationAnswerHandler,
+  j2RegAnswerHandler,
   dungeonAnswerHandler,
   kyubigameAnswerHandler,
   family100AnswerHandler,
@@ -126,6 +127,10 @@ try {
 try {
   registrationAnswerHandler = (await import("../plugins/user/registrar.js"))
     .registrationAnswerHandler;
+} catch { }
+try {
+  j2RegAnswerHandler = (await import("../plugins/juegos2/registro.js"))
+    .j2RegAnswerHandler;
 } catch { }
 try {
   dungeonAnswerHandler = (await import("../plugins/game/dungeon.js"))
@@ -1241,6 +1246,15 @@ async function messageHandler(msg, sock, options = {}) {
       }
     } catch (e) {
       console.error("[Handler] Registration answer error:", e.message);
+    }
+
+    try {
+      if (j2RegAnswerHandler) {
+        const handled = await j2RegAnswerHandler(m, sock);
+        if (handled) return;
+      }
+    } catch (e) {
+      console.error("[Handler] Juegos2 registration answer error:", e.message);
     }
 
     try {

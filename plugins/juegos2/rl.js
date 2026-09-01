@@ -116,6 +116,7 @@ async function handler(m, { prefix }) {
             .join('\n')
         return m.reply(
             `📊 *TU RANKING* · @sebas-MD\n\n` +
+            (user.j2Name ? `> 🎮 Jugador: *${user.j2Name}*\n` : '') +
             `> 🥇 Posición global: *#${pos}*\n` +
             `> 🏆 Puntos totales: *${total.toLocaleString()}*\n` +
             `> 🎮 Juegos con puntaje: *${Object.keys(user.scores).length}*\n\n` +
@@ -148,7 +149,8 @@ async function handler(m, { prefix }) {
 
         let user = db.getUser(jid)
         const pushName = (m.pushName || '').trim()
-        const displayName = pushName || (user && user.name && user.name !== 'Unknown' ? user.name : null)
+        const displayName = user && user.j2Name ? user.j2Name :
+            (pushName || (user && user.name && user.name !== 'Unknown' ? user.name : null))
         if (!user) {
             db.setUser(jid, displayName ? { name: displayName } : {})
             user = db.getUser(jid)
@@ -185,7 +187,7 @@ function buildLeaderboard(db, cmd) {
         const u = users[num]
         const total = u.totalScore || 0
         if (total > 0) {
-            const nm = (u.name && u.name !== 'Unknown') ? u.name : num
+            const nm = (u.j2Name || (u.name && u.name !== 'Unknown')) ? (u.j2Name || u.name) : num
             rows.push({ num, name: nm, total, games: Object.keys(u.scores || {}).length })
         }
     }
