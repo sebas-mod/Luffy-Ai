@@ -3,7 +3,7 @@ import {
   DisconnectReason,
   useMultiFileAuthState,
   makeCacheableSignalKeyStore,
-  fetchLatestWaWebVersion,
+  fetchLatestBaileysVersion,
 } from "ourin";
 import { Boom } from "@hapi/boom";
 import pino from "pino";
@@ -257,7 +257,7 @@ async function startConnection(options = {}) {
   }
 
   const { state, saveCreds } = await useMultiFileAuthState(sessionPath);
-  const { version, isLatest } = await fetchLatestWaWebVersion()
+  const { version, isLatest } = await fetchLatestBaileysVersion()
   const usePairingCode = config.session?.usePairingCode === true;
   const pairingNumber = config.session?.pairingNumber || "";
   const sock = makeWASocket({
@@ -320,8 +320,8 @@ async function startConnection(options = {}) {
     colors.logger.info("pairing", `solicitando código para ${phoneNumber}`);
 
     try {
-      await waitForSocketOpen(sock);
-      const code = await sock.requestPairingCode(phoneNumber);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const code = await sock.requestPairingCode(phoneNumber, "LUFFYMD1");
       console.log("");
       console.log(
         colors.createBanner(

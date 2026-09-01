@@ -335,6 +335,41 @@ async function handleGameAnswer(m, sock) {
       if (await suitPlugin.answerHandler(m, sock)) return true;
     }
 
+    const unoPlugin = cachedGamePlugins.get('uno');
+    if (unoPlugin?.answerHandler) {
+      if (await unoPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const ludoPlugin = cachedGamePlugins.get('ludo');
+    if (ludoPlugin?.answerHandler) {
+      if (await ludoPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const dueloPlugin = cachedGamePlugins.get('duelo');
+    if (dueloPlugin?.answerHandler) {
+      if (await dueloPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const pokerPlugin = cachedGamePlugins.get('poker');
+    if (pokerPlugin?.answerHandler) {
+      if (await pokerPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const duetPlugin = cachedGamePlugins.get('duet');
+    if (duetPlugin?.answerHandler) {
+      if (await duetPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const dominoPlugin = cachedGamePlugins.get('domino');
+    if (dominoPlugin?.answerHandler) {
+      if (await dominoPlugin.answerHandler(m, sock)) return true;
+    }
+
+    const ajedrezpvpPlugin = cachedGamePlugins.get('ajedrezpvp');
+    if (ajedrezpvpPlugin?.answerHandler) {
+      if (await ajedrezpvpPlugin.answerHandler(m, sock)) return true;
+    }
+
     if (!hasActiveSession(m.chat)) return false;
 
     const session = getSession(m.chat);
