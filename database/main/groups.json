@@ -4,14 +4,21 @@
     "goodbye": false,
     "leave": false,
     "jid": "120363047284570044@g.us",
-    "name": "Unknown Group",
+    "name": "SINDICATO INTERNACIONAL",
     "antilink": false,
     "antitoxic": false,
     "mute": false,
     "game": true,
     "rpg": true,
     "warnings": [],
-    "chat": {}
+    "chat": {},
+    "chatStats": {
+      "5493585714335@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1788118002424,
+        "name": "Vale Paz Cds"
+      }
+    }
   },
   "120363399156869846@g.us": {
     "chatStats": {
@@ -21,8 +28,8 @@
         "name": "."
       },
       "5493856984435@s.whatsapp.net": {
-        "count": 45,
-        "lastChat": 1787948289111,
+        "count": 54,
+        "lastChat": 1788057269220,
         "name": "Shxx Gavx"
       },
       "51929083675@s.whatsapp.net": {
@@ -131,8 +138,8 @@
         "name": "paiak"
       },
       "51915024973@s.whatsapp.net": {
-        "count": 1,
-        "lastChat": 1787801214007,
+        "count": 2,
+        "lastChat": 1788108252136,
         "name": "Yiro"
       },
       "35034165719110@s.whatsapp.net": {
@@ -141,8 +148,8 @@
         "name": "Enrique Alejandro"
       },
       "5356957902@s.whatsapp.net": {
-        "count": 10,
-        "lastChat": 1787805848392,
+        "count": 24,
+        "lastChat": 1788126342081,
         "name": "ImNecroz :)"
       },
       "5493777292430@s.whatsapp.net": {
@@ -151,8 +158,8 @@
         "name": "Equi"
       },
       "593960347807-1594869219@g.us": {
-        "count": 1,
-        "lastChat": 1787808506803,
+        "count": 2,
+        "lastChat": 1788059410899,
         "name": "Unknown"
       },
       "5217331152098@s.whatsapp.net": {
@@ -166,14 +173,99 @@
         "name": "El ROMANTICO 🌹"
       },
       "34659604123@s.whatsapp.net": {
-        "count": 1,
-        "lastChat": 1787945978565,
+        "count": 3,
+        "lastChat": 1788126341946,
         "name": "tonitrumpet1996"
       },
       "51946845973@s.whatsapp.net": {
         "count": 2,
         "lastChat": 1787947460108,
         "name": "Caramelito Kids"
+      },
+      "573150041209@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1788058331702,
+        "name": "emmanuelblanco1997"
+      },
+      "584146772236@s.whatsapp.net": {
+        "count": 5,
+        "lastChat": 1788059513701,
+        "name": "Thania"
+      },
+      "5219241308164@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788058836124,
+        "name": "Alfonso"
+      },
+      "5219841797142@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788058960859,
+        "name": "Caminante diurno"
+      },
+      "245539169910993@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1788111952019,
+        "name": "AaronB"
+      },
+      "573158692173@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788110726162,
+        "name": "Unknown"
+      },
+      "584129843886@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788115011150,
+        "name": "🪊🎵 ELIEZER MUSIC🎵🪊"
+      },
+      "18498521057@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788110711440,
+        "name": "Jean"
+      },
+      "172464764133439@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788112956005,
+        "name": "Xander"
+      },
+      "584125535663@s.whatsapp.net": {
+        "count": 7,
+        "lastChat": 1788126342568,
+        "name": "The_Josephiff🐼"
+      },
+      "96383998664859@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788116139203,
+        "name": "Jaos Patzi"
+      },
+      "5355603463@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788118314954,
+        "name": "Leroy Sparda"
+      },
+      "51926881006@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788119252732,
+        "name": "Johan"
+      },
+      "5493765125171@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788126571683,
+        "name": "Nahuel Alejandro"
+      },
+      "5491156983770@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1788306290873,
+        "name": "San... Tino xd"
+      },
+      "5491149387816@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1788306183860,
+        "name": "𓆰𝓓𝒜𝓷𝓣ℯ𓆪"
+      },
+      "206223727169604@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788298163091,
+        "name": "Romántico"
       }
     }
   },
@@ -237,6 +329,11 @@
         "count": 2,
         "lastChat": 1787947054641,
         "name": "🔥 NICKO 🔥"
+      },
+      "5493854733095@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1788304623156,
+        "name": "CamiLu"
       }
     }
   },
@@ -245,6 +342,373 @@
     "goodbye": false,
     "leave": false,
     "jid": "120363242309224347@g.us",
+    "name": "avisos / shop’s CyN🛍️✨💸",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {},
+    "chatStats": {
+      "5493854733095@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788127929348,
+        "name": "CamiLu"
+      }
+    }
+  },
+  "120363402172889722@g.us": {
+    "chatStats": {
+      "584160387774@s.whatsapp.net": {
+        "count": 195,
+        "lastChat": 1788305361984,
+        "name": "Van"
+      },
+      "5491138403093@s.whatsapp.net": {
+        "count": 97,
+        "lastChat": 1788303726365,
+        "name": "."
+      }
+    },
+    "jid": "120363402172889722@g.us",
+    "name": "Pruebas",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363432170064423@g.us": {
+    "chatStats": {
+      "5491138403093@s.whatsapp.net": {
+        "count": 271,
+        "lastChat": 1788372136217,
+        "name": "."
+      },
+      "51927238856@s.whatsapp.net": {
+        "count": 62,
+        "lastChat": 1788372163504,
+        "name": "ī'm.criss 🇦🇱"
+      },
+      "573133374132@s.whatsapp.net": {
+        "count": 255,
+        "lastChat": 1788183955448,
+        "name": "Yo Soy Yo"
+      },
+      "5491164431320@s.whatsapp.net": {
+        "count": 49,
+        "lastChat": 1788182626140,
+        "name": "Keni"
+      },
+      "195941541883904@s.whatsapp.net": {
+        "count": 31,
+        "lastChat": 1788181724801,
+        "name": "algo"
+      },
+      "5493865317981@s.whatsapp.net": {
+        "count": 14,
+        "lastChat": 1788182623077,
+        "name": "Waguri Assistant"
+      },
+      "5493856984435@s.whatsapp.net": {
+        "count": 37,
+        "lastChat": 1788372043079,
+        "name": "ShadXz"
+      }
+    },
+    "jid": "120363432170064423@g.us",
+    "name": ".",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363425657849572@g.us": {
+    "chatStats": {
+      "573135652510@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788058486044,
+        "name": "SAM"
+      },
+      "573009757091@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788118967235,
+        "name": "Jhoel  Bula"
+      },
+      "97332616028328@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788058997092,
+        "name": "Angel's"
+      },
+      "5492494052768@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788119092760,
+        "name": "Tommy"
+      },
+      "5491150568262@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788127884378,
+        "name": "."
+      },
+      "584243594710@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788302257751,
+        "name": "Joel Martinez"
+      },
+      "5492996206533@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788304156728,
+        "name": "Sara🌸"
+      }
+    },
+    "jid": "120363425657849572@g.us",
+    "name": "📦EVIDENCIA DE APORTES 📦",
+    "welcome": false,
+    "leave": false,
+    "goodbye": false,
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363420807208542@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363420807208542@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363420274990405@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363420274990405@g.us",
+    "name": "🥷🏻💜Chat general LATIN BROTHER$💜🥷🏻",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {},
+    "chatStats": {
+      "5491125086626@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788305794505,
+        "name": "May"
+      },
+      "584121764648@s.whatsapp.net": {
+        "count": 16,
+        "lastChat": 1788127080595,
+        "name": "الملاك ديفيد"
+      },
+      "573009757091@s.whatsapp.net": {
+        "count": 8,
+        "lastChat": 1788372149989,
+        "name": "Jhoel  Bula"
+      },
+      "97332616028328@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788059230574,
+        "name": "Angel's"
+      },
+      "5218994693168@s.whatsapp.net": {
+        "count": 17,
+        "lastChat": 1788304390283,
+        "name": "Arellano ⁸🌎"
+      },
+      "584241447337@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788106850650,
+        "name": "Visionje"
+      },
+      "584245078533@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788106859815,
+        "name": "Neiyer."
+      },
+      "5215655568322@s.whatsapp.net": {
+        "count": 14,
+        "lastChat": 1788301418381,
+        "name": "Unknown"
+      },
+      "5216568165325@s.whatsapp.net": {
+        "count": 6,
+        "lastChat": 1788107849109,
+        "name": "selene"
+      },
+      "249318757900351@s.whatsapp.net": {
+        "count": 5,
+        "lastChat": 1788184682713,
+        "name": "亗✞𝔻𝕒𝕧𝕚𝕕✞亗"
+      },
+      "5491137790890@s.whatsapp.net": {
+        "count": 8,
+        "lastChat": 1788299445739,
+        "name": "Miica"
+      },
+      "101705563803894@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788109104924,
+        "name": "🎯"
+      },
+      "573229627334@s.whatsapp.net": {
+        "count": 16,
+        "lastChat": 1788300455049,
+        "name": "⚔️ joxe⚔️"
+      },
+      "5493515170294@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788108710563,
+        "name": "Rafael"
+      },
+      "5491138403093@s.whatsapp.net": {
+        "count": 35,
+        "lastChat": 1788303558604,
+        "name": "."
+      },
+      "5492923574014@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1788301508628,
+        "name": "Ariel"
+      },
+      "573018589178@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1788301042204,
+        "name": "🥷🏻🥷🏻🥷🏻"
+      },
+      "5492995504028@s.whatsapp.net": {
+        "count": 4,
+        "lastChat": 1788306010262,
+        "name": "Anita😊"
+      },
+      "5491169817376@s.whatsapp.net": {
+        "count": 13,
+        "lastChat": 1788303568588,
+        "name": "Gonza"
+      },
+      "5492923436041@s.whatsapp.net": {
+        "count": 8,
+        "lastChat": 1788127456998,
+        "name": "Ezee 🇦🇷🏆✨"
+      },
+      "56927590334@s.whatsapp.net": {
+        "count": 9,
+        "lastChat": 1788303450318,
+        "name": "."
+      },
+      "584241392787@s.whatsapp.net": {
+        "count": 6,
+        "lastChat": 1788127125099,
+        "name": "G.O.A.T"
+      },
+      "5493548569721@s.whatsapp.net": {
+        "count": 26,
+        "lastChat": 1788299465353,
+        "name": "Maxi Aguirre"
+      },
+      "584127291274@s.whatsapp.net": {
+        "count": 6,
+        "lastChat": 1788126476004,
+        "name": "𝙅𝙤𝙨𝙪𝙚́༗"
+      },
+      "5492233397734@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788178148232,
+        "name": "Don_Braian"
+      },
+      "584124004370@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788298570186,
+        "name": "Alejandro Zerga"
+      },
+      "5492996206533@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788299442510,
+        "name": "Sara🌸"
+      },
+      "573208978472@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788299958657,
+        "name": "Jesus🥷"
+      },
+      "559584399186@s.whatsapp.net": {
+        "count": 2,
+        "lastChat": 1788301361452,
+        "name": "Javier 👹💯"
+      },
+      "584243594710@s.whatsapp.net": {
+        "count": 3,
+        "lastChat": 1788303438728,
+        "name": "Joel Martinez"
+      },
+      "5491128507690@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788303417371,
+        "name": "Enzo Guzman🐓"
+      },
+      "584262942604@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788372169109,
+        "name": "🕳️🫆😭"
+      }
+    }
+  },
+  "120363425185435695@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363425185435695@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363426068162767@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363426068162767@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363406795118543@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363406795118543@g.us",
     "name": "Unknown Group",
     "antilink": false,
     "antitoxic": false,

@@ -129,7 +129,7 @@ try {
     .registrationAnswerHandler;
 } catch { }
 try {
-  j2RegAnswerHandler = (await import("../plugins/juegos2/registro.js"))
+  j2RegAnswerHandler = (await import("../plugins/game/registro.js"))
     .j2RegAnswerHandler;
 } catch { }
 try {
