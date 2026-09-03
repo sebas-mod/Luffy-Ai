@@ -14,8 +14,8 @@
     "chat": {},
     "chatStats": {
       "5493585714335@s.whatsapp.net": {
-        "count": 3,
-        "lastChat": 1788118002424,
+        "count": 7,
+        "lastChat": 1788392948057,
         "name": "Vale Paz Cds"
       }
     }
@@ -153,8 +153,8 @@
         "name": "ImNecroz :)"
       },
       "5493777292430@s.whatsapp.net": {
-        "count": 9,
-        "lastChat": 1787806792802,
+        "count": 10,
+        "lastChat": 1788392852892,
         "name": "Equi"
       },
       "593960347807-1594869219@g.us": {
@@ -288,14 +288,21 @@
     "goodbye": false,
     "leave": false,
     "jid": "120363121226395041@g.us",
-    "name": "Unknown Group",
+    "name": "🔰⚜️ STREAMFINITY ⚜️🔰",
     "antilink": false,
     "antitoxic": false,
     "mute": false,
     "game": true,
     "rpg": true,
     "warnings": [],
-    "chat": {}
+    "chat": {},
+    "chatStats": {
+      "5492657393903@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788393467456,
+        "name": "Streamfinity"
+      }
+    }
   },
   "120363392680350368@g.us": {
     "welcome": false,
@@ -361,13 +368,13 @@
   "120363402172889722@g.us": {
     "chatStats": {
       "584160387774@s.whatsapp.net": {
-        "count": 195,
-        "lastChat": 1788305361984,
+        "count": 196,
+        "lastChat": 1788395095949,
         "name": "Van"
       },
       "5491138403093@s.whatsapp.net": {
-        "count": 97,
-        "lastChat": 1788303726365,
+        "count": 103,
+        "lastChat": 1788395175337,
         "name": "."
       }
     },
@@ -387,13 +394,13 @@
   "120363432170064423@g.us": {
     "chatStats": {
       "5491138403093@s.whatsapp.net": {
-        "count": 271,
-        "lastChat": 1788372136217,
+        "count": 307,
+        "lastChat": 1788377036621,
         "name": "."
       },
       "51927238856@s.whatsapp.net": {
-        "count": 62,
-        "lastChat": 1788372163504,
+        "count": 97,
+        "lastChat": 1788376984811,
         "name": "ī'm.criss 🇦🇱"
       },
       "573133374132@s.whatsapp.net": {
@@ -402,8 +409,8 @@
         "name": "Yo Soy Yo"
       },
       "5491164431320@s.whatsapp.net": {
-        "count": 49,
-        "lastChat": 1788182626140,
+        "count": 52,
+        "lastChat": 1788374656718,
         "name": "Keni"
       },
       "195941541883904@s.whatsapp.net": {
@@ -417,8 +424,8 @@
         "name": "Waguri Assistant"
       },
       "5493856984435@s.whatsapp.net": {
-        "count": 37,
-        "lastChat": 1788372043079,
+        "count": 42,
+        "lastChat": 1788374179130,
         "name": "ShadXz"
       }
     },
@@ -471,6 +478,11 @@
         "count": 1,
         "lastChat": 1788304156728,
         "name": "Sara🌸"
+      },
+      "573247529106@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788393825972,
+        "name": "🔥OSITA💜"
       }
     },
     "jid": "120363425657849572@g.us",
@@ -580,8 +592,8 @@
         "name": "⚔️ joxe⚔️"
       },
       "5493515170294@s.whatsapp.net": {
-        "count": 1,
-        "lastChat": 1788108710563,
+        "count": 2,
+        "lastChat": 1788373443189,
         "name": "Rafael"
       },
       "5491138403093@s.whatsapp.net": {
@@ -615,8 +627,8 @@
         "name": "Ezee 🇦🇷🏆✨"
       },
       "56927590334@s.whatsapp.net": {
-        "count": 9,
-        "lastChat": 1788303450318,
+        "count": 10,
+        "lastChat": 1788372297752,
         "name": "."
       },
       "584241392787@s.whatsapp.net": {
@@ -673,6 +685,11 @@
         "count": 1,
         "lastChat": 1788372169109,
         "name": "🕳️🫆😭"
+      },
+      "584127546028@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788372349978,
+        "name": "L.M.M.J. Mis Amores"
       }
     }
   },
