@@ -1,5 +1,5 @@
 {
-  "commandsExecuted": 148,
+  "commandsExecuted": 149,
   "command_s": 6,
   "command_cc": 1,
   "command_notif_degradar": 1,
@@ -60,5 +60,6 @@
   "command_simon": 1,
   "command_menugame": 1,
   "command_geometry": 4,
-  "command_p": 1
+  "command_p": 1,
+  "command_update": 1
 }
