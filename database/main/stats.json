@@ -1,5 +1,5 @@
 {
-  "commandsExecuted": 161,
+  "commandsExecuted": 175,
   "command_s": 8,
   "command_cc": 1,
   "command_notif_degradar": 1,
@@ -9,7 +9,7 @@
   "command_getplugin": 2,
   "command_letra": 3,
   "command_idch": 1,
-  "command_menu": 16,
+  "command_menu": 18,
   "command_configurar_menu": 7,
   "command_menu_todo": 2,
   "command_rules": 1,
@@ -62,7 +62,11 @@
   "command_geometry": 4,
   "command_p": 1,
   "command_update": 2,
-  "command_dash": 1,
+  "command_dash": 8,
   "command_ss": 1,
-  "command_revisarpl": 2
+  "command_revisarpl": 3,
+  "command_autodl": 1,
+  "command_gacha": 1,
+  "command_top": 1,
+  "command_agregar_plugin": 1
 }

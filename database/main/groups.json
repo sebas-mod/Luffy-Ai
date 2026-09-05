@@ -383,13 +383,13 @@
   "120363402172889722@g.us": {
     "chatStats": {
       "584160387774@s.whatsapp.net": {
-        "count": 199,
-        "lastChat": 1788628931731,
+        "count": 200,
+        "lastChat": 1788633679570,
         "name": "Van"
       },
       "5491138403093@s.whatsapp.net": {
-        "count": 119,
-        "lastChat": 1788630011658,
+        "count": 131,
+        "lastChat": 1788633768440,
         "name": "."
       }
     },
@@ -409,8 +409,8 @@
   "120363432170064423@g.us": {
     "chatStats": {
       "5491138403093@s.whatsapp.net": {
-        "count": 308,
-        "lastChat": 1788546507377,
+        "count": 310,
+        "lastChat": 1788633402546,
         "name": "."
       },
       "51927238856@s.whatsapp.net": {
@@ -424,8 +424,8 @@
         "name": "Yo Soy Yo"
       },
       "5491164431320@s.whatsapp.net": {
-        "count": 52,
-        "lastChat": 1788374656718,
+        "count": 66,
+        "lastChat": 1788632323250,
         "name": "Keni"
       },
       "195941541883904@s.whatsapp.net": {
@@ -434,13 +434,13 @@
         "name": "algo"
       },
       "5493865317981@s.whatsapp.net": {
-        "count": 14,
-        "lastChat": 1788182623077,
+        "count": 29,
+        "lastChat": 1788632357831,
         "name": "Waguri Assistant"
       },
       "5493856984435@s.whatsapp.net": {
-        "count": 45,
-        "lastChat": 1788546509345,
+        "count": 48,
+        "lastChat": 1788631726173,
         "name": "ShadXz"
       }
     },
@@ -455,7 +455,8 @@
     "game": true,
     "rpg": true,
     "warnings": [],
-    "chat": {}
+    "chat": {},
+    "autodl": true
   },
   "120363425657849572@g.us": {
     "chatStats": {
@@ -513,6 +514,11 @@
         "count": 1,
         "lastChat": 1788630220460,
         "name": "Gonza"
+      },
+      "584220185894@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788633711108,
+        "name": "ملاك\nAngel ✌🏽"
       }
     },
     "jid": "120363425657849572@g.us",

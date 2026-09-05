@@ -76,7 +76,7 @@ async function handler(m, { sock }) {
     }
   }
 
-  txt += `\n> Para reportar tu puntaje al ranking global usa:\n> \`${prefix}rl <juego> <puntos>\`\n> Escribe \`${prefix}rl\` para ver el leaderboard.\n`;
+  txt += `\n> Para reportar tu puntaje al ranking con tu record usa:\n> \`${prefix}rl <juego> <token>\`\n> Escribe \`${prefix}rl\` para ver el leaderboard.\n>`;
 
   txt += `\n> ${config.bot?.name || "Luffy-Ai"} • ${toSmallCaps("game")}`;
 

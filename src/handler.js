@@ -1705,6 +1705,32 @@ async function messageHandler(msg, sock, options = {}) {
       }
     }
 
+    const isGamePlugin = plugin.config.category?.toLowerCase() === "game";
+
+    if (
+      isGamePlugin &&
+      !plugin.config.skipRegistration &&
+      !["registroj2", "desregistroj2", "registro", "desregistro"].includes(
+        String(plugin.config.name || "").toLowerCase(),
+      )
+    ) {
+      const gameUser = db.getUser(m.sender);
+      if (
+        !m.isOwner &&
+        !m.isPartner &&
+        !gameUser?.j2Registered
+      ) {
+        await m.reply(
+          `🎮 *REGISTRO DE JUEGOS OBLIGATORIO*\n\n` +
+          `Para jugar necesitas tener tu registro de juegos activo, nakama!\n\n` +
+          `> Escribe: \`${m.prefix}registroj2\`\n\n` +
+          `*Responde las preguntas del bot (nombre, edad, género) hasta terminar.*\n` +
+          `Solo se pide una vez.`,
+        );
+        return;
+      }
+    }
+
     const user = db.getUser(m.sender);
 
     if (!m.isOwner && !m.isPartner && plugin.config.cooldown > 0) {
