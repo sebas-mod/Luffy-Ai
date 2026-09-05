@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'configurar_nombre',
-    alias: ["configurar_nombre_bot"],
+    alias: [],
     category: 'tools',
     description: 'Cambia el nombre de perfil del bot',
     usage: '.configurar_nombre <nuevo nombre>',

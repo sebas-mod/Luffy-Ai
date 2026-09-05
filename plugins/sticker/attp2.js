@@ -4,7 +4,7 @@ import te from '../../src/lib/luffy-error.js';
 
 const pluginConfig = {
   name: 'attp2',
-  alias: ['attp2'],
+  alias: [],
   category: 'sticker',
   description: 'Crea sticker de texto animado',
   usage: '.attp2 <texto>',

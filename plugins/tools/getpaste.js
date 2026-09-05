@@ -3,7 +3,7 @@ import * as timeHelper from '../../src/lib/luffy-time.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
   name: "getpaste",
-  alias: ["pastebin", "getpb"],
+  alias: ["getpb"],
   category: "tools",
   description: "Obtiene el contenido de Pastebin",
   usage: ".getpaste <enlace de pastebin>",

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const pluginConfig = {
     name: 'stalkdc',
-    alias: ["discordstalk", "ver_dc", "stalkdiscord"],
+    alias: ["ver_dc"],
     category: 'stalker',
     description: 'Saber la información del perfil de una cuenta de Discord por ID',
     usage: '.stalkdc <id_discord>',

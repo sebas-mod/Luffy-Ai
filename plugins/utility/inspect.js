@@ -1,7 +1,7 @@
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'inspect',
-    alias: ["ver_grupo", "ver_canal", "groupinfo", "channelinfo"],
+    alias: ["ver_grupo", "ver_canal"],
     category: 'utility',
     description: 'Inspecciona la información de un grupo o canal de WhatsApp mediante un enlace',
     usage: '.inspect <enlace del grupo/canal>',

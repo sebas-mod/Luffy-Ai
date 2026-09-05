@@ -66,22 +66,11 @@ function stopWatchdog() {
   }
 }
 
-function waitForSocketOpen(sock, timeoutMs = 20000) {
-  return new Promise((resolve) => {
-    const ws = sock?.ws;
-    if (!ws || ws.readyState === 1) return resolve();
-    const start = Date.now();
-    const timer = setInterval(() => {
-      if (sock?.ws?.readyState === 1) {
-        clearInterval(timer);
-        resolve();
-      } else if (Date.now() - start > timeoutMs) {
-        clearInterval(timer);
-        resolve();
-      }
-    }, 100);
-  });
-}
+import sharp from "sharp";
+try {
+  sharp.cache({ memory: 20, files: 0, items: 50 });
+  sharp.concurrency(1);
+} catch {}
 
 const store = {
   messages: new Map(),
@@ -93,13 +82,19 @@ const store = {
       for (const msg of msgs) {
         const jid = msg.key?.remoteJid;
         if (!jid) continue;
-        if (!this.messages.has(jid)) this.messages.set(jid, new Map());
+        if (!this.messages.has(jid)) {
+          if (this.messages.size >= 300) {
+            const firstKey = this.messages.keys().next().value;
+            if (firstKey) this.messages.delete(firstKey);
+          }
+          this.messages.set(jid, new Map());
+        }
         const chat = this.messages.get(jid);
         if (msg.key?.id) {
           chat.set(msg.key.id, msg);
-          if (chat.size > 200) {
+          if (chat.size > 30) {
             const keys = [...chat.keys()];
-            for (let i = 0; i < keys.length - 150; i++) chat.delete(keys[i]);
+            for (let i = 0; i < keys.length - 25; i++) chat.delete(keys[i]);
           }
         }
         if (msg.key?.participantAlt && msg.key?.participant) {
@@ -117,25 +112,44 @@ const store = {
           }
         }
         if (!this.chats.has(jid)) {
+          if (this.chats.size >= 300) {
+            const firstChatKey = this.chats.keys().next().value;
+            if (firstChatKey) this.chats.delete(firstChatKey);
+          }
           this.chats.set(jid, { id: jid });
         }
         if (msg.pushName && jid.endsWith("@s.whatsapp.net")) {
+          const contactKeys = Object.keys(this.contacts);
+          if (contactKeys.length >= 500) {
+            delete this.contacts[contactKeys[0]];
+          }
           this.contacts[jid] = { ...this.contacts[jid], notify: msg.pushName };
         }
       }
     });
     ev.on("chats.upsert", (chats) => {
       for (const chat of chats) {
-        if (chat.id) this.chats.set(chat.id, chat);
+        if (chat.id) {
+          if (this.chats.size >= 300 && !this.chats.has(chat.id)) {
+            const firstChatKey = this.chats.keys().next().value;
+            if (firstChatKey) this.chats.delete(firstChatKey);
+          }
+          this.chats.set(chat.id, chat);
+        }
       }
     });
     ev.on("contacts.upsert", (contacts) => {
       for (const contact of contacts) {
-        if (contact.id)
+        if (contact.id) {
+          const contactKeys = Object.keys(this.contacts);
+          if (contactKeys.length >= 500 && !this.contacts[contact.id]) {
+            delete this.contacts[contactKeys[0]];
+          }
           this.contacts[contact.id] = {
             ...this.contacts[contact.id],
             ...contact,
           };
+        }
       }
     });
   },

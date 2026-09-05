@@ -4,7 +4,7 @@ import { isLid, lidToJid, resolveAnyLidToJid } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'ban',
-    alias: ['addban', 'block'],
+    alias: ['addban'],
     category: 'owner',
     description: 'Bloquear al usuario para que no use el bot',
     usage: '.ban <numero/@tag>',

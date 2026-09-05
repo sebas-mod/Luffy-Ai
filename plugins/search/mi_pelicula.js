@@ -4,7 +4,7 @@ import te from "../../src/lib/luffy-error.js"
 
 const pluginConfig = {
     name: "mi_pelicula",
-    alias: ["movie", "buscar_pelicula"],
+    alias: ["buscar_pelicula"],
     category: "search",
     description: "Busca y muestra información completa de películas de Movieku con enlaces de descarga en varias calidades",
     usage: ".mi_pelicula <judul film>",

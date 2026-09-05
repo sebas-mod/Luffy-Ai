@@ -2,7 +2,7 @@ import config from '../../config.js'
 import { getDatabase } from '../../src/lib/luffy-database.js'
 const pluginConfig = {
     name: 'automedia',
-    alias: ['automedi', 'am'],
+    alias: ['automedi'],
     category: 'group',
     description: 'Activa o desactiva auto media - convierte automáticamente stickers en imagen/video',
     usage: '.automedia on/off',

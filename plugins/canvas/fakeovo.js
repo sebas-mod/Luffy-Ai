@@ -3,7 +3,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "fakeovo",
-    alias: ["fake-ovo", "fakeovo"],
+    alias: ["fake-ovo"],
     category: "canvas",
     description: "Crea canvas de fake ovo",
     usage: ".fake-ovo <numero>",

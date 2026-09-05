@@ -1,7 +1,7 @@
 import { getDatabase } from "../../src/lib/luffy-database.js";
 const pluginConfig = {
   name: "topchat",
-  alias: ["chatstat", "chatstats", "totalchat", "leaderboard"],
+  alias: ["chatstat", "chatstats", "totalchat"],
   category: "group",
   description: "Ver las estadísticas de chat de los miembros del grupo",
   usage: ".topchat",

@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: "simon",
-  alias: ["simon","simondice"],
+  alias: ["simondice"],
   category: "game",
   description: "Juego de memoria Simón.",
   usage: "..simon",

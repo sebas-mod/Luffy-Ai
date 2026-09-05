@@ -2,7 +2,7 @@ import { findParticipantByNumber } from "../../src/lib/luffy-lid.js";
 
 const pluginConfig = {
     name: "guardar_contacto",
-    alias: ["sv", "svkontak"],
+    alias: ["svkontak"],
     category: "owner",
     description: "Guardar contactos de grupos en un archivo VCF",
     usage: ".guardar_contacto <nombre>",

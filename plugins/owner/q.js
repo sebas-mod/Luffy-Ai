@@ -2,7 +2,7 @@ import util from 'util'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'q',
-    alias: ['quoted', 'inspect'],
+    alias: ['quoted'],
     category: 'tools',
     description: 'Obtener el JSON del mensaje citado',
     usage: '.q (responder mensaje)',

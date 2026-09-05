@@ -8,7 +8,7 @@ import te from "../../src/lib/luffy-error.js";
 import { tiktokSearchVideo } from "../../src/scraper/tiktoksearch.js";
 const pluginConfig = {
   name: "ttsearch",
-  alias: ["tiktoksearch", "tts", "searchtiktok"],
+  alias: ["tiktoksearch", "searchtiktok"],
   category: "search",
   description: "Busca videos de TikTok",
   usage: ".ttsearch <query>",

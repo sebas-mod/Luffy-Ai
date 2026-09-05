@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const pluginConfig = {
   name: "buscar_funcion",
-  alias: ["searchcmd", "findcmd", "buscar", "search", "cf"],
+  alias: ["searchcmd", "findcmd", "search"],
   category: "main",
   description: "Busca funciones por palabra clave con detalle completo",
   usage: ".buscar_funcion <palabra_clave>",

@@ -2,7 +2,7 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
-  name: ["tod", "spin", "putarbotol"],
+  name: ["tod", "putarbotol"],
   alias: ["todgame"],
   category: "fun",
   description: "¡Juega a Verdad o Reto con tus amigos del grupo al instante!",

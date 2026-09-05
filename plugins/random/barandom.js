@@ -3,7 +3,7 @@ import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'barandom',
-    alias: ['bluearchive', 'ba'],
+    alias: ['bluearchive'],
     category: 'random',
     description: 'Imagen aleatoria de Blue Archive',
     usage: '.barandom',

@@ -11,7 +11,7 @@ import { registrarProgreso } from "./core/missions.js";
 
 const pluginConfig = {
   name: "explorar",
-  alias: ["explorar_pg", "aventura", "buscar"],
+  alias: ["explorar_pg", "aventura"],
   category: "rpg",
   description: "🧭 Explorar tu isla en busca de aventuras",
   usage: ".explorar",

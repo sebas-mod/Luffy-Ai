@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: "hundirlaflota",
-  alias: ["barcos","batalla","warship"],
+  alias: ["barcos", "warship"],
   category: "game",
   description: "Hundir la flota (Battleship) contra el bot. Tableros 10x10, por turnos, detector de hundidos.",
   usage: "..hundirlaflota",

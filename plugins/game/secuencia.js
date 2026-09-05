@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: "secuencia",
-  alias: ["musical","notas","memoria"],
+  alias: ["musical", "notas"],
   category: "game",
   description: "Secuencia musical: repite la melodía creciente estilo Simón.",
   usage: "..secuencia",

@@ -6,7 +6,7 @@ import { getDevice } from "ourin";
 
 const pluginConfig = {
   name: "profile",
-  alias: ["me", "profil", "myprofile", "my", "stats"],
+  alias: ["me", "profil", "myprofile", "my"],
   category: "user",
   description: "Ver el perfil del usuario con estadísticas RPG",
   usage: ".profile [@user]",

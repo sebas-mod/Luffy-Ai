@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: "pinball",
-  alias: ["pinballrebelde","pin"],
+  alias: ["pinballrebelde"],
   category: "game",
   description: "Pinball interactivo con flippers, bumpers, 3 vidas y mejor puntuación.",
   usage: "..pinball",

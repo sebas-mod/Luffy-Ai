@@ -3,7 +3,7 @@ import FormData from "form-data";
 
 const pluginConfig = {
   name: "applemusic-canvas",
-  alias: ["applemusic", "applecanvas"],
+  alias: ["applecanvas"],
   category: "canvas",
   description: "Crea una imagen de reproductor Apple Music desde una foto",
   usage: ".applemusic-canvas título | artista (responde imagen)",

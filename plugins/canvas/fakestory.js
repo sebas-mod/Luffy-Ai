@@ -9,7 +9,7 @@ import path from "path";
 import te from "../../src/lib/luffy-error.js";
 const pluginConfig = {
   name: "fakestory",
-  alias: ["fstory", "fakeinsta", "igstory"],
+  alias: ["fstory", "fakeinsta"],
   category: "canvas",
   description: "Crea una historia falsa de Instagram con 2 imágenes",
   usage: ".fakestory <nombre>",

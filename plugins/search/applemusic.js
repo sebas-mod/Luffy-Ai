@@ -2,7 +2,7 @@ import axios from 'axios'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'applemusic',
-    alias: ['amusic', 'am'],
+    alias: ['amusic'],
     category: 'search',
     description: 'Buscar canciones en Apple Music',
     usage: '.applemusic <query>',

@@ -5,7 +5,7 @@ import { removeBerrys, getBerrys } from "./core/economy.js";
 
 const pluginConfig = {
   name: "barco",
-  alias: ["barcos", "navio", "ship"],
+  alias: ["navio"],
   category: "rpg",
   description: "🚢 Comprar o ver tu barco",
   usage: ".barco [comprar <id>|listar]",

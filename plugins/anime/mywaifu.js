@@ -4,7 +4,7 @@ import { generateWAMessageFromContent, generateWAMessage, jidNormalizedUser } fr
 
 const pluginConfig = {
     name: 'mywaifu',
-    alias: ['waifuim', 'waifu', 'waifus'],
+    alias: ['waifuim', 'waifus'],
     category: 'anime',
     description: 'Busca un conjunto de imágenes de waifu (SFW / NSFW) usando la API de Waifu.im.',
     usage: '.mywaifu sfw\nO\n.mywaifu nsfw',

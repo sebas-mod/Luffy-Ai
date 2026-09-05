@@ -24,7 +24,7 @@ const configLayout = {
 
 const pluginConfig = {
     name: 'igstoryimg',
-    alias: ['igstory', 'igstoryimage'],
+    alias: ['igstoryimage'],
     category: 'canvas',
     description: 'Crea una imagen con diseño de Instagram Story a partir de tu imagen.',
     usage: '.igstoryimg [envía/responde imagen]',

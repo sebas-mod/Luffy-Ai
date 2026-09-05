@@ -1,6 +1,6 @@
 const pluginConfig = {
   name: "pokerdados",
-  alias: ["poker","yahtzee","dados"],
+  alias: ["poker", "yahtzee"],
   category: "game",
   description: "Póker de dados: conserva y relanza para la mejor jugada.",
   usage: "..pokerdados",

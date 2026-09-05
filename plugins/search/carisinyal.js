@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 
 const pluginConfig = {
     name: 'especs_movil',
-    alias: ['spek', 'spesifikasi'],
+    alias: ['spek'],
     category: 'search',
     description: 'Busca especificaciones completas de smartphones desde Carisinyal.',
     usage: '.especs_movil <nombre del móvil>',

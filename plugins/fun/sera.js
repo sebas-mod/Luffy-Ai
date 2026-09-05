@@ -1,6 +1,6 @@
 const pluginConfig = {
     name: 'sera',
-    alias: ['sera_cierto', 'verdad'],
+    alias: ['sera_cierto'],
     category: 'fun',
     description: 'Pregunta al bot si algo es así',
     usage: '.sera <pregunta>',

@@ -3,7 +3,7 @@ import { generateWAMessageFromContent } from "ourin";
 
 const pluginConfig = {
   name: "test",
-  alias: ["poll"],
+  alias: [],
   category: "test",
   description: "Menú de encuesta interactivo de prueba",
   usage: ".poll",

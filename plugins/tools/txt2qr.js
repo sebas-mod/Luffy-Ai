@@ -2,7 +2,7 @@ import axios from 'axios'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'txt2qr',
-    alias: ['texttoqr', 'qrcode', 'qrcreate'],
+    alias: ['texttoqr', 'qrcreate'],
     category: 'tools',
     description: 'Genera un código QR a partir de un texto',
     usage: '.txt2qr <texto>',

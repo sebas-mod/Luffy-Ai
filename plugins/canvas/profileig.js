@@ -5,7 +5,7 @@ import { downloadMediaMessage } from "ourin";
 
 const pluginConfig = {
     name: "profileig",
-    alias: ["profileig", "igprofile"],
+    alias: ["igprofile"],
     category: "canvas",
     description: "Crea canvas de perfil de Instagram",
     usage: ".profileig <seguidores>|<siguiendo>|<publicaciones>|<usuario>|<bio>|<verif(true/false)>",

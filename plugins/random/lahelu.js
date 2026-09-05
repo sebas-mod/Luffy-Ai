@@ -3,7 +3,7 @@ import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'lahelu',
-    alias: ['randommeme'],
+    alias: [],
     category: 'random',
     description: 'Meme aleatorio de Lahelu',
     usage: '.lahelu',

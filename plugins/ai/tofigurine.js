@@ -2,7 +2,7 @@ import te from '../../src/lib/luffy-error.js'
 import { live3d } from '../../src/scraper/seaart.js'
 const pluginConfig = {
     name: 'tofigure3',
-    alias: ['figurine3', 'tofigure3', 'bandai3', 'actionfigure3'],
+    alias: ['figurine3', 'bandai3', 'actionfigure3'],
     category: 'ai',
     description: 'Convertir la foto a action figure/figurine de colección',
     usage: '.tofigure3 (responde/envía imagen)',

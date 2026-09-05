@@ -6,7 +6,7 @@ import te from '../../src/lib/luffy-error.js'
 const NEOXR_APIKEY = config.APIkey?.neoxr || 'Milik-Bot-Luffy-Ai'
 const pluginConfig = {
     name: 'attp',
-    alias: ['attp2', 'attp3'],
+    alias: ['attp3'],
     category: 'sticker',
     description: 'Crea sticker de texto animado',
     usage: '.attp <texto>',

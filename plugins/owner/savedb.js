@@ -5,7 +5,7 @@ import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'savedb',
-    alias: ['backupdb', 'downloaddb', 'getdb'],
+    alias: ['downloaddb', 'getdb'],
     category: 'owner',
     description: 'Descargar el archivo de la base de datos',
     usage: '.savedb',

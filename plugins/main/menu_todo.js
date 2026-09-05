@@ -19,7 +19,7 @@ import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
 import { GOTHIC, toFancy, divider, gothicCenter, headerBlock } from "../../src/lib/luffy-gothic.js";
 const pluginConfig = {
   name: "menu_todo",
-  alias: ["allmenu", "fullmenu", "am", "allcommand", "todo", "menucompleto"],
+  alias: ["allmenu", "fullmenu", "allcommand", "todo", "menucompleto"],
   category: "main",
   description: "Mostrar todos los comandos completos por categoría",
   usage: ".allmenu",

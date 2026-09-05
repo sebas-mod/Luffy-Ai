@@ -5,7 +5,7 @@ import config from "../../config.js";
 
 const pluginConfig = {
   name: "sroast",
-  alias: ["stickerroast", "sroast"],
+  alias: ["stickerroast"],
   category: "canvas",
   description: "Crea sticker de roast",
   usage: ".sroast <texto1> | <texto2> | <texto3>",

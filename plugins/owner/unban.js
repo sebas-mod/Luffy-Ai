@@ -4,7 +4,7 @@ import { isLid, lidToJid } from '../../src/lib/luffy-lid.js'
 
 const pluginConfig = {
     name: 'unban',
-    alias: ['delban', 'unblock'],
+    alias: ['delban'],
     category: 'owner',
     description: 'Eliminar un usuario de la lista de baneados',
     usage: '.unban <número/@tag>',

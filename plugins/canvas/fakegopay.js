@@ -3,7 +3,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "fakegopay",
-    alias: ["fakegopay"],
+    alias: [],
     category: "canvas",
     description: "Crea canvas de fake gopay",
     usage: ".fakegopay <saldo>|<moneda>|<usado>|<mes>",

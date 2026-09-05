@@ -6,7 +6,7 @@ import { registrarProgreso } from "./core/missions.js";
 
 const pluginConfig = {
   name: "personajes",
-  alias: ["gacha", "solicitar_pirata", "personaje"],
+  alias: ["solicitar_pirata", "personaje"],
   category: "rpg",
   description: "🎴 Tirar del gacha de personajes",
   usage: ".personajes [listar]",

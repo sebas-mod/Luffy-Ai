@@ -5,7 +5,7 @@ import path from 'path'
 const pluginConfig = {
     name: 'leaderboard',
     alias: [
-        'lb', 'top', 'leaderboard', 'ranking', 'rank', 'topglobal',
+        'lb', 'ranking', 'rank', 'topglobal',
         'topbalance', 'topbal', 'topberry', 'topcoin', 'topmoney',
         'toplimit', 'topexp', 'topxp', 'toplevel',
         'topcarne', 'topenergy'

@@ -11,7 +11,7 @@ import { addExifToWebp } from "../../src/lib/luffy-exif.js";
 
 const pluginConfig = {
   name: "stickerpack",
-  alias: ["sp", "stickersearch", "searchsticker"],
+  alias: ["stickersearch", "searchsticker"],
   category: "sticker",
   description: "Busca y envía sticker packs",
   usage: ".stickerpack <query>",

@@ -6,7 +6,7 @@ const NEOXR_APIKEY = config.APIkey?.neoxr || "Milik-Bot-Luffy-Ai";
 
 const pluginConfig = {
   name: "discordstalk",
-  alias: ["dcstalk", "dsstalk", "stalkdc", "stalkdiscord"],
+  alias: ["dcstalk", "dsstalk", "stalkdiscord"],
   category: "stalker",
   description: "Buscar perfil de Discord por User ID",
   usage: ".discordstalk <userid>",

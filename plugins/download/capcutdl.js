@@ -3,7 +3,7 @@ import te from '../../src/lib/luffy-error.js'
 import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
 const pluginConfig = {
     name: 'capcutdl',
-    alias: ['ccdl', 'capcut', 'cc'],
+    alias: ['ccdl', 'capcut'],
     category: 'download',
     description: 'Descarga videos de CapCut',
     usage: '.ccdl <url>',

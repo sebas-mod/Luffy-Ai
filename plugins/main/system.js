@@ -5,7 +5,7 @@ import { promisify } from 'util'
 const execAsync = promisify(exec);
 const pluginConfig = {
     name: 'system',
-    alias: ['ram', 'cpu', 'disk', 'ping'],
+    alias: ['ram', 'cpu', 'disk'],
     category: 'main',
     description: 'Mostrar información del sistema (RAM, CPU, Disco, Latencia)',
     usage: '.ram | .cpu | .disk | .ping',

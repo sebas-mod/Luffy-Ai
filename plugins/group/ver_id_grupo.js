@@ -6,7 +6,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "ver_id_grupo",
-  alias: ["idgc", "idgrup", "groupid", "infogc", "groupinfo"],
+  alias: ["idgc", "idgrup", "groupid"],
   category: "group",
   description: "Ver el ID e información completa del grupo",
   usage: ".ver_id_grupo [link grup]",

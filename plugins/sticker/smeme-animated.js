@@ -6,7 +6,7 @@ import { downloadMediaMessage, getContentType } from 'ourin';
 
 const pluginConfig = {
   name: 'smeme-animated',
-  alias: ['smeme-animated', 'smemevid'],
+  alias: [],
   category: 'sticker',
   description: 'Crea sticker meme animado',
   usage: '.smeme-animated <texto_superior>|<texto_inferior>',

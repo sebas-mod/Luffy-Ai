@@ -3,7 +3,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
   name: "izen",
-  alias: ["skiplink", "izen"],
+  alias: ["skiplink"],
   category: "tools",
   description: "Omite enlaces cortos / skiplink usando izen",
   usage: ".izen link",

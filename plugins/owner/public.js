@@ -7,7 +7,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 import te from '../../src/lib/luffy-error.js'
 const pluginConfig = {
     name: 'public',
-    alias: ['publicmode', 'open'],
+    alias: ['publicmode'],
     category: 'owner',
     description: 'Activar el modo public (todos los usuarios pueden acceder)',
     usage: '.public',

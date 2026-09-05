@@ -3,7 +3,7 @@ import te from "../../src/lib/luffy-error.js";
 
 const pluginConfig = {
     name: "paptt",
-    alias: ["paptt"],
+    alias: [],
     category: "nsfw",
     description: "Paptt NSFW aleatorio",
     usage: ".paptt",

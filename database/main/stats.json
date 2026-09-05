@@ -1,6 +1,6 @@
 {
-  "commandsExecuted": 155,
-  "command_s": 6,
+  "commandsExecuted": 161,
+  "command_s": 8,
   "command_cc": 1,
   "command_notif_degradar": 1,
   "command_demote": 1,
@@ -41,7 +41,7 @@
   "command_crucigrama": 2,
   "command_dados": 2,
   "command_dadosuerte": 2,
-  "command_geometrydash": 8,
+  "command_geometrydash": 9,
   "command_laberinto": 2,
   "command_blackjack": 1,
   "command_brickbreaker": 1,
@@ -58,10 +58,11 @@
   "command_slot": 1,
   "command_verdadorreto": 1,
   "command_simon": 1,
-  "command_menugame": 2,
+  "command_menugame": 3,
   "command_geometry": 4,
   "command_p": 1,
   "command_update": 2,
   "command_dash": 1,
-  "command_ss": 1
+  "command_ss": 1,
+  "command_revisarpl": 2
 }
