@@ -1710,7 +1710,7 @@ async function messageHandler(msg, sock, options = {}) {
     if (
       isGamePlugin &&
       !plugin.config.skipRegistration &&
-      !["registroj2", "desregistroj2", "registro", "desregistro"].includes(
+      !["registroj2", "desregistroj2", "cancelar_registroj2", "registro", "desregistro"].includes(
         String(plugin.config.name || "").toLowerCase(),
       )
     ) {

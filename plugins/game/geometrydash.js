@@ -647,6 +647,8 @@ function reset() {
 
     grounded: true,
 
+    jumps: 2,
+
     squash: 1,
 
     rot: 0
@@ -713,12 +715,19 @@ function jump() {
     return;
   }
 
-  if (!player.grounded)
+  if (player.jumps <= 0)
     return;
+
+  player.jumps--;
+
+  const air =
+    !player.grounded;
 
   player.grounded = false;
 
-  player.vy = -13.6;
+  player.vy = air
+    ? -12.2
+    : -13.6;
 
   player.squash = .78;
 
@@ -845,14 +854,7 @@ function spawnPattern() {
 
   if (level < 2) {
 
-    if (r < .72) {
-
-      addSpike(
-        W + 15,
-        28
-      );
-
-    } else {
+    if (r < .5) {
 
       addSpike(
         W + 15,
@@ -862,15 +864,34 @@ function spawnPattern() {
       addSpike(
         W + 49,
         28
+      );
+
+    }
+
+    else if (r < .8) {
+
+      addSpike(
+        W + 15,
+        28
+      );
+
+    }
+
+    else {
+
+      addBlock(
+        W + 15,
+        30,
+        32
       );
 
     }
 
   }
 
-  else if (level < 4) {
+  else if (level < 3) {
 
-    if (r < .42) {
+    if (r < .34) {
 
       addSpike(
         W + 15,
@@ -878,18 +899,48 @@ function spawnPattern() {
       );
 
       addSpike(
-        W + 49,
+        W + 50,
+        28
+      );
+
+      addSpike(
+        W + 85,
         28
       );
 
     }
 
-    else if (r < .72) {
+    else if (r < .6) {
 
       addBlock(
         W + 15,
         30,
         32
+      );
+
+      addSpike(
+        W + 58,
+        28
+      );
+
+    }
+
+    else if (r < .84) {
+
+      addSpike(
+        W + 15,
+        30
+      );
+
+      addBlock(
+        W + 50,
+        30,
+        32
+      );
+
+      addSpike(
+        W + 95,
+        28
       );
 
     }
@@ -902,22 +953,23 @@ function spawnPattern() {
       );
 
       addSpike(
-        W + 52,
+        W + 49,
         30
       );
 
-      addSpike(
-        W + 89,
-        30
+      addBlock(
+        W + 88,
+        30,
+        28
       );
 
     }
 
   }
 
-  else {
+  else if (level < 5) {
 
-    if (r < .28) {
+    if (r < .3) {
 
       addSpike(
         W + 15,
@@ -936,22 +988,27 @@ function spawnPattern() {
 
     }
 
-    else if (r < .52) {
+    else if (r < .55) {
 
       addBlock(
         W + 15,
         30,
-        35
+        30
       );
 
       addSpike(
-        W + 62,
-        27
+        W + 56,
+        28
+      );
+
+      addSpike(
+        W + 93,
+        28
       );
 
     }
 
-    else if (r < .76) {
+    else if (r < .78) {
 
       addSpike(
         W + 15,
@@ -965,8 +1022,8 @@ function spawnPattern() {
 
       addBlock(
         W + 88,
-        30,
-        30
+        28,
+        26
       );
 
     }
@@ -976,13 +1033,122 @@ function spawnPattern() {
       addBlock(
         W + 15,
         27,
-        40
+        38
       );
 
       addBlock(
         W + 58,
         27,
-        40
+        38
+      );
+
+      addSpike(
+        W + 103,
+        28
+      );
+
+    }
+
+  }
+
+  else {
+
+    if (r < .26) {
+
+      addSpike(
+        W + 15,
+        29
+      );
+
+      addSpike(
+        W + 50,
+        29
+      );
+
+      addSpike(
+        W + 85,
+        29
+      );
+
+      addBlock(
+        W + 122,
+        28,
+        28
+      );
+
+    }
+
+    else if (r < .52) {
+
+      addBlock(
+        W + 15,
+        30,
+        28
+      );
+
+      addSpike(
+        W + 54,
+        28
+      );
+
+      addBlock(
+        W + 88,
+        27,
+        28
+      );
+
+      addSpike(
+        W + 127,
+        27
+      );
+
+    }
+
+    else if (r < .78) {
+
+      addSpike(
+        W + 15,
+        30
+      );
+
+      addSpike(
+        W + 50,
+        30
+      );
+
+      addBlock(
+        W + 88,
+        28,
+        34
+      );
+
+      addSpike(
+        W + 133,
+        28
+      );
+
+    }
+
+    else {
+
+      addSpike(
+        W + 15,
+        30
+      );
+
+      addSpike(
+        W + 50,
+        30
+      );
+
+      addSpike(
+        W + 85,
+        30
+      );
+
+      addSpike(
+        W + 120,
+        30
       );
 
     }
@@ -1914,7 +2080,12 @@ function update(t) {
       player.vy * dt;
 
     player.vy +=
-      1.0 * dt;
+      (
+        player.vy < 0
+          ? 0.95
+          : 1.75
+      ) *
+      dt;
 
 
     // Suelo
@@ -1950,6 +2121,9 @@ function update(t) {
 
       player.grounded =
         true;
+
+      player.jumps =
+        2;
     }
 
 
@@ -1998,18 +2172,30 @@ function update(t) {
 
       const difficulty =
         Math.min(
-          34,
-          level * 3
+          66,
+          level * 6 +
+            Math.floor(
+              score / 250
+            )
         );
 
 
       spawnTimer =
-        Math.max(
-          40,
-          72 - difficulty
-        ) +
-        Math.random() *
-          24;
+        (
+          level >= 3 &&
+          Math.random() <
+            .3
+        )
+          ? 5 +
+              Math.random() *
+                9
+          : Math.max(
+              26,
+              54 -
+                level * 4
+            ) +
+              Math.random() *
+                9;
 
     }
 
@@ -2087,9 +2273,16 @@ function update(t) {
     speed =
       Math.min(
         13.5,
-        6.8 +
-          score *
-            .0014
+        Math.max(
+          6.9 +
+            Math.floor(
+              score / 500
+            ) *
+              .45,
+          6.8 +
+            score *
+              .0014
+        )
       );
 
 
@@ -2390,7 +2583,7 @@ requestAnimationFrame(
 );
 
 })();
-(function(){function _sl(k){try{return localStorage.getItem(k)}catch(e){return null}}function _scan(){try{var o=localStorage,out=[],i;for(i=0;i<o.length;i++){var k=o.key(i);if(k&&String(k).toLowerCase().indexOf('_best')>-1){var v=parseInt(o.getItem(k),10);if(!isNaN(v)&&v>0)out.push(v)}}return out}catch(e){return[]}}function _best(){var a=_scan(),b=0,i;for(i=0;i<a.length;i++)if(a[i]>b)b=a[i];return b}function _b64u(s){var b='',i;for(i=0;i<s.length;i++)b+=String.fromCharCode(s.charCodeAt(i)&0xff);return btoa(b).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}function _hex(ab){var u=new Uint8Array(ab),h='',i;for(i=0;i<u.length;i++)h+=('0'+u[i].toString(16)).slice(-2);return h}function _tok(cb){var game='dash',score=_best();if(!game||!score)return;if(!(window.crypto&&window.crypto.subtle))return;var p=game+':'+score+':'+Math.random().toString(36).slice(2,10)+':'+Date.now();window.crypto.subtle.importKey('raw',new TextEncoder().encode('luffy-j2-scores::𝐋𝐮𝐟𝐟𝐲 𝐀𝐢::3.3::Sebas-MD'),{name:'HMAC',hash:'SHA-256'},false,['sign']).then(function(k){return window.crypto.subtle.sign('HMAC',k,new TextEncoder().encode(p))}).then(function(sig){cb('dash',score,p,_hex(sig).slice(0,32))}).catch(function(){})}function _ui(){var best=_best();if(!best)return;var wrap=document.createElement('div'),btn=document.createElement('div'),box=document.createElement('div');wrap.style.cssText='position:fixed;right:12px;bottom:12px;z-index:99999;display:flex;flex-direction:column;gap:6px;align-items:flex-end;font-family:Arial,sans-serif';btn.textContent='🏆 Enviar puntaje ('+best+')';btn.style.cssText='padding:10px 14px;border-radius:12px;background:linear-gradient(135deg,#6c5ce7,#8e44ad);color:#fff;font-weight:bold;font-size:13px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:pointer';box.style.cssText='display:none;max-width:72vw;background:rgba(15,15,20,.92);border:1px solid rgba(108,92,231,.5);border-radius:10px;padding:8px 10px;color:#dbe3ff;font-size:10px;word-break:break-all;text-align:left';btn.addEventListener('click',function(){if(box.style.display==='block'){box.style.display='none';return}_tok(function(gn,sc,p,sig){var cmd='.rl '+gn+' '+_b64u(p)+'.'+sig;box.textContent='Envía este comando al bot: '+cmd;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(cmd)}box.style.display='block'})});wrap.appendChild(box);wrap.appendChild(btn);document.body.appendChild(wrap)}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',_ui)}else{_ui()}})();</script>
+</script>
 
 </body>
 </html>`

@@ -54,7 +54,9 @@ function clearJ2Session(jid) {
   const key = getSessionKey(jid);
   const session = global.j2RegSessions?.[key];
   if (session?.timeout) clearTimeout(session.timeout);
+  const existed = !!global.j2RegSessions?.[key];
   delete global.j2RegSessions[key];
+  return existed;
 }
 
 function createJ2Session(jid, chatJid) {
@@ -166,12 +168,7 @@ async function handler(m, { sock }) {
 
 async function j2RegAnswerHandler(m, sock) {
   if (!m.body) return false;
-  if (m.isCommand) {
-    const cmd = String(m.command || "").toLowerCase();
-    if (["registroj2", "regjuegos", "registrar_juego", "regjuego", "regj2"].includes(cmd)) {
-      return false;
-    }
-  }
+  if (m.isCommand) return false;
   if (m.chat?.startsWith("status@")) return false;
 
   const key = getSessionKey(m.sender);
