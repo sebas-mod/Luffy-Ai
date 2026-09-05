@@ -266,6 +266,11 @@
         "count": 1,
         "lastChat": 1788298163091,
         "name": "Romántico"
+      },
+      "5363681928@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788395785234,
+        "name": "Abel"
       }
     }
   },
@@ -373,8 +378,8 @@
         "name": "Van"
       },
       "5491138403093@s.whatsapp.net": {
-        "count": 103,
-        "lastChat": 1788395175337,
+        "count": 108,
+        "lastChat": 1788545186969,
         "name": "."
       }
     },
@@ -394,13 +399,13 @@
   "120363432170064423@g.us": {
     "chatStats": {
       "5491138403093@s.whatsapp.net": {
-        "count": 307,
-        "lastChat": 1788377036621,
+        "count": 308,
+        "lastChat": 1788546507377,
         "name": "."
       },
       "51927238856@s.whatsapp.net": {
-        "count": 97,
-        "lastChat": 1788376984811,
+        "count": 102,
+        "lastChat": 1788395871874,
         "name": "ī'm.criss 🇦🇱"
       },
       "573133374132@s.whatsapp.net": {
@@ -424,8 +429,8 @@
         "name": "Waguri Assistant"
       },
       "5493856984435@s.whatsapp.net": {
-        "count": 42,
-        "lastChat": 1788374179130,
+        "count": 45,
+        "lastChat": 1788546509345,
         "name": "ShadXz"
       }
     },
@@ -483,6 +488,11 @@
         "count": 1,
         "lastChat": 1788393825972,
         "name": "🔥OSITA💜"
+      },
+      "5491138403093@s.whatsapp.net": {
+        "count": 1,
+        "lastChat": 1788545186553,
+        "name": "."
       }
     },
     "jid": "120363425657849572@g.us",
@@ -537,8 +547,8 @@
         "name": "الملاك ديفيد"
       },
       "573009757091@s.whatsapp.net": {
-        "count": 8,
-        "lastChat": 1788372149989,
+        "count": 10,
+        "lastChat": 1788545172219,
         "name": "Jhoel  Bula"
       },
       "97332616028328@s.whatsapp.net": {
@@ -587,8 +597,8 @@
         "name": "🎯"
       },
       "573229627334@s.whatsapp.net": {
-        "count": 16,
-        "lastChat": 1788300455049,
+        "count": 19,
+        "lastChat": 1788396327332,
         "name": "⚔️ joxe⚔️"
       },
       "5493515170294@s.whatsapp.net": {
@@ -597,8 +607,8 @@
         "name": "Rafael"
       },
       "5491138403093@s.whatsapp.net": {
-        "count": 35,
-        "lastChat": 1788303558604,
+        "count": 41,
+        "lastChat": 1788545186917,
         "name": "."
       },
       "5492923574014@s.whatsapp.net": {
@@ -726,6 +736,20 @@
     "goodbye": false,
     "leave": false,
     "jid": "120363406795118543@g.us",
+    "name": "Unknown Group",
+    "antilink": false,
+    "antitoxic": false,
+    "mute": false,
+    "game": true,
+    "rpg": true,
+    "warnings": [],
+    "chat": {}
+  },
+  "120363403198523948@g.us": {
+    "welcome": false,
+    "goodbye": false,
+    "leave": false,
+    "jid": "120363403198523948@g.us",
     "name": "Unknown Group",
     "antilink": false,
     "antitoxic": false,

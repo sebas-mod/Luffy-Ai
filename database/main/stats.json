@@ -1,5 +1,5 @@
 {
-  "commandsExecuted": 149,
+  "commandsExecuted": 155,
   "command_s": 6,
   "command_cc": 1,
   "command_notif_degradar": 1,
@@ -9,7 +9,7 @@
   "command_getplugin": 2,
   "command_letra": 3,
   "command_idch": 1,
-  "command_menu": 15,
+  "command_menu": 16,
   "command_configurar_menu": 7,
   "command_menu_todo": 2,
   "command_rules": 1,
@@ -25,7 +25,7 @@
   "command_ahorcado": 5,
   "command_damero": 4,
   "command_adivinabandera": 5,
-  "command_dino": 2,
+  "command_dino": 3,
   "command_tateti": 4,
   "command_buscaminas": 2,
   "command_carrera": 2,
@@ -58,8 +58,10 @@
   "command_slot": 1,
   "command_verdadorreto": 1,
   "command_simon": 1,
-  "command_menugame": 1,
+  "command_menugame": 2,
   "command_geometry": 4,
   "command_p": 1,
-  "command_update": 1
+  "command_update": 2,
+  "command_dash": 1,
+  "command_ss": 1
 }

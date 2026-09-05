@@ -267,6 +267,7 @@ async function buildMenuText(
   txt += `║ ▸ *Autor* : ${botConfig.bot?.developer || "Owner"}\n`;
   txt += `║ ▸ *Versión* : ${botConfig.bot?.version || "1.2.0"}\n`;
   txt += `║ ▸ *Script* : Luffy-Ai x ${botConfig.bot?.developer || "Owner"}\n`;
+  txt += `║ ▸ *Comandos* : ${totalCommands} total\n`;
   txt += `║ ▸ *Activo* : ${uptimeFormatted}\n`;
   txt += `╚═══════════════════╝\n\n`;
   const categoryOrder = [
@@ -1534,6 +1535,7 @@ Disfruta su uso, pirata. ⚓`
         g += divider(GOTHIC.DIV3);
 
         g += `☽ ♰ *${toFancy("COMANDOS")}* ♰ ☾\n`;
+        g += `♱ Total: *${totalCmds} ${totalCmds === 1 ? "comando" : "comandos"}* ♱\n\n`;
         for (const cat of categories.sorted) {
           g += `┏━ ♰─【*${toFancy(cat.cat.toUpperCase())}*】─♰ ━┓\n`;
           for (const cmd of cat.cmds) {

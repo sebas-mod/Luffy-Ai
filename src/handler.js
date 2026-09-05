@@ -12,6 +12,7 @@ import {
   getAllCommandNames,
 } from "./lib/luffy-plugins.js";
 import { getDatabase } from "./lib/luffy-database.js";
+import { recordPluginError } from "./lib/luffy-plugin-errors.js";
 import {
   formatUptime,
   createWaitMessage,
@@ -579,6 +580,8 @@ async function isSpamming(jid) {
  */
 async function messageHandler(msg, sock, options = {}) {
   const isJadibot = options.isJadibot || false;
+  let activeCommand = null;
+  let activePluginName = null;
   try {
     let m;
     try {
@@ -1496,6 +1499,8 @@ async function messageHandler(msg, sock, options = {}) {
     }
 
     let plugin = getPlugin(m.command);
+    activeCommand = String(m.command || "").toLowerCase();
+    activePluginName = plugin?.config?.name || activeCommand;
 
     if (!plugin) {
       if (storeCommand) {
@@ -1778,6 +1783,9 @@ async function messageHandler(msg, sock, options = {}) {
 
     await plugin.handler(m, context);
 
+    activeCommand = null;
+    activePluginName = null;
+
     if (!m.isOwner && !m.isPartner && plugin.config.cooldown > 0) {
       db.setCooldown(m.sender, m.command, plugin.config.cooldown);
     }
@@ -1799,6 +1807,15 @@ async function messageHandler(msg, sock, options = {}) {
   } catch (error) {
     logger.error("handler", `${error.message}`);
     console.error("[Handler Stack]", error.stack);
+
+    try {
+      recordPluginError({
+        command: activeCommand,
+        pluginName: activePluginName,
+        error,
+        at: Date.now(),
+      });
+    } catch {}
 
     try {
       const db = getDatabase();
