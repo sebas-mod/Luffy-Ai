@@ -1710,7 +1710,7 @@ async function messageHandler(msg, sock, options = {}) {
     if (
       isGamePlugin &&
       !plugin.config.skipRegistration &&
-      !["registroj2", "desregistroj2", "cancelar_registroj2", "registro", "desregistro"].includes(
+      !["registrogame", "registroj2", "desregistrogame", "desregistroj2", "cancelar_registrogame", "cancelar_registroj2", "registro", "desregistro"].includes(
         String(plugin.config.name || "").toLowerCase(),
       )
     ) {
@@ -1723,7 +1723,7 @@ async function messageHandler(msg, sock, options = {}) {
         await m.reply(
           `🎮 *REGISTRO DE JUEGOS OBLIGATORIO*\n\n` +
           `Para jugar necesitas tener tu registro de juegos activo, nakama!\n\n` +
-          `> Escribe: \`${m.prefix}registroj2\`\n\n` +
+          `> Escribe: \`${m.prefix}registrogame\`\n\n` +
           `*Responde las preguntas del bot (nombre, edad, género) hasta terminar.*\n` +
           `Solo se pide una vez.`,
         );

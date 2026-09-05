@@ -2,13 +2,13 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const pluginConfig = {
-  name: "registroj2",
-  alias: ["regjuegos", "registrar_juego", "regjuego", "regj2"],
+  name: "registrogame",
+  alias: ["registroj2", "regjuegos", "regjuego", "regj2"],
   category: "game",
   description:
     "Registra tus datos (nombre, edad, género) para personalizar tu perfil de juegos",
-  usage: ".registroj2",
-  example: ".registroj2",
+  usage: ".registrogame",
+  example: ".registrogame",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -147,7 +147,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `✅ ¡Ya tienes registro de juegos!\n\n` +
         `${j2DataBlock(user.j2Name, user.j2Age, user.j2Gender)}\n\n` +
-        `> Para eliminarlo: \`${m.prefix}desregistroj2\``,
+        `> Para eliminarlo: \`${m.prefix}desregistrogame\``,
     );
   }
 
@@ -156,7 +156,7 @@ async function handler(m, { sock }) {
     return m.reply(
       `📝 ¡Aún hay una sesión de registro de juegos activa!\n\n` +
         `> Responde al último mensaje del bot para continuar\n` +
-        `> O escribe: \`${m.prefix}cancelar_registroj2\``,
+        `> O escribe: \`${m.prefix}cancelar_registrogame\``,
     );
   }
 
@@ -183,7 +183,7 @@ async function j2RegAnswerHandler(m, sock) {
   if (["cancelar", "cancela", "cancel"].includes(lowText)) {
     clearJ2Session(m.sender);
     await m.reply(
-      `❌ Registro de juegos cancelado.\n\n> Vuelve a empezar con: \`${m.prefix}registroj2\``,
+      `❌ Registro de juegos cancelado.\n\n> Vuelve a empezar con: \`${m.prefix}registrogame\``,
     );
     return true;
   }

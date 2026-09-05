@@ -1,12 +1,12 @@
 import { clearJ2Session } from "./registro.js";
 
 const pluginConfig = {
-  name: "cancelar_registroj2",
-  alias: ["cancelregjuego", "cancelar_juego", "regjuegocancel"],
+  name: "cancelar_registrogame",
+  alias: ["cancelar_registroj2", "cancelregjuego", "cancelar_juego", "regjuegocancel"],
   category: "game",
   description: "Cancelar la sesión de registro de juegos activa",
-  usage: ".cancelar_registroj2",
-  example: ".cancelar_registroj2",
+  usage: ".cancelar_registrogame",
+  example: ".cancelar_registrogame",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -25,7 +25,7 @@ async function handler(m) {
 
   return m.reply(
     `✅ Sesión de registro de juegos cancelada correctamente.\n\n` +
-      `> Vuelve a empezar con: \`${m.prefix}registroj2\``,
+      `> Vuelve a empezar con: \`${m.prefix}registrogame\``,
   );
 }
 

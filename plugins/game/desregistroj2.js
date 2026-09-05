@@ -2,12 +2,12 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 import config from "../../config.js";
 
 const pluginConfig = {
-  name: "desregistroj2",
-  alias: ["unregjuego", "quitar_registroj2", "desregjuego"],
+  name: "desregistrogame",
+  alias: ["desregistroj2", "unregjuego", "quitar_registroj2", "desregjuego"],
   category: "game",
   description: "Elimina tus datos de registro de juegos",
-  usage: ".desregistroj2",
-  example: ".desregistroj2",
+  usage: ".desregistrogame",
+  example: ".desregistrogame",
   isOwner: false,
   isPremium: false,
   isGroup: false,
@@ -24,7 +24,7 @@ async function handler(m, { sock }) {
   if (!user?.j2Registered) {
     return m.reply(
       `❌ ¡Aún no tienes registro de juegos!\n\n` +
-        `> Regístrate con \`${m.prefix}registroj2\``,
+        `> Regístrate con \`${m.prefix}registrogame\``,
     );
   }
 
@@ -48,7 +48,7 @@ async function handler(m, { sock }) {
         `☽◯☾ ╭━ ♰ ✦ ♰ ━╮ ☽◯☾\n✅ *ʀᴇɢɪsᴛʀᴏ ᴅᴇ ᴊᴜᴇɢᴏs ᴇʟɪᴍɪɴᴀᴅᴏ*\n\n` +
         `Tus datos de juegos han sido eliminados.\n\n` +
         `╰━ ⊱༺༒༻⊰ ━╯\n\n` +
-        `> Para volver a registrarte: \`${m.prefix}registroj2\``,
+        `> Para volver a registrarte: \`${m.prefix}registrogame\``,
       contextInfo: {
         forwardingScore: 9999,
         isForwarded: true,

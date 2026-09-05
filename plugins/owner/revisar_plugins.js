@@ -108,7 +108,7 @@ async function buildGameRegistrationReport(db, allPlugins) {
   let txt = `> Registro obligatorio global (.sistema_registro): *${
     globalOn ? "✅ ACTIVADO" : "❌ DESACTIVADO"
   }*\n`;
-  txt += `> Perfil de juego \`.registroj2\`: guarda tu nombre para los rankings (opcional)\n\n`;
+  txt += `> Perfil de juego \`.registrogame\`: guarda tu nombre para los rankings (opcional)\n\n`;
 
   const gamePlugins = allPlugins.filter((p) =>
     /[\\/]game[\\/]/.test(p.filePath || ""),
@@ -127,7 +127,7 @@ async function buildGameRegistrationReport(db, allPlugins) {
     if (skip) {
       forced.push(`• *${p.config.name}* → exento (\`skipRegistration\`)`);
     } else if (checksJ2) {
-      forced.push(`• *${p.config.name}* → exige \`registroj2\``);
+      forced.push(`• *${p.config.name}* → exige \`registrogame\``);
     } else if (checksReg) {
       forced.push(`• *${p.config.name}* → exige registro general`);
     } else {
