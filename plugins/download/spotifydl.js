@@ -45,8 +45,14 @@ async function handler(m, { sock }) {
       dlConfig.sources || [
         `https://api.nexray.eu.cc/downloader/spotify?url={url}`,
       ],
-      { url: text },
-      (data) => (data?.status && data?.result?.url ? data.result : null),
+      { url: text, key: config.downloader?.spotifySearchKey || "sebasapi2024" },
+      (data) => {
+        const r = data?.result;
+        if (!data?.status || !r) return null;
+        const dlUrl = r.url || r.dl;
+        if (!dlUrl) return null;
+        return { ...r, url: dlUrl };
+      },
       { timeout: 60000 },
     );
 

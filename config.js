@@ -82,7 +82,10 @@ const config = {
       qualities: ["360", "480", "720", "1080"],
     },
     spotify: {
-      sources: ["https://api.nexray.eu.cc/downloader/spotify?url={url}"],
+      sources: [
+        "https://api-yosoyyo-api-ofc.onrender.com/api/spotifydl?url={url}&apiKey={key}",
+        "https://api.nexray.eu.cc/downloader/spotify?url={url}",
+      ],
     },
     spotifySearchKey: "sebasapi2024", // API key para búsqueda de Spotify (endpoint api-yosoyyo-api-ofc)
   },

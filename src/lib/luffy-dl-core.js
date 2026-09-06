@@ -36,7 +36,7 @@ function cloneUrl(template, vars) {
  * @param {(data:any)=>any} pick Transfórmalo a algo truthy (la URL final)
  */
 async function trySources(sources, vars, pick, { timeout = 60000 } = {}) {
-  const key = DL.apiKey || "";
+  const key = vars?.key || DL.apiKey || "";
   if (!Array.isArray(sources) || !sources.length) return null;
   let lastErr = null;
   for (const tmpl of sources) {

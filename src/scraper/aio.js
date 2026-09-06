@@ -220,19 +220,32 @@ async function handleSavefbs(url) {
 }
 
 async function handleSpotify(url) {
-  const { data } = await axios.get(
-    `https://api.nexray.eu.cc/downloader/spotify?url=${encodeURIComponent(url)}`,
-    { timeout: 60000 },
-  );
-  if (!data?.status || !data?.result?.url) throw new Error("Spotify API returned no data");
-  return {
-    platform: "spotify",
-    title: data.result.artist
-      ? `${data.result.artist} - ${data.result.title || "Spotify"}`
-      : data.result.title || "Spotify",
-    thumbnail: data.result.cover || null,
-    media: [{ type: "audio", url: data.result.url, quality: "mp3" }],
-  };
+  const config = (await import("../../config.js")).default;
+  const dlConfig = config.downloader?.spotify || {};
+  const sources = dlConfig.sources || [
+    "https://api.nexray.eu.cc/downloader/spotify?url={url}",
+  ];
+  let lastErr = null;
+  for (const tmpl of sources) {
+    const apiUrl = tmpl
+      .replaceAll("{url}", encodeURIComponent(url))
+      .replaceAll("{key}", encodeURIComponent(config.downloader?.spotifySearchKey || "sebasapi2024"));
+    try {
+      const { data } = await axios.get(apiUrl, { timeout: 60000 });
+      const r = data?.result;
+      if (data?.status && r && (r.url || r.dl)) {
+        return {
+          platform: "spotify",
+          title: r.artist || r.author ? `${r.artist || r.author} - ${r.title || "Spotify"}` : r.title || "Spotify",
+          thumbnail: r.cover || null,
+          media: [{ type: "audio", url: r.url || r.dl, quality: "mp3" }],
+        };
+      }
+    } catch (e) {
+      lastErr = e;
+    }
+  }
+  throw lastErr || new Error("Spotify: todas las fuentes fallaron");
 }
 
 const PLATFORM_HANDLERS = {
