@@ -3,6 +3,10 @@ import { getDatabase } from "../../src/lib/luffy-database.js";
 import { getRole } from "./level.js";
 import fs from "fs";
 import { getDevice } from "ourin";
+import { getUser as getRpgUser } from "../luffy-rpg/core/user.js";
+import { getStats as getRpgStats } from "../luffy-rpg/core/stats.js";
+import { getTituloById, getRango } from "../luffy-rpg/core/config.js";
+import { levelInfo } from "../luffy-rpg/core/level.js";
 
 const pluginConfig = {
   name: "profile",
@@ -112,15 +116,16 @@ async function handler(m, { sock }) {
   const isOwnerUser = config.isOwner(target);
   const isPremiumUser = config.isPremium(target);
 
+  const rpgUser = getRpgUser(target);
+  const rpgStats = rpgUser ? getRpgStats(rpgUser) : null;
+  const rpgInfo = rpgUser ? levelInfo(rpgUser) : null;
+  const titulo = rpgUser ? getTituloById(rpgUser.titulo) : null;
+  const rango = rpgUser ? rpgUser.rango || getRango(rpgUser.nivel) : role;
+
   let ppMedia = null;
-  try {
-    const ppUrl = await sock.profilePictureUrl(target, "image");
-    if (ppUrl) {
-      ppMedia = { url: ppUrl };
-    } else {
-      throw new Error("No PP");
-    }
-  } catch {
+  if (ppUrl) {
+    ppMedia = { url: ppUrl };
+  } else {
     const fallbackUrl = config.assets["pp-kosong"];
     if (fallbackUrl) {
       ppMedia = { url: fallbackUrl };
@@ -150,14 +155,37 @@ async function handler(m, { sock }) {
       caption += `- *Pareja (Spouse):* @${user.rpg.spouse.split("@")[0]}\n`;
   }
 
-  caption += `\n*〔 ⚔️ STATS RPG Y NIVEL 〕*\n`;
-  caption += `- *Rol / Rango:* ${role}\n`;
-  caption += `- *Nivel actual:* ${user.rpg.level}\n`;
-  caption += `- *Total Exp:* ${formatNumber(userExp)} XP\n`;
-  caption += `- *Salud (Health):* ❤️ ${user.rpg.health} / ${user.rpg.maxHealth}\n`;
-  caption += `- *Mana (Magic):* 💧 ${user.rpg.mana} / ${user.rpg.maxMana}\n`;
-  caption += `- *Stamina:* ⚡ ${user.rpg.stamina} / ${user.rpg.maxStamina}\n`;
-  caption += `- *Progreso al nivel ${user.rpg.level + 1}:*\n  ${getLevelBar(expInLevel, expNeeded)}\n  _${formatNumber(expInLevel)} / ${formatNumber(expNeeded)} XP_\n`;
+  caption += `\n*〔 ⚔️ STATS RPG Luffy 〕*\n`;
+  if (rpgUser && rpgStats) {
+    caption += `- *Rol / Rango:* ${rango}\n`;
+    caption += `- *Título:* ${titulo?.emoji || "🪙"} ${titulo?.nombre || "Novato"}\n`;
+    caption += `- *Nivel actual:* ${rpgStats.nivel}\n`;
+    caption += `- *Total Exp:* ${formatNumber(rpgUser.exp || 0)} XP\n`;
+    caption += `- *Próximo nivel:* ${formatNumber(rpgInfo?.expSiguiente || 0)} XP\n`;
+    caption += `- *Salud (Health):* ❤️ ${rpgStats.salud} / ${rpgStats.saludMax}\n`;
+    caption += `- *Carne (Energía):* 🍖 ${rpgStats.carne} / ${rpgStats.carneMax}\n`;
+    caption += `- *Ataque:* ⚔️ ${rpgStats.ataque}\n`;
+    caption += `- *Defensa:* 🛡️ ${rpgStats.defensa}\n`;
+    caption += `- *Velocidad:* 💨 ${rpgStats.velocidad}\n`;
+    if (rpgInfo?.proximoRango) {
+      caption += `- *Próximo rango:* ${rpgInfo.proximoRango.nombre} (Nv. ${rpgInfo.proximoRango.nivel})\n`;
+    }
+  } else {
+    caption += `- *Rol / Rango:* ${role}\n`;
+    caption += `- *Nivel actual:* ${user.rpg.level}\n`;
+    caption += `- *Total Exp:* ${formatNumber(userExp)} XP\n`;
+    caption += `- *Salud (Health):* ❤️ ${user.rpg.health} / ${user.rpg.maxHealth}\n`;
+    caption += `- *Mana (Magic):* 💧 ${user.rpg.mana} / ${user.rpg.maxMana}\n`;
+    caption += `- *Stamina:* ⚡ ${user.rpg.stamina} / ${user.rpg.maxStamina}\n`;
+    caption += `- *Progreso al nivel ${user.rpg.level + 1}:*\n  ${getLevelBar(expInLevel, expNeeded)}\n  _${formatNumber(expInLevel)} / ${formatNumber(expNeeded)} XP_\n`;
+  }
+
+  caption += `\n*〔 🎒 RPG Luffy ACTIVE 〕*\n`;
+  caption += `- *Berrys:* 🪙 ${formatNumber(rpgUser?.berrys || user.berry || 0)}\n`;
+  if (rpgUser) {
+    caption += `- *Objetos:* ${Object.keys(rpgUser.inventario || {}).length} tipos\n`;
+    caption += `- *Personajes:* ${(rpgUser.personajes || []).length} coleccionados\n`;
+  }
 
   caption += `\n*〔 💰 ACTIVOS Y FINANZAS 〕*\n`;
   caption += `- *Berry en efectivo:* 🪙 Rp ${user.berry?.toLocaleString("id-ID") || 0} _(Se usa para funciones RPG)_\n`;
