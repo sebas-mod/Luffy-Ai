@@ -26,6 +26,20 @@ function getSharp() {
 }
 import axios from "axios";
 import sharp from "sharp";
+async function toBanner(buffer) {
+  const BANNER_W = 1280;
+  const BANNER_H = 720;
+  const bg = await sharp(buffer)
+    .resize(BANNER_W, BANNER_H, { fit: "cover" })
+    .blur(20)
+    .modulate({ brightness: 0.55 })
+    .toBuffer();
+  const fg = await sharp(buffer)
+    .resize(BANNER_W, BANNER_H, { fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .toBuffer();
+  return sharp(bg).composite([{ input: fg }]).jpeg({ quality: 85 }).toBuffer();
+}
+
 const pluginConfig = {
   name: "menu",
   alias: ["help", "ayuda", "commands", "m"],
@@ -475,7 +489,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
       case 1:
         if (imageBuffer) {
           await sock.sendMessage(m.chat, {
-            image: getAssetBuffer("luffy"),
+            image: await toBanner(getAssetBuffer("luffy")),
             caption: ``,
             footer: `¡Holaa ${m.pushName}! 👋
 
@@ -561,7 +575,7 @@ Toca el botón de abajo para más información y elegir la categoría
           s += "╚═══════════════╝\n\n"
         });
         const media = await prepareWAMessageMedia({
-          image: getAssetBuffer("luffy")
+          image: await toBanner(getAssetBuffer("luffy"))
         }, { upload: sock.waUploadToServer })
         const readmore = String.fromCharCode(8206).repeat(4001)
         await sock.relayMessage(
@@ -1259,7 +1273,7 @@ Disfruta su uso, pirata. ⚓`
 
         const { generateWAMessageFromContent } = await import("ourin");
         const menuMedia = await prepareWAMessageMedia({
-          image: await getAssetBuffer("luffy")
+          image: await toBanner(await getAssetBuffer("luffy"))
         }, { upload: sock.waUploadToServer });
 
         const videoLive = await prepareWAMessageMedia({
