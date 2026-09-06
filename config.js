@@ -87,6 +87,24 @@ const config = {
         "https://api.nexray.eu.cc/downloader/spotify?url={url}",
       ],
     },
+    instagram: {
+      // Fuentes API en orden de prioridad (fallback automático)
+      sources: [
+        "https://api-yosoyyo-api-ofc.onrender.com/api/instagram?url={url}&apiKey={key}",
+      ],
+    },
+    facebook: {
+      // Fuentes API en orden de prioridad (fallback automático)
+      sources: [
+        "https://api-yosoyyo-api-ofc.onrender.com/api/facebook?url={url}&apiKey={key}",
+      ],
+    },
+    mediafire: {
+      // Fuentes API en orden de prioridad (fallback automático)
+      sources: [
+        "https://api-yosoyyo-api-ofc.onrender.com/api/mediafire?url={url}&apiKey={key}",
+      ],
+    },
     spotifySearchKey: "sebasapi2024", // API key para búsqueda de Spotify (endpoint api-yosoyyo-api-ofc)
   },
 

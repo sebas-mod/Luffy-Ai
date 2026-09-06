@@ -1,25 +1,75 @@
 import axios from 'axios'
+import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
+
+function getApiKey() {
+  return (
+    config.downloader?.spotifySearchKey ||
+    config.downloader?.apiKey ||
+    'sebasapi2024'
+  )
+}
+
+async function fetchLyricsYosoyyo(judul) {
+  const res = await axios.get(
+    `https://api-yosoyyo-api-ofc.onrender.com/api/lyrics?q=${encodeURIComponent(judul)}&apiKey=${encodeURIComponent(getApiKey())}`,
+    { timeout: 35000 },
+  )
+  const d = res.data
+  if (d?.status && d?.result && d.result.lyrics) {
+    return {
+      title: d.result.title || judul,
+      artist: d.result.artist || 'Desconocido',
+      lyricsText: d.result.lyrics,
+      thumbnail: d.result.thumbnail,
+    }
+  }
+  return null
+}
+
+async function fetchLyricsNexray(judul) {
+  const res = await axios.get(
+    `https://api.nexray.eu.cc/search/lyrics?q=${encodeURIComponent(judul)}`,
+    { timeout: 35000 },
+  )
+  const data = res.data
+  if (data?.status && data?.result) {
+    const r = data.result
+    if (r.lyrics?.plain_lyrics) {
+      return {
+        title: r.title || judul,
+        artist: r.artist || r.lyrics.artist_name || 'Desconocido',
+        lyricsText: r.lyrics.plain_lyrics,
+        thumbnail: r.thumbnail,
+      }
+    }
+  }
+  return null
+}
 
 async function fetchLyrics(judul) {
   try {
-    const res = await axios.get(`https://api.nexray.eu.cc/search/lyrics?q=${encodeURIComponent(judul)}`)
-    if (res.data && res.data.status && res.data.result) {
-      return res.data.result
-    }
-    return null
-  } catch (error) {
-    return null
+    const y = await fetchLyricsYosoyyo(judul)
+    if (y) return y
+  } catch (e) {
+    console.error('[Lyrics] yosoyyo:', e.message)
   }
+  try {
+    const n = await fetchLyricsNexray(judul)
+    if (n) return n
+  } catch (e) {
+    console.error('[Lyrics] nexray:', e.message)
+  }
+  return null
 }
 
 const pluginConfig = {
     name: 'letra',
-    alias: ['lyric', 'lyrics', 'liriklagu'],
+    alias: ['lyric', 'lyrics', 'liriklagu', 'lyricsfinder'],
     category: 'search',
     description: 'Buscar letras de canciones',
     usage: '.letra <query>',
-    example: '.letra sempurna',
+    example: '.letra bohemian rhapsody',
     isOwner: false,
     isPremium: false,
     isGroup: false,
@@ -34,8 +84,7 @@ async function handler(m, { sock }) {
     
     if (!query) {
         return m.reply(
-            `☽◯☾ ╭ ♰ 🎶 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ ¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n──────────\n☽◯☾ ♰ Intenta escribir el comando así: *${m.prefix}letra sempurna andra and the backbone* 🎶\n──────────
-☽◯☾ ♰ ¡Escribe el título para que podamos cantar juntos! 🎤🔥\n╰━━━━━╯`
+            `☽◯☾ ╭ ♰ 🎶 ♰ ━╮ ☽◯☾\n☽◯☾ ♰ ¡Hola! ✨ ¿Olvidaste escribir el título de la canción? 😅\n──────────\n☽◯☾ ♰ Intenta escribir el comando así: *${m.prefix}letra bohemian rhapsody* 🎶\n──────────\n☽◯☾ ♰ ¡Escribe el título para que podamos cantar juntos! 🎤🔥\n╰━━━━━╯`
         )
     }
     
@@ -44,14 +93,14 @@ async function handler(m, { sock }) {
     try {
         const data = await fetchLyrics(query)
         
-        if (!data || !data.lyrics || !data.lyrics.plain_lyrics) {
+        if (!data || !data.lyricsText) {
             m.react('❌')
             return m.reply(`☽◯☾ ♰ Vaya, lo siento mucho 🥺 la letra de *${query}* no fue encontrada en la base de datos. ¡Intenta con una palabra clave o un título más específico! 💔`)
         }
         
         const title = data.title || query
-        const artist = data.artist || data.lyrics.artist_name || 'Desconocido'
-        const lyricsText = data.lyrics.plain_lyrics
+        const artist = data.artist || 'Desconocido'
+        const lyricsText = data.lyricsText
         
         const texts = `¡Encontré la letra! 🎉\n\n` +
                       `🎵 *Título:* ${title}\n` +

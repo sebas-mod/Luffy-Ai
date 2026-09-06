@@ -11,9 +11,9 @@ import { addExifToWebp } from "../../src/lib/luffy-exif.js";
 
 const pluginConfig = {
   name: "stickerpack",
-  alias: ["stickersearch", "searchsticker"],
+  alias: ["stickersearch", "searchsticker", "stickerpacksearch", "spack"],
   category: "sticker",
-  description: "Busca y envía sticker packs",
+  description: "Busca y envía sticker packs (Sticker Pack Search)",
   usage: ".stickerpack <query>",
   example: ".stickerpack anime",
   isOwner: false,
@@ -27,6 +27,56 @@ const pluginConfig = {
 
 class StickerAPI {
   async search(query, page = 1) {
+    // Fuente primaria: API yosoyyo (Sticker Pack Search)
+    try {
+      const apiKey =
+        config.downloader?.spotifySearchKey ||
+        config.downloader?.apiKey ||
+        "sebasapi2024";
+      const res = await axios
+        .get(
+          `https://api-yosoyyo-api-ofc.onrender.com/api/stickerpack?q=${encodeURIComponent(query)}&apiKey=${encodeURIComponent(apiKey)}`,
+          { timeout: 20000 },
+        )
+        .then((r) => r.data);
+
+      let items = [];
+      if (Array.isArray(res.result)) items = res.result;
+      else if (Array.isArray(res.data)) items = res.data;
+      else if (Array.isArray(res)) items = res;
+
+      if (Array.isArray(items) && items.length) {
+        const data = items.map((item) => {
+          const raw = typeof item === "string" ? { url: item } : item || {};
+          const name = raw.name || raw.title || raw.packname || "Sticker Pack";
+          const url =
+            raw.url ||
+            (raw.slug ? `https://getstickerpack.com/stickers/${raw.slug}` : "");
+          const slug =
+            raw.slug ||
+            String(url).match(/stickers\/([a-zA-Z0-9-]+)$/)?.[1] ||
+            null;
+          return {
+            name,
+            slug,
+            url,
+            image:
+              raw.image ||
+              raw.cover ||
+              raw.cover_image ||
+              raw.thumbnail ||
+              null,
+            download: raw.download_counter || raw.downloads || null,
+            stickers: Array.isArray(raw.stickers) ? raw.stickers : null,
+          };
+        });
+        return { status: true, data, total: data.length, source: "yosoyyo" };
+      }
+    } catch (e) {
+      console.error("[StickerPack] yosoyyo search:", e.message);
+    }
+
+    // Fuente de respaldo: getstickerpack
     try {
       if (!query) throw new Error("Consulta vacía");
       const res = await axios
@@ -42,7 +92,7 @@ class StickerAPI {
         image: `https://s3.getstickerpack.com/${item.cover_image || item.tray_icon_large}`,
         download: item.download_counter,
       }));
-      return { status: true, data, total: res.meta.total };
+      return { status: true, data, total: res.meta.total, source: "getstickerpack" };
     } catch (e) {
       return { status: false, msg: e.message };
     }
@@ -94,7 +144,7 @@ async function handler(m, { sock }) {
 
   if (!query) {
     return m.reply(
-      `── .✦ 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 𝗣𝗔𝗖𝗞 ✦. ── 𝜗ৎ\n\n` +
+      `── .✦ 𝗦𝗧𝗜𝗖𝗞𝗘𝗥 𝗣𝗔𝗖𝗞 𝗦𝗘𝗔𝗥𝗖𝗛 ✦. ── 𝜗ৎ\n\n` +
         `¡Busca y envía sticker packs!\n\n` +
         `╭─〔 Cómo Usarlo 〕───⬣\n` +
         `│  ✦ ${m.prefix}stickerpack <query>\n` +
@@ -120,7 +170,16 @@ async function handler(m, { sock }) {
 
     const randPick =
       search.data[Math.floor(Math.random() * search.data.length)];
-    const detail = await api.detail(randPick.url);
+
+    let detail = { status: true, title: randPick.name, stickers: null };
+    if (Array.isArray(randPick.stickers)) {
+      detail.stickers = randPick.stickers.map((s, i) =>
+        typeof s === "string" ? { index: i, image: s, animated: false } : s,
+      );
+    } else if (randPick.slug || randPick.url.includes("getstickerpack")) {
+      const d = await api.detail(randPick.slug || randPick.url);
+      if (d.status) detail = d;
+    }
 
     if (!detail.status || !detail.stickers?.length) {
       await m.react("✘");
