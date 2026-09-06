@@ -35,43 +35,49 @@ import config from '../../config.js';
 import { updateAssetAndSave } from './luffy-asset-manager.js';
 
 export async function updateAssetUrl(assetKey, buffer, filename = 'image.jpg') {
-  let localPath = config.assets?.[assetKey];
+  let finalSource = config.assets?.[assetKey];
 
-  if (!localPath || localPath.startsWith('http')) {
+  const isImageFile = /\.(jpe?g|png|webp|gif)$/i.test(filename);
+
+  if (isImageFile) {
+    const uploaded = await uploadImage(buffer, filename);
+    const raw = String(uploaded).trim();
+    finalSource = /^https?:\/\//i.test(raw)
+      ? raw
+      : `${termaiDomain}/${raw.replace(/^\/+/, '')}`;
+  } else {
     let folder = 'image';
     if (filename.endsWith('.mp4')) folder = 'video';
     else if (filename.endsWith('.mp3')) folder = 'audio';
+    finalSource = `./assets/${folder}/${filename}`;
 
-    localPath = `./assets/${folder}/${filename}`;
-
-    if (!config.assets) config.assets = {};
-    config.assets[assetKey] = localPath;
-
-    const configPath = path.join(process.cwd(), 'config.js');
-    let configContent = fs.readFileSync(configPath, 'utf8');
-
-    const regex = new RegExp(`("${assetKey}"\\s*:\\s*)"([^"]+)"`);
-    if (regex.test(configContent)) {
-      configContent = configContent.replace(regex, `$1"${localPath}"`);
-    } else {
-      const assetsBlockRegex = /(assets\s*:\s*\{)([^}]*)(\})/;
-      if (assetsBlockRegex.test(configContent)) {
-        configContent = configContent.replace(assetsBlockRegex, (match, p1, p2, p3) => {
-          let inner = p2.trim();
-          if (inner.endsWith(',')) inner = inner.slice(0, -1);
-          if (inner.length > 0) return `${p1}\n    ${inner},\n    "${assetKey}": "${localPath}"\n  ${p3}`;
-          return `${p1}\n    "${assetKey}": "${localPath}"\n  ${p3}`;
-        });
-      }
-    }
-    fs.writeFileSync(configPath, configContent, 'utf8');
+    const fullPath = path.resolve(process.cwd(), finalSource);
+    const dir = path.dirname(fullPath);
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(fullPath, buffer);
   }
 
-  const fullPath = path.resolve(process.cwd(), localPath);
-  const dir = path.dirname(fullPath);
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+  if (config.assets) config.assets[assetKey] = finalSource;
+  updateAssetAndSave(assetKey, buffer, finalSource);
 
-  updateAssetAndSave(assetKey, buffer, localPath);
+  const configPath = path.join(process.cwd(), 'config.js');
+  let configContent = fs.readFileSync(configPath, 'utf8');
 
-  return localPath;
+  const regex = new RegExp(`("${assetKey}"\\s*:\\s*)"([^"]+)"`);
+  if (regex.test(configContent)) {
+    configContent = configContent.replace(regex, `$1"${finalSource}"`);
+  } else {
+    const assetsBlockRegex = /(assets\s*:\s*\{)([^}]*)(\})/;
+    if (assetsBlockRegex.test(configContent)) {
+      configContent = configContent.replace(assetsBlockRegex, (match, p1, p2, p3) => {
+        let inner = p2.trim();
+        if (inner.endsWith(',')) inner = inner.slice(0, -1);
+        if (inner.length > 0) return `${p1}\n    ${inner},\n    "${assetKey}": "${finalSource}"\n  ${p3}`;
+        return `${p1}\n    "${assetKey}": "${finalSource}"\n  ${p3}`;
+      });
+    }
+  }
+  fs.writeFileSync(configPath, configContent, 'utf8');
+
+  return finalSource;
 }

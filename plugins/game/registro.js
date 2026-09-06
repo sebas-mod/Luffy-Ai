@@ -20,7 +20,7 @@ const pluginConfig = {
 
 if (!global.j2RegSessions) global.j2RegSessions = {};
 
-const SESSION_TIMEOUT = 300000;
+const SESSION_TIMEOUT = 600000;
 
 function getJ2ContextInfo() {
   const saluranId = config.saluran?.canalId || "120363400911374213@newsletter";
@@ -50,6 +50,17 @@ function getSessionKey(jid) {
     .replace(/[^0-9]/g, "");
 }
 
+function bumpJ2Session(key) {
+  const session = global.j2RegSessions?.[key];
+  if (!session) return null;
+  if (session.timeout) clearTimeout(session.timeout);
+  session.timeout = setTimeout(() => {
+    delete global.j2RegSessions[key];
+  }, SESSION_TIMEOUT);
+  session.startedAt = Date.now();
+  return session;
+}
+
 function clearJ2Session(jid) {
   const key = getSessionKey(jid);
   const session = global.j2RegSessions?.[key];
@@ -70,11 +81,9 @@ function createJ2Session(jid, chatJid) {
     chatJid,
     promptId: null,
     startedAt: Date.now(),
-    timeout: setTimeout(() => {
-      delete global.j2RegSessions[key];
-    }, SESSION_TIMEOUT),
   };
   global.j2RegSessions[key] = session;
+  bumpJ2Session(key);
   return session;
 }
 
@@ -175,6 +184,8 @@ async function j2RegAnswerHandler(m, sock) {
   const session = global.j2RegSessions?.[key];
   if (!session) return false;
   if (m.chat !== session.chatJid) return false;
+
+  bumpJ2Session(key);
 
   const text = m.body.trim();
   const lowText = normalizeText(text);

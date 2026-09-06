@@ -1,8 +1,8 @@
-import { exec } from 'child_process'
-import util from 'util'
-import te from '../../src/lib/luffy-error.js'
+import { execFile } from 'child_process'
+import { promisify } from 'util'
+import config from '../../config.js'
 
-const execAsync = util.promisify(exec)
+const execFileAsync = promisify(execFile)
 
 const pluginConfig = {
     name: 'update',
@@ -20,9 +20,26 @@ const pluginConfig = {
     isEnabled: true
 }
 
-async function runCmd(cmd, cwd = process.cwd()) {
-    const { stdout, stderr } = await execAsync(cmd, { cwd, maxBuffer: 1024 * 1024 * 10 })
+async function runGit(args, cwd = process.cwd()) {
+    const { stdout, stderr } = await execFileAsync('git', args, { cwd, maxBuffer: 1024 * 1024 * 10 })
     return { stdout: stdout?.trim(), stderr: stderr?.trim() }
+}
+
+async function getIdentity() {
+    const name = config.owner?.name || config.bot?.developer || config.bot?.name?.trim() || 'Luffy-Ai Bot'
+    let userName = String(name)
+    let userEmail = 'luffyai@users.noreply.github.com'
+
+    try {
+        const { stdout } = await runGit(['config', '--get', 'remote.origin.url'])
+        const match = String(stdout).match(/github\.com[:/]([^/]+)/i)
+        if (match) {
+            userName = match[1]
+            userEmail = `${match[1]}@users.noreply.github.com`
+        }
+    } catch {}
+
+    return { userName, userEmail }
 }
 
 async function handler(m, { sock }) {
@@ -36,7 +53,7 @@ async function handler(m, { sock }) {
 
         const before = Date.now()
 
-        const { stdout: statusOut } = await runCmd('git status --porcelain')
+        const { stdout: statusOut } = await runGit(['status', '--porcelain'])
         const changes = statusOut.split('\n').filter(l => l.trim())
 
         if (changes.length === 0) {
@@ -44,16 +61,25 @@ async function handler(m, { sock }) {
             return m.reply(`☽◯☾ ╭ ♰ ⚙️ SISTEMA ♰ ━╮ ☽◯☾\n┃ 📦 *sɪɴ ᴄᴀᴍʙɪᴏs*\n╰━━━━━━━━╯\n\n☽◯☾ ♰ No hay cambios que confirmar en el repositorio.\n› El árbol de trabajo está limpio.`)
         }
 
-        await runCmd('git add -A')
+        await runGit(['add', '-A'])
+
+        const { userName, userEmail } = await getIdentity()
+        const authorArgs = ['-c', `user.name=${userName}`, '-c', `user.email=${userEmail}`]
 
         const commitMsg = `${commitMessage}\n\nActualizado: ${new Date().toISOString()}`
-        await runCmd(`git commit -m ${JSON.stringify(commitMsg)}`)
+        await runGit([...authorArgs, 'commit', '-m', commitMsg])
 
         let pushInfo = ''
         if (doPush) {
-            const branch = (await runCmd('git rev-parse --abbrev-ref HEAD')).stdout || 'main'
-            await runCmd(`git push origin ${branch}`)
-            pushInfo = `┃ 📤 Push: *✅ ${branch}*\n`
+            const { stdout: branch } = await runGit(['rev-parse', '--abbrev-ref', 'HEAD'])
+            const currentBranch = branch || 'main'
+            try {
+                await runGit(['push', 'origin', currentBranch])
+                pushInfo = `┃ 📤 Push: *✅ ${currentBranch}*\n`
+            } catch (pushError) {
+                pushInfo = `┃ 📤 Push: *❌ ${currentBranch}*\n` +
+                           `┃ ↳ ${String(pushError.stderr || pushError.message).split('\n').find(l => l.trim()) || 'Error desconocido'}\n`
+            }
         }
 
         const elapsed = ((Date.now() - before) / 1000).toFixed(1)
@@ -67,6 +93,7 @@ async function handler(m, { sock }) {
         await m.reply(
             `📦 *ᴄᴏᴍᴍɪᴛ ᴇxɪᴛᴏsᴏ*\n\n` +
             `☽◯☾ ♰ 「 📋 *ᴅᴇᴛᴀʟʟᴇ* 」\n` +
+            `┃ 🧑 Author: *${userName}*\n` +
             `┃ 📝 Mensaje: *${commitMessage}*\n` +
             `┃ 📄 Archivos: *${changes.length}*\n` +
             (pushInfo ? `┃ ${pushInfo}` : '') +

@@ -37,23 +37,6 @@ function getConfiguredSources(value) {
 }
 
 /**
- * Candidatos locales automáticos por clave, para usarlos como respaldo
- * (secundario) cuando la URL principal falle.
- * @param {string} key - La clave del asset (ej. 'luffy-games')
- * @returns {string[]}
- */
-function getLocalFallbacks(key) {
-  return [
-    `./assets/image/${key}.png`,
-    `./assets/image/${key}.jpg`,
-    `./assets/image/${key}.jpeg`,
-    `./assets/image/${key}.webp`,
-    `./assets/video/${key}.mp4`,
-    `./assets/audio/${key}.mp3`,
-  ];
-}
-
-/**
  * Preload all assets into memory at startup.
  * @param {Object} configAssets - botConfig.assets or config.assets object
  */
@@ -99,8 +82,9 @@ import config from '../../config.js';
  * Get the cached asset buffer by key (e.g. 'luffy', 'luffy2').
  * If not in cache but available in config, loads it synchronously.
  * 
- * La URL es la fuente principal. Si la URL falla, se usa como respaldo
- * (secundario) el archivo local en assets/ (image, video o audio).
+ * Solo usa las fuentes definidas en config.assets (URL o ruta local).
+ * Las imágenes deben apuntar a una URL directa; no se usan respaldos
+ * automáticos de assets/.
  * 
  * @param {string} key - The asset key defined in config.assets
  * @param {Object} [configAssets] - Optional config.assets reference for fallback
@@ -114,13 +98,6 @@ export function getAssetBuffer(key, configAssets = null) {
   const assets = configAssets || config?.assets;
   const value = assets && assets[key];
   const sources = getConfiguredSources(value);
-
-  // Si el valor viene de una URL (principal) y no trae respaldo local
-  // configurado, agregamos el archivo local automáticamente como secundario.
-  const hasLocalSource = sources.some((s) => !s.startsWith('http'));
-  if (!hasLocalSource) {
-    sources.push(...getLocalFallbacks(key));
-  }
 
   for (const source of sources) {
     try {
