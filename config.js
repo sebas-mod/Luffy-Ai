@@ -14,7 +14,7 @@ const config = {
   },
 
   session: {
-    pairingNumber: "573170512292", // Número de WhatsApp que se vinculará (importante)
+    pairingNumber: "5491140951814", // Número de WhatsApp que se vinculará (importante)
     usePairingCode: true, // true = Código de vinculación, false = Código QR
   },
 

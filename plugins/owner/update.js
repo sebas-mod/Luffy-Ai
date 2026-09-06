@@ -25,18 +25,15 @@ async function runGit(args, cwd = process.cwd()) {
     return { stdout: stdout?.trim(), stderr: stderr?.trim() }
 }
 
+const GITHUB_USER = 'sebas-mod'
+const REPO_URL = 'https://github.com/sebas-mod/Luffy-Ai'
+
 async function getIdentity() {
-    const name = config.owner?.name || config.bot?.developer || config.bot?.name?.trim() || 'Luffy-Ai Bot'
-    let userName = String(name)
-    let userEmail = 'luffyai@users.noreply.github.com'
+    const userName = GITHUB_USER
+    const userEmail = `${GITHUB_USER}@users.noreply.github.com`
 
     try {
-        const { stdout } = await runGit(['config', '--get', 'remote.origin.url'])
-        const match = String(stdout).match(/github\.com[:/]([^/]+)/i)
-        if (match) {
-            userName = match[1]
-            userEmail = `${match[1]}@users.noreply.github.com`
-        }
+        await runGit(['remote', 'set-url', 'origin', REPO_URL])
     } catch {}
 
     return { userName, userEmail }
