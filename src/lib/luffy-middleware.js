@@ -188,7 +188,7 @@ async function checkPermission(m, pluginConfig, sock) {
 function checkMode(m, getActiveJadibots) {
   const db = getDatabase();
   const dbMode = db.setting("botMode");
-  const mode = dbMode || config.config.mode || "public";
+  const mode = dbMode || config.mode || "public";
 
   const onlyGc = db.setting("onlyGc");
   const onlyPc = db.setting("onlyPc");
