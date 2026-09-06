@@ -36,6 +36,7 @@ const pluginConfig = {
 const CATEGORY_EMOJIS = {
   owner: "👑",
   main: "🏠",
+  jadibot: "👾",
   utility: "🔧",
   fun: "🎮",
   group: "👥",
@@ -170,6 +171,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const categoryOrder = [
     "owner",
     "main",
+    "jadibot",
     "utility",
     "tools",
     "fun",
@@ -196,7 +198,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   });
   let modeAllowedMap = {
     md: null,
-    store: ["main", "group", "sticker", "owner", "store"],
+    store: ["main", "group", "sticker", "owner", "jadibot", "store"],
   };
   let modeExcludeMap = {
     md: ["store"],

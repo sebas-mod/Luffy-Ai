@@ -472,7 +472,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
               `> 🟢 Estado: *Online*\n` +
               `> ⏱️ Inicio: *${new Date().toLocaleTimeString("es-AR")}*\n\n` +
               `¡Tu bot está activo y listo para recibir órdenes!\n\n` +
-              `> ℹ️ Escribe \`${m.prefix || "."}stopjadibot\` para detenerlo`,
+              `> ℹ️ Escribe \`${m.prefix || "."}detener_bot\` para detenerlo`,
             mentions: [userJid],
           })
           .catch((e) => {
@@ -533,7 +533,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
             `> 📋 Motivo: *${errorInfo.reason}*\n` +
             `> ℹ️ ${errorInfo.action}\n\n` +
             (errorInfo.fatal
-              ? `> ⚠️ Sesión eliminada. Usa \`.jadibot\` para empezar de nuevo.`
+              ? `> ⚠️ Sesión eliminada. Usa \`.ser_bot\` para empezar de nuevo.`
               : ""),
           mentions: [userJid],
         });
@@ -711,7 +711,7 @@ async function startJadibot(sock, m, userJid, usePairing = true) {
       }
 
       await safeSend(sock, m?.chat, {
-        text: `❌ *ᴊᴀᴅɪʙᴏᴛ ɢᴀɢᴀʟ*\n\n> ${errorMsg}`,
+        text: `❌ *ᴊᴀᴅɪʙᴏᴛ ꜰᴀʟʟó*\n\n> ${errorMsg}`,
       });
 
       try {

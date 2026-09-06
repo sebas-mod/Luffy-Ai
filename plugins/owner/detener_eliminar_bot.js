@@ -71,7 +71,7 @@ async function handler(m, { sock }) {
                 `> 📱 Número: *@${id}*\n` +
                 `> 🗑️ Estado: *Eliminado*\n\n` +
                 `La sesión se eliminó permanentemente.\n` +
-                `El usuario necesita usar \`.jadibot\` de nuevo para crear una sesión nueva.`,
+                `El usuario necesita usar \`.ser_bot\` de nuevo para crear una sesión nueva.`,
             mentions: [target]
         }, { quoted: m })
     } catch (error) {

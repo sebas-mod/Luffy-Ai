@@ -33,6 +33,7 @@ const pluginConfig = {
 const CATEGORY_EMOJIS = {
   owner: "👑",
   main: "🏠",
+  jadibot: "👾",
   utility: "🔧",
   fun: "🎮",
   group: "👥",
@@ -151,6 +152,7 @@ async function handler(m, { sock, db }) {
     const categoryOrder = [
       "owner",
       "main",
+      "jadibot",
       "utility",
       "tools",
       "fun",

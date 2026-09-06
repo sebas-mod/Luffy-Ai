@@ -32,13 +32,13 @@ const MODES = {
     store: {
         name: 'Store/Tienda',
         desc: 'Modo especial para tienda manual',
-        allowedCategories: ['main', 'group', 'sticker', 'owner', 'store'],
+        allowedCategories: ['main', 'group', 'sticker', 'owner', 'jadibot', 'store'],
         excludeCategories: null
     },
     otp: {
         name: 'OTP Service',
         desc: 'Modo de servicio OTP automático',
-        allowedCategories: ['main', 'group', 'sticker', 'owner', 'otp'],
+        allowedCategories: ['main', 'group', 'sticker', 'owner', 'jadibot', 'otp'],
         excludeCategories: null
     }
 }

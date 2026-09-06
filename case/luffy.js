@@ -51,6 +51,7 @@ function formatNumber(num) {
 const CATEGORY_EMOJIS = {
   owner: "👑",
   main: "🏠",
+  jadibot: "👾",
   utility: "🔧",
   fun: "🎮",
   group: "👥",

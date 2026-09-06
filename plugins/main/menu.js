@@ -44,6 +44,7 @@ const pluginConfig = {
 const CATEGORY_EMOJIS = {
   owner: "👑",
   main: "🏠",
+  jadibot: "👾",
   utility: "🔧",
   tools: "🛠️",
   fun: "🎮",
@@ -75,6 +76,9 @@ const CATEGORY_EMOJIS = {
   cecan: "💃",
   stalker: "🕵️",
   tts: "🗣️"
+};
+const CATEGORY_LABELS = {
+  jadibot: "SUB-BOT",
 };
 function toSmallCaps(text) {
   const smallCaps = {
@@ -152,6 +156,7 @@ function getSortedCategories(m, botMode) {
   const categoryOrder = [
     "owner",
     "main",
+    "jadibot",
     "utility",
     "tools",
     "fun",
@@ -177,7 +182,7 @@ function getSortedCategories(m, botMode) {
   ];
   let modeAllowedMap = {
     md: null,
-    store: ["main", "group", "sticker", "owner", "store"],
+    store: ["main", "group", "sticker", "owner", "jadibot", "store"],
   };
   let modeExcludeMap = {
     md: ["store"],
@@ -273,6 +278,7 @@ async function buildMenuText(
   const categoryOrder = [
     "owner",
     "main",
+    "jadibot",
     "utility",
     "tools",
     "fun",
@@ -303,7 +309,7 @@ async function buildMenuText(
   });
   let modeAllowedMap = {
     md: null,
-    store: ["main", "group", "sticker", "owner", "store"],
+    store: ["main", "group", "sticker", "owner", "jadibot", "store"],
   };
   let modeExcludeMap = {
     md: ["store"],
@@ -460,7 +466,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
     const categories = getSortedCategories(m, botMode);
     const zann_pengin_rehat = categories.sorted.map(({ cat, cmds, emoji }) => {
       return {
-        title: `${emoji} ${toMonoUpperBold(cat)}`,
+        title: `${emoji} ${CATEGORY_LABELS[cat] || toMonoUpperBold(cat)}`,
         description: `Contiene ${cmds.length} comandos`,
         id: `${m.prefix}menu_categoria ${cat}`,
       };

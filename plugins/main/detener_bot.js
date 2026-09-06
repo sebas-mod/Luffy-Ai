@@ -2,8 +2,8 @@ import { stopJadibot, isJadibotActive, getJadibotStatus } from '../../src/lib/lu
 
 const pluginConfig = {
     name: 'detener_bot',
-    alias: ['berhentijadibot', 'stopbot', 'unjadibot'],
-    category: 'main',
+    alias: ['berhentijadibot', 'stopbot', 'unjadibot', 'detenerjadibot', 'stopjadibot'],
+    category: 'jadibot',
     description: 'Detener tu sesión jadibot',
     usage: '.detener_bot',
     example: '.detener_bot',
@@ -31,7 +31,7 @@ async function handler(m, { sock }) {
 
     if (!isJadibotActive(sender)) {
         return m.reply(
-            `❌ *ᴋᴀᴍᴜ ᴛɪᴅᴀᴋ ᴀᴅᴀʟᴀʜ ᴊᴀᴅɪʙᴏᴛ*\n\n` +
+            `❌ *ɴᴏ ᴇʀᴇs ᴜɴ ᴊᴀᴅɪʙᴏᴛ*\n\n` +
             `> Escribe \`${m.prefix}ser_bot\` para convertirte en bot`
         )
     }
@@ -46,10 +46,10 @@ async function handler(m, { sock }) {
         await m.react('✅')
 
         await m.reply(
-            `🛑 *ᴊᴀᴅɪʙᴏᴛ ᴅɪʜᴇɴᴛɪᴋᴀɴ*\n\n` +
+            `🛑 *ᴊᴀᴅɪʙᴏᴛ ᴅᴇᴛᴇɴɪᴅᴏ*\n\n` +
             `> 📱 Número: *@${sender.split('@')[0]}*\n` +
             `> ⏱️ Uptime: *${uptime}*\n` +
-            `> 💾 Session: *Tersimpan*\n\n` +
+            `> 💾 Sesión: *Guardada*\n\n` +
             `Escribe \`${m.prefix}ser_bot\` para reactivarlo.`,
             { mentions: [sender] }
         )

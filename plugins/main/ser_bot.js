@@ -2,8 +2,8 @@ import { startJadibot, isJadibotActive } from '../../src/lib/luffy-jadibot-manag
 
 const pluginConfig = {
     name: 'ser_bot',
-    alias: ['jadibotqr', 'becomebot', 'bot'],
-    category: 'main',
+    alias: ['jadibotqr', 'becomebot', 'bot', 'subbot'],
+    category: 'jadibot',
     description: 'Convierte tu número en bot (Código de emparejamiento / QR)',
     usage: '.ser_bot atau .ser_bot qr',
     example: '.ser_bot',

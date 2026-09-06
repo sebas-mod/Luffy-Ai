@@ -1549,7 +1549,7 @@ async function messageHandler(msg, sock, options = {}) {
       const groupData = db.getGroup(m.chat) || {};
       let botMode = groupData.botMode || "all";
       const pluginCategory = plugin.config.category?.toLowerCase();
-      const baseAllowed = ["main", "group", "sticker", "owner"];
+      const baseAllowed = ["main", "group", "sticker", "owner", "jadibot"];
 
       if (isJadibot) {
         botMode = "all";
