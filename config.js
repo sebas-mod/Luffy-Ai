@@ -84,6 +84,7 @@ const config = {
     spotify: {
       sources: ["https://api.nexray.eu.cc/downloader/spotify?url={url}"],
     },
+    spotifySearchKey: "sebasapi2024", // API key para búsqueda de Spotify (endpoint api-yosoyyo-api-ofc)
   },
 
   vercel: {

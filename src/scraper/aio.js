@@ -14,6 +14,7 @@ const PLATFORM_DETECT = [
   { key: "twitter", patterns: ["twitter.com", "x.com"] },
   { key: "threads", patterns: ["threads.net"] },
   { key: "reddit", patterns: ["reddit.com"] },
+  { key: "spotify", patterns: ["open.spotify.com"] },
 ];
 
 function detectPlatform(url) {
@@ -218,6 +219,22 @@ async function handleSavefbs(url) {
   };
 }
 
+async function handleSpotify(url) {
+  const { data } = await axios.get(
+    `https://api.nexray.eu.cc/downloader/spotify?url=${encodeURIComponent(url)}`,
+    { timeout: 60000 },
+  );
+  if (!data?.status || !data?.result?.url) throw new Error("Spotify API returned no data");
+  return {
+    platform: "spotify",
+    title: data.result.artist
+      ? `${data.result.artist} - ${data.result.title || "Spotify"}`
+      : data.result.title || "Spotify",
+    thumbnail: data.result.cover || null,
+    media: [{ type: "audio", url: data.result.url, quality: "mp3" }],
+  };
+}
+
 const PLATFORM_HANDLERS = {
   instagram: handleInstagram,
   youtube: handleYoutube,
@@ -228,6 +245,7 @@ const PLATFORM_HANDLERS = {
   twitter: handleSavefbs,
   threads: handleSavefbs,
   reddit: handleSavefbs,
+  spotify: handleSpotify,
 };
 
 async function aiodl(url) {
@@ -243,7 +261,8 @@ async function aiodl(url) {
     if (
       platform !== "twitter" &&
       platform !== "threads" &&
-      platform !== "reddit"
+      platform !== "reddit" &&
+      platform !== "spotify"
     ) {
       try {
         return await handleSavefbs(url);

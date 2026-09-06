@@ -25,6 +25,7 @@ const SUPPORTED_PATTERNS = [
   "x.com",
   "threads.net",
   "reddit.com",
+  "open.spotify.com",
 ];
 
 function containsSupportedLink(text) {
