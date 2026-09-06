@@ -1,7 +1,13 @@
 import axios from "axios";
-import ytdl from "../../src/scraper/ytdl.js";
+import { ytdl } from "../../src/scraper/ytdl.js";
 import config from "../../config.js";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import {
+  trySources,
+  trackStats,
+  sendWithLinkButton,
+} from "../../src/lib/luffy-dl-core.js";
+
 const pluginConfig = {
   name: "ytmp4",
   alias: ["youtubemp4", "ytvideo"],
@@ -14,26 +20,42 @@ const pluginConfig = {
   isEnabled: true,
 };
 
+function extractVideoId(url) {
+  return (
+    url.match(
+      /(?:[?&]v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/|shorts\/)([\w-]{11})/,
+    )?.[1] || url
+  );
+}
 
-async function getVideoDownloadUrl(url) {
-  const videoId = url.match(/(?:[?&]v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([\w-]{11})/)?.[1] || url;
-  try {
-    const { data } = await axios.get(
-      `https://apiyosoyyo-ofc.onrender.com/api/youtube?q=${encodeURIComponent(videoId)}&apiKey=Sebas-api2026`,
-      { timeout: 60000 }
-    );
-    if (data?.status && data?.result?.length && data.result[0]?.download?.mp4) {
-      return data.result[0].download.mp4;
-    }
-  } catch (e) {
+function thumbnailUrl(videoId) {
+  return `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+}
+
+async function getVideoDownloadUrl(url, quality) {
+  const videoId = extractVideoId(url);
+  const dlConfig = config.downloader?.youtube || {};
+
+  const viaApi = await trySources(
+    dlConfig.sources || [],
+    { query: videoId, url },
+    (data) => {
+      const first = Array.isArray(data?.result) ? data.result[0] : null;
+      if (!first) return null;
+      const q = String(quality || "360");
+      const chosen = first.download?.[q] || first.download?.[q + "p"] || first.download?.mp4;
+      return chosen || null;
+    },
+    { timeout: 60000 },
+  ).catch((e) => {
     console.error("[YTMP4 API Error]", e.message);
-  }
+    return null;
+  });
+
+  if (viaApi?.picked) return viaApi.picked;
 
   const fallback = await ytdl(url, "mp4");
-  if (fallback?.status && fallback?.dl) {
-    return fallback.dl;
-  }
-
+  if (fallback?.status && fallback?.dl) return fallback.dl;
   throw new Error(fallback?.mess || "Error al obtener la URL de descarga del video");
 }
 
@@ -50,10 +72,11 @@ async function handler(m, { sock }) {
     return m.reply(fail("YTMP4", "La URL debe ser de YouTube."));
   }
 
-  m.react("🕕");
+  await progressChain(sock, m, ["🕕", "📥"]);
+  const videoId = extractVideoId(url);
 
   try {
-    const downloadUrl = await getVideoDownloadUrl(url);
+    const downloadUrl = await getVideoDownloadUrl(url, "360");
 
     const caption = card({
       emoji: "🎬",
@@ -61,13 +84,29 @@ async function handler(m, { sock }) {
       fields: [
         ["Fuente", "YouTube"],
         ["Formato", "Video (.mp4)"],
+        ["Calidad", "360p (usa el botón para elegir otra)"],
       ],
-      footer: "Descarga lista, a disfrutar! 🚀",
+      footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
     });
 
-    await sock.sendMedia(m.chat, downloadUrl, caption, m, {
-      type: "video",
+    try {
+      await sock.sendMessage(
+        m.chat,
+        {
+          image: { url: thumbnailUrl(videoId) },
+          caption,
+        },
+        { quoted: m },
+      );
+    } catch {}
+
+    await sendWithLinkButton(sock, m.chat, m, {
+      caption,
+      url: downloadUrl,
+      buttonText: "🎬 Descargar en 360p",
     });
+
+    trackStats("youtube");
     m.react("✅");
   } catch (err) {
     console.error("[YTMP4]", err);

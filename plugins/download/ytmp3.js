@@ -1,6 +1,8 @@
 import axios from "axios";
 import ytdl, { fallbackToMp3Buffer } from "../../src/scraper/ytdl.js";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import config from "../../config.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import { trackStats } from "../../src/lib/luffy-dl-core.js";
 const pluginConfig = {
   name: "ytmp3",
   alias: ["youtubemp3", "ytaudio"],
@@ -46,7 +48,7 @@ async function handler(m, { sock }) {
     return m.reply(fail("YTMP3", "La URL debe ser de YouTube."));
   }
 
-  m.react("🕕");
+  await progressChain(sock, m, ["🕕", "🎵"]);
 
   try {
     const result = await getAudioDownload(url);
@@ -58,7 +60,7 @@ async function handler(m, { sock }) {
         ["Título", result.title],
         ["Formato", "Audio (.mp3)"],
       ],
-      footer: "Descarga lista, a disfrutar! 🎧",
+      footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
     });
 
     if (result.isFallback) {
@@ -82,6 +84,7 @@ async function handler(m, { sock }) {
         fileName: result.title || "audio.mp3",
       });
     }
+    trackStats("youtube_audio");
     m.react("✅");
   } catch (err) {
     console.error("[YTMP3]", err);

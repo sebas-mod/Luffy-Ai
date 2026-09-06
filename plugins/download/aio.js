@@ -1,7 +1,9 @@
 import { aiodl } from "../../src/scraper/aio.js";
+import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
 import { saluranCtx } from "../../src/lib/luffy-context.js";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import { trackStats } from "../../src/lib/luffy-dl-core.js";
 
 const pluginConfig = {
   name: "aio",
@@ -46,7 +48,7 @@ async function handler(m, { sock }) {
     return m.reply(fail("ALL IN ONE", "URL no válida! Debe empezar con http/https"));
   }
 
-  await m.react("🕕");
+  await progressChain(sock, m, ["🕕", "🌐"]);
 
   try {
     const result = await aiodl(url);
@@ -67,7 +69,7 @@ async function handler(m, { sock }) {
         ["Autor", result.author],
         ["Audios/Videos", String(result.media.length) + " archivo(s)"],
       ],
-      footer: "Descarga completada, a disfrutar! 🚀",
+      footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
     });
 
     for (const item of result.media) {
@@ -96,6 +98,7 @@ async function handler(m, { sock }) {
       break;
     }
 
+    trackStats("aio");
     await m.react("✅");
   } catch (error) {
     await m.react("☢");

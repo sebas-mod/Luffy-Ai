@@ -1,5 +1,7 @@
 import axios from "axios";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import config from "../../config.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import { trackStats } from "../../src/lib/luffy-dl-core.js";
 
 async function tiktokDl(url) {
   function formatNumber(integer) {
@@ -135,7 +137,8 @@ async function handler(m, { sock }) {
     await m.react("❌");
     return m.reply(fail("TIKTOK", "URL no válida. Usa un enlace de TikTok."));
   }
-  m.react("🕕");
+  await progressChain(sock, m, ["🕕", "🎶"]);
+
   try {
     const result = await tiktokDl(text);
 
@@ -173,7 +176,7 @@ async function handler(m, { sock }) {
         emoji: "🎵",
         title: "𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔",
         fields: [...baseFields, ...statsFields],
-        footer: "Video sin marca de agua, listo! 🚀",
+        footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
       });
 
       await sock.sendButton(m.chat, videoItem.url, caption, m, {
@@ -185,7 +188,7 @@ async function handler(m, { sock }) {
         emoji: "📸",
         title: "𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗘𝗦𝗖𝗔𝗥𝗚𝗔",
         fields: [...baseFields, ...statsFields],
-        footer: "Diapositivas sin marca de agua, listas! 📸",
+        footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
       });
 
       const slides = result.data?.map((zan, idx) => ({
@@ -204,6 +207,7 @@ async function handler(m, { sock }) {
         buttons: [musicButton],
       });
     }
+    trackStats("tiktok");
     m.react("✅");
   } catch (e) {
     console.error(e);

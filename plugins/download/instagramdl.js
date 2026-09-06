@@ -1,5 +1,8 @@
 import instagramDownloader from "../../src/scraper/ig.js";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import config from "../../config.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import { trackStats, getDlConfig } from "../../src/lib/luffy-dl-core.js";
+
 const pluginConfig = {
   name: "instagramdl",
   alias: ["igdl", "ig", "instagram"],
@@ -37,7 +40,7 @@ async function handler(m, { sock }) {
     );
   }
 
-  await m.react("🕕");
+  await progressChain(sock, m, ["🕕", "📸"]);
 
   try {
     const result = await instagramDownloader(url);
@@ -48,19 +51,23 @@ async function handler(m, { sock }) {
     }
 
     const isStory = url.includes("/stories/");
+    const maxItems = getDlConfig()?.maxMediaItems || 5;
+    const items = result.media.slice(0, maxItems);
     const totalMedia = result.media.length;
+    const shownMedia = items.length;
+
     let caption = card({
       emoji: "📸",
       title: isStory ? "𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠 𝗦𝗧𝗢𝗥𝗬" : "𝗜𝗡𝗦𝗧𝗔𝗚𝗥𝗔𝗠",
       fields: [
         ["Autor", result.username && result.username !== "-" ? `@${result.username}` : undefined],
         ["Descripción", result.caption],
-        ["Archivos", `${totalMedia} ${totalMedia === 1 ? "medio" : "medios"}`],
+        ["Archivos", `${shownMedia} de ${totalMedia} ${totalMedia === 1 ? "medio" : "medios"}`],
       ],
-      footer: "Descarga lista, a disfrutar! 🚀",
+      footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
     });
 
-    for (const item of result.media) {
+    for (const item of items) {
       if (item.type === "video" || item.type === "mp4") {
         await sock.sendMessage(
           m.chat,
@@ -77,6 +84,7 @@ async function handler(m, { sock }) {
       caption = "";
     }
 
+    trackStats("instagram");
     await m.react("✅");
   } catch (err) {
     await m.react("❌");

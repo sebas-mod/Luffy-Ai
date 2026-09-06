@@ -67,6 +67,25 @@ const config = {
     prefix: ".",
   },
 
+  // Configuración centralizada de los descargadores
+  downloader: {
+    apiKey: "Sebas-api2026", // API key por defecto para las APIs de download
+    footer: "⚓ Luffy-Ai Downloader",
+    maxFileSizeMB: 100, // Límite de peso del archivo a enviar (MB)
+    maxMediaItems: 5, // Máximo de archivos a enviar por descarga
+    trackStats: true, // Guarda estadísticas de descargas en la DB
+    youtube: {
+      // Fuentes API en orden de prioridad (fallback automático)
+      sources: [
+        "https://apiyosoyyo-ofc.onrender.com/api/youtube?q={query}&apiKey={key}",
+      ],
+      qualities: ["360", "480", "720", "1080"],
+    },
+    spotify: {
+      sources: ["https://api.nexray.eu.cc/downloader/spotify?url={url}"],
+    },
+  },
+
   vercel: {
     // ambil token vercel: https://vercel.com/account/tokens
     token: "", // Token de Vercel para la función de deploy (obligatorio si quieres que .deploy funcione)

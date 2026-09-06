@@ -1,6 +1,8 @@
 import { fbdown } from '../../src/scraper/fbdown.js'
+import config from '../../config.js'
 import te from '../../src/lib/luffy-error.js'
-import { card, fail, usage } from '../../src/lib/luffy-dl-ui.js'
+import { card, fail, usage, progressChain } from '../../src/lib/luffy-dl-ui.js'
+import { trackStats } from '../../src/lib/luffy-dl-core.js'
 
 const pluginConfig = {
     name: 'facebookdl',
@@ -34,7 +36,7 @@ async function handler(m, { sock }) {
         return m.reply(fail('FACEBOOK', 'URL no válida. Usa un enlace de Facebook.'))
     }
     
-    await m.react('🕕')
+    await progressChain(sock, m, ['🕕', '🎥'])
     
     try {
         const data = await fbdown(url)
@@ -62,7 +64,7 @@ async function handler(m, { sock }) {
                 ['Calidad', video.quality ? video.quality.toUpperCase() : 'Normal'],
                 ['Tamaño', video.formattedSize],
             ],
-            footer: 'Descarga sin marca de agua, listo! 🚀',
+            footer: config.downloader?.footer || '⚓ Luffy-Ai Downloader',
         })
 
         await sock.sendMedia(m.chat, video.url, caption, m, {
@@ -72,7 +74,8 @@ async function handler(m, { sock }) {
                 isForwarded: true
             }
         })
-        
+
+        trackStats('facebook')
         await m.react('✅')
     } catch (err) {
         await m.react('❌')

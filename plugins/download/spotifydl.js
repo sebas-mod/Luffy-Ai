@@ -1,5 +1,11 @@
 import axios from "axios";
-import { card, fail, usage } from "../../src/lib/luffy-dl-ui.js";
+import config from "../../config.js";
+import { card, fail, usage, progressChain } from "../../src/lib/luffy-dl-ui.js";
+import {
+  trySources,
+  trackStats,
+  sendWithLinkButton,
+} from "../../src/lib/luffy-dl-core.js";
 
 const pluginConfig = {
   name: "spotifydl",
@@ -31,20 +37,27 @@ async function handler(m, { sock }) {
     );
   }
 
-  await m.react("🕕");
+  await progressChain(sock, m, ["🕕", "🎵"]);
 
   try {
-    const apiUrl = `https://api.nexray.eu.cc/downloader/spotify?url=${encodeURIComponent(text)}`;
-    const res = await axios.get(apiUrl);
-    const data = res.data;
+    const dlConfig = config.downloader?.spotify || {};
+    const viaApi = await trySources(
+      dlConfig.sources || [
+        `https://api.nexray.eu.cc/downloader/spotify?url={url}`,
+      ],
+      { url: text },
+      (data) => (data?.status && data?.result?.url ? data.result : null),
+      { timeout: 60000 },
+    );
 
-    if (!data.status || !data.result || !data.result.url) {
+    if (!viaApi?.picked) {
       await m.react("❌");
       return m.reply(fail("SPOTIFY", "El servidor no respondió con un enlace de descarga válido."));
     }
 
-    const { title, artist, url } = data.result;
+    const { title, artist, url, cover, thumbnail, image, duration } = viaApi.picked;
     const filename = `${artist || "Spotify"} - ${title || "Audio"}.mp3`;
+    const coverUrl = cover || thumbnail || image || "";
 
     const caption = card({
       emoji: "🎵",
@@ -53,20 +66,37 @@ async function handler(m, { sock }) {
         ["Canción", title],
         ["Artista", artist],
         ["Formato", "MP3 (.mp3)"],
+        ...(duration ? [["Duración", String(duration)]] : []),
       ],
-      footer: "¡Que disfrutes de tu música! 🎧",
+      footer: config.downloader?.footer || "⚓ Luffy-Ai Downloader",
+    });
+
+    if (coverUrl) {
+      try {
+        await sock.sendMessage(
+          m.chat,
+          { image: { url: coverUrl }, caption },
+          { quoted: m },
+        );
+      } catch {}
+    }
+
+    await sendWithLinkButton(sock, m.chat, m, {
+      caption,
+      url,
+      buttonText: "🎵 Descargar MP3",
     });
 
     await sock.sendMessage(m.chat, {
-      audio: { url: url },
+      audio: { url },
       mimetype: "audio/mpeg",
       fileName: filename,
       ptt: false,
       caption,
     }, { quoted: m });
 
+    trackStats("spotify");
     await m.react("✅");
-
   } catch (error) {
     console.error("[Spotify DL Error]", error);
     await m.react("❌");
