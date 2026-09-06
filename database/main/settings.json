@@ -47,10 +47,6 @@
   "allmenuVariant": 9,
   "menucatVariant": 5,
   "notifMakan": {},
-  "storeProducts": [],
-  "storeTrxCounter": 3,
-  "storeTransactions": {},
-  "storeLists": [],
   "autoReadSW": {
     "enabled": true
   },
@@ -293,7 +289,7 @@
     },
     "584127291274@s.whatsapp.net": {
       "jid": "584127291274@s.whatsapp.net",
-      "name": "𝙅𝙤𝙨𝙪𝙚́༗"
+      "name": "Abraham🫯."
     },
     "5493765125171@s.whatsapp.net": {
       "jid": "5493765125171@s.whatsapp.net",
@@ -383,7 +379,6 @@
   "notiflimit": false,
   "pgTopups": {},
   "pgPayments": {},
-  "storeAutoProducts": [],
   "allmenuAudioStyle": 3,
   "sitagrup": {},
   "srtEnabled": true,

@@ -31,7 +31,7 @@ Esperamos que estés a gusto en el grupo @group
 > Para el Owner:
 cambia el intro predeterminado con .setintro <texto>`
  function parsePlaceholders(text, m, groupMeta) {
-    const now = moment().tz('Asia/Jakarta')
+    const now = moment().tz('America/Argentina/Buenos_Aires')
     const dateStr = now.format('D MMMM YYYY')
     const timeStr = now.format('HH:mm')
     

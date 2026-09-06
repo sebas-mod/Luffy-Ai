@@ -22,6 +22,7 @@ import {
   checkFastAnswer,
 } from "./luffy-context.js";
 import config from "../../config.js";
+import { getAssetBuffer } from "./luffy-asset-manager.js";
 import fs from "fs";
 import sharp from "sharp";
 let fetchBuffer;
@@ -107,7 +108,7 @@ class LuffyGames {
               url: `${config.info.website}`,
               title: cfg.title,
               description: cfg.description,
-              jpegThumbnail: await sharp(fs.readFileSync(config.assets["luffy2"])).resize(300, 300).toBuffer(),
+              jpegThumbnail: await sharp(getAssetBuffer("luffy2")).resize(300, 300).toBuffer(),
               previewType: 0,
             },
           );

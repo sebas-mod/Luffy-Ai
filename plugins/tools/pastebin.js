@@ -37,7 +37,7 @@ async function handler(m, { sock }) {
 
   const api_dev_key = "h9WMT2Mn9QW-qDhvUSc-KObqAYcjI0he";
   const api_paste_code = text.trim();
-  const api_paste_name = `Paste de ${m.pushName || "User"} - ${new Date().toLocaleDateString("id-ID")}`;
+  const api_paste_name = `Paste de ${m.pushName || "User"} - ${new Date().toLocaleDateString("es-AR")}`;
 
   const data = new URLSearchParams({
     api_dev_key,

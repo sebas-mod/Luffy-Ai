@@ -15,7 +15,7 @@ const CLIENT_ID = "1189857605";
 const VERSION = "5.1.2";
 const COUNTRY_CODE = "ID";
 const CLIENT_LANGUAGE = "en_US";
-const CLIENT_TIMEZONE = "Asia/Jakarta";
+const CLIENT_TIMEZONE = "America/Argentina/Buenos_Aires";
 
 const TASK_TYPE = "11";
 const CONTENT_TYPE = "2";

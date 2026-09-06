@@ -71,8 +71,8 @@ async function handler(m, { sock, db, uptime, config: botConfig }) {
         ram: `${formatBytes(usedMem)} / ${formatBytes(totalMem)}`,
         heap: `${formatBytes(memUsed.heapUsed)} / ${formatBytes(memUsed.heapTotal)}`,
       },
-      updated: new Date().toLocaleTimeString("id-ID", {
-        timeZone: "Asia/Jakarta",
+      updated: new Date().toLocaleTimeString("es-AR", {
+        timeZone: "America/Argentina/Buenos_Aires",
       }),
     };
 

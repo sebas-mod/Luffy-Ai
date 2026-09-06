@@ -77,7 +77,7 @@ async function handler(m, { sock }) {
                   `*° URL :* wa.me/${num.split('@')[0]}\n` +
                   `*° Menciones :* @${num.split('@')[0]}\n` +
                   `*° Estado :* ${bio?.status || '-'}\n` +
-                  `*° Fecha del estado :* ${bio?.setAt ? moment(bio.setAt).tz('Asia/Jakarta').format('LLLL') : '-'}\n\n`;
+                  `*° Fecha del estado :* ${bio?.setAt ? moment(bio.setAt).tz('America/Argentina/Buenos_Aires').format('LLLL') : '-'}\n\n`;
 
         if (business) {
             res += `\t\t\t\t*▾ INFO DE LA EMPRESA ▾*\n\n` +

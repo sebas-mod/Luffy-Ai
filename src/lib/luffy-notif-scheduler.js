@@ -2,7 +2,7 @@ import { getDatabase } from './luffy-database.js'
 import { logger } from './luffy-logger.js'
 import { CronJob } from 'cron'
 
-const TZ = 'Asia/Jakarta'
+const TZ = 'America/Argentina/Buenos_Aires'
 
 let sock = null
 const notifCronJobs = new Map()

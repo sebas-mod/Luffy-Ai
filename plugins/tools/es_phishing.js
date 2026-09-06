@@ -44,7 +44,7 @@ async function handler(m, { sock }) {
     info += `☽◯☾ ♰ Redirige a sitios peligrosos: ${result.sends_to_harmful_sites ? "🚨 Sí" : "✅ No"}\n`;
     info += `☽◯☾ ♰ Instala software malicioso: ${result.installs_malicious_software ? "🚨 Sí" : "✅ No"}\n`;
     info += `☽◯☾ ♰ Descargas no habituales: ${result.uncommon_downloads ? "🚨 Sí" : "✅ No"}\n\n`;
-    info += `──────────\n_Última comprobación: ${new Date(result.last_modified).toLocaleString("id-ID")}_\n\n╰━ ⊱༺༒༻⊰ ━╯`;
+    info += `──────────\n_Última comprobación: ${new Date(result.last_modified).toLocaleString("es-AR")}_\n\n╰━ ⊱༺༒༻⊰ ━╯`;
 
     await m.reply(info);
     m.react("✅");

@@ -85,7 +85,7 @@ async function handler(m, { sock }) {
     
     try {
         const saldo = Number(monto.replace(/[^0-9]/g, '')).toLocaleString('id-ID')
-        const hour = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: '2-digit', hour12: false })
+        const hour = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', hour12: false })
         const h = Number(hour)
         let saludo = 'Buenas noches'
         if (h >= 4 && h < 11) saludo = 'Buenos días'

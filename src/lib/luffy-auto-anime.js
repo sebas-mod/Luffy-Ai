@@ -289,7 +289,7 @@ async function runCheck() {
     }
 
     const sent = loadSent()
-    console.log(`[AutoAnime-Winbu] 🔍 Check: ${new Date().toLocaleString('id-ID')}`)
+    console.log(`[AutoAnime-Winbu] 🔍 Check: ${new Date().toLocaleString('es-AR')}`)
 
     let animeList
     try {

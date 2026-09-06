@@ -68,7 +68,7 @@ async function handler(m) {
         `┃ 👑 Líder · @${clan.leader.split('@')[0]}\n` +
         `┃ 👥 Miembros · ${clan.members.length}/50\n` +
         `┃ 🔓 Estado · ${clan.isOpen ? 'Abierto' : 'Cerrado'}\n` +
-        `┃ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('id-ID')}\n` +
+        `┃ 📅 Creado · ${new Date(clan.createdAt).toLocaleDateString('es-AR')}\n` +
         `┃\n` +
         `┃ ⚔️ *Estadísticas de guerra*\n` +
         `┃ ⚔️ ${clan.wins || 0}W · 🛡️ ${clan.losses || 0}L · ✦ ${winRate}% WR\n` +

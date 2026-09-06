@@ -852,19 +852,25 @@ async function serialize(sock, msg, store = {}) {
 
     const db = getDatabase();
 
-    let srtImage = null;
-    try {
-      if (db?.setting?.('srtEnabled')) {
+    const SHUFFLE_KEYS = ["shuffle-1", "shuffle-2", "shuffle-3", "shuffle-4"];
+    const getRandomShuffleImage = () => {
+      try {
+        if (!db?.setting?.('srtEnabled')) return null;
+        const key = SHUFFLE_KEYS[Math.floor(Math.random() * SHUFFLE_KEYS.length)];
+        const buf = getAssetBuffer(key);
+        if (buf && buf.length > 0) return buf;
         const shuffleDir = join(process.cwd(), 'assets', 'image', 'shuffle');
         if (existsSync(shuffleDir)) {
-          const files = fsc.readdirSync(shuffleDir).filter(f => f.endsWith('.jpg') || f.endsWith('.png') || f.endsWith('.jpeg'));
+          const files = fsc.readdirSync(shuffleDir).filter(f => f.match(/\.(jpg|jpeg|png)$/i));
           if (files.length > 0) {
-            const randFile = files[Math.floor(Math.random() * files.length)];
-            srtImage = fsc.readFileSync(join(shuffleDir, randFile));
+            return fsc.readFileSync(join(shuffleDir, files[Math.floor(Math.random() * files.length)]));
           }
         }
-      }
-    } catch (e) { }
+      } catch (e) { }
+      return null;
+    };
+
+    let srtImage = getRandomShuffleImage();
 
     let replyVariant = 1;
     try {
@@ -1164,23 +1170,7 @@ async function serialize(sock, msg, store = {}) {
         {}
       )
     } else if (replyVariant === 11) {
-      const getRandomSrtImage = () => {
-        try {
-          if (db?.setting?.('srtEnabled')) {
-            const shuffleDir = join(process.cwd(), 'assets', 'image', 'shuffle');
-            if (existsSync(shuffleDir)) {
-              const files = fsc.readdirSync(shuffleDir).filter(f => f.match(/\.(jpg|jpeg|png)$/i));
-              if (files.length > 0) {
-                const randFile = files[Math.floor(Math.random() * files.length)];
-                return fsc.readFileSync(join(shuffleDir, randFile));
-              }
-            }
-          }
-        } catch (e) { }
-        return null;
-      };
-
-      const randomImg = getRandomSrtImage();
+      const randomImg = getRandomShuffleImage();
       const thumbnailBuf = randomImg || srtImage || await getAssetBuffer("luffy");
       const { prepareWAMessageMedia } = await import("ourin");
 

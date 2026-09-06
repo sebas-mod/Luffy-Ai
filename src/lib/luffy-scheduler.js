@@ -7,7 +7,7 @@ import config from "../../config.js";
 
 const scheduledTasks = new Map();
 const activeCronJobs = new Map();
-const TZ = "Asia/Jakarta";
+const TZ = "America/Argentina/Buenos_Aires";
 
 function getMsUntilTime(hour, minute = 0) {
   const now = moment.tz(TZ);

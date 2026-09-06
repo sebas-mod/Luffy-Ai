@@ -17,6 +17,7 @@ import {
 } from "../../src/lib/luffy-plugins.js";
 import { getCasesByCategory, getCaseCount } from "../../case/luffy.js";
 import { GOTHIC, toFancy, divider, gothicCenter, headerBlock } from "../../src/lib/luffy-gothic.js";
+import { getAssetBuffer } from "../../src/lib/luffy-asset-manager.js";
 const pluginConfig = {
   name: "menu_todo",
   alias: ["allmenu", "fullmenu", "allcommand", "todo", "menucompleto"],
@@ -142,7 +143,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
   const devName = botConfig.bot?.developer || "Ell";
   const botVersion = botConfig.bot?.version || "11.0.0";
   const pushName = m.pushName || "User";
-  const timeNow = new Date().toLocaleTimeString('id-ID', { timeZone: 'Asia/Jakarta' }).replace(/\./g, ':');
+  const timeNow = new Date().toLocaleTimeString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' }).replace(/\./g, ':');
 
   txt += `╔═══════════════════╗\n`;
   txt += `║  🏴‍☠️ *MENÚ COMPLETO* 🏴‍☠️\n`;
@@ -243,7 +244,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
         break;
       case 2:
         const media = await prepareWAMessageMedia({
-          image: fs.readFileSync(config.assets["luffy"])
+          image: getAssetBuffer("luffy")
         }, { upload: sock.waUploadToServer })
         await sock.relayMessage(
           m.chat,
@@ -329,12 +330,12 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           }
         }
 
-        const thumbnail = await _sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await _sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
         const qOrder = {
           key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
           message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
         }
-        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+        const media4 = await prepareWAMessageMedia({ video: getAssetBuffer("luffy-mp4"), gifPlayback: true }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -398,7 +399,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           }
         }
 
-        const thumbnail = await _sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await _sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
 
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
@@ -514,7 +515,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
           await sock.sendMessage(
             m.chat,
             {
-              image: fs.readFileSync(config.assets["luffy"]),
+              image: getAssetBuffer("luffy"),
               caption: g,
             },
             { quoted: m },
@@ -631,7 +632,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               }
             };
             await sock.sendMessage(m.chat, {
-              audio: fs.readFileSync(config.assets["luffy-mp3"]),
+              audio: getAssetBuffer("luffy-mp3"),
               mimetype: "audio/mpeg",
               ptt: false,
             }, { quoted: qtext });
@@ -642,7 +643,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
+                  audio: getAssetBuffer("luffy-mp3"),
                   mimetype: "audio/mpeg",
                 },
                 { quoted: m },

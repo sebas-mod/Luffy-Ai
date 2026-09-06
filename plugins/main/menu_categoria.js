@@ -311,12 +311,12 @@ async function handler(m, { sock, db }) {
             }
           }
 
-          const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+          const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
           const qOrder = {
             key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
             message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
           }
-          const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+          const media4 = await prepareWAMessageMedia({ video: getAssetBuffer("luffy-mp4"), gifPlayback: true }, { upload: sock.waUploadToServer });
           const msg4 = generateWAMessageFromContent(m.chat, {
             viewOnceMessage: {
               message: {
@@ -507,12 +507,12 @@ async function handler(m, { sock, db }) {
           }
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
         const qOrder = {
           key: { fromMe: false, participant: '0@s.whatsapp.net', remoteJid: m.sender },
           message: { locationMessage: { degreesLatitude: 0, degreesLongitude: 0, name: await weatherMenu(), jpegThumbnail: thumbnail } }
         }
-        const media4 = await prepareWAMessageMedia({ video: fs.readFileSync(config.assets["luffy-mp4"]), gifPlayback: true }, { upload: sock.waUploadToServer });
+        const media4 = await prepareWAMessageMedia({ video: getAssetBuffer("luffy-mp4"), gifPlayback: true }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -576,7 +576,7 @@ async function handler(m, { sock, db }) {
           }
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
 
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {

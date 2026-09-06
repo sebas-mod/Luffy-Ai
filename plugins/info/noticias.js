@@ -72,7 +72,7 @@ async function fetchRSS(url) {
 function formatDate(dateStr) {
     try {
         const date = new Date(dateStr)
-        return date.toLocaleString('id-ID', {
+        return date.toLocaleString('es-AR', {
             day: 'numeric',
             month: 'short',
             year: 'numeric',

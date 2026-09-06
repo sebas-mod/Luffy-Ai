@@ -90,7 +90,7 @@ async function handler(m, { sock }) {
   const fmtDate = (ts) => {
     if (!ts) return null;
     const d = ts instanceof Date ? ts : new Date(Number(ts) * (String(ts).length <= 10 ? 1000 : 1));
-    return isNaN(d) ? null : d.toLocaleString('id-ID');
+    return isNaN(d) ? null : d.toLocaleString('es-AR');
   };
 
   if (!user.rpg) user.rpg = {};
@@ -143,7 +143,7 @@ async function handler(m, { sock }) {
   caption += `- *Estado de cuenta:* ${isOwnerUser ? "👑 Owner" : isPremiumUser ? "💎 Premium" : "🆓 Usuario Free"}\n`;
   if (user.isBanned) caption += `- *Baneado:* 🚫 Sí (No puede acceder a las funciones del bot)\n`;
   if (user.registeredAt) {
-      caption += `- *Fecha de registro:* ${new Date(user.registeredAt).toLocaleDateString("id-ID")}\n`;
+      caption += `- *Fecha de registro:* ${new Date(user.registeredAt).toLocaleDateString("es-AR")}\n`;
   }
   if (user.clanId) caption += `- *Clan / Guild:* ${user.clanId}\n`;
   if (user.rpg && user.rpg.spouse) {

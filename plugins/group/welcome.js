@@ -19,15 +19,15 @@ function resolvePlaceholders(
   groupOwner,
   prefix,
 ) {
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
-    Sunday: "Minggu",
-    Monday: "Senin",
-    Tuesday: "Selasa",
-    Wednesday: "Rabu",
-    Thursday: "Kamis",
-    Friday: "Jumat",
-    Saturday: "Sabtu",
+    Sunday: "Domingo",
+    Monday: "Lunes",
+    Tuesday: "Martes",
+    Wednesday: "Miércoles",
+    Thursday: "Jueves",
+    Friday: "Viernes",
+    Saturday: "Sábado",
   };
   const dayId = dayNames[now.format("dddd")] || now.format("dddd");
   return template
@@ -70,43 +70,35 @@ async function buildWelcomeMessage(
   prefix = ".",
 ) {
   const greetings = [
-    `Por fin llegaste`,
-    `Bienvenido`,
-    `Welcome`,
+    `¡Bienvenido`,
+    `Qué bueno tenerte aquí`,
     `Hola`,
-    `Hai`,
-    `Yokoso~`,
-    `Ohayou~`,
+    `Hey!`,
+    `Bienvenido a bordo`,
+    `Un gusto conocerte`,
   ];
   const quotes = [
-    `¡No seas un lector silencioso!`,
-    `¡Relájate, siéntete como en casa!`,
-    `¡Anímate y ponte a hablar!`,
-    `¡Prepárate para la diversión!`,
-    `¡No seas tímido, todos somos amigos!`,
-    `Si no sabes por dónde empezar, saluda primero 😄`,
+    `¡Aquí nadie se queda callado, la fiesta empieza cuando tú llegas!`,
+    `¡Relájate, que esta casa ya es tuya!`,
+    `¡Anímate y participa, la diversión está garantizada!`,
+    `¡Prepárate, porque con nosotros nunca hay momento aburrido!`,
+    `¡No seas tímido! Aquí todos somos una gran familia 💛`,
+    `Si no sabes por dónde empezar, solo saluda y verás caos (del bueno) 😄`,
+    `¡Nuevo nivel desbloqueado: miembro oficial del grupo!`,
   ];
-  const emojis = ["🎐", "🌸", "✨", "💫", "🪸", "🔥", "💖"];
+  const emojis = ["🎉", "✨", "💫", "🔥", "💛", "🌊", "🚀"];
   const headers = [
-    `🎐 Ohayou~ minna-san!
-Hoy tenemos un nuevo amigo 🌱
-¡Vamos a darle la bienvenida todos juntos~`,
-    `🌸 Ohayou minna-san!
-Un nuevo amigo por fin se unió ✨
-Esperamos que esté a gusto y se integre pronto ya~`,
-    `✨ Ohayou~!
-Un nuevo amigo trae nuevas vibras 💫
-Yoroshiku ne~ ¡divirtámonos todos juntos!`,
-    `🪸 Ohayou minna-san!
-Este grupo suma un nuevo miembro a la familia 🤍
-Tanoshii jikan o issho ni sugoso ne~`,
+    `🚀 ¡Llegó el nuevo integrante de la tripulación!`,
+    `🎊 ¡Un nuevo jugador se une a la partida!`,
+    `💫 ¡La familia crece y el grupo se pone mejor!`,
+    `🔥 ¡Nueva leyenda acaba de unirse a este lugar!`,
   ];
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
   const quote = quotes[Math.floor(Math.random() * quotes.length)];
   const emoji = emojis[Math.floor(Math.random() * emojis.length)];
   const header = headers[Math.floor(Math.random() * headers.length)];
   const username = participant?.split("@")[0] || "Usuario";
-  const now = moment().tz("Asia/Jakarta");
+  const now = moment().tz("America/Argentina/Buenos_Aires");
   const dayNames = {
     Sunday: "Domingo",
     Monday: "Lunes",
@@ -128,19 +120,19 @@ Tanoshii jikan o issho ni sugoso ne~`,
       prefix,
     );
   }
-  let msg = `👋🏻 *BIENVENIDO NUEVO MIEMBRO* 👋🏻\n\n`;
-  msg += `${header}\n`;
+  const msg = `👋🏻 *BIENVENIDO AL GRUPO* 👋🏻\n\n`;
+  msg += `*${header}*\n\n`;
   msg += `${emoji} ${greeting}, *@${username}* 💫\n\n`;
   msg += `📌 *INFO DEL GRUPO*\n`;
   msg += `> 🏠 *Nombre* : ${groupName}\n`;
   msg += `> 👥 *Miembros* : ${memberCount}\n`;
-  msg += `> 📅 *Fecha* : ${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\n`;
+  msg += `> 📅 *Fecha* : ${moment().tz("America/Argentina/Buenos_Aires").format("DD/MM/YYYY")}\n`;
 
   if (groupDesc) {
     msg += `\n📝 *Descripción*\n> ❝ ${groupDesc.slice(0, 120)}${groupDesc.length > 120 ? "..." : ""} ❞\n`;
   }
 
-  msg += `\n✨ *Consejo del Día*\n> 「 ${quote} 」\n\n🌸 _Yoroshiku ne~ esperamos que estés a gusto!_ 🤍`;
+  msg += `\n✨ *Consejo del Día*\n> 「 ${quote} 」\n\n🌸 _¡Qué disfrutes tu estancia y nos veamos por aquí! Te deseamos lo mejor._ 🤍`;
 
   return msg;
 }

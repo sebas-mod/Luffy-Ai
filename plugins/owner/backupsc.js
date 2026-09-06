@@ -101,7 +101,7 @@ async function handler(m, { sock }) {
   );
   try {
     const projectRoot = process.cwd();
-    const timestamp = moment().tz("Asia/Jakarta").format("YYYY-MM-DD_HH-mm-ss");
+    const timestamp = moment().tz("America/Argentina/Buenos_Aires").format("YYYY-MM-DD_HH-mm-ss");
     const botName =
       config.bot?.name?.replace(/[^a-zA-Z0-9]/g, "") || "LuffyBot";
     const zipFileName = `${botName}_backup_${timestamp}.zip`;
@@ -198,7 +198,7 @@ async function handler(m, { sock }) {
           `┃ 📝 ɴᴏᴍʙʀᴇ: \`${zipFileName}\`\n` +
           `┃ 📊 ᴛᴀᴍᴀñᴏ: \`${fileSizeMB} MB\`\n` +
           `┃ 📁 ᴀʀᴄʜɪᴠᴏs: \`${fileCount}\`\n` +
-          `┃ 📅 ꜰᴇᴄʜᴀ: \`${moment().tz("Asia/Jakarta").format("DD/MM/YYYY")}\`\n` +
+          `┃ 📅 ꜰᴇᴄʜᴀ: \`${moment().tz("America/Argentina/Buenos_Aires").format("DD/MM/YYYY")}\`\n` +
           `╰━ ⊱༺༒༻⊰ ━╯`,
         contextInfo: {
           forwardingScore: 9999,

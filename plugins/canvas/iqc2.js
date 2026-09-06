@@ -35,7 +35,7 @@ async function handler(m, { sock, text }) {
         const randomProvider = providers[Math.floor(Math.random() * providers.length)];
         
         const now = new Date();
-        const jam = now.toLocaleTimeString("id-ID", { timeZone: "Asia/Jakarta", hour: "2-digit", minute: "2-digit" }).replace('.', ':');
+        const jam = now.toLocaleTimeString("es-AR", { timeZone: "America/Argentina/Buenos_Aires", hour: "2-digit", minute: "2-digit" }).replace('.', ':');
         
         const randomBaterai = Math.floor(Math.random() * (100 - 10 + 1)) + 10; // 10-100
 

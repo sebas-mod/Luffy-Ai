@@ -17,7 +17,7 @@ const pluginConfig = {
 }
 
 function formatDate(ts) {
-    return new Date(ts).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })
+    return new Date(ts).toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
 async function handler(m) {

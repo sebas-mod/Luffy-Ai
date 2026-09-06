@@ -178,7 +178,7 @@ async function handler(m, { sock }) {
       `🎄 *Username*: ${res.username}\n` +
       `📛 *Display*: ${res.displayName}\n` +
       `✅ *Verificado*: ${res.verified ? "Sí" : "No"}\n` +
-      `📅 *Creado*: ${res.created ? new Date(res.created).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : "-"}\n` +
+      `📅 *Creado*: ${res.created ? new Date(res.created).toLocaleDateString("es-AR", { day: "numeric", month: "long", year: "numeric" }) : "-"}\n` +
       `\n` +
       `*SOCIAL*\n` +
       `👥 *Amigos*: ${res.social.friends?.toLocaleString()}\n` +

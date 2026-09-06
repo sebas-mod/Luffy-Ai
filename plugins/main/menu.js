@@ -469,7 +469,7 @@ async function handler(m, { sock, config: botConfig, db, uptime }) {
       case 1:
         if (imageBuffer) {
           await sock.sendMessage(m.chat, {
-            image: fs.readFileSync(config.assets["luffy"]),
+            image: getAssetBuffer("luffy"),
             caption: ``,
             footer: `¡Holaa ${m.pushName}! 👋
 
@@ -555,7 +555,7 @@ Toca el botón de abajo para más información y elegir la categoría
           s += "╚═══════════════╝\n\n"
         });
         const media = await prepareWAMessageMedia({
-          image: fs.readFileSync(config.assets["luffy"])
+          image: getAssetBuffer("luffy")
         }, { upload: sock.waUploadToServer })
         const readmore = String.fromCharCode(8206).repeat(4001)
         await sock.relayMessage(
@@ -686,7 +686,7 @@ ${readmore}${s}`
               },
             ],
             locationMessage: {
-              jpegThumbnail: await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 170).toBuffer(),
+              jpegThumbnail: await sharp(getAssetBuffer("luffy")).resize(300, 170).toBuffer(),
               name: config.bot.name,
               address: `Versión actual: ${config.bot.version}`
             },
@@ -731,7 +731,7 @@ ${readmore}${s}`
         break
 
       case 4: {
-        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
         const qvideo = {
           key: {
             fromMe: false,
@@ -748,7 +748,7 @@ ${readmore}${s}`
           }
         }
         const media4 = await prepareWAMessageMedia({
-          video: fs.readFileSync(config.assets["luffy-mp4"]),
+          video: getAssetBuffer("luffy-mp4"),
           gifPlayback: true
         }, { upload: sock.waUploadToServer });
         let singlePush = categories.sorted.map(cat => {
@@ -901,7 +901,7 @@ Disfruta su uso, pirata. ⚓`
             return "Clima no disponible"
           }
         }
-        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
         const qOrder = {
           key: {
             fromMe: false,
@@ -918,7 +918,7 @@ Disfruta su uso, pirata. ⚓`
           }
         }
         const media4 = await prepareWAMessageMedia({
-          video: fs.readFileSync(config.assets["luffy-mp4"]),
+          video: getAssetBuffer("luffy-mp4"),
           gifPlayback: true
         }, { upload: sock.waUploadToServer });
         const msg4 = generateWAMessageFromContent(m.chat, {
@@ -1089,7 +1089,7 @@ Disfruta su uso, pirata. ⚓`
           topCmdText += `║ ▸ Aún no hay comandos\n╚═══════════════╝\n`
         }
 
-        const thumbnail = await sharp(fs.readFileSync(config.assets["luffy"])).resize(300, 300).toBuffer()
+        const thumbnail = await sharp(getAssetBuffer("luffy")).resize(300, 300).toBuffer()
         const msg6 = generateWAMessageFromContent(m.chat, {
           viewOnceMessage: {
             message: {
@@ -1564,7 +1564,7 @@ Disfruta su uso, pirata. ⚓`
           await sock.sendMessage(
             m.chat,
             {
-              image: imageBuffer || fs.readFileSync(config.assets["luffy"]),
+              image: imageBuffer || getAssetBuffer("luffy"),
               caption: g,
             },
             { quoted: m },
@@ -1658,7 +1658,7 @@ Disfruta su uso, pirata. ⚓`
               }, { quoted: qpoll });
             } catch (err) {
               await sock.sendMessage(m.chat, {
-                audio: fs.readFileSync(config.assets["luffy-mp3"]),
+                audio: getAssetBuffer("luffy-mp3"),
                 mimetype: "audio/mpeg",
                 ptt: false,
               }, { quoted: qpoll });
@@ -1676,7 +1676,7 @@ Disfruta su uso, pirata. ⚓`
               }
             };
             await sock.sendMessage(m.chat, {
-              audio: fs.readFileSync(config.assets["luffy-mp3"]),
+              audio: getAssetBuffer("luffy-mp3"),
               mimetype: "audio/mpeg",
               ptt: false,
             }, { quoted: qtext });
@@ -1767,7 +1767,7 @@ Disfruta su uso, pirata. ⚓`
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
+                  audio: getAssetBuffer("luffy-mp3"),
                   mimetype: "audio/mpeg",
                 },
                 { quoted: ftroliQuoted },
@@ -1776,7 +1776,7 @@ Disfruta su uso, pirata. ⚓`
               await sock.sendMessage(
                 m.chat,
                 {
-                  audio: fs.readFileSync(config.assets["luffy-mp3"]),
+                  audio: getAssetBuffer("luffy-mp3"),
                   mimetype: "audio/mpeg",
                   contextInfo: getContextInfo(botConfig, m, thumbBuffer),
                 },

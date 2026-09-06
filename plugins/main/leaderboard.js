@@ -2,6 +2,7 @@ import { getDatabase } from '../../src/lib/luffy-database.js'
 import config from '../../config.js'
 import fs from 'fs'
 import path from 'path'
+import { getAssetBuffer } from '../../src/lib/luffy-asset-manager.js'
 const pluginConfig = {
     name: 'leaderboard',
     alias: [
@@ -91,7 +92,7 @@ async function handler(m, { sock }) {
         const overviewText = `🏆 *LEADERBOARD GLOBAL* 🏆\n\n` +
             `_¡Elige un botón de abajo para ver el ranking!_`
             try {
-                await sock.sendButton(m.chat, fs.readFileSync(path.join(process.cwd(), 'assets', 'images', 'luffy.jpg')), overviewText, m, {
+                await sock.sendButton(m.chat, getAssetBuffer("luffy"), overviewText, m, {
                     buttons: [
                     {
                         name: 'quick_reply',

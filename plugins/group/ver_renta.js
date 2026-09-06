@@ -1,10 +1,11 @@
 import { getDatabase } from '../../src/lib/luffy-database.js'
-import * as timeHelper from '../../src/lib/luffy-time.js'
+import { ensureSewa, formatCountdown, formatDateEs } from '../../src/lib/luffy-activation.js'
+
 const pluginConfig = {
     name: 'ver_renta',
-    alias: ["rentarestante"],
+    alias: ["rentarestante", "estadobbot", "activacion", "estadobot"],
     category: 'group',
-    description: 'Ver el tiempo restante del alquiler del bot en este grupo',
+    description: 'Ver el estado de la activación del bot en este grupo (inicio y fin)',
     usage: '.ver_renta',
     example: '.ver_renta',
     isOwner: false,
@@ -14,79 +15,78 @@ const pluginConfig = {
     isAdmin: false,
     cooldown: 10,
     carne: 0,
-    isEnabled: true
-}
-
-function formatCountdown(expiredAt) {
-    const diff = expiredAt - Date.now()
-    if (diff <= 0) return { text: 'EXPIRADO', expired: true }
-    const days = Math.floor(diff / 86400000)
-    const hours = Math.floor((diff % 86400000) / 3600000)
-    const minutes = Math.floor((diff % 3600000) / 60000)
-    let text = ''
-    if (days > 0) text += `${days} días `
-    if (hours > 0) text += `${hours} horas `
-    if (minutes > 0 && days === 0) text += `${minutes} minutos`
-    return { text: text.trim(), expired: false }
+    isEnabled: true,
 }
 
 function handler(m) {
     const db = getDatabase()
-    if (!db.db.data.sewa) {
-        db.db.data.sewa = { enabled: false, groups: {} }
-        db.db.write()
+    const sewa = ensureSewa(db)
+
+    if (!sewa.enabled) {
+        return m.reply(
+            "☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ " +
+            `ℹ️ El sistema de activación está inactivo\n\nEste bot se puede usar en todos los grupos.` +
+            "\n╰━ ⊱༺༒༻⊰ ━╯"
+        )
     }
 
-    if (!db.db.data.sewa.enabled) {
-        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`ℹ️ El sistema de alquiler está inactivo\n\nEste bot se puede usar en todos los grupos.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
+    const data = sewa.groups[m.chat]
+
+    if (!data) {
+        return m.reply(
+            "☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ " +
+            `❌ Este grupo no está activado\n\nContacta al owner del bot para adquirir una activación.` +
+            "\n╰━ ⊱༺༒༻⊰ ━╯"
+        )
     }
 
-    const sewaData = db.db.data.sewa.groups[m.chat]
+    const groupName = data.name || m.chat.split('@')[0]
+    const startDate = formatDateEs(data.startAt || data.addedAt)
 
-    if (!sewaData) {
-        return m.reply("☽◯☾ ╭━ ♰ ⚡ GRUPO ♰ ━╮ ☽◯☾\n┃ "+`❌ Este grupo no está registrado en el sistema de alquiler\n\nContacta al owner del bot para info sobre el alquiler.`+"\n╰━ ⊱༺༒༻⊰ ━╯")
-    }
-
-    const groupName = sewaData.name || m.chat.split('@')[0]
-    const addedDate = sewaData.addedAt ? timeHelper.fromTimestamp(sewaData.addedAt, 'D MMMM YYYY') : '-'
-
-    if (sewaData.isLifetime) {
+    if (data.isLifetime) {
         m.react('♾️')
         return m.reply(
-            `♾️ *ESTADO DEL ALQUILER*\n\n` +
+            `👑•─────•👑\n♾️ *ESTADO DEL BOT*\n\n` +
             `Grupo: *${groupName}*\n` +
             `Estado: *Permanente* ♾️\n` +
-            `Registrado desde: *${addedDate}*\n\n` +
-            `El bot estará activo para siempre en este grupo.`
+            `📅 Inicio: ${startDate}\n` +
+            `⏰ Termina: *Nunca* ♾️\n\n` +
+            `El bot estará activo para siempre en este grupo.` +
+            `\n♰ ──────── ♱`
         )
     }
 
-    const countdown = formatCountdown(sewaData.expiredAt)
-    const expiredStr = timeHelper.fromTimestamp(sewaData.expiredAt, 'D MMMM YYYY HH:mm')
+    const countdown = formatCountdown(data.expiredAt)
+    const expiredStr = formatDateEs(data.expiredAt)
 
-    if (countdown.expired) {
+    if (countdown && countdown.expired) {
+        m.react('❌')
         return m.reply(
-            `❌ *ALQUILER EXPIRADO*\n\n` +
+            `👑•─────•👑\n❌ *ACTIVACIÓN EXPIRADA*\n\n` +
             `Grupo: *${groupName}*\n` +
-            `Termina: *${expiredStr}*\n\n` +
-            `Contacta al owner del bot para renovar el alquiler.`
+            `📅 Inicio: ${startDate}\n` +
+            `⏰ Terminó: *${expiredStr}*\n\n` +
+            `Contacta al owner del bot para renovar la activación.` +
+            `\n♰ ──────── ♱`
         )
     }
 
-    const diff = sewaData.expiredAt - Date.now()
+    const diff = data.expiredAt - Date.now()
     const isAlmostExpired = diff <= 259200000
 
     m.react(isAlmostExpired ? '⚠️' : '⏱️')
-    let text = `⏱️ *ESTADO DEL ALQUILER*\n\n`
+    let text = `👑•─────•👑\n⏱️ *ESTADO DEL BOT*\n\n`
     text += `Grupo: *${groupName}*\n`
-    text += `Tiempo restante: *${countdown.text}*\n`
-    text += `Termina: *${expiredStr}*\n`
-    text += `Registrado desde: *${addedDate}*`
+    text += `📅 *Inicio:* ${startDate}\n`
+    text += `⏰ *Termina:* ${expiredStr}\n`
+    text += `⏳ Restante: *${countdown ? countdown.text : '-'}*\n`
+    if (data.activeCode) text += `🎟️ Código: *\`${data.activeCode}\`*\n`
 
     if (isAlmostExpired) {
-        text += `\n\n⚠️ ¡El alquiler está por expirar! Contacta al owner del bot para renovarlo.`
+        text += `\n⚠️ ¡La activación está por vencer! Contacta al owner para renovarla.`
     }
 
+    text += `\n♰ ──────── ♱`
     return m.reply(text)
 }
 

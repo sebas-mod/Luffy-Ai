@@ -315,7 +315,7 @@ function startAutoBackup(sock) {
   stopAutoBackup();
 
   const cronExp = intervalToCron(state.intervalMs);
-  activeCronJob = new CronJob(cronExp, doBackup, null, true, "Asia/Jakarta");
+  activeCronJob = new CronJob(cronExp, doBackup, null, true, "America/Argentina/Buenos_Aires");
   logger.info(
     "AutoBackup",
     `Started with interval: ${formatInterval(state.intervalMs)} (cron: ${cronExp})`,

@@ -19,7 +19,7 @@ const pluginConfig = {
 }
 
 function formatDate(timestamp) {
-    return new Intl.DateTimeFormat('id-ID', {
+    return new Intl.DateTimeFormat('es-AR', {
         weekday: 'long',
         day: 'numeric',
         month: 'long',
