@@ -2,8 +2,8 @@ import axios from "axios";
 import config from "../../config.js";
 import te from "../../src/lib/luffy-error.js";
 
-const SIM_API = config.APIkey?.simulacion || "clave-simulacion-2022";
-const SIM_BASE = "http://127.0.0.1:8000";
+const SIM_API = process.env.SIM_API || config.APIkey?.simulacion || "clave-simulacion-2022";
+const SIM_BASE = process.env.SIM_BASE || config.APIkey?.simulacion_base || "http://127.0.0.1:8000";
 
 const pluginConfig = {
     name: "infopersona",
